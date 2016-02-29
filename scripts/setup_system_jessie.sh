@@ -307,3 +307,17 @@ mkdir setbfree
 cd setbfree
 ln -s /usr/local/share/setBfree/pgm/default.pgm .
 ln -s /usr/local/share/setBfree/pgm/popular.pgm .
+
+#------------------------------------------------
+# Install Python Jack Client
+#------------------------------------------------
+sudo pip install cffi
+sudo pip install JACK-Client
+sudo pip3 install cffi
+sudo pip3 install JACK-Client
+#Or apt-get ...
+
+#------------------------------------------------
+# Install Carla
+#------------------------------------------------
+
