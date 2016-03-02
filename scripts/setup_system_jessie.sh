@@ -311,11 +311,10 @@ ln -s /usr/local/share/setBfree/pgm/popular.pgm .
 #------------------------------------------------
 # Install Python Jack Client
 #------------------------------------------------
-sudo pip install cffi
+apt-get install python-cffi
 sudo pip install JACK-Client
-sudo pip3 install cffi
+apt-get install python3-cffi
 sudo pip3 install JACK-Client
-#Or apt-get ...
 
 #------------------------------------------------
 # Install Carla

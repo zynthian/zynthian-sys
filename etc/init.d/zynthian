@@ -15,16 +15,16 @@ export HOME_ZYNTHIAN=/home/pi/zynthian
 export FRAMEBUFFER=/dev/fb1
 
 zynthian_start () {
-	cd $HOME_ZYNTHIAN/zynthian
+	cd $HOME_ZYNTHIAN/zynthian-ui
 	#./startx-pitft.sh ./zynthian.sh
 	startx ./zynthian.sh -- :0 vt3 &
 }
 
 zynthian_stop () {
 	killall zynthian.sh
-	killall zynthian_gui.py
-	killall ttymidi
-	killall zynthian_autoconnect_jack.py
+	#killall zynthian_gui.py
+	#killall ttymidi
+	#killall zynthian_autoconnect_jack.py
 }
 
 case "$1" in
