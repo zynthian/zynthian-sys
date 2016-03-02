@@ -10,7 +10,7 @@
 # Description:       Init Zynthian
 ### END INIT INFO
 
-export HOME=/root
+export HOME=/home/pi
 export HOME_ZYNTHIAN=/home/pi/zynthian
 export FRAMEBUFFER=/dev/fb1
 
