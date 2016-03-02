@@ -10,7 +10,8 @@
 # Description:       Init Zynthian
 ### END INIT INFO
 
-export HOME=/home/pi
+export HOME=/root
+export ZHOME=/home/pi
 export HOME_ZYNTHIAN=/home/pi/zynthian
 export FRAMEBUFFER=/dev/fb1
 
@@ -33,7 +34,7 @@ case "$1" in
 		;;
 	startx|"")
 		export ZYNTHIANX=$DISPLAY
-		xauth merge $HOME/.Xauthority
+		xauth merge $ZHOME/.Xauthority
 		zynthian_start
 		;;
 	start_seq|"")
@@ -43,7 +44,7 @@ case "$1" in
 	startx_seq|"")
 		export ZYNTHIAN_SEQ=1
 		export ZYNTHIANX=$DISPLAY
-		xauth merge $HOME/.Xauthority
+		xauth merge $ZHOME/.Xauthority
 		zynthian_start
 		;;
 	restart|reload|force-reload)
