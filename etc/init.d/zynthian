@@ -11,7 +11,7 @@
 ### END INIT INFO
 
 export HOME=/root
-export HOME_ZYNTHIAN=/home/pi/
+export HOME_ZYNTHIAN=/home/pi/zynthian
 export FRAMEBUFFER=/dev/fb1
 
 zynthian_start () {
@@ -24,7 +24,7 @@ zynthian_stop () {
 	killall zynthian.sh
 	killall zynthian_gui.py
 	killall ttymidi
-	killall zynthian_autoconnect.py
+	killall zynthian_autoconnect_jack.py
 }
 
 case "$1" in
@@ -33,7 +33,7 @@ case "$1" in
 		;;
 	startx|"")
 		export ZYNTHIANX=$DISPLAY
-		xauth merge $HOME_ZYNTHIAN/.Xauthority
+		xauth merge $HOME/.Xauthority
 		zynthian_start
 		;;
 	start_seq|"")
@@ -43,7 +43,7 @@ case "$1" in
 	startx_seq|"")
 		export ZYNTHIAN_SEQ=1
 		export ZYNTHIANX=$DISPLAY
-		xauth merge $HOME_ZYNTHIAN/.Xauthority
+		xauth merge $HOME/.Xauthority
 		zynthian_start
 		;;
 	restart|reload|force-reload)
