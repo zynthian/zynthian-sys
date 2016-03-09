@@ -1,4 +1,26 @@
 #!/bin/bash
+#******************************************************************************
+# ZYNTHIAN PROJECT: Zynthian Setup Script
+# 
+# Setup a Zynthian Box from a raw debian-jessie installation
+# 
+# Copyright (C) 2015-2016 Fernando Moyano <jofemodo@zynthian.org>
+#
+#******************************************************************************
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# For a full copy of the GNU General Public License see the LICENSE.txt file.
+# 
+#******************************************************************************
 
 export ZYNTHIAN_HOME_DIR="/home/pi"
 export ZYNTHIAN_DATA_DIR="/home/pi/zynthian-data"
@@ -149,6 +171,7 @@ sudo apt-get -y install dssi-dev
 sudo apt-get -y install libjpeg-dev
 sudo apt-get -y install libxpm-dev
 #sudo apt-get -y install libgd2-xpm-dev
+sudo apt-get -y install liblash-compat-dev
 
 sudo apt-get -y install fontconfig
 sudo apt-get -y install fontconfig-config
@@ -255,7 +278,7 @@ unzip TkinterTreectrl-2.0.1.zip
 cd TkinterTreectrl-2.0.1
 python3 setup.py build
 sudo python3 setup.py install
-rm -f $ZYNTHIAN_SW_DIR/TkinterTreectrl-2.0.1.zip
+#rm -f $ZYNTHIAN_SW_DIR/TkinterTreectrl-2.0.1.zip
 
 #------------------------------------------------
 # Install QSampler
@@ -319,4 +342,37 @@ sudo pip3 install JACK-Client
 #------------------------------------------------
 # Install Carla
 #------------------------------------------------
+cd $ZYNTHIAN_DIR/zynthian-sw
+git clone https://github.com/falkTX/Carla.git
+cd Carla
+make features
+sudo apt-get install qt4-dev-tools
+sudo apt-get install qt5-dev-tools
+sudo apt-get install pyqt4-dev-tools
+sudo apt-get install pyqt5-dev-tools
+sudo apt-get install python3-pyqt4
+sudo apt-get install python3-pyqt5
+sudo apt-get install libgtk2.0-dev
+sudo apt-get install libgtk-3-dev
+#sudo apt-get install libgtk+2.0-dev
+#sudo apt-get install gtk+3.0-dev
+sudo apt-get install libfluidsynth-dev
+sudo apt-get install fluidsynth-dssi
+sudo apt-get install liblinuxsampler-dev
+sudo apt-get install linuxsampler-lv2
+sudo apt-get install linuxsampler-dssi
+export RASPPI=true
+make -j 4
+sudo make install
 
+#------------------------------------------------
+# Install DISTRHO Plugins-Ports
+#------------------------------------------------
+cd $ZYNTHIAN_DIR/zynthian-sw
+git clone https://github.com/DISTRHO/DISTRHO-Ports.git
+cd DISTRHO-Ports
+sudo apt-get install premake
+./scripts/premake-update.sh linux
+#edit ./scripts/premake.lua
+make -j 4
+sudo make install
