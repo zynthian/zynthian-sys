@@ -22,10 +22,11 @@
 # 
 #******************************************************************************
 
-export ZYNTHIAN_HOME_DIR="/home/pi"
-export ZYNTHIAN_DATA_DIR="/home/pi/zynthian-data"
-export ZYNTHIAN_SW_DIR="/home/pi/zynthian-sw"
-export ZYNTHIAN_UI_DIR="/home/pi/zynthian"
+export ZYNTHIAN_HOME_DIR="/home/pi/zynthian"
+export ZYNTHIAN_SW_DIR="$ZYNTHIAN_HOME_DIR/zynthian-sw"
+export ZYNTHIAN_UI_DIR="$ZYNTHIAN_HOME_DIR/zynthian-ui"
+export ZYNTHIAN_SYS_DIR="$ZYNTHIAN_HOME_DIR/zynthian-sys"
+export ZYNTHIAN_DATA_DIR="$ZYNTHIAN_HOME_DIR/zynthian-data"
 
 #------------------------------------------------
 # Update System
@@ -36,10 +37,24 @@ sudo apt-get -y upgrade
 sudo rpi-update
 
 #------------------------------------------------
+# Create Directory Tree & 
 # Install Zynthian Software from repository
 #------------------------------------------------
 
-git clone https://github.com/jofemodo/zynthian.git
+mkdir $ZYNTHIAN_HOME_DIR
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zyncoder.git
+git clone https://github.com/zynthian/zynthian-ui.git
+git clone https://github.com/zynthian/zynthian-sys.git
+git clone https://github.com/zynthian/zynthian-data.git
+git clone https://github.com/zynthian/zynthian-plugins.git
+mkdir "zynthian-sw"
+mkdir "zynthian-my-data"
+mkdir "zynthian-plugins"
+mkdir "zynthian-plugins/lv2"
+mkdir "zynthian-plugins/dssi"
+mkdir "zynthian-plugins/vst"
+mkdir "zynthian-plugins/ladspa"
 
 #------------------------------------------------
 # System Adjustments
@@ -54,10 +69,10 @@ sudo echo "CONF_SWAPSIZE=0" > /etc/dphys-swapfile
 sudo chmod a+rw /dev/ttyAMA0
 
 # Modules
-sudo cp $ZYNTHIAN_UI_DIR/etc/modules /etc
+sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
 
 # Copy & Soft Link Init Scripts
-sudo cp $ZYNTHIAN_UI_DIR/etc/init.d/* /etc/init.d
+sudo cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
 sudo ln -s /etc/init.d/asplashscreen /etc/rcS.d/S01asplashscreen
 sudo ln -s /etc/init.d/zynthian /etc/rc2.d/S01zynthian
 sudo ln -s /etc/init.d/zynthian /etc/rc3.d/S01zynthian
@@ -79,7 +94,7 @@ sudo systemctl enable asplashscreen
 sudo systemctl enable zynthian
 
 # Initd Services
-sudo cp $ZYNTHIAN_UI_DIR/etc/inittab /etc
+sudo cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 #sudo cp $ZYNTHIAN_DIR/etc/rc.local /etc
 sudo update-rc.d -f raspi-config remove
 sudo update-rc.d -f dphys-swapfile remove
@@ -95,23 +110,23 @@ sudo update-rc.d zynthian enable
 # X11 Config
 sudo mv /usr/share/X11/xorg.conf.d /usr/share/X11/xorg.conf.d.nouse
 sudo mkdir /etc/X11/xorg.conf.d
-sudo cp $ZYNTHIAN_UI_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
-sudo cp $ZYNTHIAN_UI_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
+sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
+sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 
 # User
-cp $ZYNTHIAN_UI_DIR/etc/zynaddsubfxXML.cfg ~/.zynaddsubfxXML.cfg
-sudo cp $ZYNTHIAN_UI_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
+cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ~/.zynaddsubfxXML.cfg
+sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 
 #------------------------------------------------
 # Install Required Debian Packages
 #------------------------------------------------
 
-# Tools
+# CLI Tools
 #sudo apt-get install tree # installed by default
 sudo apt-get -y install joe
 sudo apt-get -y install fbi
 sudo apt-get -y install scrot # Screenshot Capture => installed by default
-sudo apt-get -y install i2c-tools ==> !!!!REVISAR
+sudo apt-get -y install i2c-tools #==> !!!!REVISAR
 #sudo apt-get install python-smbus (i2c with python)
 
 # Autostatic Repos
@@ -127,26 +142,17 @@ sudo apt-get -y install jackd2 # installed by default
 sudo apt-get -y install a2jmidid
 sudo apt-get -y install laditools
 
-# Fluidsynth & SF2
-sudo apt-get install fluidsynth fluid-soundfont-gm fluid-soundfont-gs
-mkdir $ZYNTHIAN_DATA_DIR/soundfonts
-ln -s /usr/share/sounds/sf2/*.sf2 .
-
-# Linuxsampler => Quizas haya que compilar para la version 2?
-sudo apt-get -y install linuxsampler
-#sudo apt-get -y install qsampler => es una version 2.2, se compila de repositorio
-
 # ZynAddSubFX (execution only)
 sudo apt-get -y install libfltk1.3 libfltk-images1.3 liblo7 libmxml1
 
 #------------------------------------------------
 # Install PiTFT Software
 #------------------------------------------------
-curl -SLs https://apt.adafruit.com/add | sudo bash
-sudo apt-get -y install raspberrypi-bootloader
+#curl -SLs https://apt.adafruit.com/add | sudo bash
+#sudo apt-get -y install raspberrypi-bootloader
 
 #------------------------------------------------
-# Entorno de Desarrollo
+# Development Environment
 #------------------------------------------------
 sudo apt-get -y install autoconf
 sudo apt-get -y install libtool
@@ -154,8 +160,6 @@ sudo apt-get -y install cmake
 sudo apt-get -y install cmake-curses-gui
 
 # Libraries
-#sudo apt-get install python-dev
-sudo apt-get -y install python3-dev # installed by default
 sudo apt-get -y install fftw3-dev
 sudo apt-get -y install libmxml-dev
 sudo apt-get -y install zlib1g-dev # installed by default
@@ -165,7 +169,6 @@ sudo apt-get -y install libasound2-dev
 sudo apt-get -y install libjack-jackd2-dev
 sudo apt-get -y install libfltk1.3-dev
 sudo apt-get -y install libncurses-dev
-sudo apt-get -y install cython3
 sudo apt-get -y install liblo-dev
 sudo apt-get -y install dssi-dev
 sudo apt-get -y install libjpeg-dev
@@ -180,50 +183,20 @@ sudo apt-get -y install libxft-dev
 sudo apt-get -y install libcairo-dev
 
 #------------------------------------------------
-# Módulos Python3
+# Python3 Modules
 #------------------------------------------------
+#sudo apt-get install python-dev
+sudo apt-get -y install python3-dev # installed by default
 sudo apt-get -y install python3-pip
+sudo apt-get -y install cython3
 
 #************************************************
 #------------------------------------------------
 # Compile / Install Other Required Software
 #------------------------------------------------
 #************************************************
-
-mkdir $ZYNTHIAN_DIR/zynthian-sw
-
 #------------------------------------------------
-# Install NTK
-#------------------------------------------------
-git clone git://git.tuxfamily.org/gitroot/non/fltk.git ntk
-cd ntk
-./waf configure
-./waf
-sudo ./waf install
-
-#------------------------------------------------
-# Install zynaddsubfx
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/fundamental/zynaddsubfx.git
-cd zynaddsubfx
-mkdir build.rbpi
-ln -s build.rbpi build
-cd build.rbpi
-cmake ..
-ccmake .
-# => delete "-msse -msse2 -mfpmath=sse" 
-# => optimizations: -pipe -mfloat-abi=hard -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
-# => optimizations that doesn't work: -mcpu=cortex-a7 -mtune=cortex-a7
-make -j 4
-sudo make install
-
-#Create soft link to zynbanks
-cd $ZYNTHIAN_DATA_DIR
-ln -s ../zynthian-sw/zynaddsubfx/instruments/banks zynbanks
-
-#------------------------------------------------
-# Install alsaseq python library
+# Install Alsaseq Python Library
 #------------------------------------------------
 cd $ZYNTHIAN_SW_DIR
 wget https://pypi.python.org/packages/source/a/alsaseq/alsaseq-0.4.1.tar.gz
@@ -233,12 +206,29 @@ cd alsaseq-0.4.1
 sudo python3 setup.py install
 
 #------------------------------------------------
+# Install Python Jack Client Library
+#------------------------------------------------
+apt-get install python-cffi
+sudo pip install JACK-Client
+apt-get install python3-cffi
+sudo pip3 install JACK-Client
+
+#------------------------------------------------
 # Install wiringPi
 #------------------------------------------------
 #cd $ZYNTHIAN_SW_DIR
 #git clone git://git.drogon.net/wiringPi
 #git pull origin
 #./build
+
+#------------------------------------------------
+# Install NTK
+#------------------------------------------------
+#git clone git://git.tuxfamily.org/gitroot/non/fltk.git ntk
+#cd ntk
+#./waf configure
+#./waf
+#sudo ./waf install
 
 #------------------------------------------------
 # Install pyliblo (liblo OSC library for Python)
@@ -258,6 +248,7 @@ cd rtosc
 mkdir build
 cd build
 cmake ..
+make -j 4
 sudo make install
 
 cd $ZYNTHIAN_SW_DIR
@@ -266,6 +257,7 @@ cd oscprompt
 mkdir build
 cd build
 cmake ..
+make -j 4
 sudo make install
 
 #------------------------------------------------
@@ -281,20 +273,57 @@ sudo python3 setup.py install
 #rm -f $ZYNTHIAN_SW_DIR/TkinterTreectrl-2.0.1.zip
 
 #------------------------------------------------
+# Install zynaddsubfx
+#------------------------------------------------
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/fundamental/zynaddsubfx.git
+cd zynaddsubfx
+mkdir build
+cd build
+cmake ..
+ccmake .
+# => delete "-msse -msse2 -mfpmath=sse" 
+# => optimizations: -pipe -mfloat-abi=hard -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
+# => optimizations that doesn't work: -mcpu=cortex-a7 -mtune=cortex-a7
+make -j 4
+sudo make install
+
+#Create soft link to zynbanks
+cd $ZYNTHIAN_DATA_DIR
+ln -s ../zynthian-sw/zynaddsubfx/instruments/banks zynbanks
+
+#------------------------------------------------
+# Install Fluidsynth & SondFonts
+#------------------------------------------------
+sudo apt-get install fluidsynth fluid-soundfont-gm fluid-soundfont-gs
+
+# Create SF2 soft links
+mkdir $ZYNTHIAN_DATA_DIR/soundfonts
+mkdir $ZYNTHIAN_DATA_DIR/soundfonts/sf2
+cd $ZYNTHIAN_DATA_DIR/soundfonts/sf2
+ln -s /usr/share/sounds/sf2/*.sf2 .
+
+#------------------------------------------------
+# Install Linuxsampler => TODO: Compile version 2
+#------------------------------------------------
+sudo apt-get -y install linuxsampler
+#sudo apt-get -y install qsampler => es una version 2.2, se compila de repositorio
+
+#------------------------------------------------
 # Install QSampler
 #------------------------------------------------
-sudo apt-get -y install qt4-qmake qt5-qmake qtbase5-dev
-sudo ln -s /usr/lib/arm-linux-gnueabihf/qt5/bin/qmake /usr/bin/qmake-qt5
-sudo apt-get -y install libqt5x11extras5-dev qt4-linguist-tools
-sudo apt-get -y install liblscp-dev
-sudo apt-get -y install libgig-dev
-cd $ZYNTHIAN_SW_DIR
-git clone http://git.code.sf.net/p/qsampler/code qsampler
-cd qsampler
-make -f Makefile.git 
-./configure
-make
-sudo make install
+#sudo apt-get -y install qt4-qmake qt5-qmake qtbase5-dev
+#sudo ln -s /usr/lib/arm-linux-gnueabihf/qt5/bin/qmake /usr/bin/qmake-qt5
+#sudo apt-get -y install libqt5x11extras5-dev qt4-linguist-tools
+#sudo apt-get -y install liblscp-dev
+#sudo apt-get -y install libgig-dev
+#cd $ZYNTHIAN_SW_DIR
+#git clone http://git.code.sf.net/p/qsampler/code qsampler
+#cd qsampler
+#make -f Makefile.git 
+#./configure
+#make
+#sudo make install
 
 #------------------------------------------------
 # Install Fantasia (linuxsampler Java GUI)
@@ -306,15 +335,6 @@ wget http://downloads.sourceforge.net/project/jsampler/Fantasia/Fantasia%200.9/F
 # java -jar ./Fantasia-0.9.jar
 
 #------------------------------------------------
-# Install Dexed Plugin
-#------------------------------------------------
-sudo apt-get -y install x11proto-xinerama-dev libxinerama-dev libxcursor-dev
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/asb2m10/dexed.git
-cd dexed/Builds/Linux
-make
-
-#------------------------------------------------
 # Install setBfree
 #------------------------------------------------
 cd $ZYNTHIAN_SW_DIR
@@ -324,25 +344,10 @@ sed -i -- 's/\-msse \-msse2 \-mfpmath\=sse/\-pipe \-mcpu\=cortex\-a7 \-mfpu\=neo
 make -j 4 ENABLE_ALSA=yes
 sudo make install
 
-#Create directory and soft link to config files
-cd $ZYNTHIAN_DATA_DIR
-mkdir setbfree
-cd setbfree
-ln -s /usr/local/share/setBfree/pgm/default.pgm .
-ln -s /usr/local/share/setBfree/pgm/popular.pgm .
-
-#------------------------------------------------
-# Install Python Jack Client
-#------------------------------------------------
-apt-get install python-cffi
-sudo pip install JACK-Client
-apt-get install python3-cffi
-sudo pip3 install JACK-Client
-
 #------------------------------------------------
 # Install Carla
 #------------------------------------------------
-cd $ZYNTHIAN_DIR/zynthian-sw
+cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/falkTX/Carla.git
 cd Carla
 make features
@@ -364,6 +369,20 @@ sudo apt-get install linuxsampler-dssi
 export RASPPI=true
 make -j 4
 sudo make install
+
+#------------------------------------------------
+# Install Dexed Plugin
+#------------------------------------------------
+sudo apt-get -y install x11proto-xinerama-dev libxinerama-dev libxcursor-dev
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/asb2m10/dexed.git
+cd dexed/Builds/Linux
+joe Makefile 
+#=> -pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
+export CONFIG=Release
+make -j 4
+make strip
+cp ./build/Dexed.so ../../../../zynthian-plugins/vst
 
 #------------------------------------------------
 # Install DISTRHO Plugins-Ports

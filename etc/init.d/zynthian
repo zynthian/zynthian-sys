@@ -12,11 +12,11 @@
 
 export HOME=/root
 export ZHOME=/home/pi
-export HOME_ZYNTHIAN=/home/pi/zynthian
+export ZYNTHIAN_BASE_DIR=$ZHOME/zynthian
 export FRAMEBUFFER=/dev/fb1
 
 zynthian_start () {
-	cd $HOME_ZYNTHIAN/zynthian-ui
+	cd $ZYNTHIAN_BASE_DIR/zynthian-ui
 	#./startx-pitft.sh ./zynthian.sh
 	startx ./zynthian.sh -- :0 vt3 &
 }
