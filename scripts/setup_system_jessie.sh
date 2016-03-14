@@ -44,6 +44,11 @@ sudo rpi-update
 mkdir $ZYNTHIAN_HOME_DIR
 cd $ZYNTHIAN_HOME_DIR
 git clone https://github.com/zynthian/zyncoder.git
+mkdir zyncoder/build
+cd zyncoder/build
+cmake ..
+make
+cd $ZYNTHIAN_HOME_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
 git clone https://github.com/zynthian/zynthian-sys.git
 git clone https://github.com/zynthian/zynthian-data.git
