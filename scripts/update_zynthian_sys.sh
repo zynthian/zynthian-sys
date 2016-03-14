@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ -n $ZYNTHIAN_DIR ]; then
-	ZYNTHIAN_DIR=/home/pi/zynthian
+	ZYNTHIAN_DIR="/home/pi/zynthian"
 fi
-ZYNTHIAN_SYS_DIR=$ZYNTHIAN_DIR/zynthian-sys
+ZYNTHIAN_SYS_DIR="$ZYNTHIAN_DIR/zynthian-sys"
 
 echo "Updating system configuration ..."
 

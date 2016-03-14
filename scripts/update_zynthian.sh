@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -n $ZYNTHIAN_DIR ]; then
-	ZYNTHIAN_DIR=/home/pi/zynthian
+	ZYNTHIAN_DIR="/home/pi/zynthian"
 fi
 
 echo "Updating zyncoder ..."
