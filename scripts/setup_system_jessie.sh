@@ -68,6 +68,9 @@ sudo echo "CONF_SWAPSIZE=0" > /etc/dphys-swapfile
 # Give permissions to Serial Port (UART)
 sudo chmod a+rw /dev/ttyAMA0
 
+# Boot config
+sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
+
 # Modules
 sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
 
