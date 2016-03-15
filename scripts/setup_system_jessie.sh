@@ -78,6 +78,7 @@ sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
 
 # Modules
 sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
+sudo cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 
 # Copy & Soft Link Init Scripts
 sudo cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
@@ -116,7 +117,7 @@ sudo update-rc.d asplashscreen enable
 sudo update-rc.d zynthian enable
 
 # X11 Config
-sudo mv /usr/share/X11/xorg.conf.d /usr/share/X11/xorg.conf.d.nouse
+sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf /usr/share/X11/xorg.conf.d/99-fbturbo.nouse
 sudo mkdir /etc/X11/xorg.conf.d
 sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
 sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
@@ -136,6 +137,7 @@ sudo apt-get -y install fbi
 sudo apt-get -y install scrot # Screenshot Capture => installed by default
 sudo apt-get -y install i2c-tools #==> !!!!REVISAR
 #sudo apt-get install python-smbus (i2c with python)
+sudo apt-get -y install evtest tslib libts-bin # touchscreen tools
 
 # Autostatic Repos
 wget -O - http://rpi.autostatic.com/autostatic.gpg.key| sudo apt-key add -
