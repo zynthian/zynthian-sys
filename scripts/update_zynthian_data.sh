@@ -6,4 +6,4 @@ fi
 
 echo "Updating zynthian-data ..."
 cd $ZYNTHIAN_DIR/zynthian-data
-git pull
+su pi -c git pull
