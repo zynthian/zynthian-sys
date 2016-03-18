@@ -37,38 +37,13 @@ sudo apt-get -y upgrade
 sudo rpi-update
 
 #------------------------------------------------
-# Create Directory Tree & 
-# Install Zynthian Software from repository
-#------------------------------------------------
-
-mkdir $ZYNTHIAN_HOME_DIR
-cd $ZYNTHIAN_HOME_DIR
-git clone https://github.com/zynthian/zyncoder.git
-mkdir zyncoder/build
-cd zyncoder/build
-cmake ..
-make
-cd $ZYNTHIAN_HOME_DIR
-git clone https://github.com/zynthian/zynthian-ui.git
-git clone https://github.com/zynthian/zynthian-sys.git
-git clone https://github.com/zynthian/zynthian-data.git
-git clone https://github.com/zynthian/zynthian-plugins.git
-mkdir "zynthian-sw"
-mkdir "zynthian-my-data"
-mkdir "zynthian-plugins"
-mkdir "zynthian-plugins/lv2"
-mkdir "zynthian-plugins/dssi"
-mkdir "zynthian-plugins/vst"
-mkdir "zynthian-plugins/ladspa"
-
-#------------------------------------------------
 # System Adjustments
 #------------------------------------------------
 
 # Remove Swap
 sudo dphys-swapfile swapoff
 sudo dphys-swapfile uninstall
-sudo echo "CONF_SWAPSIZE=0" > /etc/dphys-swapfile
+sudo sh -c "echo 'CONF_SWAPSIZE=0' > /etc/dphys-swapfile"
 
 # Give permissions to Serial Port (UART)
 sudo chmod a+rw /dev/ttyAMA0
@@ -162,11 +137,37 @@ sudo apt-get -y install libfltk1.3 libfltk-images1.3 liblo7 libmxml1
 #sudo apt-get -y install raspberrypi-bootloader
 
 #------------------------------------------------
+# Create Directory Tree & 
+# Install Zynthian Software from repository
+#------------------------------------------------
+
+mkdir $ZYNTHIAN_HOME_DIR
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zyncoder.git
+mkdir zyncoder/build
+cd zyncoder/build
+cmake ..
+make
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zynthian-ui.git
+git clone https://github.com/zynthian/zynthian-sys.git
+git clone https://github.com/zynthian/zynthian-data.git
+#git clone https://github.com/zynthian/zynthian-plugins.git
+mkdir "zynthian-sw"
+mkdir "zynthian-my-data"
+mkdir "zynthian-plugins"
+mkdir "zynthian-plugins/lv2"
+mkdir "zynthian-plugins/dssi"
+mkdir "zynthian-plugins/vst"
+mkdir "zynthian-plugins/ladspa"
+
+#------------------------------------------------
 # Development Environment
 #------------------------------------------------
 sudo apt-get -y install autoconf
 sudo apt-get -y install libtool
 sudo apt-get -y install cmake
+sudo apt-get -y install premake
 sudo apt-get -y install cmake-curses-gui
 
 # Libraries
@@ -400,7 +401,6 @@ cp ./build/Dexed.so ../../../../zynthian-plugins/vst
 cd $ZYNTHIAN_DIR/zynthian-sw
 git clone https://github.com/DISTRHO/DISTRHO-Ports.git
 cd DISTRHO-Ports
-sudo apt-get install premake
 ./scripts/premake-update.sh linux
 #edit ./scripts/premake.lua
 make -j 4
