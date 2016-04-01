@@ -3,6 +3,7 @@
 # ZYNTHIAN PROJECT: Zynthian Setup Script
 # 
 # Setup a Zynthian Box from a raw debian-wheezy installation
+# WARNING: This file is unmaintained and DEPRECATED!!
 # 
 # Copyright (C) 2015-2016 Fernando Moyano <jofemodo@zynthian.org>
 #

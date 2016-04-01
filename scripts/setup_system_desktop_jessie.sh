@@ -2,7 +2,7 @@
 #******************************************************************************
 # ZYNTHIAN PROJECT: Zynthian Setup Script
 # 
-# Setup a Zynthian Box from a raw debian-jessie installation
+# Setup a Zynthian Development/Emulation in a fresh debian-jessie installation
 # 
 # Copyright (C) 2015-2016 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -22,7 +22,11 @@
 # 
 #******************************************************************************
 
-export ZYNTHIAN_HOME_DIR="/home/pi/zynthian"
+#------------------------------------------------
+# Create Zynthian Dir in Current Directory
+#------------------------------------------------
+
+export ZYNTHIAN_HOME_DIR="`pwd`/zynthian"
 export ZYNTHIAN_SW_DIR="$ZYNTHIAN_HOME_DIR/zynthian-sw"
 export ZYNTHIAN_UI_DIR="$ZYNTHIAN_HOME_DIR/zynthian-ui"
 export ZYNTHIAN_SYS_DIR="$ZYNTHIAN_HOME_DIR/zynthian-sys"
@@ -34,94 +38,22 @@ export ZYNTHIAN_DATA_DIR="$ZYNTHIAN_HOME_DIR/zynthian-data"
 
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo rpi-update
 
 #------------------------------------------------
-# System Adjustments
+# Add Repositories
 #------------------------------------------------
 
-# Remove Swap
-sudo dphys-swapfile swapoff
-sudo dphys-swapfile uninstall
-sudo sh -c "echo 'CONF_SWAPSIZE=0' > /etc/dphys-swapfile"
+# Install required dependencies if needed
+sudo apt-get -y install apt-transport-https software-properties-common wget
 
-# Give permissions to Serial Port (UART)
-sudo chmod a+rw /dev/ttyAMA0
-
-# Boot config
-sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-
-# Modules
-sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
-sudo cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
-
-# Copy & Soft Link Init Scripts
-sudo cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
-sudo ln -s /etc/init.d/asplashscreen /etc/rcS.d/S01asplashscreen
-sudo ln -s /etc/init.d/zynthian /etc/rc2.d/S01zynthian
-sudo ln -s /etc/init.d/zynthian /etc/rc3.d/S01zynthian
-sudo ln -s /etc/init.d/zynthian /etc/rc4.d/S01zynthian
-sudo ln -s /etc/init.d/zynthian /etc/rc5.d/S01zynthian
-
-# Systemd Services
-#sudo systemctl disable serial-getty@ttyAMA0.service
-#sudo systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
-sudo systemctl disable raspi-config
-sudo systemctl disable dphys-swapfile
-sudo systemctl disable triggerhappy
-sudo systemctl disable cron
-#sudo systemctl disable avahi-daemon
-#sudo systemctl disable dbus
-sudo systemctl disable rsyslog
-sudo systemctl disable ntp
-sudo systemctl enable asplashscreen
-sudo systemctl enable zynthian
-
-# Initd Services
-sudo cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-#sudo cp $ZYNTHIAN_DIR/etc/rc.local /etc
-sudo update-rc.d -f raspi-config remove
-sudo update-rc.d -f dphys-swapfile remove
-sudo update-rc.d -f triggerhappy remove
-sudo update-rc.d -f cron remove
-#sudo update-rc.d -f avahi-daemon remove
-#sudo update-rc.d -f dbus remove
-sudo update-rc.d -f rsyslog remove
-sudo update-rc.d -f ntp remove
-sudo update-rc.d asplashscreen enable
-sudo update-rc.d zynthian enable
-
-# X11 Config
-sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf /usr/share/X11/xorg.conf.d/99-fbturbo.nouse
-sudo mkdir /etc/X11/xorg.conf.d
-sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
-sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
-
-# User
-cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ~/.zynaddsubfxXML.cfg
-sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
+# KXStudio Repo
+wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.2.2~kxstudio1_all.deb
+sudo dpkg -i kxstudio-repos_9.2.2~kxstudio1_all.deb
+rm -f kxstudio-repos_9.2.2~kxstudio1_all.deb
 
 #------------------------------------------------
-# Install Required Debian Packages
+# Install Required Packages
 #------------------------------------------------
-
-# CLI Tools
-#sudo apt-get install tree # installed by default
-sudo apt-get -y install joe
-sudo apt-get -y install fbi
-sudo apt-get -y install scrot # Screenshot Capture => installed by default
-sudo apt-get -y install i2c-tools #==> !!!!REVISAR
-#sudo apt-get install python-smbus (i2c with python)
-sudo apt-get -y install evtest tslib libts-bin # touchscreen tools
-
-# Autostatic Repos
-wget -O - http://rpi.autostatic.com/autostatic.gpg.key| sudo apt-key add -
-sudo wget -O /etc/apt/sources.list.d/autostatic-audio-raspbian.list http://rpi.autostatic.com/autostatic-audio-raspbian.list
-sudo apt-get update
-
-# Patched Versions of Jackd/Jackd2
-#sudo apt-get --no-install-recommends install jackd1
-#sudo apt-get --no-install-recommends install jackd2
 
 sudo apt-get -y install jackd2 # installed by default
 sudo apt-get -y install a2jmidid
@@ -129,37 +61,6 @@ sudo apt-get -y install laditools
 
 # ZynAddSubFX (execution only)
 sudo apt-get -y install libfltk1.3 libfltk-images1.3 liblo7 libmxml1
-
-#------------------------------------------------
-# Install PiTFT Software
-#------------------------------------------------
-#curl -SLs https://apt.adafruit.com/add | sudo bash
-#sudo apt-get -y install raspberrypi-bootloader
-
-#------------------------------------------------
-# Create Directory Tree & 
-# Install Zynthian Software from repository
-#------------------------------------------------
-
-mkdir $ZYNTHIAN_HOME_DIR
-cd $ZYNTHIAN_HOME_DIR
-git clone https://github.com/zynthian/zyncoder.git
-mkdir zyncoder/build
-cd zyncoder/build
-cmake ..
-make
-cd $ZYNTHIAN_HOME_DIR
-git clone https://github.com/zynthian/zynthian-ui.git
-git clone https://github.com/zynthian/zynthian-sys.git
-git clone https://github.com/zynthian/zynthian-data.git
-#git clone https://github.com/zynthian/zynthian-plugins.git
-mkdir "zynthian-sw"
-mkdir "zynthian-my-data"
-mkdir "zynthian-plugins"
-mkdir "zynthian-plugins/lv2"
-mkdir "zynthian-plugins/dssi"
-mkdir "zynthian-plugins/vst"
-mkdir "zynthian-plugins/ladspa"
 
 #------------------------------------------------
 # Development Environment
@@ -201,6 +102,31 @@ sudo apt-get -y install python3-dev # installed by default
 sudo apt-get -y install python3-pip
 sudo apt-get -y install cython3
 
+#------------------------------------------------
+# Create Directory Tree & 
+# Install Zynthian Software from repository
+#------------------------------------------------
+
+mkdir $ZYNTHIAN_HOME_DIR
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zyncoder.git
+mkdir zyncoder/build
+cd zyncoder/build
+cmake ..
+make
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zynthian-ui.git
+echo "PROTOTYPE-EMU" > ./zynthian-ui/zynthian_hw_version.txt
+git clone https://github.com/zynthian/zynthian-emuface.git
+git clone https://github.com/zynthian/zynthian-data.git
+mkdir "zynthian-sw"
+mkdir "zynthian-my-data"
+mkdir "zynthian-plugins"
+mkdir "zynthian-plugins/lv2"
+mkdir "zynthian-plugins/dssi"
+mkdir "zynthian-plugins/vst"
+mkdir "zynthian-plugins/ladspa"
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Other Required Software
@@ -223,14 +149,6 @@ apt-get install python-cffi
 sudo pip install JACK-Client
 apt-get install python3-cffi
 sudo pip3 install JACK-Client
-
-#------------------------------------------------
-# Install wiringPi
-#------------------------------------------------
-#cd $ZYNTHIAN_SW_DIR
-#git clone git://git.drogon.net/wiringPi
-#git pull origin
-#./build
 
 #------------------------------------------------
 # Install NTK
@@ -293,15 +211,11 @@ mkdir build
 cd build
 cmake ..
 ccmake .
-# => delete "-msse -msse2 -mfpmath=sse" 
-# => optimizations: -pipe -mfloat-abi=hard -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
-# => optimizations that doesn't work: -mcpu=cortex-a7 -mtune=cortex-a7
 make -j 4
 sudo make install
 
 #Create soft link to zynbanks
-cd $ZYNTHIAN_DATA_DIR
-ln -s ../zynthian-sw/zynaddsubfx/instruments/banks zynbanks
+ln -s $ZYNTHIAN_SW_DIR/zynaddsubfx/instruments/banks $ZYNTHIAN_DATA_DIR/zynbanks
 
 #------------------------------------------------
 # Install Fluidsynth & SondFonts
@@ -315,10 +229,10 @@ cd $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 ln -s /usr/share/sounds/sf2/*.sf2 .
 
 #------------------------------------------------
-# Install Linuxsampler => TODO: Compile version 2
+# Install Linuxsampler => TODO Upgrade to Version 2
 #------------------------------------------------
 sudo apt-get -y install linuxsampler
-#sudo apt-get -y install qsampler => es una version 2.2, se compila de repositorio
+#sudo apt-get -y install qsampler => 2.2 is too old => compile from repo
 
 #------------------------------------------------
 # Install QSampler
@@ -351,7 +265,6 @@ wget http://downloads.sourceforge.net/project/jsampler/Fantasia/Fantasia%200.9/F
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/pantherb/setBfree.git
 cd setBfree
-sed -i -- 's/\-msse \-msse2 \-mfpmath\=sse/\-pipe \-mcpu\=cortex\-a7 \-mfpu\=neon\-vfpv4 \-mfloat\-abi\=hard \-mvectorize\-with\-neon\-quad \-funsafe\-loop\-optimizations \-funsafe\-math\-optimizations/g' common.mak
 make -j 4 ENABLE_ALSA=yes
 sudo make install
 
@@ -377,31 +290,39 @@ sudo apt-get install fluidsynth-dssi
 sudo apt-get install liblinuxsampler-dev
 sudo apt-get install linuxsampler-lv2
 sudo apt-get install linuxsampler-dssi
-export RASPPI=true
 make -j 4
 sudo make install
 
+
 #------------------------------------------------
-# Install Dexed Plugin
+# The last 2 blocks can be omitted installing 
+# the DISTHRO deb package: NOT WORKING!
 #------------------------------------------------
-sudo apt-get -y install x11proto-xinerama-dev libxinerama-dev libxcursor-dev
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/asb2m10/dexed.git
-cd dexed/Builds/Linux
-joe Makefile 
-#=> -pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
-export CONFIG=Release
-make -j 4
-make strip
-cp ./build/Dexed.so ../../../../zynthian-plugins/vst
+#sudo apt-get install DISTHRO-plugins
+#exit
 
 #------------------------------------------------
 # Install DISTRHO Plugins-Ports
 #------------------------------------------------
-cd $ZYNTHIAN_DIR/zynthian-sw
+cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/DISTRHO/DISTRHO-Ports.git
 cd DISTRHO-Ports
 ./scripts/premake-update.sh linux
 #edit ./scripts/premake.lua
 make -j 4
 sudo make install
+
+#------------------------------------------------
+# Install Dexed Plugin => TODO Download VST2 SDK
+#------------------------------------------------
+sudo apt-get -y install x11proto-xinerama-dev libxinerama-dev libxcursor-dev
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/asb2m10/dexed.git
+cd dexed/Builds/Linux
+joe Makefile 
+export CONFIG=Release
+make -j 4
+make strip
+cp ./build/Dexed.so ../../../../zynthian-plugins/vst
+
+
