@@ -109,6 +109,12 @@ sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 # Install required dependencies if needed
 sudo apt-get -y install apt-transport-https software-properties-common wget
 
+# deb-multimedia repo
+echo "deb http://www.deb-multimedia.org jessie main" >> /etc/apt/sources.list
+sudo apt-get -y install deb-multimedia-keyring
+#sudo apt-get -y update
+#sudo apt-get -y dist-upgrade
+
 # KXStudio Repo
 wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.2.2~kxstudio1_all.deb
 sudo dpkg -i kxstudio-repos_9.2.2~kxstudio1_all.deb
@@ -169,6 +175,7 @@ sudo apt-get -y install libasound2-dev
 #sudo apt-get -y install libjack-dev-session
 sudo apt-get -y install libjack-jackd2-dev
 sudo apt-get -y install libfltk1.3-dev
+sudo apt-get -y install non-ntk-dev
 sudo apt-get -y install libncurses-dev
 sudo apt-get -y install liblo-dev
 sudo apt-get -y install dssi-dev
@@ -220,9 +227,10 @@ mkdir "zynthian-plugins/ladspa"
 
 #************************************************
 #------------------------------------------------
-# Compile / Install Other Required Software
+# Compile / Install Other Required Libraries
 #------------------------------------------------
 #************************************************
+
 #------------------------------------------------
 # Install Alsaseq Python Library
 #------------------------------------------------
@@ -236,9 +244,9 @@ sudo python3 setup.py install
 #------------------------------------------------
 # Install Python Jack Client Library
 #------------------------------------------------
-apt-get install python-cffi
+sudo apt-get -y install python-cffi
 sudo pip install JACK-Client
-apt-get install python3-cffi
+sudo apt-get -y install python3-cffi
 sudo pip3 install JACK-Client
 
 #------------------------------------------------
@@ -299,6 +307,39 @@ cd TkinterTreectrl-2.0.1
 python3 setup.py build
 sudo python3 setup.py install
 #rm -f $ZYNTHIAN_SW_DIR/TkinterTreectrl-2.0.1.zip
+
+#************************************************
+#------------------------------------------------
+# Create Directory Tree & 
+# Install Zynthian Software from repository
+#------------------------------------------------
+#************************************************
+
+mkdir $ZYNTHIAN_HOME_DIR
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zyncoder.git
+mkdir zyncoder/build
+cd zyncoder/build
+cmake ..
+make
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zynthian-ui.git
+git clone https://github.com/zynthian/zynthian-sys.git
+git clone https://github.com/zynthian/zynthian-data.git
+#git clone https://github.com/zynthian/zynthian-plugins.git
+mkdir "zynthian-sw"
+mkdir "zynthian-my-data"
+mkdir "zynthian-plugins"
+mkdir "zynthian-plugins/lv2"
+mkdir "zynthian-plugins/dssi"
+mkdir "zynthian-plugins/vst"
+mkdir "zynthian-plugins/ladspa"
+
+#************************************************
+#------------------------------------------------
+# Compile / Install Other Required Software
+#------------------------------------------------
+#************************************************
 
 #------------------------------------------------
 # Install zynaddsubfx
@@ -378,21 +419,21 @@ cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/falkTX/Carla.git
 cd Carla
 make features
-sudo apt-get install qt4-dev-tools
-sudo apt-get install qt5-dev-tools
-sudo apt-get install pyqt4-dev-tools
-sudo apt-get install pyqt5-dev-tools
-sudo apt-get install python3-pyqt4
-sudo apt-get install python3-pyqt5
-sudo apt-get install libgtk2.0-dev
-sudo apt-get install libgtk-3-dev
-#sudo apt-get install libgtk+2.0-dev
-#sudo apt-get install gtk+3.0-dev
-sudo apt-get install libfluidsynth-dev
-sudo apt-get install fluidsynth-dssi
-sudo apt-get install liblinuxsampler-dev
-sudo apt-get install linuxsampler-lv2
-sudo apt-get install linuxsampler-dssi
+sudo apt-get -y install qt4-dev-tools
+sudo apt-get -y install qt5-dev-tools
+sudo apt-get -y install pyqt4-dev-tools
+sudo apt-get -y install pyqt5-dev-tools
+sudo apt-get -y install python3-pyqt4
+sudo apt-get -y install python3-pyqt5
+sudo apt-get -y install libgtk2.0-dev
+sudo apt-get -y install libgtk-3-dev
+#sudo apt-get -y install libgtk+2.0-dev
+#sudo apt-get -y install gtk+3.0-dev
+sudo apt-get -y install libfluidsynth-dev
+sudo apt-get -y install fluidsynth-dssi
+sudo apt-get -y install liblinuxsampler-dev
+sudo apt-get -y install linuxsampler-lv2
+sudo apt-get -y install linuxsampler-dssi
 export RASPPI=true
 make -j 4
 sudo make install
@@ -421,3 +462,21 @@ cd DISTRHO-Ports
 #edit ./scripts/premake.lua
 make -j 4
 sudo make install
+
+#------------------------------------------------
+# Install Aubio Library & Tools
+#------------------------------------------------
+sudo apt-get -y install libsamplerate-dev libsndfile-dev
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/aubio/aubio.git
+cd aubio
+make -j 4
+sudo cp -f ./build/src/libaubio* /usr/lib64
+sudo cp -f ./build/examples/aubiomfcc /usr/bin
+sudo cp -f ./build/examples/aubionotes /usr/bin
+sudo cp -f ./build/examples/aubioonset /usr/bin
+sudo cp -f ./build/examples/aubiopitch /usr/bin
+sudo cp -f ./build/examples/aubioquiet /usr/bin
+sudo cp -f ./build/examples/aubiotrack /usr/bin
+
+
