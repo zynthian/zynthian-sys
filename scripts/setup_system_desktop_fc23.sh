@@ -58,6 +58,7 @@ sudo dnf -y install icedtea-web java-openjdk
 sudo dnf -y install a2jmidid
 sudo dnf -y install qjackctl
 sudo dnf -y install laditools
+sudo dnf -y install alsa-plugins-jack
 sudo dnf -y install jack-keyboard jack-rack
 sudo dnf -y install dssi-*
 sudo dnf -y install ladspa-*
@@ -84,6 +85,7 @@ sudo dnf -y install non-ntk non-ntk-fluid non-ntk-devel
 sudo dnf -y install ncurses-devel
 sudo dnf -y install liblo-devel
 sudo dnf -y install ladspa dssi lv2 ladspa-devel dssi-devel lv2-devel
+sudo dnf -y install vmpk
 
 sudo dnf -y install libjpeg-devel
 sudo dnf -y install fontconfig fontconfig-devel
