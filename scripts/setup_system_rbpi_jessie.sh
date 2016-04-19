@@ -439,18 +439,22 @@ make -j 4
 sudo make install
 
 #------------------------------------------------
-# Install Dexed Plugin
+# Install some extra LV2 Plugins (MDA, ...)
 #------------------------------------------------
-sudo apt-get -y install x11proto-xinerama-dev libxinerama-dev libxcursor-dev
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/asb2m10/dexed.git
-cd dexed/Builds/Linux
-joe Makefile 
-#=> -pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
-export CONFIG=Release
+sudo apt-get install mda-lv2
+sudo apt-get install swh-lv2
+sudo apt-get install lv2vocoder
+sudo apt-get install avw.lv2
+
+#------------------------------------------------
+# Install DISTRHO DPF-Plugins
+#------------------------------------------------
+cd $ZYNTHIAN_DIR/zynthian-sw
+git clone https://github.com/DISTRHO/DPF-Plugins.git
+cd DPF-Plugins
+export RASPPI=true
 make -j 4
-make strip
-cp ./build/Dexed.so ../../../../zynthian-plugins/vst
+sudo make install
 
 #------------------------------------------------
 # Install DISTRHO Plugins-Ports
@@ -462,6 +466,20 @@ cd DISTRHO-Ports
 #edit ./scripts/premake.lua
 make -j 4
 sudo make install
+
+#------------------------------------------------
+# Install Dexed Plugin (VST)
+#------------------------------------------------
+sudo apt-get -y install x11proto-xinerama-dev libxinerama-dev libxcursor-dev
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/asb2m10/dexed.git
+cd dexed/Builds/Linux
+joe Makefile 
+#=> -pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
+export CONFIG=Release
+make -j 4
+make strip
+cp ./build/Dexed.so ../../../../zynthian-plugins/vst
 
 #------------------------------------------------
 # Install Aubio Library & Tools
@@ -478,5 +496,3 @@ sudo cp -f ./build/examples/aubioonset /usr/bin
 sudo cp -f ./build/examples/aubiopitch /usr/bin
 sudo cp -f ./build/examples/aubioquiet /usr/bin
 sudo cp -f ./build/examples/aubiotrack /usr/bin
-
-

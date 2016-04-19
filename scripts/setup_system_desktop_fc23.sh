@@ -285,6 +285,15 @@ make -j 4
 sudo make install
 
 #------------------------------------------------
+# Install DISTRHO DPF-Plugins
+#------------------------------------------------
+cd $ZYNTHIAN_DIR/zynthian-sw
+git clone https://github.com/DISTRHO/DPF-Plugins.git
+cd DPF-Plugins
+make -j 4
+sudo make install
+
+#------------------------------------------------
 # Install DISTRHO Plugins-Ports
 #------------------------------------------------
 cd $ZYNTHIAN_SW_DIR

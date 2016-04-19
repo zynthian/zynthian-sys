@@ -309,13 +309,29 @@ sudo apt-get -y install linuxsampler-dssi
 make -j 4
 sudo make install
 
-
 #------------------------------------------------
 # The last 2 blocks can be omitted installing 
 # the DISTRHO deb package: NOT WORKING!
 #------------------------------------------------
 #sudo apt-get install DISTRHO-plugins
 #exit
+
+#------------------------------------------------
+# Install some extra LV2 Plugins (MDA, ...)
+#------------------------------------------------
+sudo apt-get install mda-lv2
+sudo apt-get install swh-lv2
+sudo apt-get install lv2vocoder
+sudo apt-get install avw.lv2
+
+#------------------------------------------------
+# Install DISTRHO DPF-Plugins
+#------------------------------------------------
+cd $ZYNTHIAN_DIR/zynthian-sw
+git clone https://github.com/DISTRHO/DPF-Plugins.git
+cd DPF-Plugins
+make -j 4
+sudo make install
 
 #------------------------------------------------
 # Install DISTRHO Plugins-Ports
