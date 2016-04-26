@@ -51,11 +51,13 @@ disable_splash=1
 # Disables dynamic frequency clocking
 force_turbo=1
 
-#uncomment to overclock the arm. 700 MHz is the default.
+# Uncomment to overclock the arm. 700 MHz is the default.
+[pi2]
 arm_freq=900
 core_freq=250
 sdram_freq=450
 over_voltage=2
+[all]
 
 # Uncomment some or all of these to enable the optional hardware interfaces
 dtparam=i2c_arm=on
@@ -67,6 +69,11 @@ dtparam=spi=on
 
 # Additional overlays and parameters are documented /boot/overlays/README
 
+# Disable Blutooth Support for HifiBerry compatibility with RBPi 3
+[pi3]
+dtoverlay=pi3-disable-bt
+[all]
+
 # Enable MMAP support (Jackd, etc.)
 dtoverlay=i2s-mmap
 
@@ -74,7 +81,7 @@ dtoverlay=i2s-mmap
 dtoverlay=hifiberry-dacplus
 
 # PiTFT Config
-#dtoverlay=pitft28r,rotate=90,speed=32000000,fps=20
+#dtoverlay=pitft28-capacitive,rotate=90,speed=32000000,fps=20
 dtoverlay=pitft28-resistive,rotate=90,speed=32000000,fps=20
 
 # Adjust Serial Port Clock to allow MIDI baudrate 31250 
