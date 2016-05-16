@@ -7,3 +7,7 @@ fi
 echo "Updating zynthian-data ..."
 cd $ZYNTHIAN_DIR/zynthian-data
 git pull
+
+echo "Updating zynthian-plugins ..."
+cd $ZYNTHIAN_DIR/zynthian-plugins
+git pull
