@@ -97,10 +97,13 @@ sudo mkdir /etc/X11/xorg.conf.d
 sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
 sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 
-# User
+# User Config
+# ZynAddSubFX Config
 cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ~/.zynaddsubfxXML.cfg
 sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
-
+# Carla Config
+cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf ~/.config/falkTX
+sudo cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf /root/.config/falkTX
 
 #------------------------------------------------
 # Add Repositories
