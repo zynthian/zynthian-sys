@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export ZYNTHIAN_HOME_DIR="/home/pi/zynthian"
-export ZYNTHIAN_PLUGINS_DIR="$ZYNTHIAN_HOME_DIR/zynthian-plugins"
+export ZYNTHIAN_PLUGINS_DIR="$ZYNTHIAN_HOME_DIR/zynthian-plugins.sync"
 
 export RSYNC_OPTIONS="-r -u -l -v --exclude=carla.*"
 

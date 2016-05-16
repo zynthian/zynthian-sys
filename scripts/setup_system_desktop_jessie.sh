@@ -317,12 +317,9 @@ sudo make install
 #exit
 
 #------------------------------------------------
-# Install some extra LV2 Plugins (MDA, ...)
+# Install some extra LV2 Plugins (Calf, MDA, ...)
 #------------------------------------------------
-sudo apt-get install mda-lv2
-sudo apt-get install swh-lv2
-sudo apt-get install lv2vocoder
-sudo apt-get install avw.lv2
+sudo apt-get install calf-plugins mda-lv2 swh-lv2 lv2vocoder avw.lv2
 
 #------------------------------------------------
 # Install DISTRHO DPF-Plugins
