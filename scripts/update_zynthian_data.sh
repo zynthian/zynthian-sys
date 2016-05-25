@@ -20,18 +20,18 @@ fi
 
 # to remove in the future ...
 echo "Fixing directory structure ..."
-if [! -d "$ZYNTHIAN_DIR/zynthian-data/soundfonts/gig/Pianos" ]; then
+if [ ! -d "$ZYNTHIAN_DIR/zynthian-data/soundfonts/gig/Pianos" ]; then
 	cd "$ZYNTHIAN_DIR/zynthian-data/soundfonts/gig"
 	mkdir "Pianos"
 	mv *.gig "Pianos"
 fi
-if [! -d "$ZYNTHIAN_DIR/zynthian-my-data/soundfonts" ]; then
+if [ ! -d "$ZYNTHIAN_DIR/zynthian-my-data/soundfonts" ]; then
 	mkdir "$ZYNTHIAN_DIR/zynthian-my-data/soundfonts"
 	cd "$ZYNTHIAN_DIR/zynthian-my-data/soundfonts"
 	mkdir "sfz"
 	mkdir "sf2"
 	mkdir "gig"
 fi
-if [! -d "$ZYNTHIAN_DIR/zynthian-my-data/zynbanks" ]; then
+if [ ! -d "$ZYNTHIAN_DIR/zynthian-my-data/zynbanks" ]; then
 	mkdir "$ZYNTHIAN_DIR/zynthian-my-data/zynbanks"
 fi
