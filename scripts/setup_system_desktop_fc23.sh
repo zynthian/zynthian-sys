@@ -285,6 +285,12 @@ make -j 4
 sudo make install
 
 #------------------------------------------------
+# Install some extra LV2 Plugins (Calf, MDA, ...)
+#------------------------------------------------
+sudo apt-get install lv2*
+sudo apt-get install synthv1 samplv1 drumkv1
+
+#------------------------------------------------
 # Install DISTRHO DPF-Plugins
 #------------------------------------------------
 cd $ZYNTHIAN_DIR/zynthian-sw

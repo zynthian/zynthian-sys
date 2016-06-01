@@ -445,6 +445,7 @@ sudo make install
 # Install some extra LV2 Plugins (Calf, MDA, ...)
 #------------------------------------------------
 sudo apt-get install calf-plugins mda-lv2 swh-lv2 lv2vocoder avw.lv2
+sudo apt-get install synthv1 samplv1 drumkv1
 
 #------------------------------------------------
 # Install DISTRHO DPF-Plugins
