@@ -300,6 +300,14 @@ make -j 4
 sudo make install
 
 #------------------------------------------------
+# Install mod-ttymidi (falkTX's version!)
+#------------------------------------------------
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/moddevices/mod-ttymidi.git
+cd mod-ttymidi
+sudo make install
+
+#------------------------------------------------
 # Install TkinterTreectrl
 #------------------------------------------------
 sudo apt-get -y install tktreectrl

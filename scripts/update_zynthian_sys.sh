@@ -4,6 +4,7 @@ if [ -n $ZYNTHIAN_DIR ]; then
 	ZYNTHIAN_DIR="/home/pi/zynthian"
 fi
 ZYNTHIAN_SYS_DIR="$ZYNTHIAN_DIR/zynthian-sys"
+ZYNTHIAN_SW_DIR="$ZYNTHIAN_DIR/zynthian-sw"
 
 echo "Updating system configuration ..."
 
@@ -30,7 +31,7 @@ sudo cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
 sudo cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 
 # X11
-if [ -d /usr/share/X11/xorg.conf.d.nouse ]; then
+if [ -d "/usr/share/X11/xorg.conf.d.nouse" ]; then
 	sudo mv /usr/share/X11/xorg.conf.d.nouse /usr/share/X11/xorg.conf.d
 	sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf /usr/share/X11/xorg.conf.d/99-fbturbo.nouse
 fi
@@ -44,3 +45,11 @@ sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 # Carla Config
 cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf ~/.config/falkTX
 sudo cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf /root/.config/falkTX
+
+# mod-ttymidi
+if [ ! -d "$ZYNTHIAN_SW_DIR/mod-ttymidi" ]; then
+	cd $ZYNTHIAN_SW_DIR
+	git clone https://github.com/moddevices/mod-ttymidi.git
+	cd mod-ttymidi
+	sudo make install
+fi
