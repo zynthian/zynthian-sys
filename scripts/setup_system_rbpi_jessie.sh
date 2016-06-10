@@ -141,6 +141,7 @@ sudo apt-get -y install scrot # Screenshot Capture => installed by default
 sudo apt-get -y install i2c-tools #==> !!!!REVISAR
 #sudo apt-get install python-smbus (i2c with python)
 sudo apt-get -y install evtest tslib libts-bin # touchscreen tools
+sudo apt-get -y install lsof # list open files
 
 # Patched Versions of Jackd/Jackd2
 #sudo apt-get --no-install-recommends install jackd1

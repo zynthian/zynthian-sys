@@ -44,7 +44,7 @@ sudo apt-get -y upgrade
 #------------------------------------------------
 
 # Install required dependencies if needed
-sudo apt-get -y install apt-transport-https software-properties-common wget
+sudo apt-get -y install apt-transport-https software-properties-common wget lsof
 
 # deb-multimedia repo
 echo "deb http://www.deb-multimedia.org jessie main non-free" >> /etc/apt/sources.list
