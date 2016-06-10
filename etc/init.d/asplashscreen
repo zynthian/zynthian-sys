@@ -18,8 +18,7 @@ do_start () {
   if [ -c /dev/fb1 ]; then
     cat /home/pi/zynthian/zynthian-ui/img/fb1_zynthian.raw > /dev/fb1
   fi  
-  #/usr/bin/fbi -T 1 -noverbose -a /home/pi/zynthian/zynthian-ui/img/zynthian_gui_splash.png
-  #/usr/bin/fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/zynthian/zynthian-ui/img/zynthian_gui_splash.png
+  rm -f /home/pi/.remote_display_env
 }
 
 case "$1" in

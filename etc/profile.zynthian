@@ -1,0 +1,8 @@
+ 
+# set .remote_display file when logging with SSH
+if [ -n "{$SSH_CLIENT}" ]; then
+    env > .remote_display_env
+    parts=( $SSH_CLIENT )
+    REMOTE_IP=${parts[0]}
+    echo "REMOTE_IP=$REMOTE_IP" >> .remote_display_env
+fi

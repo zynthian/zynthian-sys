@@ -98,6 +98,9 @@ sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.
 sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 
 # User Config
+# Shell & Login Config
+cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian ~/.profile.zynthian
+echo "source .profile.zynthian" >> ~/.profile
 # ZynAddSubFX Config
 cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ~/.zynaddsubfxXML.cfg
 sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
@@ -142,6 +145,8 @@ sudo apt-get -y install i2c-tools #==> !!!!REVISAR
 #sudo apt-get install python-smbus (i2c with python)
 sudo apt-get -y install evtest tslib libts-bin # touchscreen tools
 sudo apt-get -y install lsof # list open files
+#sudo apt-get -y install nmap # network scanner
+sudo apt-get -y install arp-scan # network scanner
 
 # Patched Versions of Jackd/Jackd2
 #sudo apt-get --no-install-recommends install jackd1
