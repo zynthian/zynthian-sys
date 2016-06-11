@@ -2,7 +2,7 @@
 ###################################################################
 # A Project of TNET Services, Inc
 #
-# Title:     rpi-wiggle
+# Title:     zyn-wiggle
 # Author:    Kevin Reed (Dweeber)
 #            dweeber.dweebs@gmail.com
 # Project:   Raspberry Pi Stuff
@@ -25,7 +25,7 @@
 # it performs a resize command and setups a script which will 
 # run after a reboot and then ask you to press enter to reboot.
 #
-# The script WILL REBOOT YOUR SYSTEM
+# The script WILL POWER OFF YOUR SYSTEM
 #
 # When the system is coming back up, the next command will run
 # automatically, and the one time script will be removed and
@@ -34,11 +34,11 @@
 ###################################################################
 # START OF SCRIPT
 ###################################################################
-PROGRAM="rpi-wiggle"
-VERSION="v1.2 2016-06-06"
+PROGRAM="zyn-wiggle"
+VERSION="v1.3 2016-06-11"
 ###################################################################
 if [ $(id -u) -ne 0 ]; then
-  printf "Script must be run as root. Try 'sudo ./rpi-wiggle'\n"
+  printf "Script must be run as root. Try 'sudo ./zyn-wiggle.sh'\n"
   exit 1
 fi
 ###################################################################
@@ -98,19 +98,20 @@ case "$1" in
     ;;
 esac
 EOF
-  chmod +x /etc/init.d/resize2fs_once &&
-  update-rc.d resize2fs_once defaults &&
+
+chmod +x /etc/init.d/resize2fs_once &&
+update-rc.d resize2fs_once defaults &&
 
 echo
 echo #####################################################################
-echo System is now ready to resize your system.  A REBOOT IS REQUIRED NOW!
-echo "Press ENTER to reboot : \c"
+echo "System is now ready to resize your system.  A REBOOT IS REQUIRED NOW!"
+echo "Press ENTER to poweroff : \c"
 read aok
-echo REBOOTING....
+echo "POWER OFF..."
 /bin/sync
-/sbin/reboot
+/sbin/poweroff
 echo
-echo Script Complete...
+echo "Script Complete..."
 
 ###################################################################
 # END OF SCRIPT
