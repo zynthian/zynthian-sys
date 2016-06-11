@@ -35,3 +35,6 @@ fi
 if [ ! -d "$ZYNTHIAN_DIR/zynthian-my-data/zynbanks" ]; then
 	mkdir "$ZYNTHIAN_DIR/zynthian-my-data/zynbanks"
 fi
+if [ ! -d "$ZYNTHIAN_DIR/zynthian-my-data/snapshots" ]; then
+	mkdir "$ZYNTHIAN_DIR/zynthian-my-data/snapshots"
+fi
