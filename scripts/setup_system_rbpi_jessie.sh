@@ -435,6 +435,8 @@ sudo make install
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/falkTX/Carla.git
 cd Carla
+git apply $ZYNTHIAN_UI_DIR/sw-patch/Carla-zynthian.diff
+git apply $ZYNTHIAN_UI_DIR/sw-patch/Carla-tcpOscFix.diff  
 make features
 sudo apt-get -y install qt4-dev-tools
 sudo apt-get -y install qt5-dev-tools
