@@ -11,7 +11,6 @@ echo "Updating system configuration ..."
 # Remove Swap
 sudo dphys-swapfile swapoff
 sudo dphys-swapfile uninstall
-sudo echo "CONF_SWAPSIZE=0" > /etc/dphys-swapfile
 sudo sh -c "echo 'CONF_SWAPSIZE=0' > /etc/dphys-swapfile"
 
 # Give permissions to Serial Port (UART)
