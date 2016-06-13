@@ -39,12 +39,12 @@ sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 
 # User Config
 # Shell & Login Config
-cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian ~/.profile.zynthian
+cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian /home/pi/.profile.zynthian
 # ZynAddSubFX Config
-cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ~/.zynaddsubfxXML.cfg
+cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /home/pi/.zynaddsubfxXML.cfg
 sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 # Carla Config
-cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf ~/.config/falkTX
+cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf /home/pi/.config/falkTX
 sudo cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf /root/.config/falkTX
 
 # mod-ttymidi
