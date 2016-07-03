@@ -37,78 +37,6 @@ sudo apt-get -y upgrade
 sudo rpi-update
 
 #------------------------------------------------
-# System Adjustments
-#------------------------------------------------
-
-# Remove Swap
-sudo dphys-swapfile swapoff
-sudo dphys-swapfile uninstall
-sudo sh -c "echo 'CONF_SWAPSIZE=0' > /etc/dphys-swapfile"
-
-# Give permissions to Serial Port (UART)
-sudo chmod a+rw /dev/ttyAMA0
-
-# Boot config
-sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-
-# Modules
-sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
-sudo cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
-
-# Copy & Soft Link Init Scripts
-sudo cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
-sudo ln -s /etc/init.d/asplashscreen /etc/rcS.d/S01asplashscreen
-sudo ln -s /etc/init.d/zynthian /etc/rc2.d/S01zynthian
-sudo ln -s /etc/init.d/zynthian /etc/rc3.d/S01zynthian
-sudo ln -s /etc/init.d/zynthian /etc/rc4.d/S01zynthian
-sudo ln -s /etc/init.d/zynthian /etc/rc5.d/S01zynthian
-
-# Systemd Services
-#sudo systemctl disable serial-getty@ttyAMA0.service
-#sudo systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
-sudo systemctl disable raspi-config
-sudo systemctl disable dphys-swapfile
-sudo systemctl disable triggerhappy
-sudo systemctl disable cron
-#sudo systemctl disable avahi-daemon
-#sudo systemctl disable dbus
-sudo systemctl disable rsyslog
-sudo systemctl disable ntp
-sudo systemctl enable asplashscreen
-sudo systemctl enable zynthian
-
-# Initd Services
-sudo cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-#sudo cp $ZYNTHIAN_DIR/etc/rc.local /etc
-sudo update-rc.d -f raspi-config remove
-sudo update-rc.d -f dphys-swapfile remove
-sudo update-rc.d -f triggerhappy remove
-sudo update-rc.d -f cron remove
-#sudo update-rc.d -f avahi-daemon remove
-#sudo update-rc.d -f dbus remove
-sudo update-rc.d -f rsyslog remove
-sudo update-rc.d -f ntp remove
-sudo update-rc.d asplashscreen enable
-sudo update-rc.d zynthian enable
-
-# X11 Config
-sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf /usr/share/X11/xorg.conf.d/99-fbturbo.nouse
-sudo mkdir /etc/X11/xorg.conf.d
-sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
-sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
-
-# User Config
-# Shell & Login Config
-cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian ~/.profile.zynthian
-echo "source .profile.zynthian" >> ~/.profile
-# ZynAddSubFX Config
-cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ~/.zynaddsubfxXML.cfg
-sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
-# Carla Config
-cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf ~/.config/falkTX
-sudo cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf /root/.config/falkTX
-
-#------------------------------------------------
 # Add Repositories
 #------------------------------------------------
 
@@ -233,6 +161,80 @@ mkdir "zynthian-plugins/lv2"
 mkdir "zynthian-plugins/dssi"
 mkdir "zynthian-plugins/vst"
 mkdir "zynthian-plugins/ladspa"
+
+#************************************************
+#------------------------------------------------
+# System Adjustments
+#------------------------------------------------
+#************************************************
+
+# Remove Swap
+sudo dphys-swapfile swapoff
+sudo dphys-swapfile uninstall
+sudo sh -c "echo 'CONF_SWAPSIZE=0' > /etc/dphys-swapfile"
+
+# Give permissions to Serial Port (UART)
+sudo chmod a+rw /dev/ttyAMA0
+
+# Boot config
+sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
+
+# Modules
+sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
+sudo cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
+
+# Copy & Soft Link Init Scripts
+sudo cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
+sudo ln -s /etc/init.d/asplashscreen /etc/rcS.d/S01asplashscreen
+sudo ln -s /etc/init.d/zynthian /etc/rc2.d/S01zynthian
+sudo ln -s /etc/init.d/zynthian /etc/rc3.d/S01zynthian
+sudo ln -s /etc/init.d/zynthian /etc/rc4.d/S01zynthian
+sudo ln -s /etc/init.d/zynthian /etc/rc5.d/S01zynthian
+
+# Systemd Services
+#sudo systemctl disable serial-getty@ttyAMA0.service
+#sudo systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
+sudo systemctl disable raspi-config
+sudo systemctl disable dphys-swapfile
+sudo systemctl disable triggerhappy
+sudo systemctl disable cron
+#sudo systemctl disable avahi-daemon
+#sudo systemctl disable dbus
+sudo systemctl disable rsyslog
+sudo systemctl disable ntp
+sudo systemctl enable asplashscreen
+sudo systemctl enable zynthian
+
+# Initd Services
+sudo cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
+#sudo cp $ZYNTHIAN_DIR/etc/rc.local /etc
+sudo update-rc.d -f raspi-config remove
+sudo update-rc.d -f dphys-swapfile remove
+sudo update-rc.d -f triggerhappy remove
+sudo update-rc.d -f cron remove
+#sudo update-rc.d -f avahi-daemon remove
+#sudo update-rc.d -f dbus remove
+sudo update-rc.d -f rsyslog remove
+sudo update-rc.d -f ntp remove
+sudo update-rc.d asplashscreen enable
+sudo update-rc.d zynthian enable
+
+# X11 Config
+sudo mv /usr/share/X11/xorg.conf.d/99-fbturbo.conf /usr/share/X11/xorg.conf.d/99-fbturbo.nouse
+sudo mkdir /etc/X11/xorg.conf.d
+sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
+sudo cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
+
+# User Config
+# Shell & Login Config
+cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian ~/.profile.zynthian
+echo "source .profile.zynthian" >> ~/.profile
+# ZynAddSubFX Config
+cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ~/.zynaddsubfxXML.cfg
+sudo cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
+# Carla Config
+cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf ~/.config/falkTX
+sudo cp $ZYNTHIAN_SYS_DIR/etc/Carla2.conf /root/.config/falkTX
 
 #************************************************
 #------------------------------------------------

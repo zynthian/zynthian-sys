@@ -104,6 +104,33 @@ sudo pip3 install cython
 
 #************************************************
 #------------------------------------------------
+# Create Directory Tree & 
+# Install Zynthian Software from repository
+#------------------------------------------------
+#************************************************
+
+mkdir $ZYNTHIAN_HOME_DIR
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zyncoder.git
+mkdir zyncoder/build
+cd zyncoder/build
+cmake ..
+make
+cd $ZYNTHIAN_HOME_DIR
+git clone https://github.com/zynthian/zynthian-ui.git
+echo "PROTOTYPE-EMU" > ./zynthian-ui/zynthian_hw_version.txt
+git clone https://github.com/zynthian/zynthian-emuface.git
+git clone https://github.com/zynthian/zynthian-data.git
+mkdir "zynthian-sw"
+mkdir "zynthian-my-data"
+mkdir "zynthian-plugins"
+mkdir "zynthian-plugins/lv2"
+mkdir "zynthian-plugins/dssi"
+mkdir "zynthian-plugins/vst"
+mkdir "zynthian-plugins/ladspa"
+
+#************************************************
+#------------------------------------------------
 # Compile / Install Other Required Libraries
 #------------------------------------------------
 #************************************************
@@ -167,34 +194,6 @@ cd TkinterTreectrl-2.0.1
 python3 setup.py build
 sudo python3 setup.py install
 #rm -f $ZYNTHIAN_SW_DIR/TkinterTreectrl-2.0.1.zip
-
-
-#************************************************
-#------------------------------------------------
-# Create Directory Tree & 
-# Install Zynthian Software from repository
-#------------------------------------------------
-#************************************************
-
-mkdir $ZYNTHIAN_HOME_DIR
-cd $ZYNTHIAN_HOME_DIR
-git clone https://github.com/zynthian/zyncoder.git
-mkdir zyncoder/build
-cd zyncoder/build
-cmake ..
-make
-cd $ZYNTHIAN_HOME_DIR
-git clone https://github.com/zynthian/zynthian-ui.git
-echo "PROTOTYPE-EMU" > ./zynthian-ui/zynthian_hw_version.txt
-git clone https://github.com/zynthian/zynthian-emuface.git
-git clone https://github.com/zynthian/zynthian-data.git
-mkdir "zynthian-sw"
-mkdir "zynthian-my-data"
-mkdir "zynthian-plugins"
-mkdir "zynthian-plugins/lv2"
-mkdir "zynthian-plugins/dssi"
-mkdir "zynthian-plugins/vst"
-mkdir "zynthian-plugins/ladspa"
 
 #************************************************
 #------------------------------------------------
