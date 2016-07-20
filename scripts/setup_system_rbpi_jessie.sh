@@ -153,14 +153,12 @@ cd $ZYNTHIAN_HOME_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
 git clone https://github.com/zynthian/zynthian-sys.git
 git clone https://github.com/zynthian/zynthian-data.git
-#git clone https://github.com/zynthian/zynthian-plugins.git
+git clone https://github.com/zynthian/zynthian-plugins.git
+git clone https://github.com/zynthian/zynthian-emuface.git
 mkdir "zynthian-sw"
 mkdir "zynthian-my-data"
-mkdir "zynthian-plugins"
-mkdir "zynthian-plugins/lv2"
-mkdir "zynthian-plugins/dssi"
-mkdir "zynthian-plugins/vst"
-mkdir "zynthian-plugins/ladspa"
+mkdir "zynthian-my-data/snapshots"
+mkdir "zynthian-my-plugins"
 
 #************************************************
 #------------------------------------------------
