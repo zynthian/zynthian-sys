@@ -33,23 +33,6 @@ sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
 sudo sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/$audio_device_dtoverlay/g" /boot/config.txt
 
 
-# Boot Config 
-# => Detect Audio Device and configure
-grep -e ^dtoverlay /boot/config.txt | while read -r line ; do
-    if [[ $line != *"pi3-disable-bt"* ] && [ $line != *"i2s-mmap"* ] && [ $line != *"pitft"* ]]; then
-        IFS='=' read -ra parts <<< "$line"
-        audio_device=${parts[2]}
-        if [ -z "$audio_device" ]; then
-            audio_device="hifiberry-dacplus"
-        fi
-    fi
-done
-# => Copy files
-sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-# => Set (restore) Audio Device
-sed -i -e 's/#AUDIO_DEVICE#/$audio_device/g' /boot/config.txt
-
-
 # Modules configuration
 sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
 sudo cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
