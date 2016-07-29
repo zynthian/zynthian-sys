@@ -77,8 +77,14 @@ dtoverlay=pi3-disable-bt
 # Enable MMAP support (Jackd, etc.)
 dtoverlay=i2s-mmap
 
-# HifiBerry driver:
+# Audio Device Driver:
+#dtoverlay=hifiberry-amp
+#dtoverlay=hifiberry-dac
 dtoverlay=hifiberry-dacplus
+#dtoverlay=hifiberry-digi
+#dtoverlay=iqaudio-dac
+#dtoverlay=iqaudio-dacplus
+#dtoverlay=audioinjector-wm8731-audio
 
 # PiTFT Config
 #dtoverlay=pitft28-capacitive,rotate=90,speed=32000000,fps=20
