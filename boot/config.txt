@@ -80,11 +80,12 @@ dtoverlay=i2s-mmap
 # Audio Device Driver:
 #dtoverlay=hifiberry-amp
 #dtoverlay=hifiberry-dac
-dtoverlay=hifiberry-dacplus
+#dtoverlay=hifiberry-dacplus
 #dtoverlay=hifiberry-digi
 #dtoverlay=iqaudio-dac
 #dtoverlay=iqaudio-dacplus
 #dtoverlay=audioinjector-wm8731-audio
+#AUDIO_DEVICE_DTOVERLAY
 
 # PiTFT Config
 #dtoverlay=pitft28-capacitive,rotate=90,speed=32000000,fps=20

@@ -16,8 +16,39 @@ sudo sh -c "echo 'CONF_SWAPSIZE=0' > /etc/dphys-swapfile"
 # Give permissions to Serial Port (UART)
 sudo chmod a+rw /dev/ttyAMA0
 
-# Boot config
+# Boot Config 
+# => Detect Audio Device and configure
+audio_device_dtoverlay=`grep -e ^dtoverlay /boot/config.txt | while read -r line ; do
+    if [[ $line != *"pi3-disable-bt"* &&  $line != *"i2s-mmap"* && $line != *"pitft"* ]]; then
+        echo $line
+    fi
+done`
+if [ -z "$audio_device_dtoverlay" ]; then
+    audio_device_dtoverlay="dtoverlay=hifiberry-dacplus"
+fi
+echo "AUDIO DEVICE DTOVERLAY => $audio_device_dtoverlay"
+# => Copy files
 sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
+# => Set (restore) Audio Device
+sudo sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/$audio_device_dtoverlay/g" /boot/config.txt
+
+
+# Boot Config 
+# => Detect Audio Device and configure
+grep -e ^dtoverlay /boot/config.txt | while read -r line ; do
+    if [[ $line != *"pi3-disable-bt"* ] && [ $line != *"i2s-mmap"* ] && [ $line != *"pitft"* ]]; then
+        IFS='=' read -ra parts <<< "$line"
+        audio_device=${parts[2]}
+        if [ -z "$audio_device" ]; then
+            audio_device="hifiberry-dacplus"
+        fi
+    fi
+done
+# => Copy files
+sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
+# => Set (restore) Audio Device
+sed -i -e 's/#AUDIO_DEVICE#/$audio_device/g' /boot/config.txt
+
 
 # Modules configuration
 sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
