@@ -17,6 +17,8 @@ sudo sh -c "echo 'CONF_SWAPSIZE=0' > /etc/dphys-swapfile"
 sudo chmod a+rw /dev/ttyAMA0
 
 # Boot Config 
+# => Detect NO_ZYNTHIAN_UPDATE flag
+no_update_config=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
 # => Detect Audio Device and configure
 audio_device_dtoverlay=`grep -e ^dtoverlay /boot/config.txt | while read -r line ; do
     if [[ $line != *"pi3-disable-bt"* &&  $line != *"i2s-mmap"* && $line != *"pitft"* ]]; then
@@ -27,11 +29,12 @@ if [ -z "$audio_device_dtoverlay" ]; then
     audio_device_dtoverlay="dtoverlay=hifiberry-dacplus"
 fi
 echo "AUDIO DEVICE DTOVERLAY => $audio_device_dtoverlay"
-# => Copy files
-sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-# => Set (restore) Audio Device
-sudo sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/$audio_device_dtoverlay/g" /boot/config.txt
-
+if [ -z "$no_update_config" ]; then
+	# => Copy files
+	sudo cp $ZYNTHIAN_SYS_DIR/boot/* /boot
+	# => Set (restore) Audio Device
+	sudo sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/$audio_device_dtoverlay/g" /boot/config.txt
+fi
 
 # Modules configuration
 sudo cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
