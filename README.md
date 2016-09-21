@@ -6,4 +6,4 @@
 
 This repository contains system configuration files adjustments and adds for the Zynthian Box.
 
-You can learn more about the Zynthian Project reading [the blog] (http://blog.zynthian.org) or visiting [the website] (http://zynthian.org).
+You can learn more about the Zynthian Project reading [the blog] (http://blog.zynthian.org) or visiting [the website] (http://zynthian.org). Also, you can join the conversation in [the forum] (https://discourse.zynthian.org).
