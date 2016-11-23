@@ -27,21 +27,6 @@ case "$1" in
 	start|"")
 		zynthian_start
 		;;
-	startx|"")
-		export ZYNTHIANX=$DISPLAY
-		#xauth merge $HOME/.Xauthority
-		zynthian_start
-		;;
-	start_seq|"")
-		export ZYNTHIAN_SEQ=1
-		zynthian_start
-		;;
-	startx_seq|"")
-		export ZYNTHIAN_SEQ=1
-		export ZYNTHIANX=$DISPLAY
-		#xauth merge $HOME/.Xauthority
-		zynthian_start
-		;;
 	restart|reload|force-reload)
 		echo "Error: argument '$1' not supported" >&2
 		exit 3
