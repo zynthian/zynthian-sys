@@ -27,8 +27,12 @@ export ZYNTHIAN_SW_DIR="$ZYNTHIAN_DIR/zynthian-sw"
 export ZYNTHIAN_UI_DIR="$ZYNTHIAN_DIR/zynthian-ui"
 export ZYNTHIAN_SYS_DIR="$ZYNTHIAN_DIR/zynthian-sys"
 export ZYNTHIAN_DATA_DIR="$ZYNTHIAN_DIR/zynthian-data"
+export ZYNTHIAN_RECIPE_DIR=$ZYNTHIAN_DIR/zynthian-recipe
 
-#------------------------------------------------
+#Autoexpand Partition
+#$ZYNTHIAN_SYS_DIR/scripts/zyn-wiggle
+
+------------------------------------------------
 # Update System
 #------------------------------------------------
 
@@ -59,7 +63,7 @@ apt-get update
 #------------------------------------------------
 
 # System
-apt-get -y install apt-utils
+apt-get -y install sudo apt-utils ntpdate
 apt-get -y remove isc-dhcp-client
 apt-get -y install systemd dhcpcd-dbus avahi-daemon
 apt-get -y xinit xserver-xorg-video-fbdev x11-xserver-utils
@@ -77,7 +81,7 @@ apt-get -y install evtest tslib libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y install git autoconf premake libtool cmake cmake-curses-gui
+apt-get -y install build-essential git autoconf premake libtool cmake cmake-curses-gui
 
 # Libraries
 apt-get -y install wiringpi libfftw3-dev libmxml-dev zlib1g-dev libfltk1.3-dev libncurses5-dev \
@@ -143,10 +147,10 @@ echo "zynthian" > /etc/hostname
 cp $ZYNTHIAN_SYS_DIR/boot/* /boot
 
 # Copy "etc" config files
-cp $ZYNTHIAN_SYS_DIR/etc/modules /etcdbus-x11
-cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
-cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
+cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
+cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
+cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 
 # Systemd Services
 systemctl enable dhcpcd
@@ -166,11 +170,11 @@ mkdir /etc/X11/xorg.conf.d
 cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
 cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 
-# Setup User Config (root)
-# Shell & Login Config
+# User Config (root)
+# => Shell & Login Config
 cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian /root/.profile.zynthian
 echo "source .profile.zynthian" >> /root/.profile
-# ZynAddSubFX Config
+# => ZynAddSubFX Config
 cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 
 #************************************************
@@ -291,39 +295,29 @@ make -j 4 ENABLE_ALSA=yes
 make install
 
 #------------------------------------------------
-# Install some extra LV2 Plugins (Calf, MDA, ...)
-#------------------------------------------------
-apt-get install calf-plugins mda-lv2 swh-lv2 lv2vocoder avw.lv2
-apt-get install synthv1 samplv1 drumkv1
-
-#------------------------------------------------
-# Install DISTRHO DPF-Plugins
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/DISTRHO/DPF-Plugins.git
-cd DPF-Plugins
-export RASPPI=true
-make -j 4
-make install
-
-#------------------------------------------------
-# Install DISTRHO Plugins-Ports
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR/zynthian-sw
-git clone https://github.com/DISTRHO/DISTRHO-Ports.git
-cd DISTRHO-Ports
-./scripts/premake-update.sh linux
-#edit ./scripts/premake.lua
-make -j 4
-make install
-
-
-#------------------------------------------------
 # Install MOD stuff
 #------------------------------------------------
 
 #Holger scripts ...
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/dcoredump/zynthian-recipe.git
+git clone https://github.com/dcoredump/zynthian-recipe.git $ZYNTHIAN_RECIPE_DIR
 
+#Install dependecies
+sh $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
+sh $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 
+#Install MOD-HOST
+sh $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
+cp -af $ZYNTHIAN_RECIPE_DIR/mod_zynthian/systemd/mod-host.service /etc/systemd/system
+sed -i -- 's/BindsTo=jack2.service/#BindsTo=jack2.service/' /etc/systemd/system/mod-host.service
+sed -i -- 's/After=jack2.service/#After=jack2.service/' /etc/systemd/system/mod-host.service
+
+#Install MOD-UI
+sh $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
+cp -af $ZYNTHIAN_RECIPE_DIR/mod_zynthian/systemd/mod-ui.service /etc/systemd/system
+
+#Install MOD-SDK
+sh $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
+cp -af $ZYNTHIAN_RECIPE_DIR/mod_zynthian/systemd/mod-sdk.service /etc/systemd/system
+
+#Create softlink to pedalboards directory
+ln -s $ZYNTHIAN_DIR/zynthian-my-data/mod-pedalboards /root/.pedalboards
