@@ -10,22 +10,17 @@
 # Description:       Init Zynthian
 ### END INIT INFO
 
-export HOME=/root
-export ZHOME=/home/pi
-export ZYNTHIAN_BASE_DIR=$ZHOME/zynthian
-export FRAMEBUFFER=/dev/fb1
+export HOME="/root"
+export ZYNTHIAN_DIR="/zynthian"
+export FRAMEBUFFER="/dev/fb1"
 
 zynthian_start () {
-	cd $ZYNTHIAN_BASE_DIR/zynthian-ui
-	#./startx-pitft.sh ./zynthian.sh
+	cd $ZYNTHIAN_DIR/zynthian-ui
 	startx ./zynthian.sh -- :0 vt3 &
 }
 
 zynthian_stop () {
 	killall zynthian.sh
-	#killall zynthian_gui.py
-	#killall ttymidi
-	#killall zynthian_autoconnect_jack.py
 }
 
 case "$1" in
@@ -34,7 +29,7 @@ case "$1" in
 		;;
 	startx|"")
 		export ZYNTHIANX=$DISPLAY
-		xauth merge $ZHOME/.Xauthority
+		#xauth merge $HOME/.Xauthority
 		zynthian_start
 		;;
 	start_seq|"")
@@ -44,7 +39,7 @@ case "$1" in
 	startx_seq|"")
 		export ZYNTHIAN_SEQ=1
 		export ZYNTHIANX=$DISPLAY
-		xauth merge $ZHOME/.Xauthority
+		#xauth merge $HOME/.Xauthority
 		zynthian_start
 		;;
 	restart|reload|force-reload)
