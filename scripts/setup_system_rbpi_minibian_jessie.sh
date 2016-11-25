@@ -209,7 +209,7 @@ python3 ./setup.py build
 python3 ./setup.py install
 
 #------------------------------------------------
-# Install mod-ttymidi (falkTX's version!)
+# Install mod-ttymidi (MOD's version!)
 #------------------------------------------------
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/moddevices/mod-ttymidi.git
