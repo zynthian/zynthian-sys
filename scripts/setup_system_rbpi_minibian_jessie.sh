@@ -129,6 +129,8 @@ mkdir "zynthian-my-data/soundfonts/sf2"
 mkdir "zynthian-my-data/soundfonts/sfz"
 mkdir "zynthian-my-data/soundfonts/gig"
 mkdir "zynthian-my-data/snapshots"
+mkdir "zynthian-my-data/mod-pedalboards"
+mkdir "zynthian-plugins"
 mkdir "zynthian-my-plugins"
 
 #************************************************
@@ -297,26 +299,21 @@ make install
 # Install MOD stuff
 #------------------------------------------------
 
-#Holger scripts ...
-git clone https://github.com/dcoredump/zynthian-recipe.git $ZYNTHIAN_RECIPE_DIR
-
-#Install dependecies
-sh $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
-
 #Install MOD-HOST
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
-cp -af $ZYNTHIAN_RECIPE_DIR/mod_zynthian/systemd/mod-host.service /etc/systemd/system
+cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-host.service /etc/systemd/system
 sed -i -- 's/BindsTo=jack2.service/#BindsTo=jack2.service/' /etc/systemd/system/mod-host.service
 sed -i -- 's/After=jack2.service/#After=jack2.service/' /etc/systemd/system/mod-host.service
 
 #Install MOD-UI
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 sh $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
-cp -af $ZYNTHIAN_RECIPE_DIR/mod_zynthian/systemd/mod-ui.service /etc/systemd/system
+cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-ui.service /etc/systemd/system
 
 #Install MOD-SDK
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
-cp -af $ZYNTHIAN_RECIPE_DIR/mod_zynthian/systemd/mod-sdk.service /etc/systemd/system
+cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-sdk.service /etc/systemd/system
 
 #Create softlink to pedalboards directory
 ln -s $ZYNTHIAN_DIR/zynthian-my-data/mod-pedalboards /root/.pedalboards
+

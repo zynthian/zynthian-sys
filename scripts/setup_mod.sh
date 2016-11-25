@@ -28,9 +28,6 @@ source zynthian_envars.sh
 # Install MOD stuff
 #------------------------------------------------
 
-#Holger scripts ...
-git clone https://github.com/dcoredump/zynthian-recipe.git $ZYNTHIAN_RECIPE_DIR
-
 #Install dependecies
 sh $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
 
