@@ -31,33 +31,6 @@ source zynthian_envars.sh
 mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 
 #------------------------------------------------
-# Install some extra LV2 Plugins (Calf, MDA, ...)
-#------------------------------------------------
-apt-get install calf-plugins mda-lv2 swh-lv2 lv2vocoder avw.lv2
-apt-get install synthv1 samplv1 drumkv1
-
-#------------------------------------------------
-# Install DISTRHO DPF-Plugins
-#------------------------------------------------
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
-git clone https://github.com/DISTRHO/DPF-Plugins.git
-cd DPF-Plugins
-export RASPPI=true
-make -j 4
-make install
-
-#------------------------------------------------
-# Install DISTRHO Plugins-Ports
-#------------------------------------------------
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
-git clone https://github.com/DISTRHO/DISTRHO-Ports.git
-cd DISTRHO-Ports
-./scripts/premake-update.sh linux
-#edit ./scripts/premake.lua
-make -j 4
-make install
-
-#------------------------------------------------
 # Install MOD Plugins
 #------------------------------------------------
 
@@ -93,3 +66,40 @@ sh $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
 #sh $ZYNTHIAN_RECIPE_DIR/install_gxhyperion.sh
 
 sh $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
+
+#------------------------------------------------
+# Install v1 suit
+#------------------------------------------------
+apt-get install synthv1 samplv1 drumkv1
+mv /usr/lib/lv2/synthv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+mv /usr/lib/lv2/samplv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+mv /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+
+exit
+
+#------------------------------------------------
+# Install some extra LV2 Plugins (Calf, MDA, ...)
+#------------------------------------------------
+#apt-get install calf-plugins mda-lv2
+apt-get install swh-lv2 lv2vocoder avw.lv2
+
+#------------------------------------------------
+# Install DISTRHO DPF-Plugins
+#------------------------------------------------
+cd $ZYNTHIAN_PLUGINS_SRC_DIR
+git clone https://github.com/DISTRHO/DPF-Plugins.git
+cd DPF-Plugins
+export RASPPI=true
+make -j 4
+make install
+
+#------------------------------------------------
+# Install DISTRHO Plugins-Ports
+#------------------------------------------------
+cd $ZYNTHIAN_PLUGINS_SRC_DIR
+git clone https://github.com/DISTRHO/DISTRHO-Ports.git
+cd DISTRHO-Ports
+./scripts/premake-update.sh linux
+#edit ./scripts/premake.lua
+make -j 4
+make install
