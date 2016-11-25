@@ -1,0 +1,17 @@
+[Unit]
+Description=mod-host
+#BindsTo=jack2.service
+#After=jack2.service
+
+[Service]
+Type=forking
+Environment=HOME=/root
+Environment=LV2_PATH=/zynthian/zynthian-plugins/lv2:/zynthian/zynthian-my-plugins/lv2
+WorkingDirectory=/root
+ExecStart=/usr/local/bin/mod-host
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+#WantedBy=network.target
