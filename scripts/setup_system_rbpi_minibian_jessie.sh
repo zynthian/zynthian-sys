@@ -24,9 +24,6 @@
 
 source zynthian_envars.sh
 
-#Autoexpand Partition
-#$ZYNTHIAN_SYS_DIR/scripts/zyn-wiggle
-
 ------------------------------------------------
 # Update System
 #------------------------------------------------
@@ -87,7 +84,6 @@ libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev lv2-c++-tools 
 #libjack-dev-session
 #non-ntk-dev
 #libgd2-xpm-dev
-
 
 # Python
 apt-get -y install python-dbus
@@ -299,21 +295,16 @@ make install
 # Install MOD stuff
 #------------------------------------------------
 
-#Install MOD-HOST
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
-cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-host.service /etc/systemd/system
-sed -i -- 's/BindsTo=jack2.service/#BindsTo=jack2.service/' /etc/systemd/system/mod-host.service
-sed -i -- 's/After=jack2.service/#After=jack2.service/' /etc/systemd/system/mod-host.service
+./setup_mod.sh
 
-#Install MOD-UI
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
-cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-ui.service /etc/systemd/system
+#------------------------------------------------
+# Install Plugins
+#------------------------------------------------
 
-#Install MOD-SDK
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
-cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-sdk.service /etc/systemd/system
+./setup_plugins_rbpi.sh
 
-#Create softlink to pedalboards directory
-ln -s $ZYNTHIAN_DIR/zynthian-my-data/mod-pedalboards /root/.pedalboards
+#------------------------------------------------
+# Auto-expand Partition
+#------------------------------------------------
 
+#$ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle
