@@ -22,12 +22,7 @@
 # 
 #******************************************************************************
 
-export ZYNTHIAN_DIR="/zynthian"
-export ZYNTHIAN_SW_DIR="$ZYNTHIAN_DIR/zynthian-sw"
-export ZYNTHIAN_UI_DIR="$ZYNTHIAN_DIR/zynthian-ui"
-export ZYNTHIAN_SYS_DIR="$ZYNTHIAN_DIR/zynthian-sys"
-export ZYNTHIAN_DATA_DIR="$ZYNTHIAN_DIR/zynthian-data"
-export ZYNTHIAN_RECIPE_DIR=$ZYNTHIAN_DIR/zynthian-recipe
+source zynthian_envars.sh
 
 #Autoexpand Partition
 #$ZYNTHIAN_SYS_DIR/scripts/zyn-wiggle
@@ -66,13 +61,12 @@ apt-get update
 apt-get -y install sudo apt-utils ntpdate
 apt-get -y remove isc-dhcp-client
 apt-get -y install systemd dhcpcd-dbus avahi-daemon
-apt-get -y xinit xserver-xorg-video-fbdev x11-xserver-utils
+apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils
 #apt-get -y remove libgl1-mesa-dri
 
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe 
-apt-get -y install fbi scrot mpg123
-apt-get -y install i2c-tools
+apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools
 apt-get -y install evtest tslib libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
 
@@ -81,20 +75,22 @@ apt-get -y install evtest tslib libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y install build-essential git autoconf premake libtool cmake cmake-curses-gui
+apt-get -y install build-essential git subversion autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui
 
 # Libraries
 apt-get -y install wiringpi libfftw3-dev libmxml-dev zlib1g-dev libfltk1.3-dev libncurses5-dev \
 liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools \
-liblash-compat-dev libffi-dev fontconfig-config libfontconfig1-dev libxft-dev
+liblash-compat-dev libffi-dev fontconfig-config libfontconfig1-dev libxft-dev \
+libexpat-dev libglib2.0-dev libgettextpo-dev libglibmm-2.4-dev libeigen3-dev \
+libsndfile-dev libsamplerate-dev libarmadillo-dev 
 #libjack-dev-session
 #non-ntk-dev
 #libgd2-xpm-dev
 
 # Python
 apt-get -y install python-dbus
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus
+apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath
 pip3 install websocket-client
 pip3 install JACK-Client
 
@@ -183,6 +179,8 @@ cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 #------------------------------------------------
 #************************************************
 
+ntpdate time.fu-berlin.de
+
 #------------------------------------------------
 # Install Alsaseq Python Library
 #------------------------------------------------
@@ -222,7 +220,6 @@ make install
 #------------------------------------------------
 # Install Aubio Library & Tools
 #------------------------------------------------
-sudo apt-get -y install libsamplerate-dev libsndfile-dev
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/aubio/aubio.git
 cd aubio
@@ -254,7 +251,7 @@ cmake ..
 # => delete "-msse -msse2 -mfpmath=sse" 
 # => optimizations: -pipe -mfloat-abi=hard -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
 # => optimizations that doesn't work: -mcpu=cortex-a7 -mtune=cortex-a7
-sed -i -- 's/\-march\=armv7\-a \-mfloat\-abi\=hard \-mfpu\=neon \-mcpu\=cortex\-a9 \-mtune\=cortex\-a9 \-pipe \-mvectorize\-with\-neon\-quad \-funsafe\-loop\-optimizations/\-pipe \-mfloat\-abi=hard \-mfpu\=neon\-vfpv4 \-mvectorize\-with\-neon\-quad \-funsafe\-loop\-optimizations \-funsafe\-math\-optimizations/' CMakeCache.txt
+sed -i -- 's/-march=armv7-a -mfloat-abi=hard -mfpu=neon -mcpu=cortex-a9 -mtune=cortex-a9 -pipe -mvectorize-with-neon-quad -funsafe-loop-optimizations/-pipe -mfloat-abi=hard -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations/' CMakeCache.txt
 make -j 4
 make install
 
@@ -290,8 +287,9 @@ wget http://downloads.sourceforge.net/project/jsampler/Fantasia/Fantasia%200.9/F
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/pantherb/setBfree.git
 cd setBfree
-sed -i -- 's/\-msse \-msse2 \-mfpmath\=sse/\-pipe \-mcpu\=cortex\-a7 \-mfpu\=neon\-vfpv4 \-mfloat\-abi\=hard \-mvectorize\-with\-neon\-quad \-funsafe\-loop\-optimizations \-funsafe\-math\-optimizations/g' common.mak
-make -j 4 ENABLE_ALSA=yes
+sed -i -- 's/-msse -msse2 -mfpmath=sse/-pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations/g' common.mak
+sed -i -- 's/^lv2dir = \$(PREFIX)\/lib\/lv2/lv2dir = \/zynthian\/zynthian-plugins\/lv2/' common.mak
+make -j 4
 make install
 
 #------------------------------------------------
@@ -303,7 +301,6 @@ git clone https://github.com/dcoredump/zynthian-recipe.git $ZYNTHIAN_RECIPE_DIR
 
 #Install dependecies
 sh $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
-sh $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 
 #Install MOD-HOST
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
@@ -313,6 +310,7 @@ sed -i -- 's/After=jack2.service/#After=jack2.service/' /etc/systemd/system/mod-
 
 #Install MOD-UI
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
+sh $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 cp -af $ZYNTHIAN_RECIPE_DIR/mod_zynthian/systemd/mod-ui.service /etc/systemd/system
 
 #Install MOD-SDK

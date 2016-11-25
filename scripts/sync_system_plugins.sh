@@ -1,9 +1,14 @@
 #!/bin/bash
 
-export ZYNTHIAN_HOME_DIR="/home/pi/zynthian"
-export ZYNTHIAN_PLUGINS_DIR="$ZYNTHIAN_HOME_DIR/zynthian-plugins.sync"
+source zynthian_envars.sh
 
 export RSYNC_OPTIONS="-r -u -l -v --exclude=carla.*"
+
+#Create destiny directories
+mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
+mkdir "$ZYNTHIAN_PLUGINS_DIR/dssi"
+mkdir "$ZYNTHIAN_PLUGINS_DIR/ladspa"
+mkdir "$ZYNTHIAN_PLUGINS_DIR/vst"
 
 #LV2 Plugins
 echo "Syncing LV2 plugins ..."

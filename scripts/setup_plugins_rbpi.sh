@@ -22,11 +22,7 @@
 # 
 #******************************************************************************
 
-export ZYNTHIAN_DIR="/zynthian"
-export ZYNTHIAN_SW_DIR="$ZYNTHIAN_DIR/zynthian-sw"
-export ZYNTHIAN_PLUGINS_DIR="$ZYNTHIAN_DIR/zynthian-plugins"
-export ZYNTHIAN_PLUGINS_SRC_DIR="$ZYNTHIAN_SW_DIR/plugins"
-export ZYNTHIAN_RECIPE_DIR=$ZYNTHIAN_DIR/zynthian-recipe
+source zynthian_envars.sh
 
 #------------------------------------------------
 # Create Plugins Source Code Directory
@@ -65,6 +61,8 @@ make install
 # Install MOD Plugins
 #------------------------------------------------
 
+sh $ZYNTHIAN_RECIPE_DIR/install_mod-lv2-data.sh
+
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
 sh $ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
 sh $ZYNTHIAN_RECIPE_DIR/install_fluidplug.sh
@@ -93,4 +91,5 @@ sh $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
 #sh $ZYNTHIAN_RECIPE_DIR/install_gxvoodofuzz.sh
 #sh $ZYNTHIAN_RECIPE_DIR/install_gxsupersaturator.sh
 #sh $ZYNTHIAN_RECIPE_DIR/install_gxhyperion.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-lv2-data.sh
+
+sh $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
