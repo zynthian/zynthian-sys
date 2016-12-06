@@ -54,9 +54,9 @@ sudo apt-get -y install deb-multimedia-keyring
 #sudo apt-get -y dist-upgrade
 
 # KXStudio Repo
-wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.2.2~kxstudio1_all.deb
-sudo dpkg -i kxstudio-repos_9.2.2~kxstudio1_all.deb
-rm -f kxstudio-repos_9.2.2~kxstudio1_all.deb
+wget https://launchpad.net/~kxstudio-debian/+archive/ubuntu/kxstudio/+files/kxstudio-repos_9.4.1~kxstudio1_all.deb
+sudo dpkg -i kxstudio-repos_9.4.1~kxstudio1_all.deb
+rm -f kxstudio-repos_9.4.1~kxstudio1_all.deb
 
 #------------------------------------------------
 # Install Required Packages
