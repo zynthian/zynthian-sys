@@ -75,7 +75,7 @@ apt-get -y install evtest tslib libts-bin # touchscreen tools
 apt-get -y install build-essential git swig subversion autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui
 
 # Libraries
-apt-get -y install wiringpi libfftw3-dev libmxml-dev zlib1g-dev libfltk1.3-dev libncurses5-dev \
+apt-get -y --force-yes install wiringpi libfftw3-dev libmxml-dev zlib1g-dev libfltk1.3-dev libncurses5-dev \
 liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools \
 liblash-compat-dev libffi-dev fontconfig-config libfontconfig1-dev libxft-dev \
@@ -100,23 +100,37 @@ pip3 install JACK-Client
 #************************************************
 mkdir $ZYNTHIAN_DIR
 cd $ZYNTHIAN_DIR
+
+# Zyncoder library
 git clone https://github.com/zynthian/zyncoder.git
 mkdir zyncoder/build
 cd zyncoder/build
 cmake ..
 make
+
+# Zynthian UI
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
 cd zynthian-ui
 git checkout mod
+
+# Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-sys.git
 cd zynthian-sys
 git checkout mod
+
+# Zynthian Data
+cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-data.git
-# TODO => Rethink plugins directory!!
+
+# Zynthian Plugins => TODO! => Rethink plugins directory!!
 #git clone https://github.com/zynthian/zynthian-plugins.git
+
+# Zynthian emuface => Not very useful here ... but somebody used it
 git clone https://github.com/zynthian/zynthian-emuface.git
+
+# Create needed directories
 mkdir "zynthian-sw"
 mkdir "zynthian-data/soundfonts"
 mkdir "zynthian-data/soundfonts/sf2"

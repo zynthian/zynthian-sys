@@ -70,7 +70,7 @@ sh $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
 #------------------------------------------------
 # Install v1 suit
 #------------------------------------------------
-apt-get install synthv1 samplv1 drumkv1
+apt-get -y install synthv1 samplv1 drumkv1
 ln -s /usr/lib/lv2/synthv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/samplv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
@@ -78,7 +78,7 @@ ln -s /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 #------------------------------------------------
 # Install some extra LV2 Plugins (swh, avw, ...)
 #------------------------------------------------
-apt-get install swh-lv2 lv2vocoder avw.lv2
+apt-get -y install swh-lv2 lv2vocoder avw.lv2
 ln -s /usr/lib/lv2/*swh.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/vocoder.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
