@@ -2,8 +2,14 @@
 #******************************************************************************
 # ZYNTHIAN PROJECT: Zynthian Standalone Setup Script
 # 
-# Standalone setup zynthian from scratch in a completely fresh 
-# minibian-jessie image. No need for nothing else.
+# Setup zynthian from scratch in a completely fresh minibian-jessie image.
+# No need for nothing else. Only run the script twice, following the next
+# instructions:
+#
+# 1. Run first time: ./setup_zynthian.sh
+# 2. Reboot: It should reboot automaticly after step 1
+# 3. Run second time: ./setup_zynthian.sh
+# 4. Take a good beer, sit down and relax ... ;-)
 # 
 # Copyright (C) 2015-2016 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -23,9 +29,22 @@
 # 
 #******************************************************************************
 
-apt-get -y install git
-git clone https://github.com/zynthian/zynthian-sys.git
-cd zynthian-sys
-git checkout mod
-cd scripts
-./setup_system_rbpi_minibian_jessie.sh
+if [ ! -d "zynthian-sys" ]; then
+	cd
+	apt-get update
+	apt-get -y install sudo git parted
+	git clone https://github.com/zynthian/zynthian-sys.git
+	cd zynthian-sys
+	git checkout mod
+fi
+
+cd
+cd zynthian-sys/scripts
+
+if [ $1="wiggle" || ! f "~/.wiggled" ]; then
+	./rpi-wiggle.sh
+	touch ~/.wiggled
+	reboot
+else
+	./setup_system_rbpi_minibian_jessie.sh
+fi
