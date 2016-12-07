@@ -24,7 +24,7 @@
 
 source zynthian_envars.sh
 
-------------------------------------------------
+#------------------------------------------------
 # Update System
 #------------------------------------------------
 
@@ -55,7 +55,7 @@ apt-get update
 #------------------------------------------------
 
 # System
-apt-get -y install sudo apt-utils ntpdate
+apt-get -y install sudo apt-utils ntpdate parted
 apt-get -y remove isc-dhcp-client
 apt-get -y install systemd dhcpcd-dbus avahi-daemon
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils
@@ -110,11 +110,14 @@ cd zynthian-ui
 git checkout mod
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-sys.git
+cd zynthian-sys
+git checkout mod
 git clone https://github.com/zynthian/zynthian-data.git
 # TODO => Rethink plugins directory!!
 #git clone https://github.com/zynthian/zynthian-plugins.git
 git clone https://github.com/zynthian/zynthian-emuface.git
 mkdir "zynthian-sw"
+mkdir "zynthian-data/soundfonts"
 mkdir "zynthian-data/soundfonts/sf2"
 mkdir "zynthian-data/soundfonts/sfz"
 mkdir "zynthian-data/soundfonts/gig"
@@ -237,7 +240,7 @@ cp -fa ./build/examples/aubiotrack /usr/local/bin
 #------------------------------------------------
 #************************************************
 
-#------------------------------------------------"Incompatible shm registry, are jackd and libjack in sync"
+#------------------------------------------------
 # Install zynaddsubfx
 #------------------------------------------------
 cd $ZYNTHIAN_SW_DIR
@@ -260,7 +263,7 @@ ln -s $ZYNTHIAN_SW_DIR/zynaddsubfx/instruments/banks $ZYNTHIAN_DATA_DIR/zynbanks
 #------------------------------------------------
 # Install Fluidsynth & SondFonts
 #------------------------------------------------
-apt-get install fluidsynth fluid-soundfont-gm fluid-soundfont-gs
+apt-get -y install fluidsynth fluid-soundfont-gm fluid-soundfont-gs
 
 # Create SF2 soft links
 cd $ZYNTHIAN_DATA_DIR/soundfonts/sf2
@@ -307,4 +310,4 @@ make install
 # Auto-expand Partition
 #------------------------------------------------
 
-#$ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle
+#$ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh
