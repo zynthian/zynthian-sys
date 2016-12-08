@@ -56,10 +56,10 @@ apt-get update
 
 # System
 apt-get -y install sudo apt-utils ntpdate parted
-apt-get -y remove isc-dhcp-client
 apt-get -y install systemd dhcpcd-dbus avahi-daemon
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils
-#apt-get -y remove libgl1-mesa-dri
+apt-get -y remove isc-dhcp-client
+apt-get -y remove libgl1-mesa-dri
 
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe 
@@ -158,7 +158,7 @@ echo "zynthian" > /etc/hostname
 
 # Copy "boot" config files
 cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/hifiberry-dacplus/g" /boot/config.txt
+sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/dtoverlay=hifiberry-dacplus/g" /boot/config.txt
 
 # Copy "etc" config files
 cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
@@ -200,7 +200,7 @@ cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 #------------------------------------------------
 #************************************************
 
-ntpdate time.fu-berlin.de
+ntpdate 0.europe.pool.ntp.org
 
 #------------------------------------------------
 # Install Alsaseq Python Library
