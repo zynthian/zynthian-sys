@@ -158,6 +158,7 @@ echo "zynthian" > /etc/hostname
 
 # Copy "boot" config files
 cp $ZYNTHIAN_SYS_DIR/boot/* /boot
+sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/hifiberry-dacplus/g" /boot/config.txt
 
 # Copy "etc" config files
 cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
