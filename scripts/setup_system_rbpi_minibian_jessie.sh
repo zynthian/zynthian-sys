@@ -183,6 +183,9 @@ mkdir /etc/X11/xorg.conf.d
 cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
 cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 
+# Copy fonts to system directory
+cp -rf $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
+
 # User Config (root)
 # => Shell & Login Config
 cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian /root/.profile.zynthian
