@@ -114,7 +114,8 @@ cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
 cd zynthian-ui
 git checkout mod
-echo "zynthian_gui_config.py" >> .gitignore 
+# Exclude configuration file from git commands
+git update-index --assume-unchanged zynthian_gui_config.py
 
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
