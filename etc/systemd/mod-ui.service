@@ -9,8 +9,9 @@ Environment=MOD_PHANTOM_BINARY=/usr/bin/phantomjs
 Environment=MOD_DEVICE_WEBSERVER_PORT=8888
 Environment=MOD_DEV_ENVIRONMENT=0
 Environment=MOD_LOG=0
-Environment=MOD_APP=1
-Environment=MOD_LIVE_ISO=1
+Environment=MOD_APP=0
+Environment=MOD_LIVE_ISO=0
+Environment=MOD_SYSTEM_OUTPUT=1
 
 WorkingDirectory=/zynthian/zynthian-sw/mod-ui
 ExecStart=/zynthian/zynthian-sw/mod-ui/server.py

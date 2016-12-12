@@ -114,6 +114,7 @@ cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
 cd zynthian-ui
 git checkout mod
+echo "zynthian_gui_config.py" >> .gitignore 
 
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
@@ -147,6 +148,9 @@ mkdir "zynthian-my-data/snapshots"
 mkdir "zynthian-my-data/mod-pedalboards"
 mkdir "zynthian-plugins"
 mkdir "zynthian-my-plugins"
+
+# Copy some files
+cp -a zynthian-data/mod-pedalboards/* zynthian-my-data/mod-pedalboards
 
 #************************************************
 #------------------------------------------------
