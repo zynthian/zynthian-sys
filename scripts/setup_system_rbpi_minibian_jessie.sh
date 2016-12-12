@@ -42,6 +42,7 @@ apt-get -y install apt-transport-https software-properties-common wget
 # deb-multimedia repo
 echo "deb http://www.deb-multimedia.org jessie main" >> /etc/apt/sources.list
 apt-get -y --force-yes install deb-multimedia-keyring
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5C808C2B65558117
 
 # Autostatic Repo
 wget -O - http://rpi.autostatic.com/autostatic.gpg.key| apt-key add -
