@@ -4,10 +4,14 @@ Description=mod-ui
 [Service]
 Environment=HOME=/root
 Environment=LV2_PATH=/zynthian/zynthian-plugins/lv2:/zynthian/zynthian-my-plugins/lv2
-Environment=MOD_DEV_ENVIRONMENT=0
 Environment=MOD_SCREENSHOT_JS=/zynthian/zynthian-sw/mod-ui/screenshot.js
 Environment=MOD_PHANTOM_BINARY=/usr/bin/phantomjs
 Environment=MOD_DEVICE_WEBSERVER_PORT=8888
+Environment=MOD_DEV_ENVIRONMENT=0
+Environment=MOD_LOG=0
+Environment=MOD_APP=1
+Environment=MOD_LIVE_ISO=1
+
 WorkingDirectory=/zynthian/zynthian-sw/mod-ui
 ExecStart=/zynthian/zynthian-sw/mod-ui/server.py
 Restart=always

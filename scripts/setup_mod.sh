@@ -34,8 +34,6 @@ sh $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignor
 #Install MOD-HOST
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
 cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-host.service /etc/systemd/system
-sed -i -- 's/BindsTo=jack2.service/#BindsTo=jack2.service/' /etc/systemd/system/mod-host.service
-sed -i -- 's/After=jack2.service/#After=jack2.service/' /etc/systemd/system/mod-host.service
 
 #Install MOD-UI
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
