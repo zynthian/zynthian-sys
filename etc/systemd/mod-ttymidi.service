@@ -1,0 +1,16 @@
+[Unit]
+Description=MOD ttymidi
+#BindsTo=jack2.service
+After=jack2.service
+Requires=jack2.service
+
+[Service]
+Environment=HOME=/root
+WorkingDirectory=/root
+ExecStart=/usr/local/bin/ttymidi -s /dev/ttyAMA0 -b 38400
+ExecStartPre=/usr/bin/jack_wait -w
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

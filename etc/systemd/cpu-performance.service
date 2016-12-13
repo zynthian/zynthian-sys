@@ -1,0 +1,10 @@
+[Unit]
+Description=Tune CPU performance
+Before=jack2.service
+
+[Service]
+Type=oneshot
+ExecStart=/zynthian/zynthian-sys/sbin/cpu-performance.sh
+
+[Install]
+WantedBy=multi-user.target

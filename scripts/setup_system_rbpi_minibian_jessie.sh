@@ -169,10 +169,12 @@ sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/dtoverlay=hifiberry-dacplus/g" /boot/config
 # Copy "etc" config files
 cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
+cp $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
+cp $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 
 # Systemd Services
+systemctl daemon-reload
 systemctl enable dhcpcd
 systemctl enable avahi-daemon
 systemctl disable raspi-config
@@ -182,7 +184,10 @@ systemctl disable ntp
 systemctl disable triggerhappy
 #systemctl disable serial-getty@ttyAMA0.service
 #systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
-systemctl enable asplashscreen
+systemctl enable cpu-performance
+systemctl enable splash-screen
+systemctl enable jack2
+systemctl enable mod-ttymidi
 systemctl enable zynthian
 
 # X11 Config
@@ -243,6 +248,11 @@ cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/moddevices/mod-ttymidi.git
 cd mod-ttymidi
 make install
+
+#------------------------------------------------
+# Install LV2 lilv library
+#------------------------------------------------
+sh $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
 
 #------------------------------------------------
 # Install Aubio Library & Tools

@@ -1,7 +1,7 @@
 [Unit]
-Description=mod-host
-#BindsTo=jack2.service
-#After=jack2.service
+Description=MOD-HOST: MOD LV2 plugin server
+After=jack2.service
+Requires=jack2.service mod-ttymidi.service
 
 [Service]
 Type=forking
@@ -14,4 +14,4 @@ RestartSec=2
 
 [Install]
 WantedBy=multi-user.target
-#WantedBy=network.target
+

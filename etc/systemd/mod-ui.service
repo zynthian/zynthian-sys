@@ -1,5 +1,7 @@
 [Unit]
-Description=mod-ui
+Description=MOD-UI: MOD Web GUI
+After=mod-host.service
+Requires=mod-host.service
 
 [Service]
 Environment=HOME=/root
@@ -12,12 +14,15 @@ Environment=MOD_LOG=0
 Environment=MOD_APP=0
 Environment=MOD_LIVE_ISO=0
 Environment=MOD_SYSTEM_OUTPUT=1
-
 WorkingDirectory=/zynthian/zynthian-sw/mod-ui
 ExecStart=/zynthian/zynthian-sw/mod-ui/server.py
+#ExecStartPre=/usr/bin/jack_load mod-host
+#ExecStartPre=/usr/bin/jack_load mod-monitor
+#ExecStopPost=/usr/bin/jack_unload mod-host
+#ExecStopPost=/usr/bin/jack_unload mod-monitor
 Restart=always
 RestartSec=2
 
 [Install]
 WantedBy=multi-user.target
-#WantedBy=network.target
+

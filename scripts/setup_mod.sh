@@ -28,21 +28,15 @@ source zynthian_envars.sh
 # Install MOD stuff
 #------------------------------------------------
 
-#Install dependecies
-sh $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
-
 #Install MOD-HOST
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
-cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-host.service /etc/systemd/system
 
 #Install MOD-UI
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 sh $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
-cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-ui.service /etc/systemd/system
 
 #Install MOD-SDK
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
-cp -af $ZYNTHIAN_SYS_DIR/etc/systemd/mod-sdk.service /etc/systemd/system
 
 #Create softlink to pedalboards directory
 ln -s $ZYNTHIAN_DIR/zynthian-my-data/mod-pedalboards /root/.pedalboards

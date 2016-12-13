@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export LV2_PATH=/zynthian/zynthian-plugins/lv2:/zynthian/zynthian-my-plugins/lv2
 export MOD_SCREENSHOT_JS=/zynthian/zynthian-sw/mod-ui/screenshot.js
