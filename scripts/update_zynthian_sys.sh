@@ -10,13 +10,11 @@ echo "Changing repository branch to sonar2016 ..."
 git config --global user.email "box@zynthian.org"
 git config --global user.name "Zynthian Box"
 cd $ZYNTHIAN_SYS_DIR
-git branch sonar2016
+git fetch
 git checkout sonar2016
-git pull origin sonar2016
 cd $ZYNTHIAN_DIR/zynthian-ui
-git branch sonar2016
+git fetch
 git checkout sonar2016
-git pull origin sonar2016
 
 echo "Updating system configuration ..."
 
