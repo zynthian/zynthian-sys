@@ -6,6 +6,16 @@ fi
 ZYNTHIAN_SYS_DIR="$ZYNTHIAN_DIR/zynthian-sys"
 ZYNTHIAN_SW_DIR="$ZYNTHIAN_DIR/zynthian-sw"
 
+echo "Changing repository branch to sonar2016 ..."
+cd $ZYNTHIAN_DIR/zynthian-ui
+git branch sonar2016
+git checkout sonar2016
+git pull origin sonar2016
+cd $ZYNTHIAN_SYS_DIR
+git branch sonar2016
+git checkout sonar2016
+git pull origin sonar2016
+
 echo "Updating system configuration ..."
 
 # Remove Swap
