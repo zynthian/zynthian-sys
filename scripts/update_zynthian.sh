@@ -4,7 +4,7 @@ source zynthian_envars.sh
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
-git pull origin mod
+git pull origin $ZYNTHIAN_BRANCH
 cd ./scripts
 ./update_zynthian_sys.sh
 
@@ -17,5 +17,5 @@ make
 
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
-git pull origin mod
+git pull origin $ZYNTHIAN_BRANCH
 

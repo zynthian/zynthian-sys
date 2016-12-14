@@ -25,18 +25,22 @@ if [ -z "$no_update_config" ]; then
 fi
 
 # Copy "etc" config files
-cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
-cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-cp $ZYNTHIAN_SYS_DIR/etc/init.d/* /etc/init.d
-cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
+cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
+cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
+cp -a $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
+cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
+cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 
 # X11 Config
-cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
-cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
+cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
+cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
+
+# Copy fonts to system directory
+cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 
 # User Config (root)
 # => Shell & Login Config
-cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian /root/.profile.zynthian
+cp -a $ZYNTHIAN_SYS_DIR/etc/profile.zynthian /root/.profile.zynthian
 echo "source .profile.zynthian" >> /root/.profile
 # => ZynAddSubFX Config
-cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
+cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
