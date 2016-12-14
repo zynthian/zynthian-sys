@@ -30,7 +30,9 @@ source zynthian_envars.sh
 
 apt-get -y update
 apt-get -y upgrade
-#rpi-update
+apt-get -y dist-upgrade
+apt-get -y install rpi-update
+rpi-update
 
 #------------------------------------------------
 # Add Repositories
@@ -184,6 +186,7 @@ systemctl disable ntp
 systemctl disable triggerhappy
 #systemctl disable serial-getty@ttyAMA0.service
 #systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
+systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable splash-screen
 systemctl enable jack2

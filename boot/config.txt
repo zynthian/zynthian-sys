@@ -70,8 +70,10 @@ dtparam=spi=on
 # Additional overlays and parameters are documented /boot/overlays/README
 
 # Disable Blutooth Support for HifiBerry compatibility with RBPi 3
+# Swap back the ttyAMA0 to GPIO
 [pi3]
-dtoverlay=pi3-disable-bt
+dtoverlay=pi3-disable-bt 
+dtoverlay=pi3-miniuart-bt
 [all]
 
 # Enable MMAP support (Jackd, etc.)
@@ -91,7 +93,13 @@ dtoverlay=i2s-mmap
 #dtoverlay=pitft28-capacitive,rotate=90,speed=32000000,fps=20
 dtoverlay=pitft28-resistive,rotate=90,speed=32000000,fps=20
 
-# Adjust Serial Port Clock to allow MIDI baudrate 31250 
+# Adjust Serial Port Clock to allow MIDI baudrate 31250
+[pi2]
 init_uart_clock=2441000
 init_uart_baud=38400
 dtparam=uart0_clkrate=3000000
+[pi3]
+init_uart_clock=39062500
+init_uart_baud=38400
+dtparam=uart0_clkrate=48000000
+[all]

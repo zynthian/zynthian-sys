@@ -1,7 +1,7 @@
 [Unit]
 Description=Zynthian Sound Platform
 After=jack2.service
-Requires=jack2.service mod-ttymidi.service
+Requires=jack2.service
 
 [Service]
 Environment=ZYNTHIAN_DIR=/zynthian
