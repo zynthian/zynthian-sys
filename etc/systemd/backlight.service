@@ -8,7 +8,7 @@ Before=shutdown.target poweroff.target halt.target reboot.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/sh -c "/bin/echo 0 > /sys/class/backlight/soc:backlight/bl_power"
+ExecStart=/bin/echo
 ExecStop=/bin/sh -c "/bin/echo 1 > /sys/class/backlight/soc:backlight/bl_power"
 
 [Install]
