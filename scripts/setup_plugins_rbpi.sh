@@ -65,6 +65,12 @@ sh $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
 #sh $ZYNTHIAN_RECIPE_DIR/install_gxsupersaturator.sh
 #sh $ZYNTHIAN_RECIPE_DIR/install_gxhyperion.sh
 
+# dcoredump Stuff
+sh $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
+sh $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
+sh $ZYNTHIAN_RECIPE_DIR/install_deeaxe7.sh
+sh $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
+
 sh $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
 
 #------------------------------------------------
