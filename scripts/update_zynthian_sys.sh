@@ -9,7 +9,7 @@ echo "Updating system configuration ..."
 no_update_config=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
 # => Detect Audio Device and configure
 audio_device_dtoverlay=`grep -e ^dtoverlay /boot/config.txt | while read -r line ; do
-	if [[ $line != *"pi3-disable-bt"* &&  $line != *"i2s-mmap"* && $line != *"pitft"* ]]; then
+	if [[ $line != *"pi3-disable-bt"* && $line != *"pi3-miniuart-bt"* && $line != *"i2s-mmap"* && $line != *"pitft"*  ]]; then
 		echo $line
 	fi
 done`

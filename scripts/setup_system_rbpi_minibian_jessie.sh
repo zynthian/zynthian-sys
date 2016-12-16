@@ -147,7 +147,9 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards"
 mkdir $ZYNTHIAN_PLUGINS_DIR
+mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 mkdir $ZYNTHIAN_MY_PLUGINS_DIR
+mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
 # Copy some files
 cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/* $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards
