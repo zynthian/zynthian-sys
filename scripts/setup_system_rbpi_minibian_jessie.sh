@@ -298,6 +298,9 @@ make install
 #Create soft link to zynbanks
 ln -s $ZYNTHIAN_SW_DIR/zynaddsubfx/instruments/banks $ZYNTHIAN_DATA_DIR/zynbanks
 
+#Create soft links to LV2 plugins
+ln -s /usr/local/lib/lv2/Zyn*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+
 #------------------------------------------------
 # Install Fluidsynth & SondFonts
 #------------------------------------------------
