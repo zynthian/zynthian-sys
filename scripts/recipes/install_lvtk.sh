@@ -7,3 +7,4 @@ cd lvtk
 sudo ./waf install
 ./waf clean
 cd ..
+apt-get install -y lvtk-tools

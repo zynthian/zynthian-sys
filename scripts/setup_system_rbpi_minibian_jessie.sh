@@ -201,7 +201,9 @@ cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 # Copy fonts to system directory
 cp -rf $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 
-# User Config (root)
+# User Config (root) =>
+# Set Zynthian Environment variables ...
+echo "source /zynthian/zynthian-sys/scripts/zynthian_envars.sh" >> /root/.bashrc
 # => Shell & Login Config
 cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian /root/.profile.zynthian
 echo "source .profile.zynthian" >> /root/.profile
@@ -321,7 +323,7 @@ apt-get -y install linuxsampler
 cd $ZYNTHIAN_SW_DIR
 mkdir fantasia
 cd fantasia
-wget http://downloads.sourceforge.net/project/jsampler/Fantasia/Fantasia%200.9/Fantasia-0.9.jar
+wget --no-check-certificate http://downloads.sourceforge.net/project/jsampler/Fantasia/Fantasia%200.9/Fantasia-0.9.jar
 # java -jar ./Fantasia-0.9.jar
 
 #------------------------------------------------
