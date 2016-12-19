@@ -38,9 +38,9 @@ export ZYNTHIAN_PLUGINS_SRC_DIR="$ZYNTHIAN_SW_DIR/plugins"
 export LV2_PATH="${ZYNTHIAN_PLUGINS_DIR}/lv2;${ZYNTHIAN_MY_PLUGINS_DIR}/lv2"
 
 # Hardware Architecture & Optimization Options
-machine=uname -m 2>/dev/null || echo unknown
+machine=`uname -m 2>/dev/null`
 if [ ${machine} = "armv7l" ]; then
-	model=cat /sys/firmware/devicetree/base/model 2>/dev/null || echo unknown
+	model=`cat /sys/firmware/devicetree/base/model 2>/dev/null`
 	if [[ ${model} =~ [3] ]]; then
 		CPU="-mcpu=cortex-a53"
 		FPU="-mfpu=neon-fp-armv8"
@@ -50,6 +50,7 @@ if [ ${machine} = "armv7l" ]; then
 	fi
 	FPU="${FPU} -mneon-for-64bits"
 fi
-echo "Hardware Architecture: ${machine} Model: ${model}"
+echo "Hardware Architecture: ${machine}"
+echo "Hardware Model: ${model}"
 export CFLAGS="${CPU} ${FPU}"
 export CXXFLAGS=${CFLAGS}
