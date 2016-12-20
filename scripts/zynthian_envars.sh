@@ -43,14 +43,16 @@ if [ ${machine} = "armv7l" ]; then
 	model=`cat /sys/firmware/devicetree/base/model 2>/dev/null`
 	if [[ ${model} =~ [3] ]]; then
 		CPU="-mcpu=cortex-a53"
-		FPU="-mfpu=neon-fp-armv8"
+		FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
 	else
 		CPU="-mcpu=cortex-a7 -mthumb"
 		FPU="-mfpu=neon-vfpv4"
 	fi
-	FPU="${FPU} -mneon-for-64bits"
+	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad"
+	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations"
 fi
 export CFLAGS="${CPU} ${FPU}"
 export CXXFLAGS=${CFLAGS}
+export CFLAGS_UNSAFE
 #echo "Hardware Architecture: ${machine}"
 #echo "Hardware Model: ${model}"
