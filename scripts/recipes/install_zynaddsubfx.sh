@@ -11,8 +11,8 @@ cmake ..
 sed -i -- 's/-march=armv7-a -mfloat-abi=hard -mfpu=neon -mcpu=cortex-a9 -mtune=cortex-a9 -pipe -mvectorize-with-neon-quad -funsafe-loop-optimizations/-pipe -mfloat-abi=hard -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations/' CMakeCache.txt
 
 # Don't use environment optimizations
-export CFLAGS=
-export CXXFLAGS=
+unset CFLAGS
+unset CXXFLAGS
 
 # Compile & Install
 make -j 4
