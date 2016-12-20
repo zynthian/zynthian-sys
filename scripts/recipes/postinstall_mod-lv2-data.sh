@@ -3,8 +3,7 @@ cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/moddevices/mod-lv2-data.git
 
 #Apply mod-lv2-data
-for d in `ls -d $ZYNTHIAN_PLUGINS_DIR/lv2/*`
-do
+for d in `ls -d $ZYNTHIAN_PLUGINS_DIR/lv2/*`; do
 	B=`basename "${d}"`
 	ls -d $ZYNTHIAN_PLUGINS_SRC_DIR/mod-lv2-data/plugins-fixed/"${B}"/modgui >/dev/null 2>&1
 	if [ $? = 0 ]; then

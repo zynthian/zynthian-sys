@@ -39,8 +39,5 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 
 # User Config (root)
-# => Shell & Login Config
-cp -a $ZYNTHIAN_SYS_DIR/etc/profile.zynthian /root/.profile.zynthian
-echo "source .profile.zynthian" >> /root/.profile
 # => ZynAddSubFX Config
 cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg

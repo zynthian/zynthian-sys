@@ -7,6 +7,7 @@ cd $ZYNTHIAN_SYS_DIR
 git pull origin $ZYNTHIAN_BRANCH
 cd ./scripts
 ./update_zynthian_sys.sh
+./update_zynthian_recipes.sh
 
 echo "Updating zyncoder ..."
 cd $ZYNTHIAN_DIR/zyncoder

@@ -209,8 +209,7 @@ cp -rf $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 # Set Zynthian Environment variables ...
 echo "source /zynthian/zynthian-sys/scripts/zynthian_envars.sh" >> /root/.bashrc
 # => Shell & Login Config
-cp $ZYNTHIAN_SYS_DIR/etc/profile.zynthian /root/.profile.zynthian
-echo "source .profile.zynthian" >> /root/.profile
+echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 # => ZynAddSubFX Config
 cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 
