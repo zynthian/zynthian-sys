@@ -58,7 +58,7 @@ apt-get update
 #------------------------------------------------
 
 # System
-apt-get -y install sudo apt-utils ntpdate parted
+apt-get -y install sudo apt-utils htpdate parted
 apt-get -y install systemd dhcpcd-dbus avahi-daemon
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils
 apt-get -y remove isc-dhcp-client
@@ -216,7 +216,7 @@ cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 #------------------------------------------------
 #************************************************
 
-ntpdate 0.europe.pool.ntp.org
+htpdate 0.europe.pool.ntp.org
 
 #------------------------------------------------
 # Install Alsaseq Python Library
