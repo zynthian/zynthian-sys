@@ -32,6 +32,7 @@
 if [ ! -d "zynthian-sys" ]; then
 	cd
 	apt-get update
+	apt-get -y install apt-utils
 	apt-get -y install sudo git parted screen
 	git clone https://github.com/zynthian/zynthian-sys.git
 	cd zynthian-sys

@@ -34,7 +34,8 @@ apt-get -y upgrade
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
-apt-get -y install sudo apt-utils apt-transport-https software-properties-common rpi-update htpdate parted wget
+apt-get -y install apt-utils
+apt-get -y install sudo apt-transport-https software-properties-common rpi-update htpdate parted
 
 # Adjust System Date/Time
 htpdate 0.europe.pool.ntp.org
