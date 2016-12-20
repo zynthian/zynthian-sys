@@ -100,6 +100,9 @@ apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-
 pip3 install websocket-client
 pip3 install JACK-Client
 
+# Clean
+apt-get -y autoremove
+
 #************************************************
 #------------------------------------------------
 # Create Zynthian Directory Tree & 
@@ -227,6 +230,7 @@ wget http://pp.com.mx/python/alsaseq/alsaseq-0.4.1.tar.gz
 tar xfvz alsaseq-0.4.1.tar.gz
 cd alsaseq-0.4.1
 python3 setup.py install
+cd ..
 rm -f alsaseq-0.4.1.tar.gz
 
 #------------------------------------------------
