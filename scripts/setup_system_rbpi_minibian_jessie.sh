@@ -296,8 +296,8 @@ sed -i -- 's/-march=armv7-a -mfloat-abi=hard -mfpu=neon -mcpu=cortex-a9 -mtune=c
 make -j 4
 make install
 
-#Create soft link to zynbanks
-ln -s $ZYNTHIAN_SW_DIR/zynaddsubfx/instruments/banks $ZYNTHIAN_DATA_DIR/zynbanks
+#Create soft link to zynbanks => It's included in the data repository
+#ln -s $ZYNTHIAN_SW_DIR/zynaddsubfx/instruments/banks $ZYNTHIAN_DATA_DIR/zynbanks
 
 #Create soft links to LV2 plugins
 ln -s /usr/local/lib/lv2/Zyn*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2

@@ -34,8 +34,6 @@ mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 # Install MOD Plugins
 #------------------------------------------------
 
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-lv2-data.sh
-
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
 sh $ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
 sh $ZYNTHIAN_RECIPE_DIR/install_fluidplug.sh

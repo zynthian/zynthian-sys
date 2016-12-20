@@ -29,11 +29,8 @@ source zynthian_envars.sh
 #------------------------------------------------
 
 #Define git version to use: Git commit SHAs where the local zynthian branch will be created
-export MOD_HOST_GITSHA="3bda867acf68b95c05baa7366d89687cbd9e47cf"
-#export MOD_UI_GITSHA="7119e2e064a7f7341c1eca32cfe19f54761dbb92" #2016-11-29 => FALLA!
-#export MOD_UI_GITSHA="1d7b9d0064b0516ad922a1ea4e544a1949d63bd8" #2016-11-28 => FALLA!
-#export MOD_UI_GITSHA="c3391e5f58e00a1c9737bdec6ceacb0f699611e4" #2016-11-25 => FALLA!
-export MOD_UI_GITSHA="064c64a24989120731157ac27184d4b4f51ef9f2" #2016-11-25 => Last jofemodo commit => Works!!
+#export MOD_HOST_GITSHA="3bda867acf68b95c05baa7366d89687cbd9e47cf"
+#export MOD_UI_GITSHA="064c64a24989120731157ac27184d4b4f51ef9f2" #2016-11-25 => Last jofemodo commit => Works!!
 
 #Install MOD-HOST
 sh $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
