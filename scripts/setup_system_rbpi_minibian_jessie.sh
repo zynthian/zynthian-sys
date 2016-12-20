@@ -25,21 +25,26 @@
 source zynthian_envars.sh
 
 #------------------------------------------------
-# Update System
+# Update System & Firmware
 #------------------------------------------------
 
+# Update System
 apt-get -y update
 apt-get -y upgrade
 apt-get -y dist-upgrade
-apt-get -y install rpi-update
+
+# Install required dependencies if needed
+apt-get -y install sudo apt-utils apt-transport-https software-properties-common rpi-update htpdate parted wget
+
+# Adjust System Date/Time
+htpdate 0.europe.pool.ntp.org
+
+# Update Firmware
 rpi-update
 
 #------------------------------------------------
 # Add Repositories
 #------------------------------------------------
-
-# Install required dependencies if needed
-apt-get -y install apt-transport-https software-properties-common wget
 
 # deb-multimedia repo
 echo "deb http://www.deb-multimedia.org jessie main" >> /etc/apt/sources.list
@@ -58,7 +63,6 @@ apt-get update
 #------------------------------------------------
 
 # System
-apt-get -y install sudo apt-utils htpdate parted
 apt-get -y install systemd dhcpcd-dbus avahi-daemon
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils
 apt-get -y remove isc-dhcp-client
@@ -211,11 +215,9 @@ cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 
 #************************************************
 #------------------------------------------------
-# Compile / Install Other Required Libraries
+# Compile / Install Required Libraries
 #------------------------------------------------
 #************************************************
-
-htpdate 0.europe.pool.ntp.org
 
 #------------------------------------------------
 # Install Alsaseq Python Library
@@ -282,25 +284,7 @@ cp -fa ./build/examples/aubiotrack /usr/local/bin
 #------------------------------------------------
 # Install zynaddsubfx
 #------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/fundamental/zynaddsubfx.git
-cd zynaddsubfx
-mkdir build
-cd build
-cmake ..
-#ccmake .
-# => delete "-msse -msse2 -mfpmath=sse" 
-# => optimizations: -pipe -mfloat-abi=hard -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations
-# => optimizations that doesn't work: -mcpu=cortex-a7 -mtune=cortex-a7
-sed -i -- 's/-march=armv7-a -mfloat-abi=hard -mfpu=neon -mcpu=cortex-a9 -mtune=cortex-a9 -pipe -mvectorize-with-neon-quad -funsafe-loop-optimizations/-pipe -mfloat-abi=hard -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations/' CMakeCache.txt
-make -j 4
-make install
-
-#Create soft link to zynbanks => It's included in the data repository
-#ln -s $ZYNTHIAN_SW_DIR/zynaddsubfx/instruments/banks $ZYNTHIAN_DATA_DIR/zynbanks
-
-#Create soft links to LV2 plugins
-ln -s /usr/local/lib/lv2/Zyn*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+sh $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 
 #------------------------------------------------
 # Install Fluidsynth & SondFonts
@@ -328,13 +312,7 @@ wget --no-check-certificate http://downloads.sourceforge.net/project/jsampler/Fa
 #------------------------------------------------
 # Install setBfree
 #------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/pantherb/setBfree.git
-cd setBfree
-sed -i -- 's/-msse -msse2 -mfpmath=sse/-pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad -funsafe-loop-optimizations -funsafe-math-optimizations/g' common.mak
-sed -i -- 's/^lv2dir = \$(PREFIX)\/lib\/lv2/lv2dir = \/zynthian\/zynthian-plugins\/lv2/' common.mak
-make -j 4
-make install
+sh $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 
 #------------------------------------------------
 # Install MOD stuff
