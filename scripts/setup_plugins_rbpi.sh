@@ -68,7 +68,7 @@ sh $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
 # dcoredump Stuff
 sh $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 sh $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_deeaxe7.sh
+#sh $ZYNTHIAN_RECIPE_DIR/install_deeaxe7.sh
 sh $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
 
 sh $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
@@ -87,7 +87,8 @@ ln -s /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 apt-get -y install swh-lv2 lv2vocoder avw.lv2
 ln -s /usr/lib/lv2/*swh.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/vocoder.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+# Some AVW plugins are broken, so it's disabled by now
+#ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 exit
 

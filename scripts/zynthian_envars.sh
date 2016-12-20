@@ -50,7 +50,7 @@ if [ ${machine} = "armv7l" ]; then
 	fi
 	FPU="${FPU} -mneon-for-64bits"
 fi
-echo "Hardware Architecture: ${machine}"
-echo "Hardware Model: ${model}"
 export CFLAGS="${CPU} ${FPU}"
 export CXXFLAGS=${CFLAGS}
+#echo "Hardware Architecture: ${machine}"
+#echo "Hardware Model: ${model}"

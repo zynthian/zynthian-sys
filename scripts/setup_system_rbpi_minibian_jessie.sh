@@ -152,8 +152,7 @@ mkdir $ZYNTHIAN_MY_PLUGINS_DIR
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
 # Copy some files
-cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/* $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards
-rm -f "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards/*.txt"
+cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards
 
 #************************************************
 #------------------------------------------------
