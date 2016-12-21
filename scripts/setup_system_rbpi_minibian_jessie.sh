@@ -80,7 +80,7 @@ apt-get -y install evtest tslib libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y install build-essential git swig subversion autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui
+apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui
 
 # Libraries
 apt-get -y --force-yes install wiringpi libfftw3-dev libmxml-dev zlib1g-dev libfltk1.3-dev libncurses5-dev \
