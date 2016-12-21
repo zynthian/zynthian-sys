@@ -279,6 +279,20 @@ cp -fa ./build/examples/aubiopitch /usr/local/bin
 cp -fa ./build/examples/aubioquiet /usr/local/bin
 cp -fa ./build/examples/aubiotrack /usr/local/bin
 
+#------------------------------------------------
+# Install jpmidi (MID player for jack with transport sync)
+#------------------------------------------------
+cd $ZYNTHIAN_SW_DIR
+wget http://juliencoder.de/jpmidi/jpmidi-0.2.tar.gz
+tar xfvz jpmidi-0.2.tar.gz
+cd jpmidi
+./configure
+make -j 4
+cp /src/jpmidi /usr/local/bin
+cd ..
+rm -f jpmidi-0.2.tar.gz
+
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Synthesis Software

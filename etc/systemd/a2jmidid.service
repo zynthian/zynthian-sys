@@ -1,0 +1,14 @@
+[Unit]
+Description=Alsa to Jack Bridge
+After=jack2.service
+Requires=jack2.service
+
+[Service]
+Environment=HOME=/root
+WorkingDirectory=/root
+ExecStart=/usr/bin/a2jmidid --export-hw
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
