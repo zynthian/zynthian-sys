@@ -8,6 +8,11 @@
 
 # Extended By: Devonte Emokpae
 #              devo.tox.89@gmail.com
+
+# Adapted to Zynthian by:
+#              José Fernando Moyano
+#              fernando@zynthian.org  
+
 # Project:     Raspberry Pi Stuff
 #
 # Credits:     jojopi on Raspberry Pi Forum who provided sample code
@@ -49,7 +54,9 @@ fi
 WIGGLE_ROOM=1536
 DISK_SIZE="$(( $(sudo blockdev --getsz /dev/mmcblk0)/2048/925 ))"
 PART_START="$(sudo parted /dev/mmcblk0 -ms unit s p | grep "^2" | cut -f2 -d: | sed 's/[^0-9]*//g')"
-PART_END="$(( (DISK_SIZE * 925 * 2048 - 1) - WIGGLE_ROOM ))"
+LAST_SECTOR="$(sudo parted /dev/mmcblk0 -ms unit s p | grep "^\/dev" | cut -f2 -d: | sed 's/[^0-9]*//g')"
+PART_END="$(( LAST_SECTOR - WIGGLE_ROOM ))"
+#PART_END="$(( (DISK_SIZE * 925 * 2048 - 1) - WIGGLE_ROOM ))"
 
 # Exit if partition start not found
 [ "$PART_START" ] || exit 1
@@ -103,8 +110,12 @@ case "$1" in
     ;;
 esac
 EOF
-  chmod +x /etc/init.d/resize2fs_once &&
-  update-rc.d resize2fs_once defaults &&
+
+chmod +x /etc/init.d/resize2fs_once &&
+update-rc.d resize2fs_once defaults &&
+
+#Delete "rpi-wiggle.sh" line from /etc/rc.local
+sed -i -- "s/\/zynthian\/zynthian-sys\/scripts\/rpi-wiggle\.sh//" /etc/rc.local
 
 echo
 echo #####################################################################
@@ -112,6 +123,7 @@ echo System is now ready to resize your system.  A REBOOT IS REQUIRED NOW!
 echo Syncing....
 echo
 sync
+reboot
 
 ###################################################################
 # END OF SCRIPT

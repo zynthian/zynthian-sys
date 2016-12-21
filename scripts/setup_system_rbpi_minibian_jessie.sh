@@ -170,6 +170,7 @@ cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-
 
 #Change Hostname
 echo "zynthian" > /etc/hostname
+sed -i -e "s/minibian/zynthian/" /etc/hosts
 
 # Copy "boot" config files
 cp $ZYNTHIAN_SYS_DIR/boot/* /boot
@@ -215,6 +216,10 @@ echo "source /zynthian/zynthian-sys/scripts/zynthian_envars.sh" >> /root/.bashrc
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 # => ZynAddSubFX Config
 cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
+
+# Resize SD partition on first boot
+sed -i -- "s/exit 0/\/zynthian\/zynthian-sys\/scripts\/rpi-wiggle\.sh/" /etc/rc.local
+echo "exit 0" >> /etc/rc.local
 
 #************************************************
 #------------------------------------------------
