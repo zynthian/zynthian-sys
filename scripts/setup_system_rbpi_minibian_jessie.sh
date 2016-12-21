@@ -321,14 +321,12 @@ sh $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 #------------------------------------------------
 # Install MOD stuff
 #------------------------------------------------
-
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_mod.sh
 
 #------------------------------------------------
 # Install Plugins
 #------------------------------------------------
-
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_plugins_rbpi.sh
 

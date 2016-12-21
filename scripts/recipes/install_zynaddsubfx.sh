@@ -1,8 +1,8 @@
 
 # Don't use environment optimizations
-unset CFLAGS
-unset CXXFLAGS
-unset LV2_PATH
+#unset CFLAGS
+#unset CXXFLAGS
+#unset LV2_PATH
 
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/fundamental/zynaddsubfx.git
