@@ -43,9 +43,8 @@ cd
 cd zynthian-sys/scripts
 
 if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
-	./rpi-wiggle.sh
 	echo `date` >  ~/.wiggled
-	reboot
+	./rpi-wiggle.sh
 else
 	./setup_system_rbpi_minibian_jessie.sh
 fi
