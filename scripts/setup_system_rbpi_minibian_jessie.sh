@@ -307,7 +307,7 @@ rm -f jpmidi-0.2.tar.gz
 #------------------------------------------------
 # Install zynaddsubfx
 #------------------------------------------------
-sh $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 
 #------------------------------------------------
 # Install Fluidsynth & SondFonts

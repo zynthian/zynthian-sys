@@ -51,6 +51,8 @@ if [ ${machine} = "armv7l" ]; then
 	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad"
 	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations"
 fi
+export MACHINE_HW_NAME=$machine
+export RBPI_VERSION=$model
 export CFLAGS="${CPU} ${FPU}"
 export CXXFLAGS=${CFLAGS}
 export CFLAGS_UNSAFE

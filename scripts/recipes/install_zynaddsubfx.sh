@@ -4,6 +4,11 @@
 #unset CXXFLAGS
 #unset LV2_PATH
 
+if [[ ${MACHINE_HW_NAME} =~ [armv7l] ]]; then
+	export CFLAGS="-mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad"
+	export CXXFLAGS=$CFLAGS
+fi
+
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/fundamental/zynaddsubfx.git
 cd zynaddsubfx
