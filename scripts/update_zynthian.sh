@@ -1,6 +1,12 @@
 #!/bin/bash
 
-source zynthian_envars.sh
+if [ -f "./zynthian_envars.sh" ]; then
+	source "./zynthian_envars.sh"
+elif [ -z "$ZYNTHIAN_SYS_DIR" ]; then
+	source "/zynthian/zynthian-sys/scripts/zynthian_envars.sh"
+else
+	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
+fi
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
@@ -18,5 +24,8 @@ make
 
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
+cp -fa ./zynthian_gui_config.py /tmp
+git checkout ./zynthian_gui_config.py
 git pull origin $ZYNTHIAN_BRANCH
-
+cp -fa ./zynthian_gui_config.py ./zynthian_gui_config_new.py
+cp -fa /tmp/zynthian_gui_config.py .
