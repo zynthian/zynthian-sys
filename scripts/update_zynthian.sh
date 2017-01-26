@@ -1,18 +1,19 @@
 #!/bin/bash
 
-if [ -n $ZYNTHIAN_DIR ]; then
-	ZYNTHIAN_DIR="/home/pi/zynthian"
+if [ -f "./zynthian_envars.sh" ]; then
+	source "./zynthian_envars.sh"
+elif [ -z "$ZYNTHIAN_SYS_DIR" ]; then
+	source "/zynthian/zynthian-sys/scripts/zynthian_envars.sh"
+else
+	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
-#Fix permissions => REMOVE IN THE FUTURE
-sudo chown -R pi:pi $ZYNTHIAN_DIR/zynthian-sys
-sudo chown -R pi:pi $ZYNTHIAN_DIR/zyncoder
-sudo chown -R pi:pi $ZYNTHIAN_DIR/zynthian-ui
-
 echo "Updating zynthian-sys ..."
-cd $ZYNTHIAN_DIR/zynthian-sys
-git pull
-sudo ./scripts/update_zynthian_sys.sh
+cd $ZYNTHIAN_SYS_DIR
+git pull origin $ZYNTHIAN_BRANCH
+cd ./scripts
+./update_zynthian_sys.sh
+./update_zynthian_recipes.sh
 
 echo "Updating zyncoder ..."
 cd $ZYNTHIAN_DIR/zyncoder
@@ -22,6 +23,9 @@ cmake ..
 make
 
 echo "Updating zynthian-ui ..."
-cd $ZYNTHIAN_DIR/zynthian-ui
-git pull
-
+cd $ZYNTHIAN_UI_DIR
+cp -fa ./zynthian_gui_config.py /tmp
+git checkout ./zynthian_gui_config.py
+git pull origin $ZYNTHIAN_BRANCH
+cp -fa ./zynthian_gui_config.py ./zynthian_gui_config_new.py
+cp -fa /tmp/zynthian_gui_config.py .

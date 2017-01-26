@@ -1,5 +1,5 @@
  
-# set .remote_display file when logging with SSH
+# Set .remote_display file when logging with SSH
 if [ -n "{$SSH_CLIENT}" ]; then
     env > .remote_display_env
     parts=( $SSH_CLIENT )

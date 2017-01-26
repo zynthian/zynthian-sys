@@ -1,0 +1,9 @@
+[Unit]
+Description=Splash Zynthian Logo Screen
+
+[Service]
+Type=oneshot
+ExecStart=/zynthian/zynthian-sys/sbin/splash-screen.sh
+
+[Install]
+WantedBy=multi-user.target
