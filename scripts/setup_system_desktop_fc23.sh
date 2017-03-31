@@ -262,9 +262,11 @@ wget http://downloads.sourceforge.net/project/jsampler/Fantasia/Fantasia%200.9/F
 #------------------------------------------------
 # Install setBfree
 #------------------------------------------------
+dnf install mesa-libGLU-devel ftgl-devel bitstream-vera*
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/pantherb/setBfree.git
 cd setBfree
+sed -i -e "s/truetype\/ttf-bitstream\-vera/bitstream\-vera/g" common.mak
 make -j 4 ENABLE_ALSA=yes
 sudo make install
 

@@ -88,6 +88,12 @@ ln -s /usr/lib/lv2/vocoder.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 # Some AVW plugins are broken, so it's disabled by now
 #ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
+#------------------------------------------------
+# Install some LADSPA plugins for LinuxSampler
+#------------------------------------------------
+
+apt-get -y install ladspa-sdk wah-plugins tap-plugins vco-plugins swh-plugins ste-plugins rev-plugins omins mcp-plugins invada-studio-plugins-ladspa rubberband-ladspa fil-plugins csladspa cmt caps bs2b-ladspa blop blepvco autotalent ambdec amb-plugins
+
 exit
 
 #------------------------------------------------

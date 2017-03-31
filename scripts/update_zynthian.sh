@@ -10,7 +10,7 @@ fi
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
-git pull origin $ZYNTHIAN_BRANCH
+git pull origin $ZYNTHIAN_SYS_BRANCH
 cd ./scripts
 ./update_zynthian_sys.sh
 ./update_zynthian_recipes.sh
@@ -26,6 +26,6 @@ echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
 cp -fa ./zynthian_gui_config.py /tmp
 git checkout ./zynthian_gui_config.py
-git pull origin $ZYNTHIAN_BRANCH
+git pull origin $ZYNTHIAN_UI_BRANCH
 cp -fa ./zynthian_gui_config.py ./zynthian_gui_config_new.py
 cp -fa /tmp/zynthian_gui_config.py .

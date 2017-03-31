@@ -22,7 +22,8 @@
 # ****************************************************************************
 
 # Git branch
-export ZYNTHIAN_BRANCH="mod"
+export ZYNTHIAN_UI_BRANCH="mod"
+export ZYNTHIAN_SYS_BRANCH="mod"
 
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"
