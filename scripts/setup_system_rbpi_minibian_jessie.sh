@@ -66,11 +66,12 @@ apt-get update
 # System
 apt-get -y install systemd dhcpcd-dbus avahi-daemon
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils
+apt-get -y install wpasupplicant firmware-brcm80211 wireless-tools
 apt-get -y remove isc-dhcp-client
 apt-get -y remove libgl1-mesa-dri
 
 # CLI Tools
-apt-get -y install raspi-config psmisc tree joe 
+apt-get -y install raspi-config psmisc tree joe nano
 apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools
 apt-get -y install evtest tslib libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
@@ -179,6 +180,7 @@ sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/dtoverlay=hifiberry-dacplus/g" /boot/config
 # Copy "etc" config files
 cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
+cp $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
 cp $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 cp $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
