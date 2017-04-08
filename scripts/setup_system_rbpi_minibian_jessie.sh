@@ -121,14 +121,14 @@ make
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
-git clone -b $ZYNTHIAN_UI_BRANCH --single-branch https://github.com/zynthian/zynthian-ui.git
+git clone -b $ZYNTHIAN_UI_BRANCH https://github.com/zynthian/zynthian-ui.git
 # Exclude configuration file from git commands
 cd zynthian-ui
 git update-index --assume-unchanged zynthian_gui_config.py
 
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
-git clone -b $ZYNTHIAN_SYS_BRANCH --single-branch https://github.com/zynthian/zynthian-sys.git
+git clone -b $ZYNTHIAN_SYS_BRANCH https://github.com/zynthian/zynthian-sys.git
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
