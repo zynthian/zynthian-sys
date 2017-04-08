@@ -335,7 +335,7 @@ wget --no-check-certificate http://downloads.sourceforge.net/project/jsampler/Fa
 #------------------------------------------------
 # Install setBfree
 #------------------------------------------------
-sh $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 
 #------------------------------------------------
 # Install MOD stuff
