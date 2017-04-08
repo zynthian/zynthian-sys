@@ -188,6 +188,7 @@ cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 # Systemd Services
 systemctl daemon-reload
 systemctl enable dhcpcd
+systemctl enable wpa_supplicant
 systemctl enable avahi-daemon
 systemctl disable raspi-config
 systemctl disable cron
