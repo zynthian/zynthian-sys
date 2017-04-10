@@ -6,6 +6,8 @@ Requires=jack2.service
 [Service]
 Environment=ZYNTHIAN_DIR=/zynthian
 Environment=ZYNTHIAN_LOG_LEVEL=30
+Environment=ZYNTHIAN_AUBIO=1
+Environment=ZYNTHIAN_TOUCHOSC=1
 Environment=FRAMEBUFFER=/dev/fb1
 Environment=HOME=/root
 WorkingDirectory=/zynthian/zynthian-ui

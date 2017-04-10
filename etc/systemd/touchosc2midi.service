@@ -1,12 +1,12 @@
 [Unit]
-Description=Alsa to Jack Bridge
+Description=TouchOSC Bridge
 After=jack2.service
 Requires=jack2.service
 
 [Service]
-Environment=HOME=/root
+Environment=MIDO_BACKEND=mido.backends.rtmidi/UNIX_JACK
 WorkingDirectory=/root
-ExecStart=/usr/bin/a2jmidid --export-hw
+ExecStart=/usr/local/bin/touchosc2midi
 ExecStartPre=/usr/bin/jack_wait -w
 Restart=always
 RestartSec=1

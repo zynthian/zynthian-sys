@@ -1,12 +1,12 @@
 [Unit]
-Description=Alsa to Jack Bridge
+Description=Aubionotes Service
 After=jack2.service
 Requires=jack2.service
 
 [Service]
 Environment=HOME=/root
 WorkingDirectory=/root
-ExecStart=/usr/bin/a2jmidid --export-hw
+ExecStart=/usr/local/bin/aubionotes -O complex -t 0.5 -s -88  -p yinfft -l 0.5
 ExecStartPre=/usr/bin/jack_wait -w
 Restart=always
 RestartSec=1
