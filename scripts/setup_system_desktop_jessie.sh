@@ -148,7 +148,7 @@ mkdir "zynthian-plugins/ladspa"
 # Install Alsaseq Python Library
 #------------------------------------------------
 cd $ZYNTHIAN_SW_DIR
-wget https://pypi.python.org/packages/source/a/alsaseq/alsaseq-0.4.1.tar.gz
+wget http://pp.com.mx/python/alsaseq/alsaseq-0.4.1.tar.gz
 tar xfvz alsaseq-0.4.1.tar.gz
 cd alsaseq-0.4.1
 #sudo python setup.py install

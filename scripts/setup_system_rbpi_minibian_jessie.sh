@@ -66,11 +66,12 @@ apt-get update
 # System
 apt-get -y install systemd dhcpcd-dbus avahi-daemon
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils
+apt-get -y install wpasupplicant firmware-brcm80211 wireless-tools
 apt-get -y remove isc-dhcp-client
 apt-get -y remove libgl1-mesa-dri
 
 # CLI Tools
-apt-get -y install raspi-config psmisc tree joe 
+apt-get -y install raspi-config psmisc tree joe nano
 apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools
 apt-get -y install evtest tslib libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
@@ -121,14 +122,14 @@ make
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
-git clone -b $ZYNTHIAN_UI_BRANCH --single-branch https://github.com/zynthian/zynthian-ui.git
+git clone -b $ZYNTHIAN_UI_BRANCH https://github.com/zynthian/zynthian-ui.git
 # Exclude configuration file from git commands
 cd zynthian-ui
 git update-index --assume-unchanged zynthian_gui_config.py
 
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
-git clone -b $ZYNTHIAN_SYS_BRANCH --single-branch https://github.com/zynthian/zynthian-sys.git
+git clone -b $ZYNTHIAN_SYS_BRANCH https://github.com/zynthian/zynthian-sys.git
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
@@ -179,6 +180,7 @@ sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/dtoverlay=hifiberry-dacplus/g" /boot/config
 # Copy "etc" config files
 cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
+cp $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
 cp $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 cp $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
@@ -186,6 +188,7 @@ cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 # Systemd Services
 systemctl daemon-reload
 systemctl enable dhcpcd
+systemctl enable wpa_supplicant
 systemctl enable avahi-daemon
 systemctl disable raspi-config
 systemctl disable cron
@@ -335,7 +338,7 @@ wget --no-check-certificate http://downloads.sourceforge.net/project/jsampler/Fa
 #------------------------------------------------
 # Install setBfree
 #------------------------------------------------
-sh $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 
 #------------------------------------------------
 # Install MOD stuff

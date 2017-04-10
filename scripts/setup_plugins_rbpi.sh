@@ -34,42 +34,42 @@ mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 # Install MOD Plugins
 #------------------------------------------------
 
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_fluidplug.sh
-#sh $ZYNTHIAN_RECIPE_DIR/install_mod-setbfree.sh
-#sh $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_midifilter.lv2.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_openav-artyfx.sh
-sh $ZYNTHIAN_RECIPE_DIR/install-calf.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_eq10q.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-caps.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_sosynth.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_fat1.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_gxslowgear.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_gxswitchlesswah.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
-#sh $ZYNTHIAN_RECIPE_DIR/install_gxsupertoneblender.sh
-#sh $ZYNTHIAN_RECIPE_DIR/install_gxsuperfuzz.sh
-#sh $ZYNTHIAN_RECIPE_DIR/install_gxvoodofuzz.sh
-#sh $ZYNTHIAN_RECIPE_DIR/install_gxsupersaturator.sh
-#sh $ZYNTHIAN_RECIPE_DIR/install_gxhyperion.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_fluidplug.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_mod-setbfree.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_midifilter.lv2.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_openav-artyfx.sh
+bash $ZYNTHIAN_RECIPE_DIR/install-calf.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_eq10q.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-caps.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_sosynth.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_fat1.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_gxslowgear.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_gxswitchlesswah.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_gxsupertoneblender.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_gxsuperfuzz.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_gxvoodofuzz.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_gxsupersaturator.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_gxhyperion.sh
 
 # dcoredump Stuff
-sh $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
-#sh $ZYNTHIAN_RECIPE_DIR/install_deeaxe7.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_deeaxe7.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
 
-sh $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
+bash $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
 
 #------------------------------------------------
 # Install v1 suit

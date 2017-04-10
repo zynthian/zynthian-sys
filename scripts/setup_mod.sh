@@ -33,14 +33,14 @@ source zynthian_envars.sh
 #export MOD_UI_GITSHA="064c64a24989120731157ac27184d4b4f51ef9f2" #2016-11-25 => Last jofemodo commit => Works!!
 
 #Install MOD-HOST
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
 
 #Install MOD-UI
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
-sh $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 
 #Install MOD-SDK
-sh $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
 
 #Create softlink to pedalboards directory
 ln -s $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards /root/.pedalboards
