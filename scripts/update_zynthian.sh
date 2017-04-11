@@ -10,10 +10,10 @@ fi
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
-cp -fa ./scripts/zynthian_envars.py /tmp
-git checkout ./scripts/zynthian_envars.py
+cp -fa ./scripts/zynthian_envars.sh /tmp
+git checkout ./scripts/zynthian_envars.sh
 git pull origin $ZYNTHIAN_SYS_BRANCH
-cp -fa /tmp/zynthian_envars.py ./script
+cp -fa /tmp/zynthian_envars.sh ./script
 cd ./scripts
 ./update_zynthian_sys.sh
 ./update_zynthian_recipes.sh
