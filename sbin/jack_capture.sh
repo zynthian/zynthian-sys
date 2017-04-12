@@ -12,5 +12,10 @@ else
 fi
 
 cd $CAPTURE_DIR
-jack_capture
-#jack_capture --no-stdin
+
+if [ $1 = "--zui" ]; then
+	jack_capture --no-stdin --absolutely-silent --jack-transport
+else
+	jack_capture
+fi
+
