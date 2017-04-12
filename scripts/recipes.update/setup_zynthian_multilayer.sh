@@ -5,6 +5,9 @@ if [ $ZYNTHIAN_UI_BRANCH = "multilayer" ]; then
 	exit
 fi
 
+# Update repositories filelist cache
+apt-get update
+
 # Install WIFI support
 apt-get -y install wpasupplicant firmware-brcm80211 wireless-tools
 
