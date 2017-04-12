@@ -11,6 +11,9 @@ apt-get update
 # Install WIFI support
 apt-get -y install wpasupplicant firmware-brcm80211 wireless-tools
 
+# Install USB automount
+apt-get -y install usbmount
+
 # Install Python dependecies
 apt-get -y install python-dev python-pip cython
 
