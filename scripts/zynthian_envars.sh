@@ -22,7 +22,7 @@
 # ****************************************************************************
 
 # Git branch
-export ZYNTHIAN_UI_BRANCH="multilayer"
+export ZYNTHIAN_UI_BRANCH="mod"
 export ZYNTHIAN_SYS_BRANCH="mod"
 
 # Directory Paths
