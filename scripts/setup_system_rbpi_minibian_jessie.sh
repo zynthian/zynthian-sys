@@ -96,7 +96,7 @@ libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4
 #libgd2-xpm-dev
 
 # Python
-apt-get -y install python-dbus
+apt-get -y install python python-dev python-pip cython python-dbus 
 apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath
 pip3 install websocket-client
 pip3 install JACK-Client
@@ -230,76 +230,32 @@ echo "exit 0" >> /etc/rc.local
 #------------------------------------------------
 #************************************************
 
-#------------------------------------------------
-# Install Alsaseq Python Library
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-wget http://pp.com.mx/python/alsaseq/alsaseq-0.4.1.tar.gz
-tar xfvz alsaseq-0.4.1.tar.gz
-cd alsaseq-0.4.1
-python3 setup.py install
-cd ..
-rm -f alsaseq-0.4.1.tar.gz
+# Install alsaseq Python Library
+bash $ZYNTHIAN_RECIPE_DIR/install_alsaseq.sh
 
-#------------------------------------------------
-# Install NTK
-#------------------------------------------------
-git clone git://git.tuxfamily.org/gitroot/non/fltk.git ntk
-cd ntk
-./waf configure
-./waf
-./waf install
+# Install NTK library
+bash $ZYNTHIAN_RECIPE_DIR/install_ntk.sh
 
-#------------------------------------------------
-# Install pyliblo (liblo OSC library for Python)
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/dsacre/pyliblo.git
-cd pyliblo
-python3 ./setup.py build
-python3 ./setup.py install
+# Install pyliblo library (liblo OSC library for Python)
+bash $ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 
-#------------------------------------------------
-# Install mod-ttymidi (MOD's version!)
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/moddevices/mod-ttymidi.git
-cd mod-ttymidi
-make install
+# Install mod-ttymidi (MOD's ttymidi version with jackd MIDI support)
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 
-#------------------------------------------------
 # Install LV2 lilv library
-#------------------------------------------------
-sh $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
+bash $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
 
-#------------------------------------------------
 # Install Aubio Library & Tools
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/aubio/aubio.git
-cd aubio
-make -j 4
-cp -fa ./build/src/libaubio* /usr/local/lib
-cp -fa ./build/examples/aubiomfcc /usr/local/bin
-cp -fa ./build/examples/aubionotes /usr/local/bin
-cp -fa ./build/examples/aubioonset /usr/local/bin
-cp -fa ./build/examples/aubiopitch /usr/local/bin
-cp -fa ./build/examples/aubioquiet /usr/local/bin
-cp -fa ./build/examples/aubiotrack /usr/local/bin
+bash $ZYNTHIAN_RECIPE_DIR/install_aubio.sh
 
-#------------------------------------------------
 # Install jpmidi (MID player for jack with transport sync)
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-wget http://juliencoder.de/jpmidi/jpmidi-0.2.tar.gz
-tar xfvz jpmidi-0.2.tar.gz
-cd jpmidi
-./configure
-make -j 4
-cp /src/jpmidi /usr/local/bin
-cd ..
-rm -f jpmidi-0.2.tar.gz
+bash $ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
 
+# Install jack_capture (jackd recorder)
+bash $ZYNTHIAN_RECIPE_DIR/install_jack_capture.sh
+
+# Install touchosc2midi (TouchOSC Bridge)
+bash $ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 
 #************************************************
 #------------------------------------------------
@@ -307,48 +263,31 @@ rm -f jpmidi-0.2.tar.gz
 #------------------------------------------------
 #************************************************
 
-#------------------------------------------------
-# Install zynaddsubfx
-#------------------------------------------------
+# Install ZynAddSubFX
 bash $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 
-#------------------------------------------------
-# Install Fluidsynth & SondFonts
-#------------------------------------------------
+# Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth fluid-soundfont-gm fluid-soundfont-gs
-
 # Create SF2 soft links
-cd $ZYNTHIAN_DATA_DIR/soundfonts/sf2
-ln -s /usr/share/sounds/sf2/*.sf2 .
+ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
-#------------------------------------------------
+# Install Polyphone (SF2 editor)
+bash $ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
+
 # Install Linuxsampler => TODO Upgrade to Version 2
-#------------------------------------------------
 apt-get -y install linuxsampler
 
-#------------------------------------------------
 # Install Fantasia (linuxsampler Java GUI)
-#------------------------------------------------
-cd $ZYNTHIAN_SW_DIR
-mkdir fantasia
-cd fantasia
-wget --no-check-certificate http://downloads.sourceforge.net/project/jsampler/Fantasia/Fantasia%200.9/Fantasia-0.9.jar
-# java -jar ./Fantasia-0.9.jar
+bash $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
 
-#------------------------------------------------
-# Install setBfree
-#------------------------------------------------
+# Install setBfree (Hammond B3 Emulator)
 bash $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 
-#------------------------------------------------
 # Install MOD stuff
-#------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_mod.sh
 
-#------------------------------------------------
 # Install Plugins
-#------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_plugins_rbpi.sh
 
