@@ -21,9 +21,38 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-# Git branch
+#Audio Config
+export SOUNDCARD_DTOVERLAY="hifiberry-dacplus"
+export SOUNDCARD_DTOVERLAY_OPTIONS=""
+export JACKD_OPTIONS="-r 44100 -p 256 -n 2"
+
+#Display Config
+export DISPLAY_DTOVERLAY="pitft28-resistive"
+export DISPLAY_DTOVERLAY_OPTIONS="rotate=90,speed=32000000,fps=20"
+export DISPLAY_WIDTH="320"
+export DISPLAY_HEIGHT="200"
+export FRAMEBUFFER="/dev/fb1"
+
+# Git branches
 export ZYNTHIAN_UI_BRANCH="mod"
 export ZYNTHIAN_SYS_BRANCH="mod"
+
+#Zynthian UI Config
+export ZYNTHIAN_AUBIONOTES=1
+export ZYNTHIAN_TOUCHOSC=1
+export ZYNTHIAN_UI_WIRING_LAYOUT="PROTOTYPE-4"
+export ZYNTHIAN_UI_WIRING_ENCODER_A=""
+export ZYNTHIAN_UI_WIRING_ENCODER_B=""
+export ZYNTHIAN_UI_WIRING_SWITCHES=""
+export ZYNTHIAN_UI_TOPBAR_HEIGHT=24
+export ZYNTHIAN_UI_COLOR_BG="#000000"
+export ZYNTHIAN_UI_COLOR_TX="#ffffff"
+export ZYNTHIAN_UI_COLOR_ON="#ff0000"
+export ZYNTHIAN_UI_COLOR_PANEL_BG="#3a424d"
+export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
+export ZYNTHIAN_UI_FONT_TOPBAR_SIZE=11
+export ZYNTHIAN_UI_FONT_LISTBOX_SIZE=10
+export ZYNTHIAN_UI_FONT_CTRL_TITLE_MAXSIZE=11
 
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"
@@ -37,13 +66,6 @@ export ZYNTHIAN_PLUGINS_DIR="$ZYNTHIAN_DIR/zynthian-plugins"
 export ZYNTHIAN_MY_PLUGINS_DIR="$ZYNTHIAN_DIR/zynthian-my-plugins"
 export ZYNTHIAN_PLUGINS_SRC_DIR="$ZYNTHIAN_SW_DIR/plugins"
 export LV2_PATH="${ZYNTHIAN_PLUGINS_DIR}/lv2:${ZYNTHIAN_MY_PLUGINS_DIR}/lv2"
-
-#Zynthian UI flags
-export ZYNTHIAN_AUBIO=1
-export ZYNTHIAN_TOUCHOSC=1
-
-#Framebuffer
-export FRAMEBUFFER="/dev/fb1"
 
 # Hardware Architecture & Optimization Options
 machine=`uname -m 2>/dev/null`
