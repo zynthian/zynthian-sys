@@ -87,11 +87,12 @@ dtoverlay=i2s-mmap
 #dtoverlay=iqaudio-dac
 #dtoverlay=iqaudio-dacplus
 #dtoverlay=audioinjector-wm8731-audio
-#AUDIO_DEVICE_DTOVERLAY
+#SOUNDCARD_DTOVERLAY#
 
 # PiTFT Config
 #dtoverlay=pitft28-capacitive,rotate=90,speed=32000000,fps=20
-dtoverlay=pitft28-resistive,rotate=90,speed=32000000,fps=20
+#dtoverlay=pitft28-resistive,rotate=90,speed=32000000,fps=20
+#DISPLAY_DTOVERLAY#
 
 # Adjust Serial Port Clock to allow MIDI baudrate 31250
 [pi2]

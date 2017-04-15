@@ -6,7 +6,7 @@ Description=JACK2 Audio Server
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
 LimitRTPRIO=infinity
 LimitMEMLOCK=infinity
-ExecStart=/usr/bin/jackd -P 70 -t 2000 -s -d alsa -d hw:0 -r 44100 -p 256 -n 2 -X raw
+ExecStart=/usr/bin/jackd #JACKD_OPTIONS#
 
 [Install]
 WantedBy=multi-user.target

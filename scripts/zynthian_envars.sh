@@ -24,7 +24,7 @@
 #Audio Config
 export SOUNDCARD_DTOVERLAY="hifiberry-dacplus"
 export SOUNDCARD_DTOVERLAY_OPTIONS=""
-export JACKD_OPTIONS="-r 44100 -p 256 -n 2"
+export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:0 -r 44100 -p 256 -n 2 -X raw"
 
 #Display Config
 export DISPLAY_DTOVERLAY="pitft28-resistive"

@@ -1,28 +1,50 @@
 #!/bin/bash
 
-source zynthian_envars.sh
+if [ -f "./zynthian_envars.sh" ]; then
+	source "./zynthian_envars.sh"
+elif [ -z "$ZYNTHIAN_SYS_DIR" ]; then
+	source "/zynthian/zynthian-sys/scripts/zynthian_envars.sh"
+else
+	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
+fi
 
-echo "Updating system configuration ..."
+echo "Updating System configuration ..."
 
+#------------------------------------------------------------------------------
 # Boot Config 
-# => Detect NO_ZYNTHIAN_UPDATE flag
+#------------------------------------------------------------------------------
+
+cp $ZYNTHIAN_SYS_DIR/boot/cmdline.txt /boot
+
+# Detect NO_ZYNTHIAN_UPDATE flag
 no_update_config=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
-# => Detect Audio Device and configure
-audio_device_dtoverlay=`grep -e ^dtoverlay /boot/config.txt | while read -r line ; do
-	if [[ $line != *"pi3-disable-bt"* && $line != *"pi3-miniuart-bt"* && $line != *"i2s-mmap"* && $line != *"pitft"*  ]]; then
-		echo $line
-	fi
-done`
-if [ -z "$audio_device_dtoverlay" ]; then
-    audio_device_dtoverlay="dtoverlay=hifiberry-dacplus"
-fi
-echo "AUDIO DEVICE DTOVERLAY => $audio_device_dtoverlay"
 if [ -z "$no_update_config" ]; then
-	# => Copy files
-	cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-	# => Set (restore) Audio Device
-	sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/$audio_device_dtoverlay/g" /boot/config.txt
+
+	if [ "$SOUNDCARD_DTOVERLAY_OPTIONS" ]; then
+		$SOUNDCARD_DTOVERLAY_LINE="$SOUNDCARD_DTOVERLAY, $SOUNDCARD_DTOVERLAY_OPTIONS"
+	else
+		$SOUNDCARD_DTOVERLAY_LINE=$SOUNDCARD_DTOVERLAY
+	fi
+	echo "SOUNDCARD DTOVERLAY => $SOUNDCARD_DTOVERLAY_LINE"
+
+	if [ "$DISPLAY_DTOVERLAY_OPTIONS" ]; then
+		$DISPLAY_DTOVERLAY_LINE="$DISPLAY_DTOVERLAY, $DISPLAY_DTOVERLAY_OPTIONS"
+	else
+		$DISPLAY_DTOVERLAY_LINE=$DISPLAY_DTOVERLAY
+	fi
+	echo "DISPLAY DTOVERLAY => $DISPLAY_DTOVERLAY_LINE"
+
+	# Copy files
+	cp $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
+
+	# Replace config vars
+	sed -i -e "s/#SOUNDCARD_DTOVERLAY#/$SOUNDCARD_DTOVERLAY_LINE/g" /boot/config.txt
+	sed -i -e "s/#DISPLAY_DTOVERLAY#/$DISPLAY_DTOVERLAY_LINE/g" /boot/config.txt
 fi
+
+#------------------------------------------------------------------------------
+# System Config 
+#------------------------------------------------------------------------------
 
 # Copy "etc" config files
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
@@ -35,6 +57,11 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 # X11 Config
 cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
 cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
+
+# Replace config vars
+sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER/g" /etc/systemd/system/zynthian.service
+sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS/g" /etc/systemd/system/jack2.service
+
 
 # Copy fonts to system directory
 cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype

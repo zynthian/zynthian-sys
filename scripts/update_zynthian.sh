@@ -11,7 +11,7 @@ fi
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
 cp -fa ./scripts/zynthian_envars.sh /tmp
-git checkout .
+git checkout $ZYNTHIAN_SYS_BRANCH
 git pull origin $ZYNTHIAN_SYS_BRANCH
 cp -fa /tmp/zynthian_envars.sh ./scripts
 cd ./scripts
@@ -27,5 +27,5 @@ make
 
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
-git checkout .
+git checkout $ZYNTHIAN_UI_BRANCH
 git pull origin $ZYNTHIAN_UI_BRANCH
