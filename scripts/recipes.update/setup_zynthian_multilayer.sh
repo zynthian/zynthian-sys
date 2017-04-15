@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exit
+
 if [ $ZYNTHIAN_UI_BRANCH = "multilayer" ]; then
 	echo "Already in multilayer branch!"
 	exit
