@@ -59,7 +59,8 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.co
 cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
 
 # Replace config vars
-sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER/g" /etc/systemd/system/zynthian.service
+FRAMEBUFFER_ESC="${FRAMEBUFFER//\//\\\/}"
+sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS/g" /etc/systemd/system/jack2.service
 
 
