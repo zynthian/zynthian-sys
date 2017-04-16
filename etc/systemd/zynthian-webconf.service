@@ -1,0 +1,14 @@
+[Unit]
+Description=Zynthian Web Configurator
+
+[Service]
+Environment=ZYNTHIAN_DIR=/zynthian
+Environment=ZYNTHIAN_SYS_DIR=/zynthian/zynthian-sys
+Environment=HOME=/root
+WorkingDirectory=/zynthian/zynthian-webconf
+ExecStart=./zynthian_webconf.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
