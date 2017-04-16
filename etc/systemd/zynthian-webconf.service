@@ -6,7 +6,7 @@ Environment=ZYNTHIAN_DIR=/zynthian
 Environment=ZYNTHIAN_SYS_DIR=/zynthian/zynthian-sys
 Environment=HOME=/root
 WorkingDirectory=/zynthian/zynthian-webconf
-ExecStart=./zynthian_webconf.sh
+ExecStart=/zynthian/zynthian-webconf/zynthian_webconf.sh
 Restart=always
 RestartSec=5
 
