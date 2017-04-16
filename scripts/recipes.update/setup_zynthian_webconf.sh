@@ -28,5 +28,8 @@ fi
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/zynthian/zynthian-webconf.git
 
+systemctl enable zynthian-webconf
+systemctl start zynthian-webconf
+
 # Reboot
 reboot
