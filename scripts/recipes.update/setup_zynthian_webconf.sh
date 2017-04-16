@@ -25,5 +25,8 @@ else
 	git checkout webconf
 fi
 
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/zynthian/zynthian-webconf.git
+
 # Reboot
 reboot
