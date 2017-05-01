@@ -2,6 +2,12 @@
 
 exit
 
+# Update repositories filelist cache
+apt-get update
+
+# Install extra python libraries
+apt-get -y install python3-PIL python3-pil.imagetk
+
 if [ $ZYNTHIAN_SYS_BRANCH = "webconf" ]; then
 	echo "zynthian-sys already in webconf branch!"
 else

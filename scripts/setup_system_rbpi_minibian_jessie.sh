@@ -97,7 +97,7 @@ libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4
 
 # Python
 apt-get -y install python python-dev python-pip cython python-dbus 
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath
+apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-PIL python3-pil.imagetk
 pip3 install websocket-client
 pip3 install JACK-Client
 
@@ -176,7 +176,8 @@ sed -i -e "s/minibian/zynthian/" /etc/hosts
 
 # Copy "boot" config files
 cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-sed -i -e "s/#AUDIO_DEVICE_DTOVERLAY/dtoverlay=hifiberry-dacplus/g" /boot/config.txt
+sed -i -e "s/#SOUNDCARD_DTOVERLAY#/dtoverlay=hifiberry-dacplus/g" /boot/config.txt
+sed -i -e "s/#DISPLAY_DTOVERLAY#/pitft28-resistive,rotate=90,speed=32000000,fps=20/g" /boot/config.txt
 
 # Copy "etc" config files
 cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
