@@ -1,9 +1,9 @@
 #!/bin/bash
 
-exit
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 
-if [ $ZYNTHIAN_UI_BRANCH = "multilayer" ]; then
-	echo "Already in multilayer branch!"
+if [ $ZYNTHIAN_UI_BRANCH != "mod" ]; then
+	echo "Already upgraded to multilayer!"
 	exit
 fi
 
@@ -42,4 +42,4 @@ cd $ZYNTHIAN_SYS_DIR
 sed -i -e "s/ZYNTHIAN_UI_BRANCH\=\"mod\"/ZYNTHIAN_UI_BRANCH\=\"multilayer\"/" scripts/zynthian_envars.sh
 
 # Reboot
-reboot
+export ZYNTHIAN_REBOOT=1

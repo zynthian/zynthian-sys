@@ -1,6 +1,11 @@
 #!/bin/bash
 
-exit
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
+
+if [ $ZYNTHIAN_UI_BRANCH != "multilayer" ]; then
+	echo "Already upgraded to webconf!"
+	exit
+fi
 
 # Update repositories filelist cache
 apt-get update
@@ -31,11 +36,12 @@ else
 	git checkout webconf
 fi
 
+# Install & enable webconf
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/zynthian/zynthian-webconf.git
-
 systemctl enable zynthian-webconf
 systemctl start zynthian-webconf
 
 # Reboot
-reboot
+export ZYNTHIAN_REBOOT=1
+

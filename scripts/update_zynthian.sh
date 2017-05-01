@@ -14,16 +14,23 @@ cp -fa ./scripts/zynthian_envars.sh /tmp
 git checkout $ZYNTHIAN_SYS_BRANCH
 git pull origin $ZYNTHIAN_SYS_BRANCH
 cp -fa /tmp/zynthian_envars.sh ./scripts
+
 cd ./scripts
 ./update_zynthian_sys.sh
 ./update_zynthian_recipes.sh
 
 echo "Updating zyncoder ..."
 cd $ZYNTHIAN_DIR/zyncoder
+git checkout .
 git pull
 cd build
 cmake ..
 make
+
+echo "Updating zynthian-webconf ..."
+cd $ZYNTHIAN_DIR/webconf
+git checkout .
+git pull
 
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
