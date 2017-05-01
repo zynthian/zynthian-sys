@@ -29,7 +29,7 @@ cmake ..
 make
 
 echo "Updating zynthian-webconf ..."
-cd $ZYNTHIAN_DIR/webconf
+cd $ZYNTHIAN_DIR/zynthian-webconf
 git checkout .
 git pull
 
