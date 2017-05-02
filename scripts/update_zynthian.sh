@@ -10,11 +10,11 @@ fi
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
-cp -fa ./scripts/zynthian_envars.sh /tmp
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+git fetch origin
 git checkout $ZYNTHIAN_SYS_BRANCH
 git checkout .
 git pull origin $ZYNTHIAN_SYS_BRANCH
-cp -fa /tmp/zynthian_envars.sh ./scripts
 
 cd ./scripts
 ./update_zynthian_sys.sh
@@ -28,13 +28,15 @@ cd build
 cmake ..
 make
 
+echo "Updating zynthian-ui ..."
+cd $ZYNTHIAN_UI_DIR
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+git fetch origin
+git checkout $ZYNTHIAN_UI_BRANCH
+git checkout .
+git pull origin $ZYNTHIAN_UI_BRANCH
+
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
 git checkout .
 git pull
-
-echo "Updating zynthian-ui ..."
-cd $ZYNTHIAN_UI_DIR
-git checkout $ZYNTHIAN_UI_BRANCH
-git checkout .
-git pull origin $ZYNTHIAN_UI_BRANCH
