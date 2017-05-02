@@ -37,7 +37,7 @@ else
 fi
 
 # Install & enable webconf
-cd $ZYNTHIAN_SW_DIR
+cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-webconf.git
 systemctl enable zynthian-webconf
 systemctl start zynthian-webconf
