@@ -28,7 +28,7 @@ if [ "$ui_branch" == "* mod" ]; then
 
 	# Change UI to branch multilayer
 	cd $ZYNTHIAN_UI_DIR
-	git checkout
+	git checkout .
 	git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 	git fetch origin
 	git checkout multilayer
