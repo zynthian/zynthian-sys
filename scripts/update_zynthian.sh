@@ -10,10 +10,10 @@ fi
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
+git checkout .
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 git fetch origin
 git checkout $ZYNTHIAN_SYS_BRANCH
-git checkout .
 git pull origin $ZYNTHIAN_SYS_BRANCH
 
 cd ./scripts
@@ -30,11 +30,8 @@ make
 
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
-git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-git fetch origin
-git checkout $ZYNTHIAN_UI_BRANCH
 git checkout .
-git pull origin $ZYNTHIAN_UI_BRANCH
+git pull
 
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
