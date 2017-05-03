@@ -13,8 +13,8 @@ cd $ZYNTHIAN_SYS_DIR
 git checkout .
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 git fetch origin
-git checkout $ZYNTHIAN_SYS_BRANCH
-git pull origin $ZYNTHIAN_SYS_BRANCH
+git checkout webconf
+git pull
 
 cd ./scripts
 ./update_zynthian_sys.sh

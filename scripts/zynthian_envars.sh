@@ -33,10 +33,6 @@ export DISPLAY_WIDTH=""
 export DISPLAY_HEIGHT=""
 export FRAMEBUFFER="/dev/fb1"
 
-# Git branches
-export ZYNTHIAN_UI_BRANCH="webconf"
-export ZYNTHIAN_SYS_BRANCH="webconf"
-
 # Zynthian Features Flags
 export ZYNTHIAN_AUBIONOTES=1
 export ZYNTHIAN_TOUCHOSC=1
