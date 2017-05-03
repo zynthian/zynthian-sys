@@ -183,6 +183,7 @@ sed -i -e "s/#DISPLAY_DTOVERLAY#/pitft28-resistive,rotate=90,speed=32000000,fps=
 cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 cp $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
+cp $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
 cp $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 cp $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
