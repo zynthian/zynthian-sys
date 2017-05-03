@@ -10,6 +10,8 @@ if [ "$ui_branch" != "* mod" ]; then
 	exit
 fi
 
+echo "Upgrading to multilayer ..."
+
 # Update repositories filelist cache
 apt-get update
 

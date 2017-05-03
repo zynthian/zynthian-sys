@@ -6,9 +6,11 @@ source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 cd $ZYNTHIAN_UI_DIR
 ui_branch=`git branch | grep "*"`
 if [ "$ui_branch" != "* multilayer" ]; then
-	echo "Already upgraded to multilayer!"
+	echo "Already upgraded to webconf!"
 	exit
 fi
+
+echo "Upgrading to webconf ..."
 
 # Update repositories filelist cache
 apt-get update
