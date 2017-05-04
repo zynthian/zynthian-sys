@@ -170,23 +170,34 @@ cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-
 #------------------------------------------------
 #************************************************
 
+FRAMEBUFFER_ESC="${FRAMEBUFFER//\//\\\/}"
+
 #Change Hostname
 echo "zynthian" > /etc/hostname
 sed -i -e "s/minibian/zynthian/" /etc/hosts
 
 # Copy "boot" config files
 cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-sed -i -e "s/#SOUNDCARD_DTOVERLAY#/dtoverlay=hifiberry-dacplus/g" /boot/config.txt
-sed -i -e "s/#DISPLAY_DTOVERLAY#/pitft28-resistive,rotate=90,speed=32000000,fps=20/g" /boot/config.txt
+sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
+sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
 
 # Copy "etc" config files
-cp $ZYNTHIAN_SYS_DIR/etc/modules /etc
-cp $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-cp $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
-cp $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
-cp $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
-cp $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
-cp $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
+cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
+cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
+cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
+cp -a $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
+cp -a $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
+cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
+cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
+
+# X11 Config
+cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
+cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
+sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
+
+# Replace config vars
+sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
+sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS/g" /etc/systemd/system/jack2.service
 
 # Systemd Services
 systemctl daemon-reload

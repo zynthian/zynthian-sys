@@ -79,20 +79,11 @@ dtoverlay=pi3-miniuart-bt
 # Enable MMAP support (Jackd, etc.)
 dtoverlay=i2s-mmap
 
-# Audio Device Driver:
-#dtoverlay=hifiberry-amp
-#dtoverlay=hifiberry-dac
-#dtoverlay=hifiberry-dacplus
-#dtoverlay=hifiberry-digi
-#dtoverlay=iqaudio-dac
-#dtoverlay=iqaudio-dacplus
-#dtoverlay=audioinjector-wm8731-audio
-#SOUNDCARD_DTOVERLAY#
+# Soundcard Config
+#SOUNDCARD_CONFIG#
 
-# PiTFT Config
-#dtoverlay=pitft28-capacitive,rotate=90,speed=32000000,fps=20
-#dtoverlay=pitft28-resistive,rotate=90,speed=32000000,fps=20
-#DISPLAY_DTOVERLAY#
+# Display Config
+#DISPLAY_CONFIG#
 
 # Adjust Serial Port Clock to allow MIDI baudrate 31250
 [pi2]

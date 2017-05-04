@@ -21,18 +21,18 @@ no_update_config=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
 if [ -z "$no_update_config" ]; then
 	cp $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
 
-	SOUNDCARD_DTOVERLAY_LINE="dtoverlay=$SOUNDCARD_DTOVERLAY"
-	echo "SOUNDCARD DTOVERLAY => $SOUNDCARD_DTOVERLAY_LINE"
-	sed -i -e "s/#SOUNDCARD_DTOVERLAY#/$SOUNDCARD_DTOVERLAY_LINE/g" /boot/config.txt
+	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
+	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
 	
-	DISPLAY_DTOVERLAY_LINE="dtoverlay=$DISPLAY_DTOVERLAY"
-	echo "DISPLAY DTOVERLAY => $DISPLAY_DTOVERLAY_LINE"
-	sed -i -e "s/#DISPLAY_DTOVERLAY#/$DISPLAY_DTOVERLAY_LINE/g" /boot/config.txt
+	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
+	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
 fi
 
 #------------------------------------------------------------------------------
 # System Config 
 #------------------------------------------------------------------------------
+
+FRAMEBUFFER_ESC="${FRAMEBUFFER//\//\\\/}"
 
 # Copy "etc" config files
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
@@ -44,11 +44,11 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 
 # X11 Config
+cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
-cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
+sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 
 # Replace config vars
-FRAMEBUFFER_ESC="${FRAMEBUFFER//\//\\\/}"
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS/g" /etc/systemd/system/jack2.service
 
