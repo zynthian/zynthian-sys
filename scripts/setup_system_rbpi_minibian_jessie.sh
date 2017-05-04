@@ -170,6 +170,7 @@ cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-
 #------------------------------------------------
 #************************************************
 
+#Escape Config Variables to replace
 FRAMEBUFFER_ESC="${FRAMEBUFFER//\//\\\/}"
 
 #Change Hostname
