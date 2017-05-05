@@ -20,7 +20,7 @@ if [ "$ui_branch" == "* multilayer" ]; then
 	systemctl enable zynthian-webconf
 	systemctl start zynthian-webconf
 
-	# Change UI to branch multilayer
+	# Change UI to branch webconf
 	cd $ZYNTHIAN_UI_DIR
 	git checkout .
 	git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
