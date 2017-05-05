@@ -99,6 +99,8 @@ sudo dnf -y install python-devel
 sudo dnf -y install python3-devel
 sudo dnf -y install python3-tkinter
 sudo dnf -y install python3-pip
+sudo dnf -y install python3-imaging
+sudo dnf -y install python3-pillow-tk
 sudo pip3 install --upgrade pip
 sudo pip3 install cython
 

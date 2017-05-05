@@ -14,11 +14,12 @@ if [ "$ui_branch" == "* multilayer" ]; then
 	# Install extra python libraries
 	apt-get -y install python3-PIL python3-pil.imagetk
 
-	# Install & enable webconf
-	cd $ZYNTHIAN_DIR
-	git clone https://github.com/zynthian/zynthian-webconf.git
-	systemctl enable zynthian-webconf
-	systemctl start zynthian-webconf
+	# Change SYS to branch webconf
+	cd $ZYNTHIAN_SYS_DIR
+	git checkout .
+	git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+	git fetch origin
+	git checkout webconf
 
 	# Change UI to branch webconf
 	cd $ZYNTHIAN_UI_DIR
@@ -26,6 +27,12 @@ if [ "$ui_branch" == "* multilayer" ]; then
 	git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 	git fetch origin
 	git checkout webconf
+
+	# Install & enable webconf
+	cd $ZYNTHIAN_DIR
+	git clone https://github.com/zynthian/zynthian-webconf.git
+	systemctl enable zynthian-webconf
+	systemctl start zynthian-webconf
 
 	# Reboot
 	touch $REBOOT_FLAGFILE
