@@ -10,11 +10,10 @@ fi
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
+cp -a scripts/zynthian_envars.sh /tmp
 git checkout .
-git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-git fetch origin
-git checkout webconf
 git pull
+cp -a /tmp/zynthian_envars.sh ./scripts
 
 cd ./scripts
 ./update_zynthian_sys.sh
