@@ -42,7 +42,7 @@ fi
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
-cp -a $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
+#cp -a $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
 cp -a $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
