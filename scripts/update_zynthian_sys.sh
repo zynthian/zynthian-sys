@@ -34,6 +34,13 @@ if [ -z "$no_update_config" ]; then
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
 fi
 
+# Copy extra overlays
+cp $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
+for file in $ZYNTHIAN_SYS_DIR/boot/overlays/*.dtb ; do
+	cp "$file" "${file%.dtb}.dtbo"
+done
+
+
 #------------------------------------------------------------------------------
 # System Config 
 #------------------------------------------------------------------------------
