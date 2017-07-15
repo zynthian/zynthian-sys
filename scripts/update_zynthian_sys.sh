@@ -54,6 +54,7 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 
 # X11 Config
+rm -f /etc/X11/xorg.conf.d/99-pitft.conf
 cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
@@ -61,6 +62,9 @@ sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.con
 # Replace config vars
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS/g" /etc/systemd/system/jack2.service
+
+# Generate FB splash screens
+$ZYNTHIAN_SYS_DIR/scripts/generate_fb_splash.sh
 
 # Copy fonts to system directory
 cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
