@@ -64,7 +64,7 @@ sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.serv
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS/g" /etc/systemd/system/jack2.service
 
 # Generate FB splash screens
-$ZYNTHIAN_SYS_DIR/scripts/generate_fb_splash.sh
+#$ZYNTHIAN_SYS_DIR/scripts/generate_fb_splash.sh
 
 # Copy fonts to system directory
 cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
