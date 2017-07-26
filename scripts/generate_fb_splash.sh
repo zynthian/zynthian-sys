@@ -10,11 +10,11 @@ fi
 
 echo "Generating Splash Screens for FrameBuffer ..."
 
-fbi -noverbose -T 2 -a -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_error.png
+/usr/bin/fbi -noverbose -T 2 -a -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_error.png
 sleep 1
 cat $FRAMEBUFFER > $ZYNTHIAN_UI_DIR/img/fb_zynthian_error.raw
 
-fbi -noverbose -T 2 -a -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_boot.png
+/usr/bin/fbi -noverbose -T 2 -a -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_boot.png
 sleep 1
 cat $FRAMEBUFFER > $ZYNTHIAN_UI_DIR/img/fb_zynthian_boot.raw
 
