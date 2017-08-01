@@ -90,7 +90,7 @@ libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools \
 liblash-compat-dev libffi-dev fontconfig-config libfontconfig1-dev libxft-dev \
 libexpat-dev libglib2.0-dev libgettextpo-dev libglibmm-2.4-dev libeigen3-dev \
 libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev lv2-c++-tools python3-numpy-dev \
-libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4
+libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4 libxi-dev
 #libjack-dev-session
 #non-ntk-dev
 #libgd2-xpm-dev

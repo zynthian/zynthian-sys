@@ -7,6 +7,7 @@ Requires=jack2.service
 Environment=ZYNTHIAN_DIR=/zynthian
 Environment=FRAMEBUFFER=#FRAMEBUFFER#
 Environment=HOME=/root
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:/zynthian/zynthian-sys/sbin
 WorkingDirectory=/zynthian/zynthian-ui
 ExecStart=/usr/bin/startx ./zynthian.sh -- :0 vt3
 Restart=always
