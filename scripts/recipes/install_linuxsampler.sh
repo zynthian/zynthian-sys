@@ -1,7 +1,6 @@
 # linuxsampler
 set -ex
 cd $ZYNTHIAN_SW_DIR
-sudo apt-get install -y subversion libtool flex bison
 svn co https://svn.linuxsampler.org/svn/libgig/trunk libgig
 cd libgig
 libtoolize --force
@@ -10,8 +9,8 @@ autoheader
 automake --force-missing --add-missing
 autoconf 
 ./configure
-make
-sudo make install
+make -j 4
+make install
 make clean
 cd ..
 svn co https://svn.linuxsampler.org/svn/liblscp/trunk liblscp
@@ -22,8 +21,8 @@ autoheader
 automake --force-missing --add-missing
 autoconf 
 ./configure
-make
-sudo make install
+make -j 4
+make install
 make clean
 cd ..
 svn co https://svn.linuxsampler.org/svn/linuxsampler/trunk linuxsampler
@@ -33,14 +32,15 @@ aclocal
 autoheader
 automake --force-missing --add-missing
 autoconf
-./configure
+#./configure
+./configure --enable-max-voices=21 --enable-max-streams=64 --enable-stream-min-refill=4096 --enable-refill-streams=2 --enable-stream-max-refill=131072 --enable-stream-size=262144 --disable-asm --enable-subfragment-size=64 --enable-eg-min-release-time=0.001 --enable-eg-bottom=0.0025 --enable-max-pitch=2 --enable-preload-samples=65536
 cd src/scriptvm
 yacc -o parser parser.y
 cd ../..
 git clone https://github.com/steveb/rpi_linuxsampler_patch.git
 patch -p1 <rpi_linuxsampler_patch/linuxsampler-arm.patch 
-make
-sudo make install
-sudo mv /usr/local/lib/lv2/linuxsampler.lv2 ${ZYNTHIAN_PLUGINS_DIR}/mod-lv2
+make -j 4
+make install
+mv /usr/local/lib/lv2/linuxsampler.lv2 ${ZYNTHIAN_PLUGINS_DIR}/mod-lv2
 make clean
 cd ..
