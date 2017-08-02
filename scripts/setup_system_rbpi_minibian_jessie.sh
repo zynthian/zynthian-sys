@@ -289,8 +289,8 @@ ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 # Install Polyphone (SF2 editor)
 #bash $ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
 
-# Install Linuxsampler => TODO Upgrade to Version 2
-apt-get -y install linuxsampler
+# Install Linuxsampler 2.0
+bash $ZYNTHIAN_RECIPE_DIR/install_linuxsampler.sh
 
 # Install Fantasia (linuxsampler Java GUI)
 bash $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh

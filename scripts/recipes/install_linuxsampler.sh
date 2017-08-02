@@ -1,7 +1,6 @@
 # linuxsampler
 set -ex
 cd $ZYNTHIAN_SW_DIR
-sudo apt remove -y linuxsampler libgig6 liblinuxsampler
 sudo apt-get install -y subversion libtool flex bison
 svn co https://svn.linuxsampler.org/svn/libgig/trunk libgig
 cd libgig
