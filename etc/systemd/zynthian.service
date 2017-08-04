@@ -4,10 +4,11 @@ After=jack2.service
 Requires=jack2.service
 
 [Service]
+#Environment=ZYNTHIAN_LOG_LEVEL=10
 Environment=ZYNTHIAN_DIR=/zynthian
 Environment=FRAMEBUFFER=#FRAMEBUFFER#
 Environment=HOME=/root
-Environment=PATH=/bin:/usr/bin:/usr/local/bin:/zynthian/zynthian-sys/sbin
+Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/zynthian/zynthian-sys/sbin
 WorkingDirectory=/zynthian/zynthian-ui
 ExecStart=/usr/bin/startx ./zynthian.sh -- :0 vt3
 Restart=always
