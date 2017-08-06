@@ -44,10 +44,10 @@ yacc -o parser parser.y
 cd ../..
 # Apply patch from Steveb
 rm -rf rpi_linuxsampler_patch
-git clone https://github.com/steveb/rpi_linuxsampler_patch.git  
-if ! patch -R -p0 --dry-run <pi_linuxsampler_patch/linuxsampler-arm.patch
+git clone https://github.com/steveb/rpi_linuxsampler_patch.git
+if ! patch -R -p1 --dry-run < rpi_linuxsampler_patch/linuxsampler-arm.patch
 then
-  patch -p1 <pi_linuxsampler_patch/linuxsampler-arm.patch
+  patch -p1 < rpi_linuxsampler_patch/linuxsampler-arm.patch
 fi
 # Build LinuxSampler
 make -j 4
