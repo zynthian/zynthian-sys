@@ -67,17 +67,21 @@ dtparam=spi=on
 # Uncomment this to enable the lirc-rpi module
 #dtoverlay=lirc-rpi
 
-# Additional overlays and parameters are documented /boot/overlays/README
 
-# Disable Blutooth Support for HifiBerry compatibility with RBPi 3
-# Swap back the ttyAMA0 to GPIO
-[pi3]
-dtoverlay=pi3-disable-bt 
-dtoverlay=pi3-miniuart-bt
-[all]
+# Additional overlays and parameters are documented /boot/overlays/README
 
 # Enable MMAP support (Jackd, etc.)
 dtoverlay=i2s-mmap
+
+# Enable UART for MIDI
+enable_uart=1
+
+[pi3]
+# Disable Blutooth Support for HifiBerry compatibility with RBPi 3
+dtoverlay=pi3-disable-bt
+# Swap back the ttyAMA0 to GPIO
+dtoverlay=pi3-miniuart-bt
+[all]
 
 # Soundcard Config
 #SOUNDCARD_CONFIG#
@@ -85,13 +89,19 @@ dtoverlay=i2s-mmap
 # Display Config
 #DISPLAY_CONFIG#
 
-# Adjust Serial Port Clock to allow MIDI baudrate 31250
-[pi2]
-init_uart_clock=2441000
-init_uart_baud=38400
-dtparam=uart0_clkrate=3000000
-[pi3]
-init_uart_clock=39062500
-init_uart_baud=38400
-dtparam=uart0_clkrate=48000000
-[all]
+# Adjust UART clock for MIDI Baudrate (31250)
+
+#New kernels
+dtoverlay=midi-uart0
+
+# Old kernels
+#[pi3]
+#init_uart_clock=39062500
+#init_uart_baud=38400
+#dtparam=uart0_clkrate=48000000
+#[pi2]
+#init_uart_clock=2441000
+#init_uart_baud=38400
+#dtparam=uart0_clkrate=3000000
+#[all]
+
