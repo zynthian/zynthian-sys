@@ -45,7 +45,7 @@ cd ../..
 # Apply patch from Steveb
 rm -rf rpi_linuxsampler_patch
 git clone https://github.com/steveb/rpi_linuxsampler_patch.git
-if ! patch -R -p1 --dry-run < rpi_linuxsampler_patch/linuxsampler-arm.patch
+if ! patch -p1 --dry-run < rpi_linuxsampler_patch/linuxsampler-arm.patch
 then
   patch -p1 < rpi_linuxsampler_patch/linuxsampler-arm.patch
 fi
