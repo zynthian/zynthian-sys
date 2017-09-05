@@ -11,6 +11,9 @@ if [ "$ui_branch" == "* webconf" ]; then
 	# Update repositories filelist cache
 	apt-get update
 
+	# Update System
+	apt-get -y upgrade
+
 	# Install xinput libraries
 	apt-get -y install libxi-dev xinput
 
