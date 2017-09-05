@@ -11,6 +11,9 @@ if [ "$ui_branch" == "* multilayer" ]; then
 	# Update repositories filelist cache
 	apt-get update
 
+	# Update System
+	apt-get -y upgrade
+
 	# Install extra python libraries
 	apt-get -y install python3-PIL python3-pil.imagetk
 
