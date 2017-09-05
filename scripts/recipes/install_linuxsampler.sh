@@ -29,7 +29,7 @@ make clean
 cd ..
 
 # Download, Build &  Install LinuxSampler
-svn co https://svn.linuxsampler.org/svn/linuxsampler/trunk linuxsampler
+svn --non-interactive --trust-server-cert co https://svn.linuxsampler.org/svn/linuxsampler/trunk linuxsampler
 cd linuxsampler
 libtoolize --force
 aclocal
