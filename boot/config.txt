@@ -92,16 +92,16 @@ dtoverlay=pi3-miniuart-bt
 # Adjust UART clock for MIDI Baudrate (31250)
 
 #New kernels
-#dtoverlay=midi-uart0
+dtoverlay=midi-uart0
 
 # Old kernels
-[pi3]
-init_uart_clock=39062500
-init_uart_baud=38400
-dtparam=uart0_clkrate=48000000
-[pi2]
-init_uart_clock=2441000
-init_uart_baud=38400
-dtparam=uart0_clkrate=3000000
-[all]
+#[pi3]
+#init_uart_clock=39062500
+#init_uart_baud=38400
+#dtparam=uart0_clkrate=48000000
+#[pi2]
+#init_uart_clock=2441000
+#init_uart_baud=38400
+#dtparam=uart0_clkrate=3000000
+#[all]
 
