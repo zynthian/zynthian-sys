@@ -1,12 +1,12 @@
 [Unit]
-Description=Zynthian Web Configurator
+Description=Zynthian Webconf
 
 [Service]
-Environment=ZYNTHIAN_DIR=/zynthian
-Environment=ZYNTHIAN_SYS_DIR=/zynthian/zynthian-sys
+Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
+Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 Environment=HOME=/root
-WorkingDirectory=/zynthian/zynthian-webconf
-ExecStart=/zynthian/zynthian-webconf/zynthian_webconf.sh
+WorkingDirectory=#ZYNTHIAN_DIR#/zynthian-webconf
+ExecStart=#ZYNTHIAN_DIR#/zynthian-webconf/zynthian_webconf.sh
 Restart=always
 RestartSec=5
 

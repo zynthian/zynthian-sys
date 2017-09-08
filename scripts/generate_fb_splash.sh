@@ -1,21 +1,27 @@
 #!/bin/bash
 
-if [ -f "./zynthian_envars.sh" ]; then
-	source "./zynthian_envars.sh"
-elif [ -z "$ZYNTHIAN_SYS_DIR" ]; then
-	source "/zynthian/zynthian-sys/scripts/zynthian_envars.sh"
+if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
+	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
 echo "Generating Splash Screens for FrameBuffer ..."
 
+# Create directory if it doesn't exist
+if [ ! -d "$ZYNTHIAN_CONFIG_DIR/img" ]; then
+	mkdir $ZYNTHIAN_CONFIG_DIR/img
+fi
+
+#Generate "Zynthian Error" Splash Screen
 /usr/bin/fbi -noverbose -T 2 -a -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_error.png
 sleep 1
-cat $FRAMEBUFFER > $ZYNTHIAN_UI_DIR/img/fb_zynthian_error.raw
+cat $FRAMEBUFFER > $ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.raw
 
+#Generate "Zynthian Boot" Splash Screen
 /usr/bin/fbi -noverbose -T 2 -a -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_boot.png
 sleep 1
-cat $FRAMEBUFFER > $ZYNTHIAN_UI_DIR/img/fb_zynthian_boot.raw
+cat $FRAMEBUFFER > $ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_boot.raw
 
 killall -9 fbi
+

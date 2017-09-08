@@ -53,6 +53,7 @@ export ZYNTHIAN_UI_FONT_SIZE="10"
 
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"
+export ZYNTHIAN_CONFIG_DIR="$ZYNTHIAN_DIR/config"
 export ZYNTHIAN_SW_DIR="$ZYNTHIAN_DIR/zynthian-sw"
 export ZYNTHIAN_UI_DIR="$ZYNTHIAN_DIR/zynthian-ui"
 export ZYNTHIAN_SYS_DIR="$ZYNTHIAN_DIR/zynthian-sys"

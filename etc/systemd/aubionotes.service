@@ -6,7 +6,7 @@ Requires=jack2.service
 [Service]
 Environment=HOME=/root
 WorkingDirectory=/root
-ExecStart=/usr/local/bin/aubionotes -O complex -t 0.5 -s -88  -p yinfft -l 0.5
+ExecStart=/usr/local/bin/aubionotes #ZYNTHIAN_AUBIONOTES_OPTIONS#
 ExecStartPre=/usr/bin/jack_wait -w
 Restart=always
 RestartSec=1

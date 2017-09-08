@@ -4,7 +4,7 @@ Before=jack2.service
 
 [Service]
 Type=oneshot
-ExecStart=/zynthian/zynthian-sys/sbin/cpu-performance.sh
+ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/cpu-performance.sh
 
 [Install]
 WantedBy=multi-user.target

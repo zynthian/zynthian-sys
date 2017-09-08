@@ -1,12 +1,12 @@
 [Unit]
-Description=MOD-HOST: MOD LV2 plugin server
+Description=MOD-HOST: LV2 plugin server
 After=jack2.service
 Requires=jack2.service
 
 [Service]
 Type=forking
 Environment=HOME=/root
-Environment=LV2_PATH=/zynthian/zynthian-plugins/lv2:/zynthian/zynthian-my-plugins/lv2
+Environment=LV2_PATH=#LV2_PATH#
 WorkingDirectory=/root
 ExecStart=/usr/local/bin/mod-host
 Restart=always

@@ -1,9 +1,7 @@
 #!/bin/bash
 
-if [ -f "./zynthian_envars.sh" ]; then
-	source "./zynthian_envars.sh"
-elif [ -z "$ZYNTHIAN_SYS_DIR" ]; then
-	source "/zynthian/zynthian-sys/scripts/zynthian_envars.sh"
+if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
+	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
@@ -35,4 +33,11 @@ git pull
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
 git checkout .
-git pull
+git pull | grep -q -v 'Already up-to-date.' && changed=1
+if [[ "$changed" -eq 1 ]]; then
+	systemctl stop zynthian-webconf
+	systemctl start zynthian-webconf
+fi
+
+
+

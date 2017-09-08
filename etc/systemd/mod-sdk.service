@@ -1,15 +1,15 @@
 [Unit]
-Description=mod-sdk
+Description=MOD-SDK
 Requires=mod-ui.service
 After=mod-ui.service
 
 [Service]
 Environment=HOME=/root
-Environment=LV2_PATH=/zynthian/zynthian-plugins/lv2:/zynthian/zynthian-my-plugins/lv2
-Environment=MOD_SCREENSHOT_JS=/zynthian/zynthian-sw/mod-sdk/screenshot.js
+Environment=LV2_PATH=#LV2_PATH#
+Environment=MOD_SCREENSHOT_JS=#ZYNTHIAN_SW_DIR#/mod-sdk/screenshot.js
 Environment=MOD_PHANTOM_BINARY=/usr/bin/phantomjs
-WorkingDirectory=/zynthian/zynthian-sw/mod-sdk
-ExecStart=/zynthian/zynthian-sw/mod-sdk/development_server.py
+WorkingDirectory=#ZYNTHIAN_SW_DIR#/mod-sdk
+ExecStart=#ZYNTHIAN_SW_DIR#/mod-sdk/development_server.py
 Restart=always
 RestartSec=5
 
