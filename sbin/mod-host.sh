@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 
 /usr/local/bin/mod-host -i

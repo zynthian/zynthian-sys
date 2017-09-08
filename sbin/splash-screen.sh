@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # If splash-screen files doesn't exist, generate ...
 if [ ! -d $ZYNTHIAN_CONFIG_DIR/img ]; then
