@@ -34,6 +34,14 @@ fi
 #------------------------------------------------------------------------------
 
 FRAMEBUFFER_ESC=${FRAMEBUFFER//\//\\\/}
+LV2_DIR_ESC=${LV2_DIR//\//\\\/}
+ZYNTHIAN_DIR_ESC=${ZYNTHIAN_DIR//\//\\\/}
+ZYNTHIAN_CONFIG_DIR_ESC=${ZYNTHIAN_CONFIG_DIR//\//\\\/}
+ZYNTHIAN_SYS_DIR_ESC=${ZYNTHIAN_SYS_DIR//\//\\\/}
+ZYNTHIAN_UI_DIR_ESC=${ZYNTHIAN_UI_DIR//\//\\\/}
+ZYNTHIAN_SW_DIR_ESC=${ZYNTHIAN_SW_DIR//\//\\\/}
+$JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
+$ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 
 #------------------------------------------------------------------------------
 # Boot Config 
@@ -81,34 +89,34 @@ cp -au $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.c
 
 # Replace config vars in Systemd service files
 # Cpu-performance service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR/g" /etc/systemd/system/cpu-performance.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/cpu-performance.service
 # Splash-Screen Service
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/splash-screen.service
-sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR/g" /etc/systemd/system/splash-screen.service
-sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR/g" /etc/systemd/system/splash-screen.service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR/g" /etc/systemd/system/splash-screen.service
-sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR/g" /etc/systemd/system/splash-screen.service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/splash-screen.service
+sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/splash-screen.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/splash-screen.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/splash-screen.service
 # Zynthian Service
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
-sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR/g" /etc/systemd/system/zynthian.service
-sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR/g" /etc/systemd/system/zynthian.service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR/g" /etc/systemd/system/zynthian.service
-sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR/g" /etc/systemd/system/zynthian.service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian.service
+sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian.service
 # Zynthian Webconf Service
-sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR/g" /etc/systemd/system/zynthian-webconf.service
-sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR/g" /etc/systemd/system/zynthian-webconf.service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 # Jackd service
-sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS/g" /etc/systemd/system/jack2.service
+sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS_ESC/g" /etc/systemd/system/jack2.service
 # MOD-HOST service
-sed -i -e "s/#LV2_PATH#/$LV2_PATH/g" /etc/systemd/system/mod-host.service
+sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-host.service
 # MOD-SDK service
-sed -i -e "s/#LV2_PATH#/$LV2_PATH/g" /etc/systemd/system/mod-sdk.service
-sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR/g" /etc/systemd/system/mod-sdk.service
+sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-sdk.service
+sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-sdk.service
 # MOD-UI service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH/g" /etc/systemd/system/mod-ui.service
-sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR/g" /etc/systemd/system/mod-ui.service
+sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-ui.service
 # Aubionotes service
-sed -i -e "s/#ZYNTHIAN_AUBIONOTES_OPTIONS#/$ZYNTHIAN_AUBIONOTES_OPTIONS/g" /etc/systemd/system/aubionotes.service
+sed -i -e "s/#ZYNTHIAN_AUBIONOTES_OPTIONS#/$ZYNTHIAN_AUBIONOTES_OPTIONS_ESC/g" /etc/systemd/system/aubionotes.service
 
 # Generate FB splash screens
 #$ZYNTHIAN_SYS_DIR/scripts/generate_fb_splash.sh
