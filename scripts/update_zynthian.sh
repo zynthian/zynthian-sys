@@ -6,6 +6,9 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
+export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
+rm -f $REBOOT_FLAGFILE
+
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
 cp -a scripts/zynthian_envars.sh /tmp
@@ -39,5 +42,7 @@ if [[ "$changed" -eq 1 ]]; then
 	systemctl start zynthian-webconf
 fi
 
-
-
+if [ -f $REBOOT_FLAGFILE ]; then
+	rm -f $REBOOT_FLAGFILE
+	reboot
+fi
