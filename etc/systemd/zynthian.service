@@ -1,6 +1,6 @@
 [Unit]
 Description=Zynthian User Interface
-After=jack2.service
+After=jack2.service splash-screen.service
 Requires=jack2.service
 
 [Service]
