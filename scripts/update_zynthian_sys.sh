@@ -50,7 +50,10 @@ ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 cp $ZYNTHIAN_SYS_DIR/boot/cmdline.txt /boot
 
 # Detect NO_ZYNTHIAN_UPDATE flag
-no_update_config=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
+if [ -f "/boot/config.txt" ]; then
+	no_update_config=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
+fi
+
 if [ -z "$no_update_config" ]; then
 	cp $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
 
