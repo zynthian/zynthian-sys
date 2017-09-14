@@ -34,7 +34,7 @@ fi
 #------------------------------------------------------------------------------
 
 FRAMEBUFFER_ESC=${FRAMEBUFFER//\//\\\/}
-LV2_DIR_ESC=${LV2_DIR//\//\\\/}
+LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 ZYNTHIAN_DIR_ESC=${ZYNTHIAN_DIR//\//\\\/}
 ZYNTHIAN_CONFIG_DIR_ESC=${ZYNTHIAN_CONFIG_DIR//\//\\\/}
 ZYNTHIAN_SYS_DIR_ESC=${ZYNTHIAN_SYS_DIR//\//\\\/}
