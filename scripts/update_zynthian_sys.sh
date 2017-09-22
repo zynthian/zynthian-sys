@@ -78,7 +78,7 @@ done
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
-#cp -a $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
+cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
 cp -a $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
@@ -120,9 +120,6 @@ sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-ui.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-ui.service
 # Aubionotes service
 sed -i -e "s/#ZYNTHIAN_AUBIONOTES_OPTIONS#/$ZYNTHIAN_AUBIONOTES_OPTIONS_ESC/g" /etc/systemd/system/aubionotes.service
-
-# Generate FB splash screens
-#$ZYNTHIAN_SYS_DIR/scripts/generate_fb_splash.sh
 
 # Copy fonts to system directory
 cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype

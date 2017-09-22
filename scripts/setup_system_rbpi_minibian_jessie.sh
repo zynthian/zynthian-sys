@@ -111,9 +111,10 @@ apt-get -y autoremove
 #------------------------------------------------
 #************************************************
 mkdir $ZYNTHIAN_DIR
-cd $ZYNTHIAN_DIR
+mkdir $ZYNTHIAN_CONFIG_DIR
 
 # Zyncoder library
+cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zyncoder.git
 mkdir zyncoder/build
 cd zyncoder/build
@@ -122,18 +123,19 @@ make
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
-git clone -b webconf https://github.com/zynthian/zynthian-ui.git
-# Exclude configuration file from git commands
-cd zynthian-ui
-git update-index --assume-unchanged zynthian_gui_config.py
+git clone https://github.com/zynthian/zynthian-ui.git
 
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
-git clone -b webconf https://github.com/zynthian/zynthian-sys.git
+git clone https://github.com/zynthian/zynthian-sys.git
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-data.git
+
+# Zynthian Webconf Tool
+cd $ZYNTHIAN_DIR
+git clone https://github.com/zynthian/zynthian-webconf.git
 
 # Zynthian Plugins => TODO! => Rethink plugins directory!!
 #git clone https://github.com/zynthian/zynthian-plugins.git
@@ -170,35 +172,7 @@ cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-
 #------------------------------------------------
 #************************************************
 
-#Escape Config Variables to replace
-FRAMEBUFFER_ESC="${FRAMEBUFFER//\//\\\/}"
-
-#Change Hostname
-echo "zynthian" > /etc/hostname
-sed -i -e "s/minibian/zynthian/" /etc/hosts
-
-# Copy "boot" config files
-cp $ZYNTHIAN_SYS_DIR/boot/* /boot
-sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
-sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
-
-# Copy "etc" config files
-cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
-cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
-cp -a $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
-cp -a $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
-cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
-cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
-
-# X11 Config
-cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
-cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
-sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
-
-# Replace config vars
-sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
-sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS/g" /etc/systemd/system/jack2.service
+bash $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 # Systemd Services
 systemctl daemon-reload
@@ -219,21 +193,10 @@ systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable zynthian
 
-# X11 Config
-mkdir /etc/X11/xorg.conf.d
-cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
-cp $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-pitft.conf /etc/X11/xorg.conf.d
-
-# Copy fonts to system directory
-cp -rf $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
-
-# User Config (root) =>
-# Set Zynthian Environment variables ...
-echo "source /zynthian/zynthian-sys/scripts/zynthian_envars.sh" >> /root/.bashrc
+# Setup loading of Zynthian Environment variables ...
+echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
-# => ZynAddSubFX Config
-cp $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 
 # Resize SD partition on first boot
 sed -i -- "s/exit 0/\/zynthian\/zynthian-sys\/scripts\/rpi-wiggle\.sh/" /etc/rc.local
