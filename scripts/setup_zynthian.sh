@@ -6,7 +6,7 @@
 # No need for nothing else. Only run the script twice, following the next
 # instructions:
 #
-# 1. Run first time: ./setup_zynthian.sh
+# 1. Run first time: sh ./setup_zynthian.sh
 # 2. Reboot: It should reboot automaticly after step 1
 # 3. Run second time: screen -t setup -L sh ./setup_zynthian.sh
 # 4. Take a good beer, sit down and relax ... ;-)
