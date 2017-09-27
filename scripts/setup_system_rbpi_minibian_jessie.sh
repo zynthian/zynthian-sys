@@ -197,6 +197,7 @@ systemctl enable splash-screen
 systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable zynthian
+systemctl enable zynthian-webconf
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
