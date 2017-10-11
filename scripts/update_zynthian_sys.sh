@@ -122,6 +122,7 @@ fi
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/backup_items.txt $ZYNTHIAN_CONFIG_DIR
 fi
+rm -f $ZYNTHIAN_CONFIG_DIR/zynthian_custom_config.sh
 
 # Device Custom files
 display_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/display/$DISPLAY_NAME"
