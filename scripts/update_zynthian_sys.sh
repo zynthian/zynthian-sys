@@ -8,6 +8,26 @@ fi
 
 echo "Updating System configuration ..."
 
+#------------------------------------------------------------------------------
+# Define some functions
+#------------------------------------------------------------------------------
+
+function custom_config {
+	cd "$1"
+	for file in "etc/*" ; do
+		if [ "$file" = "modules" ]; then
+			cat modules >> /etc/modules
+		else
+			cp -a "$file" /etc
+		fi
+	done
+	for file in "boot/*" ; do
+		cp -a "$file" /boot
+	done
+	for file in "config/*" ; do
+		cp -a "$file" $ZYNTHIAN_CONFIG_DIR
+	done
+}
 
 #------------------------------------------------------------------------------
 # Default Values for some Config Variables
@@ -65,10 +85,7 @@ if [ -z "$no_update_config" ]; then
 fi
 
 # Copy extra overlays
-cp $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
-for file in $ZYNTHIAN_SYS_DIR/boot/overlays/*.dtb ; do
-	cp "$file" "${file%.dtb}.dtbo"
-done
+cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
 
 #------------------------------------------------------------------------------
 # System Config 
@@ -84,11 +101,37 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d
 
 # X11 Display config
-rm -f /etc/X11/xorg.conf.d/99-pitft.conf
+mkdir /etc/X11/xorg.conf.d
 cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
-# X11 Touch-Device config => Update only if not changed!!!
-cp -au $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-calibration.conf /etc/X11/xorg.conf.d
+
+# Copy fonts to system directory
+cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
+
+# User Config (root)
+# => ZynAddSubFX Config
+cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
+
+# Zynthian Specific Config Files
+if [ ! -d "$ZYNTHIAN_CONFIG_DIR" ]; then
+	mkdir $ZYNTHIAN_CONFIG_DIR
+fi
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+fi
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/etc/backup_items.txt $ZYNTHIAN_CONFIG_DIR
+fi
+
+# Device Custom files
+display_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/display/$DISPLAY_NAME"
+if [ -d "$display_config_custom_dir" ]; then
+	custom_config "$display_config_custom_dir"
+fi
+soundcard_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/soundcard/$SOUNDCARD_NAME"
+if [ -d "$soundcard_config_custom_dir" ]; then
+	custom_config "$soundcard_config_custom_dir"
+fi
 
 # Replace config vars in Systemd service files
 # Cpu-performance service
@@ -120,21 +163,3 @@ sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-ui.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-ui.service
 # Aubionotes service
 sed -i -e "s/#ZYNTHIAN_AUBIONOTES_OPTIONS#/$ZYNTHIAN_AUBIONOTES_OPTIONS_ESC/g" /etc/systemd/system/aubionotes.service
-
-# Copy fonts to system directory
-cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
-
-# User Config (root)
-# => ZynAddSubFX Config
-cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
-
-# Zynthian Specific Config Files
-if [ ! -d "$ZYNTHIAN_CONFIG_DIR" ]; then
-	mkdir $ZYNTHIAN_CONFIG_DIR
-fi
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
-fi
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/etc/backup_items.txt $ZYNTHIAN_CONFIG_DIR
-fi
