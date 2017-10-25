@@ -17,8 +17,8 @@ function custom_config {
 	cd "$1"
 	if [ -d "etc" ]; then
 		for file in etc/* ; do
-			if [ "$file" = "modules" ]; then
-				cat modules >> /etc/modules
+			if [ "$file" = "etc/modules" ]; then
+				cat "$file" >> /etc/modules
 			else
 				cp -a "$file" /etc
 			fi
