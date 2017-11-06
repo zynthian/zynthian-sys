@@ -103,7 +103,7 @@ pip3 install JACK-Client
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
-if [[ "$ZYNTHAIN_SETUP_CLEANCACHE" = "TRUE" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
+if [[ "$ZYNTHAIN_SETUP_APT_CLEAN" = "TRUE" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
    apt-get clean
 fi
 
