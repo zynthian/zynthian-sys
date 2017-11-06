@@ -97,4 +97,4 @@ export CFLAGS_UNSAFE
 #echo "Hardware Model: ${model}"
 
 # Setup / Build Options
-export ZYNTHAIN_SETUP_CLEANCACHE="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
+export ZYNTHAIN_SETUP_CLEAN_CACHE="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
