@@ -98,6 +98,18 @@ cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
 # System Config 
 #------------------------------------------------------------------------------
 
+# Setup my-data directory
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets" ]; then
+	cd $ZYNTHIAN_MY_DATA_DIR
+	mkdir "presets"
+	mkdir "presets/xiz"
+	mkdir "presets/xmz"
+	mkdir "presets/xsz"
+	mv zynbanks/* presets/xiz
+	rm -rf "zynbanks"
+	ln -s "presets/xiz" "zynbanks"
+fi
+
 # Copy "etc" config files
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
