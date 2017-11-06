@@ -95,3 +95,6 @@ export CXXFLAGS=${CFLAGS}
 export CFLAGS_UNSAFE
 #echo "Hardware Architecture: ${machine}"
 #echo "Hardware Model: ${model}"
+
+# Setup / Build Options
+export ZYNTHAIN_SETUP_CLEANCACHE="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
