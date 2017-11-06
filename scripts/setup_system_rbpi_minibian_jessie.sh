@@ -102,7 +102,10 @@ pip3 install websocket-client
 pip3 install JACK-Client
 
 # Clean
-apt-get -y autoremove
+apt-get -y autoremove # Remove unneeded packages
+if [[ "$ZYNTHAIN_SETUP_APT_CLEAN" = "TRUE" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
+   apt-get clean
+fi
 
 #************************************************
 #------------------------------------------------
@@ -113,7 +116,7 @@ apt-get -y autoremove
 mkdir $ZYNTHIAN_DIR
 mkdir $ZYNTHIAN_CONFIG_DIR
 
-# Zyncoder library
+# Zyncoder library 
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zyncoder.git
 mkdir zyncoder/build
