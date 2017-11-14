@@ -1,5 +1,17 @@
 #!/bin/bash
 
+#------------------------------------------------------------------------------
+# Define config dir if needed
+#------------------------------------------------------------------------------
+
+if [ -z "$ZYNTHIAN_CONFIG_DIR" ]; then
+	export ZYNTHIAN_CONFIG_DIR="$ZYNTHIAN_DIR/config"
+fi
+
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
+
 if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
 	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
@@ -39,10 +51,6 @@ function custom_config {
 #------------------------------------------------------------------------------
 # Default Values for some Config Variables
 #------------------------------------------------------------------------------
-
-if [ -z "$ZYNTHIAN_CONFIG_DIR" ]; then
-	export ZYNTHIAN_CONFIG_DIR="$ZYNTHIAN_DIR/config"
-fi
 
 if [ -z "$FRAMEBUFFER" ]; then
 	export FRAMEBUFFER="/dev/fb1"
@@ -138,13 +146,22 @@ cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 # => ZynAddSubFX Config
 cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
 
-# Zynthian Specific Config Files
+
+# Create config dir if needed  ...
 if [ ! -d "$ZYNTHIAN_CONFIG_DIR" ]; then
 	mkdir $ZYNTHIAN_CONFIG_DIR
 fi
+# Copy default config dir if needed ...
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
 fi
+# Add ZYNTHIAN_CONFIG_DIR variable if needed ...
+grep -q "ZYNTHIAN_CONFIG_DIR" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+if [[ ! $? -eq 0 ]]; then
+	sed -i -e "s/export ZYNTHIAN_DIR=\"\/zynthian\"/export ZYNTHIAN_DIR=\"\/zynthian\"\nexport ZYNTHIAN_CONFIG_DIR=\"\$ZYNTHIAN_DIR\/config\"/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+fi
+
+# Zynthian Specific Config Files
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/backup_items.txt $ZYNTHIAN_CONFIG_DIR
 fi
