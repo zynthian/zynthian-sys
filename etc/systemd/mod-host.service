@@ -4,13 +4,20 @@ After=jack2.service
 Requires=jack2.service
 
 [Service]
-Type=forking
-Environment=HOME=/root
-Environment=LV2_PATH=#LV2_PATH#
-WorkingDirectory=/root
-ExecStart=/usr/local/bin/mod-host
-Restart=always
-RestartSec=2
+#Type=forking
+#Environment=HOME=/root
+#Environment=LV2_PATH=#LV2_PATH#
+#WorkingDirectory=/root
+#ExecStart=/usr/local/bin/mod-host
+#Restart=always
+#RestartSec=2
+
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/bin/jack_load mod-host
+ExecStartPre=/usr/bin/jack_load mod-monitor
+ExecStop=/usr/bin/jack_unload mod-host
+ExecStopPost=/usr/bin/jack_unload mod-monitor
 
 [Install]
 WantedBy=multi-user.target

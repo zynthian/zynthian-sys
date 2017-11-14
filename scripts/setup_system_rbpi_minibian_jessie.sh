@@ -81,7 +81,7 @@ apt-get -y install evtest tslib libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison
+apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep
 
 # Libraries
 apt-get -y --force-yes install wiringpi libfftw3-dev libmxml-dev zlib1g-dev libfltk1.3-dev libncurses5-dev \
@@ -97,9 +97,10 @@ libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4 libxi-dev li
 
 # Python
 apt-get -y install python python-dev python-pip cython python-dbus 
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-PIL python3-pil.imagetk
+apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk
 pip3 install websocket-client
 pip3 install JACK-Client
+pip3 install tornado==4.1
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages

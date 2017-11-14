@@ -15,7 +15,8 @@ if [ "$ui_branch" == "* multilayer" ]; then
 	apt-get -y upgrade
 
 	# Install extra python libraries
-	apt-get -y install python3-PIL python3-pil.imagetk
+	apt-get -y install python3-pil python3-pil.imagetk
+	pip3 install tornado==4.1
 
 	# Change SYS to branch webconf
 	cd $ZYNTHIAN_SYS_DIR
