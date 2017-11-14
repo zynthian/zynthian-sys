@@ -16,10 +16,6 @@ Environment=MOD_LIVE_ISO=0
 Environment=MOD_SYSTEM_OUTPUT=1
 WorkingDirectory=#ZYNTHIAN_SW_DIR#/mod-ui
 ExecStart=#ZYNTHIAN_SW_DIR#/mod-ui/server.py
-#ExecStartPre=/usr/bin/jack_load mod-host
-#ExecStartPre=/usr/bin/jack_load mod-monitor
-#ExecStopPost=/usr/bin/jack_unload mod-host
-#ExecStopPost=/usr/bin/jack_unload mod-monitor
 Restart=always
 RestartSec=2
 
