@@ -144,7 +144,7 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
 	# Add to $LV2_PATH
 	sed -i -e "s/\/lv2\"/\/lv2\:\$ZYNTHIAN_MY_DATA_DIR\/presets\/lv2\"/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 	# Update current environment vars
-	export $LV2_PATH="$LV2_PATH:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+	LV2_PATH="$LV2_PATH:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 	LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 	# Reboot
 	touch $REBOOT_FLAGFILE
