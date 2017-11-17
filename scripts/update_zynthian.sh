@@ -11,10 +11,8 @@ rm -f $REBOOT_FLAGFILE
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
-cp -a scripts/zynthian_envars.sh /tmp
 git checkout .
 git pull
-cp -a /tmp/zynthian_envars.sh ./scripts
 
 cd ./scripts
 ./update_zynthian_sys.sh
