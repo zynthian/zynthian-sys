@@ -167,12 +167,12 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 
 # Fix problem with WLAN interfaces numbering
-if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
+#if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
 	if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
 		rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
 	fi
-	mv /etc/udev/rules.d/70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules.inactive
-fi
+#	mv /etc/udev/rules.d/70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules.inactive
+#fi
 
 # Copy fonts to system directory
 cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
