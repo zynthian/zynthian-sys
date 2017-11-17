@@ -106,6 +106,22 @@ cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
 # System Config 
 #------------------------------------------------------------------------------
 
+# Create config dir if needed  ...
+if [ ! -d "$ZYNTHIAN_CONFIG_DIR" ]; then
+	mkdir $ZYNTHIAN_CONFIG_DIR
+fi
+# Copy default config dir if needed ...
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+fi
+# Add ZYNTHIAN_CONFIG_DIR variable if needed ...
+grep -q "ZYNTHIAN_CONFIG_DIR" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+if [[ ! $? -eq 0 ]]; then
+	sed -i -e "s/export ZYNTHIAN_DIR=\"\/zynthian\"/export ZYNTHIAN_DIR=\"\/zynthian\"\nexport ZYNTHIAN_CONFIG_DIR=\"\$ZYNTHIAN_DIR\/config\"/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+	# Reboot
+	touch $REBOOT_FLAGFILE
+fi
+
 # Setup my-data directory
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets" ]; then
 	cd $ZYNTHIAN_MY_DATA_DIR
@@ -128,7 +144,7 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
 	# Add to $LV2_PATH
 	sed -i -e "s/\/lv2\"/\/lv2\:\$ZYNTHIAN_MY_DATA_DIR\/presets\/lv2\"/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 	# Update current environment vars
-	$LV2_PATH="$LV2_PATH:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+	export $LV2_PATH="$LV2_PATH:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 	LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 	# Reboot
 	touch $REBOOT_FLAGFILE
@@ -152,6 +168,9 @@ sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.con
 
 # Fix problem with WLAN interfaces numbering
 if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
+	if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
+		rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
+	fi
 	mv /etc/udev/rules.d/70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules.inactive
 fi
 
@@ -161,23 +180,6 @@ cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 # User Config (root)
 # => ZynAddSubFX Config
 cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
-
-
-# Create config dir if needed  ...
-if [ ! -d "$ZYNTHIAN_CONFIG_DIR" ]; then
-	mkdir $ZYNTHIAN_CONFIG_DIR
-fi
-# Copy default config dir if needed ...
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
-fi
-# Add ZYNTHIAN_CONFIG_DIR variable if needed ...
-grep -q "ZYNTHIAN_CONFIG_DIR" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-if [[ ! $? -eq 0 ]]; then
-	sed -i -e "s/export ZYNTHIAN_DIR=\"\/zynthian\"/export ZYNTHIAN_DIR=\"\/zynthian\"\nexport ZYNTHIAN_CONFIG_DIR=\"\$ZYNTHIAN_DIR\/config\"/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-	# Reboot
-	touch $REBOOT_FLAGFILE
-fi
 
 # Zynthian Specific Config Files
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
