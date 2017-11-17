@@ -118,6 +118,22 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets" ]; then
 	ln -s "presets/xiz" "zynbanks"
 fi
 
+# Setup LV2 presets directory
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
+	# Create directory and link it
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+	mv /root/.lv2/* "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+	rm -rf /root/.lv2
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" /root/.lv2
+	# Add to $LV2_PATH
+	sed -i -e "s/\/lv2\"/\/lv2\:\$ZYNTHIAN_MY_DATA_DIR\/presets\/lv2\"/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+	# Update current environment vars
+	$LV2_PATH="$LV2_PATH:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+	LV2_PATH_ESC=${LV2_PATH//\//\\\/}
+	# Reboot
+	touch $REBOOT_FLAGFILE
+fi
+
 # Copy "etc" config files
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
@@ -159,6 +175,8 @@ fi
 grep -q "ZYNTHIAN_CONFIG_DIR" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 if [[ ! $? -eq 0 ]]; then
 	sed -i -e "s/export ZYNTHIAN_DIR=\"\/zynthian\"/export ZYNTHIAN_DIR=\"\/zynthian\"\nexport ZYNTHIAN_CONFIG_DIR=\"\$ZYNTHIAN_DIR\/config\"/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+	# Reboot
+	touch $REBOOT_FLAGFILE
 fi
 
 # Zynthian Specific Config Files
