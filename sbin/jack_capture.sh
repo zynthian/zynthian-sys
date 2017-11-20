@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Configure capture directory
 if mountpoint -q -- "/media/usb0"; then
 	CAPTURE_DIR="/media/usb0"
 	echo "Capturing to USB storage => $CAPTURE_DIR"
@@ -11,11 +12,13 @@ else
 	echo "Capturing to internal storage => $CAPTURE_DIR"
 fi
 
+# Capture audio using jack_capture
 cd $CAPTURE_DIR
-
 if [ $1 = "--zui" ]; then
 	/usr/local/bin/jack_capture --no-stdin --absolutely-silent --jack-transport
 else
 	/usr/local/bin/jack_capture
 fi
 
+# Write buffers to disk
+sync
