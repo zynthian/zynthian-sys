@@ -11,3 +11,7 @@ fi
 sudo pip3 install -r requirements.txt
 cd utils
 make
+
+if [ ! -d "$ZYNTHIAN_SW_DIR/mod-ui/data" ]; then
+	mkdir "$ZYNTHIAN_SW_DIR/mod-ui/data"
+fi
