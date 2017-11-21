@@ -77,7 +77,7 @@ export LV2_PATH="$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_PLUGINS_DIR/lv2:$ZYNTHIA
 # Hardware Architecture & Optimization Options
 machine=`uname -m 2>/dev/null`
 if [ ${machine} = "armv7l" ]; then
-	model=`cat /sys/firmware/devicetree/base/model 2>/dev/null`
+	model=`echo /sys/firmware/devicetree/base/model 2>/dev/null`
 	if [[ ${model} =~ [3] ]]; then
 		CPU="-mcpu=cortex-a53"
 		FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
