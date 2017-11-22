@@ -243,8 +243,11 @@ bash $ZYNTHIAN_RECIPE_DIR/install_aubio.sh
 # Install jpmidi (MID player for jack with transport sync)
 bash $ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
 
-# Install jack_capture (jackd recorder)
+# Install jack_capture (jackd audio recorder)
 bash $ZYNTHIAN_RECIPE_DIR/install_jack_capture.sh
+
+# Install jack_smf utils (jackd MID-file player/recorder)
+bash $ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
 
 # Install touchosc2midi (TouchOSC Bridge)
 bash $ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
