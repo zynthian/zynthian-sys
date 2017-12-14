@@ -125,13 +125,21 @@ fi
 # Setup my-data directory
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets" ]; then
 	cd $ZYNTHIAN_MY_DATA_DIR
-	mkdir "presets"
-	mkdir "presets/xiz"
-	mkdir "presets/xmz"
-	mkdir "presets/xsz"
+	mkdir presets
+	mkdir presets/xiz
+	mkdir presets/xmz
+	mkdir presets/xsz
 	mv zynbanks/* presets/xiz
-	rm -rf "zynbanks"
-	ln -s "presets/xiz" "zynbanks"
+	rm -rf zynbanks
+	ln -s presets/xiz zynbanks
+elif [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/xiz" ]; then
+	cd $ZYNTHIAN_MY_DATA_DIR/presets
+	mv xiz zynaddsubfx
+	mv xmz zynaddsubfx/XMZ
+	mv xsz zynaddsubfx/XSZ
+	mkdir zynaddsubfx/XLZ
+	rm -rf zynbanks
+	ln -s presets/zynaddsubfx zynbanks
 fi
 
 # Setup LV2 presets directory
