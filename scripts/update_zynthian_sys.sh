@@ -138,6 +138,7 @@ elif [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/xiz" ]; then
 	mv xmz zynaddsubfx/XMZ
 	mv xsz zynaddsubfx/XSZ
 	mkdir zynaddsubfx/XLZ
+	cd $ZYNTHIAN_MY_DATA_DIR
 	rm -rf zynbanks
 	ln -s presets/zynaddsubfx zynbanks
 fi
