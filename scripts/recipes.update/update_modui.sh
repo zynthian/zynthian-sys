@@ -11,7 +11,7 @@ fi
 cd $ZYNTHIAN_SW_DIR/mod-ui
 git pull | grep -q -v 'Already up-to-date.' && changed=1
 if [[ "$changed" -eq 1 ]]; then
-	pip3 install -r requirements.txt
+	#pip3 install -r requirements.txt
 	cd utils
 	make -j 4
 	cd ..
