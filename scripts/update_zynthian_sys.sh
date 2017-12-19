@@ -121,8 +121,12 @@ if [[ ! $? -eq 0 ]]; then
 	# Reboot
 	touch $REBOOT_FLAGFILE
 fi
+#Remove MIDI variables => moved to MIDI profiles
+sed -i -e "/export ZYNTHIAN_MIDI_[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+sed -i -e "/export ZYNTHIAN_MASTER_MIDI_[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+sed -i -e "/export ZYNTHIAN_PRESET_PRELOAD_NOTEON[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
-# Setup my-data directory
+# Setup my-data presets subtree
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets" ]; then
 	cd $ZYNTHIAN_MY_DATA_DIR
 	mkdir presets
@@ -157,6 +161,11 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
 	LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 	# Reboot
 	touch $REBOOT_FLAGFILE
+fi
+
+# Setup MIDI-profiles data directory
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/midi-profiles"
 fi
 
 # Copy "etc" config files
