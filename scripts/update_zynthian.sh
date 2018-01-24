@@ -54,6 +54,7 @@ echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
 git checkout .
 git pull
+rm -f zynthian_gui_config_new.py
 
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
