@@ -99,8 +99,9 @@ libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4 libxi-dev li
 apt-get -y install python python-dev python-pip cython python-dbus 
 apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk
 pip3 install websocket-client
-pip3 install JACK-Client
 pip3 install tornado==4.1
+pip3 install tornadostreamform
+pip3 install jsonpickle
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
@@ -251,6 +252,10 @@ bash $ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
 
 # Install touchosc2midi (TouchOSC Bridge)
 bash $ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
+
+# Install jackclient (jack-client python library)
+bash $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
+
 
 #************************************************
 #------------------------------------------------
