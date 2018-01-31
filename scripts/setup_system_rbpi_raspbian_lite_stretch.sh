@@ -93,7 +93,7 @@ libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4 libxi-dev li
 
 # Python
 apt-get -y install python python-dev python-pip cython python-dbus 
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-PIL python3-pil.imagetk
+apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk
 pip3 install websocket-client
 pip3 install JACK-Client
 
