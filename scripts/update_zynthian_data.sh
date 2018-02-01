@@ -30,6 +30,8 @@ fi
 
 # Dirty Hack to force updating the Dexed TTL !!
 rm -f $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards/Dexed.pedalboard/Dexed.ttl
+# Remove deprecated dexed user presets
+rm -rf $ZYNTHIAN_MY_PLUGINS/lv2/*RITCH*
 
 echo "Updating zynthian-data ..."
 cd "$ZYNTHIAN_DATA_DIR"
