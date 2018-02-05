@@ -19,6 +19,6 @@ fi
 
 # 2018-01-23 => replace jackclient-python by a customized version
 if [ ! -d "$ZYNTHIAN_SW_DIR/jackclient-python" ]; then
-	pip3 -y uninstall JACK-Client
+	yes | pip3 uninstall JACK-Client
 	bash $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 fi
