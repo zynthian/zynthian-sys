@@ -152,10 +152,11 @@ sed -i -e "/export ZYNTHIAN_PRESET_PRELOAD_NOTEON[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets" ]; then
 	cd $ZYNTHIAN_MY_DATA_DIR
 	mkdir presets
-	mkdir presets/xiz
-	mkdir presets/xmz
-	mkdir presets/xsz
-	mv zynbanks/* presets/xiz
+	mkdir presets/zynaddsubfx
+	mkdir presets/zynaddsubfx/XMZ
+	mkdir presets/zynaddsubfx/XSZ
+	mkdir presets/zynaddsubfx/XLZ
+	mv zynbanks/* presets/zynaddsubfx
 	rm -rf zynbanks
 	ln -s presets/xiz zynbanks
 elif [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/xiz" ]; then
