@@ -152,17 +152,19 @@ git clone https://github.com/zynthian/zynthian-webconf.git
 git clone https://github.com/zynthian/zynthian-emuface.git
 
 # Create needed directories
-mkdir $ZYNTHIAN_SW_DIR
+mkdir "$ZYNTHIAN_CONFIG_DIR"
+mkdir "$ZYNTHIAN_SW_DIR"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
-mkdir $ZYNTHIAN_MY_DATA_DIR
+mkdir "$ZYNTHIAN_MY_DATA_DIR"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/xiz"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/xmz"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/xsz"
-ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/xiz" "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
+ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx" "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
@@ -170,9 +172,9 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
-mkdir $ZYNTHIAN_PLUGINS_DIR
+mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
-mkdir $ZYNTHIAN_MY_PLUGINS_DIR
+mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
 # Copy some files
