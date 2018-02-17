@@ -40,6 +40,7 @@ git pull
 
 cd ./scripts
 ./update_zynthian_sys.sh
+./update_zynthian_data.sh
 ./update_zynthian_recipes.sh
 
 echo "Updating zyncoder ..."
