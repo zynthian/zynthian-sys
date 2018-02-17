@@ -174,8 +174,10 @@ fi
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
 	# Create directory and link it
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
-	mv /root/.lv2/* "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
-	rm -rf /root/.lv2
+	if [ -d /root/.lv2 ]; then
+	    mv /root/.lv2/* "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+	    rm -rf /root/.lv2
+	fi
 	ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" /root/.lv2
 	# Add to $LV2_PATH
 	sed -i -e "s/\/lv2\"/\/lv2\:\$ZYNTHIAN_MY_DATA_DIR\/presets\/lv2\"/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
