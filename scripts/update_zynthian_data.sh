@@ -35,6 +35,7 @@ rm -rf $ZYNTHIAN_MY_PLUGINS_DIR/lv2/*RITCH*
 
 echo "Updating zynthian-data ..."
 cd "$ZYNTHIAN_DATA_DIR"
+git checkout .
 git pull
 cp -na $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards
 cp -na $ZYNTHIAN_DATA_DIR/presets/lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2
