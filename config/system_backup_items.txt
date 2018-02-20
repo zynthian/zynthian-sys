@@ -2,3 +2,4 @@
 /etc/*
 ${ZYNTHIAN_CONFIG_DIR}/*
 /root/.config/Modartt
+/etc/network/interfaces
