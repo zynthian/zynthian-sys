@@ -169,6 +169,14 @@ elif [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/xiz" ]; then
 	rm -rf zynbanks
 	ln -s presets/zynaddsubfx zynbanks
 fi
+if [ -d "/root/.local/share/Modartt/Pianoteq/Presets" ] then
+	if [ ! -d "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" ] then
+		mkdir "/root/.local/share/Modartt/Pianoteq/Presets/My Presets"
+	fi
+	if [ ! -L $ZYNTHIAN_MY_DATA_DIR/presets/pianoteq ]; then
+		ln -s "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" $ZYNTHIAN_MY_DATA_DIR/presets/pianoteq
+	fi
+fi
 
 # Setup LV2 presets directory
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
