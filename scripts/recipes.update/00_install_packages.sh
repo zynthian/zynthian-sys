@@ -22,3 +22,13 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/jackclient-python" ]; then
 	yes | pip3 uninstall JACK-Client
 	bash $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 fi
+
+# 2018-03-11 => Install Pianoteq 6.0 Demo
+if [ ! -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]; then
+	cd $ZYNTHIAN_SW_DIR
+	wget http://blog.ynthian.org/download/pianoteq6.tar.bz2
+	tar -xfj pianoteq6.tar.bz2
+	rm pianoteq6.tar.bz2
+	cd pianoteq6
+	mv arm/* .
+fi
