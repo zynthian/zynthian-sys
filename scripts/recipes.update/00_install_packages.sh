@@ -26,8 +26,8 @@ fi
 # 2018-03-11 => Install Pianoteq 6.0 Demo
 if [ ! -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]; then
 	cd $ZYNTHIAN_SW_DIR
-	wget http://blog.ynthian.org/download/pianoteq6.tar.bz2
-	tar -xfj pianoteq6.tar.bz2
+	wget http://blog.zynthian.org/download/pianoteq6.tar.bz2
+	tar xfvj pianoteq6.tar.bz2
 	rm pianoteq6.tar.bz2
 	cd pianoteq6
 	mv arm/* .
