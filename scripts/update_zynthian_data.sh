@@ -44,6 +44,7 @@ cp -na $ZYNTHIAN_DATA_DIR/presets/lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2
 cd $ZYNTHIAN_PLUGINS_DIR
 if [ -d "./mod-lv2" ]; then
 	mv ./mod-lv2/* ./lv2
+	rm -rf ./mod-lv2
 fi
 
 #echo "Updating zynthian-plugins ..."
