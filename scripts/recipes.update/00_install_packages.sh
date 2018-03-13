@@ -33,6 +33,6 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]; then
 	ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
 	mkdir -p /root/.config/Modartt
 	cp /zynthian/zynthian-data/pianoteq6/*.prefs /root/.config/Modartt
-fi
 	mkdir -p /root/.local/share/Modartt/Pianoteq/MidiMappings
 	cp /zynthian/zynthian-data/pianoteq6/Zynthian.ptm /root/.local/share/Modartt/Pianoteq/MidiMappings
+fi
