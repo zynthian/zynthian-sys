@@ -35,13 +35,27 @@ apt-get -y dist-upgrade
 
 # Install required dependencies if needed
 apt-get -y install apt-utils
-apt-get -y install sudo apt-transport-https software-properties-common rpi-update htpdate parted
+apt-get -y install sudo apt-transport-https software-properties-common htpdate parted
+
+# Set here default config
+[ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=yes
+[ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
+[ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
+[ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO=https://github.com/zynthian/zynthian-sys.git
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH=master
+
+if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
+    apt-get -y install rpi-update
+fi
+
 
 # Adjust System Date/Time
 htpdate 0.europe.pool.ntp.org
 
 # Update Firmware
-rpi-update
+if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
+    rpi-update
+fi
 
 #------------------------------------------------
 # Add Repositories
@@ -95,8 +109,13 @@ fonts-roboto
 #libgd2-xpm-dev
 
 # Python
-apt-get -y install python python-dev python-pip cython python-dbus 
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk
+apt-get -y install python python-dev cython python-dbus
+apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk
+
+if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
+    apt-get -y install python-pip python3-pip
+fi
+
 pip3 install websocket-client
 pip3 install tornado==4.1
 pip3 install tornadostreamform
@@ -104,8 +123,8 @@ pip3 install jsonpickle
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
-if [[ "$ZYNTHAIN_SETUP_APT_CLEAN" = "TRUE" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
-	apt-get clean
+if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
+    apt-get clean
 fi
 
 #************************************************
@@ -130,7 +149,7 @@ cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
 
 # Zynthian System Scripts and Config files
-git clone https://github.com/zynthian/zynthian-sys.git
+git clone -b ""${ZYNTHIAN_SYS_BRANCH}"" "${ZYNTHIAN_SYS_REPO}"
 
 # Zynthian Data
 git clone https://github.com/zynthian/zynthian-data.git
@@ -180,8 +199,10 @@ cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-
 #************************************************
 
 #Change Hostname
-echo "zynthian" > /etc/hostname
-sed -i -e "s/raspbian/zynthian/" /etc/hosts
+if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
+    echo "zynthian" > /etc/hostname
+    sed -i -e "s/raspbian/zynthian/" /etc/hosts
+fi
 
 # Run configuration script
 bash $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
