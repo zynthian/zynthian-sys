@@ -169,13 +169,23 @@ elif [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/xiz" ]; then
 	rm -rf zynbanks
 	ln -s presets/zynaddsubfx zynbanks
 fi
-if [ -d "/root/.local/share/Modartt/Pianoteq/Presets" ]; then
-	if [ ! -d "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" ]; then
-		mkdir "/root/.local/share/Modartt/Pianoteq/Presets/My Presets"
-	fi
-	if [ ! -L $ZYNTHIAN_MY_DATA_DIR/presets/pianoteq ]; then
-		ln -s "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" $ZYNTHIAN_MY_DATA_DIR/presets/pianoteq
-	fi
+
+# Setup Pianoteq User Presets Directory
+if [ ! -d "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" ]; then
+	mkdir -p "/root/.local/share/Modartt/Pianoteq/Presets/My Presets"
+fi
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/presets/pianoteq" ]; then
+	ln -s "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" "$ZYNTHIAN_MY_DATA_DIR/presets/pianoteq"
+fi
+# Setup Pianoteq Config files
+if [ ! -d "/root/.config/Modartt" ]; then
+	mkdir -p "/root/.config/Modartt"
+	cp $ZYNTHIAN_DATA_DIR/pianoteq6/*.prefs /root/.config/Modartt
+fi
+# Setup Pianoteq MidiMappings
+if [ ! -d "/root/.config/Modartt/Pianoteq/MidiMappings" ]; then
+	mkdir -p "/root/.local/share/Modartt/Pianoteq/MidiMappings"
+	cp $ZYNTHIAN_DATA_DIR/pianoteq6/Zynthian.ptm /root/.local/share/Modartt/Pianoteq/MidiMappings
 fi
 
 # Setup LV2 presets directory
