@@ -236,7 +236,7 @@ if [ -f "/etc/udev/rules.d/70-persistent-net.rules.inactive" ]; then
 	rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
 fi
 #Fix timeout in network initialization
-if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]
+if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
 	mkdir -p "/etc/systemd/system/networking.service.d"
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
 fi
