@@ -32,3 +32,28 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]; then
 	rm pianoteq6_demo.tar.xz
 	ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
 fi
+
+# 2018-03-14 => Install Helm Synthesizer
+if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/helm" ]; then
+	apt-get update
+	apt-get install -y --no-install-recommends libxcursor-dev libxinerama-dev libcurl4-openssl-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev
+	bash $ZYNTHIAN_RECIPE_DIR/install_helm.sh
+fi
+
+# 2018-03-14 => Install Infamous Plugins
+if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/infamousPlugins" ]; then
+	bash $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
+fi
+
+# 2018-03-14 => Install Invada Plugins
+if [ ! -L "$ZYNTHIAN_PLUGINS_DIR/lv2/invada.lv2" ]; then
+	apt-get install -y --no-install-recommends invada-studio-plugins-lv2
+	ln -s /usr/lib/lv2/invada.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+fi
+
+# 2018-03-14 => Install padthv1
+if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/padthv1" ]; then
+	apt-get update
+	apt-get install -y --no-install-recommends qt5-qmake qt5-default
+	bash $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
+fi
