@@ -114,9 +114,6 @@ EOF
 chmod +x /etc/init.d/resize2fs_once &&
 update-rc.d resize2fs_once defaults &&
 
-#Delete "rpi-wiggle.sh" line from /etc/rc.local
-sed -i -- "s/\/zynthian\/zynthian-sys\/scripts\/rpi-wiggle\.sh//" /etc/rc.local
-
 echo
 echo #####################################################################
 echo System is now ready to resize your system.  A REBOOT IS REQUIRED NOW!
