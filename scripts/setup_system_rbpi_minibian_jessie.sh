@@ -217,9 +217,8 @@ echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 
-# Resize SD partition on first boot
-sed -i -- "s/exit 0/\/zynthian\/zynthian-sys\/scripts\/rpi-wiggle\.sh/" /etc/rc.local
-echo "exit 0" >> /etc/rc.local
+# On first boot, resize SD partition, regenerate keys, etc.
+$ZYNTHIAN_SYS_DIR/scripts/add_first_boot.sh
 
 #************************************************
 #------------------------------------------------

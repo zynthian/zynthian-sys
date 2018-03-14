@@ -91,7 +91,7 @@ apt-get -y install evtest tslib libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep
+apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt5-default
 
 # Libraries
 apt-get -y --force-yes install wiringpi libfftw3-dev libmxml-dev zlib1g-dev libfltk1.3-dev libncurses5-dev \
@@ -102,7 +102,7 @@ libexpat-dev libglib2.0-dev libgettextpo-dev libglibmm-2.4-dev libeigen3-dev \
 libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev lv2-c++-tools python3-numpy-dev \
 libavcodec57 libavformat57 libavutil55 libavresample3 python3-pyqt4 libxi-dev libsqlite3-dev \
 libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
-fonts-roboto
+fonts-roboto libxcursor-dev libxinerama-dev libcurl4-openssl-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev
 
 #libjack-dev-session
 #non-ntk-dev
@@ -233,9 +233,8 @@ echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 
-# Resize SD partition on first boot
-sed -i -- "s/exit 0/\/zynthian\/zynthian-sys\/scripts\/rpi-wiggle\.sh/" /etc/rc.local
-echo "exit 0" >> /etc/rc.local
+# On first boot, resize SD partition, regenerate keys, etc.
+$ZYNTHIAN_SYS_DIR/scripts/add_first_boot.sh
 
 #************************************************
 #------------------------------------------------
