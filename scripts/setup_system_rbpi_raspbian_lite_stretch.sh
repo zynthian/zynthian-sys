@@ -103,7 +103,6 @@ libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev lv2-c++-tools 
 libavcodec57 libavformat57 libavutil55 libavresample3 python3-pyqt4 libxi-dev libsqlite3-dev \
 libgtk2.0-dev libgtkmm-2.4-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
 fonts-roboto libxcursor-dev libxinerama-dev libcurl4-openssl-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev
-apt-get -y --force-yes install liblrdf-dev
 
 #libjack-dev-session
 #non-ntk-dev
