@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Load Config Envars
+source "/zynthian/config/zynthian_envars.sh"
+
 # First, delete the first boot call
 $ZYNTHIAN_SYS_DIR/scripts/del_first_boot.sh
 
