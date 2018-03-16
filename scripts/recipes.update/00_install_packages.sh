@@ -55,6 +55,6 @@ fi
 # 2018-03-14 => Install padthv1
 if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/padthv1" ]; then
 	apt-get -y update
-	apt-get -y --no-install-recommends install qt5-qmake qt5-default
+	apt-get -y --no-install-recommends install qt5-qmake qt5-default vi
 	bash $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
 fi
