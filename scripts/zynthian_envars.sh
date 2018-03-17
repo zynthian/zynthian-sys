@@ -53,7 +53,7 @@ export ZYNTHIAN_UI_FONT_SIZE="10"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 
 # MIDI system configuration
-export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/zynthian-data/midi-profiles/default.sh"
+export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/zynthian-my-data/midi-profiles/default.sh"
 
 # Extra features
 export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
