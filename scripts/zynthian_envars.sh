@@ -38,10 +38,10 @@ export ZYNTHIAN_AUBIONOTES=1
 export ZYNTHIAN_TOUCHOSC=1
 
 # Zynthian Wiring Config
-export ZYNTHIAN_WIRING_LAYOUT="PROTOTYPE-4"
-export ZYNTHIAN_WIRING_ENCODER_A=""
-export ZYNTHIAN_WIRING_ENCODER_B=""
-export ZYNTHIAN_WIRING_SWITCHES=""
+export ZYNTHIAN_WIRING_LAYOUT="PROTOTYPE-3H"
+export ZYNTHIAN_WIRING_ENCODER_A="21,27,7,3"
+export ZYNTHIAN_WIRING_ENCODER_B="26,25,0,4"
+export ZYNTHIAN_WIRING_SWITCHES="107,23,106,2"
 
 # Zynthian UI Config
 export ZYNTHIAN_UI_COLOR_BG="#000000"
@@ -75,13 +75,18 @@ export LV2_PATH="$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_PLUGINS_DIR/lv2:$ZYNTHIA
 # Hardware Architecture & Optimization Options
 machine=`uname -m 2>/dev/null`
 if [ ${machine} = "armv7l" ]; then
-	model=`cat /sys/firmware/devicetree/base/model 2>/dev/null`
-	if [[ ${model} =~ [3] ]]; then
-		CPU="-mcpu=cortex-a53"
-		FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
-	else
-		CPU="-mcpu=cortex-a7 -mthumb"
-		FPU="-mfpu=neon-vfpv4"
+	# default is: RPi3
+	CPU="-mcpu=cortex-a53"
+	FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
+	if [ -e "/sys/firmware/devicetree/base/model" ]
+	then
+		model=`echo /sys/firmware/devicetree/base/model 2>/dev/null`
+		if [[ ${model} =~ [2] ]]; then
+			CPU="-mcpu=cortex-a7 -mthumb"
+			FPU="-mfpu=neon-vfpv4"
+		fi
+	els
+		model=""
 	fi
 	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad"
 	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations"
