@@ -38,10 +38,10 @@ export ZYNTHIAN_AUBIONOTES=1
 export ZYNTHIAN_TOUCHOSC=1
 
 # Zynthian Wiring Config
-export ZYNTHIAN_WIRING_LAYOUT="PROTOTYPE-4"
-export ZYNTHIAN_WIRING_ENCODER_A=""
-export ZYNTHIAN_WIRING_ENCODER_B=""
-export ZYNTHIAN_WIRING_SWITCHES=""
+export ZYNTHIAN_WIRING_LAYOUT="PROTOTYPE-3H"
+export ZYNTHIAN_WIRING_ENCODER_A="21,27,7,3"
+export ZYNTHIAN_WIRING_ENCODER_B="26,25,0,4"
+export ZYNTHIAN_WIRING_SWITCHES="107,23,106,2"
 
 # Zynthian UI Config
 export ZYNTHIAN_UI_COLOR_BG="#000000"
@@ -51,12 +51,14 @@ export ZYNTHIAN_UI_COLOR_PANEL_BG="#3a424d"
 export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
 export ZYNTHIAN_UI_FONT_SIZE="10"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
-
-# MIDI system configuration
-export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/zynthian-data/midi-profiles/default.sh"
-
-# Extra features
-export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
+export ZYNTHIAN_MASTER_MIDI_CHANNEL="16"
+export ZYNTHIAN_MASTER_MIDI_PROGRAM_CHANGE_TYPE="Roland"
+export ZYNTHIAN_MASTER_MIDI_PROGRAM_CHANGE_DOWN="C#00"
+export ZYNTHIAN_MASTER_MIDI_PROGRAM_CHANGE_UP="C#7F"
+export ZYNTHIAN_MIDI_FINE_TUNING="440"
+export ZYNTHIAN_MASTER_MIDI_BANK_CHANGE_DOWN="B#0000"
+export ZYNTHIAN_MASTER_MIDI_BANK_CHANGE_UP="B#007F"
+export ZYNTHIAN_PRESET_PRELOAD_NOTEON="1"
 
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"
@@ -75,13 +77,18 @@ export LV2_PATH="$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_PLUGINS_DIR/lv2:$ZYNTHIA
 # Hardware Architecture & Optimization Options
 machine=`uname -m 2>/dev/null`
 if [ ${machine} = "armv7l" ]; then
-	model=`cat /sys/firmware/devicetree/base/model 2>/dev/null`
-	if [[ ${model} =~ [2] ]]; then
-		CPU="-mcpu=cortex-a7 -mthumb"
-		FPU="-mfpu=neon-vfpv4"
+	# default is: RPi3
+	CPU="-mcpu=cortex-a53"
+	FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
+	if [ -e "/sys/firmware/devicetree/base/model" ]
+	then
+		model=`echo /sys/firmware/devicetree/base/model 2>/dev/null`
+		if [[ ${model} =~ [2] ]]; then
+			CPU="-mcpu=cortex-a7 -mthumb"
+			FPU="-mfpu=neon-vfpv4"
+		fi
 	else
-		CPU="-mcpu=cortex-a53"
-		FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
+		model=""
 	fi
 	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad"
 	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations"
