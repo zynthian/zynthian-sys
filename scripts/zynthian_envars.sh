@@ -51,14 +51,12 @@ export ZYNTHIAN_UI_COLOR_PANEL_BG="#3a424d"
 export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
 export ZYNTHIAN_UI_FONT_SIZE="10"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
-export ZYNTHIAN_MASTER_MIDI_CHANNEL="16"
-export ZYNTHIAN_MASTER_MIDI_PROGRAM_CHANGE_TYPE="Roland"
-export ZYNTHIAN_MASTER_MIDI_PROGRAM_CHANGE_DOWN="C#00"
-export ZYNTHIAN_MASTER_MIDI_PROGRAM_CHANGE_UP="C#7F"
-export ZYNTHIAN_MIDI_FINE_TUNING="440"
-export ZYNTHIAN_MASTER_MIDI_BANK_CHANGE_DOWN="B#0000"
-export ZYNTHIAN_MASTER_MIDI_BANK_CHANGE_UP="B#007F"
-export ZYNTHIAN_PRESET_PRELOAD_NOTEON="1"
+
+# MIDI system configuration
+export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/zynthian-my-data/midi-profiles/default.sh"
+
+# Extra features
+export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
 
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"
@@ -87,7 +85,7 @@ if [ ${machine} = "armv7l" ]; then
 			CPU="-mcpu=cortex-a7 -mthumb"
 			FPU="-mfpu=neon-vfpv4"
 		fi
-	else
+	els
 		model=""
 	fi
 	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad"
