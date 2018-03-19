@@ -147,6 +147,7 @@ fi
 sed -i -e "/export ZYNTHIAN_MIDI_[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 sed -i -e "/export ZYNTHIAN_MASTER_MIDI_[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 sed -i -e "/export ZYNTHIAN_PRESET_PRELOAD_NOTEON[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+sed -i -e "s/zynthian-data\/midi-profiles/zynthian-my-data\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
 # Setup my-data presets subtree
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets" ]; then
