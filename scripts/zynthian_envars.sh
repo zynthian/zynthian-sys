@@ -85,7 +85,7 @@ if [ ${machine} = "armv7l" ]; then
 			CPU="-mcpu=cortex-a7 -mthumb"
 			FPU="-mfpu=neon-vfpv4"
 		fi
-	els
+	else
 		model=""
 	fi
 	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad"
