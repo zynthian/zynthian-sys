@@ -75,13 +75,18 @@ export LV2_PATH="$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_PLUGINS_DIR/lv2:$ZYNTHIA
 # Hardware Architecture & Optimization Options
 machine=`uname -m 2>/dev/null`
 if [ ${machine} = "armv7l" ]; then
-	model=`cat /sys/firmware/devicetree/base/model 2>/dev/null`
-	if [[ ${model} =~ [3] ]]; then
-		CPU="-mcpu=cortex-a53"
-		FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
+	# default is: RPi3
+	CPU="-mcpu=cortex-a53"
+	FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
+	if [ -e "/sys/firmware/devicetree/base/model" ]
+	then
+		model=`echo /sys/firmware/devicetree/base/model 2>/dev/null`
+		if [[ ${model} =~ [2] ]]; then
+			CPU="-mcpu=cortex-a7 -mthumb"
+			FPU="-mfpu=neon-vfpv4"
+		fi
 	else
-		CPU="-mcpu=cortex-a7 -mthumb"
-		FPU="-mfpu=neon-vfpv4"
+		model=""
 	fi
 	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad"
 	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations"
