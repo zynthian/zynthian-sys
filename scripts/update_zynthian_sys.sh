@@ -230,12 +230,13 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 
 # Fix problem with WLAN interfaces numbering
-#if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
-#	mv /etc/udev/rules.d/70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules.inactive
-#fi
-if [ -f "/etc/udev/rules.d/70-persistent-net.rules.inactive" ]; then
-	rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
+if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
+	mv /etc/udev/rules.d/70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules.inactive
+	mv /lib/udev/rules.d/75-persistent-net-generator.rules /lib/udev/rules.d/75-persistent-net-generator.rules.inactive
 fi
+#if [ -f "/etc/udev/rules.d/70-persistent-net.rules.inactive" ]; then
+#	rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
+#fi
 #Fix timeout in network initialization
 if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
 	mkdir -p "/etc/systemd/system/networking.service.d"

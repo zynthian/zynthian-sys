@@ -4,6 +4,10 @@ source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/updates/omega" ]; then
 
+	# Install some extra packages
+	apt-get -y update
+	apt-get -y --no-install-recommends install vi firmware-atheros firmware-ralink firmware-realtek atmel-firmware
+
 	# Update ZynAddSubFX
 	cd $ZYNTHIAN_SW_DIR
 	mv zynaddsubfx zynaddsubfx.omega

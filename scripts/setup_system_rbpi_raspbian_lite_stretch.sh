@@ -74,9 +74,9 @@ apt-get update
 #------------------------------------------------
 
 # System
-apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount
+apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput
-apt-get -y install wpasupplicant firmware-brcm80211 wireless-tools
+apt-get -y install wpasupplicant firmware-brcm80211 firmware-atheros firmware-ralink firmware-realtek atmel-firmware wireless-tools
 apt-get -y remove isc-dhcp-client
 apt-get -y remove libgl1-mesa-dri
 
@@ -234,7 +234,7 @@ echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 
 # On first boot, resize SD partition, regenerate keys, etc.
-$ZYNTHIAN_SYS_DIR/scripts/add_first_boot.sh
+$ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 
 #************************************************
 #------------------------------------------------

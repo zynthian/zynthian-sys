@@ -5,13 +5,17 @@ echo "Adding first boot call to /etc/rc.local ..."
 sed -i -- "s/exit 0/\/zynthian\/zynthian-sys\/scripts\/first_boot\.sh/" /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 
+# Clean unneeded packages & apt cache
+apt-get -y autoremove
+apt-get clean
+
 # Clean history
 echo "Cleaning shell history ..."
 history -c
 
 # Borrar logs
 echo "Cleaning system logs ..."
-for f in /var/logs/*; do
+for f in /var/log/*; do
 	cat /dev/null > f
 done
 
