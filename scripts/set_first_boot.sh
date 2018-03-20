@@ -9,19 +9,21 @@ echo "exit 0" >> /etc/rc.local
 apt-get -y autoremove
 apt-get clean
 
-# Clean history
-echo "Cleaning shell history ..."
-history -c
-
 # Borrar logs
 echo "Cleaning system logs ..."
-for f in /var/log/*; do
-	cat /dev/null > f
+for f in /var/log/* /var/log/**/* ; do
+	if [ -f $f ]; then
+		cat /dev/null > $f
+	fi
 done
+
+# Clean history
+echo "Cleaning shell history ..."
+cat /dev/null > ~/.bash_history && history -c
 
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."
 sleep 3
 
 # Power Off
-poweroff
+poweroff   
