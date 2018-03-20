@@ -19,7 +19,7 @@ done
 
 # Clean history
 echo "Cleaning shell history ..."
-cat /dev/null > ~/.bash_history && history -c
+cat /dev/null > ~/.bash_history && history -c && history -w
 
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."
