@@ -210,7 +210,7 @@ fi
 # Setup MIDI-profiles data directory
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/midi-profiles"
-	cp "$ZYNTHIAN_SYS_DIR/scripts/default_midi_profile.sh" "$ZYNTHIAN_MY_DATA_DIR/midi-profiles/default.sh"
+	cp "$ZYNTHIAN_SYS_DIR/config/default_midi_profile.sh" "$ZYNTHIAN_MY_DATA_DIR/midi-profiles/default.sh"
 fi
 
 # Copy "etc" config files
