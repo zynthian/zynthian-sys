@@ -6,7 +6,7 @@ if [ ! -f "$ZYNTHIAN_CONFIG_DIR/updates/omega" ]; then
 
 	# Install some extra packages
 	apt-get -y update
-	apt-get -y --no-install-recommends install vi firmware-atheros firmware-ralink firmware-realtek atmel-firmware
+	apt-get -y --no-install-recommends install vim firmware-atheros firmware-ralink firmware-realtek atmel-firmware
 
 	# Update ZynAddSubFX
 	cd $ZYNTHIAN_SW_DIR
