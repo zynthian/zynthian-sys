@@ -6,11 +6,16 @@ sed -i -- "s/exit 0/\/zynthian\/zynthian-sys\/scripts\/first_boot\.sh/" /etc/rc.
 echo "exit 0" >> /etc/rc.local
 
 # Clean unneeded packages & apt cache
+echo "Cleaning unused packages and cache ..."
 apt-get -y autoremove
 apt-get clean
 
-# Borrar logs
-echo "Cleaning system logs ..."
+# Delete configured wifi networks
+echo "Deleting wifi networks ..."
+cp -f $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant
+
+# Delete logs
+echo "Deleting system logs ..."
 for f in /var/log/* /var/log/**/* ; do
 	if [ -f $f ]; then
 		cat /dev/null > $f
