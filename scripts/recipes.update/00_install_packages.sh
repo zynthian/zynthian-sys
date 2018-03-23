@@ -43,6 +43,7 @@ fi
 
 # 2018-03-14 => Install Infamous Plugins
 if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/infamousPlugins" ]; then
+	apt-get -y install libzita-resampler-dev
 	bash $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 fi
 
