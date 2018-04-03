@@ -1,11 +1,9 @@
 # qmidinet
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
-apt-get -yq install qt5-default
-git clone http://git.code.sf.net/p/qmidinet/code qmidinet-git
-cd qmidinet-git
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/rncbc/qmidinet.git
+cd qmidinet
 ./autogen.sh
 ./configure
-
-make
-sudo make install
-cd ../..
+make -j 3
+make install
+cd ..
