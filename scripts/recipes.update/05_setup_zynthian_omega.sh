@@ -13,8 +13,8 @@ if [ ! -f "$ZYNTHIAN_CONFIG_DIR/updates/omega" ]; then
 	# Update ZynAddSubFX
 	cd $ZYNTHIAN_SW_DIR
 	mv zynaddsubfx zynaddsubfx.omega
-	#rm -rf zynaddsubfx
 	bash $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+	rm -rf zynaddsubfx
 
 	# Create flag for omega update
 	if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
