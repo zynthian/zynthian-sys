@@ -8,7 +8,7 @@ Wants=networking.service
 [Service]
 Environment=HOME=/root
 WorkingDirectory=/root
-ExecStart=/zynthian/zynthian-sys/sbin/midinet.sh
+ExecStart=/usr/local/bin/qmidinet --no-gui --jack-midi=1 --alsa-midi=0
 ExecStartPre=/usr/bin/jack_wait -w
 Restart=always
 RestartSec=5
