@@ -59,3 +59,8 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/padthv1" ]; then
 	apt-get -y --no-install-recommends install qt5-qmake qt5-default
 	bash $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
 fi
+
+# 2018-04-03 => Install QMidiNet
+if [ ! -d "$ZYNTHIAN_SW_DIR/qmidinet" ]; then
+	bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+fi
