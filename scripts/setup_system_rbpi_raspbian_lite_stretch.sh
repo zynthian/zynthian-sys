@@ -75,14 +75,14 @@ apt-get update
 #------------------------------------------------
 
 # System
-apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount
+apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput
-apt-get -y install wpasupplicant firmware-brcm80211 wireless-tools
+apt-get -y install wpasupplicant firmware-brcm80211 firmware-atheros firmware-ralink firmware-realtek atmel-firmware wireless-tools
 apt-get -y remove isc-dhcp-client
 apt-get -y remove libgl1-mesa-dri
 
 # CLI Tools
-apt-get -y install raspi-config psmisc tree joe nano
+apt-get -y install raspi-config psmisc tree joe nano vim
 apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools
 apt-get -y install evtest tslib libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
@@ -235,7 +235,7 @@ echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 
 # On first boot, resize SD partition, regenerate keys, etc.
-$ZYNTHIAN_SYS_DIR/scripts/add_first_boot.sh
+$ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 
 #************************************************
 #------------------------------------------------
