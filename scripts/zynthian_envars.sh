@@ -80,7 +80,7 @@ if [ ${machine} = "armv7l" ]; then
 	FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
 	if [ -e "/sys/firmware/devicetree/base/model" ]
 	then
-		model=`echo /sys/firmware/devicetree/base/model 2>/dev/null`
+		model=$(tr -d '\0' </sys/firmware/devicetree/base/model)
 		if [[ ${model} =~ [2] ]]; then
 			CPU="-mcpu=cortex-a7 -mthumb"
 			FPU="-mfpu=neon-vfpv4"

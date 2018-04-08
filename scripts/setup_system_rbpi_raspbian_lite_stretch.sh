@@ -63,6 +63,7 @@ fi
 
 # deb-multimedia repo
 echo "deb http://www.deb-multimedia.org stretch main" >> /etc/apt/sources.list
+apt-get update
 apt-get -y --force-yes install deb-multimedia-keyring
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5C808C2B65558117
 

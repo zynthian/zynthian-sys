@@ -7,12 +7,14 @@ if [ ! -f "$ZYNTHIAN_CONFIG_DIR/updates/omega" ]; then
 	# Install some extra packages
 	apt-get -y update
 	apt-get -y --no-install-recommends install vim firmware-atheros firmware-ralink firmware-realtek atmel-firmware
+	apt-get -y dist-upgrade
+	yes | rpi-update
 
 	# Update ZynAddSubFX
 	cd $ZYNTHIAN_SW_DIR
 	mv zynaddsubfx zynaddsubfx.omega
-	#rm -rf zynaddsubfx
 	bash $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+	rm -rf zynaddsubfx
 
 	# Create flag for omega update
 	if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
