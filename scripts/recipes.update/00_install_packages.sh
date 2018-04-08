@@ -43,6 +43,7 @@ fi
 
 # 2018-03-14 => Install Infamous Plugins
 if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/infamousPlugins" ]; then
+	apt-get -y install libzita-resampler-dev
 	bash $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 fi
 
@@ -59,8 +60,12 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/padthv1" ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
 fi
 
+# 2018-04-03 => Install QMidiNet
+if [ ! -d "$ZYNTHIAN_SW_DIR/qmidinet" ]; then
+	bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+fi
+
 # 2018-04-08 => Install obxd bank
 if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/obxd_bank" ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
 fi
-

@@ -1,12 +1,12 @@
 # fluidsynth
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
-git clone git://git.code.sf.net/p/fluidsynth/code-git fluidsynth-code-git
-cd fluidsynth-code-git/fluidsynth
-sed -i -- 's/AM_INIT_AUTOMAKE(fluidsynth, \$FLUIDSYNTH_VERSION)/AM_INIT_AUTOMAKE(fluidsynth, \$FLUIDSYNTH_VERSION)\nAC_DEFINE(DEFAULT_SOUNDFONT, "share\/soundfonts\/default.sf2", \[Default soundfont\])/' configure.ac
-./autogen.sh
-./configure --disable-portaudio-support --disable-ladcca --disable-lash --disable-dart --disable-coremidi --disable-coreaudio --disable-aufile-support --disable-pulse-support --disable-alsa-support --disable-dbus-support  --disable-oss-support
+cd $ZYNTHIAN_SW_DIR
+git clone https://github.com/FluidSynth/fluidsynth.git
+cd fluidsynth
+mkdir build
+cd build
+cmake .. -Denable-alsa=0 -Denable-aufile=0 -Denable-oss=0 -Denable-pulseaudio=0 -Denable-ladspa=0 -Denable-lash=0 -Denable-floats=1 
+#-Denable-fpe-check=0  -Denable-dbus=1
 make -j 4
-sudo make install
-sudo ldconfig
-make clean
+make install
+ldconfig
 cd ../..
