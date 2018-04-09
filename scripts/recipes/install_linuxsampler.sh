@@ -48,6 +48,6 @@ patch -p1 < rpi_linuxsampler_patch/linuxsampler-arm.patch
 # Build LinuxSampler
 make -j 4
 make install
-mv /usr/local/lib/lv2/linuxsampler.lv2 ${ZYNTHIAN_PLUGINS_DIR}/lv2
+ln -s /usr/local/lib/lv2/linuxsampler.lv2 ${ZYNTHIAN_PLUGINS_DIR}/lv2
 make clean
 cd ..
