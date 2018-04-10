@@ -34,11 +34,12 @@ mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 # Install MOD Plugins
 #------------------------------------------------
 
-bash $ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
-bash $ZYNTHIAN_RECIPE_DIR/install_fluidplug.sh
 #bash $ZYNTHIAN_RECIPE_DIR/install_mod-setbfree.sh
 #bash $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+#bash $ZYNTHIAN_RECIPE_DIR/install_linuxsampler.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_fluidplug.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_midifilter.lv2.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
@@ -65,11 +66,12 @@ bash $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_helm.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
 
 # dcoredump Stuff
 bash $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
-#bash $ZYNTHIAN_RECIPE_DIR/install_deeaxe7.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
 
 bash $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
@@ -105,23 +107,3 @@ exit
 #------------------------------------------------
 #apt-get install calf-plugins mda-lv2
 
-#------------------------------------------------
-# Install DISTRHO DPF-Plugins
-#------------------------------------------------
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
-git clone https://github.com/DISTRHO/DPF-Plugins.git
-cd DPF-Plugins
-export RASPPI=true
-make -j 4
-make install
-
-#------------------------------------------------
-# Install DISTRHO Plugins-Ports
-#------------------------------------------------
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
-git clone https://github.com/DISTRHO/DISTRHO-Ports.git
-cd DISTRHO-Ports
-./scripts/premake-update.sh linux
-#edit ./scripts/premake.lua
-make -j 4
-make install

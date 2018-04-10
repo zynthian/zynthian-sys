@@ -64,3 +64,9 @@ fi
 if [ ! -d "$ZYNTHIAN_SW_DIR/qmidinet" ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 fi
+
+# 2018-04-08 => Install obxd bank
+if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/obxd_bank" ]; then
+	bash $ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
+fi
+
