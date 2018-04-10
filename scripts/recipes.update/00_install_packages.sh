@@ -69,3 +69,18 @@ fi
 if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/obxd_bank" ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
 fi
+
+exit
+
+# 2018-04-09 => Rebuild DISTRHO ports, DFP & guitarix plugins
+if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/DISTRHO-Ports" ]; then
+	bash $ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
+fi
+if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/DFP-Plugins" ]; then
+	bash $ZYNTHIAN_RECIPE_DIR/install_dfp_plugins.sh
+fi
+if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/guitarix-0.36.1" ]; then
+	rm -rf $ZYNTHIAN_SW_DIR/plugins/guitarix-git
+	apt-get -y install libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev fonts-roboto
+	bash $ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
+fi
