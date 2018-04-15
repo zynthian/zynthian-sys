@@ -1,0 +1,18 @@
+[Unit]
+Description=QMidiNet
+After=networking.service
+After=jack2.service
+Requires=jack2.service
+Wants=networking.service
+
+[Service]
+Environment=HOME=/root
+WorkingDirectory=/root
+ExecStart=/usr/local/bin/qmidinet --no-gui --jack-midi=1 --alsa-midi=0 -n=4
+ExecStartPre=/usr/bin/jack_wait -w
+Restart=always
+RestartSec=5
+
+
+[Install]
+WantedBy=multi-user.target
