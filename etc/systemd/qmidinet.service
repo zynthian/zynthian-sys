@@ -1,5 +1,5 @@
 [Unit]
-Description=QMidiNet
+Description=QMidiNet Service
 After=networking.service
 After=jack2.service
 Requires=jack2.service
