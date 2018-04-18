@@ -101,7 +101,7 @@ libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools liblash-com
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
 libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
 lv2-c++-tools python3-numpy-dev libavcodec57 libavformat57 libavutil55 libavresample3 python3-pyqt4 libxi-dev  \
-libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
+libgtk2.0-dev libgtkmm-2.4-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
 fonts-roboto libxcursor-dev libxinerama-dev libcurl4-openssl-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev
 
 #libjack-dev-session
