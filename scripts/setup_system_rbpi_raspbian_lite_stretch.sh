@@ -110,7 +110,7 @@ fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev libf
 
 # Python
 apt-get -y install python python-dev cython python-dbus
-apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk
+apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-crypto
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
     apt-get -y install python-pip python3-pip
