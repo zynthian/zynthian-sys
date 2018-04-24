@@ -66,7 +66,7 @@ bash $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_helm.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
-bash $ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
+# bash $ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
 
 # dcoredump Stuff
