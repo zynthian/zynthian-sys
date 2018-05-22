@@ -70,3 +70,15 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/obxd_bank" ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
 fi
 
+# 2018-05-22 => PureData Integration
+#if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/puredata" ]; then
+res=`pip3 show oyaml`
+if [ "$res" == "" ]; then
+	apt-get -y update
+	apt-get -y upgrade
+	apt-get -y install puredata python3-yaml
+	pip3 install oyaml
+	systemctl enable a2jmidid
+	systemctl start a2jmidid
+fi
+
