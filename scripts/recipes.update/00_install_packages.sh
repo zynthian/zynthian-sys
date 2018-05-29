@@ -76,9 +76,16 @@ res=`pip3 show oyaml`
 if [ "$res" == "" ]; then
 	apt-get -y update
 	apt-get -y upgrade
-	apt-get -y install puredata python3-yaml
+	apt-get -y install puredata puredata-core puredata-utils python3-yaml
+	apt-get -y install pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 	pip3 install oyaml
 	systemctl enable a2jmidid
 	systemctl start a2jmidid
 fi
 
+# 2018-05-29: Install WIFI firmware from non-free repository
+res=`dpkg -s firmware-brcm80211 2&>1 | grep "Status: install ok installed"`
+if [ "$res" == "" ]; then
+	wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
+	dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
+fi
