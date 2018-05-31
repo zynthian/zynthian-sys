@@ -63,6 +63,7 @@ bash $ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
 #bash $ZYNTHIAN_RECIPE_DIR/install_gxvoodofuzz.sh
 #bash $ZYNTHIAN_RECIPE_DIR/install_gxsupersaturator.sh
 #bash $ZYNTHIAN_RECIPE_DIR/install_gxhyperion.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_helm.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 bash $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh

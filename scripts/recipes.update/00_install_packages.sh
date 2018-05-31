@@ -25,12 +25,7 @@ fi
 
 # 2018-03-11 => Install Pianoteq 6.0 Demo
 if [ ! -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]; then
-	cd $ZYNTHIAN_SW_DIR
-	wget http://blog.zynthian.org/download/pianoteq6_demo.tar.xz
-	tar xfvJ pianoteq6_demo.tar.xz
-	mv pianoteq6_demo pianoteq6
-	rm pianoteq6_demo.tar.xz
-	ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
+	bash $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 fi
 
 # 2018-03-14 => Install Helm Synthesizer & Upgrade System

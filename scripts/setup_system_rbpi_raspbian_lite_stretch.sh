@@ -87,6 +87,11 @@ apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools
 apt-get -y install evtest tslib libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
 
+# Non-free WIFI firmware for RBPi3
+wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
+dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
+rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
+
 #------------------------------------------------
 # Development Environment
 #------------------------------------------------
@@ -120,6 +125,15 @@ pip3 install websocket-client
 pip3 install tornado==4.1
 pip3 install tornadostreamform
 pip3 install jsonpickle
+pip3 install oyaml
+
+# Pure Data
+apt-get -y install puredata puredata-core puredata-utils python3-yaml \
+pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
+pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
+pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex \
+pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
+pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
@@ -225,6 +239,7 @@ systemctl enable cpu-performance
 systemctl enable splash-screen
 systemctl enable jack2
 systemctl enable mod-ttymidi
+systemctl enable a2jmidid
 systemctl enable zynthian
 systemctl enable zynthian-webconf
 
@@ -275,6 +290,9 @@ bash $ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 # Install jackclient (jack-client python library)
 bash $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 
+# Install QMidiNet (MIDI over IP Multicast)
+bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+
 
 #************************************************
 #------------------------------------------------
@@ -301,6 +319,9 @@ bash $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
 
 # Install setBfree (Hammond B3 Emulator)
 bash $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+
+# Install Pianoteq Demo (Piano Physical Emulation)
+bash $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
 # Install MOD stuff
 cd $ZYNTHIAN_SYS_DIR/scripts
