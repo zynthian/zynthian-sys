@@ -9,7 +9,8 @@ git clone https://github.com/DISTRHO/DISTRHO-Ports.git
 cd DISTRHO-Ports
 export LINUX_EMBED=true
 ./scripts/premake-update.sh linux
-make -j 3 lv2
+#make -j 3 lv2
+make -j 1 lv2
 make install
 make clean
 make distclean

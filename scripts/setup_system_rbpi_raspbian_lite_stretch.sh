@@ -331,7 +331,7 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_plugins_rbpi.sh
 
-# Create flags to avoid running unneeded recipes.update when updating zynthian
+# Create flags to avoid running unneeded recipes.update when updating zynthian software
 if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
 	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
 fi
