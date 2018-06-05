@@ -16,7 +16,6 @@ make clean
 make distclean
 
 #Remove pre-existing plugins
-rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/linuxsampler.*
 rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/TheFunction.lv2
 rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/ThePilgrim.lv2
 rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/drowaudio-distortion.lv2
