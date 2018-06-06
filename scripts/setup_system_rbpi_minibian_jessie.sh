@@ -296,7 +296,7 @@ ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 #bash $ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
 
 # Install Linuxsampler 2.0
-bash $ZYNTHIAN_RECIPE_DIR/install_linuxsampler.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
 
 # Install Fantasia (linuxsampler Java GUI)
 bash $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
