@@ -26,6 +26,7 @@ fi
 # 2018-03-11 => Install Pianoteq 6.0 Demo
 if [ ! -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
+	touch $REBOOT_FLAGFILE
 fi
 
 # 2018-03-14 => Install Helm Synthesizer & Upgrade System
@@ -76,6 +77,7 @@ if [ "$res" == "" ]; then
 	pip3 install oyaml
 	systemctl enable a2jmidid
 	systemctl start a2jmidid
+	touch $REBOOT_FLAGFILE
 fi
 
 # 2018-05-29: Install WIFI firmware from non-free repository
@@ -86,6 +88,7 @@ if [ "$res" != "Status: install ok installed" ]; then
 	wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
 	dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
 	rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
+	touch $REBOOT_FLAGFILE
 fi
 
 # 2018-06-07: Update RBPi firmware & Install CRDA for enabling high WIFI channels
@@ -93,5 +96,6 @@ if [ ! -f "/sbin/crda" ]; then
 	rpi-update
 	apt-get -y install crda
 	iw reg set ES
+	touch $REBOOT_FLAGFILE
 fi
 
