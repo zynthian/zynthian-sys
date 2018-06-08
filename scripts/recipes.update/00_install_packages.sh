@@ -86,3 +86,10 @@ if [ "$res" != "Status: install ok installed" ]; then
 	dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
 	rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 fi
+
+# 2018-06-07: Install CRDA for enabling high WIFI channels
+if [ ! -f "/sbin/crda" ]; then
+	apt-get -y install crda
+	iw reg set ES
+fi
+
