@@ -81,6 +81,7 @@ bash $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
 # Install v1 suit
 #------------------------------------------------
 apt-get -y install synthv1 samplv1 drumkv1
+apt-get -y install drumkv1-lv2 samplv1-lv2 synthv1-lv2
 ln -s /usr/lib/lv2/synthv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/samplv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
