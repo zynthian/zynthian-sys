@@ -81,14 +81,16 @@ fi
 # 2018-05-29: Install WIFI firmware from non-free repository
 res=`dpkg -s firmware-brcm80211 2>&1 | grep "Status: install ok installed"`
 if [ "$res" != "Status: install ok installed" ]; then
+	rpi-update
 	cd $ZYNTHIAN_SW_DIR
 	wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
 	dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
 	rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 fi
 
-# 2018-06-07: Install CRDA for enabling high WIFI channels
+# 2018-06-07: Update RBPi firmware & Install CRDA for enabling high WIFI channels
 if [ ! -f "/sbin/crda" ]; then
+	rpi-update
 	apt-get -y install crda
 	iw reg set ES
 fi
