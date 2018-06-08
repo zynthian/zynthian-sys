@@ -99,3 +99,8 @@ if [ ! -f "/sbin/crda" ]; then
 	touch $REBOOT_FLAGFILE
 fi
 
+# 2018-06-08: Install psutil python library for improving network info features, etc.
+res=`pip3 show psutil`
+if [ "$res" == "" ]; then
+	pip3 install psutil
+fi
