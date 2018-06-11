@@ -81,8 +81,9 @@ if [ "$res" == "" ]; then
 fi
 
 # 2018-05-29: Install WIFI firmware from non-free repository
-res=`dpkg -s firmware-brcm80211 2>&1 | grep "Status: install ok installed"`
-if [ "$res" != "Status: install ok installed" ]; then
+res1=`dpkg -s firmware-brcm80211 2>&1 | grep "Status:"`
+res2=`dpkg -s firmware-brcm80211 2>&1 | grep "Version:"`
+if [ "$res1" != "Status: install ok installed" ] || [ "$res2" == "Version: 1:0.43+rpi6" ]; then
 	rpi-update
 	cd $ZYNTHIAN_SW_DIR
 	wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
