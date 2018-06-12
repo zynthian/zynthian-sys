@@ -103,6 +103,7 @@ fi
 # 2018-06-08: Install psutil python library for improving network info features, etc.
 res=`pip3 show psutil`
 if [ "$res" == "" ]; then
+	mkdir /root/.pip
 	echo -e "[GLOBAL]\ntrusted-host = pypi.org files.pythonhosted.org\n" > /root/.pip/pip.conf
 	pip3 install psutil
 fi
