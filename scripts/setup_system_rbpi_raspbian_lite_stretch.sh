@@ -126,6 +126,7 @@ pip3 install tornado==4.1
 pip3 install tornadostreamform
 pip3 install jsonpickle
 pip3 install oyaml
+pip3 install psutil
 
 # Pure Data
 apt-get -y install puredata puredata-core puredata-utils python3-yaml \
