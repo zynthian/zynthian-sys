@@ -109,3 +109,11 @@ if [ "$res" == "" ]; then
 	echo -e "[GLOBAL]\ntrusted-host = pypi.org files.pythonhosted.org\n" > /root/.pip/pip.conf
 	pip3 install psutil
 fi
+
+# 2018-08-01: Install aeolus (pipe organ emulator)
+res=`dpkg -s aeolus 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y upgrade
+	apt-get -y install aeolus mididings
+fi

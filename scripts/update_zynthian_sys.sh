@@ -213,6 +213,12 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
 	cp "$ZYNTHIAN_SYS_DIR/config/default_midi_profile.sh" "$ZYNTHIAN_MY_DATA_DIR/midi-profiles/default.sh"
 fi
 
+# Setup Aeolus Config
+if [ ! -f "/root/.aeolus-presets" ]; then
+	cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
+fi
+# TODO => Generate wave (ae1) files without using the aeolus GUI!!
+
 # Copy "etc" config files
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
@@ -242,7 +248,6 @@ if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
 	mkdir -p "/etc/systemd/system/networking.service.d"
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
 fi
-
 
 # Copy fonts to system directory
 cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
