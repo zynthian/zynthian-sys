@@ -217,7 +217,13 @@ fi
 if [ ! -f "/root/.aeolus-presets" ]; then
 	cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
 fi
-# TODO => Generate wave (ae1) files without using the aeolus GUI!!
+if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
+	echo "Aeolus Waves already exist!"
+else
+	echo "Copying default Aeolus Waves ..."
+	cd /usr/share/aeolus/stops/waves
+	tar -a $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
+fi
 
 # Copy "etc" config files
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
