@@ -221,8 +221,8 @@ if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
 	echo "Aeolus Waves already exist!"
 else
 	echo "Copying default Aeolus Waves ..."
-	cd /usr/share/aeolus/stops/waves
-	tar -xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
+	cd /usr/share/aeolus/stops
+	tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
 fi
 
 # Copy "etc" config files
