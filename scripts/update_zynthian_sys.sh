@@ -222,7 +222,7 @@ if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
 else
 	echo "Copying default Aeolus Waves ..."
 	cd /usr/share/aeolus/stops/waves
-	tar -a $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
+	tar -xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
 fi
 
 # Copy "etc" config files
