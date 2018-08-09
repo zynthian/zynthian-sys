@@ -117,3 +117,9 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y upgrade
 	apt-get -y install aeolus mididings
 fi
+
+# 2018-08-09: Install mplayer (multimedia player)
+res=`dpkg -s mplayer 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y install mplayer
+fi

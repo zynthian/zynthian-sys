@@ -72,7 +72,7 @@ apt-get -y remove libgl1-mesa-dri
 
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe nano vim
-apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools
+apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools mplayer
 apt-get -y install evtest tslib libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
 
@@ -111,19 +111,6 @@ pip3 install tornadostreamform
 pip3 install jsonpickle
 pip3 install oyaml
 
-# Pure Data
-apt-get -y install puredata puredata-core puredata-utils python3-yaml \
-pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
-pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
-pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex \
-pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
-pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
-
-# Clean
-apt-get -y autoremove # Remove unneeded packages
-if [[ "$ZYNTHAIN_SETUP_APT_CLEAN" = "TRUE" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
-   apt-get clean
-fi
 
 #************************************************
 #------------------------------------------------
@@ -307,6 +294,17 @@ bash $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 # Install Pianoteq Demo (Piano Physical Emulation)
 bash $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
+# Install Aeolus (Pipe Organ Emulator)
+apt-get -y install aeolus mididings
+
+# Install Pure Data stuff
+apt-get -y install puredata puredata-core puredata-utils python3-yaml \
+pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
+pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
+pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex \
+pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
+pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
+
 # Install MOD stuff
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_mod.sh
@@ -315,8 +313,20 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_plugins_rbpi.sh
 
+#************************************************
+#------------------------------------------------
+# End & Clean
+#------------------------------------------------
+#************************************************
+
 # Create flags to avoid running unneeded recipes.update when updating zynthian software
 if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
 	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
 fi
 touch "$ZYNTHIAN_CONFIG_DIR/updates/omega"
+
+# Clean
+apt-get -y autoremove # Remove unneeded packages
+if [[ "$ZYNTHAIN_SETUP_APT_CLEAN" = "TRUE" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
+   apt-get clean
+fi
