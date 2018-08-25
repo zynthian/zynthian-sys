@@ -1,6 +1,7 @@
 # mod-ui
 cd $ZYNTHIAN_SW_DIR
 git clone --recursive https://github.com/zynthian/mod-ui.git
+checkout zynthian-single-commit
 cd mod-ui
 
 if [[ -n $MOD_UI_GITSHA ]]; then
@@ -8,7 +9,6 @@ if [[ -n $MOD_UI_GITSHA ]]; then
 	git checkout zynthian
 fi
 
-sed -i "/\b\(pycrypto\)\b/d" requirements.txt
 sudo pip3 install -r requirements.txt
 cd utils
 make
