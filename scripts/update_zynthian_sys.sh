@@ -214,9 +214,17 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
 fi
 
 # Setup Aeolus Config
+# => Delete specific Aeolus config for replacing with the newer one
+res=`git rev-parse HEAD`
+if [ "$res" == "ba07bbc8c10cd582c1eea54d40f153fc0ad03dda" ]; then
+	rm -f /root/.aeolus-presets
+	echo "Deleting incompatible Aeolus presets file..."
+fi
+# => Copy presets file if it doesn't exist
 if [ ! -f "/root/.aeolus-presets" ]; then
 	cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
 fi
+# => Copy default Waves files if needed
 if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
 	echo "Aeolus Waves already exist!"
 else
