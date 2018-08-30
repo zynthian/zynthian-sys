@@ -1,7 +1,7 @@
 # mod-ui
 cd $ZYNTHIAN_SW_DIR
 git clone --recursive https://github.com/zynthian/mod-ui.git
-checkout zynthian-single-commit
+git checkout zynthian-single-commit
 cd mod-ui
 
 if [[ -n $MOD_UI_GITSHA ]]; then
