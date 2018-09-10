@@ -109,3 +109,17 @@ if [ "$res" == "" ]; then
 	echo -e "[GLOBAL]\ntrusted-host = pypi.org files.pythonhosted.org\n" > /root/.pip/pip.conf
 	pip3 install psutil
 fi
+
+# 2018-09-09: Install extended Jalv from Zynthian Repository
+if [ ! -d $ZYNTHIAN_SW_DIR/jalv ]; then
+	bash $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
+fi
+
+# 2018-09-09: Install Ableton-Link support for MOD-HOST
+if [ ! -d $ZYNTHIAN_SW_DIR/Hylia ]; then
+	bash $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
+	bash $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
+	#Update & Recompile mod-host
+	rm -rf $ZYNTHIAN_SW/mod-host
+	bash $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
+fi
