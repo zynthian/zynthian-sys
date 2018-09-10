@@ -110,6 +110,20 @@ if [ "$res" == "" ]; then
 	pip3 install psutil
 fi
 
+# 2018-08-01: Install aeolus (pipe organ emulator)
+res=`dpkg -s aeolus 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y upgrade
+	apt-get -y install aeolus mididings
+fi
+
+# 2018-08-09: Install mplayer (multimedia player)
+res=`dpkg -s mplayer 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y install mplayer
+fi
+
 # 2018-09-09: Install extended Jalv from Zynthian Repository
 if [ ! -d $ZYNTHIAN_SW_DIR/jalv ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh

@@ -213,6 +213,26 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
 	cp "$ZYNTHIAN_SYS_DIR/config/default_midi_profile.sh" "$ZYNTHIAN_MY_DATA_DIR/midi-profiles/default.sh"
 fi
 
+# Setup Aeolus Config
+# => Delete specific Aeolus config for replacing with the newer one
+res=`git rev-parse HEAD`
+if [ "$res" == "ba07bbc8c10cd582c1eea54d40f153fc0ad03dda" ]; then
+	rm -f /root/.aeolus-presets
+	echo "Deleting incompatible Aeolus presets file..."
+fi
+# => Copy presets file if it doesn't exist
+if [ ! -f "/root/.aeolus-presets" ]; then
+	cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
+fi
+# => Copy default Waves files if needed
+if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
+	echo "Aeolus Waves already exist!"
+else
+	echo "Copying default Aeolus Waves ..."
+	cd /usr/share/aeolus/stops
+	tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
+fi
+
 # Copy "etc" config files
 cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
@@ -242,7 +262,6 @@ if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
 	mkdir -p "/etc/systemd/system/networking.service.d"
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
 fi
-
 
 # Copy fonts to system directory
 cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
@@ -288,6 +307,12 @@ sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian.se
 sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian.service
+# Zynthian Debug Service
+sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian_debug.service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
+sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
 # Zynthian Webconf Service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
