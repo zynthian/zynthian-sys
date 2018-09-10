@@ -27,10 +27,10 @@ export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplus"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:0 -r 44100 -p 256 -n 2 -X raw"
 
 #Display Config
-export DISPLAY_NAME="PiTFT 2.8 Resistive"
-export DISPLAY_CONFIG="dtoverlay=pitft28-resistive,rotate=90,speed=32000000,fps=20"
-export DISPLAY_WIDTH=""
-export DISPLAY_HEIGHT=""
+export DISPLAY_NAME="PiScreen 3.5 (v2)"
+export DISPLAY_CONFIG="dtoverlay=piscreen2r-notouch,rotate=270\ndtoverlay=ads7846,speed=2000000,cs=1,penirq=17,penirq_pull=2,swapxy=1,xohms=100,pmax=255"
+export DISPLAY_WIDTH="480"
+export DISPLAY_HEIGHT="320"
 export FRAMEBUFFER="/dev/fb1"
 
 # Zynthian Features Flags
@@ -38,7 +38,7 @@ export ZYNTHIAN_AUBIONOTES=1
 export ZYNTHIAN_TOUCHOSC=1
 
 # Zynthian Wiring Config
-export ZYNTHIAN_WIRING_LAYOUT="PROTOTYPE-4"
+export ZYNTHIAN_WIRING_LAYOUT="MCP23017_ENCODERS"
 export ZYNTHIAN_WIRING_ENCODER_A=""
 export ZYNTHIAN_WIRING_ENCODER_B=""
 export ZYNTHIAN_WIRING_SWITCHES=""
