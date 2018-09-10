@@ -7,28 +7,32 @@ cd lv2
 sudo ./waf install
 ./waf clean
 cd ..
-git clone --recursive http://git.drobilla.net/serd.git/
+git clone --recursive https://github.com/drobilla/serd.git
+#git clone --recursive http://git.drobilla.net/serd.git/
 cd serd
 ./waf configure
 ./waf build
 sudo ./waf install
 ./waf clean
 cd ..
-git clone --recursive http://git.drobilla.net/sord.git/
+git clone --recursive https://github.com/drobilla/sord.git
+#git clone --recursive http://git.drobilla.net/sord.git/
 cd sord
 ./waf configure
 ./waf build
 sudo ./waf install
 ./waf clean
 cd ..
-git clone http://git.drobilla.net/sratom.git sratom
+git clone --recursive https://github.com/drobilla/sratom.git
+#git clone http://git.drobilla.net/sratom.git sratom
 cd sratom
 ./waf configure
 ./waf build
 sudo ./waf install
 ./waf clean
 cd ..
-git clone --recursive http://git.drobilla.net/lilv.git lilv
+git clone --recursive https://github.com/drobilla/lilv.git
+#git clone --recursive http://git.drobilla.net/lilv.git lilv
 cd lilv
 #./waf configure --bindings --python=/usr/bin/python2
 #./waf build
