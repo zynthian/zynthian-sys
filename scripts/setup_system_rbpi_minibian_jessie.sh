@@ -110,6 +110,7 @@ pip3 install tornado==4.1
 pip3 install tornadostreamform
 pip3 install jsonpickle
 pip3 install oyaml
+pip3 install pexpect
 
 
 #************************************************
@@ -243,6 +244,9 @@ bash $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 # Install LV2 lilv library
 bash $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
 
+# Install LV2 Jalv Plugin Host
+bash $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
+
 # Install Aubio Library & Tools
 bash $ZYNTHIAN_RECIPE_DIR/install_aubio.sh
 
@@ -263,6 +267,10 @@ bash $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 
 # Install QMidiNet (MIDI over IP Multicast)
 bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+
+# Install Ableton Link Support
+bash $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
 
 #************************************************
