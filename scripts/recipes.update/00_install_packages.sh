@@ -133,16 +133,16 @@ fi
 if [ ! -d $ZYNTHIAN_SW_DIR/Hylia ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 	bash $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
-	#Update & Recompile mod-host
-	rm -rf $ZYNTHIAN_SW/mod-host
-	bash $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
 fi
 
 # 2018-09-12: Install Python3 pexpect library needed for new zyngine_jalv
 res=`pip3 show pexpect`
 if [ "$res" == "" ]; then
 	pip3 install pexpect
-	#Update & Recompile mod-ttymidi
-	rm -rf $ZYNTHIAN_SW/mod-ttymidi
+	#Update & Rebuild mod-host
+	rm -rf $ZYNTHIAN_SW_DIR/mod-host
+	bash $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
+	#Update & Rebuild mod-ttymidi
+	rm -rf $ZYNTHIAN_SW_DIR/mod-ttymidi
 	bash $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 fi
