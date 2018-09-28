@@ -285,10 +285,6 @@ bash $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 # Install QMidiNet (MIDI over IP Multicast)
 bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 
-# Install Ableton Link Support
-bash $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
-bash $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
-
 
 #************************************************
 #------------------------------------------------
@@ -337,6 +333,10 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 # Install Plugins
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_plugins_rbpi.sh
+
+# Install Ableton Link Support
+bash $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
+bash $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
 #************************************************
 #------------------------------------------------
