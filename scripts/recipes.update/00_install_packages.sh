@@ -147,7 +147,7 @@ if [ "$res" == "" ]; then
 	bash $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 fi
 
-# 2018-09-21: Install lilv python binding extension (TODO: it should be installed by the lilv install script!!!)
+# 2018-09-21: Install lilv python binding extension
 if [ ! -f /usr/lib/python3.4/lilv.py ]; then
 	cp $ZYNTHIAN_SW_DIR/lilv/bindings/python/lilv.py /usr/lib/python3.4
 fi
