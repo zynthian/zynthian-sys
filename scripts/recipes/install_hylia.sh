@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install Hylia - Host transport library for Ableton Link
 
 # Keep original CFLAGS

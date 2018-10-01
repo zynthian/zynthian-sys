@@ -1,3 +1,5 @@
+#!/bin/bash
+
 
 # Don't use environment optimizations
 #unset CFLAGS

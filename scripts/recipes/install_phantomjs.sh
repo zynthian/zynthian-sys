@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # phantomjs
 cd $ZYNTHIAN_SW_DIR 
 git clone https://github.com/fg2it/phantomjs-on-raspberry.git

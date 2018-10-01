@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # infamous
 
 . $ZYNTHIAN_RECIPE_DIR/_zynth_lib.sh

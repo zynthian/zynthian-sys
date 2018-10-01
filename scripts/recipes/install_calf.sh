@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # calf
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 # <BEGIN HACK> The following lines are a f***ing b***sh*t hack - only needed if no X-dev is installed

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # stepseq.lv2
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/x42/stepseq.lv2.git

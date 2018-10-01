@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # jack-smf-utils => jack MID-file playback & recording
 cd $ZYNTHIAN_SW_DIR
 wget --no-check-certificate https://downloads.sourceforge.net/project/jack-smf-utils/jack-smf-utils/1.0/jack-smf-utils-1.0.tar.gz

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # linuxsampler
 set -ex
 cd $ZYNTHIAN_SW_DIR

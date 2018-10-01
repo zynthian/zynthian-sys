@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install_sooperlooper-lv2-plugin.sh
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/moddevices/sooperlooper-lv2-plugin.git

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/pantherb/setBfree.git
 cd setBfree

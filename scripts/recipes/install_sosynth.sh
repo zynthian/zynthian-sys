@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # sosynth.sh
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/jeremysalwen/So-synth-LV2

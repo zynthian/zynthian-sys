@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 if [ ! -d "polyphone" ]; then
 	apt-get -y install qt4-qmake libqt4-dev portaudio19-dev librtmidi-dev libqcustomplot-dev

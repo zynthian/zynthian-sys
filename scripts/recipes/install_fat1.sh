@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # fat1.lv2
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/x42/fat1.lv2.git

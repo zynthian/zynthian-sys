@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Mod-Host
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/moddevices/mod-host.git

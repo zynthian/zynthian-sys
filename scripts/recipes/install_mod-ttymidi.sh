@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 if [ ! -d "mod-ttymidi" ]; then
 	git clone https://github.com/moddevices/mod-ttymidi.git

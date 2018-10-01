@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # openav-artyfx.sh
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/openAVproductions/openAV-ArtyFX.git

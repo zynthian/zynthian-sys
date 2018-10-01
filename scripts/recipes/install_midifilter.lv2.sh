@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # midifilter.lv2
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/x42/midifilter.lv2.git

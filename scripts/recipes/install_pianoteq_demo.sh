@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 wget http://blog.zynthian.org/download/pianoteq6_demo.tar.xz
 tar xfvJ pianoteq6_demo.tar.xz

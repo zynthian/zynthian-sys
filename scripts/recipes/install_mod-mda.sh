@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # mod-mda.lv2
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/moddevices/mda-lv2.git
