@@ -7,12 +7,7 @@ cd $ZYNTHIAN_PLUGINS_SRC_DIR
 #Download and compile code from github
 git clone https://github.com/DISTRHO/DPF-Plugins.git
 cd DPF-Plugins
-export RASPPI=true
-sed -i -- 's/\-march\=armv6//' Makefile.mk
-echo "BUILD_LV2=true" >> Makefile.mk
-echo "BUILD_JACK=false" >> Makefile.mk
-echo "BUILD_DSSI=false" >> Makefile.mk
-echo "BUILD_VST2=false" >> Makefile.mk
+export NOOPT=true
 make -j 3
 make install
 make clean
