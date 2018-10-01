@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 if [ ! -d "jpmidi-0.21" ]; then
 	wget https://github.com/jerash/jpmidi/archive/v0.21.tar.gz -O jpmidi-0.21.tar.gz

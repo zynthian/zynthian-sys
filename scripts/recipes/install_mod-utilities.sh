@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # mod-utilities.lv2
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/moddevices/mod-utilities.git

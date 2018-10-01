@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # dxsyx
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/rogerallen/dxsyx.git

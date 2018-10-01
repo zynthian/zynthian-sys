@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #LV2 Standalone Plugin Host
 
 cd $ZYNTHIAN_SW_DIR

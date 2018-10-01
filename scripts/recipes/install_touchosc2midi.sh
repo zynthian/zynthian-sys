@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 if [ ! -d "touchosc2midi" ]; then
 	#apt-get -y install python-pip cython

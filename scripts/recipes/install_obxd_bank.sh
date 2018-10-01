@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #OBXD presets bank
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 wget http://zynthian.org/download/obxd_bank.tar.bz2

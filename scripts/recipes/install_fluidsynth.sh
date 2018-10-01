@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # fluidsynth
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/FluidSynth/fluidsynth.git

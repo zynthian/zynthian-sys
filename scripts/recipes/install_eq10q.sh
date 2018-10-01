@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # EQ10q
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 svn checkout svn://svn.code.sf.net/p/eq10q/code/trunk eq10q-code

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install_gxswitchlesswah.sh
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/moddevices/GxSwitchlessWah.lv2.git

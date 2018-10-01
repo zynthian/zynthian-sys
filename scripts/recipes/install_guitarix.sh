@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # guitarix.lv2
 
 #REQUIRE: libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev fonts-roboto

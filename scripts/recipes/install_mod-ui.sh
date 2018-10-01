@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # mod-ui
 cd $ZYNTHIAN_SW_DIR
 git clone --recursive https://github.com/zynthian/mod-ui.git

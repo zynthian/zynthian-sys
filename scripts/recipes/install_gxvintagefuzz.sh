@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install_gxvintagefuzz.sh
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/moddevices/GxVintageFuzzMaster.lv2.git

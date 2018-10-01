@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # helm
 
 . $ZYNTHIAN_RECIPE_DIR/_zynth_lib.sh

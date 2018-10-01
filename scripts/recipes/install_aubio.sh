@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 if [ -d "aubio" ]; then
 	rm -rf "aubio"

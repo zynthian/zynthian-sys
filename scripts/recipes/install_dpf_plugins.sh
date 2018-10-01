@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # DISTRHO DPF plugins
 
 #REQUIRE:

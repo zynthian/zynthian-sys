@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # padthv1.lv2
 
 . $ZYNTHIAN_RECIPE_DIR/_zynth_lib.sh

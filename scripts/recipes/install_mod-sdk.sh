@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # mod-sdk
 cd $ZYNTHIAN_SW_DIR
 git clone --recursive https://github.com/moddevices/mod-sdk.git

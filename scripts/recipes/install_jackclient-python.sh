@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #JackClient-python
 
 cd $ZYNTHIAN_SW_DIR

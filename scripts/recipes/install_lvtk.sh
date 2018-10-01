@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # LVtk
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/lvtk/lvtk.git

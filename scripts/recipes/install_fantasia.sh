@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 if [ ! -d "fantasia" ]; then
 	mkdir fantasia

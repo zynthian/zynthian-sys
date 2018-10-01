@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 if [ ! -d "alsaseq-0.4.1" ]; then
 	wget http://pp.com.mx/python/alsaseq/alsaseq-0.4.1.tar.gz

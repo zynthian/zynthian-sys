@@ -192,7 +192,7 @@ echo "zynthian" > /etc/hostname
 sed -i -e "s/minibian/zynthian/" /etc/hosts
 
 # Run configuration script
-bash $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 # Systemd Services
 systemctl daemon-reload
@@ -230,43 +230,43 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #************************************************
 
 # Install alsaseq Python Library
-bash $ZYNTHIAN_RECIPE_DIR/install_alsaseq.sh
+$ZYNTHIAN_RECIPE_DIR/install_alsaseq.sh
 
 # Install NTK library
-bash $ZYNTHIAN_RECIPE_DIR/install_ntk.sh
+$ZYNTHIAN_RECIPE_DIR/install_ntk.sh
 
 # Install pyliblo library (liblo OSC library for Python)
-bash $ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
+$ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 
 # Install mod-ttymidi (MOD's ttymidi version with jackd MIDI support)
-bash $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
+$ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 
 # Install LV2 lilv library
-bash $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
+$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
 
 # Install LV2 Jalv Plugin Host
-bash $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
+$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 
 # Install Aubio Library & Tools
-bash $ZYNTHIAN_RECIPE_DIR/install_aubio.sh
+$ZYNTHIAN_RECIPE_DIR/install_aubio.sh
 
 # Install jpmidi (MID player for jack with transport sync)
-bash $ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
+$ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
 
 # Install jack_capture (jackd audio recorder)
-bash $ZYNTHIAN_RECIPE_DIR/install_jack_capture.sh
+$ZYNTHIAN_RECIPE_DIR/install_jack_capture.sh
 
 # Install jack_smf utils (jackd MID-file player/recorder)
-bash $ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
+$ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
 
 # Install touchosc2midi (TouchOSC Bridge)
-bash $ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
+$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 
 # Install jackclient (jack-client python library)
-bash $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
+$ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 
 # Install QMidiNet (MIDI over IP Multicast)
-bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+$ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 
 #************************************************
 #------------------------------------------------
@@ -275,7 +275,7 @@ bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 #************************************************
 
 # Install ZynAddSubFX
-bash $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs
@@ -283,19 +283,19 @@ apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfo
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
 # Install Polyphone (SF2 editor)
-#bash $ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
+#$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
 
 # Install Linuxsampler 2.0
-bash $ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
+$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
 
 # Install Fantasia (linuxsampler Java GUI)
-bash $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
+$ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
 
 # Install setBfree (Hammond B3 Emulator)
-bash $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+$ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 
 # Install Pianoteq Demo (Piano Physical Emulation)
-bash $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
+$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
 # Install Aeolus (Pipe Organ Emulator)
 apt-get -y install aeolus mididings
@@ -308,17 +308,38 @@ pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug 
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
 pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 
+#------------------------------------------------
 # Install MOD stuff
-cd $ZYNTHIAN_SYS_DIR/scripts
-./setup_mod.sh
+#------------------------------------------------
 
+#Define git version to use: Git commit SHAs where the local zynthian branch will be created
+#export MOD_HOST_GITSHA="3bda867acf68b95c05baa7366d89687cbd9e47cf"
+#export MOD_UI_GITSHA="064c64a24989120731157ac27184d4b4f51ef9f2"
+
+#Install MOD-HOST
+$ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
+
+#Install MOD-UI
+$ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
+$ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
+
+#Install MOD-SDK
+$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
+
+#Create softlink to pedalboards directory
+ln -s $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards /root/.pedalboards
+
+#------------------------------------------------
 # Install Plugins
+#------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_plugins_rbpi.sh
 
+#------------------------------------------------
 # Install Ableton Link Support
-bash $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
-bash $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
+#------------------------------------------------
+$ZYNTHIAN_RECIPE_DIR/install_hylia.sh
+$ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
 #************************************************
 #------------------------------------------------

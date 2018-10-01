@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd $ZYNTHIAN_SW_DIR
 if [ ! -d "pyliblo" ]; then
 	git clone https://github.com/dsacre/pyliblo.git

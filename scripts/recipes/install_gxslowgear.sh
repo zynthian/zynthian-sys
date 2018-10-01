@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install_gxslowgear.sh
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 git clone https://github.com/moddevices/GxSlowGear.lv2.git
