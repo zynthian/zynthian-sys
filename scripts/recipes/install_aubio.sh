@@ -14,4 +14,4 @@ cp -fa ./build/examples/aubioonset /usr/local/bin
 cp -fa ./build/examples/aubiopitch /usr/local/bin
 cp -fa ./build/examples/aubioquiet /usr/local/bin
 cp -fa ./build/examples/aubiotrack /usr/local/bin
-
+gpgconf --kill gpg-agent
