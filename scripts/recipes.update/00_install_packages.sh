@@ -151,3 +151,5 @@ fi
 if [ ! -f /usr/lib/python3.4/lilv.py ]; then
 	cp $ZYNTHIAN_SW_DIR/lilv/bindings/python/lilv.py /usr/lib/python3.4
 fi
+
+
