@@ -9,6 +9,11 @@ cd $ZYNTHIAN_PLUGINS_SRC_DIR
 #Download and compile code from github
 git clone https://github.com/DISTRHO/DPF-Plugins.git
 cd DPF-Plugins
+
+#Avoid errors while installing binaries
+sed -i -- 's/cp \-r bin\/ProM/\#cp \-r bin\/ProM/' Makefile
+sed -i -- 's/cp \-r bin\/glBars/\#cp \-r bin\/glBars/' Makefile
+
 export NOOPT=true
 make -j 3
 make install
