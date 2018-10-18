@@ -53,7 +53,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
-$ZYNTHIAN_RECIPE_DIR/install_sosynth.sh
+$ZYNTHIAN_RECIPE_DIR/install_sosynth.sh # => Not working because of deprecated "LV2:Event" extension
 $ZYNTHIAN_RECIPE_DIR/install_fat1.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxslowgear.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxswitchlesswah.sh
@@ -69,6 +69,7 @@ $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
 $ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
 $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
+#$ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh # => Build fails!
 
 # dcoredump Stuff
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
@@ -95,7 +96,7 @@ ln -s /usr/lib/lv2/vocoder.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 # Some AVW plugins are broken, so it's disabled by now
 #ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/invada.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-	
+
 #------------------------------------------------
 # Install some LADSPA plugins for LinuxSampler
 #------------------------------------------------
