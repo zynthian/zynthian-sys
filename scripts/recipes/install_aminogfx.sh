@@ -10,3 +10,6 @@ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | 
 nvm install 7.10.1
 nvm use 7.10.1
 npm install aminogfx-gl
+
+# Install MIDI support
+npm install midi
