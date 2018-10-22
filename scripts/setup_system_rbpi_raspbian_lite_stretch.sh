@@ -108,7 +108,7 @@ libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-de
 lv2-c++-tools python3-numpy-dev libavcodec57 libavformat57 libavutil55 libavresample3 python3-pyqt4 libxi-dev  \
 libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
 fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev \
-libavformat-dev libswscale-dev libavcodec-dev libqt5-dev libqt4-dev
+libavformat-dev libswscale-dev libavcodec-dev libqt4-dev qtbase5-dev qtdeclarative5-dev
 
 #libjack-dev-session
 #non-ntk-dev
