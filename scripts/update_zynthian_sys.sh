@@ -42,6 +42,16 @@ fi
 
 echo "Updating System configuration ..."
 
+
+#------------------------------------------------------------------------------
+# Reboot flag-file
+#------------------------------------------------------------------------------
+
+if [ -z "$REBOOT_FLAGFILE" ]; then
+	export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
+	rm -f $REBOOT_FLAGFILE
+fi
+
 #------------------------------------------------------------------------------
 # Define some functions
 #------------------------------------------------------------------------------
@@ -214,23 +224,26 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
 fi
 
 # Setup Aeolus Config
-# => Delete specific Aeolus config for replacing with the newer one
-res=`git rev-parse HEAD`
-if [ "$res" == "ba07bbc8c10cd582c1eea54d40f153fc0ad03dda" ]; then
-	rm -f /root/.aeolus-presets
-	echo "Deleting incompatible Aeolus presets file..."
-fi
-# => Copy presets file if it doesn't exist
-if [ ! -f "/root/.aeolus-presets" ]; then
-	cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
-fi
-# => Copy default Waves files if needed
-if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
-	echo "Aeolus Waves already exist!"
-else
-	echo "Copying default Aeolus Waves ..."
-	cd /usr/share/aeolus/stops
-	tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
+if [ -d "/usr/share/aeolus" ]; then
+	# => Delete specific Aeolus config for replacing with the newer one
+	cd $ZYNTHIAN_DATA_DIR
+	res=`git rev-parse HEAD`
+	if [ "$res" == "ba07bbc8c10cd582c1eea54d40f153fc0ad03dda" ]; then
+		rm -f /root/.aeolus-presets
+		echo "Deleting incompatible Aeolus presets file..."
+	fi
+	# => Copy presets file if it doesn't exist
+	if [ ! -f "/root/.aeolus-presets" ]; then
+		cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
+	fi
+	# => Copy default Waves files if needed
+	if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
+		echo "Aeolus Waves already exist!"
+	else
+		echo "Copying default Aeolus Waves ..."
+		cd /usr/share/aeolus/stops
+		tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
+	fi
 fi
 
 # Copy "etc" config files

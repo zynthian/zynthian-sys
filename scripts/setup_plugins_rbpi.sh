@@ -44,7 +44,7 @@ $ZYNTHIAN_RECIPE_DIR/install_midifilter.lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
 $ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
 $ZYNTHIAN_RECIPE_DIR/install_openav-artyfx.sh
-$ZYNTHIAN_RECIPE_DIR/install-calf.sh
+$ZYNTHIAN_RECIPE_DIR/install_calf.sh
 $ZYNTHIAN_RECIPE_DIR/install_eq10q.sh
 $ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
 $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
@@ -69,7 +69,7 @@ $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
 $ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
 $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
-#$ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh # => Build fails!
+$ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
 
 # dcoredump Stuff
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
