@@ -19,7 +19,8 @@ ln -s ../dsp/dsp.h .
 
 # Build foo-yc20 combo-organ emulator
 cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/sampov2/foo-yc20.git
+#git clone https://github.com/sampov2/foo-yc20.git
+git clone https://github.com/zynthian/foo-yc20.git
 cd foo-yc20
 sed -i -- 's/\-Iinclude\//\-Iinclude\/ \-I\.\.\/faust\-0\.9\.73\/architecture\//' Makefile
 sed -i -- 's/NULL/0/' src/faust-dsp-standalone.cpp
