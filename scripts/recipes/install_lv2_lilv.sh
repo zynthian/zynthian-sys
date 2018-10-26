@@ -49,9 +49,9 @@ cd lilv
 ./waf configure --bindings --python=/usr/bin/python3
 ./waf build
 ./waf install
-if [ -d /usr/lib/python3.4 ]; then
+if [ -d "/usr/lib/python3.4" ]; then
 	cp ./bindings/python/lilv.py /usr/lib/python3.4
-else if [ -d /usr/lib/python3.5 ]; then
+elif [ -d "/usr/lib/python3.5" ]; then
 	cp ./bindings/python/lilv.py /usr/lib/python3.5
 fi
 ./waf clean
