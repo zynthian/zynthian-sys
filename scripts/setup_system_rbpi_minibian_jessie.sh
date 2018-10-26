@@ -193,6 +193,7 @@ sed -i -e "s/minibian/zynthian/" /etc/hosts
 
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 
 # Systemd Services
 systemctl daemon-reload
