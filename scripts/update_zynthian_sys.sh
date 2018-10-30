@@ -183,7 +183,7 @@ fi
 
 # Setup Pianoteq binary
 if [ ! -L "$ZYNTHIAN_MY_SW/pianoteq6/pianoteq" ]; then
-	ln -s "$ZYNTHIAN_MY_SW/pianoteq6/pianoteq/Pianoteq 6 STAGE" "$ZYNTHIAN_MY_SW/pianoteq6/pianoteq"
+	ln -s "$ZYNTHIAN_MY_SW/pianoteq6/Pianoteq 6 STAGE" "$ZYNTHIAN_MY_SW/pianoteq6/pianoteq"
 fi
 # Setup Pianoteq User Presets Directory
 if [ ! -d "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" ]; then
