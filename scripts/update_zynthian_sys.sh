@@ -221,6 +221,11 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
 	touch $REBOOT_FLAGFILE
 fi
 
+# Setup Default Jalv LV2-plugin list
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/jalv_plugins.json" ]; then
+	cp "$ZYNTHIAN_SYS_DIR/config/default_jalv_plugins.json" "$ZYNTHIAN_CONFIG_DIR/jalv_plugins.json"
+fi
+
 # Setup MIDI-profiles data directory
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/midi-profiles"
