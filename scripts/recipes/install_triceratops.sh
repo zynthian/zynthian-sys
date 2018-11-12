@@ -10,3 +10,5 @@ sed -i -- "s/'-O2'/'-O2','-fPIC'/" wscript
 ./waf install
 ./waf clean
 cd ..
+
+ln -s "/usr/local/lib/lv2/triceratops.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
