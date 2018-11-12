@@ -153,9 +153,9 @@ if [ ! -f /usr/lib/python3.4/lilv.py ]; then
 fi
 
 # 2018-11-12: Install foo-yc20 LV2-plugin: Combo Organ Emulator
-if [ ! -d "$ZYNTHIAN_SW_DIR/foo-yc20" ]; then
+#if [ ! -d "$ZYNTHIAN_SW_DIR/foo-yc20" ]; then
 	#$ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
-fi
+#fi
 
 # 2018-11-12: Install Triceratops LV2-plugin: Analogue Synth
 if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/triceratops.lv2" ]; then
