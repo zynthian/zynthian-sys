@@ -181,6 +181,15 @@ elif [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/xiz" ]; then
 	ln -s presets/zynaddsubfx zynbanks
 fi
 
+# Setup custom config for setBfree
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/setbfree" ]; then
+	cd $ZYNTHIAN_MY_DATA_DIR
+	mkdir setbfree
+	mkdir setbfree/cfg
+	ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree/cfg
+	cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/cfg/zynthian.cfg
+fi
+
 # Setup Pianoteq binary
 if [ ! -L "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq" ]; then
 	ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE" "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq"
