@@ -24,14 +24,26 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
+
 if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
 	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
+#------------------------------------------------------------------------------
+# Reboot flag-file
+#------------------------------------------------------------------------------
+
 export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
 rm -f $REBOOT_FLAGFILE
+
+#------------------------------------------------------------------------------
+# Update from repositories ...
+#------------------------------------------------------------------------------
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR

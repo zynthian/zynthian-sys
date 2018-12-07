@@ -42,6 +42,16 @@ fi
 
 echo "Updating System configuration ..."
 
+
+#------------------------------------------------------------------------------
+# Reboot flag-file
+#------------------------------------------------------------------------------
+
+if [ -z "$REBOOT_FLAGFILE" ]; then
+	export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
+	rm -f $REBOOT_FLAGFILE
+fi
+
 #------------------------------------------------------------------------------
 # Define some functions
 #------------------------------------------------------------------------------
@@ -171,6 +181,19 @@ elif [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/xiz" ]; then
 	ln -s presets/zynaddsubfx zynbanks
 fi
 
+# Setup custom config for setBfree
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/setbfree" ]; then
+	cd $ZYNTHIAN_MY_DATA_DIR
+	mkdir setbfree
+	mkdir setbfree/cfg
+	ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree/cfg
+	cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/cfg/zynthian.cfg
+fi
+
+# Setup Pianoteq binary
+if [ ! -L "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq" ]; then
+	ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE" "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq"
+fi
 # Setup Pianoteq User Presets Directory
 if [ ! -d "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" ]; then
 	mkdir -p "/root/.local/share/Modartt/Pianoteq/Presets/My Presets"
@@ -207,6 +230,11 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
 	touch $REBOOT_FLAGFILE
 fi
 
+# Setup Default Jalv LV2-plugin list
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/jalv_plugins.json" ]; then
+	cp "$ZYNTHIAN_SYS_DIR/config/default_jalv_plugins.json" "$ZYNTHIAN_CONFIG_DIR/jalv_plugins.json"
+fi
+
 # Setup MIDI-profiles data directory
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/midi-profiles"
@@ -214,23 +242,26 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
 fi
 
 # Setup Aeolus Config
-# => Delete specific Aeolus config for replacing with the newer one
-res=`git rev-parse HEAD`
-if [ "$res" == "ba07bbc8c10cd582c1eea54d40f153fc0ad03dda" ]; then
-	rm -f /root/.aeolus-presets
-	echo "Deleting incompatible Aeolus presets file..."
-fi
-# => Copy presets file if it doesn't exist
-if [ ! -f "/root/.aeolus-presets" ]; then
-	cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
-fi
-# => Copy default Waves files if needed
-if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
-	echo "Aeolus Waves already exist!"
-else
-	echo "Copying default Aeolus Waves ..."
-	cd /usr/share/aeolus/stops
-	tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
+if [ -d "/usr/share/aeolus" ]; then
+	# => Delete specific Aeolus config for replacing with the newer one
+	cd $ZYNTHIAN_DATA_DIR
+	res=`git rev-parse HEAD`
+	if [ "$res" == "ba07bbc8c10cd582c1eea54d40f153fc0ad03dda" ]; then
+		rm -f /root/.aeolus-presets
+		echo "Deleting incompatible Aeolus presets file..."
+	fi
+	# => Copy presets file if it doesn't exist
+	if [ ! -f "/root/.aeolus-presets" ]; then
+		cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
+	fi
+	# => Copy default Waves files if needed
+	if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
+		echo "Aeolus Waves already exist!"
+	else
+		echo "Copying default Aeolus Waves ..."
+		cd /usr/share/aeolus/stops
+		tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
+	fi
 fi
 
 # Copy "etc" config files

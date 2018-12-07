@@ -86,7 +86,7 @@ rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 #------------------------------------------------
 
 #Tools
-apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt5-default
+apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++
 
 # Libraries
 apt-get -y --force-yes --no-install-recommends install wiringpi libfftw3-dev libmxml-dev zlib1g-dev \
@@ -96,7 +96,8 @@ fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libg
 libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
 lv2-c++-tools python3-numpy-dev libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4 libxi-dev \
 libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
-fonts-roboto libxcursor-dev libxinerama-dev libcurl4-openssl-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev
+fonts-roboto libxcursor-dev libxinerama-dev libcurl4-openssl-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev \
+libavformat-dev libswscale-dev libavcodec-dev libqt5-dev libqt4-dev
 
 #libjack-dev-session
 #non-ntk-dev
@@ -112,7 +113,6 @@ pip3 install jsonpickle
 pip3 install oyaml
 pip3 install psutil
 pip3 install pexpect
-
 
 #************************************************
 #------------------------------------------------
@@ -194,6 +194,7 @@ sed -i -e "s/minibian/zynthian/" /etc/hosts
 
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 
 # Systemd Services
 systemctl daemon-reload
@@ -341,6 +342,11 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 #------------------------------------------------
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
+
+#------------------------------------------------
+# Install AminoGFX for Node.js graphics rendering
+#------------------------------------------------
+$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
 
 #************************************************
 #------------------------------------------------

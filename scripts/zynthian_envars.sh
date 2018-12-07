@@ -49,7 +49,7 @@ export ZYNTHIAN_UI_COLOR_TX="#ffffff"
 export ZYNTHIAN_UI_COLOR_ON="#ff0000"
 export ZYNTHIAN_UI_COLOR_PANEL_BG="#3a424d"
 export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
-export ZYNTHIAN_UI_FONT_SIZE="10"
+export ZYNTHIAN_UI_FONT_SIZE="14"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 
 # MIDI system configuration
@@ -76,20 +76,20 @@ export LV2_PATH="$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_PLUGINS_DIR/lv2:$ZYNTHIA
 machine=`uname -m 2>/dev/null`
 if [ ${machine} = "armv7l" ]; then
 	# default is: RPi3
-	CPU="-mcpu=cortex-a53"
+	CPU="-mcpu=cortex-a53 -mtune=cortex-a53"
 	FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
 	if [ -e "/sys/firmware/devicetree/base/model" ]
 	then
 		model=$(tr -d '\0' </sys/firmware/devicetree/base/model)
 		if [[ ${model} =~ [2] ]]; then
-			CPU="-mcpu=cortex-a7 -mthumb"
+			CPU="-mcpu=cortex-a7 -mtune=cortex-a7"
 			FPU="-mfpu=neon-vfpv4"
 		fi
 	else
 		model=""
 	fi
-	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad"
-	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations"
+	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad -ftree-vectorize"
+	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
 fi
 export MACHINE_HW_NAME=$machine
 export RBPI_VERSION=$model
