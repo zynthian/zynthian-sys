@@ -40,6 +40,7 @@ git pull
 cp -na $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards
 cp -na $ZYNTHIAN_DATA_DIR/presets/lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2
 cp -na $ZYNTHIAN_DATA_DIR/presets/puredata $ZYNTHIAN_MY_DATA_DIR/presets
+cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* $ZYNTHIAN_DATA_DIR/zynbanks
 
 # Move incorrectly installed plugins to the right path ...
 cd $ZYNTHIAN_PLUGINS_DIR

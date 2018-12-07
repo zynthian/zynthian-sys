@@ -8,7 +8,7 @@ fi
 
 # 2017-11-22 => jack-smf-utils, playback and record MID files
 if [ ! -d "$ZYNTHIAN_SW_DIR/jack-smf-utils-1.0" ]; then
-	bash $ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
+	$ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
 fi
 
 # 2017-11-29 => jsonpickle, required by zynthian-webconf
@@ -20,12 +20,12 @@ fi
 # 2018-01-23 => replace jackclient-python by a customized version
 if [ ! -d "$ZYNTHIAN_SW_DIR/jackclient-python" ]; then
 	yes | pip3 uninstall JACK-Client
-	bash $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
+	$ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 fi
 
 # 2018-03-11 => Install Pianoteq 6.0 Demo
 if [ ! -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]; then
-	bash $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
+	$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 	touch $REBOOT_FLAGFILE
 fi
 
@@ -34,13 +34,13 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/helm" ]; then
 	apt-get -y update
 	apt-get -y upgrade
 	apt-get -y --no-install-recommends install libxcursor-dev libxinerama-dev libcurl4-openssl-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev
-	bash $ZYNTHIAN_RECIPE_DIR/install_helm.sh
+	$ZYNTHIAN_RECIPE_DIR/install_helm.sh
 fi
 
 # 2018-03-14 => Install Infamous Plugins
 if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/infamousPlugins" ]; then
 	apt-get -y install libzita-resampler-dev
-	bash $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
+	$ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 fi
 
 # 2018-03-14 => Install Invada Plugins
@@ -53,17 +53,17 @@ fi
 if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/padthv1" ]; then
 	apt-get -y update
 	apt-get -y --no-install-recommends install qt5-qmake qt5-default
-	bash $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
+	$ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
 fi
 
 # 2018-04-03 => Install QMidiNet
 if [ ! -d "$ZYNTHIAN_SW_DIR/qmidinet" ]; then
-	bash $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+	$ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 fi
 
 # 2018-04-08 => Install obxd bank
 if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/obxd_bank" ]; then
-	bash $ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
+	$ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
 fi
 
 # 2018-05-22 => PureData Integration
@@ -126,13 +126,13 @@ fi
 
 # 2018-09-09: Install extended Jalv from Zynthian Repository
 if [ ! -d $ZYNTHIAN_SW_DIR/jalv ]; then
-	bash $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 fi
 
 # 2018-09-09: Install Ableton-Link support for MOD-HOST
 if [ ! -d $ZYNTHIAN_SW_DIR/Hylia ]; then
-	bash $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
-	bash $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
+	$ZYNTHIAN_RECIPE_DIR/install_hylia.sh
+	$ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 fi
 
 # 2018-09-12: Install Python3 pexpect library needed for new zyngine_jalv
@@ -141,13 +141,23 @@ if [ "$res" == "" ]; then
 	pip3 install pexpect
 	#Update & Rebuild mod-host
 	rm -rf $ZYNTHIAN_SW_DIR/mod-host
-	bash $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
+	$ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
 	#Update & Rebuild mod-ttymidi
 	rm -rf $ZYNTHIAN_SW_DIR/mod-ttymidi
-	bash $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
+	$ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 fi
 
 # 2018-09-21: Install lilv python binding extension
 if [ ! -f /usr/lib/python3.4/lilv.py ]; then
 	cp $ZYNTHIAN_SW_DIR/lilv/bindings/python/lilv.py /usr/lib/python3.4
+fi
+
+# 2018-11-12: Install foo-yc20 LV2-plugin: Combo Organ Emulator
+#if [ ! -d "$ZYNTHIAN_SW_DIR/foo-yc20" ]; then
+	#$ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
+#fi
+
+# 2018-11-12: Install Triceratops LV2-plugin: Analogue Synth
+if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/triceratops.lv2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_triceratops.sh
 fi
