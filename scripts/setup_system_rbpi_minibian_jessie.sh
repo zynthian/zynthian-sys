@@ -346,7 +346,7 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 #------------------------------------------------
 # Install AminoGFX for Node.js graphics rendering
 #------------------------------------------------
-$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
+#$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
 
 #************************************************
 #------------------------------------------------
