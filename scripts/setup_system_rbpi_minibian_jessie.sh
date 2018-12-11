@@ -110,6 +110,7 @@ pip3 install tornado==4.1
 pip3 install tornadostreamform
 pip3 install jsonpickle
 pip3 install oyaml
+pip3 install psutil
 pip3 install pexpect
 
 #************************************************
@@ -344,7 +345,7 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 #------------------------------------------------
 # Install AminoGFX for Node.js graphics rendering
 #------------------------------------------------
-$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
+#$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
 
 #************************************************
 #------------------------------------------------
