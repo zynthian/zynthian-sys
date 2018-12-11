@@ -75,11 +75,10 @@ apt-get update
 #------------------------------------------------
 
 # System
-apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
-apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput
-apt-get -y install wpasupplicant firmware-brcm80211 firmware-atheros firmware-ralink firmware-realtek atmel-firmware wireless-tools
 apt-get -y remove isc-dhcp-client
-apt-get -y remove libgl1-mesa-dri
+apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
+apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-swx11 libgl1-mesa-dri
+apt-get -y install wpasupplicant firmware-brcm80211 firmware-atheros firmware-ralink firmware-realtek atmel-firmware wireless-tools
 
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe nano vim
@@ -97,7 +96,7 @@ rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 #------------------------------------------------
 
 #Tools
-apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++
+apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake
 
 # Libraries
 apt-get -y --force-yes --no-install-recommends install wiringpi libfftw3-dev libmxml-dev zlib1g-dev fluid \
