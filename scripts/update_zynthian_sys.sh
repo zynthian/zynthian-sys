@@ -114,14 +114,13 @@ ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 # Boot Config 
 #------------------------------------------------------------------------------
 
-cp $ZYNTHIAN_SYS_DIR/boot/cmdline.txt /boot
-
-# Detect NO_ZYNTHIAN_UPDATE flag
-if [ -f "/boot/config.txt" ]; then
-	no_update_config=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
+# Detect NO_ZYNTHIAN_UPDATE flag in the config.txt
+if [ -f "/boot/config.txt" && -z "$NO_ZYNTHIAN_UPDATE" ]; then
+	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
 fi
 
-if [ -z "$no_update_config" ]; then
+if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
+	cp $ZYNTHIAN_SYS_DIR/boot/cmdline.txt /boot
 	cp $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
 
 	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
