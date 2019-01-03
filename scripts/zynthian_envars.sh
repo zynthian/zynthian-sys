@@ -34,8 +34,8 @@ export DISPLAY_HEIGHT="320"
 export FRAMEBUFFER="/dev/fb1"
 
 # Zynthian Features Flags
-export ZYNTHIAN_AUBIONOTES=1
-export ZYNTHIAN_TOUCHOSC=1
+export ZYNTHIAN_AUBIONOTES="1"
+export ZYNTHIAN_TOUCHOSC="1"
 
 # Zynthian Wiring Config
 export ZYNTHIAN_WIRING_LAYOUT="MCP23017_ENCODERS"
@@ -51,6 +51,7 @@ export ZYNTHIAN_UI_COLOR_PANEL_BG="#3a424d"
 export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
 export ZYNTHIAN_UI_FONT_SIZE="14"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
+export ZYNTHIAN_UI_RESTORE_LAST_STATE="1"
 
 # MIDI system configuration
 export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/zynthian-my-data/midi-profiles/default.sh"

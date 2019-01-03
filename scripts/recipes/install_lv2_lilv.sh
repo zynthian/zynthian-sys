@@ -62,3 +62,4 @@ cd lilv_python_examples
 2to3 -w *.py
 export PYTHONPATH="/usr/local/lib/python3/dist-packages"
 python3 lv2ls.py
+
