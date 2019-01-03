@@ -25,13 +25,44 @@
 source zynthian_envars.sh
 
 #------------------------------------------------
+# Link LV2 Core Data-Plugins
+#------------------------------------------------
+
+ln -s /usr/local/lib/lv2/atom.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/data-access.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/parameters.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/dynmanifest.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/event.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/patch.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/time.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/instance-access.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/port-groups.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/ui.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/log.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/port-props.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/units.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/buf-size.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/lv2core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/presets.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/urid.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/midi.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/resize-port.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/uri-map.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/schemas.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/worker.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/options.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/state.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/eg-*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+
+#------------------------------------------------
 # Create Plugins Source Code Directory
 #------------------------------------------------
 
 mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 
 #------------------------------------------------
-# Install MOD Plugins
+# Install LV2 Plugins
 #------------------------------------------------
 
 $ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
@@ -109,6 +140,4 @@ ln -s /usr/lib/lv2/calf.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 #------------------------------------------------
 
 apt-get -y install ladspa-sdk wah-plugins tap-plugins vco-plugins swh-plugins ste-plugins rev-plugins omins mcp-plugins invada-studio-plugins-ladspa rubberband-ladspa fil-plugins csladspa cmt caps bs2b-ladspa blop blepvco autotalent ambdec amb-plugins
-
-exit
 
