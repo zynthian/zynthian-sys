@@ -115,7 +115,7 @@ ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 #------------------------------------------------------------------------------
 
 # Detect NO_ZYNTHIAN_UPDATE flag in the config.txt
-if [ -f "/boot/config.txt"] && [-z "$NO_ZYNTHIAN_UPDATE" ]; then
+if [ -f "/boot/config.txt" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
 fi
 
