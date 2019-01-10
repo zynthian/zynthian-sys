@@ -86,9 +86,13 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
 $ZYNTHIAN_RECIPE_DIR/install_sosynth.sh # => Not working because of deprecated "LV2:Event" extension
 $ZYNTHIAN_RECIPE_DIR/install_fat1.sh
-$ZYNTHIAN_RECIPE_DIR/install_gxslowgear.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxboobtube.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxswitchlesswah.sh
-$ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxcreammachine.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxdenoiser2.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxdistortionplus.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxplugins.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxvalvecaster.sh
 #$ZYNTHIAN_RECIPE_DIR/install_gxsupertoneblender.sh
 #$ZYNTHIAN_RECIPE_DIR/install_gxsuperfuzz.sh
 #$ZYNTHIAN_RECIPE_DIR/install_gxvoodofuzz.sh
