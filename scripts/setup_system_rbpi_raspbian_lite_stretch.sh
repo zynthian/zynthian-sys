@@ -77,7 +77,7 @@ apt-get update
 # System
 apt-get -y remove isc-dhcp-client
 apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
-apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-swx11 libgl1-mesa-dri
+apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri
 apt-get -y install wpasupplicant firmware-brcm80211 firmware-atheros firmware-ralink firmware-realtek atmel-firmware wireless-tools
 
 # CLI Tools
