@@ -1,4 +1,8 @@
 
+# 2019-02-12: Delete Autostatic Repository from sources list to avoid apt error messages
+if [ -f "/etc/apt/sources.list.d/autostatic-audio-raspbian.list" ]; then
+	rm -f "/etc/apt/sources.list.d/autostatic-audio-raspbian.list"
+fi
 
 # 2017-11-21 => tornadostreamform, required by zynthian-webconf
 res=`pip3 show tornadostreamform`
@@ -121,6 +125,7 @@ fi
 # 2018-08-09: Install mplayer (multimedia player)
 res=`dpkg -s mplayer 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
 	apt-get -y install mplayer
 fi
 
@@ -161,3 +166,11 @@ fi
 if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/triceratops.lv2" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_triceratops.sh
 fi
+
+# 2019-02-12: Install Raffo LV2-plugin: MiniMoog Emulator
+if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/moog" ]; then
+	apt-get -y update
+	apt-get -y install --no-install-recommends libgtkmm-2.4-dev
+	$ZYNTHIAN_RECIPE_DIR/install_raffo.sh
+fi
+
