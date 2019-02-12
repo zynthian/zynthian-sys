@@ -3,12 +3,12 @@
 # Adjust Compiler options
 if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
 	if [[ ${RBPI_VERSION} =~ [2] ]]; then
-		export CFLAGS="-O3 -ffast-math -ftree-vectorize -mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 $(CFLAGS_UNSAFE)"
+		export CFLAGS="-O3 -ffast-math -ftree-vectorize -mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 $CFLAGS_UNSAFE"
 	else
-		export CFLAGS="-O3 -ffast-math -ftree-vectorize -mcpu=cortex-a53 -mtune=cortex-a53 -mfpu=neon-fp-armv8 $(CFLAGS_UNSAFE)"
+		export CFLAGS="-O3 -ffast-math -ftree-vectorize -mcpu=cortex-a53 -mtune=cortex-a53 -mfpu=neon-fp-armv8 $CFLAGS_UNSAFE"
 	fi
 else
-	export CFLAGS="-O3 -ffast-math -ftree-vectorize $(CFLAGS_UNSAFE)"
+	export CFLAGS="-O3 -ffast-math -ftree-vectorize $CFLAGS_UNSAFE"
 fi
 
 # Install Faust code (v 0.9.73)
@@ -25,7 +25,7 @@ cd foo-yc20
 sed -i -- 's/\-Iinclude\//\-Iinclude\/ \-I\.\.\/faust\-0\.9\.73\/architecture\//' Makefile
 sed -i -- 's/NULL/0/' src/faust-dsp-standalone.cpp
 sed -i -- 's/NULL/0/' src/faust-dsp-plugin.cpp
-make -j 3
+make -j 1
 make install
 make clean
 
