@@ -96,7 +96,7 @@ export MACHINE_HW_NAME=$machine
 export RBPI_VERSION=$model
 export CFLAGS="${CPU} ${FPU}"
 export CXXFLAGS=${CFLAGS}
-export CFLAGS_UNSAFE
+export CFLAGS_UNSAFE=""
 #echo "Hardware Architecture: ${machine}"
 #echo "Hardware Model: ${model}"
 
