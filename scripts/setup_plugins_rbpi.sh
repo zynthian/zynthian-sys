@@ -106,6 +106,7 @@ $ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
 $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
 $ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
 $ZYNTHIAN_RECIPE_DIR/install_triceratops.sh
+$ZYNTHIAN_RECIPE_DIR/install_swh.sh
 
 # dcoredump Stuff
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
@@ -124,10 +125,9 @@ ln -s /usr/lib/lv2/samplv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 #------------------------------------------------
-# Install some extra LV2 Plugins (swh, avw, ...)
+# Install some extra LV2 Plugins (avw, ...)
 #------------------------------------------------
-apt-get -y --no-install-recommends install swh-lv2 lv2vocoder avw.lv2 invada-studio-plugins-lv2 calf-plugins
-ln -s /usr/lib/lv2/*swh.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+apt-get -y --no-install-recommends install lv2vocoder avw.lv2 invada-studio-plugins-lv2 calf-plugins
 ln -s /usr/lib/lv2/vocoder.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 # Some AVW plugins are broken, so it's disabled by now
 #ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
