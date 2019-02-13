@@ -174,3 +174,8 @@ if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/moog" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_raffo.sh
 fi
 
+# 2019-02-13: Install Kernel 4.18 from HifiBerry
+if [ ! -f "/boot/kernel7-hb.img" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_kernel_hb_dacadc.sh
+fi
+
