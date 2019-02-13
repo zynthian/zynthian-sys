@@ -107,6 +107,7 @@ $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
 $ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
 $ZYNTHIAN_RECIPE_DIR/install_triceratops.sh
 $ZYNTHIAN_RECIPE_DIR/install_swh.sh
+$ZYNTHIAN_RECIPE_DIR/install_shiro.sh
 
 # dcoredump Stuff
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
