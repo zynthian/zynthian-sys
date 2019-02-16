@@ -75,7 +75,7 @@ $ZYNTHIAN_RECIPE_DIR/install_midifilter.lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
 $ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
 $ZYNTHIAN_RECIPE_DIR/install_openav-artyfx.sh
-#$ZYNTHIAN_RECIPE_DIR/install_calf.sh => Doesn't link in stretch! => Installing from repository an older version
+$ZYNTHIAN_RECIPE_DIR/install_calf.sh
 $ZYNTHIAN_RECIPE_DIR/install_eq10q.sh
 $ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
 $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
@@ -128,7 +128,7 @@ ln -s /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 #------------------------------------------------
 # Install some extra LV2 Plugins (avw, ...)
 #------------------------------------------------
-apt-get -y --no-install-recommends install lv2vocoder avw.lv2 invada-studio-plugins-lv2 calf-plugins
+apt-get -y --no-install-recommends install lv2vocoder avw.lv2 invada-studio-plugins-lv2
 ln -s /usr/lib/lv2/vocoder.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 # Some AVW plugins are broken, so it's disabled by now
 #ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
