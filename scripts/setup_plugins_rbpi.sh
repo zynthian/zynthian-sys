@@ -75,7 +75,7 @@ $ZYNTHIAN_RECIPE_DIR/install_midifilter.lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
 $ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
 $ZYNTHIAN_RECIPE_DIR/install_openav-artyfx.sh
-#$ZYNTHIAN_RECIPE_DIR/install_calf.sh => Doesn't link in stretch! => Installing from repository an older version
+$ZYNTHIAN_RECIPE_DIR/install_calf.sh
 $ZYNTHIAN_RECIPE_DIR/install_eq10q.sh
 $ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
 $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
@@ -86,9 +86,13 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
 $ZYNTHIAN_RECIPE_DIR/install_sosynth.sh # => Not working because of deprecated "LV2:Event" extension
 $ZYNTHIAN_RECIPE_DIR/install_fat1.sh
-$ZYNTHIAN_RECIPE_DIR/install_gxslowgear.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxboobtube.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxswitchlesswah.sh
-$ZYNTHIAN_RECIPE_DIR/install_gxvintagefuzz.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxcreammachine.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxdenoiser2.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxdistortionplus.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxplugins.sh
+$ZYNTHIAN_RECIPE_DIR/install_gxvalvecaster.sh
 #$ZYNTHIAN_RECIPE_DIR/install_gxsupertoneblender.sh
 #$ZYNTHIAN_RECIPE_DIR/install_gxsuperfuzz.sh
 #$ZYNTHIAN_RECIPE_DIR/install_gxvoodofuzz.sh
@@ -102,6 +106,8 @@ $ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
 $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
 $ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
 $ZYNTHIAN_RECIPE_DIR/install_triceratops.sh
+$ZYNTHIAN_RECIPE_DIR/install_swh.sh
+$ZYNTHIAN_RECIPE_DIR/install_shiro.sh
 
 # dcoredump Stuff
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
@@ -120,10 +126,9 @@ ln -s /usr/lib/lv2/samplv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 #------------------------------------------------
-# Install some extra LV2 Plugins (swh, avw, ...)
+# Install some extra LV2 Plugins (avw, ...)
 #------------------------------------------------
-apt-get -y --no-install-recommends install swh-lv2 lv2vocoder avw.lv2 invada-studio-plugins-lv2 calf-plugins
-ln -s /usr/lib/lv2/*swh.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+apt-get -y --no-install-recommends install lv2vocoder avw.lv2 invada-studio-plugins-lv2
 ln -s /usr/lib/lv2/vocoder.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 # Some AVW plugins are broken, so it's disabled by now
 #ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
