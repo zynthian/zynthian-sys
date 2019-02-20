@@ -126,23 +126,18 @@ ln -s /usr/lib/lv2/samplv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/lib/lv2/drumkv1.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 #------------------------------------------------
-# Install some extra LV2 Plugins (avw, ...)
+# Install some extra LV2 Plugins
 #------------------------------------------------
 apt-get -y --no-install-recommends install lv2vocoder avw.lv2 invada-studio-plugins-lv2
 ln -s /usr/lib/lv2/vocoder.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/lib/lv2/invada.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 # Some AVW plugins are broken, so it's disabled by now
 #ln -s /usr/lib/lv2/avw.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-ln -s /usr/lib/lv2/invada.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-ln -s /usr/lib/lv2/calf.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-
-#------------------------------------------------
-# Install some extra LV2 Plugins (Calf, MDA, ...)
-#------------------------------------------------
 #apt-get -y install mda-lv2
 
 #------------------------------------------------
-# Install some LADSPA plugins for LinuxSampler
+# Install LADSPA plugins for LinuxSampler => Not used anymore!
 #------------------------------------------------
 
-apt-get -y install ladspa-sdk wah-plugins tap-plugins vco-plugins swh-plugins ste-plugins rev-plugins omins mcp-plugins invada-studio-plugins-ladspa rubberband-ladspa fil-plugins csladspa cmt caps bs2b-ladspa blop blepvco autotalent ambdec amb-plugins
+#apt-get -y install ladspa-sdk wah-plugins tap-plugins vco-plugins swh-plugins ste-plugins rev-plugins omins mcp-plugins invada-studio-plugins-ladspa rubberband-ladspa fil-plugins csladspa cmt caps bs2b-ladspa blop blepvco autotalent ambdec amb-plugins
 
