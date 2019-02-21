@@ -240,6 +240,17 @@ echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 # On first boot, resize SD partition, regenerate keys, etc.
 $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 
+
+#************************************************
+#------------------------------------------------
+# Install Custom Kernel 4.18 from HifiBerry
+# => Needed for DAC+ ADC support!
+#------------------------------------------------
+#************************************************
+
+$ZYNTHIAN_RECIPE_DIR/install_kernel_hb_dacadc.sh
+
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Required Libraries
