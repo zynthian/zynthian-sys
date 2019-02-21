@@ -74,31 +74,36 @@ export ZYNTHIAN_PLUGINS_SRC_DIR="$ZYNTHIAN_SW_DIR/plugins"
 export LV2_PATH="$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 
 # Hardware Architecture & Optimization Options
-machine=`uname -m 2>/dev/null`
-if [ ${machine} = "armv7l" ]; then
+if [ "$ZYNTHIAN_FORCE_RBPI_VERSION" ]; then
+	hw_architecture="armv7l"
+	rbpi_version=$ZYNTHIAN_FORCE_RBPI_VERSION
+else
+	hw_architecture=`uname -m 2>/dev/null`
+	if [ -e "/sys/firmware/devicetree/base/model" ]; then
+		rbpi_version=`tr -d '\0' < /sys/firmware/devicetree/base/model`
+	else
+		rbpi_version=""
+	fi
+fi
+
+if [ "$hw_architecture" = "armv7l" ]; then
 	# default is: RPi3
 	CPU="-mcpu=cortex-a53 -mtune=cortex-a53"
 	FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
-	if [ -e "/sys/firmware/devicetree/base/model" ]
-	then
-		model=$(tr -d '\0' </sys/firmware/devicetree/base/model)
-		if [[ ${model} =~ [2] ]]; then
-			CPU="-mcpu=cortex-a7 -mtune=cortex-a7"
-			FPU="-mfpu=neon-vfpv4"
-		fi
-	else
-		model=""
+	if [[ "$rbpi_version" =~ [2] ]]; then
+		CPU="-mcpu=cortex-a7 -mtune=cortex-a7"
+		FPU="-mfpu=neon-vfpv4"
 	fi
 	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad -ftree-vectorize"
 	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
 fi
-export MACHINE_HW_NAME=$machine
-export RBPI_VERSION=$model
+export MACHINE_HW_NAME=$hw_architecture
+export RBPI_VERSION=$rbpi_version
 export CFLAGS="${CPU} ${FPU}"
 export CXXFLAGS=${CFLAGS}
 export CFLAGS_UNSAFE=""
-#echo "Hardware Architecture: ${machine}"
-#echo "Hardware Model: ${model}"
+#echo "Hardware Architecture: ${hw_architecture}"
+#echo "Hardware Model: ${rbpi_version}"
 
 # Setup / Build Options
 export ZYNTHAIN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
