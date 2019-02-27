@@ -9,7 +9,14 @@ cd lv2
 ./waf build
 ./waf install
 ./waf clean
-ln -s /usr/local/include/lv2/lv2.h /usr/local/include/lv2.h
+
+if [ ! -f "/usr/local/include/lv2.h" ]; then
+	ln -s /usr/local/include/lv2/lv2.h /usr/local/include/lv2.h
+fi
+
+if [ ! -f "/usr/local/lib/pkgconfig/lv2core.pc" ]; then
+	ln -s /usr/local/lib/pkgconfig/lv2.pc /usr/local/lib/pkgconfig/lv2core.pc
+fi
 cd ..
 
 git clone --recursive https://github.com/drobilla/serd.git
