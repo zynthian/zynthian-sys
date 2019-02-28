@@ -35,7 +35,7 @@ apt-get -y dist-upgrade
 
 # Install required dependencies if needed
 apt-get -y install apt-utils
-apt-get -y install sudo apt-transport-https software-properties-common htpdate parted
+apt-get -y install sudo apt-transport-https software-properties-common htpdate parted dirmngr
 
 # Set here default config
 [ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=yes
@@ -47,7 +47,6 @@ apt-get -y install sudo apt-transport-https software-properties-common htpdate p
 if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
     apt-get -y install rpi-update
 fi
-
 
 # Adjust System Date/Time
 htpdate 0.europe.pool.ntp.org
