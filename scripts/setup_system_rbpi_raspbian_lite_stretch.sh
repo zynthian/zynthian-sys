@@ -24,6 +24,8 @@
 
 source zynthian_envars.sh
 
+export DEBIAN_FRONTEND=noninteractive
+
 #------------------------------------------------
 # Update System & Firmware
 #------------------------------------------------
@@ -35,7 +37,7 @@ apt-get -y dist-upgrade
 
 # Install required dependencies if needed
 apt-get -y install apt-utils
-apt-get -y install sudo apt-transport-https software-properties-common htpdate parted
+apt-get -y install sudo apt-transport-https software-properties-common htpdate parted dirmngr
 
 # Set here default config
 [ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=yes
@@ -47,7 +49,6 @@ apt-get -y install sudo apt-transport-https software-properties-common htpdate p
 if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
     apt-get -y install rpi-update
 fi
-
 
 # Adjust System Date/Time
 htpdate 0.europe.pool.ntp.org
@@ -114,8 +115,8 @@ libavformat-dev libswscale-dev libavcodec-dev libqt4-dev qtbase5-dev qtdeclarati
 #libgd2-xpm-dev
 
 # Python
-apt-get -y install python python-dev cython python-dbus
-apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk
+apt-get -y install python python-dev cython python-dbus python-setuptools
+apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
     apt-get -y install python-pip python3-pip
@@ -128,7 +129,7 @@ pip3 install jsonpickle
 pip3 install oyaml
 pip3 install psutil
 pip3 install pexpect
-
+pip3 install requests
 
 #************************************************
 #------------------------------------------------
