@@ -11,7 +11,8 @@ git submodule update
 
 sed -i -- 's/-march=armv6 //' Makefile.mk
 
-RASPPI=true make all
+export RASPPI=true
+make all
+cp -r bin/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2/
 
-cp -r bin/*.lv2 /zynthian/zynthian-plugins/lv2/
 cd ..
