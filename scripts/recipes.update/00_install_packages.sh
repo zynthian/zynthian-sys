@@ -179,3 +179,8 @@ if [ ! -f "/boot/kernel7-hb.img" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_kernel_hb_dacadc.sh
 fi
 
+# 2019-02-28: Install mido & python-rtmidi
+res=`pip3 show mido`
+if [ "$res" == "" ]; then
+	pip3 install mido python-rtmidi
+fi

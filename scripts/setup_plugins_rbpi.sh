@@ -84,7 +84,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
-$ZYNTHIAN_RECIPE_DIR/install_sosynth.sh # => Not working because of deprecated "LV2:Event" extension
+#$ZYNTHIAN_RECIPE_DIR/install_sosynth.sh # => Not working because of deprecated "LV2:Event" extension
 $ZYNTHIAN_RECIPE_DIR/install_fat1.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxboobtube.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxswitchlesswah.sh
