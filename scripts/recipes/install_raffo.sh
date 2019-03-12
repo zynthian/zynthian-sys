@@ -6,8 +6,7 @@
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
-#zynth_git https://github.com/nicoroulet/moog.git
-zynth_git https://github.com/zynthian/moog.git
+zynth_git https://github.com/nicoroulet/moog.git
 if [ ${?} -ne 0 -o  "${build}" = "build" ]; then
 	zynth_build_request clear
 	cd moog
