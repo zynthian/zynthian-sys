@@ -184,3 +184,11 @@ res=`pip3 show mido`
 if [ "$res" == "" ]; then
 	pip3 install mido python-rtmidi
 fi
+
+# 2019-03-07: Install xloadimage & imagemagick used by improved error splash
+res=`dpkg -s xloadimage 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y upgrade
+	apt-get -y install xloadimage imagemagick
+fi
