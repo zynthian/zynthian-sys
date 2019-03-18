@@ -108,7 +108,7 @@ libavformat-dev libswscale-dev libavcodec-dev libqt5-dev libqt4-dev
 
 # Python
 apt-get -y install python python-dev python-pip cython python-dbus python-setuptools
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools
+apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-PyQt4
 pip3 install websocket-client
 pip3 install tornado==4.1
 pip3 install tornadostreamform
