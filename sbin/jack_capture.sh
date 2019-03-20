@@ -15,7 +15,7 @@ fi
 # Capture audio using jack_capture
 cd $CAPTURE_DIR
 if [ $1 = "--zui" ]; then
-	/usr/local/bin/jack_capture --no-stdin --absolutely-silent --jack-transport
+	/usr/local/bin/jack_capture --daemon
 else
 	/usr/local/bin/jack_capture
 fi
