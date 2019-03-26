@@ -71,17 +71,19 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/plugins/obxd_bank" ]; then
 fi
 
 # 2018-05-22 => PureData Integration
-#if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/puredata" ]; then
-res=`pip3 show oyaml`
-if [ "$res" == "" ]; then
+res=`dpkg -s puredata 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y upgrade
-	apt-get -y install puredata puredata-core puredata-utils python3-yaml
-	apt-get -y install pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
-	pip3 install oyaml
+	apt-get -y install puredata puredata-core puredata-utils python3-yaml pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 	systemctl enable a2jmidid
 	systemctl start a2jmidid
 	touch $REBOOT_FLAGFILE
+fi
+
+res=`pip3 show oyaml`
+if [ "$res" == "" ]; then
+	pip3 install oyaml
 fi
 
 # 2018-05-29: Install WIFI firmware from non-free repository
