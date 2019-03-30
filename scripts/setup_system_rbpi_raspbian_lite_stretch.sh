@@ -109,8 +109,8 @@ libfltk1.3-dev libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcair
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools liblash-compat-dev libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
 libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
-lv2-c++-tools python3-numpy-dev libavcodec57 libavformat57 libavutil55 libavresample3 python3-pyqt4 libxi-dev  \
-libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
+lv2-c++-tools libavcodec57 libavformat57 libavutil55 libavresample3 libxi-dev libgtk2.0-dev \
+libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
 fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev \
 libavformat-dev libswscale-dev libavcodec-dev libqt4-dev qtbase5-dev qtdeclarative5-dev
 
@@ -120,7 +120,7 @@ libavformat-dev libswscale-dev libavcodec-dev libqt4-dev qtbase5-dev qtdeclarati
 
 # Python
 apt-get -y install python python-dev cython python-dbus python-setuptools
-apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-PyQt4
+apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
     apt-get -y install python-pip python3-pip

@@ -97,8 +97,8 @@ libfltk1.3-dev libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcair
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools liblash-compat-dev libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
 libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
-lv2-c++-tools python3-numpy-dev libavcodec56 libavformat56 libavutil54 libavresample2 python3-pyqt4 libxi-dev \
-libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
+lv2-c++-tools libavcodec56 libavformat56 libavutil54 libavresample2 libxi-dev libgtk2.0-dev \
+libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
 fonts-roboto libxcursor-dev libxinerama-dev libcurl4-openssl-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev \
 libavformat-dev libswscale-dev libavcodec-dev libqt5-dev libqt4-dev
 
@@ -108,7 +108,7 @@ libavformat-dev libswscale-dev libavcodec-dev libqt5-dev libqt4-dev
 
 # Python
 apt-get -y install python python-dev python-pip cython python-dbus python-setuptools
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-PyQt4
+apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev
 pip3 install websocket-client
 pip3 install tornado==4.1
 pip3 install tornadostreamform
