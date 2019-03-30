@@ -174,11 +174,6 @@ if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/moog" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_raffo.sh
 fi
 
-# 2019-02-13: Install Kernel 4.18 from HifiBerry
-if [ ! -f "/boot/kernel7-hb.img" ]; then
-	$ZYNTHIAN_RECIPE_DIR/install_kernel_hb_dacadc.sh
-fi
-
 # 2019-02-28: Install mido & python-rtmidi
 res=`pip3 show mido`
 if [ "$res" == "" ]; then
