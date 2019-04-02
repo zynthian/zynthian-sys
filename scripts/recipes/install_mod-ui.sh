@@ -11,7 +11,10 @@ if [[ -n $MOD_UI_GITSHA ]]; then
 	git checkout zynthian
 fi
 
-sudo pip3 install -r requirements.txt
+#pip3 install -r requirements.txt
+pip3 install pyserial==2.7 pystache==0.5.4 aggdraw==1.3.7
+pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
+
 cd utils
 make
 
