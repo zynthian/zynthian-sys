@@ -109,14 +109,11 @@ libavformat-dev libswscale-dev libavcodec-dev libqt5-dev libqt4-dev
 # Python
 apt-get -y install python python-dev python-pip cython python-dbus python-setuptools
 apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev
-pip3 install websocket-client
-pip3 install tornado==4.1
-pip3 install tornadostreamform
-pip3 install jsonpickle
-pip3 install oyaml
-pip3 install psutil
-pip3 install pexpect
-pip3 install requests
+
+pip3 install tornado==4.1 tornadostreamform websocket-client
+pip3 install jsonpickle oyaml psutil pexpect requests
+pip3 install mido python-rtmidi
+
 
 #************************************************
 #------------------------------------------------
@@ -197,8 +194,8 @@ echo "zynthian" > /etc/hostname
 sed -i -e "s/minibian/zynthian/" /etc/hosts
 
 # Run configuration script
-$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 # Systemd Services
 systemctl daemon-reload

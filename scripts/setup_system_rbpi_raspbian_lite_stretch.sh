@@ -126,14 +126,10 @@ if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
     apt-get -y install python-pip python3-pip
 fi
 
-pip3 install websocket-client
-pip3 install tornado==4.1
-pip3 install tornadostreamform
-pip3 install jsonpickle
-pip3 install oyaml
-pip3 install psutil
-pip3 install pexpect
-pip3 install requests
+pip3 install tornado==4.1 tornadostreamform websocket-client
+pip3 install jsonpickle oyaml psutil pexpect requests
+pip3 install mido python-rtmidi
+
 
 #************************************************
 #------------------------------------------------
@@ -213,8 +209,8 @@ if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
 fi
 
 # Run configuration script
-$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 # Systemd Services
 systemctl daemon-reload
