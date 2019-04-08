@@ -45,7 +45,8 @@ rm -f $REBOOT_FLAGFILE
 # Update Date/Time from network ...
 #------------------------------------------------------------------------------
 
-htpdate -s www.pool.ntp.org www.ntp.br www.wikipedia.org 0.europe.pool.ntp.org www.google.co.uk
+echo "Updating system date/time from network ..."
+htpdate -s www.pool.ntp.org www.wikipedia.org 0.europe.pool.ntp.org www.google.co.uk
 
 #------------------------------------------------------------------------------
 # Update from repositories ...
