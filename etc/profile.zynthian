@@ -7,4 +7,4 @@ if [ -n "{$SSH_CLIENT}" ]; then
     echo "REMOTE_IP=$REMOTE_IP" >> .remote_display_env
 fi
 
-export PATH=PATH:/$ZYNTHIAN_SYS_DIR/scripts:/$ZYNTHIAN_SYS_DIR/sbin
+export PATH=$PATH:/$ZYNTHIAN_SYS_DIR/scripts:/$ZYNTHIAN_SYS_DIR/sbin
