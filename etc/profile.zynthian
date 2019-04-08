@@ -6,3 +6,5 @@ if [ -n "{$SSH_CLIENT}" ]; then
     REMOTE_IP=${parts[0]}
     echo "REMOTE_IP=$REMOTE_IP" >> .remote_display_env
 fi
+
+export PATH=PATH:/$ZYNTHIAN_SYS_DIR/scripts:/$ZYNTHIAN_SYS_DIR/sbin
