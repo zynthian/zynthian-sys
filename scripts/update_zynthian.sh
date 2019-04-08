@@ -42,6 +42,12 @@ export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
 rm -f $REBOOT_FLAGFILE
 
 #------------------------------------------------------------------------------
+# Update Date/Time from network ...
+#------------------------------------------------------------------------------
+
+htpdate -s www.pool.ntp.org www.ntp.br www.wikipedia.org 0.europe.pool.ntp.org www.google.co.uk
+
+#------------------------------------------------------------------------------
 # Update from repositories ...
 #------------------------------------------------------------------------------
 
