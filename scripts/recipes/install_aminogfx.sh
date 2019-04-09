@@ -11,5 +11,12 @@ nvm install 7.10.1
 nvm use 7.10.1
 npm install aminogfx-gl
 
+# CreateJS + EaselJS
+# apt-get isntall giflib-tools libgif-dev
+nvm use 11.0.0
+npm install createjs
+npm install node-easel
+#npm install canvas
+
 # Install MIDI support
 npm install midi

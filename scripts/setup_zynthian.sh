@@ -44,5 +44,6 @@ if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	echo `date` >  ~/.wiggled
 	./rpi-wiggle.sh
 else
-	./setup_system_rbpi_minibian_jessie.sh
+	#./setup_system_rbpi_minibian_jessie.sh
+	./setup_system_rbpi_raspbian_lite_stretch.sh
 fi
