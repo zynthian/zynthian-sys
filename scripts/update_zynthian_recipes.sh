@@ -27,9 +27,19 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
-echo "Updating zynthian recipes ..."
-for r in $ZYNTHIAN_SYS_DIR/scripts/recipes.update/*.sh; do
+RECIPES_UPDATE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes.update"
+codebase=`lsb_release -cs`
+
+#Custom update recipes, depending on the codebase version
+echo "Executing custom update recipes ..."
+for r in $RECIPES_UPDATE_DIR.${codebase}/*.sh; do
 	echo "Executing $r ..."
 	bash $r
 done
 
+#Generic update recipes
+echo "Executing update recipes ..."
+for r in $RECIPES_UPDATE_DIR/*.sh; do
+	echo "Executing $r ..."
+	bash $r
+done

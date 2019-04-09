@@ -366,9 +366,10 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 #------------------------------------------------
 #$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
 
+
 #************************************************
 #------------------------------------------------
-# End & Clean
+# Final Configuration
 #------------------------------------------------
 #************************************************
 
@@ -377,6 +378,16 @@ if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
 	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
 fi
 touch "$ZYNTHIAN_CONFIG_DIR/updates/omega"
+
+# Run configuration script before ending
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
+
+
+#************************************************
+#------------------------------------------------
+# End & Clean
+#------------------------------------------------
+#************************************************
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
