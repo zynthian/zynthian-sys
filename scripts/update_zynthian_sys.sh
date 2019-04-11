@@ -276,6 +276,11 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/avahi/* /etc/avahi
 fi
 
+# Fix usbmount in stretch
+if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
+	sed -i -e "s/MountFlags\=slave/MountFlags\=shared/g" /lib/systemd/system/systemd-udevd.service
+fi
+
 # X11 Display config
 if [ ! -d "/etc/X11/xorg.conf.d" ]; then
 	mkdir /etc/X11/xorg.conf.d
