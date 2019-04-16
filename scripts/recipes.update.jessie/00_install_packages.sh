@@ -11,7 +11,7 @@ if [ "$res" == "" ]; then
 fi
 
 # 2017-11-22 => jack-smf-utils, playback and record MID files
-if [ ! -d "$ZYNTHIAN_SW_DIR/jack-smf-utils-1.0" ]; then
+if [ ! -d "$ZYNTHIAN_SW_DIR/jack-smf-utils" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
 fi
 
@@ -190,7 +190,3 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y install xloadimage imagemagick
 fi
 
-# 2019-04-10: Install jack-smf-utils from zynthian repository
-if [ ! -d "$ZYNTHIAN_SW_DIR/jack-smf-utils" ]; then
-	$ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
-fi
