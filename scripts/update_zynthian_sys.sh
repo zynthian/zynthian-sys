@@ -23,6 +23,12 @@
 # ****************************************************************************
 
 #------------------------------------------------------------------------------
+# Get System Codebase
+#------------------------------------------------------------------------------
+
+ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
+
+#------------------------------------------------------------------------------
 # Define config dir if needed
 #------------------------------------------------------------------------------
 
@@ -40,8 +46,9 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
-echo "Updating System configuration ..."
+#------------------------------------------------------------------------------
 
+echo "Updating System configuration ..."
 
 #------------------------------------------------------------------------------
 # Reboot flag-file
@@ -271,7 +278,9 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Copy "etc" config files
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
+	if [ "$ZYNTHIAN_OS_CODEBASE" == "jessie" ]; then
+		cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
+	fi
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
 	cp -an $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 	cp -an $ZYNTHIAN_SYS_DIR/etc/security/* /etc/security
@@ -281,8 +290,10 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 fi
 
 # Fix usbmount in stretch
-if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
-	sed -i -e "s/MountFlags\=slave/MountFlags\=shared/g" /lib/systemd/system/systemd-udevd.service
+if [ "$ZYNTHIAN_OS_CODEBASE" == "stretch" ]; then
+	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
+		sed -i -e "s/MountFlags\=slave/MountFlags\=shared/g" /lib/systemd/system/systemd-udevd.service
+	fi
 fi
 
 # X11 Display config
