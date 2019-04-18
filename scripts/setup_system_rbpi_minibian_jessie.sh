@@ -44,7 +44,7 @@ if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
 fi
 
 # Adjust System Date/Time
-htpdate -d -s www.pool.ntp.org wikipedia.org google.com
+htpdate -s www.pool.ntp.org wikipedia.org google.com
 
 # Update Firmware
 if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
