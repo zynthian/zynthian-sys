@@ -7,7 +7,7 @@ source "/zynthian/config/zynthian_envars.sh"
 $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh
 
 # Enable WIFI AutoAccessPoint (hostapd)
-systemctl unmask hostpad
+systemctl unmask hostapd
 
 # Disable first_boot service
 systemctl disable first_boot
