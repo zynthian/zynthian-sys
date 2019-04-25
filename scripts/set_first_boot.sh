@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # Add First Boot Script to /etc/rc.local
-echo "Adding first boot call to /etc/rc.local ..."
-sed -i -- "s/exit 0/\/zynthian\/zynthian-sys\/scripts\/first_boot\.sh/" /etc/rc.local
-echo "exit 0" >> /etc/rc.local
+echo "Enabling first boot service ..."
+systemctl enable first_boot
 
 # Clean unneeded packages & apt cache
 echo "Cleaning unused packages and cache ..."
