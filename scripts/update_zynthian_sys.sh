@@ -347,6 +347,8 @@ if [ -d "$soundcard_config_custom_dir" ]; then
 fi
 
 # Replace config vars in Systemd service files
+# First Boot service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/first_boot.service
 # Cpu-performance service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/cpu-performance.service
 # Splash-Screen Service

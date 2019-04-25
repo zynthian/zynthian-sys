@@ -1,0 +1,10 @@
+[Unit]
+Description=First Boot Script
+Before=jack2.service
+
+[Service]
+Type=oneshot
+ExecStart=#ZYNTHIAN_SYS_DIR#/scripts/first_boot.sh
+
+[Install]
+WantedBy=multi-user.target
