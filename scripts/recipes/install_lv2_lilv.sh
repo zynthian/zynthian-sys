@@ -3,7 +3,7 @@
 # LV2, lilv and Python bindings
 cd $ZYNTHIAN_SW_DIR
 
-git clone https://github.com/drobilla/lv2.git
+git clone --recursive https://github.com/drobilla/lv2.git
 cd lv2
 ./waf configure
 ./waf build
