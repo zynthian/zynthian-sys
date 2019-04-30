@@ -127,19 +127,13 @@ mkdir $ZYNTHIAN_DIR
 # Zyncoder library 
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zyncoder.git
-mkdir zyncoder/build
-cd zyncoder/build
-cmake ..
-make
+./zyncoder/build.sh
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
 if [ -d "zynthian-ui/jackpeak" ]; then
-	cd zynthian-ui/jackpeak
-	cmake .
-	make
-	cd ../..
+	./zynthian-ui/jackpeak/build.sh
 fi
 
 # Zynthian System Scripts and Config files

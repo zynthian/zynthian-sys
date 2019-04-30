@@ -66,9 +66,7 @@ echo "Updating zyncoder ..."
 cd $ZYNTHIAN_DIR/zyncoder
 git checkout .
 git pull | grep -q -v 'Already up-to-date.' && ui_changed=1
-cd build
-cmake ..
-make
+./build.sh
 
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
@@ -76,10 +74,7 @@ git checkout .
 git pull | grep -q -v 'Already up-to-date.' && ui_changed=1
 rm -f zynthian_gui_config_new.py
 if [ -d "jackpeak" ]; then
-	cd jackpeak
-	cmake .
-	make
-	cd ..
+	./jackpeak/build.sh
 fi
 
 echo "Updating zynthian-webconf ..."
