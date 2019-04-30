@@ -65,7 +65,7 @@ cd ./scripts
 echo "Updating zyncoder ..."
 cd $ZYNTHIAN_DIR/zyncoder
 git checkout .
-git pull
+git pull | grep -q -v 'Already up-to-date.' && ui_changed=1
 cd build
 cmake ..
 make
@@ -73,19 +73,30 @@ make
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
 git checkout .
-git pull
+git pull | grep -q -v 'Already up-to-date.' && ui_changed=1
 rm -f zynthian_gui_config_new.py
+if [ -d "jackpeak" ]; then
+	cd jackpeak
+	cmake .
+	make
+	cd ..
+fi
 
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
 git checkout .
-git pull | grep -q -v 'Already up-to-date.' && changed=1
-if [[ "$changed" -eq 1 ]]; then
-	systemctl stop zynthian-webconf
-	systemctl start zynthian-webconf
-fi
+git pull | grep -q -v 'Already up-to-date.' && webconf_changed=1
+
 
 if [ -f $REBOOT_FLAGFILE ]; then
 	rm -f $REBOOT_FLAGFILE
 	reboot
+fi
+
+if [[ "$ui_changed" -eq 1 ]]; then
+	systemctl restart zynthian
+fi
+
+if [[ "$webconf_changed" -eq 1 ]]; then
+	systemctl restart zynthian-webconf
 fi
