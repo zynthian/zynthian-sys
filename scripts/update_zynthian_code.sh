@@ -1,11 +1,8 @@
 #!/bin/bash
 #******************************************************************************
-# ZYNTHIAN PROJECT: Update Zynthian Software
+# ZYNTHIAN PROJECT: Update Zynthian Code
 # 
 # + Update the Zynthian Software from repositories.
-# + Install/update extra packages (recipes).
-# + Reconfigure system.
-# + Reboot when needed.
 # 
 # Copyright (C) 2015-2019 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -35,39 +32,39 @@ else
 fi
 
 #------------------------------------------------------------------------------
-# Reboot flag-file
+# Pull from repositories ...
 #------------------------------------------------------------------------------
 
-export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
-rm -f $REBOOT_FLAGFILE
-
-#------------------------------------------------------------------------------
-# Update Date/Time from network ...
-#------------------------------------------------------------------------------
-
-echo "Updating system date/time from network ..."
-htpdate -s www.pool.ntp.org wikipedia.org google.com
-
-#------------------------------------------------------------------------------
-# Pull from zynthian-sys repotory ...
-#------------------------------------------------------------------------------
-
-echo "Updating zynthian-sys ..."
-cd $ZYNTHIAN_SYS_DIR
+echo "Updating zyncoder ..."
+cd $ZYNTHIAN_DIR/zyncoder
 git checkout .
-git pull
+git pull | grep -q -v 'Already up-to-date.' && ui_changed=1
+./build.sh
 
-#------------------------------------------------------------------------------
-# Call update subscripts ...
-#------------------------------------------------------------------------------
+echo "Updating zynthian-ui ..."
+cd $ZYNTHIAN_UI_DIR
+git checkout .
+git pull | grep -q -v 'Already up-to-date.' && ui_changed=1
+rm -f zynthian_gui_config_new.py
+if [ -d "jackpeak" ]; then
+	./jackpeak/build.sh
+fi
 
-cd ./scripts
-./update_zynthian_recipes.sh
-./update_zynthian_data.sh
-./update_zynthian_sys.sh
-./update_zynthian_code.sh
+echo "Updating zynthian-webconf ..."
+cd $ZYNTHIAN_DIR/zynthian-webconf
+git checkout .
+git pull | grep -q -v 'Already up-to-date.' && webconf_changed=1
+
 
 if [ -f $REBOOT_FLAGFILE ]; then
 	rm -f $REBOOT_FLAGFILE
 	reboot
+fi
+
+if [[ "$ui_changed" -eq 1 ]]; then
+	systemctl restart zynthian
+fi
+
+if [[ "$webconf_changed" -eq 1 ]]; then
+	systemctl restart zynthian-webconf
 fi
