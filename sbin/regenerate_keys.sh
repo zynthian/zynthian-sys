@@ -17,6 +17,6 @@ rm -f "$ZYNTHIAN_CONFIG_DIR/webconf_cookie_secret.txt"
 echo "Removing current system SSH keys ..."
 rm -fv /etc/ssh/ssh_host_*
 echo "Generating new system SSH keys ..."
-dpkg-reconfigure openssh-server
+/usr/sbin/dpkg-reconfigure openssh-server
 echo "Restarting SSH server ..."
 systemctl restart ssh
