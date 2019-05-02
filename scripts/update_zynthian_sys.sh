@@ -131,7 +131,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
-		SOUNDCARD_CONFIG="dwc_otg.speed=1\n$SOUNDCARD_CONFIG"
+		sed -i '1s/^/dwc_otg.speed=1 /' /boot/cmdline.txt
 	fi
 
 	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
