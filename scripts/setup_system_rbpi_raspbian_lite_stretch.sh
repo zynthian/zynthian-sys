@@ -137,34 +137,35 @@ pip3 install mido python-rtmidi
 # Install Zynthian Software from repositories
 #------------------------------------------------
 #************************************************
+
 mkdir $ZYNTHIAN_DIR
 
 # Zyncoder library
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zyncoder.git
-mkdir zyncoder/build
-cd zyncoder/build
-cmake ..
-make
-
-cd $ZYNTHIAN_DIR
+./zyncoder/build.sh
 
 # Zynthian UI
+cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
+if [ -d "zynthian-ui/jackpeak" ]; then
+	./zynthian-ui/jackpeak/build.sh
+fi
 
 # Zynthian System Scripts and Config files
+cd $ZYNTHIAN_DIR
 git clone -b ""${ZYNTHIAN_SYS_BRANCH}"" "${ZYNTHIAN_SYS_REPO}"
 
 # Zynthian Data
+cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-data.git
 
-# Zynthian Plugins => TODO! => Rethink plugins directory!!
-#git clone https://github.com/zynthian/zynthian-plugins.git
-
 # Zynthian Webconf Tool
+cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-webconf.git
 
 # Zynthian emuface => Not very useful here ... but somebody used it
+cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-emuface.git
 
 # Create needed directories
