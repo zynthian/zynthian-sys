@@ -348,6 +348,11 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 #------------------------------------------------
 #$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
 
+#------------------------------------------------
+# Install MIDISport firmware
+#------------------------------------------------
+apt -y install midisport-firmware
+
 
 #************************************************
 #------------------------------------------------
