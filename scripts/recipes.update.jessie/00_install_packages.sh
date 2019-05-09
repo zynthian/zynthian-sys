@@ -190,3 +190,9 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y install xloadimage imagemagick
 fi
 
+# 2019-05-09: Install MIDISport firmware
+res=`dpkg -s midisport-firmware 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt -y install midisport-firmware
+fi
