@@ -231,6 +231,9 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #------------------------------------------------
 #************************************************
 
+# Install Jack2
+$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
+
 # Install alsaseq Python Library
 $ZYNTHIAN_RECIPE_DIR/install_alsaseq.sh
 
