@@ -152,7 +152,7 @@ fi
 cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
 
 #------------------------------------------------------------------------------
-# System Config 
+# Zynthian Config 
 #------------------------------------------------------------------------------
 
 # Create config dir if needed  ...
@@ -176,14 +176,20 @@ sed -i -e "/export ZYNTHIAN_MASTER_MIDI_[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/zynthian_
 sed -i -e "/export ZYNTHIAN_PRESET_PRELOAD_NOTEON[^\n]*/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 sed -i -e "s/zynthian-data\/midi-profiles/zynthian-my-data\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
+# Setup MIDI-profiles data directory
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/midi-profiles"
+	cp "$ZYNTHIAN_SYS_DIR/config/default_midi_profile.sh" "$ZYNTHIAN_MY_DATA_DIR/midi-profiles/default.sh"
+fi
+
 # Setup my-data presets subtree
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets" ]; then
 	cd $ZYNTHIAN_MY_DATA_DIR
 	mkdir presets
 	mkdir presets/zynaddsubfx
 	mkdir presets/zynaddsubfx/XMZ
-	mkdir presets/zynaddsubfx/XSZ
-	mkdir presets/zynaddsubfx/XLZ
+	#mkdir presets/zynaddsubfx/XSZ
+	#mkdir presets/zynaddsubfx/XLZ
 	mv zynbanks/* presets/zynaddsubfx
 	rm -rf zynbanks
 	ln -s presets/xiz zynbanks
@@ -252,12 +258,6 @@ if [ ! -f "$ZYNTHIAN_CONFIG_DIR/jalv_plugins.json" ]; then
 	cp "$ZYNTHIAN_SYS_DIR/config/default_jalv_plugins.json" "$ZYNTHIAN_CONFIG_DIR/jalv_plugins.json"
 fi
 
-# Setup MIDI-profiles data directory
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/midi-profiles"
-	cp "$ZYNTHIAN_SYS_DIR/config/default_midi_profile.sh" "$ZYNTHIAN_MY_DATA_DIR/midi-profiles/default.sh"
-fi
-
 # Setup Aeolus Config
 if [ -d "/usr/share/aeolus" ]; then
 	# => Delete specific Aeolus config for replacing with the newer one
@@ -281,19 +281,24 @@ if [ -d "/usr/share/aeolus" ]; then
 	fi
 fi
 
+#--------------------------------------
+# System Config
+#--------------------------------------
+
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Copy "etc" config files
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-	if [ "$ZYNTHIAN_OS_CODEBASE" == "jessie" ]; then
-		cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
-	fi
+	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
 	cp -an $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 	cp -an $ZYNTHIAN_SYS_DIR/etc/security/* /etc/security
 	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 	cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d 2>/dev/null
 	cp -a $ZYNTHIAN_SYS_DIR/etc/avahi/* /etc/avahi
+	cp -a $ZYNTHIAN_SYS_DIR/etc/default/* /etc/default
+	cp -a $ZYNTHIAN_SYS_DIR/etc/hostpad/* /etc/hostpad
+	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
 fi
 
 # Fix usbmount in stretch
@@ -310,6 +315,9 @@ fi
 cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 
+# Copy fonts to system directory
+cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
+
 # Fix problem with WLAN interfaces numbering
 if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
 	mv /etc/udev/rules.d/70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules.inactive
@@ -324,8 +332,10 @@ if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
 fi
 
-# Copy fonts to system directory
-cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
+# WIFI Hotspot extra config
+sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+echo "" > /etc/network/interfaces
+
 
 # User Config (root)
 # => ZynAddSubFX Config

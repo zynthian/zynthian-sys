@@ -45,8 +45,12 @@ rm -f $REBOOT_FLAGFILE
 # Update Date/Time from network ...
 #------------------------------------------------------------------------------
 
-echo "Updating system date/time from network ..."
-htpdate -s www.pool.ntp.org wikipedia.org google.com
+codebase=`lsb_release -cs`
+
+if [ "$codebase" == "jessie" ]; then
+	echo "Updating system date/time from network ..."
+	htpdate -s www.pool.ntp.org wikipedia.org google.com
+fi
 
 #------------------------------------------------------------------------------
 # Pull from zynthian-sys repotory ...

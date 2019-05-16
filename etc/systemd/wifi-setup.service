@@ -1,0 +1,10 @@
+[Unit]
+Description=WIFI Setup
+
+[Service]
+Environment=HOME=/root
+Type=oneshot
+ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/set_wifi.sh
+
+[Install]
+WantedBy=multi-user.target
