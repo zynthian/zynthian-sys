@@ -2,7 +2,10 @@
 Description=WIFI Setup
 
 [Service]
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
+Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 Environment=HOME=/root
+Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
 Type=oneshot
 ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/set_wifi.sh
 
