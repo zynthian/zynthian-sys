@@ -205,4 +205,5 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y install iw hostapd dnsmasq
 	systemctl disable hostapd
 	systemctl disable dnsmasq
+	systemctl disable wpa_supplicant
 fi

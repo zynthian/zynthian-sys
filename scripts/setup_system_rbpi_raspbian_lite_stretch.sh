@@ -217,7 +217,6 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 # Configure Systemd Services
 systemctl daemon-reload
 systemctl enable dhcpcd
-systemctl enable wpa_supplicant
 systemctl enable avahi-daemon
 systemctl disable raspi-config
 systemctl disable cron
@@ -227,6 +226,7 @@ systemctl disable htpdate
 systemctl disable triggerhappy
 systemctl disable packagekit
 systemctl disable polkit
+systemctl disable wpa_supplicant
 systemctl disable hostapd
 systemctl disable dnsmasq
 #systemctl disable serial-getty@ttyAMA0.service
