@@ -196,3 +196,13 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt -y install midisport-firmware
 fi
+
+# 2019-05-14: Install Wifi Access Point
+res=`dpkg -s hostpad 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y purge dns-root-data
+	apt-get -y install iw hostapd dnsmasq
+	systemctl disable hostapd
+	systemctl disable dnsmasq
+fi

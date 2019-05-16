@@ -71,7 +71,7 @@ apt-get update
 apt-get -y remove isc-dhcp-client
 apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-swx11 libgl1-mesa-dri
-apt-get -y install wpasupplicant firmware-brcm80211 firmware-atheros firmware-ralink firmware-realtek atmel-firmware wireless-tools
+apt-get -y install wpasupplicant firmware-brcm80211 firmware-atheros firmware-ralink firmware-realtek atmel-firmware wireless-tools iw hostapd dnsmasq
 
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe nano vim
@@ -163,8 +163,8 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
+#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
+#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
 ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx" "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
@@ -195,7 +195,7 @@ sed -i -e "s/minibian/zynthian/" /etc/hosts
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
-# Systemd Services
+# Configure Systemd Services
 systemctl daemon-reload
 systemctl enable dhcpcd
 systemctl enable wpa_supplicant
@@ -205,6 +205,10 @@ systemctl disable cron
 systemctl disable rsyslog
 systemctl disable ntp
 systemctl disable triggerhappy
+systemctl disable packagekit
+systemctl disable polkit
+systemctl disable hostapd
+systemctl disable dnsmasq
 #systemctl disable serial-getty@ttyAMA0.service
 #systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
 systemctl enable backlight
@@ -232,10 +236,10 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #************************************************
 
 # Install Jack2
-$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
+#$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
 
 # Install alsaseq Python Library
-$ZYNTHIAN_RECIPE_DIR/install_alsaseq.sh
+#$ZYNTHIAN_RECIPE_DIR/install_alsaseq.sh
 
 # Install NTK library
 $ZYNTHIAN_RECIPE_DIR/install_ntk.sh
