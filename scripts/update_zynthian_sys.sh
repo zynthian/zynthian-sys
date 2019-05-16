@@ -297,7 +297,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d 2>/dev/null
 	cp -a $ZYNTHIAN_SYS_DIR/etc/avahi/* /etc/avahi
 	cp -a $ZYNTHIAN_SYS_DIR/etc/default/* /etc/default
-	cp -a $ZYNTHIAN_SYS_DIR/etc/hostpad/* /etc/hostpad
+	cp -a $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
 fi
 
