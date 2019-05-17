@@ -109,6 +109,19 @@ if [ -z "$ZYNTHIAN_AUBIONOTES_OPTIONS" ]; then
 	export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
 fi
 
+
+if [ -z "$ZYNTHIAN_HOSTSPOT_NAME" ]; then
+	export ZYNTHIAN_HOSTSPOT_NAME="zynthian"
+fi
+
+if [ -z "$ZYNTHIAN_HOSTSPOT_CHANNEL" ]; then
+	export ZYNTHIAN_HOSTSPOT_CHANNEL="6"
+fi
+
+if [ -z "$ZYNTHIAN_HOSTSPOT_PASSWORD" ]; then
+	export ZYNTHIAN_HOSTSPOT_PASSWORD="raspberry"
+fi
+
 #------------------------------------------------------------------------------
 # Escape Config Variables to replace
 #------------------------------------------------------------------------------
@@ -290,15 +303,18 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
-	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/* /etc/wpa_supplicant
 	cp -an $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 	cp -an $ZYNTHIAN_SYS_DIR/etc/security/* /etc/security
 	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
 	cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d 2>/dev/null
 	cp -a $ZYNTHIAN_SYS_DIR/etc/avahi/* /etc/avahi
 	cp -a $ZYNTHIAN_SYS_DIR/etc/default/* /etc/default
+	# WIFI Hotspot
 	cp -a $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
+	# WIFI Network
+	rm -f /etc/wpa_supplicant/wpa_supplicant.conf
+	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
 fi
 
 # Fix usbmount in stretch
@@ -362,6 +378,11 @@ soundcard_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/soundcard/$SOUNDCARD_NAME"
 if [ -d "$soundcard_config_custom_dir" ]; then
 	custom_config "$soundcard_config_custom_dir"
 fi
+
+# Replace config vars in hostapd.conf
+sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
+sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hostapd/hostapd.conf
+sed -i -e "s/#ZYNTHIAN_HOTSPOT_PASSWORD#/$ZYNTHIAN_HOSTSPOT_PASSWORD/g" /etc/hostapd/hostapd.conf
 
 # Replace config vars in Systemd service files
 # First Boot service

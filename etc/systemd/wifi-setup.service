@@ -1,5 +1,6 @@
 [Unit]
 Description=WIFI Setup
+After=multi-user.target
 
 [Service]
 Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
