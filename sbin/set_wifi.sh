@@ -17,7 +17,10 @@ else
 fi
 
 if [ -z "$wifi_mode" ]; then
+	echo "WIFI Mode not set: Default to off"
 	wifi_mode="off"
+else
+	echo "WIFI Mode => '$wifi_mode'"
 fi
 
 #------------------------------------------------------------------------------
@@ -49,33 +52,50 @@ KillHotspot()
     iptables -D FORWARD -i eth0 -o "$wifidev" -m state --state RELATED,ESTABLISHED -j ACCEPT
     iptables -D FORWARD -i "$wifidev" -o eth0 -j ACCEPT
     ip addr flush dev "$wifidev"
-    ip link set dev "$wifidev" up
 }
 
-StartWifi()
-{
-    echo "Bringing up WiFi Network"
-    wpa_supplicant -B -i "$wifidev" -c /etc/wpa_supplicant/wpa_supplicant.conf >/dev/null 2>&1
-    wpa_cli reconfigure
-}
-
-KillWifi()
+KillWifiNetwork()
 {
     echo "Shutting Down Wifi Network"
     wpa_cli terminate >/dev/null 2>&1
     ip addr flush "$wifidev"
     ip link set dev "$wifidev" down
     rm -r /var/run/wpa_supplicant >/dev/null 2>&1
-    ip link set dev "$wifidev" up
+    rm -f /etc/wpa_supplicant/wpa_supplicant.conf >/dev/null 2>&1
+}
+
+KillWifi()
+{
+    echo "Shutting Down Wifi"
+
+    ip link set dev "$wifidev" down
+
+    echo 0 > /proc/sys/net/ipv4/ip_forward 
+    systemctl stop hostapd
+    systemctl stop dnsmasq
+    iptables -D FORWARD -i eth0 -o "$wifidev" -m state --state RELATED,ESTABLISHED -j ACCEPT >/dev/null 2>&1
+    iptables -D FORWARD -i "$wifidev" -o eth0 -j ACCEPT >/dev/null 2>&1
+
+    wpa_cli terminate >/dev/null 2>&1
+    rm -r /var/run/wpa_supplicant >/dev/null 2>&1
+	rm -f /etc/wpa_supplicant/wpa_supplicant.conf >/dev/null 2>&1
+    
+    ip addr flush "$wifidev"
+    ip addr flush dev "$wifidev"
+}
+
+StartWifi()
+{
+    echo "Bringing up WiFi Network"
+    #ip link set dev "$wifidev" up
+    cp -f $ZYNTHIAN_CONFIG_DIR/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+    wpa_supplicant -B -i "$wifidev" -c /etc/wpa_supplicant/wpa_supplicant.conf >/dev/null 2>&1
+    wpa_cli reconfigure
 }
 
 
 if [ "$wifi_mode" == "off" ]; then
-    if systemctl status hostapd | grep "(running)" >/dev/null 2>&1; then
-        KillHotspot
-    elif { wpa_cli status | grep "$wifidev"; } >/dev/null 2>&1; then
-        KillWifi
-    fi
+    KillWifi
 
 elif [ "$wifi_mode" == "on" ]; then
     if systemctl status hostapd | grep "(running)" >/dev/null 2>&1; then
@@ -88,7 +108,7 @@ elif [ "$wifi_mode" == "hotspot" ]; then
         echo "Hostspot already running!"
         exit
     elif { wpa_cli status | grep "$wifidev"; } >/dev/null 2>&1; then
-        KillWifi
+        KillWifiNetwork
     fi
     StartHotspot
 fi 
