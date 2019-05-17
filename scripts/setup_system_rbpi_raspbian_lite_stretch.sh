@@ -4,7 +4,7 @@
 # 
 # Setup a Zynthian Box in a fresh raspbian-lite "stretch" image
 # 
-# Copyright (C) 2015-2017 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2015-2019 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
 # 
@@ -36,8 +36,7 @@ apt-get -y upgrade
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils
-apt-get -y install sudo apt-transport-https software-properties-common htpdate parted dirmngr
+apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common htpdate parted dirmngr
 
 # Set here default config
 [ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=yes
@@ -45,10 +44,6 @@ apt-get -y install sudo apt-transport-https software-properties-common htpdate p
 [ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
 [ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO=https://github.com/zynthian/zynthian-sys.git
 [ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH=master
-
-if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
-    apt-get -y install rpi-update
-fi
 
 # Adjust System Date/Time
 htpdate -s www.pool.ntp.org wikipedia.org google.com
