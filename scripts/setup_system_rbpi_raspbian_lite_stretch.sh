@@ -234,6 +234,7 @@ systemctl disable dnsmasq
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable splash-screen
+systemctl enable wifi-setup
 systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
