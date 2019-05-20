@@ -75,7 +75,11 @@ apt-get -y remove isc-dhcp-client
 apt-get -y purge dns-root-data
 apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri
-apt-get -y install wpasupplicant firmware-brcm80211 firmware-atheros firmware-ralink firmware-realtek atmel-firmware wireless-tools iw hostapd dnsmasq
+
+apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
+apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree
+#firmware-ralink
+
 
 # Alternate XServer with some 2D acceleration
 #apt-get -y install xserver-xorg-video-fbturbo
