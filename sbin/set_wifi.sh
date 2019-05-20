@@ -28,12 +28,22 @@ fi
 wifidev="wlan0" #device name to use. Default is wlan0.
 #use the command: iw dev ,to see wifi interface name 
 
+WifiUp()
+{
+    ip link set dev "$wifidev" up
+}
+
+WifiDown()
+{
+    ip link set dev "$wifidev" down
+}
+
 StartHotspot()
 {
     echo "Bringing Up Hotspot"
-    ip link set dev "$wifidev" down
+    WifiDown
     ip a add 192.168.50.1/24 brd + dev "$wifidev"
-    ip link set dev "$wifidev" up
+    WifiUp
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     iptables -A FORWARD -i eth0 -o "$wifidev" -m state --state RELATED,ESTABLISHED -j ACCEPT
     iptables -A FORWARD -i "$wifidev" -o eth0 -j ACCEPT
@@ -45,13 +55,15 @@ StartHotspot()
 KillHotspot()
 {
     echo "Shutting Down Hotspot"
-    ip link set dev "$wifidev" down
+    WifiDown
     echo 0 > /proc/sys/net/ipv4/ip_forward 
     systemctl stop hostapd
     systemctl stop dnsmasq
     iptables -D FORWARD -i eth0 -o "$wifidev" -m state --state RELATED,ESTABLISHED -j ACCEPT
     iptables -D FORWARD -i "$wifidev" -o eth0 -j ACCEPT
     ip addr flush dev "$wifidev"
+
+    #WifiUp
 }
 
 KillWifiNetwork()
@@ -59,7 +71,8 @@ KillWifiNetwork()
     echo "Shutting Down Wifi Network"
     wpa_cli terminate >/dev/null 2>&1
     ip addr flush "$wifidev"
-    ip link set dev "$wifidev" down
+    WifiDown
+
     rm -r /var/run/wpa_supplicant >/dev/null 2>&1
     rm -f /etc/wpa_supplicant/wpa_supplicant.conf >/dev/null 2>&1
 }
@@ -67,8 +80,7 @@ KillWifiNetwork()
 KillWifi()
 {
     echo "Shutting Down Wifi"
-
-    ip link set dev "$wifidev" down
+    WifiDown
 
     echo 0 > /proc/sys/net/ipv4/ip_forward 
     systemctl stop hostapd
@@ -82,6 +94,8 @@ KillWifi()
     
     ip addr flush "$wifidev"
     ip addr flush dev "$wifidev"
+    
+    #WifiUp
 }
 
 StartWifi()
@@ -92,7 +106,6 @@ StartWifi()
     wpa_supplicant -B -i "$wifidev" -c /etc/wpa_supplicant/wpa_supplicant.conf >/dev/null 2>&1
     wpa_cli reconfigure
 }
-
 
 if [ "$wifi_mode" == "off" ]; then
     KillWifi
@@ -111,4 +124,11 @@ elif [ "$wifi_mode" == "hotspot" ]; then
         KillWifiNetwork
     fi
     StartHotspot
+
+elif [ "$wifi_mode" == "up" ]; then
+    WifiUp
+    
+elif [ "$wifi_mode" == "down" ]; then
+    WifiDown
+
 fi 
