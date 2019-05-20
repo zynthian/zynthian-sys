@@ -1,0 +1,50 @@
+/*
+ * Device Tree overlay for SPI TFT LCD with ST7735R chip 160x128 (1,8") 
+ *
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+
+	fragment@0 {
+		target = <&spi0>;
+		__overlay__ {
+			status = "okay";
+
+			spidev@0{
+				status = "disabled";
+			};
+
+		};
+	};
+
+	fragment@1 {
+		target = <&spi0>;
+		__overlay__ {
+			/* needed to avoid dtc warning */
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			sainsmart18@0{
+				compatible = "sitronix,st7735r";
+				reg = <0>;
+				pinctrl-names = "default";
+
+				name = "sainsmart18";
+				spi-max-frequency = <48000000>;
+				rotate = <90>;
+				buswidth = <8>;
+				fps = <50>;
+				height = <160>;
+				width = <128>;
+				reset-gpios = <&gpio 25 0>;
+				dc-gpios = <&gpio 24 0>;
+				cs-gpios = <&gpio 8 0>;
+				debug = <0>;
+			};
+		};
+	};
+};
