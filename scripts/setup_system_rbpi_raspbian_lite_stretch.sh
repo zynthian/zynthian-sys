@@ -223,11 +223,14 @@ systemctl disable rsyslog
 systemctl disable ntp
 systemctl disable htpdate
 systemctl disable triggerhappy
-systemctl disable packagekit
-systemctl disable polkit
 systemctl disable wpa_supplicant
 systemctl disable hostapd
 systemctl disable dnsmasq
+systemctl disable unattended-upgrades
+systemctl disable packagekit
+systemctl disable polkit
+systemctl mask packagekit
+systemctl mask polkit
 #systemctl disable serial-getty@ttyAMA0.service
 #systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
 systemctl enable backlight
