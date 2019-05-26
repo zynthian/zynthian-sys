@@ -15,7 +15,7 @@ autoheader
 automake --force-missing --add-missing
 autoconf 
 ./configure
-make -j 4
+make -j 1
 make install
 make clean
 make distclean
@@ -31,7 +31,7 @@ autoheader
 automake --force-missing --add-missing
 autoconf 
 ./configure
-make -j 4
+make -j 1
 make install
 make clean
 make distclean
@@ -56,7 +56,7 @@ cd ../..
 git clone https://github.com/steveb/rpi_linuxsampler_patch.git
 patch -p1 < rpi_linuxsampler_patch/linuxsampler-arm.patch
 # Build LinuxSampler
-make -j 4
+make -j 1
 make install
 ln -s /usr/local/lib/lv2/linuxsampler.lv2 ${ZYNTHIAN_PLUGINS_DIR}/lv2
 make clean
