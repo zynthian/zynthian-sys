@@ -194,7 +194,7 @@ cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-
 
 # Change Hostname
 echo "zynthian" > /etc/hostname
-sed -i -e "s/minibian/zynthian/" /etc/hosts
+sed -i -e "s/127\.0\.1\.1.*$/127.0.1.1\tzynthian/" /etc/hosts
 
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
