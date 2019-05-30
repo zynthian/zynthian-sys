@@ -206,7 +206,7 @@ cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-
 #Change Hostname
 if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
     echo "zynthian" > /etc/hostname
-    sed -i -e "s/raspbian/zynthian/" /etc/hosts
+    sed -i -e "s/raspb.*/zynthian/" /etc/hosts
 fi
 
 # Run configuration script
