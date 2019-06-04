@@ -3,11 +3,12 @@ Description=JACK2 Audio Server
 #After=sound.target
 
 [Service]
+Environment=LD_LIBRARY_PATH=/usr/local/lib
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
 Environment=LV2_PATH=#LV2_PATH#
 LimitRTPRIO=infinity
 LimitMEMLOCK=infinity
-ExecStart=#JACKD_BINARY# #JACKD_OPTIONS#
+ExecStart=#JACKD_BIN_PATH#/jackd #JACKD_OPTIONS#
 Restart=always
 RestartSec=1
 

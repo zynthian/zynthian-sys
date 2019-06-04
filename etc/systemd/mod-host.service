@@ -4,6 +4,8 @@ After=jack2.service
 Requires=jack2.service
 
 [Service]
+Environment=LD_LIBRARY_PATH=/usr/local/lib
+
 #Type=forking
 #Environment=HOME=/root
 #Environment=LV2_PATH=#LV2_PATH#
@@ -14,10 +16,10 @@ Requires=jack2.service
 
 Type=oneshot
 RemainAfterExit=true
-ExecStart=/usr/bin/jack_load mod-host
-ExecStartPre=/usr/bin/jack_load mod-monitor
-ExecStop=/usr/bin/jack_unload mod-host
-ExecStopPost=/usr/bin/jack_unload mod-monitor
+ExecStart=#JACKD_BIN_PATH#/jack_load mod-host
+ExecStartPre=#JACKD_BIN_PATH#/jack_load mod-monitor
+ExecStop=#JACKD_BIN_PATH#/jack_unload mod-host
+ExecStopPost=#JACKD_BIN_PATH#/jack_unload mod-monitor
 
 [Install]
 WantedBy=multi-user.target
