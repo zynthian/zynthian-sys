@@ -4,14 +4,15 @@ After=jack2.service splash-screen.service
 Requires=jack2.service
 
 [Service]
+Environment=LD_LIBRARY_PATH=/usr/local/lib
+Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
+Environment=FRAMEBUFFER=#FRAMEBUFFER#
+Environment=HOME=/root
 Environment=ZYNTHIAN_LOG_LEVEL=10
 Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
 Environment=ZYNTHIAN_UI_DIR=#ZYNTHIAN_UI_DIR#
 Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
-Environment=FRAMEBUFFER=#FRAMEBUFFER#
-Environment=HOME=/root
-Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
 ExecStart=/usr/bin/startx ./zynthian.sh -- :0 vt3
 Restart=always

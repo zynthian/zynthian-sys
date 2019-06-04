@@ -2,9 +2,10 @@
 Description=Zynthian Webconf
 
 [Service]
+Environment=LD_LIBRARY_PATH=/usr/local/lib
+Environment=HOME=/root
 Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
-Environment=HOME=/root
 WorkingDirectory=#ZYNTHIAN_DIR#/zynthian-webconf
 ExecStart=#ZYNTHIAN_DIR#/zynthian-webconf/zynthian_webconf.sh
 Restart=always

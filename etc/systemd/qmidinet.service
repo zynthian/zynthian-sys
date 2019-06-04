@@ -6,10 +6,11 @@ Requires=jack2.service
 Wants=networking.service
 
 [Service]
+Environment=LD_LIBRARY_PATH=/usr/local/lib
 Environment=HOME=/root
 WorkingDirectory=/root
 ExecStart=/usr/local/bin/qmidinet --no-gui --jack-midi=1 --alsa-midi=0
-ExecStartPre=/usr/bin/jack_wait -w
+ExecStartPre=#JACKD_BIN_PATH#/jack_wait -w
 Restart=always
 RestartSec=5
 
