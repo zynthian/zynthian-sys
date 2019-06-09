@@ -55,23 +55,21 @@ cd $ZYNTHIAN_DIR/zynthian-webconf
 git checkout .
 git pull | grep -q -v 'Already up-to-date.' && webconf_changed=1
 
+echo "Update Complete."
 
 if [ -f $REBOOT_FLAGFILE ]; then
 	rm -f $REBOOT_FLAGFILE
-	echo "Update Complete."
 	echo "Rebooting..."
 	reboot
 fi
 
 if [[ "$ui_changed" -eq 1 ]]; then
-	systemctl restart zynthian
 	echo "Restarting zynthian service."
-	echo "Update Complete."
+	systemctl restart zynthian
 fi
 
 if [[ "$webconf_changed" -eq 1 ]]; then
 	echo "Restarting zynthian-webconf service."
-	echo "Update Complete."
 	systemctl restart zynthian-webconf
 fi
 
