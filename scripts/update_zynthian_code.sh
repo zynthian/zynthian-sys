@@ -70,7 +70,6 @@ if [[ "$ui_changed" -eq 1 ]]; then
 fi
 
 if [[ "$webconf_changed" -eq 1 ]]; then
-	echo "Update Complete."
 	echo "Restarting zynthian-webconf service."
 	systemctl restart zynthian-webconf
 fi
