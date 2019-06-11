@@ -5,7 +5,6 @@ After=jack2.service
 Requires=jack2.service
 
 [Service]
-Environment=LD_LIBRARY_PATH=/usr/local/lib
 Environment=HOME=/root
 WorkingDirectory=/root
 ExecStart=/usr/local/bin/ttymidi -s /dev/ttyAMA0 -b 38400

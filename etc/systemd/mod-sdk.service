@@ -4,7 +4,6 @@ Requires=mod-ui.service
 After=mod-ui.service
 
 [Service]
-Environment=LD_LIBRARY_PATH=/usr/local/lib
 Environment=HOME=/root
 Environment=LV2_PATH=#LV2_PATH#
 Environment=MOD_SCREENSHOT_JS=#ZYNTHIAN_SW_DIR#/mod-sdk/screenshot.js

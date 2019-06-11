@@ -4,8 +4,6 @@ After=jack2.service
 Requires=jack2.service
 
 [Service]
-Environment=LD_LIBRARY_PATH=/usr/local/lib
-
 #Type=forking
 #Environment=HOME=/root
 #Environment=LV2_PATH=#LV2_PATH#
