@@ -8,6 +8,7 @@ cd $ZYNTHIAN_SW_DIR
 rm -rf libgig-4.1.0
 wget http://download.linuxsampler.org/packages/libgig-4.1.0.tar.bz2
 tar xfvj libgig-4.1.0.tar.bz2
+rm -f libgig-4.1.0.tar.bz2
 cd libgig-4.1.0
 libtoolize --force
 aclocal
@@ -24,6 +25,7 @@ cd ..
 rm -rf liblscp-0.5.8
 wget http://download.linuxsampler.org/packages/liblscp-0.5.8.tar.gz
 tar xfvz liblscp-0.5.8.tar.gz
+rm -f liblscp-0.5.8.tar.gz
 cd liblscp-0.5.8
 libtoolize --force
 aclocal
@@ -41,6 +43,7 @@ cd ..
 rm -rf linuxsampler-2.1.0
 wget http://download.linuxsampler.org/packages/linuxsampler-2.1.0.tar.bz2
 tar xfvj linuxsampler-2.1.0.tar.bz2
+rm -f linuxsampler-2.1.0.tar.bz2
 cd linuxsampler-2.1.0
 libtoolize --force
 aclocal
