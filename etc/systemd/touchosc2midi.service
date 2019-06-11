@@ -4,7 +4,6 @@ After=jack2.service
 Requires=jack2.service
 
 [Service]
-Environment=LD_LIBRARY_PATH=/usr/local/lib
 Environment=MIDO_BACKEND=mido.backends.rtmidi/UNIX_JACK
 WorkingDirectory=/root
 ExecStart=/usr/local/bin/touchosc2midi

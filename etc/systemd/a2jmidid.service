@@ -4,7 +4,6 @@ After=jack2.service
 Requires=jack2.service
 
 [Service]
-Environment=LD_LIBRARY_PATH=/usr/local/lib
 Environment=HOME=/root
 WorkingDirectory=/root
 ExecStart=/usr/bin/a2jmidid --export-hw

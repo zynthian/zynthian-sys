@@ -4,7 +4,6 @@ After=jack2.service splash-screen.service
 Requires=jack2.service
 
 [Service]
-Environment=LD_LIBRARY_PATH=/usr/local/lib
 Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
 Environment=FRAMEBUFFER=#FRAMEBUFFER#
 Environment=HOME=/root
