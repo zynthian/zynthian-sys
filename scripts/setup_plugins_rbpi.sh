@@ -105,6 +105,7 @@ $ZYNTHIAN_RECIPE_DIR/install_shiro.sh
 $ZYNTHIAN_RECIPE_DIR/install_raffo.sh
 $ZYNTHIAN_RECIPE_DIR/install_zam.sh
 $ZYNTHIAN_RECIPE_DIR/install_x42_testsignal.sh
+$ZYNTHIAN_RECIPE_DIR/install_dragonfly.sh
 
 # dcoredump Stuff
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
