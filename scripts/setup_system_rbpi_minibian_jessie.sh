@@ -298,7 +298,7 @@ $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 
 # Install Fluidsynth & SF2 SondFonts
-apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs
+apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
