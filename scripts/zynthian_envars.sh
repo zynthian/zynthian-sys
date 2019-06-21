@@ -33,10 +33,6 @@ export DISPLAY_WIDTH="480"
 export DISPLAY_HEIGHT="320"
 export FRAMEBUFFER="/dev/fb1"
 
-# Zynthian Features Flags
-export ZYNTHIAN_AUBIONOTES="1"
-export ZYNTHIAN_TOUCHOSC="1"
-
 # Zynthian Wiring Config
 export ZYNTHIAN_WIRING_LAYOUT="MCP23017_EXTRA"
 export ZYNTHIAN_WIRING_ENCODER_A="102,105,110,113"
