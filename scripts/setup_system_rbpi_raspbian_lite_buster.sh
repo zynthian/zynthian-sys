@@ -60,7 +60,7 @@ fi
 # deb-multimedia repo
 echo "deb http://www.deb-multimedia.org buster main" >> /etc/apt/sources.list
 apt-get update
-apt-get -y --force-yes install deb-multimedia-keyring
+apt-get -y --allow-unauthenticated install deb-multimedia-keyring
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5C808C2B65558117
 
 apt-get update
@@ -72,8 +72,8 @@ apt-get update
 
 # System
 apt-get -y remove isc-dhcp-client
-apt-get -y purge dns-root-data
-apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
+apt-get -y install systemd avahi-daemon usbutils
+apt-get -y install dhcpcd-dbus usbmount
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri
 
 apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
@@ -88,7 +88,7 @@ apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-fi
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe nano vim
 apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools mplayer xloadimage imagemagick
-apt-get -y install evtest tslib libts-bin # touchscreen tools
+apt-get -y install evtest libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
 
 # Non-free WIFI firmware for RBPi3
@@ -101,18 +101,20 @@ rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 #------------------------------------------------
 
 #Tools
-apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc
+apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc
+
+# AV Libraries => WARNING It should be changed on every new debian version!!
+apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
 
 # Libraries
-apt-get -y --force-yes --no-install-recommends install wiringpi libfftw3-dev libmxml-dev zlib1g-dev fluid \
+apt-get -y --no-install-recommends install wiringpi libfftw3-dev libmxml-dev zlib1g-dev fluid \
 libfltk1.3-dev libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools liblash-compat-dev libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
 libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
-lv2-c++-tools libavcodec57 libavformat57 libavutil55 libavresample3 libxi-dev libgtk2.0-dev \
-libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev \
-fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev libfreetype6-dev \
-libavformat-dev libswscale-dev libavcodec-dev libqt4-dev qtbase5-dev qtdeclarative5-dev
+lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
+libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
+libfreetype6-dev  libswscale-dev  libqt4-dev qtbase5-dev qtdeclarative5-dev
 
 #libjack-dev-session
 #non-ntk-dev
