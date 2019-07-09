@@ -60,6 +60,8 @@ if [ -d "/usr/lib/python3.4" ]; then
 	cp ./bindings/python/lilv.py /usr/lib/python3.4
 elif [ -d "/usr/lib/python3.5" ]; then
 	cp ./bindings/python/lilv.py /usr/lib/python3.5
+elif [ -d "/usr/lib/python3.7" ]; then
+	cp ./bindings/python/lilv.py /usr/lib/python3.7
 fi
 ./waf clean
 cd ..
