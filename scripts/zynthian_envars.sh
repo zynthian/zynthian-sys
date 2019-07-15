@@ -21,25 +21,27 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
+export ZYNTHIAN_KIT_VERSION="V3"
+
 #Audio Config
-export SOUNDCARD_NAME="HifiBerry DAC+"
-export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplus"
+export SOUNDCARD_NAME="HifiBerry DAC+ ADC"
+export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadc"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:0 -r 44100 -p 256 -n 2 -X raw"
 
 #Display Config
-export DISPLAY_NAME="PiScreen 3.5 (v2)"
+export DISPLAY_NAME="ZynScreen 3.5 (v1)"
 export DISPLAY_CONFIG="dtoverlay=piscreen2r-notouch,rotate=270\ndtoverlay=ads7846,speed=2000000,cs=1,penirq=17,penirq_pull=2,swapxy=1,xohms=100,pmax=255"
 export DISPLAY_WIDTH="480"
 export DISPLAY_HEIGHT="320"
 export FRAMEBUFFER="/dev/fb1"
 
 # Zynthian Wiring Config
-export ZYNTHIAN_WIRING_LAYOUT="MCP23017_EXTRA"
+export ZYNTHIAN_WIRING_LAYOUT="MCP23017_ZynScreen"
 export ZYNTHIAN_WIRING_ENCODER_A="102,105,110,113"
 export ZYNTHIAN_WIRING_ENCODER_B="101,104,109,112"
 export ZYNTHIAN_WIRING_SWITCHES="100,103,108,111,106,107,114,115"
-export ZYNTHIAN_WIRING_MCP23017_INTA_PIN="27"
-export ZYNTHIAN_WIRING_MCP23017_INTB_PIN="25"
+export ZYNTHIAN_WIRING_MCP23017_INTA_PIN="2"
+export ZYNTHIAN_WIRING_MCP23017_INTB_PIN="7"
 
 # Zynthian UI Config
 export ZYNTHIAN_UI_COLOR_BG="#000000"
