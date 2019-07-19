@@ -81,7 +81,7 @@ $ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
 $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-caps.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
-$ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh
+#$ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh => DISABLED BECAUSE IT FAILS BUSTER BUILD
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
 #$ZYNTHIAN_RECIPE_DIR/install_sosynth.sh # => Not working because of deprecated "LV2:Event" extension
