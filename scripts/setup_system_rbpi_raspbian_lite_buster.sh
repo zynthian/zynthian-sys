@@ -92,9 +92,10 @@ apt-get -y install evtest libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
 
 # Non-free WIFI firmware for RBPi3
-wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
-dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
-rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
+#remove for Raspberry 4, if we install this package on Rpbi4 wifi will not work 
+#wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
+#dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
+#rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 
 #------------------------------------------------
 # Development Environment
