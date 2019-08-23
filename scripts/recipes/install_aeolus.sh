@@ -56,6 +56,7 @@ if [ ! -d "kokkinizita" ]; then
 	sed -i 's/#SUFFIX)/)/' Makefile
 	sed -i 's/DESTDIR/NONEDIR/g' Makefile
 	sed -i 's/pkgconf/pkg-config/g' Makefile
+    sed -i "s/10000/20000/" tiface.cc
 	make -j 4
 	make install
 	ln -s /usr/local/bin/aeolus /usr/bin/aeolus
