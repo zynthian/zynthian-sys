@@ -91,10 +91,12 @@ apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools mplayer xloadimage imag
 apt-get -y install evtest libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
 
+
+# Lguyome45: remove for Raspberry pi 4, with this firmware, wifi does not work
 # Non-free WIFI firmware for RBPi3
-wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
-dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
-rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
+#wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
+#dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
+#rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 
 #------------------------------------------------
 # Development Environment
