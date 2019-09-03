@@ -382,6 +382,13 @@ if [ -d "$soundcard_config_custom_dir" ]; then
 	custom_config "$soundcard_config_custom_dir"
 fi
 
+# Alsa Mixer Customizing
+if [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
+	echo "Configuring Alsa Mixer for AudioInjector ..."
+	amixer sset 'Output Mixer HiFi' unmute
+	amixer -c 1 cset numid=10,iface=MIXER,name='Line Capture Switch' 1
+fi
+
 # Replace config vars in hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hostapd/hostapd.conf
