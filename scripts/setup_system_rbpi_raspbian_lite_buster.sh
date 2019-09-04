@@ -335,7 +335,11 @@ $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
 # Install Aeolus (Pipe Organ Emulator)
-apt-get -y install aeolus mididings
+#apt-get -y install aeolus
+$ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
+
+# Install Mididings (MIDI route & filter)
+apt-get -y install mididings
 
 # Install Pure Data stuff
 apt-get -y install puredata puredata-core puredata-utils python3-yaml \
