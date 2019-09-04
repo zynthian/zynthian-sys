@@ -58,13 +58,11 @@ fi
 #------------------------------------------------
 
 # deb-multimedia repo
-echo "deb http://www.deb-multimedia.org buster main" >> /etc/apt/sources.list
+echo "deb http://www.deb-multimedia.org buster main non-free" >> /etc/apt/sources.list
+wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
+dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
 apt-get update
-apt-get -y --allow-unauthenticated install deb-multimedia-keyring
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5C808C2B65558117
-
-apt-get update
-#apt-get -y dist-upgrade
+apt-get upgrade
 
 #------------------------------------------------
 # Install Required Packages
