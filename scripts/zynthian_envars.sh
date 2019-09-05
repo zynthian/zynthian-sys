@@ -94,7 +94,8 @@ if [ "$hw_architecture" = "armv7l" ]; then
 		CPU="-mcpu=cortex-a7 -mtune=cortex-a7"
 		FPU="-mfpu=neon-vfpv4"
 	fi
-	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad -ftree-vectorize"
+	CPU="${CPU} -Ofast"
+	FPU="${FPU} -mfloat-abi=hard -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
 	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
 fi
 export MACHINE_HW_NAME=$hw_architecture
@@ -102,6 +103,7 @@ export RBPI_VERSION=$rbpi_version
 export CFLAGS="${CPU} ${FPU}"
 export CXXFLAGS=${CFLAGS}
 export CFLAGS_UNSAFE=""
+export RASPI=true
 #echo "Hardware Architecture: ${hw_architecture}"
 #echo "Hardware Model: ${rbpi_version}"
 
