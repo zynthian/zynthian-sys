@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# helm preset
+# helm presets generator
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR/helm/builds/linux/LV2
 make ttl_generator
