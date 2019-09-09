@@ -28,6 +28,8 @@ else
 fi
 
 RECIPES_UPDATE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes.update"
+
+# Get System Codebase
 codebase=`lsb_release -cs`
 
 #Custom update recipes, depending on the codebase version
