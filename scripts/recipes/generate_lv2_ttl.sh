@@ -10,5 +10,5 @@ PLUGINS=( helm TheFunction ThePilgrim drowaudio-distortion drowaudio-distortions
 
 for u in "${PLUGINS[@]}"; do
 	cd $ZYNTHIAN_PLUGINS_DIR/lv2/$u.lv2
-	/usr/local/bin/lv2_ttl_generator $u.so
+	/usr/local/bin/lv2_ttl_generator ./$u.so
 done
