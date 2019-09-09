@@ -95,8 +95,8 @@ $ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
 $ZYNTHIAN_RECIPE_DIR/install_helm.sh
 $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
-#$ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
-$ZYNTHIAN_RECIPE_DIR/install_distrho_ports_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
+#$ZYNTHIAN_RECIPE_DIR/install_distrho_ports_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
 $ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
 $ZYNTHIAN_RECIPE_DIR/install_triceratops.sh
