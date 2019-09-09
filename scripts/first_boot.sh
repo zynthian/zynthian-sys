@@ -3,11 +3,19 @@
 # Load Config Envars
 source "/zynthian/config/zynthian_envars.sh"
 
+# Get System Codebase
+codebase=`lsb_release -cs`
+
 # Regenerate Keys
 $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh
 
 # Enable WIFI AutoAccessPoint (hostapd)
 systemctl unmask hostapd
+
+# Run distro-specific script
+if [ -f "first_boot.$codebase.sh" ]; then
+	./first_boot.$codebase.sh
+fi
 
 # Disable first_boot service
 systemctl disable first_boot
