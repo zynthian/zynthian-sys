@@ -91,12 +91,10 @@ $ZYNTHIAN_RECIPE_DIR/install_gxdenoiser2.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxdistortionplus.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxplugins.sh
 #$ZYNTHIAN_RECIPE_DIR/install_gxsupersaturator.sh
-$ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
-$ZYNTHIAN_RECIPE_DIR/install_helm.sh
+#$ZYNTHIAN_RECIPE_DIR/install_helm.sh
 $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
-$ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
-#$ZYNTHIAN_RECIPE_DIR/install_distrho_ports_prebuilt.sh
+#$ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
 $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
 $ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
 $ZYNTHIAN_RECIPE_DIR/install_triceratops.sh
@@ -106,12 +104,14 @@ $ZYNTHIAN_RECIPE_DIR/install_raffo.sh
 $ZYNTHIAN_RECIPE_DIR/install_zam.sh
 $ZYNTHIAN_RECIPE_DIR/install_x42_testsignal.sh
 $ZYNTHIAN_RECIPE_DIR/install_dragonfly.sh
+$ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
 
 # dcoredump Stuff
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
 $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
 
+$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
 
 #------------------------------------------------
