@@ -17,7 +17,7 @@ for u in "${PLUGINS[@]}"; do
 	#Remove pre-existing plugin
 	rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/$u.lv2
 	#Create symlinks to LV2
-	ln -s ./$u.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+	ln -s $ZYNTHIAN_PLUGINS_SRC_DIR/lv2-plugins-prebuilt-rbpi3/$u.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 done
 
 cd ..
