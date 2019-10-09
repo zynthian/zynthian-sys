@@ -43,7 +43,7 @@ ln -s /usr/local/lib/lv2/port-props.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/units.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/buf-size.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 #ln -s /usr/local/lib/lv2/lv2core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-ln -s /usr/local/lib/lv2/core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2core.lv2
+ln -s /usr/local/lib/lv2/core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/presets.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/urid.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/midi.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
