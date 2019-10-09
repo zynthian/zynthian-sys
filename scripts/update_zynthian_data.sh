@@ -28,11 +28,6 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
-# Dirty Hack to force updating the Dexed TTL !!
-rm -f $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards/Dexed.pedalboard/Dexed.ttl
-# Remove deprecated dexed user presets
-rm -rf $ZYNTHIAN_MY_PLUGINS_DIR/lv2/*RITCH*
-
 echo "Updating zynthian-data ..."
 cd "$ZYNTHIAN_DATA_DIR"
 git checkout .
@@ -41,13 +36,6 @@ cp -na $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod
 cp -na $ZYNTHIAN_DATA_DIR/presets/lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2
 cp -na $ZYNTHIAN_DATA_DIR/presets/puredata $ZYNTHIAN_MY_DATA_DIR/presets
 cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* $ZYNTHIAN_DATA_DIR/zynbanks
-
-# Move incorrectly installed plugins to the right path ...
-cd $ZYNTHIAN_PLUGINS_DIR
-if [ -d "./mod-lv2" ]; then
-	mv ./mod-lv2/* ./lv2
-	rm -rf ./mod-lv2
-fi
 
 #echo "Updating zynthian-plugins ..."
 #cd "$ZYNTHIAN_PLUGINS_DIR"
