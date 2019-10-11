@@ -326,10 +326,8 @@ $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 # Setup user config directories
 cd $ZYNTHIAN_MY_DATA_DIR
 mkdir setbfree
-mkdir setbfree/cfg
-mkdir setbfree/pgm
-ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree/cfg
-cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/cfg/zynthian.cfg
+ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
+cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
 # Install Pianoteq Demo (Piano Physical Emulation)
 $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh

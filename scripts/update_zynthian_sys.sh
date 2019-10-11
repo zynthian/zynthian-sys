@@ -193,6 +193,12 @@ if [ ! -f "jalv/plugins.json" ]; then
 	cp "$ZYNTHIAN_SYS_DIR/config/default_jalv_plugins.json" "jalv/plugins.json"
 fi
 
+# Fix/Setup setbfree user config directory
+cd $ZYNTHIAN_CONFIG_DIR
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/setbfree" ]; then
+	mv "$ZYNTHIAN_MY_DATA_DIR/setbfree" .
+fi
+
 # Setup Pianoteq binary
 if [ ! -L "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq" ]; then
 	ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE" "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq"
