@@ -325,6 +325,9 @@ $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
 
 # Install setBfree (Hammond B3 Emulator)
 $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+mkdir setbfree
+ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
+cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
 # Install Pianoteq Demo (Piano Physical Emulation)
 $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
