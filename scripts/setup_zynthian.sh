@@ -45,5 +45,9 @@ if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	./rpi-wiggle.sh
 else
 	#./setup_system_rbpi_minibian_jessie.sh
-	./setup_system_rbpi_raspbian_lite_stretch.sh
+	#./setup_system_rbpi_raspbian_lite_stretch.sh
+	./setup_system_rbpi_raspbian_lite_buster.sh
+	cd
+	rm -rf zynthian-sys
 fi
+

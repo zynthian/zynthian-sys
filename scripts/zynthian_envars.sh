@@ -54,7 +54,7 @@ export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 export ZYNTHIAN_UI_RESTORE_LAST_STATE="1"
 
 # MIDI system configuration
-export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/zynthian-my-data/midi-profiles/default.sh"
+export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
 
 # Extra features
 export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"

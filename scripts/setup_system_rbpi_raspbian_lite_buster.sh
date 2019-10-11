@@ -179,25 +179,17 @@ mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
-ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx" "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
-
-# Copy some files
-cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards
 
 #************************************************
 #------------------------------------------------
@@ -276,7 +268,7 @@ $ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 
 # Install LV2 lilv library
-$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
+$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
 
 # Install LV2 Jalv Plugin Host
 $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
@@ -311,6 +303,11 @@ $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 
 # Install ZynAddSubFX
 $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+#Setup user presets directories
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
+#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
+#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
@@ -365,8 +362,11 @@ $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 #Install MOD-SDK
 $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
 
-#Create softlink to pedalboards directory
-ln -s $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards /root/.pedalboards
+#Setup user presets directories: create directories, copy pedalboards & create symlinks ...
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
+cp -na $ZYNTHIAN_DATA_DIR/presets/mod-ui/pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards
+ln -s $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards /root/.pedalboards
 
 #------------------------------------------------
 # Install Plugins
@@ -401,7 +401,6 @@ apt -y install midisport-firmware
 if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
 	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
 fi
-touch "$ZYNTHIAN_CONFIG_DIR/updates/omega"
 
 # Run configuration script before ending
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh

@@ -25,10 +25,16 @@
 # ****************************************************************************
 
 #------------------------------------------------------------------------------
+# Get System Codebase
+#------------------------------------------------------------------------------
+
+ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
+
+#------------------------------------------------------------------------------
 # Load Environment Variables
 #------------------------------------------------------------------------------
 
-if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
+if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
@@ -45,9 +51,7 @@ rm -f $REBOOT_FLAGFILE
 # Update Date/Time from network ...
 #------------------------------------------------------------------------------
 
-codebase=`lsb_release -cs`
-
-if [ "$codebase" == "jessie" ]; then
+if [ "$ZYNTHIAN_OS_CODEBASE" == "jessie" ]; then
 	echo "Updating system date/time from network ..."
 	htpdate -s www.pool.ntp.org wikipedia.org google.com
 fi
