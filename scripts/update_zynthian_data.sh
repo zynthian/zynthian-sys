@@ -46,6 +46,8 @@ if [ -d $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards ]; then
 	mv $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards
 fi
 cp -na $ZYNTHIAN_DATA_DIR/presets/mod-ui/pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards
+rm -f /root/.pedalboards
+ln -s $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards /root/.pedalboards
 
 #echo "Updating zynthian-plugins ..."
 #cd "$ZYNTHIAN_PLUGINS_DIR"
