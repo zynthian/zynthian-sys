@@ -49,6 +49,10 @@ cp -na $ZYNTHIAN_DATA_DIR/presets/mod-ui/pedalboards/*.pedalboard $ZYNTHIAN_MY_D
 rm -f /root/.pedalboards
 ln -s $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards /root/.pedalboards
 
+if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 ]; then
+	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 $ZYNTHIAN_MY_DATA_DIR/snapshots/00001
+fi
+
 #echo "Updating zynthian-plugins ..."
 #cd "$ZYNTHIAN_PLUGINS_DIR"
 #git pull
