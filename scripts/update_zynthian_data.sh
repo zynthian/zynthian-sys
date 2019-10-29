@@ -33,14 +33,17 @@ cd "$ZYNTHIAN_DATA_DIR"
 git checkout .
 git pull
 
+# Update user presets for some engines ...
 cp -na $ZYNTHIAN_DATA_DIR/presets/lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2
 cp -na $ZYNTHIAN_DATA_DIR/presets/puredata $ZYNTHIAN_MY_DATA_DIR/presets
 cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* $ZYNTHIAN_DATA_DIR/zynbanks
 
+# Fix/Setup ZynAddSubFX user presets directory
 if [ -L $ZYNTHIAN_MY_DATA_DIR/zynbanks ]; then
 	rm -f $ZYNTHIAN_MY_DATA_DIR/zynbanks
 fi
 
+# Fix/Setup MOD-UI pedalboards directory
 if [ -d $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards ]; then
 	mkdir $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui
 	mv $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards
@@ -49,6 +52,12 @@ cp -na $ZYNTHIAN_DATA_DIR/presets/mod-ui/pedalboards/*.pedalboard $ZYNTHIAN_MY_D
 rm -f /root/.pedalboards
 ln -s $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards /root/.pedalboards
 
+# Fix/Setup setbfree user config directory
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/setbfree" ]; then
+	mv "$ZYNTHIAN_MY_DATA_DIR/setbfree" $ZYNTHIAN_CONFIG_DIR
+fi
+
+# Fix/Setup snapshots directory
 if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 ]; then
 	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 $ZYNTHIAN_MY_DATA_DIR/snapshots/00001
 fi
