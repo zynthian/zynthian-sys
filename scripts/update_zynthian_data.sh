@@ -50,7 +50,7 @@ rm -f /root/.pedalboards
 ln -s $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards /root/.pedalboards
 
 if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 ]; then
-	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 $ZYNTHIAN_MY_DATA_DIR/snapshots/00001
+	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/00001 $ZYNTHIAN_MY_DATA_DIR/snapshots/00000
 fi
 
 #echo "Updating zynthian-plugins ..."
