@@ -59,7 +59,7 @@ fi
 
 # Fix/Setup snapshots directory
 if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 ]; then
-	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 $ZYNTHIAN_MY_DATA_DIR/snapshots/00001
+	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/00001 $ZYNTHIAN_MY_DATA_DIR/snapshots/00000
 fi
 
 #echo "Updating zynthian-plugins ..."
