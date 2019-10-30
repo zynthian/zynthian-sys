@@ -71,7 +71,11 @@ done
 
 # Fix/Setup snapshots directory
 if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/000 ]; then
-	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/001 $ZYNTHIAN_MY_DATA_DIR/snapshots/000
+	if [ -d $ZYNTHIAN_MY_DATA_DIR/snapshots/001 ]; then
+		mv $ZYNTHIAN_MY_DATA_DIR/snapshots/001 $ZYNTHIAN_MY_DATA_DIR/snapshots/000
+	else
+		mkdir $ZYNTHIAN_MY_DATA_DIR/snapshots/000
+	fi
 fi
 
 
