@@ -16,7 +16,7 @@ git clone --recursive https://github.com/falkTX/Hylia.git
 cd Hylia
 
 make -j 4
-sudo make install
+make install
 make clean
 
 cd ..

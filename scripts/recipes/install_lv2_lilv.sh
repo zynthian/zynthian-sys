@@ -51,7 +51,7 @@ git clone --recursive https://github.com/drobilla/lilv.git
 cd lilv
 #./waf configure --bindings --python=/usr/bin/python2
 #./waf build
-#sudo ./waf install
+#./waf install
 #./waf clean
 ./waf configure --bindings --python=/usr/bin/python3
 ./waf build

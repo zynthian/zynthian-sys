@@ -10,6 +10,6 @@ git submodule update
 sed -i -- 's/INSTALL_DIR = \/usr\/lib\/lv2/INSTALL_DIR = \/zynthian\/zynthian-plugins\/lv2/' */Makefile
 
 make check clean nogui mod
-sudo make install
+make install
 make clean
 cd ..

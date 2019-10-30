@@ -7,8 +7,8 @@ cd mclk.lv2
 sed -i -- 's/-msse -msse2 -mfpmath=sse//' Makefile
 sed -i -- 's/LV2DIR ?= \$(PREFIX)\/$(LIBDIR)\/lv2/LV2DIR ?= \/zynthian\/zynthian-plugins\/lv2/' Makefile
 make -j 4
-sudo make install
-sudo cp -R modgui $ZYNTHIAN_PLUGINS_DIR/lv2/mclk.lv2
+make install
+cp -R modgui $ZYNTHIAN_PLUGINS_DIR/lv2/mclk.lv2
 cat <<EOF >>$ZYNTHIAN_PLUGINS_DIR/lv2/mclk.lv2/manifest.ttl
 <http://gareus.org/oss/lv2/mclk>
     modgui:gui [

@@ -52,9 +52,9 @@ fi
 ###################################################################
 # Change here to set the amount of wiggle room desired - 102400 = 100MB
 WIGGLE_ROOM=1536
-DISK_SIZE="$(( $(sudo blockdev --getsz /dev/mmcblk0)/2048/925 ))"
-PART_START="$(sudo parted /dev/mmcblk0 -ms unit s p | grep "^2" | cut -f2 -d: | sed 's/[^0-9]*//g')"
-LAST_SECTOR="$(sudo parted /dev/mmcblk0 -ms unit s p | grep "^\/dev" | cut -f2 -d: | sed 's/[^0-9]*//g')"
+DISK_SIZE="$(( $(blockdev --getsz /dev/mmcblk0)/2048/925 ))"
+PART_START="$(parted /dev/mmcblk0 -ms unit s p | grep "^2" | cut -f2 -d: | sed 's/[^0-9]*//g')"
+LAST_SECTOR="$(parted /dev/mmcblk0 -ms unit s p | grep "^\/dev" | cut -f2 -d: | sed 's/[^0-9]*//g')"
 PART_END="$(( LAST_SECTOR - WIGGLE_ROOM ))"
 #PART_END="$(( (DISK_SIZE * 925 * 2048 - 1) - WIGGLE_ROOM ))"
 

@@ -12,5 +12,5 @@ fi
 
 #patch -p1 <"${HOME}/zynthian/zynthian-recipe/mod-host.patch.txt"
 make -j 4
-sudo make install
+make install
 make clean

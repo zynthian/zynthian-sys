@@ -7,7 +7,7 @@ git clone --recursive https://github.com/libpd/abl_link.git
 cd abl_link/external
 
 make -j 4 CFLAGS="-mfpu=neon-fp-armv8 -mneon-for-64bits -mfloat-abi=hard -mvectorize-with-neon-quad"
-sudo make install
+make install
 make clean
 
 cd ../..
