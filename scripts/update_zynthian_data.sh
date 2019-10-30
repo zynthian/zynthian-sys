@@ -57,10 +57,23 @@ if [ -d "$ZYNTHIAN_MY_DATA_DIR/setbfree" ]; then
 	mv "$ZYNTHIAN_MY_DATA_DIR/setbfree" $ZYNTHIAN_CONFIG_DIR
 fi
 
+# Reformat snapshot directory names, removing the first 2 leading zeros
+for bdir in $ZYNTHIAN_MY_DATA_DIR/snapshots/00???; do
+	if [ -d "$bdir" ]; then
+		mv "$bdir" `echo "$bdir" | sed -e 's:\/00:\/:'`
+	fi
+done
+for bdir in $ZYNTHIAN_MY_DATA_DIR/snapshots/00???-*; do
+	if [ -d "$bdir" ]; then
+		mv "$bdir" `echo "$bdir" | sed -e 's:\/00:\/:'`
+	fi
+done
+
 # Fix/Setup snapshots directory
-if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/00000 ]; then
-	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/00001 $ZYNTHIAN_MY_DATA_DIR/snapshots/00000
+if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/000 ]; then
+	mv $ZYNTHIAN_MY_DATA_DIR/snapshots/001 $ZYNTHIAN_MY_DATA_DIR/snapshots/000
 fi
+
 
 #echo "Updating zynthian-plugins ..."
 #cd "$ZYNTHIAN_PLUGINS_DIR"
