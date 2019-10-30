@@ -7,9 +7,9 @@ cd eq10q-code
 sed -i -- 's/-msse -mfpmath=sse//' CMakeLists.txt
 sed -i -- 's/CMAKE_INSTALL_PREFIX  "\/usr\/local\/lib\/lv2"/CMAKE_INSTALL_PREFIX  "\/zynthian\/zynthian-plugins\/lv2"/' CMakeLists.txt
 sed -i -- 's/^add_subdirectory(gui)/#add_subdirectory(gui)/' CMakeLists.txt
-#sudo mv /usr/lib/arm-linux-gnueabihf/pkgconfig/glibmm-2.4.pc /usr/lib/arm-linux-gnueabihf/pkgconfig/glibmm-2.4.pc.tmp
+#mv /usr/lib/arm-linux-gnueabihf/pkgconfig/glibmm-2.4.pc /usr/lib/arm-linux-gnueabihf/pkgconfig/glibmm-2.4.pc.tmp
 cmake .
-#sudo mv /usr/lib/arm-linux-gnueabihf/pkgconfig/glibmm-2.4.pc.tmp /usr/lib/arm-linux-gnueabihf/pkgconfig/glibmm-2.4.pc
+#mv /usr/lib/arm-linux-gnueabihf/pkgconfig/glibmm-2.4.pc.tmp /usr/lib/arm-linux-gnueabihf/pkgconfig/glibmm-2.4.pc
 make -j 4
 make install
 make clean

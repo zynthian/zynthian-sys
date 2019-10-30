@@ -8,6 +8,6 @@ cd mod-pitchshifter
 sed -i -- 's/INSTALLATION_PATH = \$(DESTDIR)\$(INSTALL_PATH)\/\$(EFFECT_PATH)/INSTALLATION_PATH = \/zynthian\/zynthian-plugins\/lv2\/\$(PLUGIN).lv2/' Makefile.mk
 #make -j 4 NOOPT=true
 make NOOPT=true
-sudo make install
+make install
 make clean
 cd ..

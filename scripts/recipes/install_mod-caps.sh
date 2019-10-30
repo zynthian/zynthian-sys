@@ -8,6 +8,6 @@ git clone https://github.com/BlokasLabs/caps-lv2.git
 
 cd caps-lv2
 make -j 4
-sudo cp -R plugins/* $ZYNTHIAN_PLUGINS_DIR/lv2
+cp -R plugins/* $ZYNTHIAN_PLUGINS_DIR/lv2
 make clean
 cd ..

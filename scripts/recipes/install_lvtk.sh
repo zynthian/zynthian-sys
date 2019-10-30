@@ -7,7 +7,7 @@ cd lvtk
 git checkout 1.x
 ./waf configure --disable-ui
 ./waf build
-sudo ./waf install
+./waf install
 ./waf clean
 cd ..
 apt-get install -y lvtk-tools
