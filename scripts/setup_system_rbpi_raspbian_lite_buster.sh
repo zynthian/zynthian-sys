@@ -36,7 +36,7 @@ apt-get -y upgrade
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common htpdate parted dirmngr
+apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common htpdate parted dirmngr rpi-eeprom
 
 # Set here default config
 [ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=yes
