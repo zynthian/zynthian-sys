@@ -267,12 +267,17 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
 fi
 
-# Fix usbmount in stretch
+# Fix usbmount
 if [ "$ZYNTHIAN_OS_CODEBASE" == "stretch" ]; then
 	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
 		sed -i -e "s/MountFlags\=slave/MountFlags\=shared/g" /lib/systemd/system/systemd-udevd.service
 	fi
+elif [ "$ZYNTHIAN_OS_CODEBASE" == "buster" ]; then
+	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
+		sed -i -e "s/PrivateMounts\=yes/PrivateMounts\=no/g" /lib/systemd/system/systemd-udevd.service
+	fi
 fi
+
 
 # X11 Display config
 if [ ! -d "/etc/X11/xorg.conf.d" ]; then
