@@ -343,6 +343,10 @@ pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug 
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
 pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
+
 #------------------------------------------------
 # Install MOD stuff
 #------------------------------------------------
