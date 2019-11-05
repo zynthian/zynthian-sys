@@ -104,7 +104,7 @@ $ZYNTHIAN_RECIPE_DIR/install_raffo.sh
 $ZYNTHIAN_RECIPE_DIR/install_zam.sh
 $ZYNTHIAN_RECIPE_DIR/install_x42_testsignal.sh
 $ZYNTHIAN_RECIPE_DIR/install_dragonfly.sh
-$ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
+#$ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
 
 # dcoredump Stuff
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
