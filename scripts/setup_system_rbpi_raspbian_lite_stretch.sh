@@ -292,6 +292,8 @@ $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 # Install QMidiNet (MIDI over IP Multicast)
 $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 
+# Install preset2lv2 (Convert native presets to LV2)
+$ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 
 #************************************************
 #------------------------------------------------
