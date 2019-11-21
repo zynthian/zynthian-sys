@@ -21,11 +21,11 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-export ZYNTHIAN_KIT_VERSION="V3"
+export ZYNTHIAN_KIT_VERSION="V3-PRO"
 
 #Audio Config
-export SOUNDCARD_NAME="HifiBerry DAC+ ADC"
-export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadc"
+export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
+export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
 
 #Display Config
