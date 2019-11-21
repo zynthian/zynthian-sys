@@ -72,6 +72,7 @@ cd lilv
 #./waf clean
 
 #Get the destination directory
+rm -rf /usr/local/lib/python3
 python_dir=`find /usr/local/lib -type d -iname python3* | head -n 1`
 
 ./waf configure --python=/usr/bin/python3 --pythondir=$python_dir/dist-packages
