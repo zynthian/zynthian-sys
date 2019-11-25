@@ -4,7 +4,8 @@
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
 rm -rf caps-lv2
-git clone https://github.com/BlokasLabs/caps-lv2.git
+#git clone https://github.com/BlokasLabs/caps-lv2.git
+git clone https://github.com/moddevices/caps-lv2
 
 cd caps-lv2
 make -j 4
