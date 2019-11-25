@@ -338,8 +338,8 @@ fi
 # Alsa Mixer Customizing
 if [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
 	echo "Configuring Alsa Mixer for AudioInjector ..."
-	amixer sset 'Output Mixer HiFi' unmute
-	amixer -c 1 cset numid=10,iface=MIXER,name='Line Capture Switch' 1
+	amixer -c audioinjector-wm8731-audio sset 'Output Mixer HiFi' unmute
+	amixer -c audioinjector-wm8731-audio cset numid=10,iface=MIXER,name='Line Capture Switch' 1
 fi
 
 # Replace config vars in hostapd.conf
