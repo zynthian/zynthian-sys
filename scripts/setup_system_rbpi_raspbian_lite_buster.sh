@@ -270,6 +270,9 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 # Install LV2 lilv library
 $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
 
+# Install the LV2 C++ Tool Kit
+$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
+
 # Install LV2 Jalv Plugin Host
 $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 
@@ -293,6 +296,9 @@ $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 
 # Install QMidiNet (MIDI over IP Multicast)
 $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+
+# Install the DX7 SysEx parser
+$ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
 
 # Install preset2lv2 (Convert native presets to LV2)
 $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
@@ -327,6 +333,8 @@ $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
 
 # Install setBfree (Hammond B3 Emulator)
 $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+# Setup user config directories
+cd $ZYNTHIAN_CONFIG_DIR
 mkdir setbfree
 ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
 cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
@@ -357,10 +365,6 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
 # Install MOD stuff
 #------------------------------------------------
 
-#Define git version to use: Git commit SHAs where the local zynthian branch will be created
-#export MOD_HOST_GITSHA="3bda867acf68b95c05baa7366d89687cbd9e47cf"
-#export MOD_UI_GITSHA="064c64a24989120731157ac27184d4b4f51ef9f2"
-
 #Install MOD-HOST
 $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
 
@@ -388,11 +392,6 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 #------------------------------------------------
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
-
-#------------------------------------------------
-# Install AminoGFX for Node.js graphics rendering
-#------------------------------------------------
-#$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
 
 #------------------------------------------------
 # Install MIDISport firmware

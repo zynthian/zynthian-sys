@@ -104,14 +104,11 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-caps.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
 #$ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh => DISABLED BECAUSE IT FAILS BUSTER BUILD
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
-
-# dcoredump Stuff
-$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
-$ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
+$ZYNTHIAN_RECIPE_DIR/install_ams-lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
 
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
-$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
+#$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
 
 #------------------------------------------------
 # Install v1 suit
