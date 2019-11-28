@@ -4,14 +4,16 @@
 date_caps_lv2=`stat -c %y $ZYNTHIAN_PLUGINS_SRC_DIR/caps-lv2`
 if [ "$date_caps_lv2" \< "2019-08-01" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_mod-caps.sh
-else
-	echo "... caps-lv2 already fixed!"
 fi
 
 # 2019-11-18: Install preset2lv2
 if [ ! -d $ZYNTHIAN_SW_DIR/preset2lv2 ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
-else
-	echo "... preset2lv2 already installed!"
 fi
+
+# 2019-11-28: Install amsynth
+if [ ! -d $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2 ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_amsynth.sh
+fi
+
 
