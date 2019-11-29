@@ -32,6 +32,10 @@ make -j 2
 make install
 cd ..
 
+# Needed for loading PNG correctly when using jalv.gtk
+update-mime-database /usr/share/mime
+
+
 if [ -e "$ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2" ]; then
 	rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2"
 fi
