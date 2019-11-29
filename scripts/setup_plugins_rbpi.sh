@@ -105,6 +105,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
 #$ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh => DISABLED BECAUSE IT FAILS BUSTER BUILD
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_ams-lv2.sh
+$ZYNTHIAN_RECIPE_DIR/install_amsynth.sh
 $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
 
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
