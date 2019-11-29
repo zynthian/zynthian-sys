@@ -2,6 +2,9 @@
 
 # LVtk
 cd $ZYNTHIAN_SW_DIR
+if [ -d lvtk ]; then
+	rm -rf lvtk
+fi
 git clone https://github.com/lvtk/lvtk.git
 cd lvtk
 git checkout 1.x
