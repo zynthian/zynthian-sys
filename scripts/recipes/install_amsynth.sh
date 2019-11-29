@@ -28,7 +28,7 @@ done
 cd ../..
 
 ./configure
-make -j 2
+make -j 2 2>/dev/null
 make install
 cd ..
 
