@@ -5,6 +5,6 @@ if [ ! -d $ZYNTHIAN_SW_DIR/preset2lv2 ]; then
 fi
 
 # 2019-11-28: Install amsynth
-if [ ! -d $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2 ]; then
+if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2 ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_amsynth.sh
 fi
