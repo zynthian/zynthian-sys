@@ -7,7 +7,7 @@ if [ -d lvtk ]; then
 fi
 git clone https://github.com/lvtk/lvtk.git
 cd lvtk
-git checkout 1.x
+#git checkout 1.x
 ./waf configure --disable-ui
 ./waf build
 ./waf install
