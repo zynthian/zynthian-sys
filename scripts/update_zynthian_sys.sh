@@ -311,7 +311,13 @@ echo "" > /etc/network/interfaces
 
 # User Config (root)
 # => ZynAddSubFX Config
-cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
+if [ -f $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
+fi
+# => vim config
+if [ -f /etc/vim/vimrc.local ]; then
+	cp -a /etc/vim/vimrc.local /root/.vimrc
+fi
 
 # Zynthian Specific Config Files
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
