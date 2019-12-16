@@ -105,7 +105,7 @@ rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools
 
 # Libraries
-apt-get -y --force-yes --no-install-recommends install wiringpi libfftw3-dev libmxml-dev zlib1g-dev fluid \
+apt-get -y --force-yes --no-install-recommends install libfftw3-dev libmxml-dev zlib1g-dev fluid \
 libfltk1.3-dev libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools liblash-compat-dev libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
@@ -250,6 +250,9 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 # Compile / Install Required Libraries
 #------------------------------------------------
 #************************************************
+
+# Install WiringPi
+$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Install Jack2
 $ZYNTHIAN_RECIPE_DIR/install_jack2.sh
