@@ -107,6 +107,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_ams-lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_amsynth.sh
 $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
+$ZYNTHIAN_RECIPE_DIR/install_setBfree-controller.sh
 
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 #$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
