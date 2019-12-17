@@ -163,6 +163,10 @@ mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
+# Zynthian System Scripts and Config files
+cd $ZYNTHIAN_DIR
+git clone -b ""${ZYNTHIAN_SYS_BRANCH}"" "${ZYNTHIAN_SYS_REPO}"
+
 # Install WiringPi
 $ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
@@ -177,10 +181,6 @@ git clone https://github.com/zynthian/zynthian-ui.git
 if [ -d "zynthian-ui/jackpeak" ]; then
 	./zynthian-ui/jackpeak/build.sh
 fi
-
-# Zynthian System Scripts and Config files
-cd $ZYNTHIAN_DIR
-git clone -b ""${ZYNTHIAN_SYS_BRANCH}"" "${ZYNTHIAN_SYS_REPO}"
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
