@@ -139,7 +139,30 @@ pip3 install mido python-rtmidi
 #------------------------------------------------
 #************************************************
 
+# Create needed directories
 mkdir $ZYNTHIAN_DIR
+mkdir "$ZYNTHIAN_CONFIG_DIR"
+mkdir "$ZYNTHIAN_SW_DIR"
+mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
+mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
+mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
+mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
+mkdir "$ZYNTHIAN_MY_DATA_DIR"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
+mkdir "$ZYNTHIAN_PLUGINS_DIR"
+mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
+mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
+mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
+
+# Install WiringPi
+$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Zyncoder library
 cd $ZYNTHIAN_DIR
@@ -168,27 +191,6 @@ git clone https://github.com/zynthian/zynthian-webconf.git
 # Zynthian emuface => Not very useful here ... but somebody used it
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-emuface.git
-
-# Create needed directories
-mkdir "$ZYNTHIAN_CONFIG_DIR"
-mkdir "$ZYNTHIAN_SW_DIR"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
-mkdir "$ZYNTHIAN_PLUGINS_DIR"
-mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
-mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
-mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
 #************************************************
 #------------------------------------------------
@@ -250,9 +252,6 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 # Compile / Install Required Libraries
 #------------------------------------------------
 #************************************************
-
-# Install WiringPi
-$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Install Jack2
 $ZYNTHIAN_RECIPE_DIR/install_jack2.sh
