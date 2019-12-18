@@ -110,7 +110,6 @@ $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
 $ZYNTHIAN_RECIPE_DIR/install_setBfree-controller.sh
 
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
-#$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
 
 #------------------------------------------------
 # Install v1 suit
@@ -137,3 +136,4 @@ ln -s /usr/lib/lv2/invada.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 #apt-get -y install ladspa-sdk wah-plugins tap-plugins vco-plugins swh-plugins ste-plugins rev-plugins omins mcp-plugins invada-studio-plugins-ladspa rubberband-ladspa fil-plugins csladspa cmt caps bs2b-ladspa blop blepvco autotalent ambdec amb-plugins
 
+$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
