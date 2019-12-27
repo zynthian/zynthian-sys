@@ -140,35 +140,9 @@ pip3 install mido python-rtmidi
 #************************************************
 
 # Create needed directories
-mkdir $ZYNTHIAN_DIR
+mkdir "$ZYNTHIAN_DIR"
 mkdir "$ZYNTHIAN_CONFIG_DIR"
 mkdir "$ZYNTHIAN_SW_DIR"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
-mkdir "$ZYNTHIAN_PLUGINS_DIR"
-mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
-mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
-mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
@@ -200,6 +174,34 @@ git clone https://github.com/zynthian/zynthian-webconf.git
 # Zynthian emuface => Not very useful here ... but somebody used it
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-emuface.git
+
+# Create more needed directories
+mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
+mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
+mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
+mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
+mkdir "$ZYNTHIAN_MY_DATA_DIR"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
+#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
+#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
+mkdir "$ZYNTHIAN_PLUGINS_DIR"
+mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
+mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
+mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
 #************************************************
 #------------------------------------------------
