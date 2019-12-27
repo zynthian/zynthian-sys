@@ -150,6 +150,15 @@ mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
+#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
+#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
@@ -312,11 +321,6 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 
 # Install ZynAddSubFX
 $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
-#Setup user presets directories
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
@@ -357,10 +361,6 @@ pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 mkdir /root/Pd
 mkdir /root/Pd/externals
 
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
-
 #------------------------------------------------
 # Install MOD stuff
 #------------------------------------------------
@@ -374,12 +374,6 @@ $ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 
 #Install MOD-SDK
 $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
-
-#Setup user presets directories: create directories, copy pedalboards & create symlinks ...
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
-cp -na $ZYNTHIAN_DATA_DIR/presets/mod-ui/pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards
-ln -s $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards /root/.pedalboards
 
 #------------------------------------------------
 # Install Plugins
