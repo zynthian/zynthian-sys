@@ -264,7 +264,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
 	# WIFI Network
-	rm -f /etc/wpa_supplicant/wpa_supplicant.conf
+	#rm -f /etc/wpa_supplicant/wpa_supplicant.conf
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
 fi
 
