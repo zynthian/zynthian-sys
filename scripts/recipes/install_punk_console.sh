@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd $ZYNTHIAN_PLUGINS_SRC_DIR
+if [ -d "punk-console.lv2" ]; then
+	rm -rf "punk-console.lv2"
+fi
+git clone https://github.com/switryk/punk-console.lv2.git
+cd punk-console.lv2
+make
+make install
+make clean
+cd ..
+
+ln -s /usr/local/lib/lv2/punkconsole.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2

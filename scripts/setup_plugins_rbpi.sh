@@ -110,6 +110,9 @@ $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
 $ZYNTHIAN_RECIPE_DIR/install_setBfree-controller.sh
 $ZYNTHIAN_RECIPE_DIR/install_string-machine.sh
 $ZYNTHIAN_RECIPE_DIR/install_midi_display.sh
+$ZYNTHIAN_RECIPE_DIR/install_punk_console.sh
+$ZYNTHIAN_RECIPE_DIR/install_reMID.sh
+$ZYNTHIAN_RECIPE_DIR/install_ADLplug.sh
 
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 
