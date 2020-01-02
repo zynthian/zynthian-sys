@@ -378,10 +378,10 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
 
 #Install MOD-UI
 $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
-$ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
+#$ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 
 #Install MOD-SDK
-$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
+#$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
 
 #------------------------------------------------
 # Install Plugins
