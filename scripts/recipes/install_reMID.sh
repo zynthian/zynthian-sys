@@ -14,6 +14,7 @@ make -j 2
 make install
 make clean
 cd ..
+rm -rf "reMID.lv2"
 
 ln -s /usr/local/lib/lv2/remid.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
