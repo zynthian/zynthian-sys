@@ -76,6 +76,9 @@ if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/000 ]; then
 	fi
 fi
 
+# Fix LV2 Presets
+sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.ttl
+
 
 #echo "Updating zynthian-plugins ..."
 #cd "$ZYNTHIAN_PLUGINS_DIR"
