@@ -19,5 +19,4 @@ cd ..
 rm -rf $PLUGIN_DIR
 
 
-sed -i -- '0,/lv2\:default 0\;/{s/lv2\:default 0\;/lv2\:default 1\;/}' $ZYNTHIAN_PLUGINS_DIR/lv2/so-synth.lv2/so-404.ttl 
-sed -i -- '0,/lv2\:default 0\;/{s/lv2\:default 0\;/lv2\:default 1\;/}' $ZYNTHIAN_PLUGINS_DIR/lv2/so-synth.lv2/so-kl5.ttl 
+sed -i -- '0,/lv2\:default 0\;/{s/lv2\:default 0\;/lv2\:default 1\;/}' $ZYNTHIAN_PLUGINS_DIR/lv2/so-synth.lv2/so-*.ttl 
