@@ -110,4 +110,4 @@ export RASPI=true
 #echo "Hardware Model: ${rbpi_version}"
 
 # Setup / Build Options
-export ZYNTHAIN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
+export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
