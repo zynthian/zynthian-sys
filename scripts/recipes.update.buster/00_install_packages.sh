@@ -22,3 +22,10 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y install vorbis-tools
 fi
+
+# 2020-01-20 => fbcat
+res=`dpkg -s fbcat 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y install fbcat
+fi
