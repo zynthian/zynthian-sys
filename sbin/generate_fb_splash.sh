@@ -14,14 +14,16 @@ if [ ! -d "$ZYNTHIAN_CONFIG_DIR/img" ]; then
 fi
 
 #Generate "Zynthian Error" Splash Screen
-/usr/bin/fbi -noverbose -T 2 -a -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_error.png
+/usr/bin/fbi -noverbose -T 2 -a --fitwidth -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_error.png
 sleep 1
 cat $FRAMEBUFFER > $ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.raw
+/usr/bin/fbgrab -d $FRAMEBUFFER $ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.png
 
 #Generate "Zynthian Boot" Splash Screen
-/usr/bin/fbi -noverbose -T 2 -a -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_boot.png
+/usr/bin/fbi -noverbose -T 2 -a --fitwidth -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_boot.png
 sleep 1
 cat $FRAMEBUFFER > $ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_boot.raw
+/usr/bin/fbgrab -d $FRAMEBUFFER $ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_boot.png
 
 killall -9 fbi
 
