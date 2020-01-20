@@ -26,7 +26,7 @@ export ZYNTHIAN_KIT_VERSION="V3-PRO"
 #Audio Config
 export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
 export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro,slave"
-export SOUNDCARD_MIXER="Digital,ADC"
+export SOUNDCARD_MIXER="Digital,ADC,ADC Left Input,ADC Right Input"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
 
 #Display Config
