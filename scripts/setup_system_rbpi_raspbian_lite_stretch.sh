@@ -233,6 +233,7 @@ systemctl disable wpa_supplicant
 systemctl disable hostapd
 systemctl disable dnsmasq
 systemctl disable unattended-upgrades
+systemctl disable apt-daily.timer
 systemctl disable packagekit
 systemctl disable polkit
 systemctl mask packagekit
