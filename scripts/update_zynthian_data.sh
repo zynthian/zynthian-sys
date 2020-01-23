@@ -37,24 +37,24 @@ git pull
 cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* $ZYNTHIAN_DATA_DIR/zynbanks
 
 # Fix/Setup ZynAddSubFX user presets directory
-if [ -L $ZYNTHIAN_MY_DATA_DIR/zynbanks ]; then
-	rm -f $ZYNTHIAN_MY_DATA_DIR/zynbanks
+if [ -L "$ZYNTHIAN_MY_DATA_DIR/zynbanks" ]; then
+	rm -f "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
 fi
 
 # Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, copy pedalboards ...
-if [ -d $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards ]; then
-	mkdir $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui
-	mv $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
+	mv "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
 fi
 cp -na $ZYNTHIAN_DATA_DIR/presets/mod-ui/pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards
-rm -f /root/.pedalboards
-ln -s $ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards /root/.pedalboards
+rm -f "/root/.pedalboards"
+ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards" "/root/.pedalboards"
 
 # Fix/Setup MOD-UI lv2 presets directory
-if [ ! -L /root/.lv2 ]; then
+if [ -d "/root/.lv2" ] && [ ! -L "/root/.lv2" ]; then
 	mv /root/.lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2
-	rm -rf /root/.lv2
-	ln -s $ZYNTHIAN_MY_DATA_DIR/presets/lv2 /root/.lv2
+	rm -rf "/root/.lv2"
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" "/root/.lv2"
 fi
 
 # Fix/Setup setbfree user config directory
@@ -75,17 +75,21 @@ for bdir in $ZYNTHIAN_MY_DATA_DIR/snapshots/00???-*; do
 done
 
 # Fix/Setup snapshots directory
-if [ ! -d $ZYNTHIAN_MY_DATA_DIR/snapshots/000 ]; then
-	if [ -d $ZYNTHIAN_MY_DATA_DIR/snapshots/001 ]; then
-		mv $ZYNTHIAN_MY_DATA_DIR/snapshots/001 $ZYNTHIAN_MY_DATA_DIR/snapshots/000
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/snapshots/000" ]; then
+	if [ -d "$ZYNTHIAN_MY_DATA_DIR/snapshots/001" ]; then
+		mv "$ZYNTHIAN_MY_DATA_DIR/snapshots/001" "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
 	else
-		mkdir $ZYNTHIAN_MY_DATA_DIR/snapshots/000
+		mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
 	fi
 fi
 
 # Fix LV2 Presets
-sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2/*.ttl
-sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2/*.ttl
+if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2" ]; then
+	sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2/*.ttl
+fi
+if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2" ]; then
+	sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2/*.ttl
+fi
 sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.ttl
 
 
