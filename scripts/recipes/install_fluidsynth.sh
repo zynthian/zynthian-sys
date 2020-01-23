@@ -15,6 +15,8 @@ cd $SW_DIR
 mkdir build
 cd build
 cmake .. -Denable-alsa=0 -Denable-aufile=0 -Denable-oss=0 -Denable-pulseaudio=0 -Denable-ladspa=0 -Denable-lash=0 -Denable-floats=1 
+# Debugging ...
+#-Denable-ubsan=1 -Denable-debug=1 -fsanitize=address
 #-Denable-fpe-check=0  -Denable-dbus=1
 make -j 4
 make install
