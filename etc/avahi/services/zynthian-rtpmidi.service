@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone='no'?>
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+<service-group>
+<name replace-wildcards="yes">%h ZYNTHIAN RTPMIDI</name>
+<service>
+<type>_rtpmidi._udp</type>
+<port>5004</port>
+</service>
+</service-group>
