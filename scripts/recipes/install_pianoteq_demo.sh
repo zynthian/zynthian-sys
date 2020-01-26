@@ -1,10 +1,10 @@
 #!/bin/bash
 
+export PIANOTEQ_INSTALL_FILENAME="pianoteq_stage_linux_trial_v660.7z"
+
 cd $ZYNTHIAN_SW_DIR
-wget http://blog.zynthian.org/download/pianoteq6_demo.tar.xz
-tar xfvJ pianoteq6_demo.tar.xz
-mv pianoteq6_demo pianoteq6
-rm pianoteq6_demo.tar.xz
-cd pianoteq6
-ln -s "./Pianoteq 6 STAGE" pianoteq
-ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
+wget http://zynthian.org/download/$PIANOTEQ_INSTALL_FILENAME
+$ZYNTHIAN_RECIPE_DIR/install_pianoteq_binary.sh "$ZYNTHIAN_SW_DIR/$PIANOTEQ_INSTALL_FILENAME"
+rm -f "$ZYNTHIAN_SW_DIR/$PIANOTEQ_INSTALL_FILENAME"
+
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh

@@ -6,6 +6,6 @@ git clone https://github.com/dcoredump/dexed
 cd dexed
 git checkout native-lv2
 cd src
-make
-sudo make install
+make -j 3
+make install
 cd ../..

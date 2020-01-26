@@ -36,7 +36,8 @@ apt-get -y upgrade
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common htpdate parted dirmngr
+apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr
+#htpdate
 
 # Set here default config
 [ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=yes
@@ -46,7 +47,7 @@ apt-get -y install apt-utils apt-transport-https rpi-update sudo software-proper
 [ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH=master
 
 # Adjust System Date/Time
-htpdate -s www.pool.ntp.org wikipedia.org google.com
+#htpdate -s www.pool.ntp.org wikipedia.org google.com
 
 # Update Firmware
 if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
@@ -87,7 +88,7 @@ apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-fi
 
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe nano vim
-apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools mplayer xloadimage imagemagick
+apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools mplayer xloadimage imagemagick fbcat
 apt-get -y install evtest tslib libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
 
@@ -101,10 +102,10 @@ rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 #------------------------------------------------
 
 #Tools
-apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc
+apt-get -y install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools
 
 # Libraries
-apt-get -y --force-yes --no-install-recommends install wiringpi libfftw3-dev libmxml-dev zlib1g-dev fluid \
+apt-get -y --force-yes --no-install-recommends install libfftw3-dev libmxml-dev zlib1g-dev fluid \
 libfltk1.3-dev libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools liblash-compat-dev libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
@@ -138,7 +139,17 @@ pip3 install mido python-rtmidi
 #------------------------------------------------
 #************************************************
 
-mkdir $ZYNTHIAN_DIR
+# Create needed directories
+mkdir "$ZYNTHIAN_DIR"
+mkdir "$ZYNTHIAN_CONFIG_DIR"
+mkdir "$ZYNTHIAN_SW_DIR"
+
+# Zynthian System Scripts and Config files
+cd $ZYNTHIAN_DIR
+git clone -b ""${ZYNTHIAN_SYS_BRANCH}"" "${ZYNTHIAN_SYS_REPO}"
+
+# Install WiringPi
+$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Zyncoder library
 cd $ZYNTHIAN_DIR
@@ -152,10 +163,6 @@ if [ -d "zynthian-ui/jackpeak" ]; then
 	./zynthian-ui/jackpeak/build.sh
 fi
 
-# Zynthian System Scripts and Config files
-cd $ZYNTHIAN_DIR
-git clone -b ""${ZYNTHIAN_SYS_BRANCH}"" "${ZYNTHIAN_SYS_REPO}"
-
 # Zynthian Data
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-data.git
@@ -168,34 +175,33 @@ git clone https://github.com/zynthian/zynthian-webconf.git
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-emuface.git
 
-# Create needed directories
-mkdir "$ZYNTHIAN_CONFIG_DIR"
-mkdir "$ZYNTHIAN_SW_DIR"
+# Create more needed directories
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
 #mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
 #mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
-ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx" "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
-
-# Copy some files
-cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards
 
 #************************************************
 #------------------------------------------------
@@ -206,7 +212,7 @@ cp -a $ZYNTHIAN_DATA_DIR/mod-pedalboards/*.pedalboard $ZYNTHIAN_MY_DATA_DIR/mod-
 #Change Hostname
 if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
     echo "zynthian" > /etc/hostname
-    sed -i -e "s/raspb.*/zynthian/" /etc/hosts
+    sed -i -e "s/127\.0\.1\.1.*$/127.0.1.1\tzynthian/" /etc/hosts
 fi
 
 # Run configuration script
@@ -227,6 +233,7 @@ systemctl disable wpa_supplicant
 systemctl disable hostapd
 systemctl disable dnsmasq
 systemctl disable unattended-upgrades
+systemctl disable apt-daily.timer
 systemctl disable packagekit
 systemctl disable polkit
 systemctl mask packagekit
@@ -259,7 +266,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #************************************************
 
 # Install Jack2
-#$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
+$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
 
 # Install alsaseq Python Library
 #$ZYNTHIAN_RECIPE_DIR/install_alsaseq.sh
@@ -275,6 +282,9 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 
 # Install LV2 lilv library
 $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh # throws an error at the end - ignore it!
+
+# Install the LV2 C++ Tool Kit
+$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 
 # Install LV2 Jalv Plugin Host
 $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
@@ -300,6 +310,11 @@ $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 # Install QMidiNet (MIDI over IP Multicast)
 $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 
+# Install the DX7 SysEx parser
+$ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
+
+# Install preset2lv2 (Convert native presets to LV2)
+$ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 
 #************************************************
 #------------------------------------------------
@@ -311,7 +326,7 @@ $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 $ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 
 # Install Fluidsynth & SF2 SondFonts
-apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs
+apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
@@ -326,6 +341,11 @@ $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
 
 # Install setBfree (Hammond B3 Emulator)
 $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+# Setup user config directories
+cd $ZYNTHIAN_CONFIG_DIR
+mkdir setbfree
+ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
+cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
 # Install Pianoteq Demo (Piano Physical Emulation)
 $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
@@ -341,26 +361,22 @@ pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug 
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
 pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 
+mkdir /root/Pd
+mkdir /root/Pd/externals
+
 #------------------------------------------------
 # Install MOD stuff
 #------------------------------------------------
-
-#Define git version to use: Git commit SHAs where the local zynthian branch will be created
-#export MOD_HOST_GITSHA="3bda867acf68b95c05baa7366d89687cbd9e47cf"
-#export MOD_UI_GITSHA="064c64a24989120731157ac27184d4b4f51ef9f2"
 
 #Install MOD-HOST
 $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
 
 #Install MOD-UI
 $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
-$ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
+#$ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 
 #Install MOD-SDK
 $ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
-
-#Create softlink to pedalboards directory
-ln -s $ZYNTHIAN_MY_DATA_DIR/mod-pedalboards /root/.pedalboards
 
 #------------------------------------------------
 # Install Plugins
@@ -375,11 +391,6 @@ $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
 #------------------------------------------------
-# Install AminoGFX for Node.js graphics rendering
-#------------------------------------------------
-#$ZYNTHIAN_RECIPE_DIR/install_aminogfx.sh
-
-#------------------------------------------------
 # Install MIDISport firmware
 #------------------------------------------------
 apt -y install midisport-firmware
@@ -391,11 +402,10 @@ apt -y install midisport-firmware
 #------------------------------------------------
 #************************************************
 
-# Create flags to avoid running unneeded recipes.update when updating zynthian software
+# Create flags directory to avoid running unneeded recipes.update when updating zynthian software
 if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
 	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
 fi
-touch "$ZYNTHIAN_CONFIG_DIR/updates/omega"
 
 # Run configuration script before ending
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh

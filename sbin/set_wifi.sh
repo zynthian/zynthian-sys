@@ -5,9 +5,9 @@
 #------------------------------------------------------------------------------
 
 if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+    source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
+    source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
 if [ -z "$1" ]; then
@@ -17,10 +17,10 @@ else
 fi
 
 if [ -z "$wifi_mode" ]; then
-	echo "WIFI Mode not set: Default to off"
-	wifi_mode="off"
+    echo "WIFI Mode not set: Default to off"
+    wifi_mode="off"
 else
-	echo "WIFI Mode => '$wifi_mode'"
+    echo "WIFI Mode => '$wifi_mode'"
 fi
 
 #------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ KillWifi()
 
     wpa_cli terminate >/dev/null 2>&1
     rm -r /var/run/wpa_supplicant >/dev/null 2>&1
-	rm -f /etc/wpa_supplicant/wpa_supplicant.conf >/dev/null 2>&1
+    rm -f /etc/wpa_supplicant/wpa_supplicant.conf >/dev/null 2>&1
     
     ip addr flush "$wifidev"
     ip addr flush dev "$wifidev"

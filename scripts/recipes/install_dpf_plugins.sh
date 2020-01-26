@@ -20,7 +20,7 @@ make clean
 
 # Create symlinks in zynthian plugins dir
 LV2_LOCAL_DIR=/usr/local/lib/lv2
-PLUGINS=( 3BandEQ 3BandSplitter AmplitudeImposer CycleShifter Kars MVerb MaBitcrush MaFreeverb MaGigaverb MaPitchshift Nekobi PingPongPan ProM )
+PLUGINS=( 3BandEQ 3BandSplitter AmplitudeImposer CycleShifter Kars MVerb MaBitcrush MaFreeverb MaGigaverb MaPitchshift Nekobi PingPongPan )
 
 for u in "${PLUGINS[@]}"; do
 	#Remove pre-existing plugin

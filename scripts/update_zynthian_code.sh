@@ -38,13 +38,13 @@ fi
 echo "Updating zyncoder ..."
 cd $ZYNTHIAN_DIR/zyncoder
 git checkout .
-git pull | grep -q -v 'Already up-to-date.' && ui_changed=1
+git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
 ./build.sh
 
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
 git checkout .
-git pull | grep -q -v 'Already up-to-date.' && ui_changed=1
+git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
 rm -f zynthian_gui_config_new.py
 if [ -d "jackpeak" ]; then
 	./jackpeak/build.sh
@@ -53,18 +53,23 @@ fi
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
 git checkout .
-git pull | grep -q -v 'Already up-to-date.' && webconf_changed=1
+git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
 
+echo "Update Complete."
 
 if [ -f $REBOOT_FLAGFILE ]; then
 	rm -f $REBOOT_FLAGFILE
+	echo "Rebooting..."
 	reboot
 fi
 
 if [[ "$ui_changed" -eq 1 ]]; then
+	echo "Restarting zynthian service."
 	systemctl restart zynthian
 fi
 
 if [[ "$webconf_changed" -eq 1 ]]; then
+	echo "Restarting zynthian-webconf service."
 	systemctl restart zynthian-webconf
 fi
+

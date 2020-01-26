@@ -7,6 +7,6 @@ cd GxSwitchlessWah.lv2
 sed -i -- 's/-msse2 -mfpmath=sse//' Makefile
 sed -i -- 's/INSTALL_DIR = \/usr\/lib\/lv2/INSTALL_DIR = \/zynthian\/zynthian-plugins\/lv2/' Makefile
 make -j 4
-sudo make install
+make install
 make clean
 cd ..

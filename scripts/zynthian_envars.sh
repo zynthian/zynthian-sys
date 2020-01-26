@@ -21,29 +21,28 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
+export ZYNTHIAN_KIT_VERSION="V3-PRO"
+
 #Audio Config
-export SOUNDCARD_NAME="HifiBerry DAC+"
-export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplus"
-export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:0 -r 44100 -p 256 -n 2 -X raw"
+export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
+export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro,slave"
+export SOUNDCARD_MIXER="Digital,ADC,ADC Left Input,ADC Right Input"
+export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
 
 #Display Config
-export DISPLAY_NAME="PiScreen 3.5 (v2)"
+export DISPLAY_NAME="ZynScreen 3.5 (v1)"
 export DISPLAY_CONFIG="dtoverlay=piscreen2r-notouch,rotate=270\ndtoverlay=ads7846,speed=2000000,cs=1,penirq=17,penirq_pull=2,swapxy=1,xohms=100,pmax=255"
 export DISPLAY_WIDTH="480"
 export DISPLAY_HEIGHT="320"
 export FRAMEBUFFER="/dev/fb1"
 
-# Zynthian Features Flags
-export ZYNTHIAN_AUBIONOTES="1"
-export ZYNTHIAN_TOUCHOSC="1"
-
 # Zynthian Wiring Config
-export ZYNTHIAN_WIRING_LAYOUT="MCP23017_EXTRA"
+export ZYNTHIAN_WIRING_LAYOUT="MCP23017_ZynScreen"
 export ZYNTHIAN_WIRING_ENCODER_A="102,105,110,113"
 export ZYNTHIAN_WIRING_ENCODER_B="101,104,109,112"
 export ZYNTHIAN_WIRING_SWITCHES="100,103,108,111,106,107,114,115"
-export ZYNTHIAN_WIRING_MCP23017_INTA_PIN="27"
-export ZYNTHIAN_WIRING_MCP23017_INTB_PIN="25"
+export ZYNTHIAN_WIRING_MCP23017_INTA_PIN="2"
+export ZYNTHIAN_WIRING_MCP23017_INTB_PIN="7"
 
 # Zynthian UI Config
 export ZYNTHIAN_UI_COLOR_BG="#000000"
@@ -56,7 +55,7 @@ export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 export ZYNTHIAN_UI_RESTORE_LAST_STATE="1"
 
 # MIDI system configuration
-export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/zynthian-my-data/midi-profiles/default.sh"
+export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
 
 # Extra features
 export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
@@ -69,11 +68,12 @@ export ZYNTHIAN_UI_DIR="$ZYNTHIAN_DIR/zynthian-ui"
 export ZYNTHIAN_SYS_DIR="$ZYNTHIAN_DIR/zynthian-sys"
 export ZYNTHIAN_DATA_DIR="$ZYNTHIAN_DIR/zynthian-data"
 export ZYNTHIAN_MY_DATA_DIR="$ZYNTHIAN_DIR/zynthian-my-data"
+export ZYNTHIAN_EX_DATA_DIR="/media/usb0"
 export ZYNTHIAN_RECIPE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes"
 export ZYNTHIAN_PLUGINS_DIR="$ZYNTHIAN_DIR/zynthian-plugins"
 export ZYNTHIAN_MY_PLUGINS_DIR="$ZYNTHIAN_DIR/zynthian-my-plugins"
 export ZYNTHIAN_PLUGINS_SRC_DIR="$ZYNTHIAN_SW_DIR/plugins"
-export LV2_PATH="$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+export LV2_PATH="$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_MY_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 
 # Hardware Architecture & Optimization Options
 if [ "$ZYNTHIAN_FORCE_RBPI_VERSION" ]; then
@@ -96,7 +96,8 @@ if [ "$hw_architecture" = "armv7l" ]; then
 		CPU="-mcpu=cortex-a7 -mtune=cortex-a7"
 		FPU="-mfpu=neon-vfpv4"
 	fi
-	FPU="${FPU} -mfloat-abi=hard -mvectorize-with-neon-quad -ftree-vectorize"
+	#CPU="${CPU} -Ofast" #Breaks mod-ttymidi build
+	FPU="${FPU} -mfloat-abi=hard -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
 	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
 fi
 export MACHINE_HW_NAME=$hw_architecture
@@ -104,8 +105,9 @@ export RBPI_VERSION=$rbpi_version
 export CFLAGS="${CPU} ${FPU}"
 export CXXFLAGS=${CFLAGS}
 export CFLAGS_UNSAFE=""
+export RASPI=true
 #echo "Hardware Architecture: ${hw_architecture}"
 #echo "Hardware Model: ${rbpi_version}"
 
 # Setup / Build Options
-export ZYNTHAIN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
+export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone

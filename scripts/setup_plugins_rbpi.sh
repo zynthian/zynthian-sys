@@ -42,7 +42,8 @@ ln -s /usr/local/lib/lv2/log.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/port-props.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/units.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/buf-size.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-ln -s /usr/local/lib/lv2/lv2core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+#ln -s /usr/local/lib/lv2/lv2core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s /usr/local/lib/lv2/core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/presets.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/urid.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/midi.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
@@ -54,7 +55,6 @@ ln -s /usr/local/lib/lv2/core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/options.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/state.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/eg-*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-
 #------------------------------------------------
 # Create Plugins Source Code Directory
 #------------------------------------------------
@@ -77,26 +77,20 @@ $ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
 $ZYNTHIAN_RECIPE_DIR/install_openav-artyfx.sh
 $ZYNTHIAN_RECIPE_DIR/install_calf.sh
 $ZYNTHIAN_RECIPE_DIR/install_eq10q.sh
-$ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
 $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
-$ZYNTHIAN_RECIPE_DIR/install_mod-caps.sh
-$ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
-$ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh
-$ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
-#$ZYNTHIAN_RECIPE_DIR/install_sosynth.sh # => Not working because of deprecated "LV2:Event" extension
+$ZYNTHIAN_RECIPE_DIR/install_sosynth.sh
 $ZYNTHIAN_RECIPE_DIR/install_fat1.sh
+$ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxswitchlesswah.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxdenoiser2.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxdistortionplus.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxplugins.sh
 #$ZYNTHIAN_RECIPE_DIR/install_gxsupersaturator.sh
-$ZYNTHIAN_RECIPE_DIR/install_obxd_bank.sh
-$ZYNTHIAN_RECIPE_DIR/install_helm.sh
+#$ZYNTHIAN_RECIPE_DIR/install_helm.sh
 $ZYNTHIAN_RECIPE_DIR/install_infamous.sh
 $ZYNTHIAN_RECIPE_DIR/install_padthv1.sh
 #$ZYNTHIAN_RECIPE_DIR/install_distrho_ports.sh
-$ZYNTHIAN_RECIPE_DIR/install_distrho_ports_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_dpf_plugins.sh
 $ZYNTHIAN_RECIPE_DIR/install_foo-yc20.sh
 $ZYNTHIAN_RECIPE_DIR/install_triceratops.sh
@@ -105,13 +99,23 @@ $ZYNTHIAN_RECIPE_DIR/install_shiro.sh
 $ZYNTHIAN_RECIPE_DIR/install_raffo.sh
 $ZYNTHIAN_RECIPE_DIR/install_zam.sh
 $ZYNTHIAN_RECIPE_DIR/install_x42_testsignal.sh
-
-# dcoredump Stuff
-$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
-$ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
+$ZYNTHIAN_RECIPE_DIR/install_dragonfly.sh
+$ZYNTHIAN_RECIPE_DIR/install_mod-caps.sh
+$ZYNTHIAN_RECIPE_DIR/install_mod-distortion.sh
+#$ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh => DISABLED BECAUSE IT FAILS BUSTER BUILD
+$ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
+$ZYNTHIAN_RECIPE_DIR/install_ams-lv2.sh
+$ZYNTHIAN_RECIPE_DIR/install_amsynth.sh
 $ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
+$ZYNTHIAN_RECIPE_DIR/install_setBfree-controller.sh
+$ZYNTHIAN_RECIPE_DIR/install_string-machine.sh
+$ZYNTHIAN_RECIPE_DIR/install_midi_display.sh
+$ZYNTHIAN_RECIPE_DIR/install_punk_console.sh
+$ZYNTHIAN_RECIPE_DIR/install_reMID.sh
+#$ZYNTHIAN_RECIPE_DIR/install_ADLplug.sh
+$ZYNTHIAN_RECIPE_DIR/install_miniopl3.sh
 
-$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
+$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 
 #------------------------------------------------
 # Install v1 suit
@@ -138,3 +142,4 @@ ln -s /usr/lib/lv2/invada.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 #apt-get -y install ladspa-sdk wah-plugins tap-plugins vco-plugins swh-plugins ste-plugins rev-plugins omins mcp-plugins invada-studio-plugins-ladspa rubberband-ladspa fil-plugins csladspa cmt caps bs2b-ladspa blop blepvco autotalent ambdec amb-plugins
 
+$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh

@@ -28,7 +28,9 @@
 #framebuffer_height=720
 
 # uncomment if hdmi display is not detected and composite is being output
-#hdmi_force_hotplug=1
+[pi4]
+hdmi_force_hotplug=1
+[all]
 
 # uncomment to force a specific HDMI mode (this will force VGA)
 #hdmi_group=1
@@ -82,6 +84,14 @@ dtoverlay=pi3-disable-bt
 # Swap back the ttyAMA0 to GPIO
 dtoverlay=pi3-miniuart-bt
 [all]
+
+[pi4]
+# Disable Blutooth Support for HifiBerry compatibility with RBPi 4
+dtoverlay=pi3-disable-bt
+# Swap back the ttyAMA0 to GPIO
+dtoverlay=pi3-miniuart-bt
+[all]
+
 
 # Soundcard Config
 #SOUNDCARD_CONFIG#

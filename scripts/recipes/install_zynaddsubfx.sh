@@ -14,6 +14,12 @@ fi
 cd $ZYNTHIAN_SW_DIR
 git clone https://github.com/fundamental/zynaddsubfx.git
 cd zynaddsubfx
+
+#Temporal Fix => Should be removed when PR merged!
+#---------------
+touch HISTORY.txt
+#---------------
+
 mkdir build
 cd build
 cmake ..

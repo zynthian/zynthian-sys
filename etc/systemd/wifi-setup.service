@@ -8,6 +8,7 @@ Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 Environment=HOME=/root
 Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
 Type=oneshot
+ExecStartPre=/bin/sleep 5
 ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/set_wifi.sh
 
 [Install]

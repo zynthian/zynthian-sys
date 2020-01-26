@@ -3,6 +3,9 @@
 # LV2, lilv and Python bindings
 cd $ZYNTHIAN_SW_DIR
 
+if [ -d lv2 ]; then
+	rm -rf lv2
+fi
 git clone --recursive https://github.com/drobilla/lv2.git
 cd lv2
 ./waf configure
@@ -19,6 +22,9 @@ if [ ! -f "/usr/local/lib/pkgconfig/lv2core.pc" ]; then
 fi
 cd ..
 
+if [ -d serd ]; then
+	rm -rf serd
+fi
 git clone --recursive https://github.com/drobilla/serd.git
 #git clone --recursive http://git.drobilla.net/serd.git/
 cd serd
@@ -28,6 +34,9 @@ cd serd
 ./waf clean
 cd ..
 
+if [ -d sord ]; then
+	rm -rf sord
+fi
 git clone --recursive https://github.com/drobilla/sord.git
 #git clone --recursive http://git.drobilla.net/sord.git/
 cd sord
@@ -37,6 +46,9 @@ cd sord
 ./waf clean
 cd ..
 
+if [ -d sratom ]; then
+	rm -rf sratom
+fi
 git clone --recursive https://github.com/drobilla/sratom.git
 #git clone http://git.drobilla.net/sratom.git sratom
 cd sratom
@@ -46,27 +58,26 @@ cd sratom
 ./waf clean
 cd ..
 
+
+if [ -d lilv ]; then
+	rm -rf lilv
+fi
 git clone --recursive https://github.com/drobilla/lilv.git
 #git clone --recursive http://git.drobilla.net/lilv.git lilv
 cd lilv
-#./waf configure --bindings --python=/usr/bin/python2
+
+#./waf configure --python=/usr/bin/python2
 #./waf build
-#sudo ./waf install
+#./waf install
 #./waf clean
-./waf configure --bindings --python=/usr/bin/python3
+
+#Get the destination directory
+rm -rf /usr/local/lib/python3
+python_dir=`find /usr/local/lib -type d -iname python3* | head -n 1`
+
+./waf configure --python=/usr/bin/python3 --pythondir=$python_dir/dist-packages
 ./waf build
 ./waf install
-if [ -d "/usr/lib/python3.4" ]; then
-	cp ./bindings/python/lilv.py /usr/lib/python3.4
-elif [ -d "/usr/lib/python3.5" ]; then
-	cp ./bindings/python/lilv.py /usr/lib/python3.5
-fi
 ./waf clean
 cd ..
-
-git clone https://github.com/brunogola/lilv_python_examples
-cd lilv_python_examples
-2to3 -w *.py
-export PYTHONPATH="/usr/local/lib/python3/dist-packages"
-python3 lv2ls.py
 

@@ -21,13 +21,15 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
+if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
 RECIPES_UPDATE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes.update"
+
+# Get System Codebase
 codebase=`lsb_release -cs`
 
 #Custom update recipes, depending on the codebase version
