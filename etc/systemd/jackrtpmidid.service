@@ -1,0 +1,18 @@
+[Unit]
+Description=RTP-MIDI Service
+After=networking.service
+After=jack2.service
+Requires=jack2.service
+Wants=networking.service
+
+[Service]
+Environment=HOME=/root
+WorkingDirectory=/root
+ExecStart=/usr/local/bin/jackrtpmidid
+ExecStartPre=#JACKD_BIN_PATH#/jack_wait -w
+Restart=always
+RestartSec=5
+
+
+[Install]
+WantedBy=multi-user.target

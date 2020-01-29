@@ -36,3 +36,8 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y install fbcat
 fi
+
+# 2020-01-29: Install jackrtpmidid
+if [ ! -f /usr/local/bin/jackrtpmidid ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_jackrtpmidid.sh
+fi

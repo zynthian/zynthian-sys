@@ -310,6 +310,9 @@ $ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 # Install QMidiNet (MIDI over IP Multicast)
 $ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 
+# Install jackrtpmidid (jack RTP-MIDI daemon)
+$ZYNTHIAN_RECIPE_DIR/install_jackrtpmidid.sh
+
 # Install the DX7 SysEx parser
 $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
 
