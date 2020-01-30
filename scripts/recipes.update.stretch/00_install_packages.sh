@@ -41,3 +41,8 @@ fi
 if [ ! -f /usr/local/bin/jackrtpmidid ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_jackrtpmidid.sh
 fi
+
+# 2020-01-30: Install ykchorus
+if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/ykchorus.lv2 ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_ykchorus.sh
+fi
