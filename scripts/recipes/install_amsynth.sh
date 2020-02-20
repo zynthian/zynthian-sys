@@ -15,6 +15,9 @@ cd amsynth-$version
 # Fix LV2 bundle
 cd ./data/amsynth.lv2
 
+# Fix banks
+sed -i "s#a pset:Bank ;#a pset:Bank ;\n    lv2:appliesTo <http://code.google.com/p/amsynth/amsynth> ;#g" amsynth.ttl
+
 # Shorter Preset Names
 for bfile in *.bank.ttl; do
 	OIFS=$IFS; IFS='.'
