@@ -66,11 +66,6 @@ git clone --recursive https://github.com/drobilla/lilv.git
 #git clone --recursive http://git.drobilla.net/lilv.git lilv
 cd lilv
 
-#./waf configure --python=/usr/bin/python2
-#./waf build
-#./waf install
-#./waf clean
-
 #Get the destination directory
 rm -rf /usr/local/lib/python3
 python_dir=`find /usr/local/lib -type d -iname python3* | head -n 1`
