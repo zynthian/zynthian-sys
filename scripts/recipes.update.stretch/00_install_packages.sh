@@ -46,3 +46,13 @@ fi
 if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/ykchorus.lv2 ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_ykchorus.sh
 fi
+
+# 2020-02-20: Update lilv python library
+lilv_py_version=`python3 -c "import lilv; print(lilv.__version__)"`
+if [ "$lilv_py_version" \< "0.24.7" ]; then
+	echo "Updating lilv python bindings ..."
+	python_dir=`find /usr/local/lib -type d -iname python3* | head -n 1`
+	cd $python_dir/dist-packages
+	mv lilv.py lilv_old.py
+	wget https://github.com/lv2/lilv/raw/master/bindings/python/lilv.py
+fi
