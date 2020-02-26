@@ -16,9 +16,9 @@ cd $ZYNTHIAN_SW_DIR
 if [ -d jalv ]; then
 	rm -rf jalv
 fi
+#git clone --recursive https://github.com/drobilla/jalv.git
 git clone --recursive https://github.com/zynthian/jalv.git
 cd jalv
-git checkout zynthian
 ./waf configure
 ./waf
 ./waf install
