@@ -49,3 +49,11 @@ if [ "$lilv_py_version" \< "0.24.7" ]; then
 	mv lilv.py lilv_old.py
 	wget https://github.com/lv2/lilv/raw/master/bindings/python/lilv.py
 fi
+
+# 2020-02-26: Fix amsynth presets
+cd $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2
+res=`grep -zP "Bank \;\n[\s]+lv2\:appliesTo" amsynth.ttl` 2>/dev/null
+if [[ "$res" == "" ]]; then
+	echo "Fixing amsynth presets ..."
+	sed -i "s#a pset:Bank ;#a pset:Bank ;\n    lv2:appliesTo <http://code.google.com/p/amsynth/amsynth> ;#g" amsynth.ttl
+fi
