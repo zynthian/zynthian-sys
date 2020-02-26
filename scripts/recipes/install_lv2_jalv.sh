@@ -9,7 +9,7 @@ fi
 git clone --recursive https://github.com/drobilla/suil.git
 cd suil
 ./waf configure --no-qt5
-./waf
+./waf build
 ./waf install
 
 cd $ZYNTHIAN_SW_DIR
@@ -20,6 +20,6 @@ fi
 git clone --recursive https://github.com/zynthian/jalv.git
 cd jalv
 ./waf configure
-./waf
+./waf build
 ./waf install
 
