@@ -57,6 +57,10 @@ if [ "$lilv_py_version" \< "0.24.7" ]; then
 	wget https://github.com/lv2/lilv/raw/master/bindings/python/lilv.py
 fi
 
+if [ -f "/usr/lib/python3.5/lilv.py" ]; then
+	rm -f "/usr/lib/python3.5/lilv.py"
+fi
+
 # 2020-02-26: Fix amsynth presets
 cd $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2
 res=`grep -zP "Bank \;\n[\s]+lv2\:appliesTo" amsynth.ttl` 2>/dev/null
