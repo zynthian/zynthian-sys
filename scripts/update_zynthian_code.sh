@@ -57,6 +57,7 @@ git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
 
 echo "Update Complete."
 
+cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
 	echo "Regenerating LV2 cache..."
 	cd $ZYNTHIAN_UI_DIR/zyngine
