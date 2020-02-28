@@ -66,3 +66,9 @@ if [[ "$res" == "" ]]; then
 	echo "Fixing amsynth presets ..."
 	sed -i "s#a pset:Bank ;#a pset:Bank ;\n    lv2:appliesTo <http://code.google.com/p/amsynth/amsynth> ;#g" amsynth.ttl
 fi
+
+# 2020-02-28: Install FLTK compatibility headers
+res=`dpkg -s libfltk1.3-compat-headers 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y install libfltk1.3-compat-headers
+fi
