@@ -41,16 +41,10 @@ fi
 # 2020-02-20: Update lilv python library
 lilv_py_version=`python3 -c "import lilv; print(lilv.__version__)"`
 if [ "$lilv_py_version" \< "0.24.7" ]; then
-	echo "Updating lilv python bindings ..."
-	python_dir=`find /usr/local/lib -type d -iname python3* | head -n 1`
-	cd $python_dir/dist-packages
-	mv lilv.py lilv_old.py
-	wget https://github.com/lv2/lilv/raw/master/bindings/python/lilv.py
+	echo "Updating lilv ..."
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh	
 fi
-
-if [ -f "/usr/lib/python3.7/lilv.py" ]; then
-	rm -f "/usr/lib/python3.7/lilv.py"
-fi
+rm -f /usr/lib/python3.*/lilv.py
 
 # 2020-02-26: Fix amsynth presets
 cd $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2
