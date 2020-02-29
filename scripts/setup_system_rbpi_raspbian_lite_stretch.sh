@@ -413,6 +413,13 @@ fi
 # Run configuration script before ending
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
+#Regenerate cache LV2
+cd $ZYNTHIAN_CONFIG_DIR/jalv
+if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
+	echo "Regenerating cache LV2 ..."
+	cd $ZYNTHIAN_UI_DIR/zyngine
+	python3 ./zynthian_lv2.py
+fi
 
 #************************************************
 #------------------------------------------------

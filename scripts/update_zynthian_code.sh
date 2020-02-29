@@ -59,7 +59,7 @@ echo "Update Complete."
 
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
-	echo "Regenerating LV2 cache..."
+	echo "Regenerating cache LV2..."
 	cd $ZYNTHIAN_UI_DIR/zyngine
 	python3 ./zynthian_lv2.py
 fi
