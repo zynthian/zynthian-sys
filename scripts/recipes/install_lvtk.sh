@@ -34,3 +34,5 @@ cd lvtk-2
 cd ..
 
 cp /usr/local/lib/pkgconfig/lvtk-plugin-1.pc /usr/local/lib/pkgconfig/lvtk-plugin-2.pc
+
+ln -s /usr/local/lib/lv2/lvtk.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2

@@ -51,10 +51,10 @@ ln -s /usr/local/lib/lv2/resize-port.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/uri-map.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/schemas.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/worker.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-ln -s /usr/local/lib/lv2/core.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/options.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/state.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 ln -s /usr/local/lib/lv2/eg-*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+
 #------------------------------------------------
 # Create Plugins Source Code Directory
 #------------------------------------------------
@@ -114,6 +114,7 @@ $ZYNTHIAN_RECIPE_DIR/install_punk_console.sh
 $ZYNTHIAN_RECIPE_DIR/install_reMID.sh
 #$ZYNTHIAN_RECIPE_DIR/install_ADLplug.sh
 $ZYNTHIAN_RECIPE_DIR/install_miniopl3.sh
+$ZYNTHIAN_RECIPE_DIR/install_ykchorus.sh
 
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 
