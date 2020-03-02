@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # triceratops.lv2
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
+export CXXFLAGS="$CFLAGS -fpermissive"
+
+cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
 if [ -d "triceratops" ]; then
 	rm -rf "triceratops"
@@ -26,3 +28,7 @@ if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/triceratops-presets.lv2" ]; then
 	rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/triceratops-presets.lv2"
 fi
 ln -s "/usr/local/lib/lv2/triceratops-presets.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
+
+
+cd $ZYNTHIAN_PLUGINS_SRC_DIR
+rm -rf "triceratops"
