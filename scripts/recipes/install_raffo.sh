@@ -7,7 +7,7 @@ if [ -d "moog" ]; then
 	rm -rf "moog"
 fi
 
-git clone --recurse https://github.com/nicoroulet/moog.git
+git clone --recurse https://github.com/zynthian/moog.git
 cd moog
 sed -i -- 's/^INSTALL_DIR.\+$/INSTALL_DIR = ${ZYNTHIAN_PLUGINS_DIR}\/lv2/' Makefile
 sed -i -- 's/-m64//' Makefile
