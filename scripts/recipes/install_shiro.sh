@@ -17,9 +17,9 @@ sed -i -- 's/\$(MAKE) all -C plugins\/harmless//' Makefile
 sed -i -- 's/set \-e/#set \-e/' ./dpf/utils/generate-ttl.sh
 
 rm -rf "./data/Larynx.lv2"
-rm -rf "./data/harmless.lv2"
+rm -rf "./data/Harmless.lv2"
 rm -rf "./bin/Larynx.lv2"
-rm -rf "./bin/harmless.lv2"
+rm -rf "./bin/Harmless.lv2"
 
 export RASPPI=true
 make -j 3 all
@@ -27,4 +27,4 @@ cp -r bin/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2/
 
 cd ..
 
-#rm -rf SHIRO-Plugins
+rm -rf SHIRO-Plugins
