@@ -23,4 +23,4 @@ cp -a lv2/b_whirl $ZYNTHIAN_PLUGINS_DIR/lv2/b_whirl.lv2
 #cp -a lv2/b_whirl $ZYNTHIAN_PLUGINS_DIR/lv2/b_whirl_mod.lv2
 
 cd ..
-rm -rf "setBfree"
+#rm -rf "setBfree"
