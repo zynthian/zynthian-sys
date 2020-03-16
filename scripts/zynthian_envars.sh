@@ -25,7 +25,7 @@ export ZYNTHIAN_KIT_VERSION="V3-PRO"
 
 #Audio Config
 export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
-export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro,slave"
+export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro"
 export SOUNDCARD_MIXER="Digital,ADC,ADC Left Input,ADC Right Input"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
 
@@ -53,6 +53,7 @@ export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
 export ZYNTHIAN_UI_FONT_SIZE="14"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 export ZYNTHIAN_UI_RESTORE_LAST_STATE="1"
+export ZYNTHIAN_UI_SNAPSHOT_MIXER_SETTINGS="0"
 
 # MIDI system configuration
 export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
