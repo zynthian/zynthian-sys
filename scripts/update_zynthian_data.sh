@@ -33,6 +33,11 @@ cd "$ZYNTHIAN_DATA_DIR"
 git checkout .
 git pull
 
+# Create preset-favorites if needed
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
+fi
+
 # Update user presets for some engines ...
 cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* $ZYNTHIAN_DATA_DIR/zynbanks
 
@@ -91,7 +96,6 @@ if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2" ]; then
 	sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2/*.ttl
 fi
 sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.ttl
-
 
 #echo "Updating zynthian-plugins ..."
 #cd "$ZYNTHIAN_PLUGINS_DIR"
