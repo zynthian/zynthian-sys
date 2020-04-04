@@ -9,8 +9,9 @@ fi
 
 git clone https://github.com/imodularsynth/jackrtpmidid $SW_DIR
 cd $SW_DIR
-make all
-cp -a ./dist/Release/GNU-Linux/jackrtpmidid /usr/local/bin
+#make all
+#cp -a ./dist/Release/GNU-Linux/jackrtpmidid /usr/local/bin
+cp -a jackrtpmidid /usr/local/bin
 cd ..
 
 rm -rf "$SW_DIR"
