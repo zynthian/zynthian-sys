@@ -11,6 +11,7 @@ git clone https://github.com/imodularsynth/jackrtpmidid $SW_DIR
 cd $SW_DIR
 #make all
 #cp -a ./dist/Release/GNU-Linux/jackrtpmidid /usr/local/bin
+chmod a+x jackrtpmidid
 cp -a jackrtpmidid /usr/local/bin
 cd ..
 
