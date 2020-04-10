@@ -54,6 +54,8 @@ export ZYNTHIAN_UI_FONT_SIZE="14"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 export ZYNTHIAN_UI_RESTORE_LAST_STATE="1"
 export ZYNTHIAN_UI_SNAPSHOT_MIXER_SETTINGS="0"
+export ZYNTHIAN_UI_SWITCH_BOLD_MS="300"
+export ZYNTHIAN_UI_SWITCH_LONG_MS="2000"
 
 # MIDI system configuration
 export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
