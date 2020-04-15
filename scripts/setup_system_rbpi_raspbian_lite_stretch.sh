@@ -323,6 +323,9 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 # Install the njconnect Jack Graph Manager
 $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
 
+# Install some extra packages:
+apt -y install jack-midi-clock midisport-firmware
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Synthesis Software
@@ -396,12 +399,6 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 #------------------------------------------------
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
-
-#------------------------------------------------
-# Install MIDISport firmware
-#------------------------------------------------
-apt -y install midisport-firmware
-
 
 #************************************************
 #------------------------------------------------
