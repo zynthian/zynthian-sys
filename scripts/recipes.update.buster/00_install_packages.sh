@@ -59,3 +59,9 @@ res=`dpkg -s libfltk1.3-compat-headers 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y install libfltk1.3-compat-headers
 fi
+
+# 2020-04-15 => Vorbis tools (oggenc, etc.)
+res=`dpkg -s jack-midi-clock 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y install jack-midi-clock
