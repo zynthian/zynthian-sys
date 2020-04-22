@@ -65,3 +65,4 @@ res=`dpkg -s jack-midi-clock 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y install jack-midi-clock
+fi
