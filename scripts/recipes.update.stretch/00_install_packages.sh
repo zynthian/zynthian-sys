@@ -55,7 +55,7 @@ rm -f /usr/lib/python3.*/lilv.py
 
 # 2020-02-26: Fix amsynth presets
 cd $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2
-res=`grep -zP "Bank \;\n[\s]+lv2\:appliesTo" amsynth.ttl` 2>/dev/null
+res=$(grep -zP "Bank \;\n[\s]+lv2\:appliesTo" amsynth.ttl 2>/dev/null | tr -d '\0')
 if [[ "$res" == "" ]]; then
 	echo "Fixing amsynth presets ..."
 	sed -i "s#a pset:Bank ;#a pset:Bank ;\n    lv2:appliesTo <http://code.google.com/p/amsynth/amsynth> ;#g" amsynth.ttl
