@@ -268,6 +268,9 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #------------------------------------------------
 #************************************************
 
+# Install some extra packages:
+apt-get -y install jack-midi-clock midisport-firmware
+
 # Install Jack2
 $ZYNTHIAN_RECIPE_DIR/install_jack2.sh
 
@@ -324,10 +327,6 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 
 # Install the njconnect Jack Graph Manager
 $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
-
-# Install some extra packages:
-apt -y install jack-midi-clock midisport-firmware
-
 
 #************************************************
 #------------------------------------------------
