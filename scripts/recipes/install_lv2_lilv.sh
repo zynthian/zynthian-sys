@@ -6,10 +6,8 @@ cd $ZYNTHIAN_SW_DIR
 if [ -d lv2 ]; then
 	rm -rf lv2
 fi
-git clone https://github.com/lv2/lv2.git
+git clone --recursive https://github.com/lv2/lv2.git
 cd lv2
-rm -rf waflib
-git clone https://github.com/drobilla/autowaf.git waflib
 ./waf configure
 ./waf build
 ./waf install
@@ -27,10 +25,8 @@ cd ..
 if [ -d serd ]; then
 	rm -rf serd
 fi
-git clone https://github.com/drobilla/serd.git
+git clone --recursive https://github.com/drobilla/serd.git
 cd serd
-rm -rf waflib
-git clone https://github.com/drobilla/autowaf.git waflib
 ./waf configure
 ./waf build
 ./waf install
@@ -40,10 +36,8 @@ cd ..
 if [ -d sord ]; then
 	rm -rf sord
 fi
-git clone https://github.com/drobilla/sord.git
+git clone --recursive https://github.com/drobilla/sord.git
 cd sord
-rm -rf waflib
-git clone https://github.com/drobilla/autowaf.git waflib
 ./waf configure
 ./waf build
 ./waf install
@@ -53,10 +47,8 @@ cd ..
 if [ -d sratom ]; then
 	rm -rf sratom
 fi
-git clone https://github.com/lv2/sratom.git
+git clone --recursive https://github.com/lv2/sratom.git
 cd sratom
-rm -rf waflib
-git clone https://github.com/drobilla/autowaf.git waflib
 ./waf configure
 ./waf build
 ./waf install
@@ -67,10 +59,8 @@ cd ..
 if [ -d lilv ]; then
 	rm -rf lilv
 fi
-git clone https://github.com/lv2/lilv.git
+git clone --recursive https://github.com/lv2/lilv.git
 cd lilv
-rm -rf waflib
-git clone https://github.com/drobilla/autowaf.git waflib
 
 #Get the destination directory
 rm -rf /usr/local/lib/python3
