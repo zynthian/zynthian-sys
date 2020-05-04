@@ -49,6 +49,9 @@ rm -f zynthian_gui_config_new.py
 if [ -d "jackpeak" ]; then
 	./jackpeak/build.sh
 fi
+if [ -d "zynseq" ]; then
+	./zynseq/build.sh
+fi
 
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
