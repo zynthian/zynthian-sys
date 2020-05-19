@@ -66,3 +66,10 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y install jack-midi-clock
 fi
+
+# 2020-05-19 => mutagen, for audio/mid file metadata
+res=`pip3 show mutagen`
+if [ "$res" == "" ]; then
+	#pip3 install mutagen
+	$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
+fi
