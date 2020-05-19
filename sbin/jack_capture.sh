@@ -15,9 +15,9 @@ fi
 # Capture audio using jack_capture
 cd $CAPTURE_DIR
 if [ $1 = "--zui" ]; then
-	/usr/local/bin/jack_capture --daemon --jack-transport
+	/usr/local/bin/jack_capture -b 16 --daemon --jack-transport
 else
-	/usr/local/bin/jack_capture
+	/usr/local/bin/jack_capture -b 16
 fi
 
 # Write buffers to disk
