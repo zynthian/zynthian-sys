@@ -45,7 +45,6 @@ echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
-rm -f zynthian_gui_config_new.py
 if [ -d "jackpeak" ]; then
 	./jackpeak/build.sh
 fi
