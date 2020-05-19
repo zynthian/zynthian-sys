@@ -130,6 +130,7 @@ fi
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests
 pip3 install mido python-rtmidi
+#mutagen
 
 
 #************************************************
@@ -325,6 +326,9 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 
 # Install the njconnect Jack Graph Manager
 $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
+
+# Install Mutagen (when available, use pip3 install)
+$ZYNTHIAN_RECIPE_DIR/install_nutagen.sh
 
 #************************************************
 #------------------------------------------------
