@@ -330,7 +330,7 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
 
 # Install Mutagen (when available, use pip3 install)
-$ZYNTHIAN_RECIPE_DIR/install_nutagen.sh
+$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 
 #************************************************
 #------------------------------------------------
