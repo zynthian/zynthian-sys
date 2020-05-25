@@ -165,6 +165,9 @@ git clone https://github.com/zynthian/zynthian-ui.git
 if [ -d "zynthian-ui/jackpeak" ]; then
 	./zynthian-ui/jackpeak/build.sh
 fi
+if [ -d "zynthian-ui/zynseq" ]; then
+	./zynthian-ui/zynseq/build.sh
+fi
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
