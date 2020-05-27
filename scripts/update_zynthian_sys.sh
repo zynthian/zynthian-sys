@@ -350,13 +350,14 @@ fi
  
 if [ "$SOUNDCARD_NAME" == "AudioInjector Ultra" ]; then
 	echo "Configuring Alsa Mixer for AudioInjector Ultra ..."
-	amixer -c audioinjectorul cset name='DAC Switch' 1
+	amixer -c audioinjectorul cset name='DAC Switch' 0
 	amixer -c audioinjectorul cset name='DAC Volume' 240
 	amixer -c audioinjectorul cset name='DAC INV Switch' 0
 	amixer -c audioinjectorul cset name='DAC Soft Ramp Switch' 0
 	amixer -c audioinjectorul cset name='DAC Zero Cross Switch' 0
 	amixer -c audioinjectorul cset name='De-emp 44.1kHz Switch' 0
 	amixer -c audioinjectorul cset name='E to F Buffer Disable Switch' 0
+	amixer -c audioinjectorul cset name='DAC Switch' 1
 fi
 
 # Replace config vars in hostapd.conf
