@@ -347,6 +347,12 @@ if [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
 	amixer -c audioinjectorpi sset 'Output Mixer HiFi' unmute
 	amixer -c audioinjectorpi cset numid=10,iface=MIXER,name='Line Capture Switch' 1
 fi
+ 
+if [ "$SOUNDCARD_NAME" == "AudioInjector Ultra" ]; then
+	echo "Configuring Alsa Mixer for AudioInjector Ultra ..."
+	amixer -c audioinjectorul cset name='DAC Switch' 1
+	amixer -c audioinjectorul cset name='DAC Volume' 240
+fi
 
 # Replace config vars in hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
