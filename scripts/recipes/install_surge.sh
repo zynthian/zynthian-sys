@@ -1,7 +1,12 @@
 #!/bin/bash
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
-sudo apt-get install --no-install-recommends --yes build-essential libcairo2-dev libxkbcommon-x11-dev libxkbcommon-dev libxcb-cursor-dev libxcb-keysyms1-dev libxcb-util0-dev 
+if [ -d "surge" ]; then
+	rm -rf "surge"
+fi
+
+apt-get install -y --no-install-recommends libxkbcommon-x11-dev libxkbcommon-dev libxcb-cursor-dev libxcb-keysyms1-dev libxcb-util0-dev 
+
 git clone https://github.com/falkTX/surge.git
 cd surge
 git submodule update --init --recursive
@@ -20,3 +25,5 @@ sed -i 's/^DEFINES += /DEFINES += -DNEON_SSE=1 /g' surge-lv2.make
 cd ..
 
 # python scripts/linux/generate-lv2-ttl.py target/lv2/Release/Surge.lv2/Surge.so
+
+rm -rf "surge"
