@@ -254,6 +254,7 @@ systemctl enable mod-ttymidi
 systemctl enable a2jmidid
 systemctl enable zynthian
 systemctl enable zynthian-webconf
+systemctl enable zynthian-config-on-boot
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
