@@ -73,3 +73,6 @@ if [ "$res" == "" ]; then
 	#pip3 install mutagen
 	$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 fi
+
+# 2020-05-31 => Enabled new zynthian-config-on-boot service
+systemctl enable zynthian-config-on-boot
