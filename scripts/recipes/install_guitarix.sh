@@ -4,11 +4,14 @@
 
 #REQUIRE: liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev fonts-roboto
 
-GUITARIX_RELEASE=0.38.1
+GUITARIX_RELEASE=0.40.0
 
 #dowload, compile and install guitarix
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
+if [ -d "guitarix2-$GUITARIX_RELEASE" ]; then
+	rm -rf "guitarix2-$GUITARIX_RELEASE"
+fi
 #git clone https://git.code.sf.net/p/guitarix/git guitarix-git
 #cd guitarix-git/trunk
 
@@ -21,4 +24,6 @@ cd guitarix-$GUITARIX_RELEASE
 ./waf build -j 2
 ./waf install
 ./waf clean
-cd ../..
+
+cd ..
+rm -rf "guitarix2-$GUITARIX_RELEASE"
