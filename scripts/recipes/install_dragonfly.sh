@@ -3,9 +3,12 @@ set -e
 
 #REQUIRE: libx11-dev libgl1-mesa-dev libjack-jackd2-dev
 
-DRAGONFLY_RELEASE=2.0.0-rc1
+DRAGONFLY_RELEASE=3.0.0
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
+if [ -d "dragonfly-reverb" ]; then
+	rm -rf "dragonfly-reverb"
+fi
 
 rm -rf dragonfly-reverb
 git clone --recurse-submodules https://github.com/michaelwillis/dragonfly-reverb.git
@@ -47,7 +50,8 @@ EOF
 
 cd ..
 make
-
 cp -rp bin/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
-cd ../..
+cd ..
+rm -rf "dragonfly-reverb"
+
