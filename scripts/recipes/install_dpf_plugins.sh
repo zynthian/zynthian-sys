@@ -3,6 +3,9 @@
 # Install DISTRHO DPF plugins
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
+if [ -d "DPF-Plugins" ]; then
+	rm -rf "DPF-Plugins"
+fi
 
 # Get source code
 git clone https://github.com/DISTRHO/DPF-Plugins.git
@@ -28,3 +31,6 @@ for u in "${PLUGINS[@]}"; do
 	#Create symlinks to LV2
 	ln -s $LV2_LOCAL_DIR/$u.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 done
+
+cd ..
+rm -rf "DPF-Plugins"
