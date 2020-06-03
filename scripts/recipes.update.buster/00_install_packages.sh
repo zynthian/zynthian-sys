@@ -76,3 +76,8 @@ fi
 
 # 2020-05-31 => Enabled new zynthian-config-on-boot service
 systemctl enable zynthian-config-on-boot
+
+# 2020-06-03: Install arpeggiator
+if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/bg-arpeggiator.lv2 ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_arpeggiator.sh
+fi
