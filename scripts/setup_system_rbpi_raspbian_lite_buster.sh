@@ -235,7 +235,6 @@ systemctl disable cron
 systemctl disable rsyslog
 systemctl disable ntp
 systemctl disable htpdate
-systemctl disable triggerhappy
 systemctl disable wpa_supplicant
 systemctl disable hostapd
 systemctl disable dnsmasq
