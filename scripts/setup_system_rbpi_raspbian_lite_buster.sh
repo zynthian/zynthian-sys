@@ -70,7 +70,7 @@ apt-get upgrade
 #------------------------------------------------
 
 # System
-apt-get -y remove isc-dhcp-client
+apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 apt-get -y install systemd avahi-daemon usbutils
 apt-get -y install dhcpcd-dbus usbmount
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri

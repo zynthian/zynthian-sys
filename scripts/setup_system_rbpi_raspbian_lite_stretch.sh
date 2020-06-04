@@ -72,7 +72,7 @@ apt-get update
 #------------------------------------------------
 
 # System
-apt-get -y remove isc-dhcp-client
+apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 apt-get -y purge dns-root-data
 apt-get -y install systemd dhcpcd-dbus avahi-daemon usbmount usbutils
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri
