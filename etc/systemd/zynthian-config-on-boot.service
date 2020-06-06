@@ -1,0 +1,11 @@
+[Unit]
+Description=Config-On-Boot Service
+Before=jack2.service
+
+[Service]
+Type=oneshot
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
+ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/config-on-boot.sh
+
+[Install]
+WantedBy=multi-user.target

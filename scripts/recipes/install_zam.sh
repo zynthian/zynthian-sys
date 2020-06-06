@@ -4,6 +4,10 @@
 
 # Get source code
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
+if [ -d "zam-plugins" ]; then
+	rm -rf "zam-plugins"
+fi
+
 git clone https://github.com/zamaudio/zam-plugins.git
 cd zam-plugins
 git submodule update --init
@@ -24,3 +28,6 @@ for u in "${PLUGINS[@]}"; do
 	#Create symlinks to LV2
 	ln -s $LV2_LOCAL_DIR/$u.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 done
+
+cd ..
+rm -rf "zam-plugins"

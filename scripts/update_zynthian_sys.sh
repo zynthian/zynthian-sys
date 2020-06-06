@@ -288,7 +288,7 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 
 # Copy fonts to system directory
-cp -an $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
+rsync -r -u --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 
 # Fix problem with WLAN interfaces numbering
 if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
@@ -347,6 +347,18 @@ if [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
 	amixer -c audioinjectorpi sset 'Output Mixer HiFi' unmute
 	amixer -c audioinjectorpi cset numid=10,iface=MIXER,name='Line Capture Switch' 1
 fi
+ 
+if [ "$SOUNDCARD_NAME" == "AudioInjector Ultra" ]; then
+	echo "Configuring Alsa Mixer for AudioInjector Ultra ..."
+	amixer -c audioinjectorul cset name='DAC Switch' 0
+	amixer -c audioinjectorul cset name='DAC Volume' 240
+	amixer -c audioinjectorul cset name='DAC INV Switch' 0
+	amixer -c audioinjectorul cset name='DAC Soft Ramp Switch' 0
+	amixer -c audioinjectorul cset name='DAC Zero Cross Switch' 0
+	amixer -c audioinjectorul cset name='De-emp 44.1kHz Switch' 0
+	amixer -c audioinjectorul cset name='E to F Buffer Disable Switch' 0
+	amixer -c audioinjectorul cset name='DAC Switch' 1
+fi
 
 # Replace config vars in hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
@@ -385,6 +397,8 @@ sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jackrtp
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/qmidinet.service
 # touchosc2midi service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/touchosc2midi.service
+# jack-midi-clock service
+sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jack-midi-clock.service
 
 # MOD-HOST service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-host.service
@@ -411,6 +425,8 @@ sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/syst
 # Zynthian Webconf Service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
+# Zynthian Config-On-Boot Service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-config-on-boot.service
 
 # Reconfigure System Libraries
 ldconfig

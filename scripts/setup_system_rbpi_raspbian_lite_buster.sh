@@ -70,7 +70,7 @@ apt-get upgrade
 #------------------------------------------------
 
 # System
-apt-get -y remove isc-dhcp-client
+apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 apt-get -y install systemd avahi-daemon usbutils
 apt-get -y install dhcpcd-dbus usbmount
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri
@@ -132,6 +132,7 @@ fi
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests
 pip3 install mido python-rtmidi
+#mutagen
 
 
 #************************************************
@@ -163,6 +164,9 @@ cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
 if [ -d "zynthian-ui/jackpeak" ]; then
 	./zynthian-ui/jackpeak/build.sh
+fi
+if [ -d "zynthian-ui/zynseq" ]; then
+	./zynthian-ui/zynseq/build.sh
 fi
 
 # Zynthian Data
@@ -200,6 +204,7 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
@@ -230,7 +235,6 @@ systemctl disable cron
 systemctl disable rsyslog
 systemctl disable ntp
 systemctl disable htpdate
-systemctl disable triggerhappy
 systemctl disable wpa_supplicant
 systemctl disable hostapd
 systemctl disable dnsmasq
@@ -251,6 +255,7 @@ systemctl enable mod-ttymidi
 systemctl enable a2jmidid
 systemctl enable zynthian
 systemctl enable zynthian-webconf
+systemctl enable zynthian-config-on-boot
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
@@ -266,6 +271,9 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 # Compile / Install Required Libraries
 #------------------------------------------------
 #************************************************
+
+# Install some extra packages:
+apt-get -y install jack-midi-clock midisport-firmware
 
 # Install Jack2
 $ZYNTHIAN_RECIPE_DIR/install_jack2.sh
@@ -320,6 +328,12 @@ $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
 
 # Install preset2lv2 (Convert native presets to LV2)
 $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
+
+# Install the njconnect Jack Graph Manager
+$ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
+
+# Install Mutagen (when available, use pip3 install)
+$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 
 #************************************************
 #------------------------------------------------
@@ -399,12 +413,6 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
-#------------------------------------------------
-# Install MIDISport firmware
-#------------------------------------------------
-apt -y install midisport-firmware
-
-
 #************************************************
 #------------------------------------------------
 # Final Configuration
@@ -418,14 +426,6 @@ fi
 
 # Run configuration script before ending
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
-
-#Regenerate cache LV2
-cd $ZYNTHIAN_CONFIG_DIR/jalv
-if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
-	echo "Regenerating cache LV2 ..."
-	cd $ZYNTHIAN_UI_DIR/zyngine
-	python3 ./zynthian_lv2.py
-fi
 
 #************************************************
 #------------------------------------------------

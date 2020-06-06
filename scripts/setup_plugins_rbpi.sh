@@ -115,6 +115,9 @@ $ZYNTHIAN_RECIPE_DIR/install_reMID.sh
 #$ZYNTHIAN_RECIPE_DIR/install_ADLplug.sh
 $ZYNTHIAN_RECIPE_DIR/install_miniopl3.sh
 $ZYNTHIAN_RECIPE_DIR/install_ykchorus.sh
+$ZYNTHIAN_RECIPE_DIR/install_meters.sh
+$ZYNTHIAN_RECIPE_DIR/install_gula.sh
+$ZYNTHIAN_RECIPE_DIR/install_arpeggiator.sh
 
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 

@@ -7,8 +7,12 @@ if [ -d "$SW_DIR" ]; then
 	rm -rf "$SW_DIR"
 fi
 
-git clone https://github.com/imodularsynth/jackrtpmidid
-mv $SW_DIR/jackrtpmidid /usr/local/bin
-chmod a+x /usr/local/bin/jackrtpmidid
+git clone https://github.com/imodularsynth/jackrtpmidid $SW_DIR
+cd $SW_DIR
+#make all
+#cp -a ./dist/Release/GNU-Linux/jackrtpmidid /usr/local/bin
+chmod a+x jackrtpmidid
+cp -a jackrtpmidid /usr/local/bin
+cd ..
 
 rm -rf "$SW_DIR"

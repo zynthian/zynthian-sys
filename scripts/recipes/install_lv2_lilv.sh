@@ -6,7 +6,7 @@ cd $ZYNTHIAN_SW_DIR
 if [ -d lv2 ]; then
 	rm -rf lv2
 fi
-git clone --recursive https://github.com/drobilla/lv2.git
+git clone --recursive https://github.com/lv2/lv2.git
 cd lv2
 ./waf configure
 ./waf build
@@ -26,7 +26,6 @@ if [ -d serd ]; then
 	rm -rf serd
 fi
 git clone --recursive https://github.com/drobilla/serd.git
-#git clone --recursive http://git.drobilla.net/serd.git/
 cd serd
 ./waf configure
 ./waf build
@@ -38,7 +37,6 @@ if [ -d sord ]; then
 	rm -rf sord
 fi
 git clone --recursive https://github.com/drobilla/sord.git
-#git clone --recursive http://git.drobilla.net/sord.git/
 cd sord
 ./waf configure
 ./waf build
@@ -49,8 +47,7 @@ cd ..
 if [ -d sratom ]; then
 	rm -rf sratom
 fi
-git clone --recursive https://github.com/drobilla/sratom.git
-#git clone http://git.drobilla.net/sratom.git sratom
+git clone --recursive https://github.com/lv2/sratom.git
 cd sratom
 ./waf configure
 ./waf build
@@ -62,8 +59,7 @@ cd ..
 if [ -d lilv ]; then
 	rm -rf lilv
 fi
-git clone --recursive https://github.com/drobilla/lilv.git
-#git clone --recursive http://git.drobilla.net/lilv.git lilv
+git clone --recursive https://github.com/lv2/lilv.git
 cd lilv
 
 #Get the destination directory

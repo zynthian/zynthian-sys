@@ -1,0 +1,15 @@
+[Unit]
+Description=Jack MIDI Clock
+After=jack2.service
+Requires=jack2.service
+
+[Service]
+Environment=HOME=/root
+WorkingDirectory=/root
+ExecStart=/usr/bin/jack_midi_clock -d 0
+ExecStartPre=#JACKD_BIN_PATH#/jack_wait -w
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
