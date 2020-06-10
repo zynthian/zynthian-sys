@@ -11,7 +11,7 @@ fi
 
 UPDATE_SYS_FLAG_FILE="/zynthian_update_sys"
 
-# If flag-file does exist, call zynthian_update_sys.sh and remove flag ...
+# If flag-file does exist, call update_zynthian_sys.sh and remove flag ...
 if [ -f $UPDATE_SYS_FLAG_FILE ]; then
 	echo "Found Config-On-Boot flag! Updating Zynthian config ..."
 	$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
