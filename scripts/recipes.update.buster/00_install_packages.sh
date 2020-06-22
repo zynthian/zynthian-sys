@@ -81,3 +81,8 @@ systemctl enable zynthian-config-on-boot
 if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/bg-arpeggiator.lv2 ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_arpeggiator.sh
 fi
+
+# 2020-06-22: Install stereo-mixer
+if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/stereo-mixer.lv2 ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
+fi
