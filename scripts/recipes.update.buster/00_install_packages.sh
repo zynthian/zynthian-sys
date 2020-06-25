@@ -86,3 +86,9 @@ fi
 if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/stereo-mixer.lv2 ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
 fi
+
+# 2020-06-25: Install DARC.lv2 (gareus dynamic acoustic compressor)
+if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/darc.lv2 ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_darc_lv2.sh
+fi
+
