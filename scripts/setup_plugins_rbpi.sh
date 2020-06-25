@@ -119,6 +119,7 @@ $ZYNTHIAN_RECIPE_DIR/install_meters.sh
 $ZYNTHIAN_RECIPE_DIR/install_gula.sh
 $ZYNTHIAN_RECIPE_DIR/install_arpeggiator.sh
 $ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
+$ZYNTHIAN_RECIPE_DIR/install_darc_lv2.sh
 
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 
