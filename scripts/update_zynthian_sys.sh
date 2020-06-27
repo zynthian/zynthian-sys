@@ -152,6 +152,9 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
+	
+	echo "ACT LED CONFIG => $ACT_LED_CONFIG"
+	sed -i -e "s/#ACT_LED_CONFIG#/$ACT_LED_CONFIG/g" /boot/config.txt
 fi
 
 # Copy extra overlays
@@ -427,7 +430,12 @@ sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-we
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 # Zynthian Config-On-Boot Service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-config-on-boot.service
-
+# Zynthian PWM Fan Service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
+sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
+#
 # Reconfigure System Libraries
 ldconfig
 

@@ -21,28 +21,61 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-export ZYNTHIAN_KIT_VERSION="V3-PRO"
+# Detect EPDF hat eeprom and select if present fallback to "V3-PRO" default
+if [ /zynthian/zynthian-sys/scripts/epdf_detect.sh -eq 0 ]; then
+	export ZYNTHIAN_KIT_VERSION="EPDF"
 
-#Audio Config
-export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
-export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro"
-export SOUNDCARD_MIXER="Digital,ADC,ADC Left Input,ADC Right Input"
-export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
+	#Audio Config                                                                                            
+	export SOUNDCARD_NAME="AudioInjector"                                                                    
+	export SOUNDCARD_CONFIG="dtoverlay=audioinjector-wm8731-audio"                                           
+	export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:audioinjectorpi -S -r 44100 -p 256 -n 2 -X raw"     
 
-#Display Config
-export DISPLAY_NAME="ZynScreen 3.5 (v1)"
-export DISPLAY_CONFIG="dtoverlay=piscreen2r-notouch,rotate=270\ndtoverlay=ads7846,speed=2000000,cs=1,penirq=17,penirq_pull=2,swapxy=1,xohms=100,pmax=255"
-export DISPLAY_WIDTH="480"
-export DISPLAY_HEIGHT="320"
-export FRAMEBUFFER="/dev/fb1"
+	#Display Config                                                                                          
+	export DISPLAY_NAME="EPDF HDMI"                                                                 
+	export DISPLAY_CONFIG="disable_overscan=1\n"
+	export DISPLAY_WIDTH=""                                                                                  
+	export DISPLAY_HEIGHT=""                                                                                 
+	export FRAMEBUFFER="/dev/fb0"                                                                            
 
-# Zynthian Wiring Config
-export ZYNTHIAN_WIRING_LAYOUT="MCP23017_ZynScreen"
-export ZYNTHIAN_WIRING_ENCODER_A="102,105,110,113"
-export ZYNTHIAN_WIRING_ENCODER_B="101,104,109,112"
-export ZYNTHIAN_WIRING_SWITCHES="100,103,108,111,106,107,114,115"
-export ZYNTHIAN_WIRING_MCP23017_INTA_PIN="2"
-export ZYNTHIAN_WIRING_MCP23017_INTB_PIN="7"
+	# Zynthian Wiring Config                                                                                 
+	export ZYNTHIAN_WIRING_LAYOUT="MCP23017_EPDF"                                                    
+	export ZYNTHIAN_WIRING_ENCODER_A="103,100,111,108"                                                       
+	export ZYNTHIAN_WIRING_ENCODER_B="104,101,112,109"                                                       
+	export ZYNTHIAN_WIRING_SWITCHES="105,102,113,110,106,107,114,115"                                        
+	export ZYNTHIAN_WIRING_MCP23017_INTA_PIN="27"                                                            
+	export ZYNTHIAN_WIRING_MCP23017_INTB_PIN="25"                                                            
+	
+	#Activity LED Config
+	export ACT_LED_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n\n"     
+
+else
+	export ZYNTHIAN_KIT_VERSION="V3-PRO"
+
+	#Audio Config
+	export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
+	export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro"
+	export SOUNDCARD_MIXER="Digital,ADC,ADC Left Input,ADC Right Input"
+	export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
+
+	#Display Config
+	export DISPLAY_NAME="ZynScreen 3.5 (v1)"
+	export DISPLAY_CONFIG="dtoverlay=piscreen2r-notouch,rotate=270\ndtoverlay=ads7846,speed=2000000,cs=1,penirq=17,penirq_pull=2,swapxy=1,xohms=100,pmax=255"
+	export DISPLAY_WIDTH="480"
+	export DISPLAY_HEIGHT="320"
+	export FRAMEBUFFER="/dev/fb1"
+
+	# Zynthian Wiring Config
+	export ZYNTHIAN_WIRING_LAYOUT="MCP23017_ZynScreen"
+	export ZYNTHIAN_WIRING_ENCODER_A="102,105,110,113"
+	export ZYNTHIAN_WIRING_ENCODER_B="101,104,109,112"
+	export ZYNTHIAN_WIRING_SWITCHES="100,103,108,111,106,107,114,115"
+	export ZYNTHIAN_WIRING_MCP23017_INTA_PIN="2"
+	export ZYNTHIAN_WIRING_MCP23017_INTB_PIN="7"
+	
+	#Activity LED Config
+	export ACT_LED_CONFIG=""
+
+fi
 
 # Zynthian UI Config
 export ZYNTHIAN_UI_COLOR_BG="#000000"

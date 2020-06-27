@@ -256,6 +256,10 @@ systemctl enable a2jmidid
 systemctl enable zynthian
 systemctl enable zynthian-webconf
 systemctl enable zynthian-config-on-boot
+#if we have an EPDF hat, enable the pwm fan service
+if [ /zynthian/zynthian-sys/scripts/epdf_detect.sh -eq 0 ]; then
+    systemctl enable zynthian-pwm-fan
+fi
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
