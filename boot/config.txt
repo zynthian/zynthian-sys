@@ -99,6 +99,9 @@ dtoverlay=pi3-miniuart-bt
 # Display Config
 #DISPLAY_CONFIG#
 
+# Activity LED Config
+#ACT_LED_CONFIG#
+
 # Adjust UART clock for MIDI Baudrate (31250)
 
 #New kernels
