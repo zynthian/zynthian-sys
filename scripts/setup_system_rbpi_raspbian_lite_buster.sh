@@ -413,6 +413,11 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
+#------------------------------------------------
+# Install VCV Rack
+#------------------------------------------------
+$ZYNTHIAN_RECIPE_DIR/install_vcv_rack.sh
+
 #************************************************
 #------------------------------------------------
 # Final Configuration
