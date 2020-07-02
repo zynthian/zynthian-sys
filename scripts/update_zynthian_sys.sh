@@ -169,7 +169,6 @@ fi
 # Fix some paths in config file
 sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-sed -i -e "s/^export LV2_PATH=.*$/export LV2_PATH=\"\$ZYNTHIAN_PLUGINS_DIR\/lv2\:\$ZYNTHIAN_MY_PLUGINS_DIR\/lv2\:\$ZYNTHIAN_DATA_DIR\/presets\/lv2\:\$ZYNTHIAN_MY_DATA_DIR\/presets\/lv2\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
 # Fix/Setup MIDI-profiles data directory
 cd $ZYNTHIAN_CONFIG_DIR
