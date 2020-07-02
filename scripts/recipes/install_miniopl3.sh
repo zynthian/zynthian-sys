@@ -13,5 +13,3 @@ make clean
 cd ..
 rm -rf "miniopl3"
 
-ln -s /usr/local/lib/lv2/miniopl3.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-ln -s /usr/local/lib/lv2/miniopl3-presets.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2

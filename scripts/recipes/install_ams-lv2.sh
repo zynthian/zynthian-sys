@@ -17,4 +17,3 @@ cd ..
 if [ -e "$ZYNTHIAN_PLUGINS_DIR/lv2/mod-ams.lv2" ]; then
 	rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/mod-ams.lv2"
 fi
-ln -s "/usr/local/lib/lv2/mod-ams.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"

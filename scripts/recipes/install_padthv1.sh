@@ -23,7 +23,6 @@ then
 	fi
 	make -j 4
 	make install
-	ln -s /usr/local/lib/lv2/padthv1.lv2 "${ZYNTHIAN_PLUGINS_DIR}"/lv2
 	zynth_build_request ready 
 	make clean
 	cd ..

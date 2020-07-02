@@ -29,5 +29,3 @@ make -j 1
 make install
 make clean
 
-# Create soft-link to LV2 plugin
-ln -s /usr/local/lib/lv2/foo-yc20.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
