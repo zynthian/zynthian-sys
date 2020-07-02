@@ -11,5 +11,3 @@ make install
 make clean
 cd ..
 rm -rf "punk-console.lv2"
-
-ln -s /usr/local/lib/lv2/punkconsole.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2

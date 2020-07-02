@@ -14,4 +14,3 @@ make clean
 cd ../..
 rm -rf "ADLplug"
 
-ln -s /usr/local/lib/lv2/ADLplug.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2

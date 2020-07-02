@@ -16,7 +16,7 @@ make clean
 
 # Prevent mod-lv2-data from disabling most calf plugins by overwriting manifest.ttl
 # with the few calf plugins that have mod-ui interfaces
-ln -s /usr/local/lib/lv2/calf.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2/calf_zynth.lv2
+#ln -s /usr/local/lib/lv2/calf.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2/calf_zynth.lv2
 
 cd ..
 rm -rf "calf"

@@ -12,7 +12,6 @@ cd darc.lv2
 make submodules
 make
 make install PREFIX=/usr/local
-ln -s /usr/local/lib/lv2/darc.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 cd ..
 
 rm -rf "darc.lv2"

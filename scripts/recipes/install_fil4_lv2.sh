@@ -12,7 +12,6 @@ cd fil4.lv2
 make submodules
 make
 make install PREFIX=/usr/local
-ln -s /usr/local/lib/lv2/fil4.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 cd ..
 
 rm -rf "fil4.lv2"

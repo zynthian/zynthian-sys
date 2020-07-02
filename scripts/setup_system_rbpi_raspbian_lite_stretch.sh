@@ -205,8 +205,6 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
-mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
-mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
 #************************************************
 #------------------------------------------------
