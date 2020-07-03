@@ -347,7 +347,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 
 # Install ZynAddSubFX
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
-apt -y install zynaddsubfx
+apt-get -y install zynaddsubfx
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
@@ -359,7 +359,7 @@ ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
 # Install Linuxsampler
 #$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
-apt -y install linuxsampler gigtools
+apt-get -y install linuxsampler gigtools
 
 # Install Fantasia (linuxsampler Java GUI)
 $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
