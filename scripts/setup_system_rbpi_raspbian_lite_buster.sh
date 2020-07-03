@@ -31,12 +31,12 @@ export DEBIAN_FRONTEND=noninteractive
 #------------------------------------------------
 
 # Update System
-apt -y update
-apt -y upgrade
-apt -y dist-upgrade
+apt-get -y update
+apt-get -y upgrade
+apt-get -y dist-upgrade
 
 # Install required dependencies if needed
-apt -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv
+apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv
 #htpdate
 
 # Set here default config
@@ -67,34 +67,34 @@ dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
 wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_10.0.3_all.deb
 dpkg -i kxstudio-repos_10.0.3_all.deb
 
-apt update
-apt upgrade
-apt autoremove
+apt-get update
+apt-get upgrade
+apt-get autoremove
 
 #------------------------------------------------
 # Install Required Packages
 #------------------------------------------------
 
 # System
-apt -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
-apt -y install systemd avahi-daemon usbutils
-apt -y install dhcpcd-dbus usbmount
-apt -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri
+apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
+apt-get -y install systemd avahi-daemon usbutils
+apt-get -y install dhcpcd-dbus usbmount
+apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri
 
-apt -y install wpasupplicant wireless-tools iw hostapd dnsmasq
-apt -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree
+apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
+apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree
 #firmware-ralink
 
 
 # Alternate XServer with some 2D acceleration
-#apt -y install xserver-xorg-video-fbturbo
+#apt-get -y install xserver-xorg-video-fbturbo
 #ln -s /usr/lib/arm-linux-gnueabihf/xorg/modules/drivers/fbturbo_drv.so /usr/lib/xorg/modules/drivers
 
 # CLI Tools
-apt -y install raspi-config psmisc tree joe nano vim
-apt -y install fbi scrot mpg123 p7zip-full i2c-tools mplayer xloadimage imagemagick fbcat
-apt -y install evtest libts-bin # touchscreen tools
-#apt install python-smbus (i2c with python)
+apt-get -y install raspi-config psmisc tree joe nano vim
+apt-get -y install fbi scrot mpg123 p7zip-full i2c-tools mplayer xloadimage imagemagick fbcat
+apt-get -y install evtest libts-bin # touchscreen tools
+#apt-get install python-smbus (i2c with python)
 
 
 # Lguyome45: remove for Raspberry pi 4, with this firmware, wifi does not work
@@ -108,13 +108,13 @@ apt -y install evtest libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools
+apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools
 
 # AV Libraries => WARNING It should be changed on every new debian version!!
-apt -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
+apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
 
 # Libraries
-apt -y --no-install-recommends install libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev \
+apt-get -y --no-install-recommends install libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev \
 libfltk1.3-compat-headers libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools liblash-compat-dev libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
@@ -128,11 +128,11 @@ libfreetype6-dev  libswscale-dev  libqt4-dev qtbase5-dev qtdeclarative5-dev
 #libgd2-xpm-dev
 
 # Python
-apt -y install python python-dev cython python-dbus python-setuptools
-apt -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev 2to3
+apt-get -y install python python-dev cython python-dbus python-setuptools
+apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev 2to3
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
-    apt -y install python-pip python3-pip
+    apt-get -y install python-pip python3-pip
 fi
 
 pip3 install tornado==4.1 tornadostreamform websocket-client
@@ -277,7 +277,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #************************************************
 
 # Install some extra packages:
-apt -y install jack-midi-clock midisport-firmware
+apt-get -y install jack-midi-clock midisport-firmware
 
 # Install Jack2
 $ZYNTHIAN_RECIPE_DIR/install_jack2.sh
@@ -350,7 +350,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 apt -y install zynaddsubfx
 
 # Install Fluidsynth & SF2 SondFonts
-apt -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
+apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
@@ -376,14 +376,14 @@ cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
 # Install Aeolus (Pipe Organ Emulator)
-#apt -y install aeolus
+#apt-get -y install aeolus
 $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 
 # Install Mididings (MIDI route & filter)
-apt -y install mididings
+apt-get -y install mididings
 
 # Install Pure Data stuff
-apt -y install puredata puredata-core puredata-utils python3-yaml \
+apt-get -y install puredata puredata-core puredata-utils python3-yaml \
 pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
 pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
 pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex \
@@ -440,7 +440,7 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 #************************************************
 
 # Clean
-apt -y autoremove # Remove unneeded packages
+apt-get -y autoremove # Remove unneeded packages
 if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
-    apt clean
+    apt-get clean
 fi
