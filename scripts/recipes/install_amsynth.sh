@@ -41,4 +41,3 @@ update-mime-database /usr/share/mime
 if [ -e "$ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2" ]; then
 	rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2"
 fi
-ln -s "/usr/local/lib/lv2/amsynth.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"

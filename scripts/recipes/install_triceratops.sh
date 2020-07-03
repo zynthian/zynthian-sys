@@ -18,17 +18,4 @@ sed -i -- "s/'-O2'/'-O2','-fPIC'/" wscript
 ./waf install
 ./waf clean
 cd ..
-
-if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/triceratops.lv2" ]; then
-	rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/triceratops.lv2"
-fi
-ln -s "/usr/local/lib/lv2/triceratops.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
-
-if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/triceratops-presets.lv2" ]; then
-	rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/triceratops-presets.lv2"
-fi
-ln -s "/usr/local/lib/lv2/triceratops-presets.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
-
-
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
 rm -rf "triceratops"

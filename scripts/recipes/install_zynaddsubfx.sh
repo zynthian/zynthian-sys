@@ -18,14 +18,6 @@ fi
 
 git clone https://github.com/fundamental/zynaddsubfx.git
 cd zynaddsubfx
-# Checkout last commit that builds OK
-git checkout 2454b5dd1041b77a33faa740053885f0256a48fb
-
-#Temporal Fix => Should be removed when PR merged!
-#---------------
-#touch HISTORY.txt
-#---------------
-
 mkdir build
 cd build
 cmake ..
@@ -43,8 +35,5 @@ make install
 
 #Create soft link to zynbanks => It's included in the data repository
 #ln -s $ZYNTHIAN_SW_DIR/zynaddsubfx/instruments/banks $ZYNTHIAN_DATA_DIR/zynbanks
-
-#Create soft links to LV2 plugins
-ln -s /usr/local/lib/lv2/Zyn*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 rm -rf "$ZYNTHIAN_SW_DIR/zynaddsubfx"

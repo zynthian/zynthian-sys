@@ -2,6 +2,7 @@
 Description=Zynthian Webconf
 
 [Service]
+Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
 Environment=HOME=/root
 Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#

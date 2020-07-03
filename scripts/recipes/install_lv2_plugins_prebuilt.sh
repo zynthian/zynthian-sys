@@ -16,7 +16,8 @@ git clone https://github.com/zynthian/$REPONAME.git
 cd $REPONAME
 
 # Create symlinks in zynthian plugins dir
-PLUGINS=( helm TheFunction ThePilgrim drowaudio-distortion drowaudio-distortionshaper drowaudio-flanger drowaudio-reverb drowaudio-tremolo Luftikus Obxd TAL-Dub-3 TAL-Filter-2 TAL-Filter TAL-NoiseMaker TAL-NoiseMaker-Noise4U TAL-Reverb-2 TAL-Reverb-3 TAL-Reverb TAL-Vocoder-2 Vex Wolpertinger granulator argotlunar2 )
+#PLUGINS=( helm TheFunction ThePilgrim drowaudio-distortion drowaudio-distortionshaper drowaudio-flanger drowaudio-reverb drowaudio-tremolo Luftikus Obxd TAL-Dub-3 TAL-Filter-2 TAL-Filter TAL-NoiseMaker TAL-NoiseMaker-Noise4U TAL-Reverb-2 TAL-Reverb-3 TAL-Reverb TAL-Vocoder-2 Vex Wolpertinger granulator argotlunar2 )
+PLUGINS=( granulator argotlunar2 )
 
 for u in "${PLUGINS[@]}"; do
 	#Remove pre-existing plugin

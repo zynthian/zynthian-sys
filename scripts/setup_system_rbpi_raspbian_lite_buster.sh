@@ -36,7 +36,7 @@ apt-get -y upgrade
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom
+apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv
 #htpdate
 
 # Set here default config
@@ -62,8 +62,14 @@ fi
 echo "deb http://www.deb-multimedia.org buster main non-free" >> /etc/apt/sources.list
 wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
 dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
+
+# KXStudio
+wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_10.0.3_all.deb
+dpkg -i kxstudio-repos_10.0.3_all.deb
+
 apt-get update
 apt-get upgrade
+apt-get autoremove
 
 #------------------------------------------------
 # Install Required Packages
@@ -207,8 +213,6 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
-mkdir "$ZYNTHIAN_MY_PLUGINS_DIR"
-mkdir "$ZYNTHIAN_MY_PLUGINS_DIR/lv2"
 
 #************************************************
 #------------------------------------------------
@@ -346,7 +350,8 @@ $ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 #************************************************
 
 # Install ZynAddSubFX
-$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+#$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
+apt-get -y install zynaddsubfx
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
@@ -356,8 +361,9 @@ ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 # Install Polyphone (SF2 editor)
 #$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
 
-# Install Linuxsampler 2.0
-$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
+# Install Linuxsampler
+#$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
+apt-get -y install linuxsampler gigtools
 
 # Install Fantasia (linuxsampler Java GUI)
 $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
