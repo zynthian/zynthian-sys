@@ -50,3 +50,18 @@ echo '{
     "#0986ad"
   ]
 }' > settings.json
+
+echo '#!/bin/bash
+# Rack (and therefore Xpra) needs to be run in Racks binary location
+cd $ZYNTHIAN_SW_DIR/vcvrack.raspbian-v1
+xpra start-desktop :100 --start-child="$ZYNTHIAN_SW_DIR/vcvrack.raspbian-v1/Rack -d" --exit-with-children --xvfb="Xorg :10 vt7 -auth .Xauthority -config xrdp/xorg.conf -noreset -nolisten tcp" --start-via-proxy=no --systemd-run=no --file-transfer=no --printing=no --resize-display=no --mdns=no --pulseaudio=no --dbus-proxy=no --dbus-control=no --webcam=no --notifications=no
+' > start-vcv-rack.sh
+chmod +x start-vcv-rack.sh
+
+echo '#!/bin/bash
+xpra stop :100
+' > stop-vcv-rack.sh
+chmod +x stop-vcv-rack.sh
+
+mkdir -p $ZYNTHIAN_MY_DATA_DIR/presets/vcvrack
+cp autosave.vcv $ZYNTHIAN_MY_DATA_DIR/presets/vcvrack/default.vcv
