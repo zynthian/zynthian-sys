@@ -115,14 +115,11 @@ if [ -z "$ZYNTHIAN_HOSTSPOT_PASSWORD" ]; then
 fi
 
 #Check for EPDF Hat
-if [ /zynthian/zynthian-sys/scripts/epdf_detect.sh -eq 0 ]; then
-    export ZYNTHIAN_EPDF_HAT="TRUE"
-else
-	export ZYNTHIAN_EPDF_HAT="FALSE"
-fi
+/zynthian/zynthian-sys/scripts/epdf_detect.sh 
+ZYNTHIAN_EPDF_HAT=$?
 
 #Configure the ACT_LED if an EPDF hat is detected
-if [ $ZYNTHIAN_EPDF_HAT == "TRUE" ]; then
+if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
 	export ACT_LED_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n\n"     
 else
 	export ACT_LED_CONFIG=""
@@ -456,7 +453,7 @@ sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/syst
 ldconfig
 
 #enable the pwm fan service if an EPDF hat is detected
-if [ $ZYNTHIAN_EPDF_HAT == "TRUE" ]; then
+if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
     systemctl enable zynthian-pwm-fan
 fi
 
