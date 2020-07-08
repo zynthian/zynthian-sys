@@ -19,3 +19,9 @@ if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/stereo-mixer.lv2 ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
 fi
 
+# 2020-07-08: Install dexed from new repository
+if [ ! -e $ZYNTHIAN_PLUGINS_SRC_DIR/dexed.lv2 ]; then
+	rm -rf $ZYNTHIAN_PLUGINS_SRC_DIR/dexed
+	$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
+fi
+
