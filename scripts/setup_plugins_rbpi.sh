@@ -92,7 +92,7 @@ $ZYNTHIAN_RECIPE_DIR/install_swh.sh
 #$ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
-$ZYNTHIAN_RECIPE_DIR/install_dexed_dcoredump.sh
+$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_setBfree-controller.sh
 $ZYNTHIAN_RECIPE_DIR/install_string-machine.sh
 $ZYNTHIAN_RECIPE_DIR/install_midi_display.sh
