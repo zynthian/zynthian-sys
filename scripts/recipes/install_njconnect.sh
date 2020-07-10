@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # njconnect
-
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
+cd $ZYNTHIAN_SW_DIR
 svn checkout https://svn.code.sf.net/p/njconnect/code/trunk njconnect
 cd njconnect
 make -j 4
