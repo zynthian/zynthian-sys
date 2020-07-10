@@ -39,9 +39,8 @@ echo '{
   "paramTooltip": false,
   "cpuMeter": false,
   "lockModules": false,
-  "frameRateLimit": 5.0,
-  "frameRateSync": false,
-  "autosavePeriod": 60.0,
+  "frameSwapInterval": 10,
+  "autosavePeriod": 0,
   "patchPath": "",
   "cableColors": [
     "#c9b70e",
@@ -52,9 +51,9 @@ echo '{
 }' > settings.json
 
 echo '#!/bin/bash
-# Rack (and therefore Xpra) needs to be run in Racks binary location
+# Rack in development mode (and therefore Xpra) needs to be run in Racks binary location to access system and users folders.
 cd $ZYNTHIAN_SW_DIR/vcvrack.raspbian-v1
-xpra start-desktop :100 --start-child="$ZYNTHIAN_SW_DIR/vcvrack.raspbian-v1/Rack -d" --exit-with-children --xvfb="Xorg :10 vt7 -auth .Xauthority -config xrdp/xorg.conf -noreset -nolisten tcp" --start-via-proxy=no --systemd-run=no --file-transfer=no --printing=no --resize-display=no --mdns=no --pulseaudio=no --dbus-proxy=no --dbus-control=no --webcam=no --notifications=no
+xpra start-desktop :100 --start-child="$ZYNTHIAN_SW_DIR/vcvrack.raspbian-v1/Rack -d $1" --exit-with-children --xvfb="Xorg :10 vt7 -auth .Xauthority -config xrdp/xorg.conf -noreset -nolisten tcp" --start-via-proxy=no --systemd-run=no --file-transfer=no --printing=no --resize-display=no --mdns=no --pulseaudio=no --dbus-proxy=no --dbus-control=no --webcam=no --notifications=no
 ' > start-vcv-rack.sh
 chmod +x start-vcv-rack.sh
 
@@ -64,4 +63,4 @@ xpra stop :100
 chmod +x stop-vcv-rack.sh
 
 mkdir -p $ZYNTHIAN_MY_DATA_DIR/presets/vcvrack
-cp autosave.vcv $ZYNTHIAN_MY_DATA_DIR/presets/vcvrack/default.vcv
+wget https://raw.githubusercontent.com/whyjustin/vcv-rack-jack-patches/master/generative-01.vcv -P $ZYNTHIAN_MY_DATA_DIR/presets/vcvrack
