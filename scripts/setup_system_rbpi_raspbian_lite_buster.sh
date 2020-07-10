@@ -348,6 +348,8 @@ $ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 # Install ZynAddSubFX
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 apt-get -y install zynaddsubfx
+#Fix soft link to zynbanks, for working as included on zynthian-data repository
+ln -s /usr/share/zynaddsubfx /usr/local/share
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
