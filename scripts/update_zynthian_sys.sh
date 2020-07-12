@@ -452,10 +452,13 @@ sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/syst
 # Reconfigure System Libraries
 ldconfig
 
-#enable the pwm fan service if an EPDF hat is detected
-if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
-    systemctl enable zynthian-pwm-fan
-fi
-
 # Reload Systemd scripts
 systemctl daemon-reload
+
+#enable the pwm fan service if an EPDF hat is detected, or disable it if hat not present
+if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
+    systemctl enable zynthian-pwm-fan
+else
+    systemctl disable zynthian-pwm-fan
+fi
+
