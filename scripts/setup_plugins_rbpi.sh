@@ -104,6 +104,7 @@ $ZYNTHIAN_RECIPE_DIR/install_ykchorus.sh
 $ZYNTHIAN_RECIPE_DIR/install_gula.sh
 $ZYNTHIAN_RECIPE_DIR/install_arpeggiator.sh
 $ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
+$ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
 
 # X42 plugins
 #$ZYNTHIAN_RECIPE_DIR/install_fat1.sh
