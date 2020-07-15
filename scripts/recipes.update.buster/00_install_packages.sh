@@ -25,3 +25,7 @@ if [ ! -e $ZYNTHIAN_PLUGINS_SRC_DIR/dexed.lv2 ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
 fi
 
+# 2020-07-14: Install surge from pre-built repo
+if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/Surge.lv2 ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
+fi
