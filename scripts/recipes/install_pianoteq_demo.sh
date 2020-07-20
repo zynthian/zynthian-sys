@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PIANOTEQ_INSTALL_FILENAME="pianoteq_stage_linux_trial_v660.7z"
+export PIANOTEQ_INSTALL_FILENAME="pianoteq_stage_linux_trial_v673.7z"
 
 cd $ZYNTHIAN_SW_DIR
 wget http://download.zynthian.org/$PIANOTEQ_INSTALL_FILENAME
