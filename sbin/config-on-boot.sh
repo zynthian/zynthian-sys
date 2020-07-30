@@ -6,6 +6,7 @@ BOOT_CONFIG_FILE="/boot/zynthian_envars.sh"
 if [ -f $BOOT_CONFIG_FILE ]; then
 	echo "Found On-Boot config file! Updating Zynthian config ..."
 	$ZYNTHIAN_SYS_DIR/sbin/update_envars.py $BOOT_CONFIG_FILE
+	$ZYNTHIAN_DIR/zyncoder/build.sh
 	exit
 fi
 
