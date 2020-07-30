@@ -114,6 +114,17 @@ if [ -z "$ZYNTHIAN_HOSTSPOT_PASSWORD" ]; then
 	export ZYNTHIAN_HOSTSPOT_PASSWORD="raspberry"
 fi
 
+#Check for EPDF Hat
+/zynthian/zynthian-sys/scripts/epdf_detect.sh 
+ZYNTHIAN_EPDF_HAT=$?
+
+#Configure the ACT_LED if an EPDF hat is detected
+if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
+	export ACT_LED_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n\n"     
+else
+	export ACT_LED_CONFIG=""
+fi
+
 #------------------------------------------------------------------------------
 # Escape Config Variables to replace
 #------------------------------------------------------------------------------
@@ -152,6 +163,9 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
+	
+	echo "ACT LED CONFIG => $ACT_LED_CONFIG"
+	sed -i -e "s/#ACT_LED_CONFIG#/$ACT_LED_CONFIG/g" /boot/config.txt
 fi
 
 # Copy extra overlays
@@ -430,8 +444,22 @@ sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-co
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-config-on-boot.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-config-on-boot.service
 
+# Zynthian PWM Fan Service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
+sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
+#
 # Reconfigure System Libraries
 ldconfig
 
 # Reload Systemd scripts
 systemctl daemon-reload
+
+#enable the pwm fan service if an EPDF hat is detected, or disable it if hat not present
+if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
+    systemctl enable zynthian-pwm-fan
+else
+    systemctl disable zynthian-pwm-fan
+fi
+
