@@ -4,6 +4,7 @@ Before=jack2.service
 
 [Service]
 Type=oneshot
+Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/config-on-boot.sh
