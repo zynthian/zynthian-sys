@@ -21,7 +21,7 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-export ZYNTHIAN_KIT_VERSION="V3-PRO"
+export ZYNTHIAN_KIT_VERSION="V4"
 
 #Audio Config
 export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
