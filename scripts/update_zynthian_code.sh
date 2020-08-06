@@ -45,12 +45,7 @@ echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
-if [ -d "jackpeak" ]; then
-	./jackpeak/build.sh
-fi
-if [ -d "zynseq" ]; then
-	./zynseq/build.sh
-fi
+find ./zynlibs -type f -name build.sh -exec {} \;
 
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
