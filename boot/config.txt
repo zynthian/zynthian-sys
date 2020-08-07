@@ -92,6 +92,9 @@ dtoverlay=pi3-disable-bt
 dtoverlay=pi3-miniuart-bt
 [all]
 
+# Enable RBPi Onboard Audio (Headphones)
+dtparam=audio=on
+audio_pwm_mode=2
 
 # Soundcard Config
 #SOUNDCARD_CONFIG#
