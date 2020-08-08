@@ -6,7 +6,7 @@ if [ "$res" != "" ]; then
         exit
 fi
 
-res=`/usr/bin/aplay -l | grep "bcm2835 Headphones"`
+res=`/usr/bin/aplay -l | grep "bcm2835 ALSA"`
 if [ "$res" != "" ]; then
         echo -n "ALSA"
         exit
