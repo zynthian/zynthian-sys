@@ -1,7 +1,13 @@
 #!/bin/bash
 
-apt-get -y remove surge
+res=`dpkg -s surge 2>&1 | grep "Status:"`
+if [ "$res" == "Status: install ok installed" ]; then
+	apt-get -y remove surge
+fi
+
 #apt-get -y install libxcb-cursor-dev
+
+cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
 if [ -d "zynthian-surge.lv2" ]; then
 	cd zynthian-surge.lv2
