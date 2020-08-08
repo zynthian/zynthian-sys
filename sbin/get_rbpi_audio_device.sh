@@ -2,12 +2,12 @@
 
 res=`/usr/bin/aplay -l | grep "bcm2835 Headphones"`
 if [ "$res" != "" ]; then
-        echo "Headphones"
+        echo -n "Headphones"
         exit
 fi
 
 res=`/usr/bin/aplay -l | grep "bcm2835 Headphones"`
 if [ "$res" != "" ]; then
-        echo "ALSA"
+        echo -n "ALSA"
         exit
 fi
