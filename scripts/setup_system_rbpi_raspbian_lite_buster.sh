@@ -77,8 +77,7 @@ apt-get autoremove
 
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
-apt-get -y install systemd avahi-daemon usbutils
-apt-get -y install dhcpcd-dbus usbmount
+apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri
 
 apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
