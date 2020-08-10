@@ -31,7 +31,7 @@ if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/Surge.lv2 ]; then
 fi
 
 # 2020-08-10 => exfat support
-res=`dpkg -s exfat 2>&1 | grep "Status:"`
+res=`dpkg -s exfat-utils 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y install exfat-utils
