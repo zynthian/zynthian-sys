@@ -30,9 +30,11 @@ export DEBIAN_FRONTEND=noninteractive
 # Update System & Firmware
 #------------------------------------------------
 
+# Hold kernel version 
+apt-mark hold linux-image-$(uname -r)
+
 # Update System
 apt-get -y update
-apt-get -y upgrade
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
@@ -40,7 +42,7 @@ apt-get -y install apt-utils apt-transport-https rpi-update sudo software-proper
 #htpdate
 
 # Set here default config
-[ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=yes
+[ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=no
 [ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
 [ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
 [ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO=https://github.com/zynthian/zynthian-sys.git
@@ -68,7 +70,7 @@ wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-re
 dpkg -i kxstudio-repos_10.0.3_all.deb
 
 apt-get update
-apt-get upgrade
+apt-get dist-upgrade
 apt-get autoremove
 
 #------------------------------------------------
