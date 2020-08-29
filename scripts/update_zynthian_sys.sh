@@ -101,7 +101,6 @@ if [ -z "$ZYNTHIAN_AUBIONOTES_OPTIONS" ]; then
 	export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
 fi
 
-
 if [ -z "$ZYNTHIAN_HOSTSPOT_NAME" ]; then
 	export ZYNTHIAN_HOSTSPOT_NAME="zynthian"
 fi
@@ -293,7 +292,6 @@ elif [ "$ZYNTHIAN_OS_CODEBASE" == "buster" ]; then
 	fi
 fi
 
-
 # X11 Display config
 if [ ! -d "/etc/X11/xorg.conf.d" ]; then
 	mkdir /etc/X11/xorg.conf.d
@@ -355,7 +353,7 @@ if [ -d "$soundcard_config_custom_dir" ]; then
 	custom_config "$soundcard_config_custom_dir"
 fi
 
-# Alsa Mixer Customizing
+# AudioInjector Alsa Mixer Customization
 if [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
 	echo "Configuring Alsa Mixer for AudioInjector ..."
 	amixer -c audioinjectorpi sset 'Output Mixer HiFi' unmute
@@ -372,6 +370,11 @@ if [ "$SOUNDCARD_NAME" == "AudioInjector Ultra" ]; then
 	amixer -c audioinjectorul cset name='De-emp 44.1kHz Switch' 0
 	amixer -c audioinjectorul cset name='E to F Buffer Disable Switch' 0
 	amixer -c audioinjectorul cset name='DAC Switch' 1
+fi
+
+# Add extra modules
+if [[ $RBPI_VERSION == "Raspberry Pi 4"* ]]; then
+	echo -e "dwc2\\ng_midi\\n" >> /etc/modules
 fi
 
 # Replace config vars in hostapd.conf
@@ -393,7 +396,6 @@ sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/splash-scre
 sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/splash-screen.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/splash-screen.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/splash-screen.service
-
 # Jackd service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS_ESC/g" /etc/systemd/system/jack2.service
@@ -416,7 +418,6 @@ sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jack-mi
 # headphones service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/headphones.service
 sed -i -e "s/#RBPI_AUDIO_DEVICE#/$RBPI_AUDIO_DEVICE/g" /etc/systemd/system/headphones.service
-
 # MOD-HOST service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-host.service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/mod-host.service
@@ -426,7 +427,6 @@ sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-s
 # MOD-UI service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-ui.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-ui.service
-
 # Zynthian Service
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian.service
@@ -447,7 +447,6 @@ sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zyn
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-config-on-boot.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-config-on-boot.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-config-on-boot.service
-
 # Zynthian PWM Fan Service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service

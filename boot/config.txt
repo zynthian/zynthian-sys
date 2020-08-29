@@ -86,6 +86,8 @@ dtoverlay=pi3-miniuart-bt
 [all]
 
 [pi4]
+# Enable OTG
+dtoverlay=dwc2
 # Disable Blutooth Support for HifiBerry compatibility with RBPi 4
 dtoverlay=pi3-disable-bt
 # Swap back the ttyAMA0 to GPIO
