@@ -31,7 +31,7 @@ export DEBIAN_FRONTEND=noninteractive
 #------------------------------------------------
 
 # Hold kernel version 
-apt-mark hold linux-image-$(uname -r)
+apt-mark hold raspberrypi-kernel
 
 # Update System
 apt-get -y update
