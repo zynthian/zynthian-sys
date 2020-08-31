@@ -26,39 +26,18 @@
 
 import os
 import sys
-import shutil
 
 sys.path.append(os.environ.get('ZYNTHIAN_UI_DIR',"/zynthian/zynthian-ui"))
 import zynconf
 
 #--------------------------------------------------------------------
 
-input_envars_file = sys.argv[1]z
-envars_file = "{}/zynthian_envars.sh".format(os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config"))
-envars_backup_file = "{}/zynthian_envars_backup.sh".format(os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config"))
+envar_name = sys.argv[1]
+envar_value = sys.argv[2]
 
-if os.path.isfile(input_envars_file):
-	try:
-		print("Loading config input file '{}' ...".format(input_envars_file))
-		config = zynconf.load_config(False, input_envars_file)
-	except Exception as e:
-		print("ERROR: Config input file {} can't be parsed. Check the syntax! => \n{}".format(input_envars_file, e))
-	try:
-		print("Saving config backup '{}' ...".format(envars_backup_file))
-		shutil.copyfile(envars_file, envars_backup_file)
-	except Exception as e:
-		print("ERROR: Can't perform a config backup! => \n{}".format(e))
-	try:
-		print("Updating config on '{}' ...".format(envars_file))
-		zynconf.save_config(config, True)
-	except Exception as e:
-		print("ERROR: Config can't be updated! => \n{}".format(e))
-	try:
-		print("Deleting config input file '{}' ...".format(input_envars_file))
-		os.remove(input_envars_file)
-	except Exception as e:
-		print("ERROR: Input config file can't be removed! => \n{}".format(e))
-else:
-	print("Config input file '{}' doesn't exist.".format(update_envars_file))
+# Update Config
+zynconf.save_config({ 
+	envar_name: envar_value
+})
 
 #--------------------------------------------------------------------
