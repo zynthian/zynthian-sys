@@ -354,6 +354,9 @@ if [ -d "$soundcard_config_custom_dir" ]; then
 	custom_config "$soundcard_config_custom_dir"
 fi
 
+# Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
+$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
+
 # AudioInjector Alsa Mixer Customization
 if [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
 	echo "Configuring Alsa Mixer for AudioInjector ..."
