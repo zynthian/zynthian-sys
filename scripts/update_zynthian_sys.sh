@@ -139,7 +139,12 @@ ZYNTHIAN_SW_DIR_ESC=${ZYNTHIAN_SW_DIR//\//\\\/}
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
 JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
 ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
-RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
+
+if [ -f "/proc/stat" ]; then
+	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
+else
+	RBPI_AUDIO_DEVICE="Headphones"
+fi
 
 #------------------------------------------------------------------------------
 # Boot Config 
@@ -355,7 +360,9 @@ if [ -d "$soundcard_config_custom_dir" ]; then
 fi
 
 # Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
-$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
+if [ -f "/proc/stat" ]; then
+	$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
+fi
 
 # AudioInjector Alsa Mixer Customization
 if [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
