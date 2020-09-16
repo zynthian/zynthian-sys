@@ -69,9 +69,9 @@ dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
 wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_10.0.3_all.deb
 dpkg -i kxstudio-repos_10.0.3_all.deb
 
-apt-get update
-apt-get dist-upgrade
-apt-get autoremove
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y autoremove
 
 #------------------------------------------------
 # Install Required Packages
