@@ -15,7 +15,7 @@ fi
 # Capture audio using jack_capture
 cd $CAPTURE_DIR
 if [ $1 = "--zui" ]; then
-	/usr/local/bin/jack_capture -b 16 --daemon --jack-transport
+	/usr/local/bin/jack_capture -b 16 --daemon --jack-transport "$2"
 else
 	/usr/local/bin/jack_capture -b 16
 fi
