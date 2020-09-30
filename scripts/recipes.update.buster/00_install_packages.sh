@@ -46,5 +46,6 @@ fi
 SSL_CERT_DIR="$ZYNTHIAN_DIR/zynthian-webconf/cert"
 if [ ! -d "$SSL_CERT_DIR" ]; then
 	echo "Generating new SSL certificate for 100 years ..."
+	mkdir "$SSL_CERT_DIR"
 	openssl req -x509 -newkey rsa:4096 -keyout $SSL_CERT_DIR/key.pem -out $SSL_CERT_DIR/cert.pem -days 36500 -nodes -subj "/CN=`hostname`.local"
 fi
