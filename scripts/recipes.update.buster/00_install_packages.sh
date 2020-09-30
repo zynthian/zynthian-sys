@@ -41,3 +41,10 @@ fi
 if [ ! -e $ZYNTHIAN_SW_DIR/terminado ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
 fi
+
+# 2020-09-30 => Generate SSL self-signed certificate for webconf
+SSL_CERT_DIR="$ZYNTHIAN_DIR/zynthian-webconf/cert"
+if [ ! -d "$SSL_CERT_DIR" ]; then
+	echo "Generating new SSL certificate for 100 years ..."
+	openssl req -x509 -newkey rsa:4096 -keyout $SSL_CERT_DIR/key.pem -out $SSL_CERT_DIR/cert.pem -days 36500 -nodes -subj "/CN=`hostname`.local"
+fi
