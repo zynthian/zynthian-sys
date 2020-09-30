@@ -341,6 +341,9 @@ $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
 # Install Mutagen (when available, use pip3 install)
 $ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 
+# Install Terminado (Web Terminal)
+$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Synthesis Software
