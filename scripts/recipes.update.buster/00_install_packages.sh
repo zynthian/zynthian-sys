@@ -37,3 +37,7 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y install exfat-utils
 fi
 
+# 2020-09-30 => Install terminado, needed for the new webconf's zynterm
+if [ ! -e $ZYNTHIAN_SW_DIR/terminado ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
+fi
