@@ -289,7 +289,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 fi
 
 # Display zynthian info on ssh login
-sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
+#sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
 
 # Fix usbmount
 if [ "$ZYNTHIAN_OS_CODEBASE" == "stretch" ]; then
