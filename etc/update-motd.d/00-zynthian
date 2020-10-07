@@ -1,0 +1,36 @@
+#!/bin/bash
+
+source /zynthian/config/zynthian_envars.sh
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+printf "${RED} ##########################
+#                          #
+#            ##            #
+#      ##   #  #   ##      #
+#     #  #  #  #  #  #     #
+###   #  #  #  #  #  #   ###
+#  #  #  #  #  #  #  #  #  #
+#   ##   #  #  #  #   ##   #
+#         ##    ##         #
+#                          #
+ ##########################
+${NC}"
+echo
+cat $ZYNTHIAN_DIR/build_info.txt
+printf "Kit: ${GREEN}$ZYNTHIAN_KIT_VERSION${NC}\n"
+printf "Display: ${GREEN}$DISPLAY_NAME${NC}\n"
+printf "Soundcard: ${GREEN}$SOUNDCARD_NAME${NC}\n"
+printf "Wiring Layout: ${GREEN}$ZYNTHIAN_WIRING_LAYOUT${NC}\n"
+echo
+
+for repo in zynthian-ui zynthian-webconf zyncoder zynthian-sys zynthian-data
+do
+  branch="$(git -C $ZYNTHIAN_DIR/$repo branch |grep ^* |awk '{print $2}')"
+  id="$(git -C $ZYNTHIAN_DIR/$repo rev-parse HEAD | sed 's/\(.\{6\}\).*/\1/')"
+  echo "$repo: $branch ($id)"
+done
+
+echo
