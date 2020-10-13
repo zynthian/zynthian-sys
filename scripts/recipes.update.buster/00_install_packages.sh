@@ -49,3 +49,18 @@ if [ ! -d "$SSL_CERT_DIR" ]; then
 	mkdir "$SSL_CERT_DIR"
 	openssl req -x509 -newkey rsa:4096 -keyout $SSL_CERT_DIR/key.pem -out $SSL_CERT_DIR/cert.pem -days 36500 -nodes -subj "/CN=`hostname`.local"
 fi
+
+# 2020-10-13 => Instal alo looper
+if [ ! -e "/usr/local/lib/lv2/alo.lv2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_alo.sh
+fi
+
+# 2020-10-13 => Instal VL1 (Casiotone Emulator)
+if [ ! -e "/usr/local/lib/lv2/vl1.lv2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_VL1.sh
+fi
+
+# 2020-10-13 => Install VL53L0X library (Distance Sensor)
+if [ ! -e $ZYNTHIAN_SW_DIR/VL53L0X ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_VL53L0X.sh
+fi

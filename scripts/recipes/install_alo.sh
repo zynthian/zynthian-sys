@@ -2,7 +2,7 @@
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 if [ -d "alo" ]; then
-        rm -rf "alo"
+	rm -rf "alo"
 fi
 git clone --recursive https://github.com/devcurmudgeon/alo.git
 cd alo/source

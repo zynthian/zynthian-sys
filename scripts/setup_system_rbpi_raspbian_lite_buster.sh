@@ -344,6 +344,9 @@ $ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 # Install Terminado (Web Terminal)
 $ZYNTHIAN_RECIPE_DIR/install_terminado.sh
 
+# Install VL53L0X library (Distance Sensor)
+$ZYNTHIAN_RECIPE_DIR/install_VL53L0X.sh
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Synthesis Software
