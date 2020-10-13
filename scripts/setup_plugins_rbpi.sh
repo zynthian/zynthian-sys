@@ -106,6 +106,8 @@ $ZYNTHIAN_RECIPE_DIR/install_arpeggiator.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-arpeggiator.sh
 $ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
 $ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_alo.sh
+$ZYNTHIAN_RECIPE_DIR/install_VL1.sh
 
 # X42 plugins
 #$ZYNTHIAN_RECIPE_DIR/install_fat1.sh
