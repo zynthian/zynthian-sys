@@ -211,10 +211,14 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
+
+# Copy default snapshots
+cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
 
 #************************************************
 #------------------------------------------------
