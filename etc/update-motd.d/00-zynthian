@@ -5,33 +5,28 @@ source /zynthian/config/zynthian_envars.sh
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
+ 
+bi=`awk /./ $ZYNTHIAN_DIR/build_info.txt`
+readarray -t build_info <<<"$bi"
 
-printf "\n${RED} ##########################
-#                          #
-#            ##            #
-#      ##   #  #   ##      #
-#     #  #  #  #  #  #     #
-###   #  #  #  #  #  #   ###
-#  #  #  #  #  #  #  #  #  #
-#   ##   #  #  #  #   ##   #
-#         ##    ##         #
-#                          #
- ##########################
-${NC}\n"
+printf "\n${RED} ##########################${NC}       ----------------------------------------
+${RED}#                          #${NC}      ${build_info[0]}
+${RED}#            ##            #${NC}      ${build_info[1]}
+${RED}#      ##   #  #   ##      #${NC}      ${build_info[2]}
+${RED}#     #  #  #  #  #  #     #${NC}      ----------------------------------------
+${RED}###   #  #  #  #  #  #   ###${NC}      Kit:           ${GREEN}$ZYNTHIAN_KIT_VERSION${NC}
+${RED}#  #  #  #  #  #  #  #  #  #${NC}      Display:       ${GREEN}$DISPLAY_NAME${NC}
+${RED}#   ##   #  #  #  #   ##   #${NC}      Soundcard:     ${GREEN}$SOUNDCARD_NAME${NC}
+${RED}#         ##    ##         #${NC}      Wiring Layout: ${GREEN}$ZYNTHIAN_WIRING_LAYOUT${NC}
+${RED}#                          #${NC}      ----------------------------------------
+${RED} ##########################${NC}\n"
 
-cat $ZYNTHIAN_DIR/build_info.txt
-
-echo "---------------------------------------"
-printf "Kit:           ${GREEN}$ZYNTHIAN_KIT_VERSION${NC}\n"
-printf "Display:       ${GREEN}$DISPLAY_NAME${NC}\n"
-printf "Soundcard:     ${GREEN}$SOUNDCARD_NAME${NC}\n"
-printf "Wiring Layout: ${GREEN}$ZYNTHIAN_WIRING_LAYOUT${NC}\n"
-echo "---------------------------------------"
 for repo in zynthian-ui zynthian-webconf zyncoder zynthian-sys zynthian-data
 do
   branch="$(git -C $ZYNTHIAN_DIR/$repo branch |grep ^* |awk '{print $2}')"
   id="$(git -C $ZYNTHIAN_DIR/$repo rev-parse HEAD | sed 's/\(.\{6\}\).*/\1/')"
-  printf "$repo: $branch ($id)\n"
+  printf "                                  $repo: $branch ($id)\n"
 done
-echo "---------------------------------------"
+echo "                                  ---------------------------------------"
 echo
+
