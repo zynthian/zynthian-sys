@@ -66,8 +66,10 @@ if [ ! -e $ZYNTHIAN_SW_DIR/VL53L0X ]; then
 fi
 
 # 2020-10-26: Install QMidiArp from repo
-res=`dpkg -s qmidiarp 2>&1 | grep "Status:"`
-if [ "$res" != "Status: install ok installed" ]; then
-	apt-get -y update
-	apt-get -y install qmidiarp
+if [ ! -d "/usr/local/lib/lv2/qmidiarp_arp.lv2" ]; then
+	res=`dpkg -s qmidiarp 2>&1 | grep "Status:"`
+	if [ "$res" != "Status: install ok installed" ]; then
+		apt-get -y update
+		apt-get -y install qmidiarp
+	fi
 fi
