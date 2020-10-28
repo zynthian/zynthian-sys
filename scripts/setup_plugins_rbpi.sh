@@ -48,7 +48,7 @@ apt-get -y install helm hybridreverb2 infamous-plugins invada-studio-plugins-lv2
 apt-get -y install klangfalter-lv2 lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder
 apt-get -y install mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2
 apt-get -y install noise-repellent obxd-lv2 oxefmsynth pitcheddelay-lv2 pizmidi-plugins
-apt-get -y install qmidiarp regrader rubberband-lv2 safe-plugins shiro-plugins sorcer
+apt-get -y install regrader rubberband-lv2 safe-plugins shiro-plugins sorcer
 apt-get -y install temper-lv2 tal-plugins-lv2 tap-lv2 teragonaudio-plugins-lv2 wolf-shaper wolf-spectrum wolpertinger-lv2
 apt-get -y install x42-plugins zam-plugins zlfo
 
@@ -108,6 +108,7 @@ $ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
 $ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_alo.sh
 $ZYNTHIAN_RECIPE_DIR/install_VL1.sh
+$ZYNTHIAN_RECIPE_DIR/install_qmidiarp.sh
 
 # X42 plugins
 #$ZYNTHIAN_RECIPE_DIR/install_fat1.sh
