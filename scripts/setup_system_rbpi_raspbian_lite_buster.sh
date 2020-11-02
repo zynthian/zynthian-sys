@@ -339,6 +339,9 @@ $ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
 # Install preset2lv2 (Convert native presets to LV2)
 $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 
+# Install QJackCtl
+$ZYNTHIAN_RECIPE_DIR/install_qjackctl.sh
+
 # Install the njconnect Jack Graph Manager
 $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
 
