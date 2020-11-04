@@ -2,7 +2,7 @@
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
 <service-group>
 <name replace-wildcards="yes">%h ZYNTHIAN RTPMIDI</name>
-<service>
+<service protocol="ipv4">
 <type>_apple-midi._udp</type>
 <port>5004</port>
 </service>
