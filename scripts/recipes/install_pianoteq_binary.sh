@@ -19,12 +19,18 @@ else
 fi
 
 # Uncompress new binary package and delete unused files
-7z x "$pack_fpath" \*/arm \*/Documentation \*/README_LINUX.txt \*/Licence.rtf
+7z x "$pack_fpath" \*/arm-32bit \*/arm  \*/Documentation \*/README_LINUX.txt \*/Licence.rtf
 mv Pianoteq* pianoteq6
 
 # Create symlink to binary
 cd pianoteq6
-ln -s ./arm/Pianoteq* .
+if [ -d arm ]; then
+	armdir="arm"
+else
+	armdir="arm-32bit"
+fi
+
+ln -s ./$armdir/Pianoteq* .
 rm -f *.lv2
 rm -f *.so
 mv Pianoteq* pianoteq
@@ -33,5 +39,5 @@ mv Pianoteq* pianoteq
 rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/Pianoteq*.lv2
 
 # Create symlink to LV2 plugin directory.
-ln -s $ZYNTHIAN_SW_DIR/pianoteq6/arm/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
+ln -s $ZYNTHIAN_SW_DIR/pianoteq6/$armdir/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
