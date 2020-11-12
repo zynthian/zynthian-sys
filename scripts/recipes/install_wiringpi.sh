@@ -5,7 +5,7 @@ apt-get -y remove wiringpi
 
 # Build and install WiringPi library
 cd $ZYNTHIAN_SW_DIR
-git clone https://github.com/steveb/WiringPi
+git clone https://github.com/WiringPi/WiringPi.git
 cd WiringPi
 ./build
 cd ..
