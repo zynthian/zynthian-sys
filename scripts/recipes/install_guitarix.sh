@@ -4,7 +4,7 @@
 
 #REQUIRE: liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev fonts-roboto
 
-GUITARIX_RELEASE=0.40.0
+GUITARIX_RELEASE=0.41.0
 
 #dowload, compile and install guitarix
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
