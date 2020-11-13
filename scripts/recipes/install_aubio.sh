@@ -6,6 +6,7 @@ if [ -d "aubio" ]; then
 fi
 git clone https://github.com/aubio/aubio.git
 cd aubio
+sed -i -- 's/gpg --verify/#gpg --verify/' ./scripts/get_waf.sh 
 make -j 4
 cp -fa ./build/src/libaubio* /usr/local/lib
 cp -fa ./build/examples/aubiomfcc /usr/local/bin
