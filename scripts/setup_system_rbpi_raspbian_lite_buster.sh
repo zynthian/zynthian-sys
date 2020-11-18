@@ -170,11 +170,16 @@ git clone https://github.com/zynthian/zyncoder.git
 # Zynthian UI
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-ui.git
-if [ -d "zynthian-ui/jackpeak" ]; then
-	./zynthian-ui/jackpeak/build.sh
-fi
-if [ -d "zynthian-ui/zynseq" ]; then
-	./zynthian-ui/zynseq/build.sh
+cd $ZYNTHIAN_UI_DIR
+if [ -d "zynlibs" ]; then
+	find ./zynlibs -type f -name build.sh -exec {} \;
+else
+	if [ -d "jackpeak" ]; then
+		./jackpeak/build.sh
+	fi
+	if [ -d "zynseq" ]; then
+		./zynseq/build.sh
+	fi
 fi
 
 # Zynthian Data
