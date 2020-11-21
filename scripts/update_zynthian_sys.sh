@@ -481,3 +481,7 @@ else
     systemctl disable zynthian-pwm-fan
 fi
 
+if [ -f "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh" ]; then
+	bash "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh"
+fi
+
