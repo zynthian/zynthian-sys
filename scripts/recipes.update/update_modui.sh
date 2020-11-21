@@ -9,13 +9,14 @@ if [[ "$changed" -eq 1 ]]; then
 fi
 
 cd $ZYNTHIAN_SW_DIR/mod-ui
-git pull | grep -q -v 'Already up.to.date.' && changed=1
-if [[ "$changed" -eq 1 ]]; then
-	#pip3 install -r requirements.txt
-	cd utils
-	make -j 4
-	cd ..
-fi
+git remote remove origin
+git remote add origin https://github.com/zynthian/mod-ui.git
+git fetch origin zyn-mod-merge
+git checkout zyn-mod-merge
+git reset --hard origin/zyn-mod-merge
+
+cd utils
+make -j 4
 
 if [ ! -d "$ZYNTHIAN_SW_DIR/mod-ui/data" ]; then
 	mkdir "$ZYNTHIAN_SW_DIR/mod-ui/data"
