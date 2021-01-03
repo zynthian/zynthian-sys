@@ -73,3 +73,11 @@ if [ ! -d "/usr/local/lib/lv2/qmidiarp_arp.lv2" ]; then
 		apt-get -y install qmidiarp
 	fi
 fi
+
+# 2021-01-03: Install python3-evdev
+res=`dpkg -s python3-evdev 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y install python3-evdev
+fi
+
