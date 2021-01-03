@@ -79,6 +79,28 @@ function custom_config {
 	fi
 }
 
+
+function display_custom_config {
+	custom_config $1
+
+	calibration_fpath=$ZYNTHIAN_CONFIG_DIR/touchscreen/$DISPLAY_NAME
+
+	if [ ! -d $ZYNTHIAN_CONFIG_DIR/touchscreen ]; then
+		mkdir $ZYNTHIAN_CONFIG_DIR/touchscreen
+	fi
+
+	if [ -f "calibration.conf" ]; then
+		if [ ! -f $calibration_fpath ]; then
+			cp -a calibration.conf $calibration_fpath
+		fi
+	fi
+
+	if [ -f $calibration_fpath ]; then
+		cp -a $calibration_fpath /etc/X11/xorg.conf.d/99-calibration.conf
+	fi
+}
+
+
 #------------------------------------------------------------------------------
 # Default Values for some Config Variables
 #------------------------------------------------------------------------------
@@ -356,8 +378,9 @@ rm -f $ZYNTHIAN_CONFIG_DIR/zynthian_custom_config.sh
 # Device Custom files
 display_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/display/$DISPLAY_NAME"
 if [ -d "$display_config_custom_dir" ]; then
-	custom_config "$display_config_custom_dir"
+	display_custom_config "$display_config_custom_dir"
 fi
+
 soundcard_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/soundcard/$SOUNDCARD_NAME"
 if [ -d "$soundcard_config_custom_dir" ]; then
 	custom_config "$soundcard_config_custom_dir"
