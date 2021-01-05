@@ -81,22 +81,22 @@ function custom_config {
 
 
 function display_custom_config {
-	custom_config $1
+	custom_config "$1"
 
-	calibration_fpath=$ZYNTHIAN_CONFIG_DIR/touchscreen/$DISPLAY_NAME
+	calibration_fpath="$ZYNTHIAN_CONFIG_DIR/touchscreen/$DISPLAY_NAME"
 
 	if [ ! -d $ZYNTHIAN_CONFIG_DIR/touchscreen ]; then
 		mkdir $ZYNTHIAN_CONFIG_DIR/touchscreen
 	fi
 
 	if [ -f "calibration.conf" ]; then
-		if [ ! -f $calibration_fpath ]; then
-			cp -a calibration.conf $calibration_fpath
+		if [ ! -f "$calibration_fpath" ]; then
+			cp -a calibration.conf "$calibration_fpath"
 		fi
 	fi
 
-	if [ -f $calibration_fpath ]; then
-		cp -a $calibration_fpath /etc/X11/xorg.conf.d/99-calibration.conf
+	if [ -f "$calibration_fpath" ]; then
+		cp -a "$calibration_fpath" /etc/X11/xorg.conf.d/99-calibration.conf
 	fi
 }
 
