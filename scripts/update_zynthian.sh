@@ -48,15 +48,6 @@ export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
 rm -f $REBOOT_FLAGFILE
 
 #------------------------------------------------------------------------------
-# Update Date/Time from network ...
-#------------------------------------------------------------------------------
-
-if [ "$ZYNTHIAN_OS_CODEBASE" == "jessie" ]; then
-	echo "Updating system date/time from network ..."
-	htpdate -s www.pool.ntp.org wikipedia.org google.com
-fi
-
-#------------------------------------------------------------------------------
 # Pull from zynthian-sys repotory ...
 #------------------------------------------------------------------------------
 
@@ -77,5 +68,6 @@ cd ./scripts
 
 if [ -f $REBOOT_FLAGFILE ]; then
 	rm -f $REBOOT_FLAGFILE
+	send_osc 1370 /CUIA/LAST_STATE_ACTION
 	reboot
 fi

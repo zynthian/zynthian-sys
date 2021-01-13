@@ -73,11 +73,13 @@ fi
 if [ -f $REBOOT_FLAGFILE ]; then
 	rm -f $REBOOT_FLAGFILE
 	echo "Rebooting..."
+	send_osc 1370 /CUIA/LAST_STATE_ACTION
 	reboot
 fi
 
 if [[ "$ui_changed" -eq 1 ]]; then
 	echo "Restarting zynthian service."
+	send_osc 1370 /CUIA/LAST_STATE_ACTION
 	systemctl restart zynthian
 fi
 
