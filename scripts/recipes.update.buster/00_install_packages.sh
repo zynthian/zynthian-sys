@@ -81,3 +81,9 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y install python3-evdev
 fi
 
+# 2021-02-01: Install vnc4server
+res=`dpkg -s vnc4server 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y install vnc4server
+fi
