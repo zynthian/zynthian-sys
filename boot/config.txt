@@ -79,19 +79,15 @@ dtoverlay=i2s-mmap
 enable_uart=1
 
 [pi3]
-# Disable Blutooth Support for HifiBerry compatibility with RBPi 3
-dtoverlay=pi3-disable-bt
 # Swap back the ttyAMA0 to GPIO
-dtoverlay=pi3-miniuart-bt
+dtoverlay=miniuart-bt
 [all]
 
 [pi4]
 # Enable OTG
 dtoverlay=dwc2
-# Disable Blutooth Support for HifiBerry compatibility with RBPi 4
-dtoverlay=pi3-disable-bt
 # Swap back the ttyAMA0 to GPIO
-dtoverlay=pi3-miniuart-bt
+dtoverlay=miniuart-bt
 [all]
 
 # Enable RBPi Onboard Audio (Headphones)
