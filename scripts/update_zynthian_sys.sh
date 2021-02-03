@@ -362,6 +362,13 @@ fi
 if [ -f /etc/vim/vimrc.local ]; then
 	cp -a /etc/vim/vimrc.local /root/.vimrc
 fi
+# => vncserver password
+if [ ! -d "/root/.vnc" ]; then
+	mkdir "/root/.vnc"
+fi
+if [ ! -f "/root/.vncpasswd" ]; then
+	echo "raspberry" | vncpasswd -f > /root/.vnc/passwd
+fi
 
 # Zynthian Specific Config Files
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
