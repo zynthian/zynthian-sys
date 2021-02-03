@@ -368,6 +368,7 @@ if [ ! -d "/root/.vnc" ]; then
 fi
 if [ ! -f "/root/.vncpasswd" ]; then
 	echo "raspberry" | vncpasswd -f > /root/.vnc/passwd
+	chmod go-r /root/.vnc/passwd
 fi
 
 # Zynthian Specific Config Files
