@@ -1,4 +1,8 @@
 
+# 2021-02-06 => Block MS repo from being installed
+sudo apt-mark hold raspberrypi-sys-mods
+touch /etc/apt/trusted.gpg.d/microsoft.gpg
+
 # 2020-05-19 => mutagen, for audio/mid file metadata
 res=`pip3 show mutagen`
 if [ "$res" == "" ]; then

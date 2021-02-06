@@ -461,6 +461,10 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 #------------------------------------------------
 #************************************************
 
+#Block MS repo from being installed
+sudo apt-mark hold raspberrypi-sys-mods
+touch /etc/apt/trusted.gpg.d/microsoft.gpg
+
 # Clean
 apt-get -y autoremove # Remove unneeded packages
 if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
