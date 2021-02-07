@@ -1,6 +1,6 @@
 
 # 2021-02-06 => Block MS repo from being installed
-sudo apt-mark hold raspberrypi-sys-mods
+apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # 2020-05-19 => mutagen, for audio/mid file metadata
@@ -90,4 +90,9 @@ res=`dpkg -s vnc4server 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y install vnc4server
+fi
+
+# 2021-02-07: Install MCP4728 library (Analog Ouput / CV-OUT)
+if [ ! -d "$ZYNTHIAN_SW_DIR/MCP4748" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
 fi
