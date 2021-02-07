@@ -10,5 +10,6 @@ git clone https://github.com/marko-pi/MCP4728
 cd "MCP4728"
 make
 make install
+ldconfig
 
 #rm -rf "MCP4728"
