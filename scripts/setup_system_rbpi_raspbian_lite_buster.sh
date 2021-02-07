@@ -359,6 +359,9 @@ $ZYNTHIAN_RECIPE_DIR/install_terminado.sh
 # Install VL53L0X library (Distance Sensor)
 $ZYNTHIAN_RECIPE_DIR/install_VL53L0X.sh
 
+# Install MCP4748 library (Analog Output / CV-OUT)
+$ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Synthesis Software
@@ -462,7 +465,7 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 #************************************************
 
 #Block MS repo from being installed
-sudo apt-mark hold raspberrypi-sys-mods
+apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Clean
