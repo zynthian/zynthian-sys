@@ -101,10 +101,10 @@ sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.
 cd $ZYNTHIAN_PLUGINS_DIR/lv2
 for d in AirFont320* AVL_Drumkits_Perc* Black_Pearl* Fluid* Red_Zeppelin*; do
 	name=${d%.*}
-	dest=$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2/$name.sf2
+	dest=$ZYNTHIAN_DATA_DIR/soundfonts/sf2/$name.sf2
 	if [[ ( ! -L "$dest") && ( $name != "FluidGM" ) ]]; then
 		echo "Linking $name.sf2 ..."
-		ln -s "$ZYNTHIAN_PLUGINS_DIR/lv2/$d/FluidPlug.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2/$name.sf2"
+		ln -s "$ZYNTHIAN_PLUGINS_DIR/lv2/$d/FluidPlug.sf2" "$dest"
 	fi
 done
 
