@@ -97,6 +97,17 @@ if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2" ]; then
 fi
 sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.ttl
 
+#Link FluidPlug SF2s for using normally with FluidSynth
+cd $ZYNTHIAN_PLUGINS_DIR/lv2
+for d in AirFont320* AVL_Drumkits_Perc* Black_Pearl* Fluid* Red_Zeppelin*; do
+	name=${d%.*}
+	dest=$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2/$name.sf2
+	if [[ ( ! -L "$dest") && ( $name != "FluidGM" ) ]]; then
+		echo "Linking $name.sf2 ..."
+		ln -s "$ZYNTHIAN_PLUGINS_DIR/lv2/$d/FluidPlug.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2/$name.sf2"
+	fi
+done
+
 #echo "Updating zynthian-plugins ..."
 #cd "$ZYNTHIAN_PLUGINS_DIR"
 #git pull
