@@ -96,3 +96,8 @@ fi
 if [ ! -d "$ZYNTHIAN_SW_DIR/MCP4748" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
 fi
+
+# 2021-02-08: Install noVNC web viewer
+if [ ! -d "$ZYNTHIAN_SW_DIR/noVNC" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
+fi

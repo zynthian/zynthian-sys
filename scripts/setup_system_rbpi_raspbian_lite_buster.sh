@@ -362,6 +362,9 @@ $ZYNTHIAN_RECIPE_DIR/install_VL53L0X.sh
 # Install MCP4748 library (Analog Output / CV-OUT)
 $ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
 
+# Install noVNC web viewer
+$ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Synthesis Software
