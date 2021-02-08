@@ -20,7 +20,8 @@ After=syslog.target network.target
 Type=forking
 User=root
 
-Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/zynthian/zynthian-sys/sbin
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
+Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
 Environment=HOME=/root
 
 ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
