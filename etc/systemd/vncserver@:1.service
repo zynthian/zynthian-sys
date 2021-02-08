@@ -23,11 +23,12 @@ User=root
 Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/zynthian/zynthian-sys/sbin
 Environment=HOME=/root
 
-# Clean any existing files in /tmp/.X11-unix environment
 ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
-
 ExecStart=/usr/bin/vncserver -localhost no %i
+ExecStartPost=/bin/sh -c 'export DISPLAY=%i; env > $HOME/.remote_display_env'
+
 ExecStop=/usr/bin/vncserver -kill %i
+ExecStopPost=rm -f $HOME/.remote_display_env
 
 [Install]
 WantedBy=multi-user.target
