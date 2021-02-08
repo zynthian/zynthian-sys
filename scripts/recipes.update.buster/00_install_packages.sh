@@ -93,7 +93,7 @@ if [ "$res" != "Status: install ok installed" ]; then
 fi
 
 # 2021-02-07: Install MCP4728 library (Analog Ouput / CV-OUT)
-if [ ! -d "$ZYNTHIAN_SW_DIR/MCP4748" ]; then
+if [ ! -d "$ZYNTHIAN_SW_DIR/MCP4728" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
 fi
 
