@@ -1,0 +1,3 @@
+
+xsetroot -solid grey
+xterm &
