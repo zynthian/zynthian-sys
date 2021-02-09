@@ -101,3 +101,10 @@ fi
 if [ ! -d "$ZYNTHIAN_SW_DIR/noVNC" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 fi
+
+# 2021-02-01: Install xfwm4
+res=`dpkg -s xfwm4 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y install xfwm4
+fi
