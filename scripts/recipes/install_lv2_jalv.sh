@@ -18,7 +18,10 @@ if [ -d jalv ]; then
 fi
 git clone --recursive https://github.com/zynthian/jalv.git
 cd jalv
-./waf configure
+# Building for qt4 & qt5 at same time fails, so we build it separatelly
+./waf --no-qt4 configure
 ./waf build
 ./waf install
-
+./waf --no-qt5 configure
+./waf build
+./waf install
