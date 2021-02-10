@@ -108,3 +108,9 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y install xfwm4
 fi
+
+res=`dpkg -s libgtk-3-dev 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y install libgtk-3-dev
+fi
