@@ -123,7 +123,7 @@ libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-de
 lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  libqt4-dev qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module \
-libcanberra-gtk3-module libxcb-cursor-dev
+libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev
 
 #libjack-dev-session
 #non-ntk-dev
