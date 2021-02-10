@@ -26,10 +26,10 @@ Environment=HOME=/root
 
 ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
 ExecStart=/usr/bin/vncserver -localhost no %i
-ExecStartPost=/bin/sh -c 'export DISPLAY=%i; env > $HOME/.remote_display_env'
+ExecStartPost=/bin/sh -c 'export DISPLAY=%i; env > /root/.remote_display_env'
 
 ExecStop=/usr/bin/vncserver -kill %i
-ExecStopPost=rm -f $HOME/.remote_display_env
+ExecStopPost=rm -f /root/.remote_display_env
 
 [Install]
 WantedBy=multi-user.target
