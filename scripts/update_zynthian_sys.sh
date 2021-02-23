@@ -366,7 +366,7 @@ fi
 if [ ! -d "/root/.vnc" ]; then
 	mkdir "/root/.vnc"
 fi
-if [ ! -f "/root/.vncpasswd" ]; then
+if [ ! -f "/root/.vnc/passwd" ]; then
 	echo "raspberry" | vncpasswd -f > /root/.vnc/passwd
 	chmod go-r /root/.vnc/passwd
 fi
