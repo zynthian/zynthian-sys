@@ -5,7 +5,8 @@ if [ -d "qmidiarp" ]; then
 	rm -rf "qmidiarp"
 fi
 
-git clone https://github.com/emuse/qmidiarp.git
+#git clone https://github.com/emuse/qmidiarp.git
+git clone https://github.com/zynthian/qmidiarp.git
 cd qmidiarp
 
 autoreconf -i
