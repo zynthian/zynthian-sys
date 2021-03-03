@@ -114,3 +114,10 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update
 	apt-get -y install libgtk-3-dev
 fi
+
+# 2021-03-03: Install Vitalium-LV2 synth
+res=`dpkg -s vitalium-lv2 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update
+	apt-get -y install vitalium-lv2
+fi
