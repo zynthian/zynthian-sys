@@ -1,4 +1,6 @@
 
+aptpkgs=""
+
 # 2021-02-06 => Block MS repo from being installed
 apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
@@ -37,8 +39,7 @@ fi
 # 2020-08-10 => exfat support
 res=`dpkg -s exfat-utils 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-	apt-get -y update
-	apt-get -y install exfat-utils
+	aptpkgs="$aptpkgs exfat-utils"
 fi
 
 # 2020-09-30 => Install terminado, needed for the new webconf's zynterm
@@ -73,23 +74,20 @@ fi
 if [ ! -d "/usr/local/lib/lv2/qmidiarp_arp.lv2" ]; then
 	res=`dpkg -s qmidiarp 2>&1 | grep "Status:"`
 	if [ "$res" != "Status: install ok installed" ]; then
-		apt-get -y update
-		apt-get -y install qmidiarp
+		aptpkgs="$aptpkgs qmidiarp"
 	fi
 fi
 
 # 2021-01-03: Install python3-evdev
 res=`dpkg -s python3-evdev 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-	apt-get -y update
-	apt-get -y install python3-evdev
+	aptpkgs="$aptpkgs python3-evdev"
 fi
 
 # 2021-02-01: Install vnc4server
 res=`dpkg -s vnc4server 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-	apt-get -y update
-	apt-get -y install vnc4server
+	aptpkgs="$aptpkgs vnc4server"
 fi
 
 # 2021-02-07: Install MCP4728 library (Analog Ouput / CV-OUT)
@@ -105,19 +103,28 @@ fi
 # 2021-02-01: Install xfwm4
 res=`dpkg -s xfwm4 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-	apt-get -y update
-	apt-get -y install xfwm4
+	aptpkgs="$aptpkgs xfwm4"
 fi
 
 res=`dpkg -s libgtk-3-dev 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-	apt-get -y update
-	apt-get -y install libgtk-3-dev
+	aptpkgs="$aptpkgs libgtk-3-dev"
 fi
 
 # 2021-03-03: Install Vitalium-LV2 synth
 res=`dpkg -s vitalium-lv2 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs vitalium-lv2"
+fi
+
+# 2021-03-11: Install Surge GUI needed fonts
+res=`dpkg -s fonts-lato 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs fonts-lato ttf-mscorefonts-installer"
+fi
+
+# Install needed apt packages 
+if [ ! -z "$aptpkgs" ]; then
 	apt-get -y update
-	apt-get -y install vitalium-lv2
+	apt-get -y install $aptpkgs
 fi

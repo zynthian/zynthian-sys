@@ -6,6 +6,7 @@ if [ "$res" == "Status: install ok installed" ]; then
 fi
 
 #apt-get -y install libxcb-cursor-dev
+apt-get -y install fonts-lato ttf-mscorefonts-installer
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 

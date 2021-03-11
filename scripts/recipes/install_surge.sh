@@ -5,6 +5,7 @@ if [ -d "surge" ]; then
 	rm -rf "surge"
 fi
 
+apt-get install -y fonts-lato ttf-mscorefonts-installer
 apt-get install -y --no-install-recommends libxkbcommon-x11-dev libxkbcommon-dev libxcb-cursor-dev libxcb-keysyms1-dev libxcb-util0-dev 
 
 git clone https://github.com/falkTX/surge.git
