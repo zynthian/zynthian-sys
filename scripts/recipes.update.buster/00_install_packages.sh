@@ -111,16 +111,16 @@ if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs libgtk-3-dev"
 fi
 
-# 2021-03-03: Install Vitalium-LV2 synth
-res=`dpkg -s vitalium-lv2 2>&1 | grep "Status:"`
-if [ "$res" != "Status: install ok installed" ]; then
-	aptpkgs="$aptpkgs vitalium-lv2"
-fi
-
 # 2021-03-11: Install Surge GUI needed fonts
 res=`dpkg -s fonts-lato 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs fonts-lato ttf-mscorefonts-installer"
+fi
+
+# 2021-03-15: Install/Update Vitalium-LV2 synth
+res=`dpkg -s vitalium-lv2 2>&1 | grep "Version:"`
+if [[ "$res" < "5:20210312.3" ]]; then
+	aptpkgs="$aptpkgs vitalium-lv2"
 fi
 
 # Install needed apt packages 
