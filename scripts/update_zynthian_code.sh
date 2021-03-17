@@ -37,12 +37,16 @@ fi
 
 echo "Updating zyncoder ..."
 cd $ZYNTHIAN_DIR/zyncoder
+# Move users from master to stable - master is deprecated
+if [ `git rev-parse --abbrev-ref HEAD` == master ]; then git checkout stable; fi
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
 ./build.sh
 
 echo "Updating zynthian-ui ..."
 cd $ZYNTHIAN_UI_DIR
+# Move users from master to stable - master is deprecated
+if [ `git rev-parse --abbrev-ref HEAD` == master ]; then git checkout stable; fi
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
 if [ -d "zynlibs" ]; then
@@ -58,6 +62,8 @@ fi
 
 echo "Updating zynthian-webconf ..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
+# Move users from master to stable - master is deprecated
+if [ `git rev-parse --abbrev-ref HEAD` == master ]; then git checkout stable; fi
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
 

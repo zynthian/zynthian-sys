@@ -53,8 +53,11 @@ rm -f $REBOOT_FLAGFILE
 
 echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
+# Move users from master to stable - master is deprecated
+if [ `git rev-parse --abbrev-ref HEAD` == master ]; then git checkout stable; fi
 git checkout .
 git pull
+
 
 #------------------------------------------------------------------------------
 # Call update subscripts ...

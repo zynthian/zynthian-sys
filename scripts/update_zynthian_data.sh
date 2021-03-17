@@ -30,6 +30,8 @@ fi
 
 echo "Updating zynthian-data ..."
 cd "$ZYNTHIAN_DATA_DIR"
+# Move users from master to stable - master is deprecated
+if [ `git rev-parse --abbrev-ref HEAD` == master ]; then git checkout stable; fi
 git checkout .
 git pull
 
