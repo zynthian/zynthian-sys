@@ -1,7 +1,7 @@
  
 # Set .remote_display file when logging with SSH
 if [[ -n $DISPLAY ]]; then
-	env > .remote_display_env
+	export -p > .remote_display_env
 	if [[ -n $SSH_CLIENT ]]; then
 		parts=( $SSH_CLIENT )
 		REMOTE_IP=${parts[0]}
