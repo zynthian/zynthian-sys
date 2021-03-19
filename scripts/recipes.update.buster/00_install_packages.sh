@@ -1,4 +1,7 @@
 
+# Migrate from master to stable branch
+$ZYNTHIAN_SYS_DIR/scripts/migrate_master2stable.sh
+
 aptpkgs=""
 
 # 2021-02-06 => Block MS repo from being installed
