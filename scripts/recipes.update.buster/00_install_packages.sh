@@ -1,4 +1,6 @@
 
+$ZYNTHIAN_SYS_DIR/migrate_master2stable.sh
+
 aptpkgs=""
 
 # 2021-02-06 => Block MS repo from being installed

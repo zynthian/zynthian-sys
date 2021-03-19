@@ -164,12 +164,12 @@ $ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Zyncoder library
 cd $ZYNTHIAN_DIR
-git clone https://github.com/zynthian/zyncoder.git
+git clone --branch stable https://github.com/zynthian/zyncoder.git
 ./zyncoder/build.sh
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
-git clone https://github.com/zynthian/zynthian-ui.git
+git clone --branch stable https://github.com/zynthian/zynthian-ui.git
 cd $ZYNTHIAN_UI_DIR
 if [ -d "zynlibs" ]; then
 	find ./zynlibs -type f -name build.sh -exec {} \;
@@ -184,11 +184,11 @@ fi
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
-git clone https://github.com/zynthian/zynthian-data.git
+git clone --branch stable https://github.com/zynthian/zynthian-data.git
 
 # Zynthian Webconf Tool
 cd $ZYNTHIAN_DIR
-git clone https://github.com/zynthian/zynthian-webconf.git
+git clone --branch stable https://github.com/zynthian/zynthian-webconf.git
 
 # Zynthian emuface => Not very useful here ... but somebody used it
 cd $ZYNTHIAN_DIR
