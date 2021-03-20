@@ -5,9 +5,8 @@ aptpkgs=""
 apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
-# 2020-05-19 => mutagen, for audio/mid file metadata
-res=`pip3 show mutagen`
-if [ "$res" == "" ]; then
+# 2020-05-19 => mutagen, for audio/mid file metadata (updated 2021-03-20)
+if $ZYNTHIAN_SYS_DIR/scripts/is_python_module_installed.py mutagen; then
 	#pip3 install mutagen
 	$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 fi
