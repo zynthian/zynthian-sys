@@ -10,7 +10,8 @@ XFCE4_CONF_PATH="/root/.config/xfce4"
 echo 'xsetroot -solid grey' > /root/.xsessionrc
 echo 'test x"/usr/bin/xfce4-panel" && /usr/bin/xfce4-panel &' >> /root/.xsessionrc
 
-cp $ZYNTHIAN_SYS_DIR/etc/xfce4.config/xfconf/xfce-perchannel-xml/xfce4-panel.xml $XFCE4_CONF_PATH/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+cp $ZYNTHIAN_SYS_DIR/etc/xfce4.config/xfconf/xfce-perchannel-xml/xfce4-panel.xml $XFCE4_CONF_PATH/xfconf/xfce-perchannel-xml/
+cp $ZYNTHIAN_SYS_DIR/etc/xfce4.config/xfconf/xfce-perchannel-xml/xfwm4.xml $XFCE4_CONF_PATH/xfconf/xfce-perchannel-xml/
 
 mkdir -p $XFCE4_CONF_PATH/panel/launcher-2
 cat > $XFCE4_CONF_PATH/panel/launcher-2/16162580183.desktop <<EOL
