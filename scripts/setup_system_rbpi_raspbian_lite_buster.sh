@@ -435,6 +435,9 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 #Install MOD-SDK
 #$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
 
+# Install browsepy
+$ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
+
 #------------------------------------------------
 # Install Plugins
 #------------------------------------------------
