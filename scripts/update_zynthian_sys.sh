@@ -123,6 +123,10 @@ if [ -z "$ZYNTHIAN_AUBIONOTES_OPTIONS" ]; then
 	export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
 fi
 
+if [ -z "$JAMULUS_OPTIONS" ]; then
+	export JAMULUS_OPTIONS="-n -j"
+fi
+
 if [ -z "$ZYNTHIAN_HOSTSPOT_NAME" ]; then
 	export ZYNTHIAN_HOSTSPOT_NAME="zynthian"
 fi
@@ -161,6 +165,7 @@ ZYNTHIAN_SW_DIR_ESC=${ZYNTHIAN_SW_DIR//\//\\\/}
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
 JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
 ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
+JAMULUS_OPTIONS_ESC=${JAMULUS_OPTIONS//\//\\\/}
 
 if [ -f "/proc/stat" ]; then
 	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
@@ -461,6 +466,8 @@ sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/mod-tty
 # Aubionotes service
 sed -i -e "s/#ZYNTHIAN_AUBIONOTES_OPTIONS#/$ZYNTHIAN_AUBIONOTES_OPTIONS_ESC/g" /etc/systemd/system/aubionotes.service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/aubionotes.service
+# Jamulus service
+sed -i -e "s/#JAMULUS_OPTIONS#/$JAMULUS_OPTIONS_ESC/g" /etc/systemd/system/jamulus.service
 # jackrtpmidid service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jackrtpmidid.service
 # qmidinet service
