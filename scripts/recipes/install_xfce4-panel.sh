@@ -16,9 +16,9 @@ mkdir -p $XFCE4_CONF_PATH/panel/launcher-2
 cat > $XFCE4_CONF_PATH/panel/launcher-2/16162580183.desktop <<EOL
 [Desktop Entry]
 Name=Patchage
-Comment=Connect audio and MIDI applications together and manage audio sessions
-Exec=/root/launch.sh patchage -A
 Terminal=false
+Comment=Connect audio and MIDI applications together and manage audio sessions
+Exec=$ZYNTHIAN_SYS_DIR/scripts/launch_if_not_running.sh patchage -A
 Icon=patchage
 Type=Application
 Categories=AudioVideo;Audio;
@@ -29,7 +29,7 @@ mkdir -p $XFCE4_CONF_PATH/panel/launcher-3
 cat > $XFCE4_CONF_PATH/panel/launcher-3/16162617706.desktop <<EOL
 [Desktop Entry]
 Version=1.0
-Exec=/root/launch.sh /usr/bin/xfce4-panel -p
+Exec=$ZYNTHIAN_SYS_DIR/scripts/launch_if_not_running.sh /usr/bin/xfce4-panel -p
 Icon=xfce4-panel
 Type=Application
 Categories=XFCE;GTK;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;
@@ -54,7 +54,7 @@ Name=Window Manager
 Name[en_GB]=Window Manager
 Comment=Configure window behavior and shortcuts
 Comment[en_GB]=Configure window behaviour and shortcuts
-Exec=/root/launch.sh xfwm4-settings
+Exec=$ZYNTHIAN_SYS_DIR/scripts/launch_if_not_running.sh xfwm4-settings
 Icon=xfwm4
 Terminal=false
 Type=Application
