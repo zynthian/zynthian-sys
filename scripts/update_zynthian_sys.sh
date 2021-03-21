@@ -135,6 +135,9 @@ if [ -z "$ZYNTHIAN_HOSTSPOT_PASSWORD" ]; then
 	export ZYNTHIAN_HOSTSPOT_PASSWORD="raspberry"
 fi
 
+export BROWSEPY_PATH="/usr/local/bin"
+export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+
 #Check for EPDF Hat
 /zynthian/zynthian-sys/scripts/epdf_detect.sh 
 ZYNTHIAN_EPDF_HAT=$?
@@ -157,6 +160,8 @@ ZYNTHIAN_CONFIG_DIR_ESC=${ZYNTHIAN_CONFIG_DIR//\//\\\/}
 ZYNTHIAN_SYS_DIR_ESC=${ZYNTHIAN_SYS_DIR//\//\\\/}
 ZYNTHIAN_UI_DIR_ESC=${ZYNTHIAN_UI_DIR//\//\\\/}
 ZYNTHIAN_SW_DIR_ESC=${ZYNTHIAN_SW_DIR//\//\\\/}
+BROWSEPY_ROOT_ESC=${BROWSEPY_ROOT//\//\\\/}
+BROWSEPY_PATH_ESC=${BROWSEPY_PATH//\//\\\/}
 
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
 JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
@@ -258,6 +263,14 @@ fi
 # Fix Pianoteq Presets Cache location
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" ]; then
 	mv "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" $ZYNTHIAN_CONFIG_DIR
+fi
+# Set up browsepy directories
+if [ ! -d "$BROWSEPY_ROOT" ]; then
+     mkdir -p $BROWSEPY_ROOT
+fi
+# TODO create other directories and symlinks to existing file types in $ZYNTHIAN_MY_DATA_DIR
+if [ ! -d "$BROWSEPY_ROOT/Speaker Cabinets IRs" ]; then
+     mkdir -p "$BROWSEPY_ROOT/Speaker Cabinets IRs"
 fi
 
 # Setup Aeolus Config
@@ -481,6 +494,10 @@ sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-s
 # MOD-UI service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-ui.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-ui.service
+sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/mod-ui.service
+# browsepy service
+sed -i -e "s/#BROWSEPY_PATH#/$BROWSEPY_PATH_ESC/g" /etc/systemd/system/browsepy.service
+sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/browsepy.service
 # VNCServcer service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver@:1.service"
 # noVNC service
