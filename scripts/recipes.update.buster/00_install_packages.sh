@@ -120,6 +120,7 @@ fi
 res=`dpkg -s vitalium-lv2 2>&1 | grep "Version:"`
 if [[ "$res" < "5:20210312.3" ]]; then
 	aptpkgs="$aptpkgs vitalium-lv2"
+	$ZYNTHIAN_RECIPE_DIR/install_xfce4-panel.sh
 fi
 
 # 2021-03021: Install xfwm4-panel
