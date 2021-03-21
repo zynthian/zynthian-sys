@@ -6,12 +6,6 @@ Requires=networking.service
 Requires=jack2.service
 
 [Service]
-Type=simple
-User=jamulus
-Group=nogroup
-NoNewPrivileges=true
-ProtectSystem=true
-ProtectHome=true
 Nice=-20
 IOSchedulingClass=realtime
 IOSchedulingPriority=0
