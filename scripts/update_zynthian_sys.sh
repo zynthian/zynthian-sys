@@ -124,7 +124,7 @@ if [ -z "$ZYNTHIAN_AUBIONOTES_OPTIONS" ]; then
 fi
 
 if [ -z "$JAMULUS_OPTIONS" ]; then
-	export JAMULUS_OPTIONS="-n -j"
+	export JAMULUS_OPTIONS="-n -i /root/Jamulus.ini -c your_favorite_jamulus_address"
 fi
 
 if [ -z "$ZYNTHIAN_HOSTSPOT_NAME" ]; then
