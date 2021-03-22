@@ -91,7 +91,7 @@ export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
 export ZYNTHIAN_WIFI_MODE="off"
 export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
 #export ZYNTHIAN_AUBIONOTES_OPTIONS="-O hfc -t 0.5 -s -60 -p yinfft -l 0.6"
-export JAMULUS_OPTIONS="-n -c your_favorite_jamulus_address"
+export JAMULUS_OPTIONS="-n -i /root/Jamulus.ini -c your_favorite_jamulus_address"
 
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"
