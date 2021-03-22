@@ -125,7 +125,7 @@ fi
 # 2021-03021: Install xfwm4-panel
 res=`dpkg -s xfce4-panel 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-	aptpkgs="$aptpkgs xfce4-panel xfwm4-themes"
+	aptpkgs="$aptpkgs xfce4-panel xfwm4-themes xdotool"
 	$ZYNTHIAN_RECIPE_DIR/install_xfce4-panel.sh
 fi
 
