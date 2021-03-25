@@ -1,7 +1,9 @@
 [Unit]
 Description=MOD-UI
 After=mod-host.service
+After=browsepy.service
 Requires=mod-host.service
+Requires=browsepy.service
 
 [Service]
 Environment=HOME=/root
@@ -14,6 +16,7 @@ Environment=MOD_LOG=0
 Environment=MOD_APP=0
 Environment=MOD_LIVE_ISO=0
 Environment=MOD_SYSTEM_OUTPUT=1
+Environment=MOD_USER_FILES_DIR=#BROWSEPY_ROOT#
 WorkingDirectory=#ZYNTHIAN_SW_DIR#/mod-ui
 ExecStart=#ZYNTHIAN_SW_DIR#/mod-ui/server.py
 Restart=always
