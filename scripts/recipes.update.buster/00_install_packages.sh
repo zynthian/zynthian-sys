@@ -122,6 +122,20 @@ if [[ "$res" < "5:20210312.3" ]]; then
 	aptpkgs="$aptpkgs vitalium-lv2"
 fi
 
+# 2021-03-21: Install xfwm4-panel
+res=`dpkg -s xfce4-panel 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs xfce4-panel xfwm4-themes xdotool"
+	$ZYNTHIAN_RECIPE_DIR/install_xfce4-panel.sh
+fi
+
+# 2021-03-25: Install patchage
+res=`dpkg -s patchage 2>&1 | grep "Version:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs patchage"
+fi
+
+
 # Install needed apt packages 
 if [ ! -z "$aptpkgs" ]; then
 	apt-get -y update

@@ -139,7 +139,7 @@ fi
 
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests
-pip3 install mido python-rtmidi
+pip3 install mido python-rtmidi patchage
 #mutagen
 
 
