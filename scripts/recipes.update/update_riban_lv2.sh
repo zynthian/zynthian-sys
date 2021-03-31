@@ -7,7 +7,7 @@ CURRENT=$(git rev-parse HEAD)
 
 if [ " $CURRENT " != " $STABLE " ]
 then
-	git checkout -f "$STABLE"
+	git checkout -fq "$STABLE"
 	for dir in */
 	do
 		cd $dir
