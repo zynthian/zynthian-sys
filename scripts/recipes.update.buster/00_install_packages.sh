@@ -139,6 +139,12 @@ fi
 if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/mod-cabsim-IR-loader" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 fi
+
+# 2021-03-31: Install riban LV2 plugins
+if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/riban ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_riban_lv2.sh
+fi
+
 	
 # Install needed apt packages 
 if [ ! -z "$aptpkgs" ]; then
