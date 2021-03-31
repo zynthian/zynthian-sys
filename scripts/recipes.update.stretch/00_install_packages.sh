@@ -88,9 +88,3 @@ systemctl enable zynthian-config-on-boot
 if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/bg-arpeggiator.lv2 ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_arpeggiator.sh
 fi
-
-# 2021-03-31: Install riban LV2 plugins
-if [ ! -e $ZYNTHIAN_PLUGINS_DIR/lv2/riban ]; then
-	$ZYNTHIAN_RECIPE_DIR/install_riban_lv2.sh
-fi
-
