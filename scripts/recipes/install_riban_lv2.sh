@@ -8,15 +8,4 @@ if [ -d riban ]; then
 fi
 
 git clone --recursive https://github.com/riban-bw/lv2.git riban
-cd riban
-
-for dir in */
-do
-	cd $dir
-	sed -i "s#^DESTDIR ?=#DESTDIR := $ZYNTHIAN_PLUGINS_DIR#" Makefile
-	make clean
-	make
-	make install
-	cd -
-done
-
+bash $ZYNTHIAN_SYS_DIR/scripts/recipes.update/update_riban_lv2.sh
