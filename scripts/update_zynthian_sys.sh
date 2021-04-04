@@ -185,6 +185,16 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 		sed -i '1s/^/dwc_otg.speed=1 /' /boot/cmdline.txt
 	fi
 
+	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
+		echo "RBPI AUDIO ENABLED"
+		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" /boot/config.txt
+	fi
+
+	if [[ "$ZYNTHIAN_DISABLE_OTG" != "1" ]]; then
+		echo "OTG ENABLED"
+		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" /boot/config.txt
+	fi
+
 	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
 	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
 	

@@ -85,14 +85,13 @@ dtoverlay=miniuart-bt
 
 [pi4]
 # Enable OTG
-dtoverlay=dwc2
+#OTG_CONFIG#
 # Swap back the ttyAMA0 to GPIO
 dtoverlay=miniuart-bt
 [all]
 
 # Enable RBPi Onboard Audio (Headphones)
-dtparam=audio=on
-audio_pwm_mode=2
+#RBPI_AUDIO_CONFIG#
 
 # Soundcard Config
 #SOUNDCARD_CONFIG#
