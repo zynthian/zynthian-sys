@@ -126,13 +126,11 @@ fi
 if [ -z "$ZYNTHIAN_HOSTSPOT_NAME" ]; then
 	export ZYNTHIAN_HOSTSPOT_NAME="zynthian"
 fi
-
-if [ -z "$ZYNTHIAN_HOSTSPOT_CHANNEL" ]; then
-	export ZYNTHIAN_HOSTSPOT_CHANNEL="6"
-fi
-
 if [ -z "$ZYNTHIAN_HOSTSPOT_PASSWORD" ]; then
 	export ZYNTHIAN_HOSTSPOT_PASSWORD="raspberry"
+fi
+if [ -z "$ZYNTHIAN_HOSTSPOT_CHANNEL" ]; then
+	export ZYNTHIAN_HOSTSPOT_CHANNEL="0"
 fi
 
 export BROWSEPY_PATH="/usr/local/bin"
@@ -326,7 +324,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/vim/* /etc/vim
 	cp -a $ZYNTHIAN_SYS_DIR/etc/update-motd.d/* /etc/update-motd.d
 	# WIFI Hotspot
-	cp -a $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
+	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
 	# WIFI Network
 	#rm -f /etc/wpa_supplicant/wpa_supplicant.conf
@@ -456,8 +454,8 @@ fi
 
 # Replace config vars in hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
-sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hostapd/hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_PASSWORD#/$ZYNTHIAN_HOSTSPOT_PASSWORD/g" /etc/hostapd/hostapd.conf
+sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hostapd/hostapd.conf
 
 # Replace config vars in Systemd service files
 # First Boot service
