@@ -1,7 +1,7 @@
 #!/bin/bash
 cd ${ZYNTHIAN_PLUGINS_SRC_DIR}
-git clone https://gitlab.com/edwillys/simsam.git
-cd simsam
+git clone https://gitlab.com/edwillys/simsam.git simsam.lv2
+cd simsam.lv2
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
