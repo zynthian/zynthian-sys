@@ -40,12 +40,7 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
-#------------------------------------------------------------------------------
-# Reboot flag-file
-#------------------------------------------------------------------------------
-
-export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
-rm -f $REBOOT_FLAGFILE
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
 # Pull from zynthian-sys repotory ...
@@ -66,8 +61,6 @@ cd ./scripts
 ./update_zynthian_sys.sh
 ./update_zynthian_code.sh
 
-if [ -f $REBOOT_FLAGFILE ]; then
-	rm -f $REBOOT_FLAGFILE
-	send_osc 1370 /CUIA/LAST_STATE_ACTION
-	reboot
-fi
+run_flag_actions
+
+#------------------------------------------------------------------------------
