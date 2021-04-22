@@ -72,10 +72,11 @@ fi
 
 if [[ "$ui_changed" -eq 1 ]]; then
 	set_restart_ui_flag
+	set_restart_webconf_flag
 fi
 
 if [[ "$webconf_changed" -eq 1 ]]; then
-	set_restart_ui_flag
+	set_restart_webconf_flag
 fi
 
 run_flag_actions
