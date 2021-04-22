@@ -247,9 +247,18 @@ if [ ! -f "jalv/plugins.json" ]; then
 	cp "$ZYNTHIAN_SYS_DIR/config/default_jalv_plugins.json" "jalv/plugins.json"
 fi
 
+export ZYNTHIAN_PIANOTEQ_DIR="$ZYNTHIAN_SW_DIR/pianoteq6"
 # Setup Pianoteq binary
-if [ ! -L "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq" ]; then
-	ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE" "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq"
+if [ ! -L "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq" ]; then
+	ln -s "$ZYNTHIAN_PIANOTEQ_DIR/Pianoteq 6 STAGE" "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq"
+fi
+# Generate LV2 presets
+ptq_version=$($ZYNTHIAN_PIANOTEQ_DIR/pianoteq --version | cut -d' ' -f4)
+if [[ "$version" > "7.2.0" ]]; then
+	n_presets=$(find "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" -name "Pianoteq 7 *-factory-presets*.lv2" -printf '.' | wc -m)
+	if [[ "$n_presets" == 0 ]]; then
+		$ZYNTHIAN_PIANOTEQ_DIR/pianoteq --export-lv2-presets $ZYNTHIAN_MY_DATA_DIR/presets/lv2
+	fi
 fi
 # Setup Pianoteq User Presets Directory
 if [ ! -d "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" ]; then

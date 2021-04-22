@@ -41,3 +41,9 @@ rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/Pianoteq*.lv2
 # Create symlink to LV2 plugin directory.
 ln -s $ZYNTHIAN_SW_DIR/pianoteq6/$armdir/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
+# Generate LV2 presets (Pianoteq >= v7.2.1)
+version=$(./pianoteq --version | cut -d' ' -f4)
+if [[ $version > "7.2.0" ]]; then
+	rm -rf $ZYNTHIAN_MY_DATA_DIR/presets/lv2/"Pianoteq 7 "*"-factory-presets"*.lv2
+	./pianoteq --export-lv2-presets $ZYNTHIAN_MY_DATA_DIR/presets/lv2
+fi
