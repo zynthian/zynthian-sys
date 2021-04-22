@@ -27,6 +27,12 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
+#------------------------------------------------------------------------------
+# Run update recipes ...
+#------------------------------------------------------------------------------
+
 RECIPES_UPDATE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes.update"
 
 # Get System Codebase
@@ -45,3 +51,7 @@ for r in $RECIPES_UPDATE_DIR/*.sh; do
 	echo "Executing $r ..."
 	bash $r
 done
+
+run_flag_actions
+
+#------------------------------------------------------------------------------

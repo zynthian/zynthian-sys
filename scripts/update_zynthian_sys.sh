@@ -38,18 +38,11 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
 #------------------------------------------------------------------------------
 
 echo "Updating System configuration ..."
-
-#------------------------------------------------------------------------------
-# Reboot flag-file
-#------------------------------------------------------------------------------
-
-if [ -z "$REBOOT_FLAGFILE" ]; then
-	export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
-	rm -f $REBOOT_FLAGFILE
-fi
 
 #------------------------------------------------------------------------------
 # Define some functions
@@ -563,3 +556,6 @@ if [ -f "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh" ]; then
 	bash "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh"
 fi
 
+run_flag_actions
+
+#------------------------------------------------------------------------------
