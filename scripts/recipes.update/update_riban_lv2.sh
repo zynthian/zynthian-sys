@@ -4,7 +4,7 @@ STABLE=12bc8b3ee06312f5feb78cc894bf78107d3e9710
 cd $ZYNTHIAN_PLUGINS_SRC_DIR/riban
 CURRENT=$(git rev-parse HEAD)
 
-if [ " $CURRENT " != " $STABLE " ]
+if [ "$CURRENT" != "$STABLE" ]
 then
 	git checkout -fq "$STABLE"
 	for dir in */
