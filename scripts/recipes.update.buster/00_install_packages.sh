@@ -130,7 +130,7 @@ if [ "$res" != "Status: install ok installed" ]; then
 fi
 
 # 2021-03-25: Install patchage
-res=`dpkg -s patchage 2>&1 | grep "Version:"`
+res=`dpkg -s patchage 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs patchage"
 fi
