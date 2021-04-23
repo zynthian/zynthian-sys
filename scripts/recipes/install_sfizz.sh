@@ -1,8 +1,8 @@
 #!/bin/bash
 cd ${ZYNTHIAN_PLUGINS_SRC_DIR}
 sudo apt-get install libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-x11-dev
-git clone https://github.com/sfztools/sfizz.git sfizz.lv2c
-cd sfizz.lv2c
+git clone https://github.com/sfztools/sfizz.git sfizz.lv2
+cd sfizz.lv2
 mkdir build
 cd build
 git submodule update --init --recursive
