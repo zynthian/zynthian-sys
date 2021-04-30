@@ -28,10 +28,20 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
+#------------------------------------------------------------------------------
+# Pull from repositories ...
+#------------------------------------------------------------------------------
+
 echo "Updating zynthian-data ..."
 cd "$ZYNTHIAN_DATA_DIR"
 git checkout .
 git pull
+
+#------------------------------------------------------------------------------
+# Fixing some paths & locations ...
+#------------------------------------------------------------------------------
 
 # Create preset-favorites if needed
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
@@ -46,7 +56,7 @@ if [ -L "$ZYNTHIAN_MY_DATA_DIR/zynbanks" ]; then
 	rm -f "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
 fi
 
-# Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, copy pedalboards ...
+# Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, coPull from repositoriespy pedalboards ...
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
 	mv "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
@@ -108,6 +118,6 @@ for d in AirFont320* AVL_Drumkits_Perc* Black_Pearl* Fluid* Red_Zeppelin*; do
 	fi
 done
 
-#echo "Updating zynthian-plugins ..."
-#cd "$ZYNTHIAN_PLUGINS_DIR"
-#git pull
+run_flag_actions
+
+#------------------------------------------------------------------------------

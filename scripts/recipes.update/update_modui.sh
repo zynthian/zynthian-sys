@@ -21,3 +21,7 @@ make -j 4
 if [ ! -d "$ZYNTHIAN_SW_DIR/mod-ui/data" ]; then
 	mkdir "$ZYNTHIAN_SW_DIR/mod-ui/data"
 fi
+
+if [ ! -d "$ZYNTHIAN_SW_DIR/browsepy" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
+fi

@@ -38,18 +38,11 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
 #------------------------------------------------------------------------------
 
 echo "Updating System configuration ..."
-
-#------------------------------------------------------------------------------
-# Reboot flag-file
-#------------------------------------------------------------------------------
-
-if [ -z "$REBOOT_FLAGFILE" ]; then
-	export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
-	rm -f $REBOOT_FLAGFILE
-fi
 
 #------------------------------------------------------------------------------
 # Define some functions
@@ -126,14 +119,15 @@ fi
 if [ -z "$ZYNTHIAN_HOSTSPOT_NAME" ]; then
 	export ZYNTHIAN_HOSTSPOT_NAME="zynthian"
 fi
-
-if [ -z "$ZYNTHIAN_HOSTSPOT_CHANNEL" ]; then
-	export ZYNTHIAN_HOSTSPOT_CHANNEL="6"
-fi
-
 if [ -z "$ZYNTHIAN_HOSTSPOT_PASSWORD" ]; then
 	export ZYNTHIAN_HOSTSPOT_PASSWORD="raspberry"
 fi
+if [ -z "$ZYNTHIAN_HOSTSPOT_CHANNEL" ]; then
+	export ZYNTHIAN_HOSTSPOT_CHANNEL="0"
+fi
+
+export BROWSEPY_PATH="/usr/local/bin"
+export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
 
 #Check for EPDF Hat
 /zynthian/zynthian-sys/scripts/epdf_detect.sh 
@@ -157,6 +151,8 @@ ZYNTHIAN_CONFIG_DIR_ESC=${ZYNTHIAN_CONFIG_DIR//\//\\\/}
 ZYNTHIAN_SYS_DIR_ESC=${ZYNTHIAN_SYS_DIR//\//\\\/}
 ZYNTHIAN_UI_DIR_ESC=${ZYNTHIAN_UI_DIR//\//\\\/}
 ZYNTHIAN_SW_DIR_ESC=${ZYNTHIAN_SW_DIR//\//\\\/}
+BROWSEPY_ROOT_ESC=${BROWSEPY_ROOT//\//\\\/}
+BROWSEPY_PATH_ESC=${BROWSEPY_PATH//\//\\\/}
 
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
 JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
@@ -244,9 +240,18 @@ if [ ! -f "jalv/plugins.json" ]; then
 	cp "$ZYNTHIAN_SYS_DIR/config/default_jalv_plugins.json" "jalv/plugins.json"
 fi
 
+export ZYNTHIAN_PIANOTEQ_DIR="$ZYNTHIAN_SW_DIR/pianoteq6"
 # Setup Pianoteq binary
-if [ ! -L "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq" ]; then
-	ln -s "$ZYNTHIAN_SW_DIR/pianoteq6/Pianoteq 6 STAGE" "$ZYNTHIAN_SW_DIR/pianoteq6/pianoteq"
+if [ ! -L "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq" ]; then
+	ln -s "$ZYNTHIAN_PIANOTEQ_DIR/Pianoteq 6 STAGE" "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq"
+fi
+# Generate LV2 presets
+ptq_version=$($ZYNTHIAN_PIANOTEQ_DIR/pianoteq --version | cut -d' ' -f4)
+if [[ "$version" > "7.2.0" ]]; then
+	n_presets=$(find "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" -name "Pianoteq 7 *-factory-presets*.lv2" -printf '.' | wc -m)
+	if [[ "$n_presets" == 0 ]]; then
+		$ZYNTHIAN_PIANOTEQ_DIR/pianoteq --export-lv2-presets $ZYNTHIAN_MY_DATA_DIR/presets/lv2
+	fi
 fi
 # Setup Pianoteq User Presets Directory
 if [ ! -d "/root/.local/share/Modartt/Pianoteq/Presets/My Presets" ]; then
@@ -268,6 +273,14 @@ fi
 # Fix Pianoteq Presets Cache location
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" ]; then
 	mv "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" $ZYNTHIAN_CONFIG_DIR
+fi
+# Set up browsepy directories
+if [ ! -d "$BROWSEPY_ROOT" ]; then
+     mkdir -p $BROWSEPY_ROOT
+fi
+# TODO create other directories and symlinks to existing file types in $ZYNTHIAN_MY_DATA_DIR
+if [ ! -d "$BROWSEPY_ROOT/Speaker Cabinets IRs" ]; then
+     mkdir -p "$BROWSEPY_ROOT/Speaker Cabinets IRs"
 fi
 
 # Setup Aeolus Config
@@ -313,7 +326,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/vim/* /etc/vim
 	cp -a $ZYNTHIAN_SYS_DIR/etc/update-motd.d/* /etc/update-motd.d
 	# WIFI Hotspot
-	cp -a $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
+	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
 	# WIFI Network
 	#rm -f /etc/wpa_supplicant/wpa_supplicant.conf
@@ -443,8 +456,8 @@ fi
 
 # Replace config vars in hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
-sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hostapd/hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_PASSWORD#/$ZYNTHIAN_HOSTSPOT_PASSWORD/g" /etc/hostapd/hostapd.conf
+sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hostapd/hostapd.conf
 
 # Replace config vars in Systemd service files
 # First Boot service
@@ -491,6 +504,10 @@ sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-s
 # MOD-UI service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-ui.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-ui.service
+sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/mod-ui.service
+# browsepy service
+sed -i -e "s/#BROWSEPY_PATH#/$BROWSEPY_PATH_ESC/g" /etc/systemd/system/browsepy.service
+sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/browsepy.service
 # VNCServcer service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver@:1.service"
 # noVNC service
@@ -539,3 +556,6 @@ if [ -f "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh" ]; then
 	bash "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh"
 fi
 
+run_flag_actions
+
+#------------------------------------------------------------------------------

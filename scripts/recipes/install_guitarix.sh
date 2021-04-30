@@ -1,10 +1,12 @@
 #!/bin/bash
 
+set -x
+
 # guitarix.lv2
 
 #REQUIRE: liblrdf-dev libboost-system-dev libzita-convolver-dev libzita-resampler-dev fonts-roboto
 
-GUITARIX_RELEASE=0.41.0
+GUITARIX_RELEASE=0.42.1
 
 #dowload, compile and install guitarix
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
@@ -26,4 +28,3 @@ cd guitarix-$GUITARIX_RELEASE
 ./waf clean
 
 cd ..
-rm -rf "guitarix2-$GUITARIX_RELEASE"

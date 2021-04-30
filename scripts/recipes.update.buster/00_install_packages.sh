@@ -1,16 +1,12 @@
 
 aptpkgs=""
 
-# 2021-03-19: Migrate from master to stable branch
-$ZYNTHIAN_SYS_DIR/scripts/migrate_master2stable.sh
-
 # 2021-02-06 => Block MS repo from being installed
 apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
-# 2020-05-19 => mutagen, for audio/mid file metadata
-res=`pip3 show mutagen`
-if [ "$res" == "" ]; then
+# 2020-05-19 => mutagen, for audio/mid file metadata (updated 2021-03-20)
+if $ZYNTHIAN_SYS_DIR/scripts/is_python_module_installed.py mutagen; then
 	#pip3 install mutagen
 	$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 fi
@@ -125,6 +121,30 @@ res=`dpkg -s vitalium-lv2 2>&1 | grep "Version:"`
 if [[ "$res" < "5:20210312.3" ]]; then
 	aptpkgs="$aptpkgs vitalium-lv2"
 fi
+
+# 2021-03-21: Install xfwm4-panel
+res=`dpkg -s xfce4-panel 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs xfce4-panel xfwm4-themes xdotool"
+	$ZYNTHIAN_RECIPE_DIR/install_xfce4-panel.sh
+fi
+
+# 2021-03-25: Install patchage
+res=`dpkg -s patchage 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs patchage"
+fi
+
+# 2021-03-25: Install MOD's cabsim-IR-loader
+if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/mod-cabsim-IR-loader" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
+fi
+
+# 2021-03-31: Install riban LV2 plugins
+if [ ! -e "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_riban_lv2.sh
+fi
+
 
 # Install needed apt packages 
 if [ ! -z "$aptpkgs" ]; then

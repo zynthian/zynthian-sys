@@ -31,6 +31,8 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
 #------------------------------------------------------------------------------
 # Pull from repositories ...
 #------------------------------------------------------------------------------
@@ -65,26 +67,18 @@ echo "Update Complete."
 
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
-	echo "Regenerating cache LV2..."
-	cd $ZYNTHIAN_UI_DIR/zyngine
-	python3 ./zynthian_lv2.py
-fi
-
-if [ -f $REBOOT_FLAGFILE ]; then
-	rm -f $REBOOT_FLAGFILE
-	echo "Rebooting..."
-	send_osc 1370 /CUIA/LAST_STATE_ACTION
-	reboot
+	regenerate_lv2_cache.sh
 fi
 
 if [[ "$ui_changed" -eq 1 ]]; then
-	echo "Restarting zynthian service."
-	send_osc 1370 /CUIA/LAST_STATE_ACTION
-	systemctl restart zynthian
+	set_restart_ui_flag
+	set_restart_webconf_flag
 fi
 
 if [[ "$webconf_changed" -eq 1 ]]; then
-	echo "Restarting zynthian-webconf service."
-	systemctl restart zynthian-webconf
+	set_restart_webconf_flag
 fi
 
+run_flag_actions
+
+#------------------------------------------------------------------------------
