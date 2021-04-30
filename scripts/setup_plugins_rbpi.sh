@@ -110,6 +110,7 @@ $ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_alo.sh
 $ZYNTHIAN_RECIPE_DIR/install_VL1.sh
 $ZYNTHIAN_RECIPE_DIR/install_qmidiarp.sh
+$ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 
 # X42 plugins
 #$ZYNTHIAN_RECIPE_DIR/install_fat1.sh
