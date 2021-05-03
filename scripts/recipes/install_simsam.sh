@@ -2,6 +2,8 @@
 cd ${ZYNTHIAN_PLUGINS_SRC_DIR}
 git clone https://gitlab.com/edwillys/simsam.git simsam.lv2
 cd simsam.lv2
+wget https://raw.githubusercontent.com/moddevices/mod-plugin-builder/37661ca55aa01a55337d7f5d6b27d998d5f98d17/plugins/package/simsam-labs/01_mod-tweaks.patch
+patch -p1 <01_mod-tweaks.patch 
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
