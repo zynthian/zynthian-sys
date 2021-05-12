@@ -60,25 +60,6 @@ function clean_restart_webconf_flag() {
 }
 
 function set_reboot_flag() {
-	if [ -f $REBOOT_FLAGFILE ]; then
-		rm -f $REBOOT_FLAGFILE
-		echo "Rebooting..."
-		send_osc 1370 /CUIA/LAST_STATE_ACTION
-		reboot
-	fi
-
-	if [ -f $RESTART_UI_FLAGFILE ]; then
-		rm -f $RESTART_UI_FLAGFILE
-		echo "Restarting zynthian service..."
-		send_osc 1370 /CUIA/LAST_STATE_ACTION
-		systemctl restart zynthian
-	fi
-
-	if [ -f $RESTART_WEBCONF_FLAGFILE ]; then
-		rm -f $RESTART_WEBCONF_FLAGFILE
-		echo "Restarting zynthian-webconf service..."
-		systemctl restart zynthian-webconf
-	fi
 	touch $REBOOT_FLAGFILE
 }
 
@@ -94,17 +75,21 @@ function run_flag_actions() {
 
 	if [ "$ZYNTHIAN_FLAG_MASTER" = "$0" ]; then
 		echo "Running Flag Actions from '$0'..."
+
 		if [ -f $REBOOT_FLAGFILE ]; then
 			clean_all_flags
 			echo "Rebooting..."
 			send_osc 1370 /CUIA/LAST_STATE_ACTION
+			sleep 1
 			reboot
+			return
 		fi
 
 		if [ -f $RESTART_UI_FLAGFILE ]; then
 			clean_restart_ui_flag
 			echo "Restarting zynthian service..."
 			send_osc 1370 /CUIA/LAST_STATE_ACTION
+			sleep 1
 			systemctl restart zynthian
 		fi
 
