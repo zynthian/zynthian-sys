@@ -1,10 +1,6 @@
 
 aptpkgs=""
 
-# 2021-02-06 => Block MS repo from being installed
-apt-mark hold raspberrypi-sys-mods
-touch /etc/apt/trusted.gpg.d/microsoft.gpg
-
 # 2020-05-19 => mutagen, for audio/mid file metadata (updated 2021-03-20)
 if $ZYNTHIAN_SYS_DIR/scripts/is_python_module_installed.py mutagen; then
 	#pip3 install mutagen
@@ -89,6 +85,10 @@ if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs vnc4server"
 fi
 
+# 2021-02-06 => Block MS repo from being installed
+apt-mark hold raspberrypi-sys-mods
+touch /etc/apt/trusted.gpg.d/microsoft.gpg
+
 # 2021-02-07: Install MCP4728 library (Analog Ouput / CV-OUT)
 if [ ! -d "$ZYNTHIAN_SW_DIR/MCP4728" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
@@ -144,6 +144,10 @@ fi
 if [ ! -e "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_riban_lv2.sh
 fi
+
+# 2021-05-18: Unmask polkit & packagekit services
+systemctl unmask polkit
+systemctl unmask packagekit
 
 
 # Install needed apt packages 
