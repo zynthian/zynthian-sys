@@ -10,7 +10,7 @@ Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
 Environment=HOME=/root
 
-ExecStart=/usr/bin/x11vnc -forever -bg -rfbport 5900 -o /var/log/x11vnc.log
+ExecStart=/usr/bin/x11vnc -forever -bg -rfbport 5900 -auth /root/.vnc/passwd -shared -o /var/log/x11vnc.log
 
 [Install]
 WantedBy=multi-user.target
