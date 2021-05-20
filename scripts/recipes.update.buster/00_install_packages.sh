@@ -145,6 +145,11 @@ if [ ! -e "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_riban_lv2.sh
 fi
 
+# 2021-05-20: Install x11vnc
+res=`dpkg -s x11vnc 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+        aptpkgs="$aptpkgs x11vnc"
+fi
 
 # Install needed apt packages 
 if [ ! -z "$aptpkgs" ]; then
