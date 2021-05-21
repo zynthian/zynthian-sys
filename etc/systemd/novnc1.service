@@ -6,7 +6,7 @@
 
 [Unit]
 Description=VNC Web Viewer
-After=vncserver@1.service
+After=vncserver1.service
 Requires=vncserver1.service
 
 [Service]
