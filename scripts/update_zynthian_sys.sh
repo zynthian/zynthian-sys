@@ -542,6 +542,11 @@ sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynth
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 
+#------------------------------------------------------------------------------
+# Custom system libraries 
+#------------------------------------------------------------------------------
+cp -r $ZYNTHIAN_SYS_DIR/lib/* /
+
 # Reconfigure System Libraries
 ldconfig
 
