@@ -118,7 +118,7 @@ fi
 
 # 2021-03-15: Install/Update Vitalium-LV2 synth
 res=`dpkg -s vitalium-lv2 2>&1 | grep "Version:"`
-if [[ "$res" < "5:20210312.3" ]]; then
+if [[ "$res" < "Version: 5:20210312.3" ]]; then
 	aptpkgs="$aptpkgs vitalium-lv2"
 fi
 
@@ -154,9 +154,22 @@ res=`dpkg -s x11vnc 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
         aptpkgs="$aptpkgs x11vnc"
 fi
+        
+# 2021-05-20: Install zynthian repository & public key
+if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
+	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
+	cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
+fi
+
+# 2021-05-20: Upgrade alsa-utils to 1.2.4
+res=`dpkg -s alsa-utils 2>&1 | grep "Version:"`
+if [[ "$res" < "Version: 1.2.4" ]]; then
+	aptpkgs="$aptpkgs alsa-utils"
+fi
 
 # Install needed apt packages 
 if [ ! -z "$aptpkgs" ]; then
 	apt-get -y update
 	apt-get -y install $aptpkgs
 fi
+

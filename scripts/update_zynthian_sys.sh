@@ -22,6 +22,8 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
+export DEBIAN_FRONTEND=noninteractive
+
 #------------------------------------------------------------------------------
 # Get System Codebase
 #------------------------------------------------------------------------------
@@ -213,6 +215,11 @@ if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
 fi
 
+# Install zynthian repository public key
+if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
+	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
+fi
+
 # Fix some paths in config file
 sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
@@ -312,6 +319,7 @@ fi
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Copy "etc" config files
+	cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
@@ -542,13 +550,6 @@ sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynth
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 
-#------------------------------------------------------------------------------
-# Custom system libraries 
-#------------------------------------------------------------------------------
-cp -r $ZYNTHIAN_SYS_DIR/lib/* /
-
-# Reconfigure System Libraries
-ldconfig
 
 # Reload Systemd scripts
 systemctl daemon-reload
