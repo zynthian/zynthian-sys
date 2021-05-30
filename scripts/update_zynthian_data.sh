@@ -56,7 +56,7 @@ if [ -L "$ZYNTHIAN_MY_DATA_DIR/zynbanks" ]; then
 	rm -f "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
 fi
 
-# Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, coPull from repositoriespy pedalboards ...
+# Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, copy pedalboards ...
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
 	mv "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
