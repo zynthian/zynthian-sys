@@ -173,7 +173,7 @@ if [ "$res" != "Status: install ok installed" ]; then
 		wget http://steinerdatenbank.de/software/mbrola3.0.1h_armhf.deb
 		dpkg -i mbrola3.0.1h_armhf.deb
 		rm -f mbrola3.0.1h_armhf.deb
-        aptpkgs="$aptpkgs festival flite festvox-don festvox-kallpc16k festvox-kdlpc16k festvox-rablpc16k festvox-us-slt-hts"
+        aptpkgs="$aptpkgs festival flite festvox-don festvox-kallpc16k festvox-kdlpc16k festvox-rablpc16k festvox-en1 festvox-us1 festbox-us2 festvox-us3 festvox-us-slt-hts"
 fi
 
 

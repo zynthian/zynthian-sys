@@ -454,7 +454,7 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 wget http://steinerdatenbank.de/software/mbrola3.0.1h_armhf.deb
 dpkg -i mbrola3.0.1h_armhf.deb
 rm -f mbrola3.0.1h_armhf.deb
-apt-get -y install festival flite festvox-don festvox-kallpc16k festvox-kdlpc16k festvox-rablpc16k festvox-us-slt-hts
+apt-get -y install festival flite festvox-don festvox-kallpc16k festvox-kdlpc16k festvox-rablpc16k festvox-en1 festvox-us1 festbox-us2 festvox-us3 festvox-us-slt-hts
 
 
 #************************************************
