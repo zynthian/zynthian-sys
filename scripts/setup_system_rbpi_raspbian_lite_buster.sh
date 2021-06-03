@@ -448,6 +448,15 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
+#------------------------------------------------
+# Install Accesibility Stuff (Sight Impaired)
+#------------------------------------------------
+wget http://steinerdatenbank.de/software/mbrola3.0.1h_armhf.deb
+dpkg -i mbrola3.0.1h_armhf.deb
+rm -f mbrola3.0.1h_armhf.deb
+apt-get -y install festival flite festvox-don festvox-kallpc16k festvox-kdlpc16k festvox-rablpc16k festvox-us-slt-hts
+
+
 #************************************************
 #------------------------------------------------
 # Final Configuration

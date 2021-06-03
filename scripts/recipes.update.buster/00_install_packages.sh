@@ -167,6 +167,16 @@ if [[ "$res" < "Version: 1.2.4" ]]; then
 	aptpkgs="$aptpkgs alsa-utils"
 fi
 
+# 2021-06-03: Install x11vnc
+res=`dpkg -s festival 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+		wget http://steinerdatenbank.de/software/mbrola3.0.1h_armhf.deb
+		dpkg -i mbrola3.0.1h_armhf.deb
+		rm -f mbrola3.0.1h_armhf.deb
+        aptpkgs="$aptpkgs festival flite festvox-don festvox-kallpc16k festvox-kdlpc16k festvox-rablpc16k festvox-us-slt-hts"
+fi
+
+
 # Install needed apt packages 
 if [ ! -z "$aptpkgs" ]; then
 	apt-get -y update
