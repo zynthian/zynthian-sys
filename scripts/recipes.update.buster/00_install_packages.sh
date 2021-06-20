@@ -165,8 +165,8 @@ fi
 # 2021-06-20: Install riban LV2 plugins from zynthian deb repo
 res=`dpkg -s riban-lv2 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-		if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/riban-lv2" ]; then
-			rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/riban-lv2"
+		if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2" ]; then
+			rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2"
 		fi
         aptpkgs="$aptpkgs riban-lv2"
 fi
