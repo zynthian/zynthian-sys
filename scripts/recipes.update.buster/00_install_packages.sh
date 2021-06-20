@@ -140,11 +140,6 @@ if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/mod-cabsim-IR-loader" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 fi
 
-# 2021-03-31: Install riban LV2 plugins
-if [ ! -e "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2" ]; then
-	$ZYNTHIAN_RECIPE_DIR/install_riban_lv2.sh
-fi
-
 # 2021-05-18: Unmask polkit & packagekit services
 systemctl unmask polkit
 systemctl unmask packagekit
@@ -165,6 +160,15 @@ fi
 res=`dpkg -s alsa-utils 2>&1 | grep "Version:"`
 if [[ "$res" < "Version: 1.2.4" ]]; then
 	aptpkgs="$aptpkgs alsa-utils"
+fi
+
+# 2021-06-20: Install riban LV2 plugins from zynthian deb repo
+res=`dpkg -s riban-lv2 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+		if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/riban-lv2" ]; then
+			rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/riban-lv2"
+		fi
+        aptpkgs="$aptpkgs riban-lv2"
 fi
 
 # Install needed apt packages 
