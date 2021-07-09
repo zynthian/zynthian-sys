@@ -39,7 +39,7 @@ mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 # avw.lv2
 
 apt-get -y install abgate adlplug amsynth ams-lv2 arctican-plugins-lv2 artyfx avldrums.lv2 
-apt-get -y install bchoppr beatslash-lv2 blop-lv2 bsequencer bshapr bslizr
+apt-get -y install bchoppr beatslash-lv2 blop-lv2 bsequencer boops bshapr bslizr
 apt-get -y install calf-plugins caps-lv2 cv-lfo-blender-lv2
 apt-get -y install drumkv1-lv2 samplv1-lv2 synthv1-lv2 padthv1-lv2
 apt-get -y install distrho-plugin-ports-lv2 dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo
