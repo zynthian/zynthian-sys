@@ -171,6 +171,13 @@ if [ "$res" != "Status: install ok installed" ]; then
         aptpkgs="$aptpkgs riban-lv2"
 fi
 
+# 2021-07-09: Install Boops LV2 plugins from zynthian deb repo
+res=`dpkg -s boops 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+        aptpkgs="$aptpkgs boops"
+fi
+
+
 # Install needed apt packages 
 if [ ! -z "$aptpkgs" ]; then
 	apt-get -y update
