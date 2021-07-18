@@ -10,11 +10,11 @@ import sys
 import pkg_resources
 
 try:
-	module = sys.argv[1]
+    module = sys.argv[1]
 except:
-	sys.exit(1)
+    sys.exit(1)
 
 if module in {pkg.key for pkg in pkg_resources.working_set}:
-	sys.exit(1)
+    sys.exit(1)
 else:
-	sys.exit(0)
+    sys.exit(0)
