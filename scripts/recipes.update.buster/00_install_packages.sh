@@ -2,7 +2,7 @@
 aptpkgs=""
 
 # 2020-05-19 => mutagen, for audio/mid file metadata (updated 2021-03-20)
-if $ZYNTHIAN_SYS_DIR/scripts/is_python_module_installed.py mutagen; then
+if is_python_module_installed.py mutagen; then
 	#pip3 install mutagen
 	$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 fi
@@ -175,6 +175,12 @@ fi
 res=`dpkg -s boops 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
         aptpkgs="$aptpkgs boops"
+fi
+
+# 2021-07-27: Update touchosc2midi bridge
+res=`python -c "import touchosc2midi; print(touchosc2midi.__version__)"`
+if [[ "$res" < "0.0.11" ]]; then
+	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 fi
 
 
