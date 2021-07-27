@@ -85,10 +85,6 @@ if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs vnc4server"
 fi
 
-# 2021-02-06 => Block MS repo from being installed
-apt-mark hold raspberrypi-sys-mods
-touch /etc/apt/trusted.gpg.d/microsoft.gpg
-
 # 2021-02-07: Install MCP4728 library (Analog Ouput / CV-OUT)
 if [ ! -d "$ZYNTHIAN_SW_DIR/MCP4728" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
@@ -183,6 +179,9 @@ if [[ "$res" < "0.0.11" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 fi
 
+# Unhold some packages
+apt-mark unhold raspberrypi-kernel
+apt-mark unhold raspberrypi-sys-mods
 
 # Install needed apt packages 
 if [ ! -z "$aptpkgs" ]; then
@@ -190,3 +189,9 @@ if [ ! -z "$aptpkgs" ]; then
 	apt-get -y install $aptpkgs
 fi
 
+# Upgrade System
+# WARNING => Disable on Stable!!!
+if [ -z "$aptpkgs" ]; then
+	apt-get -y update
+fi
+apt -y upgrade
