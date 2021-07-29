@@ -183,7 +183,9 @@ fi
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
 
-# Install needed apt packages 
+export DEBIAN_FRONTEND=noninteractive
+
+# Install needed apt packages
 if [ ! -z "$aptpkgs" ]; then
 	apt-get -y update
 	apt-get -y install $aptpkgs
@@ -194,4 +196,5 @@ fi
 if [ -z "$aptpkgs" ]; then
 	apt-get -y update
 fi
+
 apt -y upgrade
