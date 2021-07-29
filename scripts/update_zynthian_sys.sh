@@ -180,7 +180,14 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
+		echo "USB SPEED LIMIT ENABLED"
 		sed -i '1s/^/dwc_otg.speed=1 /' /boot/cmdline.txt
+	fi
+
+	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
+		echo "BOOT LOG DISABLED"
+		sed -i '1s/tty1/tty3/' /boot/cmdline.txt
+		sed -i '1s/rootwait/rootwait logo.nologo quiet splash/' /boot/cmdline.txt
 	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
