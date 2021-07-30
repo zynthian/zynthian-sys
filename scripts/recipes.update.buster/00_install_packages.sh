@@ -2,7 +2,7 @@
 aptpkgs=""
 
 # 2020-05-19 => mutagen, for audio/mid file metadata (updated 2021-03-20)
-if $ZYNTHIAN_SYS_DIR/scripts/is_python_module_installed.py mutagen; then
+if is_python_module_installed.py mutagen; then
 	#pip3 install mutagen
 	$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 fi
@@ -84,10 +84,6 @@ res=`dpkg -s vnc4server 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs vnc4server"
 fi
-
-# 2021-02-06 => Block MS repo from being installed
-apt-mark hold raspberrypi-sys-mods
-touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # 2021-02-07: Install MCP4728 library (Analog Ouput / CV-OUT)
 if [ ! -d "$ZYNTHIAN_SW_DIR/MCP4728" ]; then
@@ -177,10 +173,28 @@ if [ "$res" != "Status: install ok installed" ]; then
         aptpkgs="$aptpkgs boops"
 fi
 
+# 2021-07-27: Update touchosc2midi bridge
+res=`python -c "import touchosc2midi; print(touchosc2midi.__version__)"`
+if [[ "$res" < "0.0.11" ]]; then
+	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
+fi
 
-# Install needed apt packages 
+# Unhold some packages
+apt-mark unhold raspberrypi-kernel
+apt-mark unhold raspberrypi-sys-mods
+
+export DEBIAN_FRONTEND=noninteractive
+
+# Install needed apt packages
 if [ ! -z "$aptpkgs" ]; then
 	apt-get -y update
 	apt-get -y install $aptpkgs
 fi
 
+# Upgrade System
+# WARNING => Disable on Stable!!!
+if [ -z "$aptpkgs" ]; then
+	apt-get -y update
+fi
+
+apt -y upgrade
