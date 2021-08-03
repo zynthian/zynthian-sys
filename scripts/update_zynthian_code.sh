@@ -63,8 +63,6 @@ cd $ZYNTHIAN_DIR/zynthian-webconf
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
 
-echo "Update Complete."
-
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
 	regenerate_lv2_cache.sh
