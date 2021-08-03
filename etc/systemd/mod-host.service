@@ -15,9 +15,9 @@ Requires=jack2.service
 Type=oneshot
 RemainAfterExit=true
 ExecStart=#JACKD_BIN_PATH#/jack_load mod-host
-ExecStartPre=#JACKD_BIN_PATH#/jack_load mod-monitor
+#ExecStartPre=#JACKD_BIN_PATH#/jack_load mod-monitor
 ExecStop=#JACKD_BIN_PATH#/jack_unload mod-host
-ExecStopPost=#JACKD_BIN_PATH#/jack_unload mod-monitor
+#ExecStopPost=#JACKD_BIN_PATH#/jack_unload mod-monitor
 
 [Install]
 WantedBy=multi-user.target
