@@ -205,4 +205,5 @@ apt-get -y autoclean
 res=`uname -r`
 if [[ "$res" != "5.10.49-v7l+" ]]; then
 	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
+	set_reboot_flag
 fi
