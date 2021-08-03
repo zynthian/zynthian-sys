@@ -179,9 +179,9 @@ if [[ "$res" < "0.0.11" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 fi
 
-# Unhold some packages
-apt-mark unhold raspberrypi-kernel
-apt-mark unhold raspberrypi-sys-mods
+# Hold some packages
+apt-mark hold raspberrypi-kernel
+apt-mark hold raspberrypi-sys-mods
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -196,5 +196,13 @@ fi
 if [ -z "$aptpkgs" ]; then
 	apt-get -y update
 fi
+#dpkg --configure -a # => Recover from broken upgrade
+apt-get -y upgrade
+apt-get -y autoremove
+apt-get -y autoclean
 
-apt -y upgrade
+# Install a firmware version that works OK!!
+res=`uname -r`
+if [[ "$res" != "5.10.49-v7l+" ]]; then
+	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
+fi
