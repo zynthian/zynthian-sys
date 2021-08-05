@@ -202,7 +202,12 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
 	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
-	
+
+	# Patch piscreen config
+	if [[ ( $DISPLAY_CONFIG == *"piscreen2r-notouch"* ) && ( $DISPLAY_CONFIG != *"piscreen2r-backlight"* ) ]]; then
+		DISPLAY_CONFIG=$DISPLAY_CONFIG"\ndtoverlay=piscreen2r-backlight"
+	fi
+
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
 	
