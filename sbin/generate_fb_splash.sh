@@ -13,6 +13,8 @@ if [ ! -d "$ZYNTHIAN_CONFIG_DIR/img" ]; then
 	mkdir $ZYNTHIAN_CONFIG_DIR/img
 fi
 
+/bin/echo 1 > /sys/class/backlight/*/bl_power
+
 #Generate "Zynthian Error" Splash Screen
 /usr/bin/fbi -noverbose -T 2 -a --fitwidth -d $FRAMEBUFFER $ZYNTHIAN_UI_DIR/img/zynthian_logo_error.png
 sleep 1
@@ -27,3 +29,4 @@ cat $FRAMEBUFFER > $ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_boot.raw
 
 killall -9 fbi
 
+/bin/echo 0 > /sys/class/backlight/*/bl_power
