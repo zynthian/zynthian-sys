@@ -109,7 +109,7 @@ apt-get -y install evtest libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools
+apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools zenity
 
 # AV Libraries => WARNING It should be changed on every new debian version!!
 apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
@@ -123,7 +123,8 @@ libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-de
 lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  libqt4-dev qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module \
-libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev
+libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
+libxkbcommon-x11-dev 
 
 #libjack-dev-session
 #non-ntk-dev

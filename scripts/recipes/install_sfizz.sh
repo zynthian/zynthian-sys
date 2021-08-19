@@ -1,13 +1,20 @@
 #!/bin/bash
-cd ${ZYNTHIAN_PLUGINS_SRC_DIR}
-sudo apt-get install libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-x11-dev libxkbcommon-x11-dev libxkbcommon0
-git clone https://github.com/sfztools/sfizz.git sfizz.lv2
-cd sfizz.lv2
+
+cd ${ZYNTHIAN_SW_DIR}
+
+if [ -d "sfizz" ]; then
+	rm -rf "sfizz"
+else
+	apt-get -y update
+	apt-get -y install libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-x11-dev zenity
+fi
+
+#git clone https://github.com/sfztools/sfizz.git sfizz
+git clone https://github.com/zynthian/sfizz.git sfizz
+cd sfizz
 mkdir build
 cd build
 git submodule update --init --recursive
 cmake ..
-make -j4
+make -j 4
 make install
-make clean
-cd ${ZYNTHIAN_PLUGINS_SRC_DIR}

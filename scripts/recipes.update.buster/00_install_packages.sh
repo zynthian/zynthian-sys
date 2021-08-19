@@ -179,6 +179,11 @@ if [[ "$res" < "0.0.11" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 fi
 
+# 2021-08-19: Install Sfizz
+if [ -d "$ZYNTHIAN_SW_DIR/sfizz" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_sfizz.sh
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
