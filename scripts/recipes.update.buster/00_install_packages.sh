@@ -187,14 +187,14 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Install needed apt packages
 if [ ! -z "$aptpkgs" ]; then
-	apt-get -y update
+	apt-get -y update --allow-releaseinfo-change
 	apt-get -y install $aptpkgs
 fi
 
 # Upgrade System
 # WARNING => Disable on Stable!!!
 if [ -z "$aptpkgs" ]; then
-	apt-get -y update
+	apt-get -y update --allow-releaseinfo-change
 fi
 #dpkg --configure -a # => Recover from broken upgrade
 apt-get -y upgrade
