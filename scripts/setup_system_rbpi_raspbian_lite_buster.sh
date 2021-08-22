@@ -195,9 +195,9 @@ git clone --branch stable https://github.com/zynthian/zynthian-webconf.git
 cd $ZYNTHIAN_DIR
 git clone https://github.com/zynthian/zynthian-emuface.git
 
-# Create more needed directories
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
+# Create needed directories
+#mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
+#mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR"
@@ -380,6 +380,9 @@ ln -s /usr/share/zynaddsubfx /usr/local/share
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
+
+# Install Squishbox SF2 soundfonts
+$ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
 
 # Install Polyphone (SF2 editor)
 #$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh

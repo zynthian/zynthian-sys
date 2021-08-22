@@ -184,6 +184,11 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/sfizz" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_sfizz.sh
 fi
 
+# 2021-08-22: Install Squishbox SF2 soundfonts
+if [ ! -f "$ZYNTHIAN_DATA_DIR/soundfonts/sf2/ModSynth_R1.sf2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
