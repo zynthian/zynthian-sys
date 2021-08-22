@@ -6,34 +6,34 @@ cd $ZYNTHIAN_SW_DIR
 
 # Download, Build & Install needed libraries: libgig & libscp
 rm -rf libgig-4.*
-wget http://download.linuxsampler.org/packages/libgig-4.2.0.tar.bz2
-tar xfvj libgig-4.2.0.tar.bz2
-rm -f libgig-4.2.0.tar.bz2
-cd libgig-4.2.0
+wget http://download.linuxsampler.org/packages/libgig-4.3.0.tar.bz2
+tar xfvj libgig-4.3.0.tar.bz2
+rm -f libgig-4.3.0.tar.bz2
+cd libgig-4.3.0
 libtoolize --force
 aclocal
 autoheader
 automake --force-missing --add-missing
 autoconf 
 ./configure
-make -j 1
+make -j 3
 make install
 make clean
 make distclean
 cd ..
 
 rm -rf liblscp-0.*
-wget http://download.linuxsampler.org/packages/liblscp-0.6.0.tar.gz
-tar xfvz liblscp-0.6.0.tar.gz
-rm -f liblscp-0.6.0.tar.gz
-cd liblscp-0.6.0
+wget http://download.linuxsampler.org/packages/liblscp-0.9.3.tar.gz
+tar xfvz liblscp-0.9.3.tar.gz
+rm -f liblscp-0.9.3.tar.gz
+cd liblscp-0.9.3
 libtoolize --force
 aclocal
 autoheader
 automake --force-missing --add-missing
 autoconf 
 ./configure
-make -j 1
+make -j 3
 make install
 make clean
 make distclean
@@ -41,10 +41,10 @@ cd ..
 
 # Download, Build &  Install LinuxSampler
 rm -rf linuxsampler-2.*
-wget http://download.linuxsampler.org/packages/linuxsampler-2.1.1.tar.bz2
-tar xfvj linuxsampler-2.1.1.tar.bz2
-rm -f linuxsampler-2.1.1.tar.bz2
-cd linuxsampler-2.1.1
+wget http://download.linuxsampler.org/packages/linuxsampler-2.2.0.tar.bz2
+tar xfvj linuxsampler-2.2.0.tar.bz2
+rm -f linuxsampler-2.2.0.tar.bz2
+cd linuxsampler-2.2.0
 libtoolize --force
 aclocal
 autoheader
@@ -61,7 +61,7 @@ cd ../..
 git clone https://github.com/steveb/rpi_linuxsampler_patch.git
 patch -p1 < rpi_linuxsampler_patch/linuxsampler-arm.patch
 # Build LinuxSampler
-make -j 1
+make -j 3
 make install
 make clean
 cd ..
