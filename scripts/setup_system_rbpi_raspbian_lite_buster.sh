@@ -27,26 +27,38 @@ source zynthian_envars.sh
 export DEBIAN_FRONTEND=noninteractive
 
 #------------------------------------------------
+# Set default config
+#------------------------------------------------
+
+[ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=no
+[ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
+[ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
+
+[ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO="https://github.com/zynthian/zynthian-sys.git"
+[ -n "$ZYNTHIAN_UI_REPO" ] || ZYNTHIAN_UI_REPO="https://github.com/zynthian/zynthian-ui.git"
+[ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthian/zyncoder.git"
+[ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
+[ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="stable"
+[ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH="stable"
+[ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH="stable"
+[ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH="stable"
+[ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH="stable"
+
+#------------------------------------------------
 # Update System & Firmware
 #------------------------------------------------
 
 # Hold kernel version 
-apt-mark hold raspberrypi-kernel
+#apt-mark hold raspberrypi-kernel
 
 # Update System
-apt-get -y update
+apt-get -y update --allow-releaseinfo-change
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
 apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv
 #htpdate
-
-# Set here default config
-[ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=no
-[ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
-[ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
-[ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO=https://github.com/zynthian/zynthian-sys.git
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH=master
 
 # Adjust System Date/Time
 #htpdate -s www.pool.ntp.org wikipedia.org google.com
@@ -80,12 +92,12 @@ apt-get -y autoremove
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils
-apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server xfwm4
+apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server 
+apt-get -y install xfwm4 xfwm4-themes xfce4-panel xdotool
 
 apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
 apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree
 #firmware-ralink
-
 
 # Alternate XServer with some 2D acceleration
 #apt-get -y install xserver-xorg-video-fbturbo
@@ -143,7 +155,6 @@ pip3 install jsonpickle oyaml psutil pexpect requests
 pip3 install mido python-rtmidi patchage
 #mutagen
 
-
 #************************************************
 #------------------------------------------------
 # Create Zynthian Directory Tree & 
@@ -158,19 +169,19 @@ mkdir "$ZYNTHIAN_SW_DIR"
 
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
-git clone -b ""${ZYNTHIAN_SYS_BRANCH}"" "${ZYNTHIAN_SYS_REPO}"
+git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 
 # Install WiringPi
 $ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Zyncoder library
 cd $ZYNTHIAN_DIR
-git clone --branch stable https://github.com/zynthian/zyncoder.git
+git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 ./zyncoder/build.sh
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
-git clone --branch stable https://github.com/zynthian/zynthian-ui.git
+git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}"
 cd $ZYNTHIAN_UI_DIR
 if [ -d "zynlibs" ]; then
 	find ./zynlibs -type f -name build.sh -exec {} \;
@@ -185,15 +196,11 @@ fi
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
-git clone --branch stable https://github.com/zynthian/zynthian-data.git
+git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 
 # Zynthian Webconf Tool
 cd $ZYNTHIAN_DIR
-git clone --branch stable https://github.com/zynthian/zynthian-webconf.git
-
-# Zynthian emuface => Not very useful here ... but somebody used it
-cd $ZYNTHIAN_DIR
-git clone https://github.com/zynthian/zynthian-emuface.git
+git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
 
 # Create needed directories
 #mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
