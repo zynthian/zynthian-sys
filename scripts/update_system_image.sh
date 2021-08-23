@@ -36,10 +36,17 @@ ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
 #------------------------------------------------------------------------------
 
 source "/zynthian/config/zynthian_envars.sh"
+export PATH=$PATH:/$ZYNTHIAN_SYS_DIR/scripts:/$ZYNTHIAN_SYS_DIR/sbin
 
 #------------------------------------------------------------------------------
 # Set repo branches
 #------------------------------------------------------------------------------
+
+export ZYNTHIAN_SYS_BRANCH="sfizz"
+export ZYNTHIAN_UI_BRANCH="sfizz"
+export ZYNTHIAN_ZYNCODER_BRANCH="testing"
+export ZYNTHIAN_WEBCONF_BRANCH="testing"
+export ZYNTHIAN_DATA_BRANCH="testing"
 
 if [ $ZYNTHIAN_SYS_BRANCH ]; then
         cd $ZYNTHIAN_SYS_DIR
@@ -52,12 +59,12 @@ if [ $ZYNTHIAN_UI_BRANCH ]; then
         git checkout "$ZYNTHIAN_UI_BRANCH"
 fi
 if [ $ZYNTHIAN_ZYNCODER_BRANCH ]; then
-        cd $ZYNTHIAN_ZYNCODER_DIR
+        cd $ZYNTHIAN_DIR/zyncoder
         git fetch
         git checkout "$ZYNTHIAN_ZYNCODER_BRANCH"
 fi
 if [ $ZYNTHIAN_WEBCONF_BRANCH ]; then
-        cd $ZYNTHIAN_WEBCONF_DIR
+        cd $ZYNTHIAN_DIR/zynthian-webconf
         git fetch
         git checkout "$ZYNTHIAN_WEBCONF_BRANCH"
 fi
