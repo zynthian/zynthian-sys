@@ -376,7 +376,7 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 
 # Copy fonts to system directory
-rsync -r -u --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
+rsync -r --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 
 # Fix problem with WLAN interfaces numbering
 if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
@@ -418,7 +418,7 @@ fi
 cp -an $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
 
 # => Xfce4 config
-rsync -r -u --del $ZYNTHIAN_SYS_DIR/etc/xfce4.config/ /root/.config/xfce4/
+rsync -r --del $ZYNTHIAN_SYS_DIR/etc/xfce4.config/ /root/.config/xfce4/
 
 # Zynthian Specific Config Files
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
