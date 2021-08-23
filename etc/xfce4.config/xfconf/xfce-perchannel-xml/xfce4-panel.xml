@@ -40,9 +40,5 @@
       <property name="show-label" type="bool" value="true"/>
     </property>
     <property name="plugin-4" type="string" value="tasklist"/>
-    <property name="plugin-5" type="string" value="separator">
-      <property name="expand" type="bool" value="true"/>
-      <property name="style" type="uint" value="0"/>
-    </property>
   </property>
 </channel>
