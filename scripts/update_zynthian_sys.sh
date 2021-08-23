@@ -418,7 +418,7 @@ fi
 cp -an $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
 
 # => Xfce4 config
-cp -aT $ZYNTHIAN_SYS_DIR/etc/xfce4.config /root/.config/xfce4
+rsync -r -u --del $ZYNTHIAN_SYS_DIR/etc/xfce4.config/ /root/.config/xfce4/
 
 # Zynthian Specific Config Files
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
