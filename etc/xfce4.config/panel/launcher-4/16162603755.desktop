@@ -1,0 +1,17 @@
+[Desktop Entry]
+Version=1.0
+Name=Window Manager
+Name[en_GB]=Window Manager
+Comment=Configure window behavior and shortcuts
+Comment[en_GB]=Configure window behaviour and shortcuts
+Exec=launch_if_not_running.sh xfwm4-settings
+Icon=xfwm4
+Terminal=false
+Type=Application
+Categories=XFCE;GTK;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;
+StartupNotify=true
+OnlyShowIn=XFCE;
+X-XfcePluggable=true
+X-XfceHelpComponent=xfwm4
+X-XfceHelpPage=preferences
+X-XFCE-Source=file:///usr/share/applications/xfce-wm-settings.desktop

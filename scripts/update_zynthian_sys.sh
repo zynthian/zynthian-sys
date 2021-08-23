@@ -353,6 +353,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
 fi
 
+
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
 
@@ -394,7 +395,6 @@ fi
 # WIFI Hotspot extra config
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 echo "" > /etc/network/interfaces
-
 
 # User Config (root)
 # => ZynAddSubFX Config
