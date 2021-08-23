@@ -43,22 +43,27 @@ source "/zynthian/config/zynthian_envars.sh"
 
 if [ $ZYNTHIAN_SYS_BRANCH ]; then
         cd $ZYNTHIAN_SYS_DIR
+        git fetch
         git checkout "$ZYNTHIAN_SYS_BRANCH"
 fi
 if [ $ZYNTHIAN_UI_BRANCH ]; then
         cd $ZYNTHIAN_UI_DIR
+        git fetch
         git checkout "$ZYNTHIAN_UI_BRANCH"
 fi
 if [ $ZYNTHIAN_ZYNCODER_BRANCH ]; then
         cd $ZYNTHIAN_ZYNCODER_DIR
+        git fetch
         git checkout "$ZYNTHIAN_ZYNCODER_BRANCH"
 fi
 if [ $ZYNTHIAN_WEBCONF_BRANCH ]; then
         cd $ZYNTHIAN_WEBCONF_DIR
+        git fetch
         git checkout "$ZYNTHIAN_WEBCONF_BRANCH"
 fi
 if [ $ZYNTHIAN_DATA_BRANCH ]; then
         cd $ZYNTHIAN_DATA_DIR
+        git fetch
         git checkout "$ZYNTHIAN_DATA_BRANCH"
 fi
 
