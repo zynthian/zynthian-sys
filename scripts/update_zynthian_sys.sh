@@ -413,14 +413,12 @@ if [ ! -f "/root/.vnc/passwd" ]; then
 	echo "raspberry" | vncpasswd -f > /root/.vnc/passwd
 	chmod go-r /root/.vnc/passwd
 fi
+
 # => Xsession config
-if [ ! -f "/root/.xsessionrc" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
-fi
+cp -an $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
+
 # => Xfce4 config
-if [ ! -f "/root/.config/xfce4" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/etc/xfce4.config /root/.config/xfce4
-fi
+cp -aT $ZYNTHIAN_SYS_DIR/etc/xfce4.config /root/.config/xfce4
 
 # Zynthian Specific Config Files
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
