@@ -5,7 +5,7 @@ cd ${ZYNTHIAN_SW_DIR}
 if [ -d "sfizz" ]; then
 	rm -rf "sfizz"
 else
-	apt-get -y update
+	apt-get -y update --allow-releaseinfo-change
 	apt-get -y install libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-x11-dev zenity
 fi
 
