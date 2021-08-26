@@ -90,6 +90,7 @@ git pull
 echo "UPDATING ZYNTHIAN ..."
 cd ./scripts
 ./update_zynthian_recipes.sh
+./recipes/install_cmake.sh
 ./update_zynthian_data.sh
 ./update_zynthian_sys.sh
 ./update_zynthian_code.sh
