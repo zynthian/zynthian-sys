@@ -42,8 +42,8 @@ export PATH=$PATH:/$ZYNTHIAN_SYS_DIR/scripts:/$ZYNTHIAN_SYS_DIR/sbin
 # Set repo branches
 #------------------------------------------------------------------------------
 
-export ZYNTHIAN_SYS_BRANCH="sfizz"
-export ZYNTHIAN_UI_BRANCH="sfizz"
+export ZYNTHIAN_SYS_BRANCH="testing"
+export ZYNTHIAN_UI_BRANCH="testing"
 export ZYNTHIAN_ZYNCODER_BRANCH="testing"
 export ZYNTHIAN_WEBCONF_BRANCH="testing"
 export ZYNTHIAN_DATA_BRANCH="testing"
