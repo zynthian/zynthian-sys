@@ -188,6 +188,11 @@ if [ ! -f "$ZYNTHIAN_DATA_DIR/soundfonts/sf2/ModSynth_R1.sf2" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
 fi
 
+# 2021-08-30: Install Bollie Delay
+if [ ! -d "/usr/local/lib/lv2/bolliedelay.lv2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
