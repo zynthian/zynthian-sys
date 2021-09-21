@@ -211,7 +211,7 @@ if [ -z "$aptpkgs" ]; then
 	apt-get -y update --allow-releaseinfo-change
 fi
 #dpkg --configure -a # => Recover from broken upgrade
-apt-get -y upgrade
+#apt-get -y upgrade
 apt-get -y autoremove
 apt-get -y autoclean
 
