@@ -76,10 +76,16 @@ fi
 echo "deb http://www.deb-multimedia.org buster main non-free" >> /etc/apt/sources.list
 wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
 dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
+rm -f deb-multimedia-keyring_2016.8.1_all.deb
 
 # KXStudio
 wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_10.0.3_all.deb
 dpkg -i kxstudio-repos_10.0.3_all.deb
+rm -f kxstudio-repos_10.0.3_all.deb
+
+# Zynthian
+wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
+echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
 apt-get -y update
 apt-get -y dist-upgrade
@@ -393,6 +399,9 @@ $ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
 
 # Install Polyphone (SF2 editor)
 #$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
+
+# Install Sfizz (SFZ player)
+$ZYNTHIAN_RECIPE_DIR/install_sfizz.sh
 
 # Install Linuxsampler
 #$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
