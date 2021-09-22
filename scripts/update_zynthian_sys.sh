@@ -405,6 +405,7 @@ fi
 if [ -f /etc/vim/vimrc.local ]; then
 	cp -a /etc/vim/vimrc.local /root/.vimrc
 fi
+
 # => vncserver password
 if [ ! -d "/root/.vnc" ]; then
 	mkdir "/root/.vnc"
@@ -412,6 +413,10 @@ fi
 if [ ! -f "/root/.vnc/passwd" ]; then
 	echo "raspberry" | vncpasswd -f > /root/.vnc/passwd
 	chmod go-r /root/.vnc/passwd
+fi
+# => novnc launcher
+if [ ! -f "$ZYNTHIAN_SW_DIR/noVNC/utils/novnc_proxy" ]; then
+	ln -s "$ZYNTHIAN_SW_DIR/noVNC/utils/launch.sh" "$ZYNTHIAN_SW_DIR/noVNC/utils/novnc_proxy"
 fi
 
 # => Xsession config
