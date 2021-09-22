@@ -222,12 +222,14 @@ if [ ! -z "$aptpkgs" ]; then
 fi
 
 # Upgrade System
-# WARNING => Disable on Stable!!!
-if [ -z "$aptpkgs" ]; then
-	apt-get -y update --allow-releaseinfo-change
+if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
+	if [ -z "$aptpkgs" ]; then
+		apt-get -y update --allow-releaseinfo-change
+	fi
+	#dpkg --configure -a # => Recover from broken upgrade
+	apt-get -y upgrade
 fi
-#dpkg --configure -a # => Recover from broken upgrade
-#apt-get -y upgrade
+
 apt-get -y autoremove
 apt-get -y autoclean
 
