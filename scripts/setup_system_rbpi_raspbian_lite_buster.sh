@@ -87,6 +87,11 @@ rm -f kxstudio-repos_10.0.3_all.deb
 wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
 echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
+# Sfizz
+sfizz_url_base="http://download.opensuse.org/repositories/home:/sfztools:/sfizz:/develop/Raspbian_10"
+echo "deb $sfizz_url_base/ /" > /etc/apt/sources.list.d/sfizz-dev.list
+curl -fsSL $sfizz_url_base/Release.key | apt-key add -
+
 apt-get -y update
 apt-get -y dist-upgrade
 apt-get -y autoremove
@@ -401,7 +406,7 @@ $ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
 #$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
 
 # Install Sfizz (SFZ player)
-$ZYNTHIAN_RECIPE_DIR/install_sfizz.sh
+apt-get -y install sfizz
 
 # Install Linuxsampler
 #$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
