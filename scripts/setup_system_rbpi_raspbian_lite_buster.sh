@@ -27,26 +27,38 @@ source zynthian_envars.sh
 export DEBIAN_FRONTEND=noninteractive
 
 #------------------------------------------------
+# Set default config
+#------------------------------------------------
+
+[ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=no
+[ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
+[ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
+
+[ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO="https://github.com/zynthian/zynthian-sys.git"
+[ -n "$ZYNTHIAN_UI_REPO" ] || ZYNTHIAN_UI_REPO="https://github.com/zynthian/zynthian-ui.git"
+[ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthian/zyncoder.git"
+[ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
+[ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="stable"
+[ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH="stable"
+[ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH="stable"
+[ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH="stable"
+[ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH="stable"
+
+#------------------------------------------------
 # Update System & Firmware
 #------------------------------------------------
 
 # Hold kernel version 
-apt-mark hold raspberrypi-kernel
+#apt-mark hold raspberrypi-kernel
 
 # Update System
-apt-get -y update
+apt-get -y update --allow-releaseinfo-change
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
 apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv
 #htpdate
-
-# Set here default config
-[ -n "$ZYNTHIAN_INCLUDE_RPI_UPDATE" ] || ZYNTHIAN_INCLUDE_RPI_UPDATE=no
-[ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
-[ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
-[ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO=https://github.com/zynthian/zynthian-sys.git
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH=master
 
 # Adjust System Date/Time
 #htpdate -s www.pool.ntp.org wikipedia.org google.com
@@ -64,10 +76,21 @@ fi
 echo "deb http://www.deb-multimedia.org buster main non-free" >> /etc/apt/sources.list
 wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
 dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
+rm -f deb-multimedia-keyring_2016.8.1_all.deb
 
 # KXStudio
 wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_10.0.3_all.deb
 dpkg -i kxstudio-repos_10.0.3_all.deb
+rm -f kxstudio-repos_10.0.3_all.deb
+
+# Zynthian
+wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
+echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
+
+# Sfizz
+sfizz_url_base="http://download.opensuse.org/repositories/home:/sfztools:/sfizz:/develop/Raspbian_10"
+echo "deb $sfizz_url_base/ /" > /etc/apt/sources.list.d/sfizz-dev.list
+curl -fsSL $sfizz_url_base/Release.key | apt-key add -
 
 apt-get -y update
 apt-get -y dist-upgrade
@@ -80,12 +103,12 @@ apt-get -y autoremove
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils
-apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server xfwm4
+apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server 
+apt-get -y install xfwm4 xfwm4-themes xfce4-panel xdotool
 
 apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
 apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree
 #firmware-ralink
-
 
 # Alternate XServer with some 2D acceleration
 #apt-get -y install xserver-xorg-video-fbturbo
@@ -109,7 +132,7 @@ apt-get -y install evtest libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools
+apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools zenity
 
 # AV Libraries => WARNING It should be changed on every new debian version!!
 apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
@@ -123,7 +146,8 @@ libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-de
 lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  libqt4-dev qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module \
-libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev
+libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
+libxkbcommon-x11-dev libssl-dev
 
 #libjack-dev-session
 #non-ntk-dev
@@ -142,7 +166,6 @@ pip3 install jsonpickle oyaml psutil pexpect requests
 pip3 install mido python-rtmidi patchage
 #mutagen
 
-
 #************************************************
 #------------------------------------------------
 # Create Zynthian Directory Tree & 
@@ -157,19 +180,19 @@ mkdir "$ZYNTHIAN_SW_DIR"
 
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
-git clone -b ""${ZYNTHIAN_SYS_BRANCH}"" "${ZYNTHIAN_SYS_REPO}"
+git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 
 # Install WiringPi
 $ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Zyncoder library
 cd $ZYNTHIAN_DIR
-git clone --branch stable https://github.com/zynthian/zyncoder.git
+git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 ./zyncoder/build.sh
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
-git clone --branch stable https://github.com/zynthian/zynthian-ui.git
+git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}"
 cd $ZYNTHIAN_UI_DIR
 if [ -d "zynlibs" ]; then
 	find ./zynlibs -type f -name build.sh -exec {} \;
@@ -184,19 +207,15 @@ fi
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
-git clone --branch stable https://github.com/zynthian/zynthian-data.git
+git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 
 # Zynthian Webconf Tool
 cd $ZYNTHIAN_DIR
-git clone --branch stable https://github.com/zynthian/zynthian-webconf.git
+git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
 
-# Zynthian emuface => Not very useful here ... but somebody used it
-cd $ZYNTHIAN_DIR
-git clone https://github.com/zynthian/zynthian-emuface.git
-
-# Create more needed directories
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
+# Create needed directories
+#mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
+#mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
 mkdir "$ZYNTHIAN_MY_DATA_DIR"
@@ -255,10 +274,8 @@ systemctl disable hostapd
 systemctl disable dnsmasq
 systemctl disable unattended-upgrades
 systemctl disable apt-daily.timer
-systemctl disable packagekit
-systemctl disable polkit
-systemctl mask packagekit
-systemctl mask polkit
+#systemctl mask packagekit
+#systemctl mask polkit
 #systemctl disable serial-getty@ttyAMA0.service
 #systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
 systemctl enable backlight
@@ -382,8 +399,14 @@ apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfo
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
+# Install Squishbox SF2 soundfonts
+$ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
+
 # Install Polyphone (SF2 editor)
 #$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
+
+# Install Sfizz (SFZ player)
+apt-get -y install sfizz
 
 # Install Linuxsampler
 #$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh

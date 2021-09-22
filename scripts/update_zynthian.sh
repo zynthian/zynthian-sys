@@ -46,8 +46,9 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 # Pull from zynthian-sys repotory ...
 #------------------------------------------------------------------------------
 
-echo "Updating zynthian-sys ..."
 cd $ZYNTHIAN_SYS_DIR
+export ZYNTHIAN_SYS_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+echo "Updating zynthian-sys ($ZYNTHIAN_SYS_BRANCH) ..."
 git checkout .
 git pull
 
@@ -62,5 +63,7 @@ cd ./scripts
 ./update_zynthian_code.sh
 
 run_flag_actions
+
+echo "Update Complete."
 
 #------------------------------------------------------------------------------

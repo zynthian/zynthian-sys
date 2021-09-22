@@ -1,12 +1,8 @@
 
 aptpkgs=""
 
-# 2021-02-06 => Block MS repo from being installed
-apt-mark hold raspberrypi-sys-mods
-touch /etc/apt/trusted.gpg.d/microsoft.gpg
-
 # 2020-05-19 => mutagen, for audio/mid file metadata (updated 2021-03-20)
-if $ZYNTHIAN_SYS_DIR/scripts/is_python_module_installed.py mutagen; then
+if is_python_module_installed.py mutagen; then
 	#pip3 install mutagen
 	$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 fi
@@ -118,7 +114,7 @@ fi
 
 # 2021-03-15: Install/Update Vitalium-LV2 synth
 res=`dpkg -s vitalium-lv2 2>&1 | grep "Version:"`
-if [[ "$res" < "5:20210312.3" ]]; then
+if [[ "$res" < "Version: 5:20210312.3" ]]; then
 	aptpkgs="$aptpkgs vitalium-lv2"
 fi
 
@@ -126,7 +122,6 @@ fi
 res=`dpkg -s xfce4-panel 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs xfce4-panel xfwm4-themes xdotool"
-	$ZYNTHIAN_RECIPE_DIR/install_xfce4-panel.sh
 fi
 
 # 2021-03-25: Install patchage
@@ -140,14 +135,107 @@ if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/mod-cabsim-IR-loader" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 fi
 
-# 2021-03-31: Install riban LV2 plugins
-if [ ! -e "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2" ]; then
-	$ZYNTHIAN_RECIPE_DIR/install_riban_lv2.sh
+# 2021-05-18: Unmask polkit & packagekit services
+systemctl unmask polkit
+systemctl unmask packagekit
+
+# 2021-05-20: Install x11vnc
+res=`dpkg -s x11vnc 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs x11vnc"
+fi
+        
+# 2021-05-20: Install zynthian repository & public key
+if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
+	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
+	cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
 fi
 
+# 2021-05-20: Upgrade alsa-utils to 1.2.4
+res=`dpkg -s alsa-utils 2>&1 | grep "Version:"`
+if [[ "$res" < "Version: 1.2.4" ]]; then
+	aptpkgs="$aptpkgs alsa-utils"
+fi
 
-# Install needed apt packages 
+# 2021-06-20: Install riban LV2 plugins from zynthian deb repo
+res=`dpkg -s riban-lv2 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2" ]; then
+		rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/riban.lv2"
+	fi
+	aptpkgs="$aptpkgs riban-lv2"
+fi
+
+# 2021-07-09: Install Boops LV2 plugins from zynthian deb repo
+res=`dpkg -s boops 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs boops"
+fi
+
+# 2021-07-27: Update touchosc2midi bridge
+res=`python -c "import touchosc2midi; print(touchosc2midi.__version__)"`
+if [[ "$res" < "0.0.11" ]]; then
+	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
+fi
+
+# 2021-08-22: Install Squishbox SF2 soundfonts
+if [ ! -f "$ZYNTHIAN_DATA_DIR/soundfonts/sf2/ModSynth_R1.sf2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
+fi
+
+# 2021-08-30: Install Bollie Delay
+if [ ! -d "/usr/local/lib/lv2/bolliedelay.lv2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
+fi
+
+# 2021-09-22: Add sfizz repo
+if [ ! -f "/etc/apt/sources.list.d/sfizz-dev.list" ]; then
+	sfizz_url_base="http://download.opensuse.org/repositories/home:/sfztools:/sfizz:/develop/Raspbian_10"
+	echo "deb $sfizz_url_base/ /" > /etc/apt/sources.list.d/sfizz-dev.list
+	curl -fsSL $sfizz_url_base/Release.key | apt-key add -
+fi
+
+# 2021-09-22: Install sfizz from repo
+res=`dpkg -s sfizz 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs sfizz"
+fi
+
+# 2021-09-22: Uninstall sfizz if previously installed from source code
+if [ -d "$ZYNTHIAN_SW_DIR/sfizz" ]; then
+	cd "$ZYNTHIAN_SW_DIR/sfizz/build"
+	make uninstall
+	cd $ZYNTHIAN_SW_DIR
+	rm -rf "./sfizz"
+fi
+
+# Hold some packages
+apt-mark unhold raspberrypi-kernel
+apt-mark unhold raspberrypi-sys-mods
+
+export DEBIAN_FRONTEND=noninteractive
+
+# Install needed apt packages
 if [ ! -z "$aptpkgs" ]; then
-	apt-get -y update
+	apt-get -y update --allow-releaseinfo-change
 	apt-get -y install $aptpkgs
 fi
+
+# Upgrade System
+if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
+	if [ -z "$aptpkgs" ]; then
+		apt-get -y update --allow-releaseinfo-change
+	fi
+	#dpkg --configure -a # => Recover from broken upgrade
+	apt-get -y upgrade
+fi
+
+apt-get -y autoremove
+apt-get -y autoclean
+
+# Install a firmware version that works OK!!
+#res=`uname -r`
+#if [[ "$res" != "5.10.49-v7l+" ]]; then
+#	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
+#	set_reboot_flag
+#fi

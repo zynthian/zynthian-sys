@@ -22,6 +22,8 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
+export DEBIAN_FRONTEND=noninteractive
+
 #------------------------------------------------------------------------------
 # Get System Codebase
 #------------------------------------------------------------------------------
@@ -178,7 +180,14 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
+		echo "USB SPEED LIMIT ENABLED"
 		sed -i '1s/^/dwc_otg.speed=1 /' /boot/cmdline.txt
+	fi
+
+	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
+		echo "BOOT LOG DISABLED"
+		sed -i '1s/tty1/tty3/' /boot/cmdline.txt
+		sed -i '1s/rootwait/rootwait logo.nologo quiet splash/' /boot/cmdline.txt
 	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
@@ -193,7 +202,12 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
 	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
-	
+
+	# Patch piscreen config
+	if [[ ( $DISPLAY_CONFIG == *"piscreen2r-notouch"* ) && ( $DISPLAY_CONFIG != *"piscreen2r-backlight"* ) ]]; then
+		DISPLAY_CONFIG=$DISPLAY_CONFIG"\ndtoverlay=piscreen2r-backlight"
+	fi
+
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
 	
@@ -211,6 +225,11 @@ cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
 # Copy default envars file if needed ...
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+fi
+
+# Install zynthian repository public key
+if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
+	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
 fi
 
 # Fix some paths in config file
@@ -312,6 +331,7 @@ fi
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Copy "etc" config files
+	cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
@@ -332,6 +352,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	#rm -f /etc/wpa_supplicant/wpa_supplicant.conf
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
 fi
+
 
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
@@ -355,7 +376,7 @@ cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 
 # Copy fonts to system directory
-rsync -r -u --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
+rsync -r --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 
 # Fix problem with WLAN interfaces numbering
 if [ -f "/etc/udev/rules.d/70-persistent-net.rules" ]; then
@@ -375,7 +396,6 @@ fi
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 echo "" > /etc/network/interfaces
 
-
 # User Config (root)
 # => ZynAddSubFX Config
 if [ -f $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ]; then
@@ -385,6 +405,7 @@ fi
 if [ -f /etc/vim/vimrc.local ]; then
 	cp -a /etc/vim/vimrc.local /root/.vimrc
 fi
+
 # => vncserver password
 if [ ! -d "/root/.vnc" ]; then
 	mkdir "/root/.vnc"
@@ -393,14 +414,16 @@ if [ ! -f "/root/.vnc/passwd" ]; then
 	echo "raspberry" | vncpasswd -f > /root/.vnc/passwd
 	chmod go-r /root/.vnc/passwd
 fi
+# => novnc launcher
+if [ ! -f "$ZYNTHIAN_SW_DIR/noVNC/utils/novnc_proxy" ]; then
+	ln -s "$ZYNTHIAN_SW_DIR/noVNC/utils/launch.sh" "$ZYNTHIAN_SW_DIR/noVNC/utils/novnc_proxy"
+fi
+
 # => Xsession config
-if [ ! -f "/root/.xsessionrc" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
-fi
+cp -an $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
+
 # => Xfce4 config
-if [ ! -f "/root/.config/xfce4" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/etc/xfce4.config /root/.config/xfce4
-fi
+rsync -r --del $ZYNTHIAN_SYS_DIR/etc/xfce4.config/ /root/.config/xfce4/
 
 # Zynthian Specific Config Files
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
@@ -509,10 +532,13 @@ sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/mod-ui.se
 sed -i -e "s/#BROWSEPY_PATH#/$BROWSEPY_PATH_ESC/g" /etc/systemd/system/browsepy.service
 sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/browsepy.service
 # VNCServcer service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver@:1.service"
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver0.service"
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver1.service"
 # noVNC service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/novnc.service
-sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/novnc0.service
+sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc0.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/novnc1.service
+sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc1.service
 # Zynthian Service
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian.service
@@ -539,8 +565,6 @@ sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynth
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 
-# Reconfigure System Libraries
-ldconfig
 
 # Reload Systemd scripts
 systemctl daemon-reload

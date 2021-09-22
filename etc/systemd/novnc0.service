@@ -1,0 +1,21 @@
+# noVNC web viewer service file for Debian or Ubuntu with systemd
+#
+#  Install vncserver and tools
+#  e.g. git clone https://github.com/novnc/noVNC.git
+#
+
+[Unit]
+Description=VNC Web Viewer
+After=vncserver0.service
+Requires=vncserver0.service
+
+[Service]
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
+Environment=ZYNTHIAN_SW_DIR=#ZYNTHIAN_SW_DIR#
+Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
+Environment=HOME=/root
+
+ExecStart=#ZYNTHIAN_SW_DIR#/noVNC/utils/novnc_proxy --vnc localhost:5900 --listen 6080
+
+[Install]
+WantedBy=multi-user.target

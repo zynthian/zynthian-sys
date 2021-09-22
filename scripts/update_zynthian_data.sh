@@ -56,7 +56,7 @@ if [ -L "$ZYNTHIAN_MY_DATA_DIR/zynbanks" ]; then
 	rm -f "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
 fi
 
-# Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, coPull from repositoriespy pedalboards ...
+# Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, copy pedalboards ...
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
 	mv "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
@@ -107,7 +107,7 @@ if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2" ]; then
 fi
 sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.ttl
 
-#Link FluidPlug SF2s for using normally with FluidSynth
+# Link FluidPlug SF2s for using normally with FluidSynth
 cd $ZYNTHIAN_PLUGINS_DIR/lv2
 for d in AirFont320* AVL_Drumkits_Perc* Black_Pearl* Fluid* Red_Zeppelin*; do
 	name=${d%.*}
@@ -115,6 +115,18 @@ for d in AirFont320* AVL_Drumkits_Perc* Black_Pearl* Fluid* Red_Zeppelin*; do
 	if [[ ( ! -L "$dest") && ( $name != "FluidGM" ) ]]; then
 		echo "Linking $name.sf2 ..."
 		ln -s "$ZYNTHIAN_PLUGINS_DIR/lv2/$d/FluidPlug.sf2" "$dest"
+	fi
+done
+
+# Copy custom TTL files
+cd $ZYNTHIAN_DATA_DIR/lv2-custom
+for d in */; do
+	if [ -d "/usr/lib/lv2/$d" ]; then
+		cp -a $d /usr/lib/lv2
+	elif [ -d "/usr/local/lib/lv2/$d" ]; then
+		cp -a $d /usr/local/lib/lv2
+	elif [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/$d" ]; then
+		cp -a $d $ZYNTHIAN_PLUGINS_DIR/lv2
 	fi
 done
 

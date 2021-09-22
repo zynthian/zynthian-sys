@@ -46,12 +46,14 @@ for r in $RECIPES_UPDATE_DIR.${codebase}/*.sh; do
 done
 
 #Generic update recipes
-echo "Executing update recipes ..."
-for r in $RECIPES_UPDATE_DIR/*.sh; do
-	echo "Executing $r ..."
-	bash $r
-done
-
+if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
+	echo "Executing update recipes ..."
+	for r in $RECIPES_UPDATE_DIR/*.sh; do
+		echo "Executing $r ..."
+		bash $r
+	done
+fi
+	
 run_flag_actions
 
 #------------------------------------------------------------------------------
