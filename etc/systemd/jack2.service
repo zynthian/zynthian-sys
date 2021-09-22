@@ -5,6 +5,7 @@ Description=JACK2 Audio Server
 [Service]
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
 Environment=LV2_PATH=#LV2_PATH#
+Environment=JACK_NO_AUDIO_RESERVATION=1
 LimitRTPRIO=infinity
 LimitMEMLOCK=infinity
 ExecStart=#JACKD_BIN_PATH#/jackd #JACKD_OPTIONS#

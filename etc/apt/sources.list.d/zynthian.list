@@ -1,0 +1,4 @@
+# Stable
+deb https://deb.zynthian.org/zynthian-stable buster main
+# Testing
+#deb https://deb.zynthian.org/zynthian-testing buster main

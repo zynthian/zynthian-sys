@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Patchage
+Terminal=false
+Comment=Connect audio and MIDI applications together and manage audio sessions
+Exec=/zynthian/zynthian-sys/sbin/launch_if_not_running.sh patchage -A
+Icon=patchage
+Type=Application
+Categories=AudioVideo;Audio;
+X-XFCE-Source=file:///usr/share/applications/patchage.desktop

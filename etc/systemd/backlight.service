@@ -1,14 +1,15 @@
 [Unit]
-Description=Turn on/off Screen Backlight
+Description=Turn on/off Display Backlight
 DefaultDependencies=no
 Conflicts=shutdown.target poweroff.target halt.target reboot.target
-#After=sysinit.target
 Before=shutdown.target poweroff.target halt.target reboot.target
+#After=sysinit.target
+Requires=splash-screen
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/echo
+ExecStart=/bin/sh -c "/bin/echo 0 > /sys/class/backlight/*/bl_power"
 ExecStop=/bin/sh -c "/bin/echo 1 > /sys/class/backlight/*/bl_power"
 
 [Install]

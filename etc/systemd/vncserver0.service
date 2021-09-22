@@ -1,0 +1,17 @@
+[Unit]
+Description=VNC Server for X11
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=root
+
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
+Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
+Environment=HOME=/root
+
+ExecStart=/usr/bin/x11vnc -forever -bg -rfbport 5900 --rfbauth /root/.vnc/passwd -shared -o /var/log/x11vnc.log
+
+[Install]
+WantedBy=multi-user.target
+
