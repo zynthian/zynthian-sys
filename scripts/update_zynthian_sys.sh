@@ -128,8 +128,9 @@ if [ -z "$ZYNTHIAN_HOSTSPOT_CHANNEL" ]; then
 	export ZYNTHIAN_HOSTSPOT_CHANNEL="0"
 fi
 
-export BROWSEPY_PATH="/usr/local/bin"
-export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+if [ -z "$BROWSEPY_ROOT" ]; then
+	export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+fi
 
 #Check for EPDF Hat
 /zynthian/zynthian-sys/scripts/epdf_detect.sh 
@@ -154,7 +155,6 @@ ZYNTHIAN_SYS_DIR_ESC=${ZYNTHIAN_SYS_DIR//\//\\\/}
 ZYNTHIAN_UI_DIR_ESC=${ZYNTHIAN_UI_DIR//\//\\\/}
 ZYNTHIAN_SW_DIR_ESC=${ZYNTHIAN_SW_DIR//\//\\\/}
 BROWSEPY_ROOT_ESC=${BROWSEPY_ROOT//\//\\\/}
-BROWSEPY_PATH_ESC=${BROWSEPY_PATH//\//\\\/}
 
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
 JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
@@ -293,7 +293,7 @@ fi
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" ]; then
 	mv "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" $ZYNTHIAN_CONFIG_DIR
 fi
-# Set up browsepy directories
+# Setup browsepy directories
 if [ ! -d "$BROWSEPY_ROOT" ]; then
      mkdir -p $BROWSEPY_ROOT
 fi
@@ -529,7 +529,6 @@ sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/mod-ui.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/mod-ui.service
 sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/mod-ui.service
 # browsepy service
-sed -i -e "s/#BROWSEPY_PATH#/$BROWSEPY_PATH_ESC/g" /etc/systemd/system/browsepy.service
 sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/browsepy.service
 # VNCServcer service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver0.service"
