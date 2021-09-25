@@ -451,15 +451,14 @@ mkdir /root/Pd/externals
 #Install MOD-HOST
 $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
 
+# Install browsepy
+$ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
+
 #Install MOD-UI
 $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
-#$ZYNTHIAN_RECIPE_DIR/install_phantomjs.sh
 
 #Install MOD-SDK
 #$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
-
-# Install browsepy
-$ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
 
 #------------------------------------------------
 # Install Plugins
