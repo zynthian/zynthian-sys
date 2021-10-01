@@ -7,7 +7,7 @@ Environment=BROWSEPY_HOST=0.0.0.0
 Environment=BROWSEPY_PORT=8081
 
 WorkingDirectory=#BROWSEPY_ROOT#
-ExecStart=#BROWSEPY_PATH#/browsepy --directory #BROWSEPY_ROOT# --upload #BROWSEPY_ROOT#
+ExecStart=/usr/local/bin/browsepy --directory #BROWSEPY_ROOT# --upload #BROWSEPY_ROOT#
 Restart=always
 RestartSec=2
 
