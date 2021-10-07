@@ -209,6 +209,11 @@ if [ -d "$ZYNTHIAN_SW_DIR/sfizz" ]; then
 	rm -rf "./sfizz"
 fi
 
+# 2021-10-07: Update DT overlays for waveshare displays 
+if [ ! -d "$ZYNTHIAN_SW_DIR/waveshare-dtoverlays" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
