@@ -216,7 +216,9 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 fi
 
 # Copy extra overlays
-cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
+if [ -d "$ZYNTHIAN_SYS_DIR/boot/overlays" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
+fi
 
 #------------------------------------------------------------------------------
 # Zynthian Config 
