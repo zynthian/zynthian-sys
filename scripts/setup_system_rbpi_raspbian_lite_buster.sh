@@ -382,6 +382,9 @@ $ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
 # Install noVNC web viewer
 $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 
+# Install DT overlays for waveshare displays and others
+$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
+
 #************************************************
 #------------------------------------------------
 # Compile / Install Synthesis Software
