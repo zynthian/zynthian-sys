@@ -214,9 +214,15 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/waveshare-dtoverlays" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 fi
 
-# 2021-12-18 => Install rpi_ws281x (LED control library)
+# 2021-12-08 => Install rpi_ws281x (LED control library)
 if is_python_module_installed.py rpi_ws281x; then
 	pip3 install rpi_ws281x
+fi
+
+# 2021-12-13 => Install WiringPi from zynthian repository
+res=`grep "zynthian" $ZYNTHIAN_SW_DIR/WiringPi/.git/config`
+if [ -z "$res" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 fi
 
 # Hold some packages
