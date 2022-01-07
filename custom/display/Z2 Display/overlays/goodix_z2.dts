@@ -1,0 +1,39 @@
+// Device tree overlay for Goodix GT9110 touch controller
+// connected to Raspberry Pi via I2C on GPIO pins. 
+/dts-v1/;
+/plugin/;
+
+/ {
+        compatible = "brcm,bcm2835", "brcm,bcm2836", "brcm,bcm2708", "brcm,bcm2709";
+
+        fragment@0 {
+                target = <&gpio>;                        // Overlay for GPIO pins, using standard 'gpio' node
+                __overlay__ {
+                        goodix_pins: goodix_pins {       // create overlay labeled "goodix_pins"
+                                brcm,pins = <22 26>;     // use GPIO_22(pin 15), GPIO_26(pin 37)
+                                brcm,function = <0 0>;   // set pins as Output
+                                brcm,pull = <2 2>;       // enable internal pull-up resistors
+                        };
+                };
+        };
+
+        fragment@1 {
+                target = <&i2c1>;                        // Overlay for I2C pins, using the 'i2c1' node
+                __overlay__ {                            
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        status = "okay";                 // device is enabled
+
+                        gt9110: gt9110@14 {                   // set GT9110 with i2c address 0x14
+                                compatible = "goodix,gt9110"; // using 'goodix' kernel device driver
+                                reg = <0x5d>;                 // I2C address (needs to match above)
+                                pinctrl-names = "default";    // default pin configuration
+                                pinctrl-0 = <&goodix_pins>;   // assign overlay to pin control
+                                interrupt-parent = <&gpio>;   // assign interrupt rutines
+                                interrupts = <22 2>;          // high-to-low edge triggered
+                                irq-gpios = <&gpio 22 0>;     // set Interupt pin on GPIO 22
+                                reset-gpios = <&gpio 26 0>;   // set Reset pin on GPIO 26
+                        };
+                };
+        };
+};
