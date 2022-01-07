@@ -52,6 +52,7 @@ disable_splash=1
 
 # Disables dynamic frequency clocking
 force_turbo=1
+initial_turbo=60
 
 # Uncomment to overclock the arm. 700 MHz is the default.
 [pi2]
@@ -61,14 +62,23 @@ sdram_freq=450
 over_voltage=2
 [all]
 
+[pi4]
+# Overclock to maximum speed
+#over_voltage=6
+#arm_freq=2000
+# Fix core freq for avoiding fluctuation on SPI freq (RGB LEDs)
+core_freq=500
+core_freq_min=500
+[all]
+
 # Uncomment some or all of these to enable the optional hardware interfaces
-dtparam=i2c_arm=on
+dtparam=i2c_arm=on,i2c_arm_baudrate=100000
+#dtparam=i2c_arm=on,i2c_arm_baudrate=400000
 dtparam=i2s=on
 dtparam=spi=on
 
 # Uncomment this to enable the lirc-rpi module
 #dtoverlay=lirc-rpi
-
 
 # Additional overlays and parameters are documented /boot/overlays/README
 
@@ -103,10 +113,8 @@ dtoverlay=miniuart-bt
 #ACT_LED_CONFIG#
 
 # Adjust UART clock for MIDI Baudrate (31250)
-
-#New kernels
+# New kernels
 dtoverlay=midi-uart0
-
 # Old kernels
 #[pi3]
 #init_uart_clock=39062500
