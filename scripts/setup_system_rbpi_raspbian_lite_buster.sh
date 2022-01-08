@@ -222,9 +222,8 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/banks"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
@@ -394,8 +393,6 @@ $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 # Install ZynAddSubFX
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 apt-get -y install zynaddsubfx
-#Fix soft link to zynbanks, for working as included on zynthian-data repository
-ln -s /usr/share/zynaddsubfx /usr/local/share
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
