@@ -49,11 +49,25 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
 fi
 
 # Update user presets for some engines ...
-cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* $ZYNTHIAN_DATA_DIR/zynbanks
+#cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* /usr/share/zynaddsubfx/banks
 
-# Fix/Setup ZynAddSubFX user presets directory
+# Fix ZynAddSubFX config & presets directories
+rm -f "$ZYNTHIAN_DATA_DIR/zynbanks"
+ln -s /usr/share/zynaddsubfx/banks "$ZYNTHIAN_DATA_DIR/zynbanks"
+if [ -L "/usr/local/share/zynaddsubfx" ]; then
+	rm -f "/usr/local/share/zynaddsubfx"
+fi
 if [ -L "$ZYNTHIAN_MY_DATA_DIR/zynbanks" ]; then
 	rm -f "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
+fi
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ" ]; then
+	rm -rf "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
+fi
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/banks" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/banks"
+fi
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets"
 fi
 
 # Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, copy pedalboards ...
