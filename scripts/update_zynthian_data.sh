@@ -112,6 +112,16 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/snapshots/000" ]; then
 	fi
 fi
 
+# Fix LV2 Plugins
+if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/b_whirl" ]; then
+	rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/b_whirl.lv2"
+	mv "$ZYNTHIAN_PLUGINS_DIR/lv2/b_whirl" "$ZYNTHIAN_PLUGINS_DIR/lv2/b_whirl.lv2"
+fi
+if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/b_synth" ]; then
+	rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/b_synth.lv2"
+	mv "$ZYNTHIAN_PLUGINS_DIR/lv2/b_synth" "$ZYNTHIAN_PLUGINS_DIR/lv2/b_synth.lv2"
+fi
+
 # Fix LV2 Presets
 if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2" ]; then
 	sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/amsynth.lv2/*.ttl
