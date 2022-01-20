@@ -428,6 +428,9 @@ cp -an $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
 rsync -r --del $ZYNTHIAN_SYS_DIR/etc/xfce4.config/ /root/.config/xfce4/
 
 # Zynthian Specific Config Files
+if [ ! -d "$ZYNTHIAN_CONFIG_DIR/wiring-profiles" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
+fi
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/config/system_backup_items.txt $ZYNTHIAN_CONFIG_DIR
 fi
