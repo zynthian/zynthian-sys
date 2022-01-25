@@ -14,10 +14,11 @@ Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
 ExecStart=/usr/bin/startx ./zynthian.sh
-#-- :0 vt3
 TimeoutStopSec=20
-ExecStop=/usr/bin/killall -SIGTERM zynthian_gui.py
-ExecStop=/bin/sh -c "/usr/bin/tail --pid=$MAINPID -f /dev/null"
+ExecStop=/usr/local/bin/send_osc 1370 /CUIA/EXIT_UI
+ExecStop=/bin/sleep 10
+#ExecStop=/usr/bin/killall -SIGTERM zynthian_gui.py
+#ExecStop=/bin/sh -c "/usr/bin/tail --pid=$MAINPID -f /dev/null"
 Restart=always
 RestartSec=5
 
