@@ -238,6 +238,23 @@ fi
 sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
+# Copy zynthian specific config files
+cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/config/system_backup_items.txt $ZYNTHIAN_CONFIG_DIR
+fi
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/data_backup_items.txt" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/config/data_backup_items.txt $ZYNTHIAN_CONFIG_DIR
+fi
+
+# Delete deprecated config files
+if [ -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
+	rm -f $ZYNTHIAN_CONFIG_DIR/backup_items.txt
+fi
+if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_custom_config.sh" ]; then
+	rm -f $ZYNTHIAN_CONFIG_DIR/zynthian_custom_config.sh
+fi
+
 # Fix/Setup MIDI-profiles data directory
 cd $ZYNTHIAN_CONFIG_DIR
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
@@ -426,21 +443,6 @@ cp -an $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
 
 # => Xfce4 config
 rsync -r --del $ZYNTHIAN_SYS_DIR/etc/xfce4.config/ /root/.config/xfce4/
-
-# Zynthian Specific Config Files
-if [ ! -d "$ZYNTHIAN_CONFIG_DIR/wiring-profiles" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
-fi
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/config/system_backup_items.txt $ZYNTHIAN_CONFIG_DIR
-fi
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/data_backup_items.txt" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/config/data_backup_items.txt $ZYNTHIAN_CONFIG_DIR
-fi
-if [ -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
-	rm -f $ZYNTHIAN_CONFIG_DIR/backup_items.txt
-fi
-rm -f $ZYNTHIAN_CONFIG_DIR/zynthian_custom_config.sh
 
 # Device Custom files
 display_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/display/$DISPLAY_NAME"
