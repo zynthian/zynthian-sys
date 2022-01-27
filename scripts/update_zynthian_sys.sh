@@ -159,6 +159,7 @@ BROWSEPY_ROOT_ESC=${BROWSEPY_ROOT//\//\\\/}
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
 JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
 ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
+ZYNTHIAN_CUSTOM_BOOT_CMDLINE=${ZYNTHIAN_CUSTOM_BOOT_CMDLINE//\n//}
 
 if [ -f "/proc/stat" ]; then
 	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
@@ -190,6 +191,18 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 		sed -i '1s/rootwait/rootwait logo.nologo quiet splash/' /boot/cmdline.txt
 	fi
 
+	echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
+	sed -i -e "s/#CUSTOM_CMDLINE#/$ZYNTHIAN_CUSTOM_BOOT_CMDLINE/g" /boot/cmdline.txt
+
+	echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
+	if [[ "$ZYNTHIAN_OVERCLOCKING" == "None" ]]; then
+		sed -i -e "s/#OVERCLOCKING_RBPI4#//g" /boot/config.txt
+	elif [[ "$ZYNTHIAN_OVERCLOCKING" == "Medium" ]]; then
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=2\narm_freq=1750/g" /boot/config.txt
+	elif [[ "$ZYNTHIAN_OVERCLOCKING" == "Maximum" ]]; then
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=6\narm_freq=2000/g" /boot/config.txt
+	fi
+
 	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
 		echo "RBPI AUDIO ENABLED"
 		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" /boot/config.txt
@@ -207,12 +220,14 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	if [[ ( $DISPLAY_CONFIG == *"piscreen2r-notouch"* ) && ( $DISPLAY_CONFIG != *"piscreen2r-backlight"* ) ]]; then
 		DISPLAY_CONFIG=$DISPLAY_CONFIG"\ndtoverlay=piscreen2r-backlight"
 	fi
-
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
 	
 	echo "ACT LED CONFIG => $ACT_LED_CONFIG"
 	sed -i -e "s/#ACT_LED_CONFIG#/$ACT_LED_CONFIG/g" /boot/config.txt
+
+	echo "CUSTOM CONFIG => $ZYNTHIAN_CUSTOM_CONFIG"
+	sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" /boot/config.txt
 fi
 
 # Copy extra overlays
