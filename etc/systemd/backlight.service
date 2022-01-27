@@ -4,7 +4,7 @@ DefaultDependencies=no
 Conflicts=shutdown.target poweroff.target halt.target reboot.target
 Before=shutdown.target poweroff.target halt.target reboot.target
 #After=sysinit.target
-Requires=splash-screen
+#Requires=splash-screen
 
 [Service]
 Type=oneshot
