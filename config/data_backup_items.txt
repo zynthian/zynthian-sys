@@ -1,4 +1,2 @@
 ${ZYNTHIAN_MY_DATA_DIR}
-${ZYNTHIAN_MY_PLUGINS_DIR}
-${ZYNTHIAN_SW_DIR}/mod-ui/dados/favorites.json
 /root/.local/share/Modartt
