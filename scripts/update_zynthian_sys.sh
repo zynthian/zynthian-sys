@@ -72,6 +72,11 @@ function custom_config {
 			cp -a "$file" $ZYNTHIAN_CONFIG_DIR
 		done
 	fi
+	if [ -d "firmware" ]; then
+		for file in firmware/* ; do
+			cp -a "$file" /lib/firmware
+		done
+	fi
 }
 
 
