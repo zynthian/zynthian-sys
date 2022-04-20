@@ -48,10 +48,14 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 fi
 
-# Update user presets for some engines ...
+# Fix ZynAddSubFX config =>
+# If needed, create symbolic link to bank/presets ...
+if [ ! -f "/usr/local/share/zynaddsubfx" ]; then
+	ln -s "/usr/share/zynaddsubfx" "/usr/local/share/zynaddsubfx"
+fi
+# Update user presets ...
 cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* $ZYNTHIAN_DATA_DIR/zynbanks
-
-# Fix/Setup ZynAddSubFX user presets directory
+# Remove bad link
 if [ -L "$ZYNTHIAN_MY_DATA_DIR/zynbanks" ]; then
 	rm -f "$ZYNTHIAN_MY_DATA_DIR/zynbanks"
 fi
