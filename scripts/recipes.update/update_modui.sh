@@ -11,9 +11,9 @@ fi
 cd $ZYNTHIAN_SW_DIR/mod-ui
 git remote remove origin
 git remote add origin https://github.com/zynthian/mod-ui.git
-git fetch origin zyn-mod-merge
-git checkout zyn-mod-merge
-git reset --hard origin/zyn-mod-merge
+git fetch origin zyn-mod-merge-next
+git checkout zyn-mod-merge-next
+git reset --hard origin/zyn-mod-merge-next
 
 cd utils
 make -j 4
