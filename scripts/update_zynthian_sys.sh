@@ -480,15 +480,19 @@ if [ -f "/proc/stat" ]; then
 	$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
 fi
 
-# AudioInjector Alsa Mixer Customization
-if [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
-	echo "Configuring Alsa Mixer for AudioInjector ..."
+# Alsa Mixer Settings
+if [ "$SOUNDCARD_NAME" == "ZynADAC" ] || [ "$SOUNDCARD_NAME" == "HifiBerry DAC+ ADC PRO" ]; then
+	echo "Configuring Alsa Mixer for $SOUNDCARD_NAME..."
+	amixer -c sndrpihifiberry sset 'Auto Mute' mute
+	amixer -c sndrpihifiberry sset 'Auto Mute Mono' mute
+
+elif [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
+	echo "Configuring Alsa Mixer for $SOUNDCARD_NAME..."
 	amixer -c audioinjectorpi sset 'Output Mixer HiFi' unmute
 	amixer -c audioinjectorpi cset numid=10,iface=MIXER,name='Line Capture Switch' 1
-fi
- 
-if [ "$SOUNDCARD_NAME" == "AudioInjector Ultra" ]; then
-	echo "Configuring Alsa Mixer for AudioInjector Ultra ..."
+
+elif [ "$SOUNDCARD_NAME" == "AudioInjector Ultra" ]; then
+	echo "Configuring Alsa Mixer for $SOUNDCARD_NAME..."
 	amixer -c audioinjectorul cset name='DAC Switch' 0
 	amixer -c audioinjectorul cset name='DAC Volume' 240
 	amixer -c audioinjectorul cset name='DAC INV Switch' 0
