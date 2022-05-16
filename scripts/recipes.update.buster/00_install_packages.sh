@@ -225,6 +225,12 @@ if [ -z "$res" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 fi
 
+# 2022-05-17 => Install audiowaveform, used by audioplayer widget
+res=`dpkg -s audiowaveform 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs audiowaveform"
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
