@@ -188,19 +188,6 @@ if [ ! -d "/usr/local/lib/lv2/bolliedelay.lv2" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
 fi
 
-# 2021-09-22: Add sfizz repo
-if [ ! -f "/etc/apt/sources.list.d/sfizz-dev.list" ]; then
-	sfizz_url_base="http://download.opensuse.org/repositories/home:/sfztools:/sfizz:/develop/Raspbian_10"
-	echo "deb $sfizz_url_base/ /" > /etc/apt/sources.list.d/sfizz-dev.list
-	curl -fsSL $sfizz_url_base/Release.key | apt-key add -
-fi
-
-# 2021-09-22: Install sfizz from repo
-res=`dpkg -s sfizz 2>&1 | grep "Status:"`
-if [ "$res" != "Status: install ok installed" ]; then
-	aptpkgs="$aptpkgs sfizz"
-fi
-
 # 2021-09-22: Uninstall sfizz if previously installed from source code
 if [ -d "$ZYNTHIAN_SW_DIR/sfizz" ]; then
 	cd "$ZYNTHIAN_SW_DIR/sfizz/build"
@@ -229,6 +216,24 @@ fi
 res=`dpkg -s audiowaveform 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs audiowaveform"
+fi
+
+# 2022-06-07: Delete old sfizz repo, install new one
+if [ -f "/etc/apt/sources.list.d/sfizz-dev.list" ]; then
+	apt-get -y remove sfizz
+	rm -f /etc/apt/sources.list.d/sfizz-dev.list
+fi
+
+if [ ! -f "/etc/apt/sources.list.d/sfizz.list" ]; then
+	sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_10"
+	echo "deb $sfizz_url_base/ /" > /etc/apt/sources.list.d/sfizz.list
+	curl -fsSL $sfizz_url_base/Release.key | apt-key add -
+fi
+
+# 2022-06-07: Install sfizz from repo
+res=`dpkg -s sfizz 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs sfizz"
 fi
 
 # Hold some packages
