@@ -236,6 +236,12 @@ if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs sfizz"
 fi
 
+# 2022-07-26: Install sooperlooper from repo
+res=`dpkg -s sooperlooper 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs sooperlooper"
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
