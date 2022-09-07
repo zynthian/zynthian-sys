@@ -3,7 +3,7 @@ cd $ZYNTHIAN_SW_DIR/mod-host
 
 # WARNING This is a temporal workaround until we update Jackd version!
 # Fix repo position to that not needs a recent Jack version (JackTickDouble)
-git checkout 0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b
+git checkout --detach 0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b
 
 git pull | grep -q -v 'Already up.to.date.' && changed=1
 if [[ "$changed" -eq 1 ]]; then
