@@ -269,7 +269,7 @@ apt-get -y autoclean
 # Update firmware to a recent version that works OK!!
 res=`uname -r`
 if [[ "$res" < "5.15.61-v7l+" ]]; then
-	rpi-update -y
+	SKIP_WARNING=1 rpi-update
 	set_reboot_flag
 fi
 
