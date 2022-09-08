@@ -1,12 +1,18 @@
 
 cd $ZYNTHIAN_SW_DIR/mod-host
 
-# WARNING This is a temporal workaround until we update Jackd version!
-# Fix repo position to that not needs a recent Jack version (JackTickDouble)
-git checkout --detach 0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b
+# Normal Updates => Temporary disabled
+#git pull | grep -q -v 'Already up.to.date.' && changed=1
+#if [[ "$changed" -eq 1 ]]; then
 
-git pull | grep -q -v 'Already up.to.date.' && changed=1
-if [[ "$changed" -eq 1 ]]; then
+# WARNING Temporary workaround until we update Jackd version!
+# Fix repo position so it doesn't need a recent Jack version (JackTickDouble)
+# SHA => 0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b
+shash="0d1cb54"
+res=`git branch | grep "* (HEAD detached at $shash)"`
+if [ "$res" != "* (HEAD detached at $shash)" ]; then
+	git checkout --detach $shash
+
 	make -j 4
 	make install
 	make clean
