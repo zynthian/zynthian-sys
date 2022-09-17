@@ -112,6 +112,7 @@ $ZYNTHIAN_RECIPE_DIR/install_VL1.sh
 $ZYNTHIAN_RECIPE_DIR/install_qmidiarp.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 $ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
+$ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
 
 # X42 plugins
 #$ZYNTHIAN_RECIPE_DIR/install_fat1.sh

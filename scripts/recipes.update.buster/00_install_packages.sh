@@ -242,6 +242,11 @@ if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs sooperlooper"
 fi
 
+# 2022-09-17: Install TalentedHack LV2 plugin (Autotune)
+if [ ! -d "/usr/local/lib/lv2/talentedhack.lv2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
