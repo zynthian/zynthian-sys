@@ -38,8 +38,8 @@ if [ "$res" != "Status: install ok installed" ]; then
 fi
 
 # 2020-09-30 => Install terminado, needed for the new webconf's zynterm
-if [ ! -e $ZYNTHIAN_SW_DIR/terminado ]; then
-	$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
+if is_python_module_installed.py terminado; then
+	pip3 install terminado
 fi
 
 # 2020-09-30 => Generate SSL self-signed certificate for webconf

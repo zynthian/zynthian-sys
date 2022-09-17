@@ -163,7 +163,7 @@ fi
 
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests
-pip3 install mido python-rtmidi patchage rpi_ws281x
+pip3 install mido python-rtmidi patchage rpi_ws281x terminado
 #mutagen
 
 #************************************************
@@ -368,9 +368,6 @@ $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
 
 # Install Mutagen (when available, use pip3 install)
 $ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
-
-# Install Terminado (Web Terminal)
-$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
 
 # Install VL53L0X library (Distance Sensor)
 $ZYNTHIAN_RECIPE_DIR/install_VL53L0X.sh

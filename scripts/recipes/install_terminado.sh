@@ -12,7 +12,7 @@ pip3 install XStatic_term.js 2>/dev/null
 
 git clone https://github.com/jupyter/terminado.git
 cd terminado
-python3 ./setup.py install
+python3 ./setup.py install # This is broken! We are installing from pip3 now!!!
 cd ..
 
 #rm -rf "terminado"
