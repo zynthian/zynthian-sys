@@ -1,18 +1,10 @@
 #!/bin/bash
 
-cd $ZYNTHIAN_SW_DIR
-if [ -d "terminado" ]; then
-	rm -rf "terminado"
-fi
+
+pip3 install tornado_xstatic xstatic
 
 # The next command prints an error that i don't know how to avoid, so i send the error to /dev/null for avoid breaking nightly builds
-pip3 install tornado_xstatic 2>/dev/null
-pip3 install xstatic 2>/dev/null
 pip3 install XStatic_term.js 2>/dev/null
 
-git clone https://github.com/jupyter/terminado.git
-cd terminado
-python3 ./setup.py install # This is broken! We are installing from pip3 now!!!
-cd ..
-
-#rm -rf "terminado"
+# Last terminado version compatible with tornado-4.1 is 0.13.3
+pip3 install terminado==0.13.3

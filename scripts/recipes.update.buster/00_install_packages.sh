@@ -39,7 +39,7 @@ fi
 
 # 2020-09-30 => Install terminado, needed for the new webconf's zynterm
 if is_python_module_installed.py terminado; then
-	pip3 install terminado
+	$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
 fi
 
 # 2020-09-30 => Generate SSL self-signed certificate for webconf
