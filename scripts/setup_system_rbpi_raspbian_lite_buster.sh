@@ -163,7 +163,7 @@ fi
 
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests
-pip3 install mido python-rtmidi patchage rpi_ws281x terminado
+pip3 install mido python-rtmidi patchage rpi_ws281x
 #mutagen
 
 #************************************************
@@ -377,6 +377,9 @@ $ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
 
 # Install noVNC web viewer
 $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
+
+# Install terminal emulator for tornado (webconf)
+$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
 
 # Install DT overlays for waveshare displays and others
 $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
