@@ -247,6 +247,12 @@ if [ ! -d "/usr/local/lib/lv2/talentedhack.lv2" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
 fi
 
+# 2022-09-19: Install ddcutil for display configuration control
+res=`dpkg -s ddcutil 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs ddcutil"
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
