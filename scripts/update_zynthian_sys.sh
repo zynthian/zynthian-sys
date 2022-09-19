@@ -190,10 +190,13 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 		sed -i '1s/^/dwc_otg.speed=1 /' /boot/cmdline.txt
 	fi
 
+	if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
+		$ZYNTHIAN_CUSTOM_BOOT_CMDLINE=$ZYNTHIAN_CUSTOM_BOOT_CMDLINE $DISPLAY_KERNEL_OPTIONS
+	
 	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
 		echo "BOOT LOG DISABLED"
 		sed -i '1s/tty1/tty3/' /boot/cmdline.txt
-		sed -i '1s/rootwait/rootwait logo.nologo quiet splash/' /boot/cmdline.txt
+		sed -i '1s/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
 	fi
 
 	echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
@@ -411,8 +414,11 @@ fi
 if [ ! -d "/etc/X11/xorg.conf.d" ]; then
 	mkdir /etc/X11/xorg.conf.d
 fi
-cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
-sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
+#cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
+#sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
+if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
+	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
+fi
 
 # Copy fonts to system directory
 rsync -r --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
