@@ -115,7 +115,7 @@ apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-fi
 #ln -s /usr/lib/arm-linux-gnueabihf/xorg/modules/drivers/fbturbo_drv.so /usr/lib/xorg/modules/drivers
 
 # CLI Tools
-apt-get -y install raspi-config psmisc tree joe nano vim p7zip-full i2c-tools
+apt-get -y install raspi-config psmisc tree joe nano vim p7zip-full i2c-tools ddcutil
 apt-get -y install fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi
 apt-get -y install evtest libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
