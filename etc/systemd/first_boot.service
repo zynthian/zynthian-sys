@@ -1,6 +1,5 @@
 [Unit]
 Description=First Boot Script
-Before=jack2.service
 
 [Service]
 Type=oneshot
