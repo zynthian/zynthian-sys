@@ -3,8 +3,8 @@
 # Load Config Envars
 source "/zynthian/config/zynthian_envars.sh"
 
-# Get System Codebase
-codebase=`lsb_release -cs`
+# Hardware Autoconfig
+$ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
 
 # Regenerate Keys
 $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh
@@ -21,6 +21,7 @@ if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
 fi
 
 # Run distro-specific script
+codebase=`lsb_release -cs`
 cd $ZYNTHIAN_SYS_DIR/scripts
 if [ -f "first_boot.$codebase.sh" ]; then
 	./first_boot.$codebase.sh
