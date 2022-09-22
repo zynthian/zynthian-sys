@@ -75,8 +75,8 @@ if config_name:
 		
 		check_output("cp -a '{}/config/zynthian_envars_{}.sh' '{}/zynthian_envars.sh'".format(zsys_dir, config_name, zconfig_dir), shell=True)
 		check_output("{}/scripts/update_zynthian_sys.sh".format(zsys_dir), shell=True)
-		check_output("source {}/zynthian_envars.sh; {}/zyncoder/build.sh".format(zconfig_dir, zyn_dir), shell=True)
-		check_output("rm -rf {}/img".format(zconfig_dir), shell=True)
+		check_output("rm -rf {}/zyncoder/build".format(zyn_dir), shell=True)
+		check_output("rm -rf {}/img".format(zsys_dir), shell=True)
 		check_output("reboot", shell=True)
 	else:
 		print("Zynthian already configured for {}.".format(config_name))
