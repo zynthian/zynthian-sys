@@ -11,7 +11,7 @@ if [ ! -d "$ZYNTHIAN_CONFIG_DIR/img" ]; then
 	mkdir $ZYNTHIAN_CONFIG_DIR/img
 fi
 
-convert_options="-resize ${DISPLAY_WIDTH}x -gravity Center -extent ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT}"
+convert_options="-resize ${DISPLAY_WIDTH}x -gravity Center -extent ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT} -strip" 
 /usr/bin/convert "$ZYNTHIAN_UI_DIR/img/zynthian_logo_boot.png" $convert_options "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_boot.png"
 /usr/bin/convert "$ZYNTHIAN_UI_DIR/img/zynthian_logo_error.png" $convert_options "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.png"
 
