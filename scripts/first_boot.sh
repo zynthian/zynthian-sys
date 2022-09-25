@@ -6,6 +6,9 @@ source "/zynthian/config/zynthian_envars.sh"
 # Hardware Autoconfig
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
 
+# Fix ALSA mixer settings
+$ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh
+
 # Regenerate Keys
 $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh
 
