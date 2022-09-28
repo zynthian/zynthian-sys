@@ -28,8 +28,8 @@ export DEBIAN_FRONTEND=noninteractive
 # Get System Info
 #------------------------------------------------------------------------------
 
-virtualization = "$(systemd-detect-virt)"
-ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
+virtualization=$(systemd-detect-virt)
+ZYNTHIAN_OS_CODEBASE=$(lsb_release -cs)
 
 #------------------------------------------------------------------------------
 # Load Environment Variables
