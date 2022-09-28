@@ -1,9 +1,9 @@
 #!/bin/bash
 
-VERSION="3.21.1"
+VERSION="3.24.2"
 
-# riban LV2 plugins
-cd $ZYNTHIAN_sw_DIR
+# SW directory
+cd $ZYNTHIAN_SW_DIR
 
 if [ -d cmake-$VERSION ]; then
 	rm -rf cmake-$VERSION
