@@ -25,9 +25,10 @@
 export DEBIAN_FRONTEND=noninteractive
 
 #------------------------------------------------------------------------------
-# Get System Codebase
+# Get System Info
 #------------------------------------------------------------------------------
 
+virtualization = "$(systemd-detect-virt)"
 ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
 
 #------------------------------------------------------------------------------
@@ -166,7 +167,7 @@ JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
 ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 ZYNTHIAN_CUSTOM_BOOT_CMDLINE=${ZYNTHIAN_CUSTOM_BOOT_CMDLINE//\n//}
 
-if [ -f "/proc/stat" ]; then
+if [ "$virtualization" == "none" ]; then
 	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
 else
 	RBPI_AUDIO_DEVICE="Headphones"
@@ -308,11 +309,13 @@ if [ ! -L "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq" ]; then
 	ln -s "$ZYNTHIAN_PIANOTEQ_DIR/Pianoteq 6 STAGE" "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq"
 fi
 # Generate LV2 presets
-ptq_version=$($ZYNTHIAN_PIANOTEQ_DIR/pianoteq --version | cut -d' ' -f4)
-if [[ "$version" > "7.2.0" ]]; then
-	n_presets=$(find "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" -name "Pianoteq 7 *-factory-presets*.lv2" -printf '.' | wc -m)
-	if [[ "$n_presets" == 0 ]]; then
-		$ZYNTHIAN_PIANOTEQ_DIR/pianoteq --export-lv2-presets $ZYNTHIAN_MY_DATA_DIR/presets/lv2
+if [ "$virtualization" == "none" ]; then
+	ptq_version=$($ZYNTHIAN_PIANOTEQ_DIR/pianoteq --version | cut -d' ' -f4)
+	if [[ "$version" > "7.2.0" ]]; then
+		n_presets=$(find "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" -name "Pianoteq 7 *-factory-presets*.lv2" -printf '.' | wc -m)
+		if [[ "$n_presets" == 0 ]]; then
+			$ZYNTHIAN_PIANOTEQ_DIR/pianoteq --export-lv2-presets $ZYNTHIAN_MY_DATA_DIR/presets/lv2
+		fi
 	fi
 fi
 # Setup Pianoteq User Presets Directory
@@ -482,7 +485,7 @@ if [ -d "$soundcard_config_custom_dir" ]; then
 	custom_config "$soundcard_config_custom_dir"
 fi
 
-if [ -f "/proc/stat" ]; then
+if [ "$virtualization" == "none" ]; then
 	# Fix ALSA Mixer settings
 	$ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh
 	# Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
