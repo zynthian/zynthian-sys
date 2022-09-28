@@ -81,7 +81,7 @@ ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards" "/root/.pedalboards"
 
 # Fix/Setup MOD-UI lv2 presets directory
 if [ -d "/root/.lv2" ] && [ ! -L "/root/.lv2" ]; then
-	mv /root/.lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2
+	mv /root/.lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2 2>/dev/null; true
 	rm -rf "/root/.lv2"
 	ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" "/root/.lv2"
 fi
