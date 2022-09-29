@@ -36,6 +36,8 @@ echo "Restoring factory config ..."
 cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
 source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 update_zynthian_sys.sh
+rm -rf $ZYNTHIAN_DIR/zyncoder/build
+$ZYNTHIAN_DIR/zyncoder/build.sh
 rm -rf $ZYNTHIAN_CONFIG_DIR/img
 rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
 
