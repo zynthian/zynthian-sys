@@ -28,6 +28,14 @@ cat /dev/null > ~/.bash_history && history -c && history -w
 # Removing user data files
 echo "Removing user data files ..."
 rm -f $ZYNTHIAN_MY_DATA_DIR/snapshots/last_state.zss
+rm -rf $ZYNTHIAN_MY_DATA_DIR/preset_favorites/*
+
+# Restore first boot config
+cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+update_zynthian_sys.sh
+rm -f $ZYNTHIAN_CONFIG_DIR/img
+rm -f $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
 
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."
