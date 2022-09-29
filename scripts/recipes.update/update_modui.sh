@@ -11,7 +11,8 @@ cd $ZYNTHIAN_SW_DIR/mod-host
 shash="0d1cb54"
 res=`git branch | grep "* (HEAD detached at $shash)"`
 if [ "$res" != "* (HEAD detached at $shash)" ]; then
-	git checkout --detach $shash
+	git fetch
+	git checkout $shash --detach
 
 	make -j 4
 	make install
