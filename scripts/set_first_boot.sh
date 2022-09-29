@@ -30,12 +30,15 @@ echo "Removing user data files ..."
 rm -f $ZYNTHIAN_MY_DATA_DIR/snapshots/last_state.zss
 rm -rf $ZYNTHIAN_MY_DATA_DIR/preset_favorites/*
 
-# Restore first boot config
+# Restore factory config
+echo "Restoring factory config ..."
 cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
 source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 update_zynthian_sys.sh
 rm -rf $ZYNTHIAN_CONFIG_DIR/img
 rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
+
+sync
 
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."
