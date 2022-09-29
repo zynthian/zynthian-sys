@@ -1,12 +1,9 @@
 #!/bin/bash
 
 # Stop zynthian services
+echo "Stopping zynthian services ..."
 systemctl stop zynthian
 systemctl stop zynthian-webconf
-
-# Add First Boot Script to /etc/rc.local
-echo "Enabling first boot service ..."
-systemctl enable first_boot
 
 # Clean unneeded packages & apt cache
 echo "Cleaning unused packages and cache ..."
@@ -42,11 +39,14 @@ update_zynthian_sys.sh
 rm -rf $ZYNTHIAN_CONFIG_DIR/img
 rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
 
-sync
+# Add First Boot Script to /etc/rc.local
+echo "Enabling first boot service ..."
+systemctl enable first_boot
 
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."
 sleep 3
+sync
 
 # Power Off
 poweroff   
