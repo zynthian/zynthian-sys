@@ -25,6 +25,10 @@ done
 echo "Cleaning shell history ..."
 cat /dev/null > ~/.bash_history && history -c && history -w
 
+# Removing user data files
+echo "Removing user data files ..."
+rm -f $ZYNTHIAN_MY_DATA_DIR/snapshots/last_state.zss
+
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."
 sleep 3
