@@ -39,9 +39,9 @@ export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:Headphones -r 44100 -p 512 
 
 #Display Config
 export DISPLAY_NAME="Generic HDMI Display"
-export DISPLAY_CONFIG="disable_overscan=1\n"
-export DISPLAY_WIDTH="800"
-export DISPLAY_HEIGHT="480"
+export DISPLAY_CONFIG="disable_overscan=1\ndtoverlay=vc4-kms-v3d\n"
+export DISPLAY_WIDTH=""
+export DISPLAY_HEIGHT=""
 export FRAMEBUFFER="/dev/fb0"
 export DISPLAY_KERNEL_OPTIONS=""
 
