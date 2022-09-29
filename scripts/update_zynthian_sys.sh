@@ -167,7 +167,7 @@ JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
 ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 ZYNTHIAN_CUSTOM_BOOT_CMDLINE=${ZYNTHIAN_CUSTOM_BOOT_CMDLINE//\n//}
 
-if [ "$virtualization" == "none" ]; then
+if [[ "$virtualization" == "none" ]]; then
 	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
 else
 	RBPI_AUDIO_DEVICE="Headphones"
@@ -309,7 +309,7 @@ if [ ! -L "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq" ]; then
 	ln -s "$ZYNTHIAN_PIANOTEQ_DIR/Pianoteq 6 STAGE" "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq"
 fi
 # Generate LV2 presets
-if [ "$virtualization" == "none" ]; then
+if [[ "$virtualization" == "none" ]]; then
 	ptq_version=$($ZYNTHIAN_PIANOTEQ_DIR/pianoteq --version | cut -d' ' -f4)
 	if [[ "$version" > "7.2.0" ]]; then
 		n_presets=$(find "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" -name "Pianoteq 7 *-factory-presets*.lv2" -printf '.' | wc -m)
