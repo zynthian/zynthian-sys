@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Stop zynthian services
+systemctl stop zynthian
+systemctl stop zynthian-webconf
+
 # Add First Boot Script to /etc/rc.local
 echo "Enabling first boot service ..."
 systemctl enable first_boot
