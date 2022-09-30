@@ -34,7 +34,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 # Pull from repositories ...
 #------------------------------------------------------------------------------
 
-echo "Updating zynthian-data ..."
+echo "Updating zynthian-data..."
 cd "$ZYNTHIAN_DATA_DIR"
 git checkout .
 git pull

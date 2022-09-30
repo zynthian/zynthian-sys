@@ -37,13 +37,13 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 # Pull from repositories ...
 #------------------------------------------------------------------------------
 
-echo "Updating zyncoder ..."
+echo "Updating zyncoder..."
 cd $ZYNTHIAN_DIR/zyncoder
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
 ./build.sh
 
-echo "Updating zynthian-ui ..."
+echo "Updating zynthian-ui..."
 cd $ZYNTHIAN_UI_DIR
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
@@ -58,7 +58,7 @@ else
 	fi
 fi
 
-echo "Updating zynthian-webconf ..."
+echo "Updating zynthian-webconf..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
 git checkout .
 git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
