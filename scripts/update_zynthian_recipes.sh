@@ -39,7 +39,7 @@ RECIPES_UPDATE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes.update"
 codebase=`lsb_release -cs`
 
 #Custom update recipes, depending on the codebase version
-echo "Executing custom update recipes ..."
+echo "Executing custom update recipes..."
 for r in $RECIPES_UPDATE_DIR.${codebase}/*.sh; do
 	echo "Executing $r ..."
 	bash $r
@@ -47,7 +47,7 @@ done
 
 #Generic update recipes
 if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ] || [ "$ZYNTHIAN_FORCE_UPGRADE" == "yes" ]; then
-	echo "Executing update recipes ..."
+	echo "Executing update recipes..."
 	for r in $RECIPES_UPDATE_DIR/*.sh; do
 		echo "Executing $r ..."
 		bash $r

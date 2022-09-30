@@ -8,7 +8,7 @@ fi
 
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
-echo "Regenerating cache LV2 ..."
+echo "Regenerating cache LV2..."
 cd $ZYNTHIAN_UI_DIR/zyngine
 python3 ./zynthian_lv2.py
 

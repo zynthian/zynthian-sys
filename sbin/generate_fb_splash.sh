@@ -24,7 +24,7 @@ convert_options="-resize ${DISPLAY_WIDTH}x -gravity Center -extent ${DISPLAY_WID
 
 # This is not used anymore...
 if [[ "$FRAMEBUFFER" == "XXX/dev/fb1" ]]; then
-	echo "Generating Splash Screens for FrameBuffer ..."
+	echo "Generating Splash Screens for FrameBuffer..."
 
 	/bin/echo 1 > /sys/class/backlight/*/bl_power
 

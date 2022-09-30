@@ -48,7 +48,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 cd $ZYNTHIAN_SYS_DIR
 export ZYNTHIAN_SYS_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-echo "Updating zynthian-sys ($ZYNTHIAN_SYS_BRANCH) ..."
+echo "Updating zynthian-sys ($ZYNTHIAN_SYS_BRANCH)..."
 git checkout .
 git pull
 

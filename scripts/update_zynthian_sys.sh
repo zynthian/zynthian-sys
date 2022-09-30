@@ -3,7 +3,7 @@
 # ZYNTHIAN PROJECT: Zynthian System Configuration
 # 
 # Configure the system for Zynthian: copy files, create directories, 
-# replace values, ...
+# replace values...
 # 
 # Copyright (C) 2015-2017 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -45,14 +45,14 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
 
-echo "Updating System configuration ..."
+echo "Updating System configuration..."
 
 #------------------------------------------------------------------------------
 # Define some functions
 #------------------------------------------------------------------------------
 
 function custom_config {
-	echo "Custom Config $1 ..."
+	echo "Custom Config $1..."
 	cd "$1"
 	if [ -d "etc" ]; then
 		for file in etc/* ; do
@@ -249,7 +249,7 @@ fi
 # Zynthian Config 
 #------------------------------------------------------------------------------
 
-# Copy default envars file if needed ...
+# Copy default envars file if needed...
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
 fi
@@ -365,7 +365,7 @@ if [ -d "/usr/share/aeolus" ]; then
 	if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
 		echo "Aeolus Waves already exist!"
 	else
-		echo "Copying default Aeolus Waves ..."
+		echo "Copying default Aeolus Waves..."
 		cd /usr/share/aeolus/stops
 		tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
 	fi
