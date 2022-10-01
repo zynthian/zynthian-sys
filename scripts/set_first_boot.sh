@@ -40,6 +40,7 @@ rm -rf $ZYNTHIAN_DIR/zyncoder/build
 $ZYNTHIAN_DIR/zyncoder/build.sh
 rm -rf $ZYNTHIAN_CONFIG_DIR/img
 rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
 # Add First Boot Script to /etc/rc.local
 echo "Enabling first boot service..."
