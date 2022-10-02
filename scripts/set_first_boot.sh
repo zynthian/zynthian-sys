@@ -33,7 +33,8 @@ rm -rf $ZYNTHIAN_MY_DATA_DIR/preset_favorites/*
 
 # Restore factory config
 echo "Restoring factory config..."
-cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+cp -a "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh" $ZYNTHIAN_CONFIG_DIR
+cp -a "$ZYNTHIAN_SYS_DIR/config/default_midi_profile.sh" "$ZYNTHIAN_CONFIG_DIR/midi-profiles/default.sh"
 source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 update_zynthian_sys.sh
 rm -rf $ZYNTHIAN_DIR/zyncoder/build
