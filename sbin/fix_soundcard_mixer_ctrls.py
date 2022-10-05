@@ -41,7 +41,7 @@ if soundcard_mixer_0 is not None:
 		ctrls_1 = []
 		for ctrl in ctrls_0:
 			ctrl = ctrl.strip()
-			if ctrl in ("Digital","ADC","Master","Capture","DAC","Speaker","Mic","Headphone","HDMI"):
+			if ctrl in ("Digital","ADC","Master","Capture","DAC","Speaker","Mic","HDMI"):
 				ctrls_1.append(ctrl+" Left")
 				ctrls_1.append(ctrl+" Right")
 			else:
