@@ -34,7 +34,7 @@ export ZYNTHIAN_WIFI_MODE="off"
 #Audio Config
 export SOUNDCARD_NAME="RBPi Headphones"
 export SOUNDCARD_CONFIG="dtparam=audio=on\naudio_pwm_mode=2"
-export SOUNDCARD_MIXER="Headphone Left,Headphone Right"
+export SOUNDCARD_MIXER="Headphone"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:Headphones -r 44100 -o 2 -p 512 -n 3 -X raw"
 
 #Display Config
