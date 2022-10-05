@@ -78,18 +78,20 @@ function run_flag_actions() {
 
 		if [ -f $REBOOT_FLAGFILE ]; then
 			clean_all_flags
-			echo "Rebooting..."
+			echo "Saving state..."
 			send_osc 1370 /CUIA/LAST_STATE_ACTION
 			sleep 1
+			echo "Rebooting..."
 			reboot
 			return
 		fi
 
 		if [ -f $RESTART_UI_FLAGFILE ]; then
 			clean_restart_ui_flag
-			echo "Restarting zynthian service..."
+			echo "Saving state..."
 			send_osc 1370 /CUIA/LAST_STATE_ACTION
 			sleep 1
+			echo "Restarting zynthian service..."
 			systemctl restart zynthian
 		fi
 
@@ -100,5 +102,66 @@ function run_flag_actions() {
 		fi
 	fi
 }
+
+function show_flag_actions() {
+		if [ -f $REBOOT_FLAGFILE ]; then
+			echo "REBOOT = ON"
+		else
+			echo "REBOOT = OFF"
+		fi
+
+		if [ -f $RESTART_UI_FLAGFILE ]; then
+			echo "RESTART_UI = ON"
+		else
+			echo "RESTART_UI = OFF"
+		fi
+
+		if [ -f $RESTART_WEBCONF_FLAGFILE ]; then
+			echo "RESTART_WEBCONF = ON"
+		else
+			echo "RESTART_WEBCONF = OFF"
+		fi
+}
+
+function run_reboot_flag_action_raw() {
+	if [ -f $REBOOT_FLAGFILE ]; then
+		clean_all_flags
+		echo "Rebooting..."
+		reboot
+	fi
+}
+
+#------------------------------------------------------------------------------
+
+cmd=${1,,}
+opt=${2,,}
+
+if [[ "$cmd" == "set" ]]; then
+	if [[ "$opt" == "reboot" ]]; then
+		set_reboot_flag
+	elif [[ "$opt" == "restart_ui" ]]; then
+		set_restart_ui_flag
+	elif [[ "$opt" == "restart_webconf" ]]; then
+		set_restart_webconf_flag
+	else
+		echo "Not valid action-flag operation"
+	fi
+elif [[ "$cmd" == "clean" ]]; then
+	if [[ "$opt" == "reboot" ]]; then
+		clean_reboot_flag
+	elif [[ "$opt" == "restart_ui" ]]; then
+		clean_restart_ui_flag
+	elif [[ "$opt" == "restart_webconf" ]]; then
+		clean_restart_webconf_flag
+	elif [[ "$opt" == "all" ]]; then
+		clean_all_flags
+	else
+		echo "Not valid action-flag operation."
+	fi
+elif [[ "$cmd" == "show" ]]; then
+	show_flag_actions
+elif [[ "$cmd" != "" ]]; then
+	echo "Not valid action-flag command. Use 'set' or 'clean'."
+fi
 
 #------------------------------------------------------------------------------

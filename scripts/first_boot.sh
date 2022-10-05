@@ -3,8 +3,12 @@
 # Load Config Envars
 source "/zynthian/config/zynthian_envars.sh"
 
+# Load action-flags shell-library
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
 # Hardware Autoconfig
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
+run_reboot_flag_action_raw
 
 # Fix ALSA mixer settings
 $ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh

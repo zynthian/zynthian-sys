@@ -79,7 +79,7 @@ if config_name:
 		check_output("{}/scripts/update_zynthian_sys.sh".format(zsys_dir), shell=True)
 		check_output("rm -rf {}/zyncoder/build".format(zyn_dir), shell=True)
 		check_output("rm -rf {}/img".format(zconfig_dir), shell=True)
-		check_output("reboot", shell=True)
+		check_output("{}/scripts/delayed_action_flags.sh set reboot".format(zsys_dir), shell=True)
 	else:
 		print("Zynthian already configured for {}.".format(config_name))
 else:
