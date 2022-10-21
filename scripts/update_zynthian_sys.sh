@@ -265,8 +265,8 @@ sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_
 
 # Copy zynthian specific config files
 cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/config/system_backup_items.txt $ZYNTHIAN_CONFIG_DIR
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/config_backup_items.txt" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/config/config_backup_items.txt $ZYNTHIAN_CONFIG_DIR
 fi
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/data_backup_items.txt" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/config/data_backup_items.txt $ZYNTHIAN_CONFIG_DIR
