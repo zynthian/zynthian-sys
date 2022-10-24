@@ -253,6 +253,11 @@ if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs ddcutil"
 fi
 
+# 2022-09-17: Install TalentedHack LV2 plugin (Autotune)
+if [ ! -L "$ZYNTHIAN_PLUGINS_DIR/lv2/OS-251" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
