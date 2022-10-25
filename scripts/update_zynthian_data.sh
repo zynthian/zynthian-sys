@@ -146,11 +146,11 @@ done
 cd $ZYNTHIAN_DATA_DIR/lv2-custom
 for d in */; do
 	if [ -d "/usr/lib/lv2/$d" ]; then
-		cp -a $d /usr/lib/lv2
+		cp -a $d/* /usr/lib/lv2/$d
 	elif [ -d "/usr/local/lib/lv2/$d" ]; then
-		cp -a $d /usr/local/lib/lv2
+		cp -a $d/* /usr/local/lib/lv2/$d
 	elif [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/$d" ]; then
-		cp -a $d $ZYNTHIAN_PLUGINS_DIR/lv2
+		cp -a $d/* $ZYNTHIAN_PLUGINS_DIR/lv2/$d
 	fi
 done
 
