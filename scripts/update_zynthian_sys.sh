@@ -30,6 +30,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 virtualization=$(systemd-detect-virt)
 ZYNTHIAN_OS_CODEBASE=$(lsb_release -cs)
+ZYNTHIAN_OS_VERSION=$(cat /etc/zynthianos_version)
 
 #------------------------------------------------------------------------------
 # Load Environment Variables
@@ -42,6 +43,36 @@ else
 fi
 
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
+#------------------------------------------------------------------------------
+# Detect legacy stable prior to 2211/2210 and block branches, avoiding update.
+#------------------------------------------------------------------------------
+
+if [[ "$ZYNTHIAN_OS_VERSION" < "2210" ]]; then
+	echo "Blocking legacy stable 2109..."
+	cd $ZYNTHIAN_UI_DIR
+	git fetch
+	git checkout .
+	git checkout stable-2109
+	cd $ZYNTHIAN_DIR/zyncoder
+	git fetch
+	git checkout .
+	git checkout stable-2109
+	cd $ZYNTHIAN_DIR/zynthian-webconf
+	git fetch
+	git checkout .
+	git checkout stable-2109
+	cd $ZYNTHIAN_DATA_DIR
+	git fetch
+	git checkout .
+	git checkout stable-2109
+	cd $ZYNTHIAN_SYS_DIR
+	git fetch
+	git checkout .
+	git checkout stable-2109
+	update_zynthian_sys.sh
+	exit
+fi
 
 #------------------------------------------------------------------------------
 
