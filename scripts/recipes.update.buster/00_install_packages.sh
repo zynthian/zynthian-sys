@@ -258,6 +258,11 @@ if [ ! -d "$ZYNTHIAN_PLUGINS_DIR/lv2/OS-251.lv2" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 fi
 
+# 2022-11-2: Install Odin2 LV2 plugin (Synthesizer)
+if [ ! -d "$ZYNTHIAN_PLUGINS_DIR/lv2/Odin2.lv2" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
+fi
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
