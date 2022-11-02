@@ -46,7 +46,7 @@ for r in $RECIPES_UPDATE_DIR.${codebase}/*.sh; do
 done
 
 #Generic update recipes
-if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ] || [ "$ZYNTHIAN_FORCE_UPGRADE" == "yes" ]; then
+if [[ ! "$ZYNTHIAN_SYS_BRANCH" =~ ^stable.* ]] || [[ "$ZYNTHIAN_FORCE_UPGRADE" == "yes" ]]; then
 	echo "Executing update recipes ..."
 	for r in $RECIPES_UPDATE_DIR/*.sh; do
 		echo "Executing $r ..."
