@@ -222,7 +222,7 @@ if [ ! -z "$aptpkgs" ]; then
 fi
 
 # Upgrade System
-if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ] || [ "$ZYNTHIAN_FORCE_UPGRADE" == "yes" ]; then
+if [[ ! "$ZYNTHIAN_SYS_BRANCH" =~ ^stable.* ]] || [[ "$ZYNTHIAN_FORCE_UPGRADE" == "yes" ]]; then
 	if [ -z "$aptpkgs" ]; then
 		apt-get -y update --allow-releaseinfo-change
 	fi
