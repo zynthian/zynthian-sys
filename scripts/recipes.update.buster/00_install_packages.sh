@@ -263,6 +263,23 @@ if [ ! -d "$ZYNTHIAN_PLUGINS_DIR/lv2/Odin2.lv2" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 fi
 
+# 2022-11-07 Install mp3 support files
+res=`dpkg -s libmpg123-0 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs libmpg123-0 libmp3lame0"
+fi
+#TODO: Remove this when libsndfile 1.1.0 deb available
+if [ ! -f "/usr/local/lib/libsndfile.so.1" ]; then
+	res=`uname -m`
+	if [[ "$res" == "armv7l" ]]; then
+		cp -a /zynthian/zynthian-sys/lib/libsndfile.so.1 /usr/local/lib
+	fi
+fi
+
+# -----------------------------------------------------------------------------
+# Install/update recipes shouldn't be added below this line!
+# -----------------------------------------------------------------------------
+
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
@@ -299,10 +316,3 @@ fi
 #	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
 #	set_reboot_flag
 #fi
-
-# 2022-11-07 Install mp3 support files
-res=`uname -m`
-if [[ "$res" == "armv7l" ]]; then
-	apt-get -y install libmpg123-0 libmp3lame0
-	cp /zynthian/zynthian-sys/lib/libsndfile.so.1 /usr/local/lib #TODO: Remove this when libsndfile 1.1.0 deb available
-fi
