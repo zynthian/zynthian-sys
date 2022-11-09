@@ -299,3 +299,10 @@ fi
 #	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
 #	set_reboot_flag
 #fi
+
+# 2022-11-07 Install mp3 support files
+res=`uname -m`
+if [[ "$res" == "armv7l" ]]; then
+	apt-get -y install libmpg123-0 libmp3lame0
+	cp /zynthian/zynthian-sys/lib/libsndfile.so.1 /usr/local/lib #TODO: Remove this when libsndfile 1.1.0 deb available
+fi
