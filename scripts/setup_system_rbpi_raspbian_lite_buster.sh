@@ -147,7 +147,7 @@ lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-syst
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  libqt4-dev qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
-libxkbcommon-x11-dev libssl-dev
+libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0
 
 #libjack-dev-session
 #non-ntk-dev
