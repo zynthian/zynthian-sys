@@ -272,9 +272,13 @@ fi
 if [ ! -f "/usr/local/lib/libsndfile.so.1" ]; then
 	res=`uname -m`
 	if [[ "$res" == "armv7l" ]]; then
-		cp -a /zynthian/zynthian-sys/lib/libsndfile.so.1 /usr/local/lib
+		cp -a /zynthian/zynthian-sys/lib/libsndfile.* /usr/local/lib
+		cp -a /zynthian/zynthian-sys/bin/sndfile.* /usr/local/bin
 	fi
 fi
+
+# 2022-11-25 Bump tornado to v4.5 to solve https issues and probably other issues too
+pip3 install tornado==4.5
 
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
