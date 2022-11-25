@@ -17,7 +17,7 @@ old_library=''
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -lm'
+dependency_libs=' -lFLAC /usr/lib/arm-linux-gnueabihf/libvorbis.la /usr/lib/arm-linux-gnueabihf/libvorbisenc.la -lopus -logg -lmpg123 -lmp3lame -lm'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
