@@ -273,7 +273,7 @@ if [ ! -f "/usr/local/lib/libsndfile.so.1" ]; then
 	res=`uname -m`
 	if [[ "$res" == "armv7l" ]]; then
 		cp -a /zynthian/zynthian-sys/lib/libsndfile.* /usr/local/lib
-		cp -a /zynthian/zynthian-sys/bin/sndfile.* /usr/local/bin
+		cp -a /zynthian/zynthian-sys/bin/sndfile-* /usr/local/bin
 	fi
 fi
 
