@@ -1,0 +1,15 @@
+[Unit]
+Description=Bluetooth Alsa to Jack Bridge
+After=jack2.service
+Requires=jack2.service
+
+[Service]
+Environment=HOME=/root
+WorkingDirectory=/root
+ExecStart=/usr/bin/zita-a2j -j bt -L -r 44100 -p 2048 -d hw:Loopback,1,0
+ExecStartPre=/usr/local/bin/jack_wait -w
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

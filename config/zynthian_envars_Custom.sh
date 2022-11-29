@@ -30,6 +30,7 @@ export ZYNTHIAN_OVERCLOCKING="None"
 export ZYNTHIAN_LIMIT_USB_SPEED="0"
 export ZYNTHIAN_DISABLE_OTG="0"
 export ZYNTHIAN_WIFI_MODE="off"
+export ZYNTHIAN_BLUETOOTH_MODE="off"
 
 #Audio Config
 export SOUNDCARD_NAME="RBPi Headphones"
