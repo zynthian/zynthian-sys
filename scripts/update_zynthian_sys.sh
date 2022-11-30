@@ -48,7 +48,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 # Detect legacy stable prior to 2211/2210 and block branches, avoiding update.
 #------------------------------------------------------------------------------
 
-if [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
+if [[ "$virtualization" == "none" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
 	echo "Blocking legacy stable 2109..."
 	cd $ZYNTHIAN_UI_DIR
 	git fetch
