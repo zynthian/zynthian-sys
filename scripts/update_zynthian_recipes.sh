@@ -21,6 +21,18 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
+#------------------------------------------------------------------------------
+# Get System Info
+#------------------------------------------------------------------------------
+
+export virtualization=$(systemd-detect-virt)
+export ZYNTHIAN_OS_CODEBASE=$(lsb_release -cs)
+export ZYNTHIAN_OS_VERSION=$(cat /etc/zynthianos_version)
+
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
+
 if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
@@ -35,12 +47,9 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 RECIPES_UPDATE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes.update"
 
-# Get System Codebase
-codebase=`lsb_release -cs`
-
 #Custom update recipes, depending on the codebase version
 echo "Executing custom update recipes..."
-for r in $RECIPES_UPDATE_DIR.${codebase}/*.sh; do
+for r in $RECIPES_UPDATE_DIR.${ZYNTHIAN_OS_CODEBASE}/*.sh; do
 	echo "Executing $r ..."
 	bash $r
 done

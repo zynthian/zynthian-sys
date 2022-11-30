@@ -25,10 +25,12 @@
 # ****************************************************************************
 
 #------------------------------------------------------------------------------
-# Get System Codebase
+# Get System Info
 #------------------------------------------------------------------------------
 
-ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
+export virtualization=$(systemd-detect-virt)
+export ZYNTHIAN_OS_CODEBASE=$(lsb_release -cs)
+export ZYNTHIAN_OS_VERSION=$(cat /etc/zynthianos_version)
 
 #------------------------------------------------------------------------------
 # Load Environment Variables
