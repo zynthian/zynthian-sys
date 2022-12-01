@@ -268,16 +268,20 @@ fi
 # Copy default envars file if needed...
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+# Or fix it ...
+else
+	# Remove last part that it's been moved to zynthian_vars_extended.sh
+	sed -i -e "/^\# Hardware Architecture & Optimization Options/, /ZYNTHIAN_SETUP_APT_CLEAN/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+
+	# Fix some paths in config file
+	sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+	sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 fi
 
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
 	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
 fi
-
-# Fix some paths in config file
-sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
 # Copy zynthian specific config files
 cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
