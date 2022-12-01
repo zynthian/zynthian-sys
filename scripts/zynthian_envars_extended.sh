@@ -55,7 +55,9 @@ export ZYNTHIAN_EXTENDED_ENVARS_DEFINED=1
 export LINUX_OS_VERSION=$(lsb_release -cs)
 export LINUX_KERNEL_VERSION=$(uname -r)
 export ZYNTHIAN_OS_VERSION=$(cat /etc/zynthianos_version)
-export VIRTUALIZATION=$(systemd-detect-virt)
+if [ -z "$VIRTUALIZATION" ]; then
+	export VIRTUALIZATION=$(systemd-detect-virt)
+fi
 
 echo ""
 echo "----------------------------------------------"
