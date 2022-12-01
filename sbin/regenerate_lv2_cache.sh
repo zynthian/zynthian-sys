@@ -1,12 +1,13 @@
 #!/bin/bash
 
-if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
 
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
+#------------------------------------------------------------------------------
 
 echo "Regenerating cache LV2..."
 cd $ZYNTHIAN_UI_DIR/zyngine

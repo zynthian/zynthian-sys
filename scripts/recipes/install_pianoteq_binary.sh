@@ -42,7 +42,7 @@ rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/Pianoteq*.lv2
 ln -s $ZYNTHIAN_SW_DIR/pianoteq6/$armdir/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 # Generate LV2 presets (Pianoteq >= v7.2.1)
-if [[ "$(systemd-detect-virt)" == "none" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]]; then
 	version=$(./pianoteq --version | cut -d' ' -f4)
 	if [[ $version > "7.2.0" ]]; then
 		rm -rf $ZYNTHIAN_MY_DATA_DIR/presets/lv2/"Pianoteq 7 "*"-factory-presets"*.lv2

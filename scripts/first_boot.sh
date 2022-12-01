@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Load Config Envars
-source "/zynthian/config/zynthian_envars.sh"
+source "/zynthian/config/zynthian_envars_extended.sh"
 
 # Load action-flags shell-library
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"

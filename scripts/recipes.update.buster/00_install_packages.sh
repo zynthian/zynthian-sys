@@ -288,8 +288,6 @@ pip3 install tornado==4.5
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
 
-export DEBIAN_FRONTEND=noninteractive
-
 # Install needed apt packages
 if [ ! -z "$aptpkgs" ]; then
 	apt-get -y update --allow-releaseinfo-change
@@ -309,15 +307,13 @@ apt-get -y autoremove
 apt-get -y autoclean
 
 # Update firmware to a recent version that works OK!!
-res=`uname -r`
-echo "Current Kernel Version: $res"
-if [[ "$virtualization" == "none" ]] && [[ "$res" < "5.15.61-v7l+" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$LINUX_KERNEL_VERSION" < "5.15.61-v7l+" ]]; then
 	SKIP_WARNING=1 rpi-update
 	set_reboot_flag
 fi
 
 # Install a firmware version that works OK!!
-#if [[ "$res" != "5.10.49-v7l+" ]]; then
+#if [[ "$LINUX_KERNEL_VERSION" != "5.10.49-v7l+" ]]; then
 #	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
 #	set_reboot_flag
 #fi
