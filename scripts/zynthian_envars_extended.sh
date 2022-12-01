@@ -57,6 +57,8 @@ export LINUX_KERNEL_VERSION=$(uname -r)
 export ZYNTHIAN_OS_VERSION=$(cat /etc/zynthianos_version)
 export VIRTUALIZATION=$(systemd-detect-virt)
 
+echo ""
+echo "----------------------------------------------"
 echo "Linux Version: $LINUX_OS_VERSION"
 echo "Kernel Version: $LINUX_KERNEL_VERSION"
 echo "ZynthianOS Version: $ZYNTHIAN_OS_VERSION"
@@ -113,5 +115,8 @@ export DEBIAN_FRONTEND="noninteractive"
 export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
 
 #------------------------------------------------------------------------------
+
+echo "----------------------------------------------"
+echo ""
 
 fi
