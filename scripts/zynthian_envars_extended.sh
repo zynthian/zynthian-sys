@@ -25,6 +25,11 @@
 # Load Standard Environment Variables
 #------------------------------------------------------------------------------
 
+if [ -z "$ZYNTHIAN_CONFIG_DIR" ]; then
+	export ZYNTHIAN_CONFIG_DIR="/zynthian/config"
+	export ZYNTHIAN_SYS_DIR="/zynthian/zynthian-sys"
+fi
+
 if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 elif [ -f "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh" ]; then
