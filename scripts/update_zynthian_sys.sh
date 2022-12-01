@@ -463,7 +463,7 @@ echo "" > /etc/network/interfaces
 
 # User Config (root)
 # => bash
-sed -i -e "s/zynthian_envars.sh/zynthian_envars_extended.sh/g" /root/.bashrc
+sed -i -e "s/config\/zynthian_envars.sh/zynthian-sys\/scripts\/zynthian_envars_extended.sh/g" /root/.bashrc
 
 # => ZynAddSubFX Config
 if [ -f $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ]; then
