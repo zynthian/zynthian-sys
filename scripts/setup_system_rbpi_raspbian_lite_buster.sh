@@ -22,9 +22,11 @@
 # 
 #******************************************************************************
 
-source zynthian_envars.sh
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
 
-export DEBIAN_FRONTEND=noninteractive
+source "zynthian_envars_extended.sh"
 
 #------------------------------------------------
 # Set default config
@@ -289,7 +291,7 @@ systemctl enable zynthian-webconf
 systemctl enable zynthian-config-on-boot
 
 # Setup loading of Zynthian Environment variables ...
-echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
+echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars_extended.sh" >> /root/.bashrc
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 

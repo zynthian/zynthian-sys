@@ -22,20 +22,13 @@
 # 
 #******************************************************************************
 
-# Set dpkg interface
-export DEBIAN_FRONTEND=noninteractive
-
-#------------------------------------------------------------------------------
-# Get System Codebase
-#------------------------------------------------------------------------------
-
-ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
-
 #------------------------------------------------------------------------------
 # Load Environment Variables
 #------------------------------------------------------------------------------
 
-source "/zynthian/config/zynthian_envars.sh"
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
 export PATH=$PATH:/$ZYNTHIAN_SYS_DIR/scripts:/$ZYNTHIAN_SYS_DIR/sbin
 
 #------------------------------------------------------------------------------
