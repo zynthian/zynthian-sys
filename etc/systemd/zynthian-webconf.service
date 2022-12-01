@@ -5,6 +5,7 @@ Description=Zynthian Webconf
 Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
 Environment=HOME=/root
 Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 WorkingDirectory=#ZYNTHIAN_DIR#/zynthian-webconf
 ExecStart=#ZYNTHIAN_DIR#/zynthian-webconf/zynthian_webconf.sh
