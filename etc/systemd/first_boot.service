@@ -2,6 +2,7 @@
 Description=First Boot Script
 
 [Service]
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Type=oneshot
 ExecStart=#ZYNTHIAN_SYS_DIR#/scripts/first_boot.sh
 
