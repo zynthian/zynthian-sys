@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Load Config Envars
-source "/zynthian/config/zynthian_envars_extended.sh"
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
 
-# Load action-flags shell-library
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
+#------------------------------------------------------------------------------
 
 # Hardware Autoconfig
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
@@ -19,7 +22,7 @@ $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh
 # Enable WIFI AutoAccessPoint (hostapd)
 systemctl unmask hostapd
 
-#Regenerate cache LV2
+# Regenerate cache LV2
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
 	echo "Regenerating cache LV2..."
