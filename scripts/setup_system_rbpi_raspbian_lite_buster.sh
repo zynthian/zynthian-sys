@@ -106,7 +106,7 @@ apt-get -y autoremove
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server 
-apt-get -y install xfwm4 xfwm4-themes xfce4-panel xdotool
+apt-get -y install xfwm4 xfwm4-themes xfce4-panel xdotool cpufrequtils
 
 apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
 apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree
