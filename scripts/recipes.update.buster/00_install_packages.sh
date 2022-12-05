@@ -280,6 +280,12 @@ fi
 # 2022-11-25 Bump tornado to v4.5 to solve https issues and probably other issues too
 pip3 install tornado==4.5
 
+# 2022-12-05 Install cpufrequtils
+res=`dpkg -s cpufrequtils 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs cpufrequtils"
+fi
+
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
