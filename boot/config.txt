@@ -51,7 +51,7 @@ hdmi_force_hotplug=1
 disable_splash=1
 
 # Disables dynamic frequency clocking
-force_turbo=1
+#force_turbo=1
 initial_turbo=60
 
 [pi4]
