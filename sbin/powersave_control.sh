@@ -14,14 +14,22 @@ function backlight_off() {
 	fi
 }
 
+if [[ -z "$DISPLAY" ]]; then
+	export DISPLAY=:0
+fi
+
 case $1 in
 	on)
-		backlight_on
+		xset dpms force off
+		backlight_off
+		cpufreq-set -g powersave
 		;;
 	off)
-		backlight_off
+		cpufreq-set -g performance;
+		xset dpms force on
+		backlight_on
 		;;
   *)
- 		echo "Use: backlight_control.sh on|off"
+ 		echo "Use: powersave_control.sh on|off"
  		;;
 esac
