@@ -517,7 +517,7 @@ fi
 
 # Add extra modules
 if [[ $RBPI_VERSION == "Raspberry Pi 4"* ]]; then
-	echo -e "dwc2\\ng_midi\\n" >> /etc/modules
+	echo -e "dwc2\\ng_midi iManufacturer=Zynthian iProduct=Zynthian\\n" >> /etc/modules
 fi
 
 # Replace config vars in hostapd.conf
