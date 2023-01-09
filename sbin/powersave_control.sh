@@ -22,6 +22,7 @@ case $1 in
 	on)
 		xset dpms force off
 		xset s off
+		xset -dpms
 		backlight_off
 		cpufreq-set -g powersave
 		;;
@@ -30,6 +31,7 @@ case $1 in
 		xset dpms force on
 		xset s reset
 		xset s off
+		xset -dpms
 		backlight_on
 		;;
   *)
