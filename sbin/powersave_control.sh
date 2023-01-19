@@ -29,7 +29,7 @@ case $1 in
 	off)
 		cpufreq-set -g performance
 		xset dpms force on
-		xset s reset
+		xset dpms 0 0 100000000
 		xset s off
 		xset -dpms
 		backlight_on
