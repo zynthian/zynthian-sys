@@ -22,16 +22,14 @@ case $1 in
 	on)
 		xset dpms force off
 		xset s off
-		xset -dpms
 		backlight_off
 		cpufreq-set -g powersave
 		;;
 	off)
 		cpufreq-set -g performance
 		xset dpms force on
-		xset s reset
+		xset dpms 0 0 100000000
 		xset s off
-		xset -dpms
 		backlight_on
 		;;
   *)
