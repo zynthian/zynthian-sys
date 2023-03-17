@@ -196,11 +196,6 @@ if [ -d "$ZYNTHIAN_SW_DIR/sfizz" ]; then
 	rm -rf "./sfizz"
 fi
 
-# 2021-10-07: Update DT overlays for waveshare displays 
-if [ ! -d "$ZYNTHIAN_SW_DIR/waveshare-dtoverlays" ]; then
-	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
-fi
-
 # 2021-12-08 => Install rpi_ws281x (LED control library)
 if is_python_module_installed.py rpi_ws281x; then
 	pip3 install rpi_ws281x
@@ -284,6 +279,12 @@ pip3 install tornado==4.5
 res=`dpkg -s cpufrequtils 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs cpufrequtils"
+fi
+
+# 2023-03-15: Update DT overlays for waveshare displays 
+cts=`stat -c '%w'$ZYNTHIAN_SW_DIR/waveshare-dtoverlays`
+if [ "$cts" < "2023-01-01" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 fi
 
 # -----------------------------------------------------------------------------
