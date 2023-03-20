@@ -282,7 +282,7 @@ if [ "$res" != "Status: install ok installed" ]; then
 fi
 
 # 2023-03-15: Update DT overlays for waveshare displays 
-cts=`stat -c '%w'$ZYNTHIAN_SW_DIR/waveshare-dtoverlays`
+cts=`stat -c '%y' $ZYNTHIAN_SW_DIR/waveshare-dtoverlays`
 if [ "$cts" < "2023-01-01" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 fi
