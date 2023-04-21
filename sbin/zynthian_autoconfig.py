@@ -61,6 +61,8 @@ print("Hardware footprint: {}".format(i2c_info))
 # Detect Z2's hardware footprint & and config 
 if i2c_info == "MCP23017@0x20, MCP23017@0x21, ADS1115@0x48, ADS1115@0x49":
 	config_name = "Z2"
+elif i2c_info == "MCP23017@0x20, MCP23017@0x21":
+	config_name = "V5"
 elif "MCP23017@0x20" in i2c_chips:
 	config_name = "V4"
 else:
