@@ -8,52 +8,56 @@ if [ -d lv2 ]; then
 fi
 git clone --recursive https://github.com/lv2/lv2.git
 cd lv2
-./waf configure
-./waf build
-./waf install
-./waf clean
-
-if [ ! -f "/usr/local/include/lv2.h" ]; then
-	ln -s /usr/local/include/lv2/lv2.h /usr/local/include/lv2.h
-fi
-
-if [ ! -f "/usr/local/lib/pkgconfig/lv2core.pc" ]; then
-	ln -s /usr/local/lib/pkgconfig/lv2.pc /usr/local/lib/pkgconfig/lv2core.pc
-fi
-cd ..
+meson setup build
+cd build
+meson compile
+meson install
+cd ../..
 
 if [ -d serd ]; then
 	rm -rf serd
 fi
 git clone --recursive https://github.com/drobilla/serd.git
 cd serd
-./waf configure
-./waf build
-./waf install
-./waf clean
-cd ..
+meson setup build
+cd build
+meson compile
+meson install
+cd ../..
+
+if [ -d zix ]; then
+	rm -rf zix
+fi
+git clone --recursive https://github.com/drobilla/zix.git
+cd zix
+meson setup build
+cd build
+meson configure -Dcpp_link_args="$CXXFLAGS -lstdc++fs"
+meson compile
+meson install
+cd ../..
 
 if [ -d sord ]; then
 	rm -rf sord
 fi
 git clone --recursive https://github.com/drobilla/sord.git
 cd sord
-./waf configure
-./waf build
-./waf install
-./waf clean
-cd ..
+meson setup build
+cd build
+meson compile
+meson install
+cd ../..
 
 if [ -d sratom ]; then
 	rm -rf sratom
 fi
 git clone --recursive https://github.com/lv2/sratom.git
 cd sratom
-./waf configure
-./waf build
-./waf install
-./waf clean
-cd ..
+meson setup build
+cd build
+meson compile
+meson install
+cd ../..
 
 
 if [ -d lilv ]; then
@@ -61,14 +65,14 @@ if [ -d lilv ]; then
 fi
 git clone --recursive https://github.com/lv2/lilv.git
 cd lilv
+meson setup build
+cd build
 
-#Get the destination directory
+#Configure the python destination directory
 rm -rf /usr/local/lib/python3
 python_dir=`find /usr/local/lib -type d -iname python3* | head -n 1`
+meson configure -Dpython.purelibdir="$python_dir/dist-packages"
 
-./waf configure --python=/usr/bin/python3 --pythondir=$python_dir/dist-packages
-./waf build
-./waf install
-./waf clean
-cd ..
-
+meson compile
+meson install
+cd ../..

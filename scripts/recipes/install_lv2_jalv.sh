@@ -8,9 +8,10 @@ if [ -d suil ]; then
 fi
 git clone --recursive https://github.com/lv2/suil.git
 cd suil
-./waf configure --no-qt5
-./waf build
-./waf install
+meson setup build
+cd build
+meson compile
+meson install
 
 cd $ZYNTHIAN_SW_DIR
 if [ -d jalv ]; then

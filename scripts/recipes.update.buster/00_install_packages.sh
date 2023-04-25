@@ -287,6 +287,26 @@ if [[ "$cts" < "2023-01-01" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 fi
 
+# 2023-04-21: Install some library dependencies needed for following updates
+res=`dpkg -s gslang-tools 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update --allow-releaseinfo-change
+	apt-get -y install libqt5svg5-dev doxygen graphviz glslang-tools
+fi
+
+# 2023-04-21: Update qmidinet...
+if [ ! -d "$ZYNTHIAN_SW_DIR/qmidinet" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+fi
+
+# 2023-04-21: Update LV2, Lilv, etc. => PENDING OF TESTING!!!
+if is_python_module_installed.py meson; then
+	#pip3 install meson ninja
+	#$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
+	#$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
+	#$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
+fi
+
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------

@@ -11,8 +11,7 @@ if [ -d lvtk-1 ]; then
 fi
 git clone https://github.com/lvtk/lvtk.git lvtk-1
 cd lvtk-1
-git checkout 1.x
-#./waf configure --disable-ui
+git checkout v1
 ./waf configure
 ./waf build
 ./waf install
@@ -26,11 +25,36 @@ if [ -d lvtk-2 ]; then
 fi
 git clone https://github.com/lvtk/lvtk.git lvtk-2
 cd lvtk-2
-#./waf configure --disable-ui
-./waf configure
-./waf build
-./waf install
-./waf clean
-cd ..
+git checkout v2
+meson setup build
+cd build
+meson compile
+meson install
+cd ../..
+
+# pugl: needed for v3
+if [ -d pugl ]; then
+	rm -rf pugl
+fi
+git clone https://github.com/lv2/pugl
+cd pugl
+meson setup build
+cd build
+meson compile
+meson install
+cd ../..
+
+# LVTK-3
+cd $ZYNTHIAN_SW_DIR
+if [ -d lvtk-3 ]; then
+	rm -rf lvtk-3
+fi
+git clone https://github.com/lvtk/lvtk.git lvtk-3
+cd lvtk-3
+meson setup build
+cd build
+meson compile
+meson install
+cd ../..
 
 cp /usr/local/lib/pkgconfig/lvtk-plugin-1.pc /usr/local/lib/pkgconfig/lvtk-plugin-2.pc
