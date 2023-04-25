@@ -122,7 +122,6 @@ apt-get -y install fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmid
 apt-get -y install evtest libts-bin # touchscreen tools
 #apt-get install python-smbus (i2c with python)
 
-
 # Lguyome45: remove for Raspberry pi 4, with this firmware, wifi does not work
 # Non-free WIFI firmware for RBPi3
 #wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
@@ -134,10 +133,13 @@ apt-get -y install evtest libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools zenity
+apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake \
+gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ \
+ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools
 
 # AV Libraries => WARNING It should be changed on every new debian version!!
-apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
+apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev \
+libavcodec-dev
 
 # Libraries
 apt-get -y --no-install-recommends install libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev \
@@ -149,7 +151,7 @@ lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-syst
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  libqt4-dev qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
-libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0
+libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev
 
 #libjack-dev-session
 #non-ntk-dev
@@ -157,14 +159,15 @@ libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0
 
 # Python
 apt-get -y install python python-dev cython python-dbus python-setuptools
-apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev python3-evdev 2to3
+apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil \
+python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev python3-evdev 2to3
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
     apt-get -y install python-pip python3-pip
 fi
 
 pip3 install tornado==4.1 tornadostreamform websocket-client
-pip3 install jsonpickle oyaml psutil pexpect requests
+pip3 install jsonpickle oyaml psutil pexpect requests meson ninja
 pip3 install mido python-rtmidi patchage rpi_ws281x
 #mutagen
 
