@@ -300,12 +300,12 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/qmidinet" ]; then
 fi
 
 # 2023-04-21: Update LV2, Lilv, etc. => PENDING OF TESTING!!!
-if is_python_module_installed.py meson; then
+#if is_python_module_installed.py meson; then
 	#pip3 install meson ninja
 	#$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
 	#$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 	#$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
-fi
+#fi
 
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
