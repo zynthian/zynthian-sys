@@ -8,7 +8,7 @@ cd aeolus
 cd aeolus/source
 git checkout zynthian
 git pull | grep -q -v 'Already up.to.date.' && changed=1
-if [[ "$changed" -eq 1 ]]; then
+if [ "$changed" -eq 1 ]; then
 	make clean
 	make -j 3
 	make install
