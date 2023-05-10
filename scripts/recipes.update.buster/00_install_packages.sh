@@ -196,11 +196,6 @@ if [ -d "$ZYNTHIAN_SW_DIR/sfizz" ]; then
 	rm -rf "./sfizz"
 fi
 
-# 2021-10-07: Update DT overlays for waveshare displays 
-if [ ! -d "$ZYNTHIAN_SW_DIR/waveshare-dtoverlays" ]; then
-	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
-fi
-
 # 2021-12-08 => Install rpi_ws281x (LED control library)
 if is_python_module_installed.py rpi_ws281x; then
 	pip3 install rpi_ws281x
@@ -280,6 +275,38 @@ fi
 # 2022-11-25 Bump tornado to v4.5 to solve https issues and probably other issues too
 pip3 install tornado==4.5
 
+# 2022-12-05 Install cpufrequtils
+res=`dpkg -s cpufrequtils 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs cpufrequtils"
+fi
+
+# 2023-03-15: Update DT overlays for waveshare displays 
+cts=`stat -c '%y' $ZYNTHIAN_SW_DIR/waveshare-dtoverlays`
+if [[ "$cts" < "2023-01-01" ]]; then
+	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
+fi
+
+# 2023-04-21: Install some library dependencies needed for following updates
+res=`dpkg -s gslang-tools 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	apt-get -y update --allow-releaseinfo-change
+	apt-get -y install libqt5svg5-dev doxygen graphviz glslang-tools
+fi
+
+# 2023-04-21: Update qmidinet...
+if [ ! -d "$ZYNTHIAN_SW_DIR/qmidinet" ]; then
+	$ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
+fi
+
+# 2023-04-21: Update LV2, Lilv, etc. => PENDING OF TESTING!!!
+#if is_python_module_installed.py meson; then
+	#pip3 install meson ninja
+	#$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
+	#$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
+	#$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
+#fi
+
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
@@ -287,8 +314,6 @@ pip3 install tornado==4.5
 # Hold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
-
-export DEBIAN_FRONTEND=noninteractive
 
 # Install needed apt packages
 if [ ! -z "$aptpkgs" ]; then
@@ -309,15 +334,13 @@ apt-get -y autoremove
 apt-get -y autoclean
 
 # Update firmware to a recent version that works OK!!
-res=`uname -r`
-echo "Current Kernel Version: $res"
-if [[ "$virtualization" == "none" ]] && [[ "$res" < "5.15.61-v7l+" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$LINUX_KERNEL_VERSION" < "5.15.61-v7l+" ]]; then
 	SKIP_WARNING=1 rpi-update
 	set_reboot_flag
 fi
 
 # Install a firmware version that works OK!!
-#if [[ "$res" != "5.10.49-v7l+" ]]; then
+#if [[ "$LINUX_KERNEL_VERSION" != "5.10.49-v7l+" ]]; then
 #	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
 #	set_reboot_flag
 #fi

@@ -22,12 +22,11 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
 
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------

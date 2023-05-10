@@ -22,7 +22,12 @@
 # 
 #******************************************************************************
 
-source zynthian_envars.sh
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
+
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------
 # Create Plugins Source Code Directory

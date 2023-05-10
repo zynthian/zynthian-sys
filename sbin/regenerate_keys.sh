@@ -1,10 +1,12 @@
 #!/bin/bash
 
-if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
+#------------------------------------------------------------------------------
+# Load Environment Variables
+#------------------------------------------------------------------------------
+
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
+
+#------------------------------------------------------------------------------
 
 # Delete webconf cookie secret for enforcing regeneration
 echo "Removing current webconf cookie secret..."

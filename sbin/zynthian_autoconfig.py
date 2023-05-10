@@ -51,7 +51,7 @@ def get_i2c_chips():
 	
 # Get i2c chips info and format like webconf's dashboard
 i2c_chips = get_i2c_chips()
-if len(i2c_chips)>0:
+if len(i2c_chips) > 0:
 	i2c_info = ", ".join(map(str, i2c_chips))
 else:
 	i2c_info = "Not detected"
@@ -61,6 +61,8 @@ print("Hardware footprint: {}".format(i2c_info))
 # Detect Z2's hardware footprint & and config 
 if i2c_info == "MCP23017@0x20, MCP23017@0x21, ADS1115@0x48, ADS1115@0x49":
 	config_name = "Z2"
+elif i2c_info == "MCP23017@0x20, MCP23017@0x21":
+	config_name = "V5"
 elif "MCP23017@0x20" in i2c_chips:
 	config_name = "V4"
 else:
@@ -71,9 +73,9 @@ if config_name:
 	if config_name != os.environ.get('ZYNTHIAN_KIT_VERSION'):
 		print("Configuring Zynthian for {} ...".format(config_name))
 
-		zyn_dir = os.environ.get('ZYNTHIAN_DIR',"/zynthian")
-		zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR',"/zynthian/zynthian-sys")
-		zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config")
+		zyn_dir = os.environ.get('ZYNTHIAN_DIR', "/zynthian")
+		zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
+		zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR', "/zynthian/config")
 		
 		check_output("cp -a '{}/config/zynthian_envars_{}.sh' '{}/zynthian_envars.sh'".format(zsys_dir, config_name, zconfig_dir), shell=True)
 		check_output("{}/scripts/update_zynthian_sys.sh".format(zsys_dir), shell=True)

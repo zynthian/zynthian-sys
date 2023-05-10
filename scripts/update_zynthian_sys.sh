@@ -22,33 +22,18 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-export DEBIAN_FRONTEND=noninteractive
-
-#------------------------------------------------------------------------------
-# Get System Info
-#------------------------------------------------------------------------------
-
-virtualization=$(systemd-detect-virt)
-ZYNTHIAN_OS_CODEBASE=$(lsb_release -cs)
-ZYNTHIAN_OS_VERSION=$(cat /etc/zynthianos_version)
-
 #------------------------------------------------------------------------------
 # Load Environment Variables
 #------------------------------------------------------------------------------
 
-if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
-
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
 # Detect legacy stable prior to 2211/2210 and block branches, avoiding update.
 #------------------------------------------------------------------------------
 
-if [[ "$virtualization" == "none" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
 	echo "Blocking legacy stable 2109..."
 	cd $ZYNTHIAN_UI_DIR
 	git fetch
@@ -198,7 +183,7 @@ JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
 ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 ZYNTHIAN_CUSTOM_BOOT_CMDLINE=${ZYNTHIAN_CUSTOM_BOOT_CMDLINE//\n//}
 
-if [[ "$virtualization" == "none" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]]; then
 	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
 else
 	RBPI_AUDIO_DEVICE="Headphones"
@@ -283,16 +268,20 @@ fi
 # Copy default envars file if needed...
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+# Or fix it ...
+else
+	# Remove last part that it's been moved to zynthian_vars_extended.sh
+	sed -i -e "/^\# Hardware Architecture & Optimization Options/, /ZYNTHIAN_SETUP_APT_CLEAN/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+
+	# Fix some paths in config file
+	sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+	sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 fi
 
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
 	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
 fi
-
-# Fix some paths in config file
-sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
 # Copy zynthian specific config files
 cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
@@ -340,7 +329,7 @@ if [ ! -L "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq" ]; then
 	ln -s "$ZYNTHIAN_PIANOTEQ_DIR/Pianoteq 6 STAGE" "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq"
 fi
 # Generate LV2 presets
-if [[ "$virtualization" == "none" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]]; then
 	ptq_version=$($ZYNTHIAN_PIANOTEQ_DIR/pianoteq --version | cut -d' ' -f4)
 	if [[ "$version" > "7.2.0" ]]; then
 		n_presets=$(find "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" -name "Pianoteq 7 *-factory-presets*.lv2" -printf '.' | wc -m)
@@ -419,16 +408,15 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
 fi
 
-
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
 
 # Fix usbmount
-if [ "$ZYNTHIAN_OS_CODEBASE" == "stretch" ]; then
+if [ "LINUX_OS_VERSION" == "stretch" ]; then
 	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
 		sed -i -e "s/MountFlags\=slave/MountFlags\=shared/g" /lib/systemd/system/systemd-udevd.service
 	fi
-elif [ "$ZYNTHIAN_OS_CODEBASE" == "buster" ]; then
+elif [ "LINUX_OS_VERSION" == "buster" ]; then
 	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
 		sed -i -e "s/PrivateMounts\=yes/PrivateMounts\=no/g" /lib/systemd/system/systemd-udevd.service
 	fi
@@ -466,6 +454,9 @@ sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 echo "" > /etc/network/interfaces
 
 # User Config (root)
+# => bash
+sed -i -e "s/config\/zynthian_envars.sh/zynthian-sys\/scripts\/zynthian_envars_extended.sh \> \/dev\/null 2\>\&1/g" /root/.bashrc
+
 # => ZynAddSubFX Config
 if [ -f $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg /root/.zynaddsubfxXML.cfg
@@ -505,7 +496,7 @@ if [ -d "$soundcard_config_custom_dir" ]; then
 	custom_config "$soundcard_config_custom_dir"
 fi
 
-if [ "$virtualization" == "none" ]; then
+if [ "$VIRTUALIZATION" == "none" ]; then
 	# Fix ALSA Mixer settings
 	$ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh
 	# Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
@@ -514,7 +505,7 @@ fi
 
 # Add extra modules
 if [[ $RBPI_VERSION == "Raspberry Pi 4"* ]]; then
-	echo -e "dwc2\\ng_midi\\n" >> /etc/modules
+	echo -e "dwc2\\ng_midi iManufacturer=Zynthian iProduct=Zynthian\\n" >> /etc/modules
 fi
 
 # Replace config vars in hostapd.conf
