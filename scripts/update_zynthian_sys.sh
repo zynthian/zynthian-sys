@@ -388,18 +388,6 @@ if [ -d "/usr/share/aeolus" ]; then
 		rm -f /root/.aeolus-presets
 		echo "Deleting incompatible Aeolus presets file..."
 	fi
-	# => Copy presets file if it doesn't exist
-	if [ ! -f "/root/.aeolus-presets" ]; then
-		cp -a $ZYNTHIAN_DATA_DIR/aeolus/aeolus-presets /root/.aeolus-presets
-	fi
-	# => Copy default Waves files if needed
-	if [ -n "$(ls -A /usr/share/aeolus/stops/waves 2>/dev/null)" ]; then
-		echo "Aeolus Waves already exist!"
-	else
-		echo "Copying default Aeolus Waves..."
-		cd /usr/share/aeolus/stops
-		tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
-	fi
 fi
 
 #--------------------------------------
