@@ -22,23 +22,10 @@
 # ****************************************************************************
 
 #------------------------------------------------------------------------------
-# Get System Info
-#------------------------------------------------------------------------------
-
-export virtualization=$(systemd-detect-virt)
-export ZYNTHIAN_OS_CODEBASE=$(lsb_release -cs)
-export ZYNTHIAN_OS_VERSION=$(cat /etc/zynthianos_version)
-
-#------------------------------------------------------------------------------
 # Load Environment Variables
 #------------------------------------------------------------------------------
 
-if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
-
+source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
@@ -49,7 +36,7 @@ RECIPES_UPDATE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes.update"
 
 #Custom update recipes, depending on the codebase version
 echo "Executing custom update recipes..."
-for r in $RECIPES_UPDATE_DIR.${ZYNTHIAN_OS_CODEBASE}/*.sh; do
+for r in $RECIPES_UPDATE_DIR.${LINUX_OS_VERSION}/*.sh; do
 	echo "Executing $r ..."
 	bash $r
 done
