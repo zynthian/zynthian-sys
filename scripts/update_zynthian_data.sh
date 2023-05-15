@@ -47,12 +47,7 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 fi
 
-# Update user presets for some engines ...
-#cp -na $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/* /usr/share/zynaddsubfx/banks
-
 # Fix ZynAddSubFX config & presets directories
-rm -f "$ZYNTHIAN_DATA_DIR/zynbanks"
-ln -s /usr/share/zynaddsubfx/banks "$ZYNTHIAN_DATA_DIR/zynbanks"
 if [ -L "/usr/local/share/zynaddsubfx" ]; then
 	rm -f "/usr/local/share/zynaddsubfx"
 fi
@@ -88,27 +83,6 @@ fi
 # Fix/Setup setbfree user config directory
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/setbfree" ]; then
 	mv "$ZYNTHIAN_MY_DATA_DIR/setbfree" $ZYNTHIAN_CONFIG_DIR
-fi
-
-# Reformat snapshot directory names, removing the first 2 leading zeros
-for bdir in $ZYNTHIAN_MY_DATA_DIR/snapshots/00???; do
-	if [ -d "$bdir" ]; then
-		mv "$bdir" `echo "$bdir" | sed -e 's:\/00:\/:'`
-	fi
-done
-for bdir in $ZYNTHIAN_MY_DATA_DIR/snapshots/00???-*; do
-	if [ -d "$bdir" ]; then
-		mv "$bdir" `echo "$bdir" | sed -e 's:\/00:\/:'`
-	fi
-done
-
-# Fix/Setup snapshots directory
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/snapshots/000" ]; then
-	if [ -d "$ZYNTHIAN_MY_DATA_DIR/snapshots/001" ]; then
-		mv "$ZYNTHIAN_MY_DATA_DIR/snapshots/001" "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
-	else
-		mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
-	fi
 fi
 
 # Fix LV2 Plugins
