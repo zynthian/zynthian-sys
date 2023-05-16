@@ -335,6 +335,7 @@ apt-get -y autoclean
 
 # Update firmware to a recent version that works OK!!
 if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$LINUX_KERNEL_VERSION" < "5.15.61-v7l+" ]]; then
+	echo "LINUX KERNEL VERSION: $LINUX_KERNEL_VERSION"
 	SKIP_WARNING=1 rpi-update
 	set_reboot_flag
 fi
