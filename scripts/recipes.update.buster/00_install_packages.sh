@@ -333,12 +333,15 @@ fi
 apt-get -y autoremove
 apt-get -y autoclean
 
+# Reinstall firmware to latest stable version
+#apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel
+
 # Update firmware to a recent version that works OK!!
-if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$LINUX_KERNEL_VERSION" < "5.15.61-v7l+" ]]; then
-	echo "LINUX KERNEL VERSION: $LINUX_KERNEL_VERSION"
-	SKIP_WARNING=1 rpi-update
-	set_reboot_flag
-fi
+#if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$LINUX_KERNEL_VERSION" < "5.15.61-v7l+" ]]; then
+	#echo "LINUX KERNEL VERSION: $LINUX_KERNEL_VERSION"
+	#SKIP_WARNING=1 rpi-update
+	#set_reboot_flag
+#fi
 
 # Install a firmware version that works OK!!
 #if [[ "$LINUX_KERNEL_VERSION" != "5.10.49-v7l+" ]]; then
