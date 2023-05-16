@@ -288,7 +288,7 @@ if [[ "$cts" < "2023-01-01" ]]; then
 fi
 
 # 2023-04-21: Install some library dependencies needed for following updates
-res=`dpkg -s gslang-tools 2>&1 | grep "Status:"`
+res=`dpkg -s glslang-tools 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update --allow-releaseinfo-change
 	apt-get -y install libqt5svg5-dev doxygen graphviz glslang-tools
