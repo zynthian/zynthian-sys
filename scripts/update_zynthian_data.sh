@@ -47,6 +47,15 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 fi
 
+# Fix zynseq data directories
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/tracks"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/sequences"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
+fi
+
 # Fix ZynAddSubFX config & presets directories
 if [ -L "/usr/local/share/zynaddsubfx" ]; then
 	rm -f "/usr/local/share/zynaddsubfx"
