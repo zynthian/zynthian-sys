@@ -48,7 +48,7 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
 fi
 
 # Fix zynseq data directories
-if [ -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/tracks"
