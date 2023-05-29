@@ -287,6 +287,12 @@ if [[ "$cts" < "2023-01-01" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 fi
 
+# 2023-05-29: Update deb.zynthian.org GPG public key
+if [ ! -f "/etc/apt/trusted.gpg.d/deb-zynthian-org.gpg" ]; then
+	sudo apt-key del 97850188C442336A
+	wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
+fi
+
 # 2023-04-21: Install some library dependencies needed for following updates
 res=`dpkg -s glslang-tools 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then

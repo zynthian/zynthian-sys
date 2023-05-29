@@ -86,7 +86,7 @@ dpkg -i kxstudio-repos_10.0.3_all.deb
 rm -f kxstudio-repos_10.0.3_all.deb
 
 # Zynthian
-wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
+wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
 echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
 # Sfizz
