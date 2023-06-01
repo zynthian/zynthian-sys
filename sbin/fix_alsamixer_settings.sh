@@ -12,6 +12,7 @@ if [ "$SOUNDCARD_NAME" == "Z2 V5" ] || [ "$SOUNDCARD_NAME" == "Z2 ADAC" ] || [ "
 		#amixer -c sndrpihifiberry sset 'ADC Left Input' '{VIN1P, VIN1M}[DIFF]}'
 		#amixer -c sndrpihifiberry sset 'ADC Right Input' '{VIN2P, VIN2M}[DIFF]}'
 		alsactl --file /etc/asound.sndrpihifiberry.state store sndrpihifiberry
+		alsactl store
 	else
 		echo "Alsa Mixer already configured for $SOUNDCARD_NAME..."
 	fi
@@ -22,6 +23,7 @@ elif [ "$SOUNDCARD_NAME" == "AudioInjector" ]; then
 		amixer -c audioinjectorpi sset 'Output Mixer HiFi' unmute
 		amixer -c audioinjectorpi cset numid=10,iface=MIXER,name='Line Capture Switch' 1
 		alsactl --file /etc/asound.audioinjectorpi.state store audioinjectorpi
+		alsactl store
 	else
 		echo "Alsa Mixer already configured for $SOUNDCARD_NAME..."
 	fi
@@ -38,6 +40,7 @@ elif [ "$SOUNDCARD_NAME" == "AudioInjector Ultra" ]; then
 		amixer -c audioinjectorul cset name='E to F Buffer Disable Switch' 0
 		amixer -c audioinjectorul cset name='DAC Switch' 1
 		alsactl --file /etc/asound.audioinjectorul.state store audioinjectorul
+		alsactl store
 	else
 		echo "Alsa Mixer already configured for $SOUNDCARD_NAME..."
 	fi
