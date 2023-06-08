@@ -5,7 +5,7 @@
 #
 # Auto-detect & config some hardware configurations
 #
-# Copyright (C) 2022 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2023 Fernando Moyano <jofemodo@zynthian.org>
 #
 #********************************************************************
 #
@@ -24,49 +24,100 @@
 #********************************************************************
 
 import os
+import sys
 import logging
 from subprocess import check_output
 
 #--------------------------------------------------------------------
+# Hardware's config for several boards:
+#--------------------------------------------------------------------
+
+hardware_config = {
+	"Z2_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"],
+	"Z2_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "ADS1115@0x48", "ADS1115@0x49"],
+
+	"V5_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52", "TPA6130@0x60"],
+	"V5_CONTROL": ["MCP23017@0x20", "MCP23017@0x21"],
+
+	"V2_HifiBerryDAC+": ["PCM5242@0x4D"],
+	"V4_ZynADAC": ["PCM1863@0x4A", "PCM5242@0x4D"],
+	"V4_ZynScreen": ["MCP23017@0x20"],
+	"ZynScreen": ["MCP23017@0x20"],
+	"Zynaptik": ["MCP23017@0x21", "ADS1115@0x48", "MCP4728@0x64"]
+}
+
+#--------------------------------------------------------------------
+# Functions
+#--------------------------------------------------------------------
 
 def get_i2c_chips():
-	out=check_output("gpio i2cd", shell=True).decode().split("\n")
-	if len(out)>3:
+	out = check_output("/usr/local/bin/gpio i2cd", shell=True).decode().split("\n")
+	if len(out) > 3:
 		res = []
-		for i in range(1,8):
-			for adr in out[i][4:].split(" "):
+		for i in range(0, 8):
+			parts = out[i+1][4:].split(" ")
+			for j in range(0, 16):
 				try:
-					adr = int(adr, 16)
-					if adr>=0x20 and adr<=0x27:
-						res.append("MCP23017@0x{:02X}".format(adr))
-					elif adr>=0x48 and adr<=0x4B:
-						res.append("ADS1115@0x{:02X}".format(adr))
-					elif adr>=0x60 and adr<=0x67:
-						res.append("MCP4728@0x{:02X}".format(adr))
+					adr = i * 16 + j
+					#print("Detecting at {:02X} => {}".format(adr, parts[j]))
+					if parts[j] != "--":
+						if adr >= 0x20 and adr <= 0x27:
+							res.append("MCP23017@0x{:02X}".format(adr))
+						elif adr >= 0x48 and adr <= 0x49:
+							res.append("ADS1115@0x{:02X}".format(adr))
+						elif adr == 0x4A and parts[j] == "UU":
+							res.append("PCM1863@0x{:02X}".format(adr))
+						elif adr == 0x4D and parts[j] == "UU":
+							res.append("PCM5242@0x{:02X}".format(adr))
+						elif adr == 0x52:
+							res.append("RV3028@0x{:02X}".format(adr))
+						#elif adr == 0x60 and parts[j] == "UU":
+						elif adr == 0x60:
+							res.append("TPA6130@0x{:02X}".format(adr))
+						elif adr >= 0x61 and adr <= 0x64:
+							res.append("MCP4728@0x{:02X}".format(adr))
 				except:
 					pass
 	return res
 
+
+def check_boards(board_names):
+	print("Checking Boards: {}".format(board_names))
+	faults = []
+	for bname in board_names:
+		for chip in hardware_config[bname]:
+			if chip not in i2c_chips:
+				faults.append(chip)
+	if len(faults) > 0:
+		print("ERROR: Undetected Hardware {}".format(faults))
+		return False
+	else:
+		print("OK: All hardware has been detected!")
+		return True
+
+
+def autodetect_config():
+	if check_boards(["Z2_MAIN", "V5_CONTROL"]):
+		config_name = "V5"
+	elif check_boards(["Z2_MAIN", "Z2_CONTROL"]):
+		config_name = "Z2"
+	elif check_boards(["V4_ZynADAC", "V4_ZynScreem"]):
+		config_name = "V4"
+	elif check_boards(["V2_HifiBerryDAC+", "V4_ZynScreem"]):
+		config_name = "V2"
+	else:
+		config_name = "Custom"
+	return config_name
+
 #--------------------------------------------------------------------
-	
-# Get i2c chips info and format like webconf's dashboard
+
+# Get list of i2c chips
 i2c_chips = get_i2c_chips()
-if len(i2c_chips) > 0:
-	i2c_info = ", ".join(map(str, i2c_chips))
-else:
-	i2c_info = "Not detected"
+print("Detected I2C Chips: {}".format(i2c_chips))
 
-print("Hardware footprint: {}".format(i2c_info))
-
-# Detect Z2's hardware footprint & and config 
-if i2c_info == "MCP23017@0x20, MCP23017@0x21, ADS1115@0x48, ADS1115@0x49":
-	config_name = "Z2"
-elif i2c_info == "MCP23017@0x20, MCP23017@0x21":
-	config_name = "V5"
-elif "MCP23017@0x20" in i2c_chips:
-	config_name = "V4"
-else:
-	config_name = "Custom"
+# Detect kit version
+config_name = autodetect_config()
+print("Detected {} kit!".format(config_name))
 
 # Configure Zynthian
 if config_name:
