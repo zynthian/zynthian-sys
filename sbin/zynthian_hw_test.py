@@ -38,7 +38,7 @@ else:
 kit_name = os.environ.get('ZYNTHIAN_KIT_VERSION')
 
 #--------------------------------------------------------------------
-# Hardware's config for several devices:
+# Hardware's config for several boards:
 #--------------------------------------------------------------------
 
 hardware_config = {
@@ -48,8 +48,9 @@ hardware_config = {
 	"V5_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52", "TPA6130@0x60"],
 	"V5_CONTROL": ["MCP23017@0x20", "MCP23017@0x21"],
 
-	"ZynADAC": ["PCM1863@0x4A", "PCM5242@0x4D"],
-	"ZynScreen": ["MCP23017@0x20"],
+	"V2_HifiBerryDAC+": ["PCM5242@0x4D"],
+	"V4_ZynADAC": ["PCM1863@0x4A", "PCM5242@0x4D"],
+	"V4_ZynScreen": ["MCP23017@0x20"],
 	"Zynaptik": ["MCP23017@0x21", "ADS1115@0x48", "MCP4728@0x64"]
 }
 
@@ -58,7 +59,7 @@ hardware_config = {
 #--------------------------------------------------------------------
 
 def get_i2c_chips():
-	out = check_output("gpio i2cd", shell=True).decode().split("\n")
+	out = check_output("/usr/local/bin/gpio i2cd", shell=True).decode().split("\n")
 	if len(out) > 3:
 		res = []
 		for i in range(0, 8):
@@ -78,11 +79,43 @@ def get_i2c_chips():
 							res.append("PCM5242@0x{:02X}".format(adr))
 						elif adr == 0x52:
 							res.append("RV3028@0x{:02X}".format(adr))
-						elif adr == 0x60 and parts[j] == "UU":
+						#elif adr == 0x60 and parts[j] == "UU":
+						elif adr == 0x60:
 							res.append("TPA6130@0x{:02X}".format(adr))
+						elif adr >= 0x61 and adr <= 0x64:
+							res.append("MCP4728@0x{:02X}".format(adr))
 				except:
 					pass
 	return res
+
+
+def check_boards(board_names):
+	print("Checking Boards: {}".format(board_names))
+	faults = []
+	for bname in board_names:
+		for chip in hardware_config[bname]:
+			if chip not in i2c_chips:
+				faults.append(chip)
+	if len(faults) > 0:
+		print("ERROR: Undetected Hardware {}".format(faults))
+		return False
+	else:
+		print("OK: All hardware has been detected!")
+		return True
+
+
+def autodetect_config():
+	if check_boards(["Z2_MAIN", "V5_CONTROL"]):
+		config_name = "V5"
+	elif check_boards(["Z2_MAIN", "Z2_CONTROL"]):
+		config_name = "Z2"
+	elif check_boards(["V4_ZynADAC", "V4_ZynScreem"]):
+		config_name = "V4"
+	elif check_boards(["V2_HifiBerryDAC+", "V4_ZynScreem"]):
+		config_name = "V2"
+	else:
+		config_name = "Custom"
+	return config_name
 
 #--------------------------------------------------------------------
 	
@@ -101,16 +134,7 @@ elif kit_name:
 
 # Check chip presence for selected boards
 if len(board_names) > 0:
-	print("Testing: {}".format(board_names))
-	faults = []
-	for bname in board_names:
-		for chip in hardware_config[bname]:
-			if chip not in i2c_chips:
-				faults.append(chip)
-	if len(faults) > 0:
-		print("ERROR: Undetected Hardware {}".format(faults))
-	else:
-		print("OK: All hardware has been detected!")
+	check_boards(board_names)
 else:
 	print("ERROR: Nothing to detect!")
 

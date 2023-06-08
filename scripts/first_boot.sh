@@ -10,7 +10,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 #------------------------------------------------------------------------------
 
 # Hardware Autoconfig
-$ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
+$ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py 2>&1 > /root/first_boot_autoconfig.log
 run_reboot_flag_action_raw
 
 # Fix ALSA mixer settings
