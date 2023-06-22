@@ -1,0 +1,10 @@
+[Unit]
+Description=USB gadget service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/setup_usb_gadget.sh
+
+[Install]
+WantedBy=multi-user.target
