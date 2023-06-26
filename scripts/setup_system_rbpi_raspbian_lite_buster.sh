@@ -135,7 +135,7 @@ apt-get -y install evtest libts-bin # touchscreen tools
 #Tools
 apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake \
 gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ \
-ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband.cli
+ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli
 
 # AV Libraries => WARNING It should be changed on every new debian version!!
 apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev \
