@@ -313,6 +313,12 @@ fi
 	#$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 #fi
 
+# 2023-06-26 Install python3-soundfile
+res=`dpkg -s python3-soundfile 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs python3-soundfile"
+fi
+
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
