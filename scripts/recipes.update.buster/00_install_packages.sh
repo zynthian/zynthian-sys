@@ -321,18 +321,22 @@ fi
 
 # 2023-06-26 Install pyrubberband
 if is_python_module_installed.py pyrubberband; then
-	pip3 install pyrubberband;
+	pip3 install pyrubberband
+fi
 res=`dpkg -s rubberband-cli 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs rubberband-cli"
+fi
 
 # 2023-06-26 Install abletonparsing
 if is_python_module_installed.py abletonparsing; then
-	pip3 install abletonparsing;
+	pip3 install abletonparsing
+fi
 
 # 2023-06-26 Install py-sox
 if is_python_module_installed.py sox; then
-	pip3 install sox;
+	pip3 install sox
+fi
 
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
