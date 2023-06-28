@@ -338,6 +338,12 @@ if is_python_module_installed.py sox; then
 	pip3 install sox
 fi
 
+# 2023-06-28 Install librubberband-dev
+res=`dpkg -s librubberband-dev 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs librubberband-dev"
+fi
+
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
