@@ -110,6 +110,12 @@ if [ "$res" != "Status: install ok installed" ]; then
 	pip3 install sox
 fi
 
+# 2023-06-28 Install librubberband-dev
+res=`dpkg -s librubberband-dev 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs librubberband-dev"
+fi
+
 # 2023-06-30 Uninstall usbmount. Install udisks2 & udevil
 res=`dpkg -s udisks2 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
@@ -118,12 +124,6 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y udisks2 udevil
 	systemctl enable devmon@root
 	systemctl start devmon@root
-fi
-
-# 2023-06-28 Install librubberband-dev
-res=`dpkg -s librubberband-dev 2>&1 | grep "Status:"`
-if [ "$res" != "Status: install ok installed" ]; then
-	aptpkgs="$aptpkgs librubberband-dev"
 fi
 
 # -----------------------------------------------------------------------------
