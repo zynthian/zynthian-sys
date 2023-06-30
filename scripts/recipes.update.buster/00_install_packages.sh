@@ -121,7 +121,7 @@ res=`dpkg -s udisks2 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update --allow-releaseinfo-change
 	apt-get -y remove usbmount
-	apt-get -y udisks2 udevil
+	apt-get -y install udisks2 udevil
 	systemctl enable devmon@root
 	systemctl start devmon@root
 fi
