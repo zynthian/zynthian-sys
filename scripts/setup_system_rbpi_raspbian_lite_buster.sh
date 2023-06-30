@@ -104,7 +104,7 @@ apt-get -y autoremove
 
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
-apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils
+apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfat-utils
 apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server 
 apt-get -y install xfwm4 xfwm4-themes xfce4-panel xdotool cpufrequtils
 
@@ -274,6 +274,7 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 systemctl daemon-reload
 systemctl enable dhcpcd
 systemctl enable avahi-daemon
+systemctl enable devmon@root
 systemctl disable raspi-config
 systemctl disable cron
 systemctl disable rsyslog
