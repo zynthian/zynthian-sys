@@ -15,11 +15,10 @@ echo "Running autoconfig..." >> /root/first_boot.log
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py 2>&1 >> /root/first_boot.log
 if [ -f $REBOOT_FLAGFILE ]; then
 	clean_all_flags
-	echo "Rebooting..." >> /root/first_boot.log
-	reboot
-	exit
+	# Resize partition & reboot
+	echo "Resizing partition..." >> /root/first_boot.log
+	$ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh 2>&1 >> /root/first_boot.log
 fi
-#run_reboot_flag_action_raw
 
 # Fix ALSA mixer settings
 echo ""
@@ -47,6 +46,3 @@ fi
 
 # Disable first_boot service
 systemctl disable first_boot
-
-# Resize partition & reboot
-$ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh
