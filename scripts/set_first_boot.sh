@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Stop zynthian services
-echo "Stopping zynthian services..."
-systemctl stop zynthian
-systemctl stop zynthian-webconf
+if [[ "$VIRTUALIZATION" == "none" ]]; then
+	echo "Stopping zynthian services..."
+	systemctl stop zynthian
+	systemctl stop zynthian-webconf
+fi
 
 # Clean unneeded packages & apt cache
 echo "Cleaning unused packages and cache..."
