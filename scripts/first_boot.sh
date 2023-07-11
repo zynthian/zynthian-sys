@@ -16,8 +16,7 @@ if [ -f $REBOOT_FLAGFILE ]; then
 	clean_all_flags
 	echo -e "\nReboot..." >> /root/first_boot.log
 	sync
-	sleep 120
-	reboot
+	reboot -f
 	exit
 fi
 
