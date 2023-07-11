@@ -17,6 +17,8 @@ echo "Deleting wifi networks..."
 cp -f $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant
 
 # Delete logs
+echo "Deleting first boot logs..."
+rm -f /root/first_boot.log
 echo "Deleting system logs..."
 for f in /var/log/* /var/log/**/* ; do
 	if [ -f $f ]; then
