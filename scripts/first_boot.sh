@@ -35,14 +35,14 @@ systemctl unmask hostapd
 # Regenerate cache LV2
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
-	echo -e "\nRegenerating LV2 cache..." >> /root/first_boot.log
+	echo -e "Regenerating LV2 cache..." >> /root/first_boot.log
 	cd $ZYNTHIAN_UI_DIR/zyngine
-	python3 ./zynthian_lv2.py  2>&1 >> /root/first_boot.log
+	python3 ./zynthian_lv2.py
 fi
 
 # Disable first_boot service
 systemctl disable first_boot
 
 # Resize partition & reboot
-echo -e "\nResizing partition..." >> /root/first_boot.log
-$ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh 2>&1 >> /root/first_boot.log
+echo -e "Resizing partition..." >> /root/first_boot.log
+$ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh
