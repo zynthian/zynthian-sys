@@ -287,8 +287,14 @@ if [[ "$cts" < "2023-01-01" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 fi
 
+# 2023-05-29: Update deb.zynthian.org GPG public key
+if [ ! -f "/etc/apt/trusted.gpg.d/deb-zynthian-org.gpg" ]; then
+	sudo apt-key del 97850188C442336A
+	wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
+fi
+
 # 2023-04-21: Install some library dependencies needed for following updates
-res=`dpkg -s gslang-tools 2>&1 | grep "Status:"`
+res=`dpkg -s glslang-tools 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y update --allow-releaseinfo-change
 	apt-get -y install libqt5svg5-dev doxygen graphviz glslang-tools
@@ -306,6 +312,37 @@ fi
 	#$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 	#$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 #fi
+
+# 2023-06-26 Install python3-soundfile
+res=`dpkg -s python3-soundfile 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs python3-soundfile"
+fi
+
+# 2023-06-26 Install pyrubberband
+if is_python_module_installed.py pyrubberband; then
+	pip3 install pyrubberband
+fi
+res=`dpkg -s rubberband-cli 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs rubberband-cli"
+fi
+
+# 2023-06-26 Install abletonparsing
+if is_python_module_installed.py abletonparsing; then
+	pip3 install abletonparsing
+fi
+
+# 2023-06-26 Install py-sox
+if is_python_module_installed.py sox; then
+	pip3 install sox
+fi
+
+# 2023-06-28 Install librubberband-dev
+res=`dpkg -s librubberband-dev 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs librubberband-dev"
+fi
 
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
@@ -333,11 +370,15 @@ fi
 apt-get -y autoremove
 apt-get -y autoclean
 
+# Reinstall firmware to latest stable version
+#apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel
+
 # Update firmware to a recent version that works OK!!
-if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$LINUX_KERNEL_VERSION" < "5.15.61-v7l+" ]]; then
-	SKIP_WARNING=1 rpi-update
-	set_reboot_flag
-fi
+#if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$LINUX_KERNEL_VERSION" < "5.15.61-v7l+" ]]; then
+	#echo "LINUX KERNEL VERSION: $LINUX_KERNEL_VERSION"
+	#SKIP_WARNING=1 rpi-update
+	#set_reboot_flag
+#fi
 
 # Install a firmware version that works OK!!
 #if [[ "$LINUX_KERNEL_VERSION" != "5.10.49-v7l+" ]]; then
