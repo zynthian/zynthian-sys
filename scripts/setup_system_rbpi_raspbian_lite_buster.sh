@@ -86,7 +86,7 @@ dpkg -i kxstudio-repos_10.0.3_all.deb
 rm -f kxstudio-repos_10.0.3_all.deb
 
 # Zynthian
-wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
+wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
 echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
 # Sfizz
@@ -135,7 +135,7 @@ apt-get -y install evtest libts-bin # touchscreen tools
 #Tools
 apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake \
 gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt4-qmake qt5-default gobjc++ \
-ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools
+ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli
 
 # AV Libraries => WARNING It should be changed on every new debian version!!
 apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev \
@@ -160,7 +160,7 @@ libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev
 # Python
 apt-get -y install python python-dev cython python-dbus python-setuptools
 apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil \
-python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev python3-evdev 2to3
+python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev python3-evdev 2to3 python3-soundfile librubberband-dev
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
     apt-get -y install python-pip python3-pip
@@ -169,6 +169,7 @@ fi
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests meson ninja
 pip3 install mido python-rtmidi patchage rpi_ws281x
+pip3 install abletonparsing pyrubberband sox
 #mutagen
 
 #************************************************
@@ -242,6 +243,11 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/tracks"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/sequences"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 

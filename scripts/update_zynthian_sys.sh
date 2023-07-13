@@ -204,7 +204,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"
-		sed -i '1s/^/dwc_otg.speed=1 /' /boot/cmdline.txt
+		sed -i -e 's/^/dwc_otg.speed=1 /' /boot/cmdline.txt
 	fi
 
 	if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
@@ -213,8 +213,8 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	
 	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
 		echo "BOOT LOG DISABLED"
-		sed -i '1s/tty1/tty3/' /boot/cmdline.txt
-		sed -i '1s/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
+		sed -i -e 's/tty1/tty3/' /boot/cmdline.txt
+		sed -i -e 's/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
 	fi
 
 	echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
@@ -236,6 +236,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	if [[ "$ZYNTHIAN_DISABLE_OTG" != "1" ]]; then
 		echo "OTG ENABLED"
+		sed -i -e 's/rootwait/rootwait modules-load=dwc2,libcomposite/' /boot/cmdline.txt
 		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" /boot/config.txt
 	fi
 
@@ -500,12 +501,7 @@ if [ "$VIRTUALIZATION" == "none" ]; then
 	# Fix ALSA Mixer settings
 	$ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh
 	# Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
-	$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
-fi
-
-# Add extra modules
-if [[ $RBPI_VERSION == "Raspberry Pi 4"* ]]; then
-	echo -e "dwc2\\ng_midi iManufacturer=Zynthian iProduct=Zynthian\\n" >> /etc/modules
+	# $ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
 fi
 
 # Replace config vars in hostapd.conf
@@ -531,6 +527,8 @@ sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/syst
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/jack2.service
+# USB-gadget service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/usb-gadget.service
 # a2jmidid service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/a2jmidid.service
 # mod-ttymidi service
@@ -562,8 +560,8 @@ sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/mod-ui.se
 # browsepy service
 sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/browsepy.service
 # VNCServcer service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver0.service"
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver1.service"
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/vncserver0.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/vncserver1.service
 # noVNC service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/novnc0.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc0.service
@@ -602,6 +600,12 @@ fi
 
 # Reload Systemd scripts
 systemctl daemon-reload
+
+# Enable needed services
+if [ "$(systemctl is-enabled usb-gadget)" != "enabled" ]; then
+	echo "Enabling USB gadget ..."
+	systemctl enable usb-gadget
+fi
 
 #enable the pwm fan service if an EPDF hat is detected, or disable it if hat not present
 if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then

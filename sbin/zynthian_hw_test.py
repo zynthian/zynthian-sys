@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #********************************************************************
-# ZYNTHIAN PROJECT: Zynthian Hardware Autoconfig
+# ZYNTHIAN PROJECT: Zynthian Hardware Detection
 #
-# Auto-detect & config some hardware configurations
+# Detect zynthian's hardware
 #
 # Copyright (C) 2023 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -29,6 +29,15 @@ import logging
 from subprocess import check_output
 
 #--------------------------------------------------------------------
+
+if len(sys.argv) > 1:
+    board_names = sys.argv[1]
+else:
+	board_names = None
+
+kit_name = os.environ.get('ZYNTHIAN_KIT_VERSION')
+
+#--------------------------------------------------------------------
 # Hardware's config for several boards:
 #--------------------------------------------------------------------
 
@@ -42,7 +51,6 @@ hardware_config = {
 	"V2_HifiBerryDAC+": ["PCM5242@0x4D"],
 	"V4_ZynADAC": ["PCM1863@0x4A", "PCM5242@0x4D"],
 	"V4_ZynScreen": ["MCP23017@0x20"],
-	"ZynScreen": ["MCP23017@0x20"],
 	"Zynaptik": ["MCP23017@0x21", "ADS1115@0x48", "MCP4728@0x64"]
 }
 
@@ -110,32 +118,24 @@ def autodetect_config():
 	return config_name
 
 #--------------------------------------------------------------------
-
+	
 # Get list of i2c chips
 i2c_chips = get_i2c_chips()
 print("Detected I2C Chips: {}".format(i2c_chips))
 
-# Detect kit version
-config_name = autodetect_config()
-print("Detected {} kit!".format(config_name))
+# Select boards to test
+if board_names:
+	board_names = [s.strip() for s in board_names.split(',')]
+elif kit_name:
+	board_names = []
+	for bname in hardware_config.keys():
+		if bname.startswith(kit_name):
+			board_names.append(bname)
 
-# Configure Zynthian
-if config_name:
-	if config_name != os.environ.get('ZYNTHIAN_KIT_VERSION'):
-		print("Configuring Zynthian for {} ...".format(config_name))
-
-		zyn_dir = os.environ.get('ZYNTHIAN_DIR', "/zynthian")
-		zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
-		zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR', "/zynthian/config")
-		
-		check_output("cp -a '{}/config/zynthian_envars_{}.sh' '{}/zynthian_envars.sh'".format(zsys_dir, config_name, zconfig_dir), shell=True)
-		check_output("{}/scripts/update_zynthian_sys.sh".format(zsys_dir), shell=True)
-		check_output("rm -rf {}/zyncoder/build".format(zyn_dir), shell=True)
-		check_output("rm -rf {}/img".format(zconfig_dir), shell=True)
-		check_output("{}/scripts/delayed_action_flags.sh set reboot".format(zsys_dir), shell=True)
-	else:
-		print("Zynthian already configured for {}.".format(config_name))
+# Check chip presence for selected boards
+if len(board_names) > 0:
+	check_boards(board_names)
 else:
-	print("Autoconfig for this HW footprint is not available.")
+	print("ERROR: Nothing to detect!")
 
 #--------------------------------------------------------------------
