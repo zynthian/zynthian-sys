@@ -93,14 +93,6 @@ if [ ! -d "$ZYNTHIAN_SW_DIR/qmidinet" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 fi
 
-# 2023-04-21: Update LV2, Lilv, etc. => PENDING OF TESTING!!!
-#if is_python_module_installed.py meson; then
-	#pip3 install meson ninja
-	#$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
-	#$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
-	#$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
-#fi
-
 # 2023-06-26 Install python3-soundfile, rubberband, abletonparsing & pysox
 res=`dpkg -s python3-soundfile 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
@@ -124,6 +116,14 @@ if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y install udisks2 udevil
 	systemctl enable devmon@root
 	systemctl start devmon@root
+fi
+
+# 2023-07-17: Update LV2, Lilv, etc. => TESTING NOW!!!
+if is_python_module_installed.py meson; then
+	pip3 install meson ninja
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
+	$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 fi
 
 # -----------------------------------------------------------------------------
