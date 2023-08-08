@@ -126,6 +126,12 @@ if is_python_module_installed.py meson; then
 	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 fi
 
+# 2023-07-19: Install ffmpeg-python (capture log)
+if is_python_module_installed.py ffmpeg-python; then
+	aptpkgs="$aptpkgs ffmpeg"
+	pip3 install ffmpeg-python
+fi
+
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
