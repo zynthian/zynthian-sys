@@ -40,7 +40,6 @@ mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 #------------------------------------------------
 
 # TODO review:
-# surge => Fails from repo. Install our own binary.
 # avw.lv2
 
 apt-get -y install abgate adlplug amsynth ams-lv2 arctican-plugins-lv2 artyfx avldrums.lv2 
@@ -111,13 +110,15 @@ $ZYNTHIAN_RECIPE_DIR/install_gula.sh
 #$ZYNTHIAN_RECIPE_DIR/install_arpeggiator.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-arpeggiator.sh
 $ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
-$ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_alo.sh
 $ZYNTHIAN_RECIPE_DIR/install_VL1.sh
 $ZYNTHIAN_RECIPE_DIR/install_qmidiarp.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 $ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
 $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
+
+# We should install only the included presets ...
+#$ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
 
 # X42 plugins
 #$ZYNTHIAN_RECIPE_DIR/install_fat1.sh
@@ -137,3 +138,4 @@ $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh
 
 # Install MOD-UI skins
 #$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
+
