@@ -23,4 +23,6 @@ meson setup build
 cd build
 meson compile
 meson install
+ln -s /usr/local/bin/jalv.gtk3 /usr/local/bin/jalv.gtk
+
 ldconfig
