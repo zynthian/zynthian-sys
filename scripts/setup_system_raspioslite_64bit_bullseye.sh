@@ -107,7 +107,7 @@ shiki-colors-xfwm-theme
 
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
-fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl
+fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo
 #  qmidinet
 
 #------------------------------------------------
@@ -173,6 +173,8 @@ git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 $ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 #TODO Check this can't cause problems => pseudoPins.c:50:16: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
 
+# Config "git pull" strategy globally
+git config --global pull.rebase false
 
 # Zyncoder library
 cd $ZYNTHIAN_DIR
@@ -487,7 +489,7 @@ python3 ./zynthian_lv2.py
 #************************************************
 
 #Block MS repo from being installed
-apt-mark hold raspberrypi-sys-mods
+#apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Clean
