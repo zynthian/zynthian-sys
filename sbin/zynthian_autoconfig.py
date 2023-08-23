@@ -100,6 +100,8 @@ def check_boards(board_names):
 def autodetect_config():
 	if check_boards(["V5_MAIN", "V5_CONTROL"]):
 		config_name = "V5"
+	elif check_boards(["Z2_MAIN", "V5_CONTROL"]):
+		config_name = "V5"
 	elif check_boards(["Z2_MAIN", "Z2_CONTROL"]):
 		config_name = "Z2"
 	elif check_boards(["Z2_MAIN_BETA", "Z2_CONTROL"]):
