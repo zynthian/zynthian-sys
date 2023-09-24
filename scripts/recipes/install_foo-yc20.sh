@@ -7,6 +7,8 @@ if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
 	else
 		export CFLAGS="-O3 -ffast-math -ftree-vectorize -mcpu=cortex-a53 -mtune=cortex-a53 -mfpu=neon-fp-armv8 $CFLAGS_UNSAFE"
 	fi
+elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
+	export CFLAGS="-O3 -ffast-math -ftree-vectorize -mcpu=cortex-a72 -mtune=cortex-a72 $CFLAGS_UNSAFE"
 else
 	export CFLAGS="-O3 -ffast-math -ftree-vectorize $CFLAGS_UNSAFE"
 fi

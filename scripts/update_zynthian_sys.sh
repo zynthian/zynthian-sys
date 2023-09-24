@@ -33,7 +33,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 # Detect legacy stable prior to 2211/2210 and block branches, avoiding update.
 #------------------------------------------------------------------------------
 
-if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]] && [[ -n "$ZYNTHIAN_OS_VERSION" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
 	echo "Blocking legacy stable 2109..."
 	cd $ZYNTHIAN_UI_DIR
 	git fetch
@@ -277,7 +277,18 @@ else
 	# Fix some paths in config file
 	sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 	sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+	sed -i -e "s/media\/usb0/media\/root/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 fi
+
+# Generate a good LV2 path
+if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
+	arch_libdir="arm-linux-gnueabih"
+elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
+	arch_libdir="aarch64-linux-gnu"
+fi
+LV2_PATH="/usr/lib/lv2:/usr/lib/$arch_libdir/lv2:/usr/local/lib/lv2:/usr/local/lib/$arch_libdir/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+LV2_PATH_ESC=${LV2_PATH//\//\\\/}
+sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
@@ -400,7 +411,6 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modprobe.d/* /etc/modprobe.d
 	cp -an $ZYNTHIAN_SYS_DIR/etc/vim/* /etc/vim
 	cp -a $ZYNTHIAN_SYS_DIR/etc/update-motd.d/* /etc/update-motd.d
-	cp -a $ZYNTHIAN_SYS_DIR/etc/usbmount/* /etc/usbmount
 	# WIFI Hotspot
 	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
@@ -412,16 +422,9 @@ fi
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
 
-# Fix usbmount
-if [ "LINUX_OS_VERSION" == "stretch" ]; then
-	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
-		sed -i -e "s/MountFlags\=slave/MountFlags\=shared/g" /lib/systemd/system/systemd-udevd.service
-	fi
-elif [ "LINUX_OS_VERSION" == "buster" ]; then
-	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
-		sed -i -e "s/PrivateMounts\=yes/PrivateMounts\=no/g" /lib/systemd/system/systemd-udevd.service
-	fi
-fi
+# Fix devmon config (USB-disk automounter)
+#/etc/conf.d/devmon =>
+#ARGS="--exec-on-drive \"/usr/local/bin/send_osc 1370 /CUIA/DRIVE_MOUNT %f\" --exec-on-remove \"/usr/local/bin/send_osc 1370 /CUIA/DRIVE_REMOVE %f\""
 
 # X11 Display config
 if [ ! -d "/etc/X11/xorg.conf.d" ]; then
