@@ -2,13 +2,13 @@
 
 # Install Hylia - Host transport library for Ableton Link
 
-# Keep original CFLAGS
-ZYNTHIAN_CFLAGS=$CFLAGS
-ZYNTHIAN_CXXFLAGS=$CXXFLAGS
-
 # Override compiler flags.
-export CFLAGS="-mfpu=neon-fp-armv8 -mneon-for-64bits -mfloat-abi=hard -mvectorize-with-neon-quad"
-export CXXFLAGS="-mfpu=neon-fp-armv8 -mneon-for-64bits -mfloat-abi=hard -mvectorize-with-neon-quad"
+if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
+	export CFLAGS="-mfpu=neon-fp-armv8 -mneon-for-64bits -mfloat-abi=hard -mvectorize-with-neon-quad"
+elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
+	export CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72"
+fi
+export CXXFLAGS=$CFLAGS
 export NOOPT=true
 
 cd $ZYNTHIAN_SW_DIR

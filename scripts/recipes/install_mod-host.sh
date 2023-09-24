@@ -10,7 +10,6 @@ if [[ -n $MOD_HOST_GITSHA ]]; then
 	git checkout zynthian
 fi
 
-#patch -p1 <"${HOME}/zynthian/zynthian-recipe/mod-host.patch.txt"
 make -j 4
 make install
 make clean
