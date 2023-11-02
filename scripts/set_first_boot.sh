@@ -44,7 +44,7 @@ update_zynthian_sys.sh
 rm -rf $ZYNTHIAN_DIR/zyncoder/build
 $ZYNTHIAN_DIR/zyncoder/build.sh
 rm -rf $ZYNTHIAN_CONFIG_DIR/img
-rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
+#rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
 # Disable Boot Log
