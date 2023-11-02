@@ -148,8 +148,11 @@ python3-soundfile librubberband-dev pyliblo-utils
 
 pip3 install --upgrade pip
 pip3 install tornado==4.5 tornadostreamform websocket-client jsonpickle oyaml JACK-Client sox \
-psutil pexpect requests meson ninja mido python-rtmidi rpi_ws281x ffmpeg-python pyrubberband mutagen \
-abletonparsing patchage
+psutil pexpect requests meson ninja mido python-rtmidi==1.4.9 rpi_ws281x ffmpeg-python pyrubberband mutagen \
+abletonparsing
+
+# NOTE:
+# python-rtmidi >= 1.5 uses jack protocol 9, that is bumped in jackd 1.9.19
 
 # TODO  install patchage or find a replacement
 
@@ -283,7 +286,7 @@ systemctl enable zynthian-webconf
 systemctl enable zynthian-config-on-boot
 
 # Setup loading of Zynthian Environment variables ...
-echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh" >> /root/.bashrc
+echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 
