@@ -40,9 +40,8 @@ hardware_config = {
 	"V5_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52", "TPA6130@0x60"],
 	"V5_CONTROL": ["MCP23017@0x20", "MCP23017@0x21"],
 
-	"V2_HifiBerryDAC+": ["PCM5242@0x4D"],
-	"V4_ZynADAC": ["PCM1863@0x4A", "PCM5242@0x4D"],
-	"V4_ZynScreen": ["MCP23017@0x20"],
+	"HifiBerryDAC+": ["PCM5242@0x4D"],
+	"ZynADAC": ["PCM1863@0x4A", "PCM5242@0x4D"],
 	"ZynScreen": ["MCP23017@0x20"],
 	"Zynaptik": ["MCP23017@0x21", "ADS1115@0x48", "MCP4728@0x64"]
 }
@@ -106,9 +105,9 @@ def autodetect_config():
 		config_name = "Z2"
 	elif check_boards(["Z2_MAIN_BETA", "Z2_CONTROL"]):
 		config_name = "Z2"
-	elif check_boards(["V4_ZynADAC", "V4_ZynScreen"]):
+	elif check_boards(["ZynADAC", "ZynScreen"]):
 		config_name = "V4"
-	elif check_boards(["V2_HifiBerryDAC+", "V4_ZynScreen"]):
+	elif check_boards(["HifiBerryDAC+", "ZynScreen"]):
 		config_name = "V2"
 	else:
 		config_name = "Custom"
