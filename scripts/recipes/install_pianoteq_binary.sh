@@ -18,18 +18,18 @@ else
 	rm -rf pianoteq6
 fi
 
+if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
+	armdir="arm-32bit"
+elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
+	armdir="arm-64bit"
+fi
+
 # Uncompress new binary package and delete unused files
-7z x "$pack_fpath" \*/arm-32bit \*/arm  \*/Documentation \*/README_LINUX.txt \*/Licence.rtf
+7z x "$pack_fpath" \*/$armdir \*/Documentation \*/README_LINUX.txt \*/Licence.rtf
 mv Pianoteq* pianoteq6
 
 # Create symlink to binary
 cd pianoteq6
-if [ -d arm ]; then
-	armdir="arm"
-else
-	armdir="arm-32bit"
-fi
-
 ln -s ./$armdir/Pianoteq* .
 rm -f *.lv2
 rm -f *.so

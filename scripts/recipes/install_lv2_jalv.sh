@@ -19,6 +19,10 @@ if [ -d jalv ]; then
 fi
 git clone --recursive https://github.com/zynthian/jalv.git
 cd jalv
-./waf configure
-./waf build
-./waf install
+meson setup build
+cd build
+meson compile
+meson install
+ln -s /usr/local/bin/jalv.gtk3 /usr/local/bin/jalv.gtk
+
+ldconfig
