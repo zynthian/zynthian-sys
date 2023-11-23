@@ -33,8 +33,7 @@ cd
 
 if [ ! -d "zynthian-sys" ]; then
 	apt-get update
-	apt-get -y install apt-utils
-	apt-get -y install sudo git parted screen
+	apt-get -y install apt-utils sudo git parted screen
 	git clone https://github.com/zynthian/zynthian-sys.git
 fi
 
@@ -42,11 +41,12 @@ cd zynthian-sys/scripts
 
 if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	echo `date` >  ~/.wiggled
-	./rpi-wiggle.sh
+	#./rpi-wiggle.sh
+	/usr/lib/raspi-config/init_resize.sh
+	
 else
-	#./setup_system_rbpi_minibian_jessie.sh
-	#./setup_system_rbpi_raspbian_lite_stretch.sh
-	./setup_system_rbpi_raspbian_lite_buster.sh
+	#./setup_system_rbpi_raspbian_lite_buster.sh
+	./setup_system_raspioslite_64bit_bullseye.sh
 	cd
 	rm -rf zynthian-sys
 fi

@@ -33,7 +33,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 # Detect legacy stable prior to 2211/2210 and block branches, avoiding update.
 #------------------------------------------------------------------------------
 
-if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]] && [[ -n "$ZYNTHIAN_OS_VERSION" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
 	echo "Blocking legacy stable 2109..."
 	cd $ZYNTHIAN_UI_DIR
 	git fetch
@@ -204,7 +204,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"
-		sed -i '1s/^/dwc_otg.speed=1 /' /boot/cmdline.txt
+		sed -i -e 's/^/dwc_otg.speed=1 /' /boot/cmdline.txt
 	fi
 
 	if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
@@ -213,8 +213,8 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	
 	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
 		echo "BOOT LOG DISABLED"
-		sed -i '1s/tty1/tty3/' /boot/cmdline.txt
-		sed -i '1s/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
+		sed -i -e 's/tty1/tty3/' /boot/cmdline.txt
+		sed -i -e 's/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
 	fi
 
 	echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
@@ -236,6 +236,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	if [[ "$ZYNTHIAN_DISABLE_OTG" != "1" ]]; then
 		echo "OTG ENABLED"
+		sed -i -e 's/rootwait/rootwait modules-load=dwc2,libcomposite/' /boot/cmdline.txt
 		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" /boot/config.txt
 	fi
 
@@ -276,7 +277,18 @@ else
 	# Fix some paths in config file
 	sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 	sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+	sed -i -e "s/media\/usb0/media\/root/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 fi
+
+# Generate a good LV2 path
+if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
+	arch_libdir="arm-linux-gnueabih"
+elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
+	arch_libdir="aarch64-linux-gnu"
+fi
+LV2_PATH="/usr/lib/lv2:/usr/lib/$arch_libdir/lv2:/usr/local/lib/lv2:/usr/local/lib/$arch_libdir/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+LV2_PATH_ESC=${LV2_PATH//\//\\\/}
+sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
@@ -399,7 +411,6 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modprobe.d/* /etc/modprobe.d
 	cp -an $ZYNTHIAN_SYS_DIR/etc/vim/* /etc/vim
 	cp -a $ZYNTHIAN_SYS_DIR/etc/update-motd.d/* /etc/update-motd.d
-	cp -a $ZYNTHIAN_SYS_DIR/etc/usbmount/* /etc/usbmount
 	# WIFI Hotspot
 	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
@@ -411,16 +422,9 @@ fi
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
 
-# Fix usbmount
-if [ "LINUX_OS_VERSION" == "stretch" ]; then
-	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
-		sed -i -e "s/MountFlags\=slave/MountFlags\=shared/g" /lib/systemd/system/systemd-udevd.service
-	fi
-elif [ "LINUX_OS_VERSION" == "buster" ]; then
-	if [ -f "/lib/systemd/system/systemd-udevd.service" ]; then
-		sed -i -e "s/PrivateMounts\=yes/PrivateMounts\=no/g" /lib/systemd/system/systemd-udevd.service
-	fi
-fi
+# Fix devmon config (USB-disk automounter)
+#/etc/conf.d/devmon =>
+#ARGS="--exec-on-drive \"/usr/local/bin/send_osc 1370 /CUIA/DRIVE_MOUNT %f\" --exec-on-remove \"/usr/local/bin/send_osc 1370 /CUIA/DRIVE_REMOVE %f\""
 
 # X11 Display config
 if [ ! -d "/etc/X11/xorg.conf.d" ]; then
@@ -500,12 +504,7 @@ if [ "$VIRTUALIZATION" == "none" ]; then
 	# Fix ALSA Mixer settings
 	$ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh
 	# Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
-	$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
-fi
-
-# Add extra modules
-if [[ $RBPI_VERSION == "Raspberry Pi 4"* ]]; then
-	echo -e "dwc2\\ng_midi iManufacturer=Zynthian iProduct=Zynthian\\n" >> /etc/modules
+	# $ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
 fi
 
 # Replace config vars in hostapd.conf
@@ -531,6 +530,8 @@ sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/syst
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/jack2.service
+# USB-gadget service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/usb-gadget.service
 # a2jmidid service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/a2jmidid.service
 # mod-ttymidi service
@@ -562,8 +563,8 @@ sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/mod-ui.se
 # browsepy service
 sed -i -e "s/#BROWSEPY_ROOT#/$BROWSEPY_ROOT_ESC/g" /etc/systemd/system/browsepy.service
 # VNCServcer service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver0.service"
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" "/etc/systemd/system/vncserver1.service"
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/vncserver0.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/vncserver1.service
 # noVNC service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/novnc0.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc0.service
@@ -602,6 +603,12 @@ fi
 
 # Reload Systemd scripts
 systemctl daemon-reload
+
+# Enable needed services
+if [ "$(systemctl is-enabled usb-gadget)" != "enabled" ]; then
+	echo "Enabling USB gadget ..."
+	systemctl enable usb-gadget
+fi
 
 #enable the pwm fan service if an EPDF hat is detected, or disable it if hat not present
 if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then

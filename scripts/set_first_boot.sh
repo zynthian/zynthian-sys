@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Stop zynthian services
-echo "Stopping zynthian services..."
-systemctl stop zynthian
-systemctl stop zynthian-webconf
+if [[ "$VIRTUALIZATION" == "none" ]]; then
+	echo "Stopping zynthian services..."
+	systemctl stop zynthian
+	systemctl stop zynthian-webconf
+fi
 
 # Clean unneeded packages & apt cache
 echo "Cleaning unused packages and cache..."
@@ -15,6 +17,8 @@ echo "Deleting wifi networks..."
 cp -f $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant
 
 # Delete logs
+echo "Deleting first boot logs..."
+rm -f /root/first_boot.log
 echo "Deleting system logs..."
 for f in /var/log/* /var/log/**/* ; do
 	if [ -f $f ]; then
@@ -40,8 +44,13 @@ update_zynthian_sys.sh
 rm -rf $ZYNTHIAN_DIR/zyncoder/build
 $ZYNTHIAN_DIR/zyncoder/build.sh
 rm -rf $ZYNTHIAN_CONFIG_DIR/img
-rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
+#rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
+# Disable Boot Log
+echo "BOOT LOG DISABLED"
+sed -i -e 's/tty1/tty3/' /boot/cmdline.txt
+sed -i -e 's/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
 
 # Add First Boot Script to /etc/rc.local
 echo "Enabling first boot service..."
