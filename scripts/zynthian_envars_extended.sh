@@ -75,21 +75,19 @@ if [ -z "$RASPI" ]; then
 	# Hardware Architecture & Optimization Options
 	hw_architecture=`uname -m 2>/dev/null`
 	if [ -e "/sys/firmware/devicetree/base/model" ]; then
+		# THIS MUST BE FIXED!!! IT DOESN'T WORK!
 		rbpi_version=`tr -d '\0' < /sys/firmware/devicetree/base/model`
 	else
 		rbpi_version="Unknown"
 	fi
 
 	if [ "$hw_architecture" = "armv7l" ]; then
-		#RPi2
-		if [[ "$rbpi_version" =~ [2] ]]; then
-			CFLAGS="-mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7"
 		# RPi3 (default)
-		else
-			CFLAGS="-mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits -mtune=cortex-a53"
-		fi
+		CFLAGS="-mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits -mtune=cortex-a53"
 		#CFLAGS="${CFLAGS} -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
 		CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
+		#RPi2 => Not supported anymore!
+		#CFLAGS="-mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7"
 	elif [ "$hw_architecture" = "aarch64" ]; then
 		# RPi4
 		CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72"
