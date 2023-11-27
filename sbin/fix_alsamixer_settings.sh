@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Fix ALSA Mixer controllers envar
+export SOUNDCARD_MIXER="ADC Left,ADC Right,ADC Left Input,ADC Right Input,Digital Left,Digital Right,PGA Gain Left,PGA Gain Right,Headphone"
+echo -e "export SOUNDCARD_MIXER=\"$SOUNDCARD_MIXER\"" > /tmp/update_envars.sh
+update_size1=$(stat -c%s "/tmp/update_envars.sh")
+sed -i -e "s/ADC Left,/ADC_0,/g" /tmp/update_envars.sh
+sed -i -e "s/ADC Right,/ADC_1,/g" /tmp/update_envars.sh
+sed -i -e "s/Digital Left/Digital_0/g" /tmp/update_envars.sh
+sed -i -e "s/Digital Right/Digital_1/g" /tmp/update_envars.sh
+update_size2=$(stat -c%s "/tmp/update_envars.sh")
+if [ "$update_size1" != "$update_size2" ]; then
+	echo "Fixing Alsa Mixer Controllers ..."
+	update_envars.py /tmp/update_envars.sh no_update_sys
+fi
+
 # Alsa Mixer Settings
 if [ "$SOUNDCARD_NAME" == "Z2 V5" ] || [ "$SOUNDCARD_NAME" == "Z2 ADAC" ] || [ "$SOUNDCARD_NAME" == "ZynADAC" ] || [ "$SOUNDCARD_NAME" == "HifiBerry DAC+ ADC PRO" ]; then
 	if [ ! -f "/etc/asound.sndrpihifiberry.state" ]; then
