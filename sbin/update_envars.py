@@ -33,9 +33,16 @@ import zynconf
 
 #--------------------------------------------------------------------
 
-input_envars_file = sys.argv[1]z
+input_envars_file = sys.argv[1]
 envars_file = "{}/zynthian_envars.sh".format(os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config"))
 envars_backup_file = "{}/zynthian_envars_backup.sh".format(os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config"))
+
+update_sys = True
+try:
+	if sys.argv[2] == "no_update_sys":
+		update_sys = False
+except:
+	pass
 
 if os.path.isfile(input_envars_file):
 	try:
@@ -50,7 +57,7 @@ if os.path.isfile(input_envars_file):
 		print("ERROR: Can't perform a config backup! => \n{}".format(e))
 	try:
 		print("Updating config on '{}' ...".format(envars_file))
-		zynconf.save_config(config, True)
+		zynconf.save_config(config, update_sys)
 	except Exception as e:
 		print("ERROR: Config can't be updated! => \n{}".format(e))
 	try:
