@@ -511,7 +511,7 @@ fi
 i=`echo $JACKD_OPTIONS | sed 's/\( *-X raw\)//'`
 if [ "$i" != "$JACKD_OPTIONS" ]; then
   echo "Fixing jackd parameters ..."
-  echo "export $i" >> /tmp/update_envars.sh
+  echo "export JACKD_OPTIONS=\"$i\"" >> /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
 fi
 
