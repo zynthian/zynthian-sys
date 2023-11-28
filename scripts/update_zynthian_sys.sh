@@ -519,6 +519,14 @@ if [ "$VIRTUALIZATION" == "none" ]; then
 	# $ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
 fi
 
+# Fix jackd parameters
+echo $JACKD_OPTIONS | grep "\-X raw" && i="$JACKD_OPTIONS" || i="$JACKD_OPTIONS -X raw"
+if [ "$i" != "$JACKD_OPTIONS" ]; then
+  echo "Fixing jackd parameters ..."
+  echo $i >> /tmp/update_envars.sh
+  update_envars.py /tmp/update_envars.sh no_update_sys
+fi
+
 # Replace config vars in hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_PASSWORD#/$ZYNTHIAN_HOSTSPOT_PASSWORD/g" /etc/hostapd/hostapd.conf
