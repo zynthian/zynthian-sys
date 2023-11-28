@@ -507,6 +507,16 @@ if [ "$VIRTUALIZATION" == "none" ]; then
 	# $ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
 fi
 
+# Fix jackd parameters
+echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" > /tmp/update_envars.sh
+update_size1=$(stat -c%s "/tmp/update_envars.sh")
+sed -i -e "s/-X raw//g" /tmp/update_envars.sh
+update_size2=$(stat -c%s "/tmp/update_envars.sh")
+if [ "$update_size1" != "$update_size2" ]; then
+  echo "Fixing jackd parameters ..."
+  update_envars.py /tmp/update_envars.sh no_update_sys
+fi
+
 # Replace config vars in hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
 sed -i -e "s/#ZYNTHIAN_HOTSPOT_PASSWORD#/$ZYNTHIAN_HOSTSPOT_PASSWORD/g" /etc/hostapd/hostapd.conf
@@ -527,6 +537,7 @@ sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/splas
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/splash-screen.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/splash-screen.service
 # Jackd service
+#sed -i '/\(^export JACKD_OPTIONS=\)/s/ -X raw//' /zynthian/config/zynthian_envars.sh
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/jack2.service
