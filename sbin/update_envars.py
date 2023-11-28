@@ -33,7 +33,7 @@ import zynconf
 
 #--------------------------------------------------------------------
 
-input_envars_file = sys.argv[1]z
+input_envars_file = sys.argv[1]
 envars_file = "{}/zynthian_envars.sh".format(os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config"))
 envars_backup_file = "{}/zynthian_envars_backup.sh".format(os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config"))
 
