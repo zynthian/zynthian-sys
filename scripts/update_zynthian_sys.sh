@@ -520,10 +520,10 @@ if [ "$VIRTUALIZATION" == "none" ]; then
 fi
 
 # Fix jackd parameters
-echo $JACKD_OPTIONS | grep "\-X raw" && i="$JACKD_OPTIONS" || i="$JACKD_OPTIONS -X raw"
+echo $JACKD_OPTIONS | grep "\-X raw" > /dev/null && i="$JACKD_OPTIONS" || i="$JACKD_OPTIONS -X raw"
 if [ "$i" != "$JACKD_OPTIONS" ]; then
   echo "Fixing jackd parameters ..."
-  echo $i >> /tmp/update_envars.sh
+  echo "export JACKD_OPTIONS=\"$i\"" > /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
 fi
 
