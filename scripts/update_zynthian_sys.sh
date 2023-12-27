@@ -303,6 +303,7 @@ fi
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/data_backup_items.txt" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/config/data_backup_items.txt $ZYNTHIAN_CONFIG_DIR
 fi
+cp -a $ZYNTHIAN_SYS_DIR/config/sidechain.json $ZYNTHIAN_CONFIG_DIR
 
 # Delete deprecated config files
 if [ -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
