@@ -154,16 +154,11 @@ if [ -z "$BROWSEPY_ROOT" ]; then
 	export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
 fi
 
-#Check for EPDF Hat
-/zynthian/zynthian-sys/scripts/epdf_detect.sh 
+# ************** THIS WILL BE REMOVED IN NEXT REVISIONS *****************************
+# EPDF hat detection/config should be integrated into "sbin/zynthian_autoconfig.py"
+/zynthian/zynthian-sys/sbin/epdf_detect.sh
 ZYNTHIAN_EPDF_HAT=$?
-
-#Configure the ACT_LED if an EPDF hat is detected
-if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
-	export ACT_LED_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n\n"     
-else
-	export ACT_LED_CONFIG=""
-fi
+# ***********************************************************************************
 
 #------------------------------------------------------------------------------
 # Escape Config Variables to replace
@@ -249,9 +244,11 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	fi
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
-	
-	echo "ACT LED CONFIG => $ACT_LED_CONFIG"
-	sed -i -e "s/#ACT_LED_CONFIG#/$ACT_LED_CONFIG/g" /boot/config.txt
+
+	# Configure the act-led dtoverlay if an EPDF hat has been detected => Added to custom config!
+	if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
+		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n"$ZYNTHIAN_CUSTOM_CONFIG
+	fi
 
 	echo "CUSTOM CONFIG => $ZYNTHIAN_CUSTOM_CONFIG"
 	sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" /boot/config.txt
@@ -618,11 +615,9 @@ if [ "$(systemctl is-enabled usb-gadget)" != "enabled" ]; then
 	systemctl enable usb-gadget
 fi
 
-#enable the pwm fan service if an EPDF hat is detected, or disable it if hat not present
+# Enable the pwm fan service if an EPDF hat is detected
 if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
     systemctl enable zynthian-pwm-fan
-else
-    systemctl disable zynthian-pwm-fan
 fi
 
 if [ -f "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh" ]; then
