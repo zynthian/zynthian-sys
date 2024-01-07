@@ -37,13 +37,15 @@ soundcard_mixer_0 = os.environ.get('SOUNDCARD_MIXER')
 if soundcard_mixer_0 is not None:
 	ctrls_0 = soundcard_mixer_0.split(',')
 
-	if len(ctrls_0)>0:
+	if len(ctrls_0) > 0:
 		ctrls_1 = []
 		for ctrl in ctrls_0:
 			ctrl = ctrl.strip()
-			if ctrl in ("Digital","ADC","Master","Capture","DAC","Speaker","Mic","HDMI"):
-				ctrls_1.append(ctrl+" Left")
-				ctrls_1.append(ctrl+" Right")
+			if ctrl in ("Digital", "Master", "Capture", "DAC", "Speaker", "Mic", "HDMI"):
+				ctrls_1.append(ctrl + " Left")
+				ctrls_1.append(ctrl + " Right")
+			elif ctrl in ("ADC", "ADC Right", "ADC Left"):
+				pass
 			else:
 				ctrls_1.append(ctrl)
 		soundcard_mixer_1 = ",".join(ctrls_1)
