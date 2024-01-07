@@ -34,7 +34,7 @@ export ZYNTHIAN_WIFI_MODE="off"
 #Audio Config
 export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
 export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro"
-export SOUNDCARD_MIXER="Digital Left,Digital Right,PGA Gain Left,PGA Gain Right,ADC Left Input,ADC Right Input,ADC Left,ADC Right"
+export SOUNDCARD_MIXER="Digital Left,Digital Right,PGA Gain Left,PGA Gain Right,ADC Left Input,ADC Right Input"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
 
 #Display Config
