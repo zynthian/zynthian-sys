@@ -132,6 +132,17 @@ if is_python_module_installed.py ffmpeg-python; then
 	pip3 install ffmpeg-python
 fi
 
+# 2024-01-08: Install alsa-midi
+if is_python_module_installed.py alsa-midi; then
+	pip3 install alsa-midi
+fi
+
+# 2024-01-08: Install python3-usb
+res=`dpkg -s python3-usb 2>&1 | grep "Status:"`
+if [ "$res" != "Status: install ok installed" ]; then
+	aptpkgs="$aptpkgs python3-usb"
+fi
+
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
