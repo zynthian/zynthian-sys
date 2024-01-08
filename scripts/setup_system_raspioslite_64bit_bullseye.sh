@@ -126,7 +126,7 @@ lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-syst
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
-libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev \
+libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
 libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
 
 # Tools
@@ -142,12 +142,12 @@ ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband
 apt-get -y install python-is-python2 python-dev-is-python2 python-setuptools
 
 # Python3
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath \
-python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev 2to3  \
-python3-soundfile librubberband-dev pyliblo-utils
+apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
+python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
+python3-soundfile pyliblo-utils
 
 pip3 install --upgrade pip
-pip3 install tornado==4.5 tornadostreamform websocket-client jsonpickle oyaml JACK-Client sox \
+pip3 install tornado==4.5 tornadostreamform websocket-client jsonpickle oyaml JACK-Client alsa-midi sox \
 psutil pexpect requests meson ninja mido python-rtmidi==1.4.9 rpi_ws281x ffmpeg-python pyrubberband mutagen \
 abletonparsing
 

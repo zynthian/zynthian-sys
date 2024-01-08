@@ -150,7 +150,7 @@ lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-syst
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  libqt4-dev qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
-libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev
+libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev librubberband-dev
 
 #libjack-dev-session
 #non-ntk-dev
@@ -158,17 +158,16 @@ libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev
 
 # Python
 apt-get -y install python python-dev cython python-dbus python-setuptools
-apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil \
-python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev python3-evdev 2to3 python3-soundfile librubberband-dev
+apt-get -y install python3 python3-dev cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath python3-pil \
+python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev python3-evdev python3-soundfile python3-usb \
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
     apt-get -y install python-pip python3-pip
 fi
 
-pip3 install tornado==4.1 tornadostreamform websocket-client
-pip3 install jsonpickle oyaml psutil pexpect requests meson ninja
-pip3 install mido python-rtmidi patchage rpi_ws281x
-pip3 install abletonparsing pyrubberband sox ffmpeg-python
+pip3 install --upgrade pip
+pip3 install tornado==4.1 tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests meson ninja \
+alsa-midi mido python-rtmidi patchage rpi_ws281x abletonparsing pyrubberband sox ffmpeg-python
 #mutagen
 
 #************************************************
