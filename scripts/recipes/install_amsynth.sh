@@ -3,12 +3,12 @@
 # amsynth
 cd $ZYNTHIAN_SW_DIR
 
-version="1.9.0"
+version="1.13.2"
 
 rm -rf amsynth-*
-wget https://github.com/amsynth/amsynth/releases/download/release-1.9.0/amsynth-$version.tar.bz2
-tar xfvj amsynth-$version.tar.bz2
-rm -f amsynth-$version.tar.bz2
+wget https://github.com/amsynth/amsynth/releases/download/release-$version/amsynth-$version.tar.gz
+tar xfvz amsynth-$version.tar.gz
+rm -f amsynth-$version.tar.gz
 
 cd amsynth-$version
 

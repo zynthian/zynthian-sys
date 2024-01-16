@@ -33,6 +33,7 @@ from subprocess import check_output
 #--------------------------------------------------------------------
 
 hardware_config = {
+	"Z2_MAIN_BETA": ["PCM1863@0x4A", "PCM5242@0x4D"],
 	"Z2_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"],
 	"Z2_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "ADS1115@0x48", "ADS1115@0x49"],
 
@@ -64,9 +65,9 @@ def get_i2c_chips():
 							res.append("MCP23017@0x{:02X}".format(adr))
 						elif adr >= 0x48 and adr <= 0x49:
 							res.append("ADS1115@0x{:02X}".format(adr))
-						elif adr == 0x4A and parts[j] == "UU":
+						elif adr == 0x4A:
 							res.append("PCM1863@0x{:02X}".format(adr))
-						elif adr == 0x4D and parts[j] == "UU":
+						elif adr == 0x4D:
 							res.append("PCM5242@0x{:02X}".format(adr))
 						elif adr == 0x52:
 							res.append("RV3028@0x{:02X}".format(adr))
@@ -96,9 +97,13 @@ def check_boards(board_names):
 
 
 def autodetect_config():
-	if check_boards(["Z2_MAIN", "V5_CONTROL"]):
+	if check_boards(["V5_MAIN", "V5_CONTROL"]):
+		config_name = "V5"
+	elif check_boards(["Z2_MAIN", "V5_CONTROL"]):
 		config_name = "V5"
 	elif check_boards(["Z2_MAIN", "Z2_CONTROL"]):
+		config_name = "Z2"
+	elif check_boards(["Z2_MAIN_BETA", "Z2_CONTROL"]):
 		config_name = "Z2"
 	elif check_boards(["ZynADAC", "ZynScreen"]):
 		config_name = "V4"

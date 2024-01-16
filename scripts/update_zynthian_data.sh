@@ -42,11 +42,6 @@ git pull
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
-# Create preset-favorites if needed
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
-fi
-
 # Fix zynseq data directories
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
@@ -54,6 +49,16 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/tracks"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/sequences"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
+fi
+
+# Create preset-favorites if needed
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/preset-favorites" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
+fi
+
+# Create presets directory for SysEx if needed
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/sysex" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/sysex"
 fi
 
 # Fix ZynAddSubFX config & presets directories

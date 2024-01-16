@@ -33,7 +33,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 # Detect legacy stable prior to 2211/2210 and block branches, avoiding update.
 #------------------------------------------------------------------------------
 
-if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
+if [[ "$VIRTUALIZATION" == "none" ]] && [[ -n "$ZYNTHIAN_OS_VERSION" ]] && [[ "$ZYNTHIAN_OS_VERSION" < "2209" ]]; then
 	echo "Blocking legacy stable 2109..."
 	cd $ZYNTHIAN_UI_DIR
 	git fetch
@@ -280,6 +280,16 @@ else
 	sed -i -e "s/media\/usb0/media\/root/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 fi
 
+# Generate a good LV2 path
+if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
+	arch_libdir="arm-linux-gnueabih"
+elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
+	arch_libdir="aarch64-linux-gnu"
+fi
+LV2_PATH="/usr/lib/lv2:/usr/lib/$arch_libdir/lv2:/usr/local/lib/lv2:/usr/local/lib/$arch_libdir/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+LV2_PATH_ESC=${LV2_PATH//\//\\\/}
+sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
 	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
@@ -506,7 +516,15 @@ if [ "$VIRTUALIZATION" == "none" ]; then
 	# Fix ALSA Mixer settings
 	$ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh
 	# Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
-	# $ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
+	$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
+fi
+
+# Fix jackd parameters
+echo $JACKD_OPTIONS | grep "\-X raw" > /dev/null && i="$JACKD_OPTIONS" || i="$JACKD_OPTIONS -X raw"
+if [ "$i" != "$JACKD_OPTIONS" ]; then
+  echo "Fixing jackd parameters ..."
+  echo "export JACKD_OPTIONS=\"$i\"" > /tmp/update_envars.sh
+  update_envars.py /tmp/update_envars.sh no_update_sys
 fi
 
 # Replace config vars in hostapd.conf

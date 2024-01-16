@@ -11,7 +11,7 @@ mkdir kokkinizita
 cd kokkinizita
 
 #ALSA PCMI library
-package_name="zita-alsa-pcmi-0.3.2"
+package_name="zita-alsa-pcmi-0.6.1"
 wget https://kokkinizita.linuxaudio.org/linuxaudio/downloads/$package_name.tar.bz2
 tar -xf $package_name.tar.bz2
 rm -f $package_name.tar.bz2
@@ -52,7 +52,7 @@ make install
 cd ../..
 
 #Aeolus Pipe Organ Emulator
-package_name="aeolus-0.9.7"
+package_name="aeolus-0.10.4"
 wget https://kokkinizita.linuxaudio.org/linuxaudio/downloads/$package_name.tar.bz2
 tar -xf $package_name.tar.bz2
 rm -f $package_name.tar.bz2
@@ -72,7 +72,7 @@ echo "-u -J -S /usr/share/aeolus/stops" > /etc/aeolus.conf
 
 
 #Aeolus Stops Configuration
-package_name="stops-0.3.0"
+package_name="stops-0.4.0"
 wget https://kokkinizita.linuxaudio.org/linuxaudio/downloads/$package_name.tar.bz2
 tar -xf $package_name.tar.bz2
 rm -f $package_name.tar.bz2
