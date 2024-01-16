@@ -378,16 +378,8 @@ if [ ! -d "$BROWSEPY_ROOT/Speaker Cabinets IRs" ]; then
      mkdir -p "$BROWSEPY_ROOT/Speaker Cabinets IRs"
 fi
 
-# Setup Aeolus Config
-if [ -d "/usr/share/aeolus" ]; then
-	# => Delete specific Aeolus config for replacing with the newer one
-	cd $ZYNTHIAN_DATA_DIR
-	res=`git rev-parse HEAD`
-	if [ "$res" == "ba07bbc8c10cd582c1eea54d40f153fc0ad03dda" ]; then
-		rm -f /root/.aeolus-presets
-		echo "Deleting incompatible Aeolus presets file..."
-	fi
-fi
+# Fix Aeolus config file: Remove unsupported "-J" option.
+sed -i -e "s/ \-J / /g" /etc/aeolus.conf
 
 #--------------------------------------
 # System Config
