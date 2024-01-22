@@ -84,7 +84,10 @@ wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d
 echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
 # Sfizz
-#TODO Find a deb aarch64 repository!
+#sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
+sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_11"
+echo 'deb $sfizz_url_base/ /' | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
+curl -fsSL $sfizz_url_base/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
 
 apt-get -y update
 apt-get -y full-upgrade
