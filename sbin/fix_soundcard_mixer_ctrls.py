@@ -41,7 +41,7 @@ if soundcard_mixer_0 is not None:
 		ctrls_1 = []
 		for ctrl in ctrls_0:
 			ctrl = ctrl.strip()
-			if ctrl in ("Digital", "Master", "Capture", "PGA Gain", "DAC", "Speaker", "Mic", "HDMI"):
+			if ctrl in ("Digital", "Master", "Capture", "DAC", "Speaker", "Mic", "HDMI"):
 				ctrls_1.append(ctrl + " 0")
 				ctrls_1.append(ctrl + " 1")
 			elif ctrl in ("ADC", "ADC_0", "ADC_1"):
