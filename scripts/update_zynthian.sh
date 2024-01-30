@@ -39,7 +39,14 @@ cd $ZYNTHIAN_SYS_DIR
 export ZYNTHIAN_SYS_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 echo "Updating zynthian-sys ($ZYNTHIAN_SYS_BRANCH)..."
 git checkout .
-git pull
+git clean -f
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ];
+	git merge --abort
+	git fetch
+	git reset --hard origin/$ZYNTHIAN_SYS_BRANCH
+else
+	git pull
+fi
 
 #------------------------------------------------------------------------------
 # Call update subscripts ...
