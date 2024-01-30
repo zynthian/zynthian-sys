@@ -34,29 +34,47 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 echo "Updating zyncoder..."
 cd $ZYNTHIAN_DIR/zyncoder
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 git checkout .
-git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
+git clean -f
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
+	git merge --abort
+	git fetch
+	git reset --hard origin/$branch
+	ui_changed=1
+else
+	git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
+fi
 ./build.sh
 
 echo "Updating zynthian-ui..."
 cd $ZYNTHIAN_UI_DIR
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 git checkout .
-git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
-if [ -d "zynlibs" ]; then
-	find ./zynlibs -type f -name build.sh -exec {} \;
+git clean -f
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
+	git merge --abort
+	git fetch
+	git reset --hard origin/$branch
+	ui_changed=1
 else
-	if [ -d "jackpeak" ]; then
-		./jackpeak/build.sh
-	fi
-	if [ -d "zynseq" ]; then
-		./zynseq/build.sh
-	fi
+	git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
 fi
+find ./zynlibs -type f -name build.sh -exec {} \;
 
 echo "Updating zynthian-webconf..."
 cd $ZYNTHIAN_DIR/zynthian-webconf
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 git checkout .
-git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
+git clean -f
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
+	git merge --abort
+	git fetch
+	git reset --hard origin/$branch
+	webconf_changed=1
+else
+	git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
+fi
 
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then

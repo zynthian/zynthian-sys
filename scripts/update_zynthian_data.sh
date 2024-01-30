@@ -35,8 +35,16 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 echo "Updating zynthian-data..."
 cd "$ZYNTHIAN_DATA_DIR"
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 git checkout .
-git pull
+git clean -f
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
+	git merge --abort
+	git fetch
+	git reset --hard origin/$branch
+else
+	git pull
+fi
 
 #------------------------------------------------------------------------------
 # Fixing some paths & locations ...
