@@ -40,7 +40,7 @@ export ZYNTHIAN_SYS_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 echo "Updating zynthian-sys ($ZYNTHIAN_SYS_BRANCH)..."
 git checkout .
 git clean -f
-if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ];
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git merge --abort
 	git fetch
 	git reset --hard origin/$ZYNTHIAN_SYS_BRANCH
