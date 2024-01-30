@@ -37,7 +37,7 @@ cd $ZYNTHIAN_DIR/zyncoder
 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 git checkout .
 git clean -f
-if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ];
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git merge --abort
 	git fetch
 	git reset --hard origin/$branch
@@ -52,7 +52,7 @@ cd $ZYNTHIAN_UI_DIR
 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 git checkout .
 git clean -f
-if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ];
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git merge --abort
 	git fetch
 	git reset --hard origin/$branch
@@ -67,7 +67,7 @@ cd $ZYNTHIAN_DIR/zynthian-webconf
 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 git checkout .
 git clean -f
-if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ];
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git merge --abort
 	git fetch
 	git reset --hard origin/$branch
