@@ -493,8 +493,8 @@ fi
 if [ "$VIRTUALIZATION" == "none" ]; then
 	# Fix ALSA Mixer settings
 	$ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh
-	# Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
-	# $ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
+	# Fix Soundcard Mixer Control List
+	$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
 fi
 
 # Fix jackd parameters

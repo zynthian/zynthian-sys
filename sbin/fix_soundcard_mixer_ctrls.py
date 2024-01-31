@@ -44,10 +44,10 @@ if soundcard_mixer_0 is not None:
 			if ctrl in ("Digital", "Master", "Capture", "DAC", "Speaker", "Mic", "HDMI"):
 				ctrls_1.append(ctrl + " 0")
 				ctrls_1.append(ctrl + " 1")
-			elif ctrl in ("ADC", "ADC_0", "ADC_1"):
+			elif ctrl in ("ADC", "ADC_0", "ADC_1", "ADC Right", "ADC Left", "ADC_Right", "ADC_Left"):
 				pass
 			else:
-				ctrls_1.append(ctrl)
+				ctrls_1.append(ctrl.replace(" ", "_"))
 		soundcard_mixer_1 = ",".join(ctrls_1)
 
 		# Update Config
