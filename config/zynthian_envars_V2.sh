@@ -34,7 +34,7 @@ export ZYNTHIAN_WIFI_MODE="off"
 #Audio Config
 export SOUNDCARD_NAME="HifiBerry DAC+"
 export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplus\nforce_eeprom_read=0"
-export SOUNDCARD_MIXER="Digital Left,Digital Right"
+export SOUNDCARD_MIXER="Digital_0,Digital_1"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -S -r 44100 -p 256 -n 2"
 
 #Display Config
