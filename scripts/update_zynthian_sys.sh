@@ -194,26 +194,34 @@ if [ -f "/boot/config.txt" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 fi
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/boot/cmdline.txt /boot
-	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
+	# Generate cmdline.txt
+  cmdline_common="root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait"
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"
-		sed -i -e 's/^/dwc_otg.speed=1 /' /boot/cmdline.txt
+		cmdline="dwc_otg.speed=1"
 	fi
 
 	if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
-		ZYNTHIAN_CUSTOM_BOOT_CMDLINE="$ZYNTHIAN_CUSTOM_BOOT_CMDLINE $DISPLAY_KERNEL_OPTIONS"
-	fi
-	
-	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
-		echo "BOOT LOG DISABLED"
-		sed -i -e 's/tty1/tty3/' /boot/cmdline.txt
-		sed -i -e 's/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
+		cmdline="$cmdline $DISPLAY_KERNEL_OPTIONS"
 	fi
 
-	echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
-	sed -i -e "s/#CUSTOM_CMDLINE#/$ZYNTHIAN_CUSTOM_BOOT_CMDLINE/g" /boot/cmdline.txt
+	if [[ "$ZYNTHIAN_CUSTOM_BOOT_CMDLINE" != "" ]]; then
+    echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
+	  cmdline="$cmdline $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
+	fi
+
+	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
+		echo "BOOT LOG DISABLED"
+		cmdline="$cmdline console=tty3 $cmdline_common logo.nologo quiet splash vt.global_cursor_default=0/"
+	else
+		cmdline="$cmdline console=tty1 $cmdline_common logo.nologo"
+	fi
+
+  echo "$cmdline" > /boot/cmdline.txt
+
+  # Customize config.txt
+	cat $ZYNTHIAN_SYS_DIR/boot/config.txt > /boot/config.txt
 
 	echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
 	if [[ "$ZYNTHIAN_OVERCLOCKING" == "Maximum" ]]; then
@@ -288,9 +296,9 @@ LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
 # Install zynthian repository public key
-if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
-	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
-fi
+#if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
+#	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
+#fi
 
 # Copy zynthian specific config files
 cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
@@ -387,7 +395,7 @@ sed -i -e "s/ \-J / /g" /etc/aeolus.conf
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Copy "etc" config files
-	cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
+	#cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network

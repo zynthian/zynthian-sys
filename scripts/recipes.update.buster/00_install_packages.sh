@@ -146,7 +146,7 @@ fi
 # 2024-02-06: Install libgpiod-dev
 res=`dpkg -s libgpiod-dev 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-	aptpkgs="$aptpkgs libgpiod-dev"
+	aptpkgs="$aptpkgs libgpiod-dev gpiod"
 fi
 
 # -----------------------------------------------------------------------------
