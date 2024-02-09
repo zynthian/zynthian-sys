@@ -51,7 +51,7 @@ hardware_config = {
 #--------------------------------------------------------------------
 
 def get_i2c_chips():
-	out = check_output("/usr/local/bin/gpio i2cd", shell=True).decode().split("\n")
+	out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
 	if len(out) > 3:
 		res = []
 		for i in range(0, 8):
