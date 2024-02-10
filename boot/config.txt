@@ -5,18 +5,11 @@
 # Additional overlays and parameters are documented
 # /boot/firmware/overlays/README
 
-# Automatically load overlays for detected cameras
-#camera_auto_detect=1
-
 # Automatically load overlays for detected DSI displays
 display_auto_detect=1
 
 # Automatically load initramfs files, if found
 auto_initramfs=1
-
-# Enable DRM VC4 V3D driver
-dtoverlay=vc4-kms-v3d
-max_framebuffers=2
 
 # Don't have the firmware create an initial video= setting in cmdline.txt.
 # Use the kernel's default instead.
@@ -24,9 +17,6 @@ disable_fw_kms_setup=1
 
 # Run in 64-bit mode
 arm_64bit=1
-
-# Disable compensation for displays with overscan
-disable_overscan=1
 
 # Run as fast as firmware / board allows
 arm_boost=1
@@ -38,6 +28,9 @@ arm_boost=1
 otg_mode=1
 
 [all]
+
+# Disable compensation for displays with overscan
+#disable_overscan=1
 
 # uncomment if hdmi display is not detected and composite is being output
 [pi4]
@@ -82,11 +75,22 @@ dtoverlay=miniuart-bt
 [all]
 
 [pi4]
-# Enable OTG
-#OTG_CONFIG#
 # Swap back the ttyAMA0 to GPIO
 dtoverlay=miniuart-bt
+# Enable OTG
+#OTG_CONFIG#
 [all]
+
+[pi5]
+# Enable tty0 on RPi5
+dtoverlay=uart0-pi5
+# Enable OTG
+#OTG_CONFIG#
+[all]
+
+# Adjust UART clock for MIDI Baudrate (31250)
+dtoverlay=midi-uart0
+
 
 # Enable RBPi Onboard Audio (Headphones) => loads snd_bcm2835
 #RBPI_AUDIO_CONFIG#
@@ -96,8 +100,5 @@ dtoverlay=miniuart-bt
 
 # Display Config
 #DISPLAY_CONFIG#
-
-# Adjust UART clock for MIDI Baudrate (31250)
-dtoverlay=midi-uart0
 
 #CUSTOM_CONFIG#
