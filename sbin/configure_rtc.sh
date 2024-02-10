@@ -1,7 +1,7 @@
 
 
 # Configuring RV3028 RTC
-echo "dtoverlay=i2c-rtc,rv3028" >> /boot/config.txt
+#echo "dtoverlay=i2c-rtc,rv3028" >> /boot/config.txt
 
 systemctl disable fake-hwclock
 apt-get -y remove fake-hwclock

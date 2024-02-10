@@ -295,25 +295,26 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 # Configure systemd services
 systemctl daemon-reload
-systemctl enable dhcpcd
-systemctl enable avahi-daemon
 systemctl disable raspi-config
 systemctl disable cron
-#systemctl disable rsyslog
-systemctl disable wpa_supplicant
+#systemctl disable wpa_supplicant
 systemctl disable hostapd
 systemctl disable dnsmasq
-#systemctl disable unattended-upgrades
 systemctl disable apt-daily.timer
+systemctl disable ModemManager
+systemctl enable avahi-daemon
+systemctl enable devmon@root
+#systemctl enable dhcpcd
+#systemctl disable rsyslog
+#systemctl disable unattended-upgrades
 #systemctl mask packagekit
 #systemctl mask polkit
-systemctl enable devmon@root
+
 
 # Zynthian specific systemd services
 systemctl enable backlight
 systemctl enable cpu-performance
-systemctl enable splash-screen
-systemctl enable wifi-setup
+#systemctl enable wifi-setup
 systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid

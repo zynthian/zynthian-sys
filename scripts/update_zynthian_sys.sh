@@ -188,18 +188,21 @@ fi
 # Boot Config 
 #------------------------------------------------------------------------------
 
+BOOT_CONFIG_FPATH="/boot/firmware/config.txt"
+CMDLINE_CONFIG_FPATH="/boot/firmware/cmdline.txt"
+
 # Detect NO_ZYNTHIAN_UPDATE flag in the config.txt
-if [ -f "/boot/config.txt" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
-	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
+if [ -f "$BOOT_CONFIG_FPATH" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
+	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE $BOOT_CONFIG_FPATH`
 fi
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Generate cmdline.txt
-  cmdline_common="root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait"
+  cmdline="root=/dev/mmcblk0p2 rootfstype=ext4 fsck.repair=yes rootwait"
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"
-		cmdline="dwc_otg.speed=1"
+		cmdline="$cmdline dwc_otg.speed=1"
 	fi
 
 	if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
@@ -213,53 +216,59 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
 		echo "BOOT LOG DISABLED"
-		cmdline="$cmdline console=tty3 $cmdline_common logo.nologo quiet splash vt.global_cursor_default=0/"
+		cmdline="$cmdline console=tty3 logo.nologo quiet splash vt.global_cursor_default=0"
 	else
-		cmdline="$cmdline console=tty1 $cmdline_common logo.nologo"
+		cmdline="$cmdline console=tty1 logo.nologo"
 	fi
 
-  echo "$cmdline" > /boot/cmdline.txt
-
   # Customize config.txt
-	cat $ZYNTHIAN_SYS_DIR/boot/config.txt > /boot/config.txt
+	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt "$BOOT_CONFIG_FPATH"
 
 	echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
 	if [[ "$ZYNTHIAN_OVERCLOCKING" == "Maximum" ]]; then
-		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=6\narm_freq=2000/g" /boot/config.txt
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=6\narm_freq=2000/g" "$BOOT_CONFIG_FPATH"
 	elif [[ "$ZYNTHIAN_OVERCLOCKING" == "Medium" ]]; then
-		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=2\narm_freq=1750/g" /boot/config.txt
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=2\narm_freq=1750/g" "$BOOT_CONFIG_FPATH"
 	else
-		sed -i -e "s/#OVERCLOCKING_RBPI4#//g" /boot/config.txt
+		sed -i -e "s/#OVERCLOCKING_RBPI4#//g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
 		echo "RBPI AUDIO ENABLED"
-		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" /boot/config.txt
+		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_OTG" != "1" ]]; then
 		echo "OTG ENABLED"
-		sed -i -e 's/rootwait/rootwait modules-load=dwc2,libcomposite/' /boot/cmdline.txt
-		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" /boot/config.txt
+		cmdline="$cmdline modules-load=dwc2,libcomposite"
+		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
-	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
+	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" "$BOOT_CONFIG_FPATH"
 
 	# Patch piscreen config
 	if [[ ( $DISPLAY_CONFIG == *"piscreen2r-notouch"* ) && ( $DISPLAY_CONFIG != *"piscreen2r-backlight"* ) ]]; then
 		DISPLAY_CONFIG=$DISPLAY_CONFIG"\ndtoverlay=piscreen2r-backlight"
 	fi
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
-	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
+	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" "$BOOT_CONFIG_FPATH"
 
 	# Configure the act-led dtoverlay if an EPDF hat has been detected => Added to custom config!
 	if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
 		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n"$ZYNTHIAN_CUSTOM_CONFIG
 	fi
 
+	# Configure RTC for V5 & Z2 main boards
+	# TODO => see /zynthian-sys/sbin/configure_rtc.sh!!!
+	if [[ ( $ZYNTHIAN_KIT_VERSION == "V5"* ) || ( $ZYNTHIAN_KIT_VERSION == "Z2"* ) ]]; then
+		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=i2c-rtc,rv3028\n"$ZYNTHIAN_CUSTOM_CONFIG
+	fi
+
 	echo "CUSTOM CONFIG => $ZYNTHIAN_CUSTOM_CONFIG"
-	sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" /boot/config.txt
+	sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" "$BOOT_CONFIG_FPATH"
+
+	echo "$cmdline" > "$CMDLINE_CONFIG_FPATH"
 fi
 
 # Copy extra overlays
@@ -294,6 +303,11 @@ fi
 LV2_PATH="/usr/lib/lv2:/usr/lib/$arch_libdir/lv2:/usr/local/lib/lv2:/usr/local/lib/$arch_libdir/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+
+# Zynthian apt repository
+#if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
+#	sed -i -e "s/zynthian-stable/zynthian-testing/g" /etc/apt/sources.list.d/zynthian.list
+#fi
 
 # Install zynthian repository public key
 #if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
@@ -398,7 +412,6 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	#cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
 	cp -an $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 	cp -an $ZYNTHIAN_SYS_DIR/etc/security/* /etc/security
 	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
@@ -603,11 +616,6 @@ sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-pw
 sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
-
-# Zynthian apt repository
-if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
-	sed -i -e "s/zynthian-stable/zynthian-testing/g" /etc/apt/sources.list.d/zynthian.list
-fi
 
 # Reload Systemd scripts
 systemctl daemon-reload
