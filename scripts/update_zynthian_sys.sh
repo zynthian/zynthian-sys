@@ -425,9 +425,6 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# WIFI Hotspot
 	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
-	# WIFI Network
-	#rm -f /etc/wpa_supplicant/wpa_supplicant.conf
-	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
 fi
 
 # Display zynthian info on ssh login
@@ -458,7 +455,7 @@ fi
 #if [ -f "/etc/udev/rules.d/70-persistent-net.rules.inactive" ]; then
 #	rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
 #fi
-#Fix timeout in network initialization
+# Fix timeout in network initialization
 if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
 	mkdir -p "/etc/systemd/system/networking.service.d"
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
