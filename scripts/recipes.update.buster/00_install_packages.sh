@@ -153,7 +153,7 @@ fi
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
 
-# Hold some packages
+# Unhold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
 
