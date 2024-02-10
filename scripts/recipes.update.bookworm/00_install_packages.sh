@@ -17,9 +17,9 @@ aptpkgs=""
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
 
-# Hold some packages
-apt-mark unhold raspberrypi-kernel
-apt-mark unhold raspberrypi-sys-mods
+# Unhold some packages
+#apt-mark unhold raspberrypi-kernel
+#apt-mark unhold raspberrypi-sys-mods
 
 # Install needed apt packages
 if [ ! -z "$aptpkgs" ]; then
