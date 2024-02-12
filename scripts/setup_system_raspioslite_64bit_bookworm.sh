@@ -53,7 +53,7 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
 
 [ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="chain_manager"
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH=$ZYNTHIAN_BRANCH
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="chainman_bookworm"
 [ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
@@ -93,10 +93,10 @@ rm -f kxstudio-repos_11.1.0_all.deb
 #wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
 #echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
-# Sfizz
-sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
-echo "deb $sfizz_url_base/ /" | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
-curl -fsSL $sfizz_url_base/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
+# Sfizz => Repo version segfaults!!
+#sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
+#echo "deb $sfizz_url_base/ /" | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
+#curl -fsSL $sfizz_url_base/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
 
 apt-get -y update
 apt-get -y full-upgrade
@@ -140,8 +140,9 @@ libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-de
 libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
 libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
-libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev
+libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev libganv-dev
 
+# Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
 
 # Tools
@@ -149,6 +150,7 @@ apt-get -y --no-install-recommends install build-essential git swig pkg-config a
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
 ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli
 
+# Missed tools from previous OS versions:
 #libjack-dev-session
 #non-ntk-dev
 #libgd2-xpm-dev
@@ -160,9 +162,7 @@ python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requ
 python3-mutagen pyliblo-utils  
 
 # Python2 (DEPRECATED!!)
-apt-get -y install python-setuptools python-is-python2 python-dev-is-python2
-
-# TODO  install patchage or find a replacement
+#apt-get -y install python-setuptools python-is-python2 python-dev-is-python2
 
 #------------------------------------------------
 # Create Zynthian Directory Tree 
@@ -248,9 +248,7 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 pip3 install --upgrade pip
 pip3 install tornado tornadostreamform websocket-client tornado_xstatic terminado \
 oyaml JACK-Client alsa-midi sox meson ninja rpi_ws281x ffmpeg-python pyrubberband \
-abletonparsing 
-
-#tornado==4.5 => it's not compatible with python 3.11
+abletonparsing
 
 #------------------------------------------------
 # System Adjustments
@@ -258,8 +256,8 @@ abletonparsing
 
 # Use tmpfs for tmp & logs
 echo "" >> /etc/fstab
-echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=60M   0  0" >> /etc/fstab
-echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=20M   0  0" >> /etc/fstab
+echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=100M   0  0" >> /etc/fstab
+echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >> /etc/fstab
 echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=20M  0  0" >> /etc/fstab
 
 # Change Hostname
@@ -310,7 +308,6 @@ systemctl enable devmon@root
 #systemctl mask packagekit
 #systemctl mask polkit
 
-
 # Zynthian specific systemd services
 systemctl enable backlight
 systemctl enable cpu-performance
@@ -353,8 +350,9 @@ $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 $ZYNTHIAN_RECIPE_DIR/install_aubio.sh
 
 # Install jpmidi (MID player for jack with transport sync)
-$ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
+#$ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
 # TODO => No configure !! It must be changed to meson or waf or something like that....
+# Do we need this? => I think no!!
 
 # Install jack_capture (jackd audio recorder)
 $ZYNTHIAN_RECIPE_DIR/install_jack_capture.sh
@@ -364,7 +362,7 @@ $ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
 
 # Install touchosc2midi (TouchOSC Bridge)
 #$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
-# TODO FAILED=> build cython
+# TODO FAILED=> build cython => Probably python 2.7 that must be upgraded
 
 # Install jackclient (jack-client python library)
 #$ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
@@ -383,6 +381,9 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 
 # Install QJackCtl
 #$ZYNTHIAN_RECIPE_DIR/install_qjackctl.sh
+
+# Install patchage
+$ZYNTHIAN_RECIPE_DIR/install_patchage.sh
 
 # Install the njconnect Jack Graph Manager
 $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
@@ -423,13 +424,12 @@ ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
 # Install Squishbox SF2 soundfonts
 $ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
-# TODO NO SPACE LEFT IN THIS DEVICE????? => TMPFS ISSUE!!!
 
 # Install Polyphone (SF2 editor)
 #$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
 
 # Install Sfizz (SFZ player)
-#apt-get -y install sfizz # segfaults!!!
+#apt-get -y install sfizz  # repo version segfaults!!!
 $ZYNTHIAN_RECIPE_DIR/install_sfizz.sh
 
 # Install Linuxsampler
@@ -453,7 +453,6 @@ $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 # Install Aeolus (Pipe Organ Emulator)
 #apt-get -y install aeolus
 $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
-# TODO REVISE THIS CAREFULLY TO CORRECTLY INSTALL RIBAN'S VERSION!!
 
 # Install Mididings (MIDI route & filter)
 #apt-get -y install mididings
@@ -470,17 +469,13 @@ pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 mkdir /root/Pd
 mkdir /root/Pd/externals
 
-
-# TODO WE REACHED THIS POINT!!! *********************************************
-
-
 #------------------------------------------------
 # Install MOD stuff
 #------------------------------------------------
 
 # Install MOD-HOST
 # Requires libjackd-jackd2-1.9.19 (JackTickDouble), bullseye has 1.9.17
-export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
+#export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
 $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
  
 # Install browsepy
@@ -488,7 +483,6 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
 
 #Install MOD-UI
 $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
-#TODO FAILED to install pycrypto (pip3) => It's obsolete!
 
 #Install MOD-SDK
 #$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
@@ -496,9 +490,8 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 #------------------------------------------------
 # Install Plugins
 #------------------------------------------------
-cd $ZYNTHIAN_SYS_DIR/scripts
+cd "$ZYNTHIAN_SYS_DIR/scripts"
 ./setup_plugins_rbpi.sh
-#TODO Review this => surge binary from repo fails?? => Install our own binary.
 
 #------------------------------------------------
 # Install Ableton Link Support
@@ -511,9 +504,9 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 #------------------------------------------------
 
 # Create flags to avoid running unneeded recipes.update when updating zynthian software
-if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
-	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
-fi
+#if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
+#	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
+#fi
 
 # Run configuration script before ending
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
@@ -525,14 +518,13 @@ $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh
 cd $ZYNTHIAN_UI_DIR/zyngine
 python3 ./zynthian_lv2.py
 
-
 #------------------------------------------------
 # End & Cleanup
 #------------------------------------------------
 
 #Block MS repo from being installed
 #apt-mark hold raspberrypi-sys-mods
-touch /etc/apt/trusted.gpg.d/microsoft.gpg
+#touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages

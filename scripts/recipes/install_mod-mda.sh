@@ -12,6 +12,6 @@ cd mda-lv2
 ./waf build
 ./waf -j1 install
 ./waf clean
-
 cd ..
+
 rm -rf "mda-lv2"

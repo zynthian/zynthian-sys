@@ -39,23 +39,20 @@ mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 # Install LV2 Plugins from repository
 #------------------------------------------------
 
+apt-get -y install abgate adlplug amsynth ams-lv2 arctican-plugins-lv2 artyfx avldrums.lv2 \
+bchoppr beatslash-lv2 blop-lv2 bsequencer boops bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 \
+drumkv1-lv2 distrho-plugin-ports-lv2 dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo \
+easyssp-lv2 eq10q fabla g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 \
+infamous-plugins invada-studio-plugins-lv2 juced-plugins-lv2 juce-opl-lv2 klangfalter-lv2 \
+lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder \
+mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 noise-repellent \
+obxd-lv2 oxefmsynth padthv1-lv2 pitcheddelay-lv2 pizmidi-plugins regrader riban-lv2 rubberband-lv2 \
+safe-plugins samplv1-lv2 shiro-plugins synthv1-lv2 sorcer surge \
+temper-lv2 tal-plugins-lv2 tap-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
+wolf-shaper wolf-spectrum wolpertinger-lv2 x42-plugins zam-plugins zlfo
+
 # TODO review:
 # avw.lv2
-
-apt-get -y install abgate adlplug amsynth ams-lv2 arctican-plugins-lv2 artyfx avldrums.lv2 
-apt-get -y install bchoppr beatslash-lv2 blop-lv2 bsequencer boops bshapr bslizr
-apt-get -y install calf-plugins caps-lv2 cv-lfo-blender-lv2
-apt-get -y install drumkv1-lv2 samplv1-lv2 synthv1-lv2 padthv1-lv2
-apt-get -y install distrho-plugin-ports-lv2 dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo
-apt-get -y install easyssp-lv2 eq10q fabla g2reverb geonkick gxplugins gxvoxtonebender
-apt-get -y install helm hybridreverb2 infamous-plugins invada-studio-plugins-lv2 juced-plugins-lv2 juce-opl-lv2
-apt-get -y install klangfalter-lv2 lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder
-apt-get -y install mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2
-apt-get -y install noise-repellent obxd-lv2 oxefmsynth pitcheddelay-lv2 pizmidi-plugins
-apt-get -y install regrader riban-lv2 rubberband-lv2 safe-plugins shiro-plugins sorcer
-apt-get -y install temper-lv2 tal-plugins-lv2 tap-lv2 teragonaudio-plugins-lv2 vitalium-lv2
-apt-get -y install wolf-shaper wolf-spectrum wolpertinger-lv2
-apt-get -y install x42-plugins zam-plugins zlfo
 
 #------------------------------------------------
 # Install LV2 Plugins from source code
@@ -118,7 +115,7 @@ $ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
 $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
 
 # We should install only the included presets ...
-#$ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
+# $ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
 
 # X42 plugins
 #$ZYNTHIAN_RECIPE_DIR/install_fat1.sh
@@ -130,8 +127,11 @@ $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
 #$ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
 $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
 
+
 # Zynthian precompiled plugins
+######################## THIS MUST BE REBUILD =>
 $ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
+#################################################
 
 # Fixup amsynth bank/presets
 $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh

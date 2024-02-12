@@ -45,12 +45,6 @@ rm -rf $ZYNTHIAN_DIR/zyncoder/build
 $ZYNTHIAN_DIR/zyncoder/build.sh
 rm -rf $ZYNTHIAN_CONFIG_DIR/img
 #rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
-
-# Disable Boot Log
-echo "BOOT LOG DISABLED"
-sed -i -e 's/tty1/tty3/' /boot/cmdline.txt
-sed -i -e 's/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
 
 # Add First Boot Script to /etc/rc.local
 echo "Enabling first boot service..."
