@@ -33,7 +33,6 @@ cd
 
 if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	echo `date` >  ~/.wiggled
-	#./rpi-wiggle.sh
 	raspi-config --expand-rootfs
 	reboot
 else
@@ -43,7 +42,6 @@ else
 		git clone https://github.com/zynthian/zynthian-sys.git
 	fi
 	cd zynthian-sys/scripts
-	#./setup_system_rbpi_raspbian_lite_buster.sh
 	./setup_system_raspioslite_64bit_bookworm.sh
 	cd
 	rm -rf zynthian-sys
