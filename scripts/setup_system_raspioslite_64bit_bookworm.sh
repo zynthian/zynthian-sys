@@ -248,7 +248,7 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 pip3 install --upgrade pip
 pip3 install tornado tornadostreamform websocket-client tornado_xstatic terminado \
 oyaml JACK-Client alsa-midi sox meson ninja rpi_ws281x ffmpeg-python pyrubberband \
-abletonparsing
+abletonparsing Levenshtein
 
 #------------------------------------------------
 # System Adjustments
