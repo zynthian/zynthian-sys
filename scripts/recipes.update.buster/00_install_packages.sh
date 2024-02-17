@@ -149,6 +149,11 @@ if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs libgpiod-dev"
 fi
 
+# 2024-02-17: Install Levenshtein (text distance)
+if is_python_module_installed.py Levenshtein; then
+	pip3 install Levenshtein
+fi
+
 # -----------------------------------------------------------------------------
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
