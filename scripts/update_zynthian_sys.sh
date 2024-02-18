@@ -445,9 +445,9 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 fi
 
 if [ "$ZYNTHIAN_UI_ENABLE_CURSOR" == "1" ]; then
-  X11_SERVER_OPTIONS=""
+	X11_SERVER_OPTIONS=""
 else
-	X11_SERVER_OPTIONS="−nocursor"
+	X11_SERVER_OPTIONS="-nocursor"
 fi
 
 # Copy fonts to system directory

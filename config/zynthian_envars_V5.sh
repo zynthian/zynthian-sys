@@ -79,6 +79,7 @@ export ZYNTHIAN_MIDI_PLAY_LOOP="1"
 
 # MIDI system configuration
 export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
+export ZYNTHIAN_USB_MIDI_BY_PORT="0"
 
 # Extra features
 export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
