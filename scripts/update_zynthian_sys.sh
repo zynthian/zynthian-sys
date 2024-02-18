@@ -444,6 +444,12 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
 fi
 
+if [ "$ZYNTHIAN_UI_ENABLE_CURSOR" == "1" ]; then
+  X11_SERVER_OPTIONS=""
+else
+	X11_SERVER_OPTIONS="−nocursor"
+fi
+
 # Copy fonts to system directory
 rsync -r --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
 
@@ -585,12 +591,15 @@ sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian.se
 sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian.service
+sed -i -e "s/#X11_SERVER_OPTIONS#/$X11_SERVER_OPTIONS/g" /etc/systemd/system/zynthian.service
+
 # Zynthian Debug Service
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian_debug.service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
 sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
+sed -i -e "s/#X11_SERVER_OPTIONS#/$X11_SERVER_OPTIONS/g" /etc/systemd/system/zynthian_debug.service
 # Zynthian Webconf Service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
