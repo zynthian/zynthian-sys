@@ -14,7 +14,7 @@ Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
 # Start X11 with keyboard autorepeat disable (-r)
-ExecStart=startx ./zynthian.sh -- -r
+ExecStart=startx ./zynthian.sh -- -r -s 0 #X11_SERVER_OPTIONS#
 TimeoutStopSec=20
 ExecStop=send_osc 1370 /CUIA/EXIT_UI
 ExecStop=sleep 10
