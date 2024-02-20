@@ -130,7 +130,8 @@ libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-de
 libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
 libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
-libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
+libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev \
+libclthreads-dev libclxclient-dev
 
 # Tools
 apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake \
