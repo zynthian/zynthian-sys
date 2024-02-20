@@ -50,6 +50,12 @@ fi
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Create audio data dir and soft-link capture as a subdir inside
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/audio"
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/audio/capture"
+fi
+
 # Fix zynseq data directories
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
