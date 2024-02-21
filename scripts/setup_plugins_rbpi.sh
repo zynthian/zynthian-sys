@@ -130,7 +130,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mclk.sh
 
 # Zynthian precompiled plugins
 ######################## THIS MUST BE REBUILD =>
-$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
+#$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
 #################################################
 
 # Fixup amsynth bank/presets

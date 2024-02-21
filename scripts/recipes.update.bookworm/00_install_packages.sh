@@ -26,6 +26,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
 fi
 
+patchlevel="20240221.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > "/etc/apt/trusted.gpg.d/deb-zynthian-org.gpg"
+	echo "deb https://deb.zynthian.org/zynthian-testing buster main" > "/etc/apt/sources.list.d/zynthian.list"
+	#echo "deb https://deb.zynthian.org/zynthian-stable buster main" > "/etc/apt/sources.list.d/zynthian.list"
+	apt update
+	apt -y remove libsndfile1-dev
+	apt -y install libsndfile1-zyndev
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
@@ -62,7 +72,7 @@ fi
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "$patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
 else
-	echo "NO NEW PATCHES TO APPLY!"
+	echo "NO NEW PATCHES TO APPLY."
 fi
 
 
@@ -71,7 +81,7 @@ fi
 # -----------------------------------------------------------------------------
 
 if [[ ! "$ZYNTHIAN_SYS_BRANCH" =~ ^stable.* ]] || [[ "$ZYNTHIAN_FORCE_UPGRADE" == "yes" ]]; then
-	echo "UPGRADING DEBIAN PACKAGES!"
+	echo "UPGRADING DEBIAN PACKAGES ..."
 	if [ -z "$aptpkgs" ]; then
 		apt-get -y update --allow-releaseinfo-change
 	fi
