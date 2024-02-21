@@ -34,6 +34,9 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt update
 	apt -y remove libsndfile1-dev
 	apt -y install libsndfile1-zyndev
+  apt -y install libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
+	libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
+	libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
