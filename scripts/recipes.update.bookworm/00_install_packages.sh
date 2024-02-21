@@ -1,6 +1,28 @@
 
 aptpkgs=""
 
+# -----------------------------------------------------------------------------
+# Load current patchlevel
+# -----------------------------------------------------------------------------
+
+if [ -f "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt" ]; then
+	current_patchlevel=$(cat "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt")
+else
+	current_patchlevel="20240220.1"
+	echo "$current_patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
+fi
+
+# -----------------------------------------------------------------------------
+# Temporal fixes to patch development image until final ORAM release
+# -----------------------------------------------------------------------------
+
+patchlevel="20240221.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "set enable-bracketed-paste off" > /root/.inputrc
+	$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
+	$ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
+fi
+
 
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
@@ -54,3 +76,9 @@ apt-get -y autoclean
 #	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
 #	set_reboot_flag
 #fi
+
+# -----------------------------------------------------------------------------
+# Save current patch level
+# -----------------------------------------------------------------------------
+
+echo "$patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"

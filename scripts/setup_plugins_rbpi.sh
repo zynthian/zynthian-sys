@@ -58,7 +58,7 @@ wolf-shaper wolf-spectrum wolpertinger-lv2 x42-plugins zam-plugins zlfo
 # Install LV2 Plugins from source code
 #------------------------------------------------
 
-$ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
+#$ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
 $ZYNTHIAN_RECIPE_DIR/install_fluidplug.sh
 #$ZYNTHIAN_RECIPE_DIR/install_mod-setbfree.sh
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
