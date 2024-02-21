@@ -89,9 +89,10 @@ wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-re
 sudo dpkg -i kxstudio-repos_11.1.0_all.deb
 rm -f kxstudio-repos_11.1.0_all.deb
 
-# Zynthian => TODO Add support for 64 bit!!!!
-#wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
-#echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
+# Zynthian
+wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
+echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
+#echo "deb https://deb.zynthian.org/zynthian-stable bookworm main" > /etc/apt/sources.list.d/zynthian.list
 
 # Sfizz => Repo version segfaults!!
 #sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
@@ -134,13 +135,14 @@ libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-heade
 libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
-libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
+libglibmm-2.4-dev libeigen3-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
 lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
 libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
-libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev libganv-dev
+libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev libganv-dev \
+libsndfile1-zyndev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
