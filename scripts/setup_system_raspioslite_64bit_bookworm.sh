@@ -142,7 +142,9 @@ libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
 libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
 libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev libganv-dev \
-libsndfile1-zyndev
+libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
+libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
+libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libsndfile1-zyndev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
