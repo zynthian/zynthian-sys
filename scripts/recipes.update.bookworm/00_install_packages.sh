@@ -12,17 +12,20 @@ else
 	echo "$current_patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
 fi
 
+echo "CURRENT PATCH LEVEL: $current_patchlevel"
+
 # -----------------------------------------------------------------------------
 # Temporal fixes to patch development image until final ORAM release
 # -----------------------------------------------------------------------------
 
 patchlevel="20240221.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
 	echo "set enable-bracketed-paste off" > /root/.inputrc
 	$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
 	$ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
+	echo "$patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
 fi
-
 
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
@@ -81,4 +84,6 @@ apt-get -y autoclean
 # Save current patch level
 # -----------------------------------------------------------------------------
 
-echo "$patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
+if [[ "$current_patchlevel" == "$patchlevel" ]]; then
+	echo "NO NEW PATCHES TO APPLY!"
+fi
