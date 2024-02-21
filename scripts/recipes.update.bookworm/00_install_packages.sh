@@ -15,7 +15,7 @@ fi
 echo "CURRENT PATCH LEVEL: $current_patchlevel"
 
 # -----------------------------------------------------------------------------
-# Temporal fixes to patch development image until final ORAM release
+# Temporal patches to development image until final ORAM release
 # -----------------------------------------------------------------------------
 
 patchlevel="20240221.1"
@@ -24,7 +24,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "set enable-bracketed-paste off" > /root/.inputrc
 	$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
 	$ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
-	echo "$patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
@@ -39,7 +38,11 @@ fi
 #fi
 
 # -----------------------------------------------------------------------------
-# Install/update recipes shouldn't be added below this line!
+# End of patches section
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# Install selected debian packages
 # -----------------------------------------------------------------------------
 
 # Unhold some packages
@@ -52,8 +55,23 @@ if [ ! -z "$aptpkgs" ]; then
 	apt-get -y install $aptpkgs
 fi
 
+# -----------------------------------------------------------------------------
+# Save current patch level
+# -----------------------------------------------------------------------------
+
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "$patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
+else
+	echo "NO NEW PATCHES TO APPLY!"
+fi
+
+
+# -----------------------------------------------------------------------------
 # Upgrade System
+# -----------------------------------------------------------------------------
+
 if [[ ! "$ZYNTHIAN_SYS_BRANCH" =~ ^stable.* ]] || [[ "$ZYNTHIAN_FORCE_UPGRADE" == "yes" ]]; then
+	echo "UPGRADING DEBIAN PACKAGES!"
 	if [ -z "$aptpkgs" ]; then
 		apt-get -y update --allow-releaseinfo-change
 	fi
@@ -61,8 +79,16 @@ if [[ ! "$ZYNTHIAN_SYS_BRANCH" =~ ^stable.* ]] || [[ "$ZYNTHIAN_FORCE_UPGRADE" =
 	apt-get -y upgrade
 fi
 
+# -----------------------------------------------------------------------------
+# Clean apt packages
+# -----------------------------------------------------------------------------
+
 apt-get -y autoremove
 apt-get -y autoclean
+
+# -----------------------------------------------------------------------------
+# Bizarre stuff that shouldn't be needed but sometimes is
+# -----------------------------------------------------------------------------
 
 # Reinstall firmware to latest stable version
 #apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel
@@ -80,10 +106,3 @@ apt-get -y autoclean
 #	set_reboot_flag
 #fi
 
-# -----------------------------------------------------------------------------
-# Save current patch level
-# -----------------------------------------------------------------------------
-
-if [[ "$current_patchlevel" == "$patchlevel" ]]; then
-	echo "NO NEW PATCHES TO APPLY!"
-fi
