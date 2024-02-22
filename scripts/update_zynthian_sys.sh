@@ -80,8 +80,13 @@ function custom_config {
 		done
 	fi
 	if [ -d "boot" ]; then
-		for file in boot/* ; do
-			cp -a "$file" /boot
+		for file in boot/overlays/*.dtbo ; do
+			cp -a "$file" /boot/overlays
+		done
+		for file in boot/overlays/*.dts ; do
+			filebase=${file##*/}
+			filebase=${filebase%.*}
+			dtc -I dts -O dtb -o "/boot/overlays/$filebase" "$file"
 		done
 	fi
 	if [ -d "config" ]; then
