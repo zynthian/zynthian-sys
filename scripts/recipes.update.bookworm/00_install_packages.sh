@@ -61,6 +61,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs libsndfile-zyndev"
 fi
 
+patchlevel="20240222.4"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
+	chmod go-r /root/.vnc/passwd
+	aptpkgs="$aptpkgs x11vnc"
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
