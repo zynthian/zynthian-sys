@@ -113,7 +113,7 @@ apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfa
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw hostapd dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme fonts-freefont-ttf
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc
 #firmware-ralink 
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
@@ -270,6 +270,10 @@ if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
     echo "zynthian" > /etc/hostname
     sed -i -e "s/127\.0\.1\.1.*$/127.0.1.1\tzynthian/" /etc/hosts
 fi
+
+# VNC password
+echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
+chmod go-r /root/.vnc/passwd
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
