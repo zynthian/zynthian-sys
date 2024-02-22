@@ -28,6 +28,7 @@ fi
 
 patchlevel="20240221.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
 	wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > "/etc/apt/trusted.gpg.d/deb-zynthian-org.gpg"
 	echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
 	#echo "deb https://deb.zynthian.org/zynthian-stable bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
@@ -40,6 +41,7 @@ fi
 
 patchlevel="20240222.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
 	apt -y remove x42-plugins
 	apt -y install fonts-freefont-ttf libglu-dev libftgl-dev
 	$ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
@@ -47,6 +49,7 @@ fi
 
 patchlevel="20240222.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
 	echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
 	res=`dpkg -s libsndfile1-zyndev 2>&1 | grep "Status:"`
 	if [ "$res" != "Status: install ok installed" ]; then
