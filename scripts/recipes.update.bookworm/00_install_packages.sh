@@ -48,13 +48,17 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 fi
 
 patchlevel="20240222.2"
+# Dropped!
+
+patchlevel="20240222.3"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
 	echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
 	res=`dpkg -s libsndfile1-zyndev 2>&1 | grep "Status:"`
-	if [ "$res" != "Status: install ok installed" ]; then
-		aptpkgs="$aptpkgs libsndfile1-zyndev"
+	if [ "$res" == "Status: install ok installed" ]; then
+		apt -y remove libsndfile1-zyndev
 	fi
+	aptpkgs="$aptpkgs libsndfile-zyndev"
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
