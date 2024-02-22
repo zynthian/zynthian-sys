@@ -33,10 +33,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	#echo "deb https://deb.zynthian.org/zynthian-stable buster main" > "/etc/apt/sources.list.d/zynthian.list"
 	apt update
 	apt -y remove libsndfile1-dev
-	apt -y install libsndfile1-zyndev
-  apt -y install libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
-	libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
-	libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev
+	aptpkgs="$aptpkgs libsndfile1-zyndev libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev \
+	libgbm-dev libibus-1.0-5 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 \
+	libsndio-dev libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev"
+fi
+
+patchlevel="20240222.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	apt -y remove x42-plugins
+	apt -y install fonts-freefont-ttf libglu-dev libftgl-dev
+	$ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)

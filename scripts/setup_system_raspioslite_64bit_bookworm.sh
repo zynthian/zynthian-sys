@@ -113,7 +113,7 @@ apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfa
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw hostapd dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme
+shiki-colors-xfwm-theme fonts-freefont-ttf
 #firmware-ralink 
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
@@ -144,7 +144,8 @@ libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrende
 libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev libganv-dev \
 libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
-libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libsndfile1-zyndev
+libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev \
+libsndfile1-zyndev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4

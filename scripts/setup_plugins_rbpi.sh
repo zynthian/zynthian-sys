@@ -49,7 +49,7 @@ mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 noise-rep
 obxd-lv2 oxefmsynth padthv1-lv2 pitcheddelay-lv2 pizmidi-plugins regrader riban-lv2 rubberband-lv2 \
 safe-plugins samplv1-lv2 shiro-plugins synthv1-lv2 sorcer surge \
 temper-lv2 tal-plugins-lv2 tap-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
-wolf-shaper wolf-spectrum wolpertinger-lv2 x42-plugins zam-plugins zlfo
+wolf-shaper wolf-spectrum wolpertinger-lv2 zam-plugins zlfo
 
 # TODO review:
 # avw.lv2
@@ -118,15 +118,7 @@ $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
 # $ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
 
 # X42 plugins
-#$ZYNTHIAN_RECIPE_DIR/install_fat1.sh
-#$ZYNTHIAN_RECIPE_DIR/install_darc_lv2.sh
-#$ZYNTHIAN_RECIPE_DIR/install_fil4_lv2.sh
-#$ZYNTHIAN_RECIPE_DIR/install_meters.sh
-#$ZYNTHIAN_RECIPE_DIR/install_x42_testsignal.sh
-#$ZYNTHIAN_RECIPE_DIR/install_midifilter.lv2.sh
-#$ZYNTHIAN_RECIPE_DIR/install_step-seq.sh
-$ZYNTHIAN_RECIPE_DIR/install_mclk.sh
-
+$ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
 
 # Zynthian precompiled plugins
 ######################## THIS MUST BE REBUILD =>
