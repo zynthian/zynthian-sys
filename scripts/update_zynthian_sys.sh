@@ -86,7 +86,7 @@ function custom_config {
 		for file in boot/overlays/*.dts ; do
 			filebase=${file##*/}
 			filebase=${filebase%.*}
-			dtc -I dts -O dtb -o "/boot/overlays/$filebase" "$file"
+			dtc -I dts -O dtb -o "/boot/overlays/$filebase.dtbo" "$file"
 		done
 	fi
 	if [ -d "config" ]; then
