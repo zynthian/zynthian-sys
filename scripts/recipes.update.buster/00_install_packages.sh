@@ -155,11 +155,12 @@ if is_python_module_installed.py Levenshtein; then
 	pip3 install Levenshtein
 fi
 
-# 2024-02-21: Install riban's libsndfile1-zyndev from zynthian repo
-res=`dpkg -s libgpiod-dev 2>&1 | grep "Status:"`
+# 2024-02-22: Install riban's libsndfile-zyndev from zynthian repo
+res=`dpkg -s libsndfile-zyndev 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
 	apt-get -y remove libsndfile1-dev
-	aptpkgs="$aptpkgs libsndfile1-zyndev"
+	apt-get -y remove libsndfile1-zyndev
+	aptpkgs="$aptpkgs libsndfile-zyndev"
 fi
 
 # -----------------------------------------------------------------------------
