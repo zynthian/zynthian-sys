@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-#********************************************************************
+# ********************************************************************
 # ZYNTHIAN PROJECT: Zynthian Hardware Autoconfig
 #
 # Auto-detect & config some hardware configurations
 #
 # Copyright (C) 2023 Fernando Moyano <jofemodo@zynthian.org>
 #
-#********************************************************************
+# ********************************************************************
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -21,16 +21,17 @@
 #
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 #
-#********************************************************************
+# ********************************************************************
 
 import os
 import sys
 import logging
 from subprocess import check_output
 
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
 # Hardware's config for several boards:
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
+
 
 hardware_config = {
 	"Z2_MAIN_BETA": ["PCM1863@0x4A", "PCM5242@0x4D"],
@@ -46,9 +47,10 @@ hardware_config = {
 	"Zynaptik": ["MCP23017@0x21", "ADS1115@0x48", "MCP4728@0x64"]
 }
 
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
 # Functions
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
+
 
 def get_i2c_chips():
 	out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
@@ -61,9 +63,9 @@ def get_i2c_chips():
 					adr = i * 16 + j
 					#print("Detecting at {:02X} => {}".format(adr, parts[j]))
 					if parts[j] != "--":
-						if adr >= 0x20 and adr <= 0x27:
+						if 0x20 <= adr <= 0x27:
 							res.append("MCP23017@0x{:02X}".format(adr))
-						elif adr >= 0x48 and adr <= 0x49:
+						elif 0x48 <= adr <= 0x49:
 							res.append("ADS1115@0x{:02X}".format(adr))
 						elif adr == 0x4A:
 							res.append("PCM1863@0x{:02X}".format(adr))
@@ -74,7 +76,7 @@ def get_i2c_chips():
 						#elif adr == 0x60 and parts[j] == "UU":
 						elif adr == 0x60:
 							res.append("TPA6130@0x{:02X}".format(adr))
-						elif adr >= 0x61 and adr <= 0x64:
+						elif 0x61 <= adr <= 0x64:
 							res.append("MCP4728@0x{:02X}".format(adr))
 				except:
 					pass
@@ -113,7 +115,7 @@ def autodetect_config():
 		config_name = "Custom"
 	return config_name
 
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
 
 # Get list of i2c chips
 i2c_chips = get_i2c_chips()
@@ -142,4 +144,4 @@ if config_name:
 else:
 	print("Autoconfig for this HW footprint is not available.")
 
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
