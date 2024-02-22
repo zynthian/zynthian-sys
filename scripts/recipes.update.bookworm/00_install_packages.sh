@@ -40,21 +40,23 @@ fi
 
 patchlevel="20240222.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
 	apt -y remove x42-plugins
 	apt -y install fonts-freefont-ttf libglu-dev libftgl-dev
 	$ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
 fi
 
+patchlevel="20240222.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
+	res=`dpkg -s libsndfile1-zyndev 2>&1 | grep "Status:"`
+	if [ "$res" != "Status: install ok installed" ]; then
+		aptpkgs="$aptpkgs libsndfile1-zyndev"
+	fi
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
-#fi
-
-# 2024-01-08: Install python3-usb (chain_manager)
-#res=`dpkg -s python3-usb 2>&1 | grep "Status:"`
-#if [ "$res" != "Status: install ok installed" ]; then
-#	aptpkgs="$aptpkgs python3-usb"
 #fi
 
 # -----------------------------------------------------------------------------
