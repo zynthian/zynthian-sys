@@ -9,26 +9,29 @@ fi
 
 # Clean unneeded packages & apt cache
 echo "Cleaning unused packages and cache..."
-apt-get -y autoremove
-apt-get clean
+apt -y autoremove
+apt clean
 
 # Delete configured wifi networks
-echo "Deleting wifi networks..."
-cp -f $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant
+echo "Deleting wireless connections..."
+nmcli --terse connection show | while read row; do
+	name=$(echo "$row" | cut -d : -f 1)
+	type=$(echo "$row" | cut -d : -f 3 | cut -d \- -f 3)
+	if [ "$type" == "wireless" ]; then
+		echo "Deleting $name ..."
+		nmcli connection delete "$name"
+	fi
+done
 
 # Delete logs
 echo "Deleting first boot logs..."
 rm -f /root/first_boot.log
 echo "Deleting system logs..."
 for f in /var/log/* /var/log/**/* ; do
-	if [ -f $f ]; then
-		cat /dev/null > $f
+	if [ -f "$f" ]; then
+		cat /dev/null > "$f"
 	fi
 done
-
-# Clean history
-echo "Cleaning shell history..."
-cat /dev/null > ~/.bash_history && history -c && history -w
 
 # Removing user data files
 echo "Removing user data files..."
@@ -54,6 +57,12 @@ systemctl enable first_boot
 echo "The system is going to halt. Extract the SD card and dump the image."
 sleep 3
 sync
+
+# Clean history
+echo "Cleaning shell history..."
+rm -f /home/zyn/.bash-history*
+rm -f /root/.bash-history*
+history -c && history -w
 
 # Power Off
 poweroff   
