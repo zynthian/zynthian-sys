@@ -72,6 +72,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs x11vnc"
 fi
 
+patchlevel="20240225.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	systemctl disable glamor-test.service
+	rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
