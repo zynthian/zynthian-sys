@@ -275,6 +275,9 @@ fi
 echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
 chmod go-r /root/.vnc/passwd
 
+# Delete problematic file from X11 config (RPi3??)
+rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
+
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
 # => Shell & Login Config
@@ -309,6 +312,7 @@ systemctl disable hostapd
 systemctl disable dnsmasq
 systemctl disable apt-daily.timer
 systemctl disable ModemManager
+systemctl disable glamor-test.service
 systemctl enable avahi-daemon
 systemctl enable devmon@root
 #systemctl enable dhcpcd
