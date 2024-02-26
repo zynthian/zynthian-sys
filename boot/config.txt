@@ -63,9 +63,6 @@ dtparam=spi=on
 # Uncomment to change I2C clock. Default is 100000.
 #dtparam=i2c_arm_baudrate=400000
 
-# Enable MMAP support (Jackd, etc.)
-dtoverlay=i2s-mmap
-
 # Enable UART for MIDI
 enable_uart=1
 
