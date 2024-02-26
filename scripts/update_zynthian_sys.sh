@@ -203,7 +203,13 @@ fi
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Generate cmdline.txt
-  cmdline="root=/dev/mmcblk0p2 rootfstype=ext4 fsck.repair=yes rootwait"
+	# when booting from nvme, root is a PARTUUID and not a simple predictible path
+	# retrieve root device from current cmdline.txt, and by default use /dev/mmcblk0p2
+	root=`cat $CMDLINE_CONFIG_FPATH | tr ' ' '\n' | grep 'root='`
+	if [ -z "$root" ]; then
+	    root="root=/dev/mmcblk0p2"
+	fi
+	cmdline="$root rootfstype=ext4 fsck.repair=yes rootwait"
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"
@@ -226,7 +232,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 		cmdline="$cmdline console=tty1 logo.nologo"
 	fi
 
-  # Customize config.txt
+	# Customize config.txt
 	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt "$BOOT_CONFIG_FPATH"
 
 	echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
