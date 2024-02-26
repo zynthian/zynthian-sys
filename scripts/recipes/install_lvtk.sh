@@ -63,4 +63,3 @@ meson compile
 meson install
 cd ../..
 
-cp /usr/local/lib/pkgconfig/lvtk-plugin-1.pc /usr/local/lib/pkgconfig/lvtk-plugin-2.pc
