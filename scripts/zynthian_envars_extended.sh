@@ -141,8 +141,10 @@ export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during
 #------------------------------------------------------------------------------
 # Enter python virtual environment
 #------------------------------------------------------------------------------
-
-source "$ZYNTHIAN_DIR/venv/bin/activate"
+#at first boot, venv may not exist yet when called from the install script
+if [ -d "$ZYNTHIAN_DIR/venv" ]; then
+	source "$ZYNTHIAN_DIR/venv/bin/activate"
+fi
 
 #------------------------------------------------------------------------------
 
