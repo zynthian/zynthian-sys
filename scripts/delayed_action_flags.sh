@@ -82,7 +82,7 @@ function run_flag_actions() {
 			send_osc 1370 /CUIA/LAST_STATE_ACTION
 			sleep 1
 			echo "Rebooting..."
-			reboot
+			systemctl reboot
 			return
 		fi
 
@@ -127,7 +127,7 @@ function run_reboot_flag_action_raw() {
 	if [ -f $REBOOT_FLAGFILE ]; then
 		clean_all_flags
 		echo "Rebooting..."
-		reboot
+		systemctl reboot
 	fi
 }
 

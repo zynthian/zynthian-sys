@@ -16,7 +16,7 @@ if [ -f $REBOOT_FLAGFILE ]; then
 	clean_all_flags
 	echo -e "\nReboot..." >> /root/first_boot.log
 	sync
-	reboot -f
+	systemctl reboot
 	exit
 fi
 
@@ -48,4 +48,4 @@ echo -e "Resizing partition..." >> /root/first_boot.log
 raspi-config --expand-rootfs
 
 # Reboot
-reboot
+systemctl reboot
