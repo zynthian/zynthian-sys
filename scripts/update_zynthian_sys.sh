@@ -531,6 +531,7 @@ if [[ "$JACKD_OPTIONS" != *@(-X raw)* ]]; then
   echo "Fixing jackd parameters ..."
   echo "export JACKD_OPTIONS='$JACKD_OPTIONS -X raw'" >> /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
+  set_reboot_flag
 fi
 
 # Replace config vars in hostapd.conf
