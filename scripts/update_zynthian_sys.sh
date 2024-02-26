@@ -527,10 +527,9 @@ if [ "$VIRTUALIZATION" == "none" ]; then
 fi
 
 # Fix jackd parameters
-i=`echo $JACKD_OPTIONS | sed 's/\( *-X raw\)//'`
-if [ "$i" != "$JACKD_OPTIONS" ]; then
+if [[ "$JACKD_OPTIONS" != *@(-X raw)* ]]; then
   echo "Fixing jackd parameters ..."
-  echo "export JACKD_OPTIONS=\"$i\"" >> /tmp/update_envars.sh
+  echo "export JACKD_OPTIONS='$JACKD_OPTIONS -X raw'" >> /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
 fi
 
