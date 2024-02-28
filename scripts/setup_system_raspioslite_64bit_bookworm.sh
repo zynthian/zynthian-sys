@@ -251,9 +251,8 @@ python3 -m venv venv --system-site-packages
 source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
-pip3 install tornado tornadostreamform websocket-client tornado_xstatic terminado \
-oyaml JACK-Client alsa-midi sox meson ninja rpi_ws281x ffmpeg-python pyrubberband \
-abletonparsing Levenshtein
+pip3 install tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
+oyaml JACK-Client alsa-midi sox meson ninja rpi_ws281x ffmpeg-python pyrubberband abletonparsing Levenshtein
 
 #------------------------------------------------
 # System Adjustments
