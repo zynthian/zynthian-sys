@@ -13,15 +13,7 @@ apt -y autoremove
 apt clean
 
 # Delete configured wifi networks
-echo "Deleting wireless connections..."
-nmcli --terse connection show | while read row; do
-	name=$(echo "$row" | cut -d : -f 1)
-	type=$(echo "$row" | cut -d : -f 3 | cut -d \- -f 3)
-	if [ "$type" == "wireless" ]; then
-		echo "Deleting $name ..."
-		nmcli connection delete "$name"
-	fi
-done
+clean_wifi_networks.sh
 
 # Delete logs
 echo "Deleting first boot logs..."
