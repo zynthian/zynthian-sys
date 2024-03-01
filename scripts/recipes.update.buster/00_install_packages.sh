@@ -146,7 +146,7 @@ fi
 # 2024-02-06: Install libgpiod-dev
 res=`dpkg -s libgpiod-dev 2>&1 | grep "Status:"`
 if [ "$res" != "Status: install ok installed" ]; then
-	aptpkgs="$aptpkgs libgpiod-dev"
+	aptpkgs="$aptpkgs libgpiod-dev gpiod"
 fi
 
 # 2024-02-17: Install Levenshtein (text distance)
@@ -167,7 +167,7 @@ fi
 # Install/update recipes shouldn't be added below this line!
 # -----------------------------------------------------------------------------
 
-# Hold some packages
+# Unhold some packages
 apt-mark unhold raspberrypi-kernel
 apt-mark unhold raspberrypi-sys-mods
 

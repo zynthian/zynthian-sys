@@ -23,6 +23,16 @@
 #******************************************************************************
 
 #------------------------------------------------------------------------------
+# Set default password & enable ssh on first boot
+#------------------------------------------------------------------------------
+
+# With the SDcard mounted in your computer
+cd /media/txino/bootfs
+echo -n "zyn:" > userconf.txt
+echo 'opensynth' | openssl passwd -6 -stdin >> userconf.txt
+touch ssh
+
+#------------------------------------------------------------------------------
 # Load Environment Variables
 #------------------------------------------------------------------------------
 
@@ -42,8 +52,8 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
 
-[ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="testing"
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH=$ZYNTHIAN_BRANCH
+[ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="chain_manager"
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="chainman_bookworm"
 [ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
@@ -70,7 +80,7 @@ fi
 #------------------------------------------------
 
 # deb-multimedia repo
-echo "deb https://www.deb-multimedia.org bullseye main non-free" >> /etc/apt/sources.list
+echo "deb https://www.deb-multimedia.org bookworm main non-free" >> /etc/apt/sources.list
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -y --allow-unauthenticated  install deb-multimedia-keyring
 
@@ -79,15 +89,15 @@ wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-re
 sudo dpkg -i kxstudio-repos_11.1.0_all.deb
 rm -f kxstudio-repos_11.1.0_all.deb
 
-# Zynthian => TODO Add support for 64 bit!!!!
+# Zynthian
 wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
-echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
+echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
+#echo "deb https://deb.zynthian.org/zynthian-stable bookworm main" > /etc/apt/sources.list.d/zynthian.list
 
-# Sfizz
+# Sfizz => Repo version segfaults!!
 #sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
-sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_11"
-echo 'deb $sfizz_url_base/ /' | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
-curl -fsSL $sfizz_url_base/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
+#echo "deb $sfizz_url_base/ /" | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
+#curl -fsSL $sfizz_url_base/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
 
 apt-get -y update
 apt-get -y full-upgrade
@@ -99,18 +109,19 @@ apt-get -y autoremove
 
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
-apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfat-utils \
+apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw hostapd dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme
-#firmware-ralink
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
+#firmware-ralink 
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
 # CLI Tools
-apt-get -y install raspi-config psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
-fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo
+apt-get -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
+fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo \
+xterm gpiod
 #  qmidinet
 
 #------------------------------------------------
@@ -124,48 +135,44 @@ libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-heade
 libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
-libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
+libglibmm-2.4-dev libeigen3-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
 lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
 libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
-libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev \
-libclthreads-dev libclxclient-dev
+libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev libganv-dev \
+libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
+libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
+libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev \
+libsndfile1-zyndev
+
+# Missed libs from previous OS versions:
+# Removed from bookworm: libavresample4
 
 # Tools
 apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake \
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
 ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli
 
+# Missed tools from previous OS versions:
 #libjack-dev-session
 #non-ntk-dev
 #libgd2-xpm-dev
 
-# Python2 (DEPRECATED!!)
-apt-get -y install python-is-python2 python-dev-is-python2 python-setuptools
-
 # Python3
 apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
-python3-soundfile pyliblo-utils
+python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
+python3-mutagen pyliblo-utils  
 
-pip3 install --upgrade pip
-pip3 install tornado==4.5 tornadostreamform websocket-client jsonpickle oyaml JACK-Client alsa-midi sox \
-psutil pexpect requests meson ninja mido python-rtmidi==1.4.9 rpi_ws281x ffmpeg-python pyrubberband mutagen \
-abletonparsing
+# Python2 (DEPRECATED!!)
+#apt-get -y install python-setuptools python-is-python2 python-dev-is-python2
 
-# NOTE:
-# python-rtmidi >= 1.5 uses jack protocol 9, that is bumped in jackd 1.9.19
-
-# TODO  install patchage or find a replacement
-
-#************************************************
 #------------------------------------------------
 # Create Zynthian Directory Tree 
 # Install Zynthian Software from repositories
 #------------------------------------------------
-#************************************************
 
 # Create needed directories
 mkdir "$ZYNTHIAN_DIR"
@@ -173,33 +180,30 @@ mkdir "$ZYNTHIAN_CONFIG_DIR"
 mkdir "$ZYNTHIAN_SW_DIR"
 
 # Zynthian System Scripts and Config files
-cd $ZYNTHIAN_DIR
+cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 
-# Install WiringPi
-$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
-#TODO Check this can't cause problems => pseudoPins.c:50:16: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-
 # Config "git pull" strategy globally
-git config --global pull.rebase false
+# QUESTION: is this needed at all?
+#git config --global pull.rebase false
 
 # Zyncoder library
-cd $ZYNTHIAN_DIR
+cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 ./zyncoder/build.sh
 
 # Zynthian UI
-cd $ZYNTHIAN_DIR
+cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}"
-cd $ZYNTHIAN_UI_DIR
+cd "$ZYNTHIAN_UI_DIR"
 find ./zynlibs -type f -name build.sh -exec {} \;
 
 # Zynthian Data
-cd $ZYNTHIAN_DIR
+cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 
 # Zynthian Webconf Tool
-cd $ZYNTHIAN_DIR
+cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
 
 # Create needed directories
@@ -238,16 +242,26 @@ mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 # Copy default snapshots
 cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
 
-#************************************************
+#------------------------------------------------
+# Python Environment
+#------------------------------------------------
+
+cd "$ZYNTHIAN_DIR"
+python3 -m venv venv --system-site-packages
+source "$ZYNTHIAN_DIR/venv/bin/activate"
+
+pip3 install --upgrade pip
+pip3 install tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
+oyaml JACK-Client alsa-midi sox meson ninja rpi_ws281x ffmpeg-python pyrubberband abletonparsing Levenshtein
+
 #------------------------------------------------
 # System Adjustments
 #------------------------------------------------
-#************************************************
 
 # Use tmpfs for tmp & logs
 echo "" >> /etc/fstab
-echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=20M   0  0" >> /etc/fstab
-echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=5M   0  0" >> /etc/fstab
+echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=100M   0  0" >> /etc/fstab
+echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >> /etc/fstab
 echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=20M  0  0" >> /etc/fstab
 
 # Change Hostname
@@ -256,33 +270,60 @@ if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
     sed -i -e "s/127\.0\.1\.1.*$/127.0.1.1\tzynthian/" /etc/hosts
 fi
 
+# VNC password
+echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
+chmod go-r /root/.vnc/passwd
+
+# Delete problematic file from X11 config (RPi3??)
+rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
+
+# Setup loading of Zynthian Environment variables ...
+echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
+# => Shell & Login Config
+echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
+source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian
+
+# ZynthianOS version
+echo "2402" > /etc/zynthianos_version
+# Build Info
+echo "ZynthianOS: Built on os.zynthian.org" > $ZYNTHIAN_DIR/build_info.txt
+echo "" >> $ZYNTHIAN_DIR/build_info.txt
+echo "Timestamp: 2024-02-01"  >> $ZYNTHIAN_DIR/build_info.txt
+echo "" >> $ZYNTHIAN_DIR/build_info.txt
+echo "Optimized: Raspberry Pi 4 Model B" >> $ZYNTHIAN_DIR/build_info.txt
+
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 
 #$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
-$ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.sh
+$ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
+# TODO Replace "gpio" by pinctrl, etc.
+# Until then ...
+cp $ZYNTHIAN_SYS_DIR/config/zynthian_envars_Custom.sh $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 # Configure systemd services
 systemctl daemon-reload
-systemctl enable dhcpcd
-systemctl enable avahi-daemon
 systemctl disable raspi-config
 systemctl disable cron
-systemctl disable rsyslog
-systemctl disable wpa_supplicant
+#systemctl disable wpa_supplicant
 systemctl disable hostapd
 systemctl disable dnsmasq
-systemctl disable unattended-upgrades
 systemctl disable apt-daily.timer
+systemctl disable ModemManager
+systemctl disable glamor-test.service
+systemctl enable avahi-daemon
+systemctl enable devmon@root
+#systemctl enable dhcpcd
+#systemctl disable rsyslog
+#systemctl disable unattended-upgrades
 #systemctl mask packagekit
 #systemctl mask polkit
-systemctl enable devmon@root
 
 # Zynthian specific systemd services
 systemctl enable backlight
 systemctl enable cpu-performance
-systemctl enable splash-screen
-systemctl enable wifi-setup
+#systemctl enable wifi-setup
 systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
@@ -290,22 +331,12 @@ systemctl enable zynthian
 systemctl enable zynthian-webconf
 systemctl enable zynthian-config-on-boot
 
-# Setup loading of Zynthian Environment variables ...
-echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
-# => Shell & Login Config
-echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
-# Disable bracketed paste for read-line library
-echo "set enable-bracketed-paste off" > /root/.inputrc
-
 # On first boot, resize SD partition, regenerate keys, etc.
 $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 
-
-#************************************************
 #------------------------------------------------
-# Compile / Install Required Libraries
+# Build & Install Required Libraries
 #------------------------------------------------
-#************************************************
 
 # Install Jack2
 #$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
@@ -322,7 +353,7 @@ $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
 # Install the LV2 C++ Tool Kit
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 
-#TODO FAILED=> ninja: build stopped: subcommand failed.
+# TODO FAILED=> ninja: build stopped: subcommand failed.
 
 # Install LV2 Jalv Plugin Host
 $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
@@ -331,7 +362,9 @@ $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 $ZYNTHIAN_RECIPE_DIR/install_aubio.sh
 
 # Install jpmidi (MID player for jack with transport sync)
-$ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
+#$ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
+# TODO => No configure !! It must be changed to meson or waf or something like that....
+# Do we need this? => I think no!!
 
 # Install jack_capture (jackd audio recorder)
 $ZYNTHIAN_RECIPE_DIR/install_jack_capture.sh
@@ -341,7 +374,7 @@ $ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
 
 # Install touchosc2midi (TouchOSC Bridge)
 #$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
-#TODO FAILED=> build cython
+# TODO FAILED=> build cython => Probably python 2.7 that must be upgraded
 
 # Install jackclient (jack-client python library)
 #$ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
@@ -361,6 +394,9 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 # Install QJackCtl
 #$ZYNTHIAN_RECIPE_DIR/install_qjackctl.sh
 
+# Install patchage
+$ZYNTHIAN_RECIPE_DIR/install_patchage.sh
+
 # Install the njconnect Jack Graph Manager
 $ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
 
@@ -377,16 +413,14 @@ $ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
 $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 
 # Install terminal emulator for tornado (webconf)
-$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
+#$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
 
 # Install DT overlays for waveshare displays and others
 $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 
-#************************************************
 #------------------------------------------------
-# Compile / Install Synthesis Software
+# Build & Install Synthesis Software
 #------------------------------------------------
-#************************************************
 
 # Install ZynAddSubFX
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
@@ -394,6 +428,9 @@ apt-get -y install zynaddsubfx
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
+# Stop & disable systemd fluidsynth service
+systemctl stop --user fluidsynth.service
+systemctl mask --user fluidsynth.service
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
@@ -404,8 +441,8 @@ $ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
 #$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
 
 # Install Sfizz (SFZ player)
+#apt-get -y install sfizz  # repo version segfaults!!!
 $ZYNTHIAN_RECIPE_DIR/install_sfizz.sh
-#apt-get -y install sfizz
 
 # Install Linuxsampler
 #$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
@@ -431,7 +468,7 @@ $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 
 # Install Mididings (MIDI route & filter)
 #apt-get -y install mididings
-#TODO find a deb repo
+# TODO find a deb repo
 
 # Install Pure Data stuff
 apt-get -y install puredata puredata-core puredata-utils puredata-import python3-yaml \
@@ -450,7 +487,7 @@ mkdir /root/Pd/externals
 
 # Install MOD-HOST
 # Requires libjackd-jackd2-1.9.19 (JackTickDouble), bullseye has 1.9.17
-export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
+#export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
 $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
  
 # Install browsepy
@@ -458,7 +495,6 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
 
 #Install MOD-UI
 $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
-#TODO FAILED to install pycrypto (pip3) => It's obsolete!
 
 #Install MOD-SDK
 #$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
@@ -466,9 +502,8 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 #------------------------------------------------
 # Install Plugins
 #------------------------------------------------
-cd $ZYNTHIAN_SYS_DIR/scripts
+cd "$ZYNTHIAN_SYS_DIR/scripts"
 ./setup_plugins_rbpi.sh
-#TODO Review this => surge binary from repo fails?? => Install our own binary.
 
 #------------------------------------------------
 # Install Ableton Link Support
@@ -476,16 +511,14 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
-#************************************************
 #------------------------------------------------
-# Final Configuration
+# Final configuration
 #------------------------------------------------
-#************************************************
 
 # Create flags to avoid running unneeded recipes.update when updating zynthian software
-if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
-	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
-fi
+#if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
+#	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
+#fi
 
 # Run configuration script before ending
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
@@ -497,19 +530,20 @@ $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh
 cd $ZYNTHIAN_UI_DIR/zyngine
 python3 ./zynthian_lv2.py
 
-
-#************************************************
 #------------------------------------------------
-# End & Clean
+# End & Cleanup
 #------------------------------------------------
-#************************************************
 
 #Block MS repo from being installed
 #apt-mark hold raspberrypi-sys-mods
-touch /etc/apt/trusted.gpg.d/microsoft.gpg
+#touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
 if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
     apt-get clean
 fi
+
+#------------------------------------------------
+
+

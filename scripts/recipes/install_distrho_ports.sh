@@ -1,27 +1,37 @@
 #!/bin/bash
 
-# DISTRHO ports
-
-#REQUIRE:
-
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
+
+# DISTRHO ports
 if [ -d "DISTRHO-Ports" ]; then
 	rm -rf "DISTRHO-Ports"
 fi
-#Download and compile code from github
-git clone https://github.com/DISTRHO/DISTRHO-Ports.git
-cd DISTRHO-Ports
+git clone --recursive "https://github.com/DISTRHO/DISTRHO-Ports.git"
+cd "DISTRHO-Ports"
+meson setup build --buildtype release
+ninja -C build
+ninja -C build install
+
+# Compile legacy DISTRHO libraries => needed to build extra ports!
+rm -rf build
+git checkout legacy
 export LINUX_EMBED=true
 ./scripts/premake-update.sh linux
+make -j 3
 
-# Workaround for https://github.com/zynthian/zynthian-sys/issues/59
-# Caused by https://bugs.launchpad.net/qemu/+bug/1776478
-sed -i 's@\t\@./scripts/generate-ttl.sh@\t@g' Makefile
-
+# Extra DISTRHO ports => We want argotlunar2.lv2!!
+if [ -d "DISTRHO-Ports-Extra" ]; then
+	rm -rf "DISTRHO-Ports-Extra"
+fi
+git clone https://github.com/DISTRHO/DISTRHO-Ports-Extra.git
+cd "DISTRHO-Ports-Extra"
+export LINUX_EMBED=true
+./scripts/premake-update.sh linux
 make -j 3 lv2
-make install
-make clean
-make distclean
-
+# Generate argotlunar's binary but not TTL, so we take TTL from 32bits version. It should be identical!
 cd ..
-rm -rf DISTRHO-Ports
+
+rm -rf "DISTRHO-Ports-Extra"
+rm -rf "DISTRHO-Ports"
+
+

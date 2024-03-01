@@ -11,7 +11,7 @@
 # 3. Run second time: screen -t setup -L sh ./setup_zynthian.sh
 # 4. Take a good beer, sit down and relax ... ;-)
 # 
-# Copyright (C) 2015-2016 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2015-2024 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
 # 
@@ -31,22 +31,18 @@
 
 cd
 
-if [ ! -d "zynthian-sys" ]; then
-	apt-get update
-	apt-get -y install apt-utils sudo git parted screen
-	git clone https://github.com/zynthian/zynthian-sys.git
-fi
-
-cd zynthian-sys/scripts
-
 if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	echo `date` >  ~/.wiggled
-	#./rpi-wiggle.sh
-	/usr/lib/raspi-config/init_resize.sh
-	
+	raspi-config --expand-rootfs
+	reboot
 else
-	#./setup_system_rbpi_raspbian_lite_buster.sh
-	./setup_system_raspioslite_64bit_bullseye.sh
+	if [ ! -d "zynthian-sys" ]; then
+		apt-get update
+		apt-get -y install apt-utils sudo git parted screen
+		git clone https://github.com/zynthian/zynthian-sys.git
+	fi
+	cd zynthian-sys/scripts
+	./setup_system_raspioslite_64bit_bookworm.sh
 	cd
 	rm -rf zynthian-sys
 fi

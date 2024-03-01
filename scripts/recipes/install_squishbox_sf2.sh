@@ -1,6 +1,12 @@
 #!/bin/bash
 
-cd /tmp
+cd $ZYNTHIAN_SW_DIR
+
+if [ -d "squishbox" ]; then
+	rm -rf "squishbox"
+fi
+mkdir "squishbox"
+cd "squishbox"
 
 git clone https://github.com/albedozero/fluidpatcher
 mv ./fluidpatcher/SquishBox/sf2/*sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
@@ -13,3 +19,6 @@ mv ./sf2/*sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 mv ./sf2/*/*sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 rm -rf ./sf2
 rm -rf ./banks
+
+cd ..
+rm -rf "squishbox"
