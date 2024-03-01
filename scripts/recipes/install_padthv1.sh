@@ -15,7 +15,7 @@ then
 	aclocal
 	autoheader
 	automake --force-missing --add-missing
-	autoconf 
+	autoconf
 	./configure
 	if [ "${build}" = "clean" ]
 	then
@@ -23,7 +23,7 @@ then
 	fi
 	make -j 4
 	make install
-	zynth_build_request ready 
+	zynth_build_request ready
 	make clean
 	cd ..
 fi

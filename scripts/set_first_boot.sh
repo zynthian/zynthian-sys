@@ -9,26 +9,21 @@ fi
 
 # Clean unneeded packages & apt cache
 echo "Cleaning unused packages and cache..."
-apt-get -y autoremove
-apt-get clean
+apt -y autoremove
+apt clean
 
 # Delete configured wifi networks
-echo "Deleting wifi networks..."
-cp -f $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant
+clean_wifi_networks.sh
 
 # Delete logs
 echo "Deleting first boot logs..."
 rm -f /root/first_boot.log
 echo "Deleting system logs..."
 for f in /var/log/* /var/log/**/* ; do
-	if [ -f $f ]; then
-		cat /dev/null > $f
+	if [ -f "$f" ]; then
+		cat /dev/null > "$f"
 	fi
 done
-
-# Clean history
-echo "Cleaning shell history..."
-cat /dev/null > ~/.bash_history && history -c && history -w
 
 # Removing user data files
 echo "Removing user data files..."
@@ -45,16 +40,19 @@ rm -rf $ZYNTHIAN_DIR/zyncoder/build
 $ZYNTHIAN_DIR/zyncoder/build.sh
 rm -rf $ZYNTHIAN_CONFIG_DIR/img
 #rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
-
-# Disable Boot Log
-echo "BOOT LOG DISABLED"
-sed -i -e 's/tty1/tty3/' /boot/cmdline.txt
-sed -i -e 's/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
 
 # Add First Boot Script to /etc/rc.local
 echo "Enabling first boot service..."
 systemctl enable first_boot
+
+# Clean history
+echo "Cleaning shell history..."
+rm -f /home/zyn/.bash_history*
+rm -f /home/zyn/.history*
+rm -f /root/.bash_history*
+rm -f /root/.python_history
+rm -f /root/.history
+history -c && history -w
 
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."

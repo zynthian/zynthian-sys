@@ -45,4 +45,7 @@ systemctl disable first_boot
 
 # Resize partition & reboot
 echo -e "Resizing partition..." >> /root/first_boot.log
-$ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh
+raspi-config --expand-rootfs
+
+# Reboot
+reboot

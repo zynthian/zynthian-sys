@@ -9,6 +9,12 @@ cd $ZYNTHIAN_SW_DIR
 if [ -d lvtk-1 ]; then
 	rm -rf lvtk-1
 fi
+
+wget https://github.com/lvtk/lvtk/archive/refs/tags/1.2.0.tar.gz
+tar xfvz 1.2.0.tar.gz
+cd lvtk-1.2.0
+
+
 git clone https://github.com/lvtk/lvtk.git lvtk-1
 cd lvtk-1
 git checkout v1

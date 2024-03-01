@@ -80,8 +80,13 @@ function custom_config {
 		done
 	fi
 	if [ -d "boot" ]; then
-		for file in boot/* ; do
-			cp -a "$file" /boot
+		for file in boot/overlays/*.dtbo ; do
+			cp -a "$file" /boot/overlays
+		done
+		for file in boot/overlays/*.dts ; do
+			filebase=${file##*/}
+			filebase=${filebase%.*}
+			dtc -I dts -O dtb -o "/boot/overlays/$filebase.dtbo" "$file"
 		done
 	fi
 	if [ -d "config" ]; then
@@ -188,70 +193,87 @@ fi
 # Boot Config 
 #------------------------------------------------------------------------------
 
+BOOT_CONFIG_FPATH="/boot/firmware/config.txt"
+CMDLINE_CONFIG_FPATH="/boot/firmware/cmdline.txt"
+
 # Detect NO_ZYNTHIAN_UPDATE flag in the config.txt
-if [ -f "/boot/config.txt" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
-	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
+if [ -f "$BOOT_CONFIG_FPATH" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
+	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE $BOOT_CONFIG_FPATH`
 fi
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/boot/cmdline.txt /boot
-	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
+	# Generate cmdline.txt
+  cmdline="root=/dev/mmcblk0p2 rootfstype=ext4 fsck.repair=yes rootwait"
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"
-		sed -i -e 's/^/dwc_otg.speed=1 /' /boot/cmdline.txt
+		cmdline="$cmdline dwc_otg.speed=1"
 	fi
 
 	if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
-		ZYNTHIAN_CUSTOM_BOOT_CMDLINE="$ZYNTHIAN_CUSTOM_BOOT_CMDLINE $DISPLAY_KERNEL_OPTIONS"
-	fi
-	
-	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
-		echo "BOOT LOG DISABLED"
-		sed -i -e 's/tty1/tty3/' /boot/cmdline.txt
-		sed -i -e 's/rootwait/rootwait logo.nologo quiet splash vt.global_cursor_default=0/' /boot/cmdline.txt
+		cmdline="$cmdline $DISPLAY_KERNEL_OPTIONS"
 	fi
 
-	echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
-	sed -i -e "s/#CUSTOM_CMDLINE#/$ZYNTHIAN_CUSTOM_BOOT_CMDLINE/g" /boot/cmdline.txt
+	if [[ "$ZYNTHIAN_CUSTOM_BOOT_CMDLINE" != "" ]]; then
+    echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
+	  cmdline="$cmdline $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
+	fi
+
+	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
+		echo "BOOT LOG DISABLED"
+		cmdline="$cmdline console=tty3 logo.nologo quiet splash vt.global_cursor_default=0"
+	else
+		cmdline="$cmdline console=tty1 logo.nologo"
+	fi
+
+  # Customize config.txt
+	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt "$BOOT_CONFIG_FPATH"
 
 	echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
 	if [[ "$ZYNTHIAN_OVERCLOCKING" == "Maximum" ]]; then
-		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=6\narm_freq=2000/g" /boot/config.txt
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=6\narm_freq=2000/g" "$BOOT_CONFIG_FPATH"
 	elif [[ "$ZYNTHIAN_OVERCLOCKING" == "Medium" ]]; then
-		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=2\narm_freq=1750/g" /boot/config.txt
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=2\narm_freq=1750/g" "$BOOT_CONFIG_FPATH"
 	else
-		sed -i -e "s/#OVERCLOCKING_RBPI4#//g" /boot/config.txt
+		sed -i -e "s/#OVERCLOCKING_RBPI4#//g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
 		echo "RBPI AUDIO ENABLED"
-		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" /boot/config.txt
+		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_OTG" != "1" ]]; then
 		echo "OTG ENABLED"
-		sed -i -e 's/rootwait/rootwait modules-load=dwc2,libcomposite/' /boot/cmdline.txt
-		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" /boot/config.txt
+		cmdline="$cmdline modules-load=dwc2,libcomposite"
+		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
-	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
+	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" "$BOOT_CONFIG_FPATH"
 
 	# Patch piscreen config
 	if [[ ( $DISPLAY_CONFIG == *"piscreen2r-notouch"* ) && ( $DISPLAY_CONFIG != *"piscreen2r-backlight"* ) ]]; then
 		DISPLAY_CONFIG=$DISPLAY_CONFIG"\ndtoverlay=piscreen2r-backlight"
 	fi
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
-	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
+	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" "$BOOT_CONFIG_FPATH"
 
 	# Configure the act-led dtoverlay if an EPDF hat has been detected => Added to custom config!
 	if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
 		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n"$ZYNTHIAN_CUSTOM_CONFIG
 	fi
 
+	# Configure RTC for V5 & Z2 main boards
+	# TODO => see /zynthian-sys/sbin/configure_rtc.sh!!!
+	if [[ ( $ZYNTHIAN_KIT_VERSION == "V5"* ) || ( $ZYNTHIAN_KIT_VERSION == "Z2"* ) ]]; then
+		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=i2c-rtc,rv3028\n"$ZYNTHIAN_CUSTOM_CONFIG
+	fi
+
 	echo "CUSTOM CONFIG => $ZYNTHIAN_CUSTOM_CONFIG"
-	sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" /boot/config.txt
+	sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" "$BOOT_CONFIG_FPATH"
+
+	echo "$cmdline" > "$CMDLINE_CONFIG_FPATH"
 fi
 
 # Copy extra overlays
@@ -287,10 +309,15 @@ LV2_PATH="/usr/lib/lv2:/usr/lib/$arch_libdir/lv2:/usr/local/lib/lv2:/usr/local/l
 LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
+# Zynthian apt repository
+#if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
+#	sed -i -e "s/zynthian-stable/zynthian-testing/g" /etc/apt/sources.list.d/zynthian.list
+#fi
+
 # Install zynthian repository public key
-if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
-	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
-fi
+#if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
+#	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
+#fi
 
 # Copy zynthian specific config files
 cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
@@ -387,10 +414,9 @@ sed -i -e "s/ \-J / /g" /etc/aeolus.conf
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Copy "etc" config files
-	cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
+	#cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modules /etc
 	cp -a $ZYNTHIAN_SYS_DIR/etc/inittab /etc
-	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
 	cp -an $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 	cp -an $ZYNTHIAN_SYS_DIR/etc/security/* /etc/security
 	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
@@ -404,9 +430,6 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# WIFI Hotspot
 	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
-	# WIFI Network
-	#rm -f /etc/wpa_supplicant/wpa_supplicant.conf
-	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
 fi
 
 # Display zynthian info on ssh login
@@ -427,7 +450,7 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 fi
 
 if [ "$ZYNTHIAN_UI_ENABLE_CURSOR" == "1" ]; then
-  X11_SERVER_OPTIONS=""
+	X11_SERVER_OPTIONS=""
 else
 	X11_SERVER_OPTIONS="-nocursor"
 fi
@@ -443,7 +466,7 @@ fi
 #if [ -f "/etc/udev/rules.d/70-persistent-net.rules.inactive" ]; then
 #	rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
 #fi
-#Fix timeout in network initialization
+# Fix timeout in network initialization
 if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
 	mkdir -p "/etc/systemd/system/networking.service.d"
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
@@ -521,15 +544,6 @@ sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hosta
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/first_boot.service
 # Cpu-performance service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/cpu-performance.service
-# Wifi-Setup service
-sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/wifi-setup.service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/wifi-setup.service
-# Splash-Screen Service
-sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/splash-screen.service
-sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/splash-screen.service
-sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/splash-screen.service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/splash-screen.service
-sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/splash-screen.service
 # Jackd service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS_ESC/g" /etc/systemd/system/jack2.service
@@ -604,11 +618,6 @@ sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-pw
 sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-pwm-fan.service
-
-# Zynthian apt repository
-if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
-	sed -i -e "s/zynthian-stable/zynthian-testing/g" /etc/apt/sources.list.d/zynthian.list
-fi
 
 # Reload Systemd scripts
 systemctl daemon-reload
