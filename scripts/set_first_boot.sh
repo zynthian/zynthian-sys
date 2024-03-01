@@ -45,16 +45,19 @@ rm -rf $ZYNTHIAN_CONFIG_DIR/img
 echo "Enabling first boot service..."
 systemctl enable first_boot
 
+# Clean history
+echo "Cleaning shell history..."
+rm -f /home/zyn/.bash_history*
+rm -f /home/zyn/.history*
+rm -f /root/.bash_history*
+rm -f /root/.python_history
+rm -f /root/.history
+history -c && history -w
+
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."
 sleep 3
 sync
-
-# Clean history
-echo "Cleaning shell history..."
-rm -f /home/zyn/.bash-history*
-rm -f /root/.bash-history*
-history -c && history -w
 
 # Power Off
 poweroff   
