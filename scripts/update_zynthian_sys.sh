@@ -288,15 +288,6 @@ fi
 # Copy default envars file if needed...
 if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
-# Or fix it ...
-else
-	# Remove last part that it's been moved to zynthian_vars_extended.sh
-	sed -i -e "/^\# Hardware Architecture & Optimization Options/, /ZYNTHIAN_SETUP_APT_CLEAN/d" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-
-	# Fix some paths in config file
-	sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-	sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-	sed -i -e "s/media\/usb0/media\/root/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 fi
 
 # Generate a good LV2 path
@@ -308,16 +299,6 @@ fi
 LV2_PATH="/usr/lib/lv2:/usr/lib/$arch_libdir/lv2:/usr/local/lib/lv2:/usr/local/lib/$arch_libdir/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-
-# Zynthian apt repository
-#if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
-#	sed -i -e "s/zynthian-stable/zynthian-testing/g" /etc/apt/sources.list.d/zynthian.list
-#fi
-
-# Install zynthian repository public key
-#if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
-#	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
-#fi
 
 # Copy zynthian specific config files
 cp -a $ZYNTHIAN_SYS_DIR/config/wiring-profiles $ZYNTHIAN_CONFIG_DIR
@@ -427,17 +408,10 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modprobe.d/* /etc/modprobe.d
 	cp -an $ZYNTHIAN_SYS_DIR/etc/vim/* /etc/vim
 	cp -a $ZYNTHIAN_SYS_DIR/etc/update-motd.d/* /etc/update-motd.d
-	# WIFI Hotspot
-	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
-	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
 fi
 
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
-
-# Fix devmon config (USB-disk automounter)
-#/etc/conf.d/devmon =>
-#ARGS="--exec-on-drive \"/usr/local/bin/send_osc 1370 /CUIA/DRIVE_MOUNT %f\" --exec-on-remove \"/usr/local/bin/send_osc 1370 /CUIA/DRIVE_REMOVE %f\""
 
 # X11 Display config
 if [ ! -d "/etc/X11/xorg.conf.d" ]; then
@@ -447,6 +421,19 @@ fi
 #sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
+fi
+
+# Autodetect display rotation and configure X11 accordingly
+if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
+	echo "Configuring X11 inverted display ..."
+	cat >> "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
+Section "Monitor"
+        Identifier   "DSI-1"
+        Option       "Rotate" "inverted"
+EndSection
+EOF
+else
+	rm -f /etc/X11/xorg.conf.d/69-display_*.conf
 fi
 
 if [ "$ZYNTHIAN_UI_ENABLE_CURSOR" == "1" ]; then
@@ -466,19 +453,8 @@ fi
 #if [ -f "/etc/udev/rules.d/70-persistent-net.rules.inactive" ]; then
 #	rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
 #fi
-# Fix timeout in network initialization
-if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
-	mkdir -p "/etc/systemd/system/networking.service.d"
-	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
-fi
-
-# WIFI Hotspot extra config
-sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
-echo "" > /etc/network/interfaces
 
 # User Config (root)
-# => bash
-sed -i -e "s/config\/zynthian_envars.sh/zynthian-sys\/scripts\/zynthian_envars_extended.sh \> \/dev\/null 2\>\&1/g" /root/.bashrc
 
 # => ZynAddSubFX Config
 if [ -f $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ]; then
@@ -487,19 +463,6 @@ fi
 # => vim config
 if [ -f /etc/vim/vimrc.local ]; then
 	cp -a /etc/vim/vimrc.local /root/.vimrc
-fi
-
-# => vncserver password
-if [ ! -d "/root/.vnc" ]; then
-	mkdir "/root/.vnc"
-fi
-if [ ! -f "/root/.vnc/passwd" ]; then
-	echo "raspberry" | vncpasswd -f > /root/.vnc/passwd
-	chmod go-r /root/.vnc/passwd
-fi
-# => novnc launcher
-if [ ! -f "$ZYNTHIAN_SW_DIR/noVNC/utils/novnc_proxy" ]; then
-	ln -s "$ZYNTHIAN_SW_DIR/noVNC/utils/launch.sh" "$ZYNTHIAN_SW_DIR/noVNC/utils/novnc_proxy"
 fi
 
 # => Xsession config
@@ -534,15 +497,10 @@ if [[ "$JACKD_OPTIONS" != *@(-X raw)* ]]; then
   set_reboot_flag
 fi
 
-# Replace config vars in hostapd.conf
-sed -i -e "s/#ZYNTHIAN_HOTSPOT_NAME#/$ZYNTHIAN_HOSTSPOT_NAME/g" /etc/hostapd/hostapd.conf
-sed -i -e "s/#ZYNTHIAN_HOTSPOT_PASSWORD#/$ZYNTHIAN_HOSTSPOT_PASSWORD/g" /etc/hostapd/hostapd.conf
-sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hostapd/hostapd.conf
-
 # Replace config vars in Systemd service files
 # First Boot service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/first_boot.service
-# Cpu-performance service
+# CPU-performance service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/cpu-performance.service
 # Jackd service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jack2.service
@@ -597,7 +555,6 @@ sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynth
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#X11_SERVER_OPTIONS#/$X11_SERVER_OPTIONS/g" /etc/systemd/system/zynthian.service
-
 # Zynthian Debug Service
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian_debug.service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian_debug.service
