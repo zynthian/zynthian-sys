@@ -264,6 +264,12 @@ echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=100M   0  0" >> /et
 echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >> /etc/fstab
 echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=20M  0  0" >> /etc/fstab
 
+# Fix timeout in network initialization
+if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
+	mkdir -p "/etc/systemd/system/networking.service.d"
+	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
+fi
+
 # Change Hostname
 if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
     echo "zynthian" > /etc/hostname
@@ -279,6 +285,7 @@ rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
+
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian
@@ -297,10 +304,6 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 
 #$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
-# TODO Replace "gpio" by pinctrl, etc.
-# Until then ...
-cp $ZYNTHIAN_SYS_DIR/config/zynthian_envars_Custom.sh $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 # Configure systemd services
 systemctl daemon-reload
