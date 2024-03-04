@@ -41,11 +41,11 @@ export ZYNTHIAN_RBPI_HEADPHONES="0"
 
 #Display Config
 export DISPLAY_NAME="MIPI DSI 800x480 (inverted)"
-export DISPLAY_CONFIG="display_lcd_rotate=2\ndtoverlay=rpi-ft5406,touchscreen-inverted-x=1,touchscreen-inverted-y=1\n"
+export DISPLAY_CONFIG="dtoverlay=rpi-ft5406,touchscreen-inverted-x=1,touchscreen-inverted-y=1\n"
 export DISPLAY_WIDTH="800"
 export DISPLAY_HEIGHT="480"
 export FRAMEBUFFER="/dev/fb0"
-export DISPLAY_KERNEL_OPTIONS=""
+export DISPLAY_KERNEL_OPTIONS="video=DSI-1:800x480@60,rotate=180"
 
 # Zynthian Wiring Config
 export ZYNTHIAN_WIRING_LAYOUT="V5"
