@@ -121,7 +121,7 @@ shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
 # CLI Tools
 apt-get -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
 fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo \
-xterm gpiod
+xterm gpiod xfce4-terminal
 #  qmidinet
 
 #------------------------------------------------
