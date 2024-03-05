@@ -53,7 +53,19 @@ hardware_config = {
 
 
 def get_i2c_chips():
-	out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
+	#get first i2c bus id
+	devices = check_output("i2cdetect -l", shell=True).decode().split("\n")
+	if len(devices) == 0:
+		print("No i2c devices detected. Is i2c-dev module loaded ?")
+		return []
+	#device_name should be something like i2c-1 or i2c-11 depending on platform
+	device_name = devices[0].split("\t")[0]
+	if device_name.startswith("i2c-"):
+		device_id = device_name[4:]
+	else:
+		return []
+
+	out = check_output(f"i2cdetect -y {device_id}", shell=True).decode().split("\n")
 	if len(out) > 3:
 		res = []
 		for i in range(0, 8):

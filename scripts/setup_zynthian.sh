@@ -34,7 +34,7 @@ cd
 if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	echo `date` >  ~/.wiggled
 	raspi-config --expand-rootfs
-	reboot
+	systemctl reboot
 else
 	if [ ! -d "zynthian-sys" ]; then
 		apt-get update
