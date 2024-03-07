@@ -425,9 +425,9 @@ $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 # Build & Install Synthesis Software
 #------------------------------------------------
 
-# Install ZynAddSubFX
+# Install ZynAddSubFX => from Bookworm repository instead of KXStudio
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
-apt-get -y install zynaddsubfx
+apt-get -y install -t bookworm zynaddsubfx
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont

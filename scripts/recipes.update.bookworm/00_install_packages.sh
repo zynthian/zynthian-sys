@@ -97,6 +97,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs xfce4-terminal"
 fi
 
+patchlevel="20240307.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	apt-get -y remove zynaddsubfx zynaddsubfx-data
+	apt-get -y install -t bookworm zynaddsubfx
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
