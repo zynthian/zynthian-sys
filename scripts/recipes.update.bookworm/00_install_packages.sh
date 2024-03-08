@@ -105,6 +105,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt-mark hold zynaddsubfx
 fi
 
+patchlevel="20240308.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	rm -rf $ZYNTHIAN_SW_DIR/browsepy
+	$ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi

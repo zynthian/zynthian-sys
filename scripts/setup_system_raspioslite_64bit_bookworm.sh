@@ -494,8 +494,8 @@ mkdir /root/Pd/externals
 #export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
 $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
  
-# Install browsepy
-$ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
+# Install browsepy => Now it's installed with mod-ui
+# $ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
 
 #Install MOD-UI
 $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
