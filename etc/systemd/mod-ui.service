@@ -7,17 +7,13 @@ Requires=browsepy.service
 
 [Service]
 Environment=HOME=/root
+Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
 Environment=LV2_PATH=#LV2_PATH#
-Environment=MOD_LOG=0
-Environment=MOD_APP=0
-Environment=MOD_LIVE_ISO=0
-Environment=MOD_HOST_DEV=0
-Environment=MOD_DEV_ENVIRONMENT=0
-Environment=MOD_SYSTEM_OUTPUT=0
-Environment=MOD_USER_FILES_DIR=#BROWSEPY_ROOT#
-Environment=MOD_DEVICE_WEBSERVER_PORT=8888
+Environment=BROWSEPY_ROOT=#BROWSEPY_ROOT#
+Environment=ZYNTHIAN_SW_DIR=#ZYNTHIAN_SW_DIR#
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 WorkingDirectory=#ZYNTHIAN_SW_DIR#/mod-ui
-ExecStart=#ZYNTHIAN_SW_DIR#/mod-ui/server.py
+ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/mod-ui.sh
 Restart=always
 RestartSec=2
 
