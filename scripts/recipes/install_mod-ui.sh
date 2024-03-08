@@ -3,7 +3,7 @@
 # mod-ui
 cd $ZYNTHIAN_SW_DIR
 rm -rf mod-ui
-git clone --recursive --single-branch --branch zyn-mod-merge-next https://github.com/zynthian/mod-ui.git
+git clone --recursive --single-branch --branch zyn-mod-merge-20230514 https://github.com/zynthian/mod-ui.git
 cd mod-ui
 
 if [[ -n $MOD_UI_GITSHA ]]; then
