@@ -470,6 +470,9 @@ $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 #apt-get -y install aeolus
 $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 
+# Install SooperLooper backend
+apt-get -y install sooperlooper
+
 # Install Mididings (MIDI route & filter)
 #apt-get -y install mididings
 # TODO find a deb repo
