@@ -118,6 +118,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs sooperlooper"
 fi
 
+patchlevel="20240316.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	echo "deb https://github.com/jamulussoftware/jamulus/releases/latest/download/ ./" > /etc/apt/sources.list.d/jamulus.list
+	aptpkgs="$aptpkgs jamulus"
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
