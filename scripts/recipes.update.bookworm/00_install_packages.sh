@@ -121,7 +121,6 @@ fi
 patchlevel="20240316.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
-	echo "deb https://github.com/jamulussoftware/jamulus/releases/latest/download/ ./" > /etc/apt/sources.list.d/jamulus.list
 	aptpkgs="$aptpkgs jamulus"
 fi
 
