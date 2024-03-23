@@ -5,6 +5,7 @@
 # Parameters can be specified after the module name.
 
 i2c-dev
+snd-aloop
 
 # Modules Added by Zynthian System Config
 
