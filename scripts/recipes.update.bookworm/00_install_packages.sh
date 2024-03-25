@@ -127,6 +127,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	./zynthian_lv2.py presets urn:dragonfly:room
 fi
 
+patchlevel="20240325.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
+	apt -y update
+	apt -y install -t bookworm-oram jamulus
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi

@@ -91,8 +91,7 @@ rm -f kxstudio-repos_11.1.0_all.deb
 
 # Zynthian
 wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
-echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
-#echo "deb https://deb.zynthian.org/zynthian-stable bookworm main" > /etc/apt/sources.list.d/zynthian.list
+echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
 
 # Sfizz => Repo version segfaults!!
 #sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
