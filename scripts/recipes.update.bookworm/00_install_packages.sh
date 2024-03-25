@@ -118,6 +118,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs sooperlooper"
 fi
 
+patchlevel="20240325.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	cd $ZYNTHIAN_UI_DIR/zyngine
+	./zynthian_lv2.py presets https://github.com/michaelwillis/dragonfly-reverb
+	./zynthian_lv2.py presets urn:dragonfly:plate
+	./zynthian_lv2.py presets urn:dragonfly:room
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
