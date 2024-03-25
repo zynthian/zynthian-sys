@@ -426,7 +426,7 @@ fi
 # Autodetect display rotation and configure X11 accordingly
 if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
 	echo "Configuring X11 inverted display ..."
-	cat >> "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
+	cat > "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
 Section "Monitor"
   Identifier "DSI-1"
   Option "Rotate" "inverted"
