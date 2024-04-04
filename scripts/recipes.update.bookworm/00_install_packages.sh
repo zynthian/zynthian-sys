@@ -135,6 +135,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt -y install -t bookworm-oram jamulus
 fi
 
+patchlevel="20240404.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	pip3 install adafruit-circuitpython-neopixel-spi
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
@@ -196,16 +202,6 @@ apt -y autoclean
 # Reinstall firmware to latest stable version
 #apt install --reinstall raspberrypi-bootloader raspberrypi-kernel
 
-# Update firmware to a recent version that works OK!!
-#if [[ "$VIRTUALIZATION" == "none" ]] && [[ "$LINUX_KERNEL_VERSION" < "5.15.61-v7l+" ]]; then
-	#echo "LINUX KERNEL VERSION: $LINUX_KERNEL_VERSION"
-	#SKIP_WARNING=1 rpi-update
-	#set_reboot_flag
-#fi
-
-# Install a firmware version that works OK!!
-#if [[ "$LINUX_KERNEL_VERSION" != "5.10.49-v7l+" ]]; then
-#	rpi-update -y dc6dc9bc6692d808fcce5ace9d6209d33d5afbac
-#	set_reboot_flag
-#fi
+# Update firmware to a recent version that works OK
+#sudo rpi-update rpi-6.1.y
 
