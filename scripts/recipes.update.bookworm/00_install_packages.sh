@@ -141,6 +141,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	pip3 install adafruit-circuitpython-neopixel-spi
 fi
 
+patchlevel="20240409.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	aptpkgs="$aptpkgs shiro-plugins safe-plugins sorcer"
+	cd $ZYNTHIAN_UI_DIR/zyngine
+	./zynthian_lv2.py engines
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi

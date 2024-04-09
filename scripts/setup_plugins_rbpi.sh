@@ -40,19 +40,19 @@ mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 #------------------------------------------------
 
 apt-get -y install abgate adlplug amsynth ams-lv2 arctican-plugins-lv2 artyfx avldrums.lv2 \
-bchoppr beatslash-lv2 blop-lv2 bsequencer boops bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 \
+bchoppr beatslash-lv2 blop-lv2 bsequencer bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 \
 drumkv1-lv2 distrho-plugin-ports-lv2 dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo \
 easyssp-lv2 eq10q fabla g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 \
 infamous-plugins invada-studio-plugins-lv2 juced-plugins-lv2 juce-opl-lv2 klangfalter-lv2 \
 lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder \
 mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 noise-repellent \
-obxd-lv2 oxefmsynth padthv1-lv2 pitcheddelay-lv2 pizmidi-plugins regrader riban-lv2 rubberband-lv2 \
+obxd-lv2 oxefmsynth padthv1-lv2 pitcheddelay-lv2 pizmidi-plugins regrader rubberband-lv2 \
 safe-plugins samplv1-lv2 shiro-plugins synthv1-lv2 sorcer surge \
 temper-lv2 tal-plugins-lv2 tap-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
 wolf-shaper wolf-spectrum wolpertinger-lv2 zam-plugins zlfo
 
 # TODO review:
-# avw.lv2
+# avw.lv2 riban-lv2 boops
 
 #------------------------------------------------
 # Install LV2 Plugins from source code
