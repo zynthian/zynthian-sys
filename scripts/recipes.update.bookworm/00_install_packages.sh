@@ -147,7 +147,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt -y install shiro-plugins safe-plugins sorcer
 fi
 
-patchlevel="20240411.1"
+patchlevel="20240515.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
 	cd $ZYNTHIAN_UI_DIR/zyngine
