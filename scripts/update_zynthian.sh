@@ -32,7 +32,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
-# Pull from zynthian-sys repotory ...
+# Pull from zynthian-sys repository ...
 #------------------------------------------------------------------------------
 
 cd $ZYNTHIAN_SYS_DIR
