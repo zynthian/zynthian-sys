@@ -147,11 +147,10 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt -y install shiro-plugins safe-plugins sorcer
 fi
 
-patchlevel="20240515.1"
+patchlevel="20240515.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
-	cd $ZYNTHIAN_UI_DIR/zyngine
-	./zynthian_lv2.py engines
+	set_engines_flag
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)

@@ -36,6 +36,7 @@ fi
 export RESTART_UI_FLAGFILE="/tmp/zynthian_restart_ui"
 export RESTART_WEBCONF_FLAGFILE="/tmp/zynthian_restart_webconf"
 export REBOOT_FLAGFILE="/tmp/zynthian_reboot"
+export ENGINES_FLAGFILE="/tmp/zynthian_engines"
 
 #------------------------------------------------------------------------------
 # Management functions
@@ -45,6 +46,7 @@ function clean_all_flags() {
 	rm -f $REBOOT_FLAGFILE
 	rm -f $RESTART_UI_FLAGFILE
 	rm -f $RESTART_WEBCONF_FLAGFILE
+	rm -f $ENGINES_FLAGFILE
 }
 
 function clean_reboot_flag() {
@@ -59,6 +61,10 @@ function clean_restart_webconf_flag() {
 	rm -f $RESTART_WEBCONF_FLAGFILE
 }
 
+function clean_engines_flag() {
+	rm -f $ENGINES_FLAGFILE
+}
+
 function set_reboot_flag() {
 	touch $REBOOT_FLAGFILE
 }
@@ -71,10 +77,21 @@ function set_restart_webconf_flag() {
 	touch $RESTART_WEBCONF_FLAGFILE
 }
 
+function set_engines_flag() {
+	touch $ENGINES_FLAGFILE
+}
+
 function run_flag_actions() {
 
 	if [ "$ZYNTHIAN_FLAG_MASTER" = "$0" ]; then
 		echo "Running Flag Actions from '$0'..."
+
+		if [ -f $ENGINES_FLAGFILE ]; then
+			clean_engines_flag
+			echo "Regenerating engines DB..."
+			cd $ZYNTHIAN_UI_DIR/zyngine
+			./zynthian_lv2.py engines
+		fi
 
 		if [ -f $REBOOT_FLAGFILE ]; then
 			clean_all_flags
@@ -121,6 +138,12 @@ function show_flag_actions() {
 		else
 			echo "RESTART_WEBCONF = OFF"
 		fi
+
+  	if [ -f $ENGINES_FLAGFILE ]; then
+			echo "REGENERATE ENGINES DB = ON"
+		else
+			echo "REGENERATE ENGINES DB = OFF"
+		fi
 }
 
 function run_reboot_flag_action_raw() {
@@ -143,6 +166,8 @@ if [[ "$cmd" == "set" ]]; then
 		set_restart_ui_flag
 	elif [[ "$opt" == "restart_webconf" ]]; then
 		set_restart_webconf_flag
+	elif [[ "$opt" == "engines" ]]; then
+		set_engines_flag
 	else
 		echo "Not valid action-flag operation"
 	fi
@@ -153,6 +178,8 @@ elif [[ "$cmd" == "clean" ]]; then
 		clean_restart_ui_flag
 	elif [[ "$opt" == "restart_webconf" ]]; then
 		clean_restart_webconf_flag
+	elif [[ "$opt" == "engines" ]]; then
+		clean_engines_flag
 	elif [[ "$opt" == "all" ]]; then
 		clean_all_flags
 	else
