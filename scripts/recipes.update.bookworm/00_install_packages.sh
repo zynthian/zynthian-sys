@@ -144,7 +144,16 @@ fi
 patchlevel="20240409.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
-	apt -y install shiro-plugins safe-plugins sorcer
+	aptpkgs="$aptpkgs shiro-plugins safe-plugins sorcer"
+fi
+
+patchlevel="20240416.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	#rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/sooperlooper.lv2
+	rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/b_synth.lv2
+	rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/Pianoteq*.lv2
+	rm -rf $ZYNTHIAN_MY_DATA_DIR/presets/lv2/Pianoteq*
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)

@@ -38,6 +38,12 @@ mv Pianoteq* pianoteq
 # Delete old LV2 plugin
 rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/Pianoteq*.lv2
 
+exit
+
+#----------------------------------------------------------
+# Don't install Pianoteq LV2 to avoid confusion
+#----------------------------------------------------------
+
 # Create symlink to LV2 plugin directory.
 ln -s $ZYNTHIAN_SW_DIR/pianoteq6/$armdir/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
@@ -49,3 +55,5 @@ if [[ "$VIRTUALIZATION" == "none" ]]; then
 		./pianoteq --export-lv2-presets $ZYNTHIAN_MY_DATA_DIR/presets/lv2
 	fi
 fi
+
+#----------------------------------------------------------
