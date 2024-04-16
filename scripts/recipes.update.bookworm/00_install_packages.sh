@@ -147,13 +147,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt -y install shiro-plugins safe-plugins sorcer
 fi
 
-patchlevel="20240515.3"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
-	source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
-	set_engines_flag
-fi
-
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
