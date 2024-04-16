@@ -117,6 +117,7 @@ function run_flag_actions() {
 			echo "Restarting zynthian-webconf service..."
 			systemctl restart zynthian-webconf
 		fi
+
 	fi
 }
 

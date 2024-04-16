@@ -9,9 +9,14 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
 
-echo "Regenerating cache LV2..."
+arg1="$1"
+if [ "$arg1" == "" ]; then
+	arg1="all"
+fi
+
+echo "Regenerating engines DB: $arg1 ..."
 cd $ZYNTHIAN_UI_DIR/zyngine
-python3 ./zynthian_lv2.py
+./zynthian_lv2.py $arg1
 
 set_restart_ui_flag
 set_restart_webconf_flag

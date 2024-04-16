@@ -78,7 +78,9 @@ fi
 
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
-	regenerate_lv2_cache.sh
+	regenerate_engines_db.sh all
+else
+	regenerate_engines_db.sh engines
 fi
 
 if [[ "$ui_changed" -eq 1 ]]; then
