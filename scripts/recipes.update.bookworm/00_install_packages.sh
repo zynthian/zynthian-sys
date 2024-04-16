@@ -12,6 +12,12 @@ else
 	echo "$current_patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
 fi
 
+# This should be removed in the next weeks ...
+# Fix typo in patchlevel => DISASTER!!!
+if [[ "$current_patchlevel" == "20240515.3" ]]; then
+	current_patchlevel="20240415.3"
+fi
+
 echo "CURRENT PATCH LEVEL: $current_patchlevel"
 
 # -----------------------------------------------------------------------------
