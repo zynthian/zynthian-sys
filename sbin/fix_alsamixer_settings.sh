@@ -7,6 +7,8 @@ sed -i -e "s/ADC Left,/ADC_0,/g" /tmp/update_envars.sh
 sed -i -e "s/ADC Right,/ADC_1,/g" /tmp/update_envars.sh
 sed -i -e "s/Digital Left/Digital_0/g" /tmp/update_envars.sh
 sed -i -e "s/Digital Right/Digital_1/g" /tmp/update_envars.sh
+sed -i -e "s/Digital_Left/Digital_0/g" /tmp/update_envars.sh
+sed -i -e "s/Digital_Right/Digital_1/g" /tmp/update_envars.sh
 update_size2=$(stat -c%s "/tmp/update_envars.sh")
 if [ "$update_size1" != "$update_size2" ]; then
 	echo "Fixing Alsa Mixer Controllers ..."
