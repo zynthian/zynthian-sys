@@ -162,6 +162,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	rm -rf $ZYNTHIAN_MY_DATA_DIR/presets/lv2/Pianoteq*
 fi
 
+patchlevel="20240416.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	apt -y remove avldrums.lv2 avldrums.lv2-data
+	$ZYNTHIAN_RECIPE_DIR/install_avldrums.sh
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
