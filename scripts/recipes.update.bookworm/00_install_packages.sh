@@ -224,5 +224,5 @@ apt -y autoclean
 #apt install --reinstall raspberrypi-bootloader raspberrypi-kernel
 
 # Update firmware to a recent version that works OK
-#sudo rpi-update rpi-6.1.y
+#rpi-update rpi-6.1.y
 
