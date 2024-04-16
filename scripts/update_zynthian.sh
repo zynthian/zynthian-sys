@@ -32,6 +32,12 @@ source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
+# Disable power save to run update at full speed
+#------------------------------------------------------------------------------
+
+powersave_control.sh off
+
+#------------------------------------------------------------------------------
 # Pull from zynthian-sys repository ...
 #------------------------------------------------------------------------------
 
