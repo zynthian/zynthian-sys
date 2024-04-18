@@ -239,4 +239,5 @@ apt -y autoclean
 
 # Update firmware to a recent version that works OK
 #rpi-update rpi-6.1.y
+#rpi-update rpi-6.6.y
 
