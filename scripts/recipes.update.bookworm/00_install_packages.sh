@@ -1,4 +1,6 @@
 
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
 aptpkgs=""
 
 # -----------------------------------------------------------------------------
