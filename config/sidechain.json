@@ -33,5 +33,6 @@
 	"LSP_Sidechain_Multiband_Gate_Stereo_x8":["sc_l","sc_r"],
 	"Calf_Sidechain_Compressor":["sidechain","sidechain2"],
 	"Calf_Sidechain_Gate":["sidechain","sidechain2"],
-	"Calf_Sidechain_Limiter":["sidechain","sidechain2"]
+	"Calf_Sidechain_Limiter":["sidechain","sidechain2"],
+	"Surge_XT":["audio_in_1","audio_in_2"]
 }
