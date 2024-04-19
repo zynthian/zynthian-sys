@@ -179,6 +179,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	set_restart_ui_flag
 fi
 
+patchlevel="20240419.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
+	set_restart_ui_flag
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
