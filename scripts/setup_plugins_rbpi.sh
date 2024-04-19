@@ -113,6 +113,9 @@ $ZYNTHIAN_RECIPE_DIR/install_qmidiarp.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 $ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
 $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
+$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+$ZYNTHIAN_RECIPE_DIR/install_avldrums.sh
+
 
 # We should install only the included presets ...
 # $ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh

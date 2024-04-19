@@ -169,10 +169,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_avldrums.sh
 fi
 
-patchlevel="20240416.3"
+patchlevel="20240419.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+	cd $ZYNTHIAN_UI_DIR/zyngine
+	./zynthian_lv2.py engines
+	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
 	set_restart_ui_flag
 fi
 
