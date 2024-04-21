@@ -18,7 +18,7 @@ cmake -Bignore/s13clang -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -D
 cmake --build ignore/s13clang --config Release --parallel 3
 cmake --install ignore/s13clang
 
-surge_xt_lv2_factory_preset_banks.sh
+lv2_factory_preset_banks_surge_xt.sh
 
 cd ..
 #rm -rf surge

@@ -13,11 +13,17 @@ cd "$plugin_dir"
 #------------------------------------------------------------------------------
 # Split presets from manifest
 #------------------------------------------------------------------------------
-cp manifest.ttl maniback.ttl
-n=$(wc -l maniback.ttl | cut -d ' ' -f 1)
-m=$(grep -n 'rdfs:seeAlso <ui.ttl> .' maniback.ttl | cut -d : -f 1)
+n=$(wc -l manifest.ttl | cut -d ' ' -f 1)
+m=$(grep -n 'rdfs:seeAlso <ui.ttl> .' manifest.ttl | cut -d : -f 1)
 n=$((n-m))
 m=$((m+1))
+if [[ "$n" < "100" ]]; then
+	echo "Already done!"
+	exit
+else
+	echo "Let's start!!"
+fi
+cp manifest.ttl maniback.ttl
 sed -n '/^@/p' maniback.ttl > /tmp/presets.ttl
 echo -e "" >> /tmp/presets.ttl
 head maniback.ttl -n $m > manifest.ttl
