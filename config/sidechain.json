@@ -34,5 +34,13 @@
 	"Calf_Sidechain_Compressor":["sidechain","sidechain2"],
 	"Calf_Sidechain_Gate":["sidechain","sidechain2"],
 	"Calf_Sidechain_Limiter":["sidechain","sidechain2"],
-	"Surge_XT":["audio_in_1","audio_in_2"]
+	"Surge_XT":["audio_in_1","audio_in_2"],
+	"LSP_Mixer_x2_Mono":["in_1","in_2"],
+	"LSP_Mixer_x4_Mono":["in_1","in_2","in_3","in_4"],
+	"LSP_Mixer_x8_Mono":["in_1","in_2","in_3","in_4","in_5","in_6","in_7","in_8"],
+	"LSP_Mixer_x4_Stereo":["in_1[l,r]","in_2[l,r]","in_3[l,r]","in_4[l,r]"],
+	"LSP_Mixer_x8_Stereo":["in_1[l,r]","in_2[l,r]","in_3[l,r]","in_4[l,r]","in_5[l,r]","in_6[l,r]","in_7[l,r]","in_8[l,r]"],
+	"AMS_Stereo_Mixer_2_channels":["in1","in2"],
+	"AMS_Stereo_Mixer_4_channels":["in1","in2","in3","in4"],
+	"AMS_Stereo_Mixer_8_channels":["in1","in2","in3","in4","in5","in6","in7","in8"]
 }
