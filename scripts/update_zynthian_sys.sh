@@ -166,7 +166,7 @@ ZYNTHIAN_EPDF_HAT=$?
 # ***********************************************************************************
 
 #------------------------------------------------------------------------------
-# Escape Config Variables to replace
+# Escape/Fix Config Variables to replace
 #------------------------------------------------------------------------------
 
 FRAMEBUFFER_ESC=${FRAMEBUFFER//\//\\\/}
@@ -187,6 +187,14 @@ if [[ "$VIRTUALIZATION" == "none" ]]; then
 	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
 else
 	RBPI_AUDIO_DEVICE="Headphones"
+fi
+
+# Fix V5 display config => It should be removed in the future
+if [[ "$DISPLAY_NAME" == "MIPI DSI 800x480 (inverted)" ]]; then
+	if [[ ( "$DISPLAY_CONFIG" == *"dtoverlay=rpi-ft5406"* ) ]]; then
+		DISPLAY_CONFIG="display_lcd_rotate=2"
+		sed -i -e "s/export DISPLAY_CONFIG=.*/export DISPLAY_CONFIG=\"$DISPLAY_CONFIG\"/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+	fi
 fi
 
 #------------------------------------------------------------------------------

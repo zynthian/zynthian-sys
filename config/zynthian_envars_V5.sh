@@ -514,7 +514,6 @@ export ZYNTHIAN_WIRING_ZYNTOF03__MIDI_NUM="0"
 export ZYNTHIAN_WIRING_ZYNTOF04="NONE"
 export ZYNTHIAN_WIRING_ZYNTOF04__MIDI_CHAN="0"
 export ZYNTHIAN_WIRING_ZYNTOF04__MIDI_NUM="0"
-export zynthian_wiring_layout_saveas_fname=""
 
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"
