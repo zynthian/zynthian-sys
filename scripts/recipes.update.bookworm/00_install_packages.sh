@@ -206,7 +206,7 @@ fi
 patchlevel="20240422.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
-	rpi-update
+	SKIP_WARNING=1 rpi-update
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
@@ -271,6 +271,6 @@ apt -y autoclean
 #apt install --reinstall raspberrypi-bootloader raspberrypi-kernel
 
 # Update firmware to a recent version that works OK
-#rpi-update rpi-6.1.y
-#rpi-update rpi-6.6.y
+#SKIP_WARNING=1 rpi-update rpi-6.1.y
+#SKIP_WARNING=1 rpi-update rpi-6.6.y
 
