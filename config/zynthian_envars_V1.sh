@@ -21,7 +21,7 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-export ZYNTHIAN_KIT_VERSION="V2"
+export ZYNTHIAN_KIT_VERSION="V1"
 
 # System Config
 export ZYNTHIAN_CUSTOM_BOOT_CMDLINE=""
@@ -38,21 +38,21 @@ export SOUNDCARD_MIXER="Digital_0,Digital_1"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -S -r 44100 -p 256 -n 2 -X raw"
 
 #Display Config
-export DISPLAY_NAME="PiScreen 3.5 (v2)"
-export DISPLAY_CONFIG="dtoverlay=piscreen2r-notouch,rotate=270\ndtoverlay=ads7846,speed=2000000,cs=1,penirq=17,penirq_pull=2,swapxy=1,xohms=100,pmax=255"
-export DISPLAY_WIDTH="480"
-export DISPLAY_HEIGHT="320"
+export DISPLAY_NAME="PiTFT 2.8 Resistive"
+export DISPLAY_CONFIG="dtoverlay=pitft28-resistive,rotate=90,speed=32000000,fps=20"
+export DISPLAY_WIDTH="320"
+export DISPLAY_HEIGHT="240"
 export FRAMEBUFFER="/dev/fb1"
 export DISPLAY_KERNEL_OPTIONS=""
 
 # Zynthian Wiring Config
-export ZYNTHIAN_WIRING_LAYOUT="MCP23017_ENCODERS"
-export ZYNTHIAN_WIRING_ENCODER_A="102,105,110,113"
-export ZYNTHIAN_WIRING_ENCODER_B="101,104,109,112"
-export ZYNTHIAN_WIRING_SWITCHES="100,103,108,111"
+export ZYNTHIAN_WIRING_LAYOUT="PROTOTYPE-4"
+export ZYNTHIAN_WIRING_ENCODER_A="26,25,0,4"
+export ZYNTHIAN_WIRING_ENCODER_B="21,27,7,3"
+export ZYNTHIAN_WIRING_SWITCHES="107,23,106,2"
 export ZYNTHIAN_WIRING_MCP23017_I2C_ADDRESS="0x20"
-export ZYNTHIAN_WIRING_MCP23017_INTA_PIN="27"
-export ZYNTHIAN_WIRING_MCP23017_INTB_PIN="25"
+export ZYNTHIAN_WIRING_MCP23017_INTA_PIN=""
+export ZYNTHIAN_WIRING_MCP23017_INTB_PIN=""
 
 # Zynthian UI Config
 export ZYNTHIAN_UI_COLOR_BG="#000000"
@@ -60,7 +60,7 @@ export ZYNTHIAN_UI_COLOR_TX="#ffffff"
 export ZYNTHIAN_UI_COLOR_ON="#ff0000"
 export ZYNTHIAN_UI_COLOR_PANEL_BG="#3a424d"
 export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
-export ZYNTHIAN_UI_FONT_SIZE="14"
+export ZYNTHIAN_UI_FONT_SIZE="11"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 export ZYNTHIAN_UI_TOUCH_WIDGETS="0"
 export ZYNTHIAN_UI_RESTORE_LAST_STATE="1"
