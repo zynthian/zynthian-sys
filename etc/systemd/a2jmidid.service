@@ -6,7 +6,7 @@ Requires=jack2.service
 [Service]
 Environment=HOME=/root
 WorkingDirectory=/root
-ExecStart=/usr/bin/a2jmidid -e
+ExecStart=/usr/bin/a2jmidid
 ExecStartPre=#JACKD_BIN_PATH#/jack_wait -w
 Restart=always
 RestartSec=1
