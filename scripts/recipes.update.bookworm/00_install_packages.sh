@@ -51,7 +51,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
 	apt -y remove x42-plugins
 	apt -y install fonts-freefont-ttf libglu-dev libftgl-dev
-	$ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
+	#$ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh => It's done in 20240501
 fi
 
 patchlevel="20240222.2"
