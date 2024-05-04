@@ -110,7 +110,7 @@ apt-get -y autoremove
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
-xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw hostapd dnsmasq \
+xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
 shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
 #firmware-ralink 

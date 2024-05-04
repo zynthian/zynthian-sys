@@ -234,6 +234,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	rm -rf /etc/systemd/system/bluetooth.service.d
 fi
 
+patchlevel="20240504.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	apt -y remove hostapd
+	systemctl disable avahi-daemon
+	systemctl stop avahi-daemon
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
