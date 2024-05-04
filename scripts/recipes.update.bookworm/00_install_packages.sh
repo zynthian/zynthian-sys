@@ -228,6 +228,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_faust_lv2.sh
 fi
 
+patchlevel="20240504.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	rm -rf /etc/systemd/system/bluetooth.service.d
+fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
