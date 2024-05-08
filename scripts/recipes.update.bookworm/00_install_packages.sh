@@ -238,8 +238,15 @@ patchlevel="20240504.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
 	apt -y remove hostapd
-	systemctl disable avahi-daemon
-	systemctl stop avahi-daemon
+	#systemctl disable avahi-daemon
+	#systemctl stop avahi-daemon
+fi
+
+patchlevel="20240508.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	systemctl enable avahi-daemon
+	systemctl start avahi-daemon
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
