@@ -249,6 +249,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	systemctl start avahi-daemon
 fi
 
+patchlevel="20240517.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	apt -y remove surge
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
