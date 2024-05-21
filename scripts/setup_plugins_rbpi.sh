@@ -134,3 +134,12 @@ $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh
 # Install MOD-UI skins
 #$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
 
+# Remove VSTs and other plugin format we don't need and take a lot of space
+rm -rf /usr/lib/vst
+rm -rf /usr/lib/dssi
+rm -rf /usr/lib/ladspa
+rm -rf /usr/local/lib/vst
+rm -rf /usr/local/lib/dssi
+rm -rf /usr/local/lib/ladspa
+rm -rf /usr/lib/lsp-plugins
+rm -f /usr/bin/lsp-*
