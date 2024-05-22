@@ -255,6 +255,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt -y remove surge
 fi
 
+patchlevel="20240522.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_jackrtpmidid.sh
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
