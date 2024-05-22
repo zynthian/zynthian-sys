@@ -13,7 +13,7 @@ if [ -d "aeolus" ]; then
 fi
 
 if [ ! -d "aeolus" ]; then
-git clone https://github.com/riban-bw/aeolus.git
+git clone https://github.com/zynthian/aeolus.git
 fi
 cd aeolus/source
 git checkout zynthian
