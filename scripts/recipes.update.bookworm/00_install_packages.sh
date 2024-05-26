@@ -267,6 +267,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 fi
 
+patchlevel="20240525.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	rm /zynthian/zynthian-my-data/presets/aeolus.json
+fi
+
 patchlevel="20240526.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
