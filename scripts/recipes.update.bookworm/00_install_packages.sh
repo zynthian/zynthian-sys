@@ -267,6 +267,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 fi
 
+patchlevel="20240526.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	apt -y remove pyliblo-utils
+	$ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
+	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi

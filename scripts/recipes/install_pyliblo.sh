@@ -1,10 +1,14 @@
 #!/bin/bash
 
 cd $ZYNTHIAN_SW_DIR
-if [ ! -d "pyliblo" ]; then
-	git clone https://github.com/dsacre/pyliblo.git
-	cd pyliblo
-	python3 ./setup.py build
-	python3 ./setup.py install
-	cd ..
+
+if [ -d "pyliblo" ]; then
+	rm -rf pyliblo
 fi
+
+git clone https://github.com/dsacre/pyliblo.git
+cd pyliblo
+pip3 install .
+cd ..
+
+rm -rf pyliblo
