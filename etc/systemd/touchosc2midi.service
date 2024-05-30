@@ -6,7 +6,7 @@ Requires=jack2.service
 [Service]
 Environment=MIDO_BACKEND=mido.backends.rtmidi/UNIX_JACK
 WorkingDirectory=/root
-ExecStart=/usr/local/bin/touchosc2midi
+ExecStart=/zynthian/venv/bin/touchosc2midi
 ExecStartPre=#JACKD_BIN_PATH#/jack_wait -w
 Restart=always
 RestartSec=1
