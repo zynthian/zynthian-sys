@@ -35,7 +35,7 @@ export ZYNTHIAN_WIFI_MODE="off"
 export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
 export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro"
 export SOUNDCARD_MIXER="PGA_Gain_Left,PGA_Gain_Right,ADC_Left_Input,ADC_Right_Input,Digital_0,Digital_1"
-export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 48000 -p 256 -n 2 -X raw"
+export JACKD_OPTIONS="-P 70 -t 2000 -s -S -d alsa -d hw:sndrpihifiberry -r 48000 -p 256 -n 2 -X raw"
 
 #Display Config
 export DISPLAY_NAME="ZynScreen 3.5 (v1)"

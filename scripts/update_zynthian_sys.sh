@@ -499,9 +499,17 @@ fi
 
 # Fix jackd parameters
 if [[ "$JACKD_OPTIONS" != *@(-X raw)* ]]; then
-  echo "Fixing jackd parameters ..."
+  echo "Fixing jackd MIDI parameters ..."
   echo "export JACKD_OPTIONS='$JACKD_OPTIONS -X raw'" >> /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
+  source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
+  set_reboot_flag
+fi
+if [[ "$JACKD_OPTIONS" != *@(-s -S)* ]]; then
+  echo "Fixing jackd latency parameters ..."
+  echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" | sed -e "s/-s/-s -S/" | sed -e "s/-S -r/-r/"  >> /tmp/update_envars.sh
+  update_envars.py /tmp/update_envars.sh no_update_sys
+  source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
   set_reboot_flag
 fi
 
