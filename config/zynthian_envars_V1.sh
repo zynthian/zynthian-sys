@@ -36,6 +36,7 @@ export SOUNDCARD_NAME="HifiBerry DAC+"
 export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplus\nforce_eeprom_read=0"
 export SOUNDCARD_MIXER="Digital_0,Digital_1"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -S -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
+export JACK_NO_START_SERVER="1"
 
 #Display Config
 export DISPLAY_NAME="PiTFT 2.8 Resistive"

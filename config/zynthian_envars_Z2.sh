@@ -38,6 +38,7 @@ export SOUNDCARD_MIXER="PGA_Gain_Left,PGA_Gain_Right,ADC_Left_Input,ADC_Right_In
 export JACKD_OPTIONS="-P 70 -t 2000 -s -S -d alsa -d hw:sndrpihifiberry -r 48000 -p 256 -n 2 -X raw"
 export ZYNTHIAN_DISABLE_RBPI_AUDIO="0"
 export ZYNTHIAN_RBPI_HEADPHONES="0"
+export JACK_NO_START_SERVER="1"
 
 #Display Config
 export DISPLAY_NAME="Z2 Display"
