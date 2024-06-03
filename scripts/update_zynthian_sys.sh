@@ -515,7 +515,7 @@ if [[ "$JACKD_OPTIONS" != *@(-s -S)* ]]; then
 fi
 if [[ "$JACKD_OPTIONS" = *@(-t 2000)* ]]; then
   echo "Fixing jackd timeout parameter ..."
-  echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" | sed -e "s/-t 2000//" >> /tmp/update_envars.sh
+  echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" | sed -e "s/-t 2000 //" >> /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
   source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
   set_reboot_flag
