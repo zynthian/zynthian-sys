@@ -506,15 +506,15 @@ if [[ "$JACKD_OPTIONS" != *@(-X raw)* ]]; then
   source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
   set_reboot_flag
 fi
-if [[ "$JACKD_OPTIONS" != *@(-S -r)* ]]; then
+if [[ "$JACKD_OPTIONS" != *@(-s -S)* ]]; then
   echo "Fixing jackd latency parameters ..."
   echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" | sed -e "s/-s/-s -S/" | sed -e "s/-S -r/-r/" >> /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
   source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
   set_reboot_flag
 fi
-if [[ "$JACKD_OPTIONS" != *@(-t 2000)* ]]; then
-  echo "Fixing jackd latency parameters ..."
+if [[ "$JACKD_OPTIONS" = *@(-t 2000)* ]]; then
+  echo "Fixing jackd timeout parameter ..."
   echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" | sed -e "s/-t 2000//" >> /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
   source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
