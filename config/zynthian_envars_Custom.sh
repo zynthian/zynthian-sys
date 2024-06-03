@@ -36,7 +36,6 @@ export SOUNDCARD_NAME="RBPi Headphones"
 export SOUNDCARD_CONFIG="dtparam=audio=on\naudio_pwm_mode=2"
 export SOUNDCARD_MIXER="Headphone"
 export JACKD_OPTIONS="-P 70 -t 2000 -s -S -d alsa -d hw:Headphones -r 48000 -o 2 -p 512 -n 3 -X raw"
-export JACK_NO_START_SERVER="1"
 
 #Display Config
 export DISPLAY_NAME="Generic HDMI Display"
