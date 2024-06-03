@@ -416,6 +416,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modprobe.d/* /etc/modprobe.d
 	cp -an $ZYNTHIAN_SYS_DIR/etc/vim/* /etc/vim
 	cp -a $ZYNTHIAN_SYS_DIR/etc/update-motd.d/* /etc/update-motd.d
+	cp -an $ZYNTHIAN_SYS_DIR/etc/environment.d/* /etc/environment.d
 fi
 
 # Display zynthian info on ssh login
@@ -505,9 +506,9 @@ if [[ "$JACKD_OPTIONS" != *@(-X raw)* ]]; then
   source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
   set_reboot_flag
 fi
-if [[ "$JACKD_OPTIONS" != *@(-s -S)* ]]; then
+if [[ "$JACKD_OPTIONS" != *@(-t 2000)* ]]; then
   echo "Fixing jackd latency parameters ..."
-  echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" | sed -e "s/-s/-s -S/" | sed -e "s/-S -r/-r/"  >> /tmp/update_envars.sh
+  echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" | sed -e "s/-s/-s -S/" | sed -e "s/-S -r/-r/" | sed -e "s/-t 2000//"  >> /tmp/update_envars.sh
   update_envars.py /tmp/update_envars.sh no_update_sys
   source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
   set_reboot_flag

@@ -40,9 +40,6 @@ else
 	echo "ERROR: Can't load zynthian configuration! => zynthian_envars.sh"
 fi
 
-# Avoid delays in jackd client connections when using synchronous mode
-export JACK_NO_START_SERVER="1"
-
 #------------------------------------------------------------------------------
 # Load Extended Environment Variables
 #------------------------------------------------------------------------------
