@@ -203,6 +203,15 @@ fi
 
 BOOT_CONFIG_FPATH="/boot/firmware/config.txt"
 CMDLINE_CONFIG_FPATH="/boot/firmware/cmdline.txt"
+ROOT=root=/dev/mmcblk0p2
+for token in `cat $CMDLINE_CONFIG_FPATH`
+do
+  if [[ $token == root=* ]]
+  then
+    ROOT=$token
+    break
+  fi
+done
 
 # Detect NO_ZYNTHIAN_UPDATE flag in the config.txt
 if [ -f "$BOOT_CONFIG_FPATH" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
@@ -211,7 +220,7 @@ fi
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Generate cmdline.txt
-  cmdline="root=/dev/mmcblk0p2 rootfstype=ext4 fsck.repair=yes rootwait"
+  cmdline="$ROOT rootfstype=ext4 fsck.repair=yes rootwait"
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"
