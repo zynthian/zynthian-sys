@@ -171,15 +171,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_avldrums.sh
 fi
 
-patchlevel="20240419.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
-	cd $ZYNTHIAN_UI_DIR/zyngine
-	./zynthian_lv2.py engines
-	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
-	set_restart_ui_flag
-fi
+#patchlevel="20240419.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "APPLYING PATCH $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+#	cd $ZYNTHIAN_UI_DIR/zyngine
+#	./zynthian_lv2.py engines
+#	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
+#	set_restart_ui_flag
+#fi
 
 patchlevel="20240419.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -280,6 +280,38 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 fi
+
+patchlevel="20240528.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+	cd $ZYNTHIAN_UI_DIR/zyngine
+	./zynthian_lv2.py engines
+	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
+	set_restart_ui_flag
+fi
+
+#patchlevel="20240604.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "APPLYING PATCH $patchlevel ..."
+#	pip3 install hwmon vcgencmd
+#fi
+
+patchlevel="20240610.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	if [ ! -d "$ZYNTHIAN_SW_DIR/noVNC" ]; then
+		$ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
+	fi
+fi
+
+#patchlevel="20240629.2"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "APPLYING PATCH $patchlevel ..."
+#	apt -y remove bluez
+#	apt -y install libical-dev docutils-common
+#	$ZYNTHIAN_RECIPE_DIR/install_bluez.sh
+#fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
