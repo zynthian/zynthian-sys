@@ -4,7 +4,7 @@ After=jack2.service
 Requires=jack2.service
 
 [Service]
-ExecStart=/usr/local/libexec/bluetooth/bluetoothd
+ExecStart=/usr/libexec/bluetooth/bluetoothd
 TimeoutStopSec=20
 Restart=always
 RestartSec=5
