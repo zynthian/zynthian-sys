@@ -107,7 +107,7 @@ apt-get -y autoremove
 #------------------------------------------------
 
 # System
-apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
+apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile bluez
 apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
@@ -143,7 +143,7 @@ libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrende
 libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev libganv-dev \
 libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
-libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev \
+libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
 libsndfile1-zyndev
 
 # Missed libs from previous OS versions:
@@ -152,7 +152,7 @@ libsndfile1-zyndev
 # Tools
 apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake \
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
-ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli faust
+ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
 
 # Missed tools from previous OS versions:
 #libjack-dev-session
@@ -251,7 +251,7 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
 pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi pyrubberband ffmpeg-python Levenshtein \
-sox meson ninja abletonparsing \
+sox meson ninja abletonparsing hwmon vcgencmd \
 tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
 
 #------------------------------------------------
@@ -343,6 +343,9 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 
 # Install Jack2
 #$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
+
+# Install modified Bluez from zynthian repo
+$ZYNTHIAN_RECIPE_DIR/install_bluez.sh
 
 # Install pyliblo library (liblo OSC library for Python)
 $ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh

@@ -305,13 +305,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
-#patchlevel="20240629.2"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "APPLYING PATCH $patchlevel ..."
-#	apt -y remove bluez
-#	apt -y install libical-dev docutils-common
-#	$ZYNTHIAN_RECIPE_DIR/install_bluez.sh
-#fi
+patchlevel="20240611.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	apt -y remove bluez
+	aptpkgs="$aptpkgs zynbluez"
+	#apt -y install libical-dev docutils-common
+	#$ZYNTHIAN_RECIPE_DIR/install_bluez.sh
+fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
