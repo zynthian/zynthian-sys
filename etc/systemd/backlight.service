@@ -1,10 +1,7 @@
 [Unit]
 Description=Turn on/off Display Backlight
-DefaultDependencies=no
-Conflicts=shutdown.target poweroff.target halt.target reboot.target
-Before=shutdown.target poweroff.target halt.target reboot.target
-#After=sysinit.target
-#Requires=splash-screen
+Before=zynthian.service
+
 
 [Service]
 Type=oneshot
