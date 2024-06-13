@@ -91,6 +91,8 @@ fi
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets"
 fi
+# Update presets from zynthian-data repository
+cp -nr $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/banks/* /usr/share/zynaddsubfx/banks
 
 # Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, copy pedalboards ...
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/mod-pedalboards" ]; then
