@@ -28,11 +28,7 @@ $ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh 2>&1 >> /root/first_boot.log
 echo -e "\nRegenerating keys..." >> /root/first_boot.log
 $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh 2>&1 >> /root/first_boot.log
 
-# Enable WIFI AutoAccessPoint (hostapd)
-echo -e "\nUnmasking WIFI access point service..." >> /root/first_boot.log
-systemctl unmask hostapd
-
-# Regenerate cache LV2
+# Regenerate cache LV2 if needed
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
 	echo -e "Regenerating LV2 cache..." >> /root/first_boot.log
