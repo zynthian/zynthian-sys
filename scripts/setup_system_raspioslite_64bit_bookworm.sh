@@ -475,6 +475,9 @@ $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 # Install SooperLooper backend
 apt-get -y install sooperlooper
 
+# Install AIDA-X neural network loader
+$ZYNTHIAN_RECIPE_DIR/install_aidax.sh
+
 # Install Mididings (MIDI route & filter)
 #apt-get -y install mididings
 # TODO find a deb repo
