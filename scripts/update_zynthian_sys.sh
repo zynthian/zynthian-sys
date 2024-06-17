@@ -248,11 +248,14 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
 	if [[ "$ZYNTHIAN_OVERCLOCKING" == "Maximum" ]]; then
-		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=6\narm_freq=2000/g" "$BOOT_CONFIG_FPATH"
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage_delta=50000\narm_freq=2000/g" "$BOOT_CONFIG_FPATH"
+		sed -i -e "s/#OVERCLOCKING_RBPI5#/over_voltage_delta=50000\narm_freq=3000/g" "$BOOT_CONFIG_FPATH"
 	elif [[ "$ZYNTHIAN_OVERCLOCKING" == "Medium" ]]; then
-		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=2\narm_freq=1750/g" "$BOOT_CONFIG_FPATH"
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage_delta=20000\narm_freq=1750/g" "$BOOT_CONFIG_FPATH"
+		sed -i -e "s/#OVERCLOCKING_RBPI5#/over_voltage_delta=20000\narm_freq=2700/g" "$BOOT_CONFIG_FPATH"
 	else
 		sed -i -e "s/#OVERCLOCKING_RBPI4#//g" "$BOOT_CONFIG_FPATH"
+		sed -i -e "s/#OVERCLOCKING_RBPI5#//g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
