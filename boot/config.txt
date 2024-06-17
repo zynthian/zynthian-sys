@@ -48,6 +48,12 @@ disable_splash=1
 #force_turbo=1
 initial_turbo=60
 
+[pi5]
+#OVERCLOCKING_RBPI5#
+# Is this needed on Pi5?
+# Fix core freq for avoiding fluctuation on SPI freq (RGB LEDs)
+#core_freq=500
+#core_freq_min=500
 [pi4]
 #OVERCLOCKING_RBPI4#
 # Fix core freq for avoiding fluctuation on SPI freq (RGB LEDs)
@@ -69,28 +75,23 @@ dtoverlay=i2s-mmap
 # Enable UART for MIDI
 enable_uart=1
 
-[pi3]
-# Swap back the ttyAMA0 to GPIO
-dtoverlay=miniuart-bt
-[all]
-
-[pi4]
-# Swap back the ttyAMA0 to GPIO
-dtoverlay=miniuart-bt
-# Enable OTG
-#OTG_CONFIG#
-[all]
-
 [pi5]
 # Enable tty0 on RPi5
 dtoverlay=uart0-pi5
 # Enable OTG
 #OTG_CONFIG#
+[pi4]
+# Swap back the ttyAMA0 to GPIO
+dtoverlay=miniuart-bt
+# Enable OTG
+#OTG_CONFIG#
+[pi3]
+# Swap back the ttyAMA0 to GPIO
+dtoverlay=miniuart-bt
 [all]
 
 # Adjust UART clock for MIDI Baudrate (31250)
 dtoverlay=midi-uart0
-
 
 # Enable RBPi Onboard Audio (Headphones) => loads snd_bcm2835
 #RBPI_AUDIO_CONFIG#
