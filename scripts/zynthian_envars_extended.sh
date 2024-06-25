@@ -95,20 +95,19 @@ if [ -z "$RASPI" ]; then
 		CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
 	fi
 
-	if [[ $rbpi_version =~ "Raspberry Pi 5" ]]; then
-		rbpi_version_number="5"
+	rbpi_words=($rbpi_version)
+	rbpi_version_number=${rbpi_words[2]}
+
+	if [[ $rbpi_version_number == "5" ]]; then
 		gpio_chip_device="/dev/gpiochip4"
 		i2c_device="/dev/i2c-1"
-	elif [[ $rbpi_version =~ "Raspberry Pi 4" ]]; then
-		rbpi_version_number="4"
+	elif [[ $rbpi_version_number == "4" ]]; then
 		gpio_chip_device="/dev/gpiochip0"
 		i2c_device="/dev/i2c-1"
-	elif [[ $rbpi_version =~ "Raspberry Pi 3" ]]; then
-		rbpi_version_number="3"
+	elif [[ $rbpi_version_number == "3" ]]; then
 		gpio_chip_device="/dev/gpiochip0"
 		i2c_device="/dev/i2c-1"
-	elif [[ $rbpi_version =~ "Raspberry Pi 2" ]]; then
-		rbpi_version_number="2"
+	elif [[ $rbpi_version_number == "2" ]]; then
 		gpio_chip_device="/dev/gpiochip0"
 		i2c_device="/dev/i2c-1"
 	else
