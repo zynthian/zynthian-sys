@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
+
 # Stop zynthian services
 if [[ "$VIRTUALIZATION" == "none" ]]; then
 	echo "Stopping zynthian services..."
@@ -53,6 +55,8 @@ rm -f /root/.bash_history*
 rm -f /root/.python_history
 rm -f /root/.history
 history -c && history -w
+
+clean_all_flags
 
 # Message
 echo "The system is going to halt. Extract the SD card and dump the image."
