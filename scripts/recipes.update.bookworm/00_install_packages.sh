@@ -344,7 +344,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 		# Update build date, forgot in last image ;-)
 		ts=$(stat "/zynthian/zynthian-sw/noVNC" -c %w | cut -d " " -f 1,2)
 		if [[ "$ts" == "2024-06-25 17:06:50.074846744" ]]; then
-			sed -i "s/2024-05-21/2024-06-25/" $ZYNTHIAN_CONFIG_DIR/build_info.txt
+			sed -i "s/2024-05-21/2024-06-25/" $ZYNTHIAN_DIR/build_info.txt
 		fi
 	fi
 	if [ -f "$ZYNTHIAN_SW_DIR/plugins/AIDA-X-1.1.0-linux-arm64.tar.xz" ]; then
