@@ -255,6 +255,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt -y remove surge
 fi
 
+patchlevel="20240521.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	if [[ "$ZYNTHIAN_OS_VERSION" == "2403" ]]; then
+		echo "Bump ZynthianOS version to 2405"
+		echo "2405" > /etc/zynthianos_version
+	fi
+fi
+
 patchlevel="20240522.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
@@ -324,6 +333,23 @@ patchlevel="20240616.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "APPLYING PATCH $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_aidax.sh
+fi
+
+patchlevel="20240626.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	if [[ "$ZYNTHIAN_OS_VERSION" == "2405" ]]; then
+		echo "Bump ZynthianOS version to 2406"
+		echo "2406" > /etc/zynthianos_version
+		# Update build date, forgot in last image ;-)
+		ts=$(stat "/zynthian/zynthian-sw/noVNC" -c %w | cut -d " " -f 1,2)
+		if [[ "$ts" == "2024-06-25 17:06:50.074846744" ]]; then
+			sed -i "s/2024-05-21/2024-06-25/" $ZYNTHIAN_CONFIG_DIR/build_info.txt
+		fi
+	fi
+	if [ -f "$ZYNTHIAN_SW_DIR/plugins/AIDA-X-1.1.0-linux-arm64.tar.xz" ]; then
+		rm -f "$ZYNTHIAN_SW_DIR/plugins/AIDA-X-1.1.0-linux-arm64.tar.xz"
+	fi
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
