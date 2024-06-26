@@ -126,14 +126,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs sooperlooper"
 fi
 
-patchlevel="20240325.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
-	cd $ZYNTHIAN_UI_DIR/zyngine
-	./zynthian_lv2.py presets https://github.com/michaelwillis/dragonfly-reverb
-	./zynthian_lv2.py presets urn:dragonfly:plate
-	./zynthian_lv2.py presets urn:dragonfly:room
-fi
+#patchlevel="20240325.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "APPLYING PATCH $patchlevel ..."
+#	cd $ZYNTHIAN_UI_DIR/zyngine
+#	./zynthian_lv2.py presets https://github.com/michaelwillis/dragonfly-reverb
+#	./zynthian_lv2.py presets urn:dragonfly:plate
+#	./zynthian_lv2.py presets urn:dragonfly:room
+#fi
 
 patchlevel="20240325.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -350,6 +350,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	if [ -f "$ZYNTHIAN_SW_DIR/plugins/AIDA-X-1.1.0-linux-arm64.tar.xz" ]; then
 		rm -f "$ZYNTHIAN_SW_DIR/plugins/AIDA-X-1.1.0-linux-arm64.tar.xz"
 	fi
+fi
+
+patchlevel="20240626.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	cd $ZYNTHIAN_UI_DIR/zyngine
+	./zynthian_lv2.py presets https://github.com/michaelwillis/dragonfly-reverb
+	./zynthian_lv2.py presets urn:dragonfly:plate
+	./zynthian_lv2.py presets urn:dragonfly:room
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
