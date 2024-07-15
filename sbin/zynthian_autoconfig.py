@@ -32,7 +32,6 @@ from subprocess import check_output
 # Hardware's config for several boards:
 # --------------------------------------------------------------------
 
-
 hardware_config = {
 	"Z2_MAIN_BETA": ["PCM1863@0x4A", "PCM5242@0x4D"],
 	"Z2_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"],
@@ -53,9 +52,9 @@ hardware_config = {
 
 
 def get_i2c_chips():
+	res = []
 	out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
 	if len(out) > 3:
-		res = []
 		for i in range(0, 8):
 			parts = out[i+1][4:].split(" ")
 			for j in range(0, 16):
