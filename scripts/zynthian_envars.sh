@@ -21,6 +21,11 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
+# HW Testing Flags
+#export ZYNTHIAN_HW_TEST="V5_MAIN"
+#export ZYNTHIAN_UI_CONTROL_TEST_ENABLED="1"
+
+# Kit config
 export ZYNTHIAN_KIT_VERSION="V5"
 
 # System Config
