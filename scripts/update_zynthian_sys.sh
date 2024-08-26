@@ -398,15 +398,20 @@ if [ -d "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" ]; then
 fi
 # Setup browsepy directories
 if [ ! -d "$BROWSEPY_ROOT" ]; then
-     mkdir -p $BROWSEPY_ROOT
+	mkdir -p $BROWSEPY_ROOT
 fi
 # TODO create other directories and symlinks to existing file types in $ZYNTHIAN_MY_DATA_DIR
 if [ ! -d "$BROWSEPY_ROOT/Speaker Cabinets IRs" ]; then
-     mkdir -p "$BROWSEPY_ROOT/Speaker Cabinets IRs"
+	mkdir -p "$BROWSEPY_ROOT/Speaker Cabinets IRs"
 fi
 
 # Fix Aeolus config file: Remove unsupported "-J" option.
 sed -i -e "s/ \-J / /g" /etc/aeolus.conf
+
+# Migrate legacy touch-navigation flag (to remove!!)
+if [ -z "$ZYNTHIAN_UI_TOUCH_NAVIGATION" ]; then
+	sed -i -e "s/ZYNTHIAN_UI_ONSCREEN_BUTTONS/ZYNTHIAN_UI_TOUCH_NAVIGATION/g" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+fi
 
 #--------------------------------------
 # System Config
