@@ -56,6 +56,11 @@ rm -f /root/.python_history
 rm -f /root/.history
 history -c && history -w
 
+# Disable automatic firmware updates. It causes boot issues!!
+systemctl mask rpi-eeprom-update
+# Copy firmware to boot partition so it's installed on first boot
+rpi_eeprom_reset.sh
+
 clean_all_flags
 
 # Message

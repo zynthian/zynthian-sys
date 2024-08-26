@@ -322,6 +322,7 @@ systemctl enable devmon@root
 #systemctl disable unattended-upgrades
 #systemctl mask packagekit
 #systemctl mask polkit
+systemctl mask rpi-eeprom-update
 
 # Zynthian specific systemd services
 systemctl enable backlight
