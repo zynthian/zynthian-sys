@@ -361,6 +361,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	./zynthian_lv2.py presets urn:dragonfly:room
 fi
 
+patchlevel="20240829.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+	systemctl mask rpi-eeprom-update
+fi
+
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
