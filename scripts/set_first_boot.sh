@@ -29,8 +29,15 @@ done
 
 # Removing user data files
 echo "Removing user data files..."
-rm -f $ZYNTHIAN_MY_DATA_DIR/snapshots/last_state.zss
+rm -f $ZYNTHIAN_MY_DATA_DIR/snapshots/*
 rm -rf $ZYNTHIAN_MY_DATA_DIR/preset_favorites/*
+rm -rf $ZYNTHIAN_MY_DATA_DIR/capture/*
+
+# Copy default snapshots and midi files
+echo "Cppying initial user data files..."
+cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
+cp -a $ZYNTHIAN_DATA_DIR/mid/* $ZYNTHIAN_MY_DATA_DIR/capture
+rm $ZYNTHIAN_MY_DATA_DIR/capture/test.mid
 
 # Restore factory config
 echo "Restoring factory config..."
