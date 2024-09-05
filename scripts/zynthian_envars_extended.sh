@@ -100,6 +100,9 @@ if [ -z "$RASPI" ]; then
 
 	if [[ $rbpi_version_number == "5" ]]; then
 		gpio_chip_device="/dev/gpiochip4"
+		if [[ ! -e "$gpio_chip_device" ]]; then
+			ln -s "/dev/gpiochip0" "$gpio_chip_device"
+		fi
 		i2c_device="/dev/i2c-1"
 	elif [[ $rbpi_version_number == "4" ]]; then
 		gpio_chip_device="/dev/gpiochip0"
