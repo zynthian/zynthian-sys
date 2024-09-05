@@ -367,6 +367,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	systemctl mask rpi-eeprom-update
 fi
 
+patchlevel="20240902.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "APPLYING PATCH $patchlevel ..."
+  $ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+	cd $ZYNTHIAN_UI_DIR/zyngine
+	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
+	aptpkgs="$aptpkgs regrader"
+fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
