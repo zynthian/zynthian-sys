@@ -51,6 +51,7 @@ safe-plugins samplv1-lv2 shiro-plugins synthv1-lv2 sorcer surge \
 temper-lv2 tal-plugins-lv2 tap-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
 wolf-shaper wolf-spectrum wolpertinger-lv2 zam-plugins zlfo
 
+
 # TODO review:
 # avw.lv2 riban-lv2 boops
 
@@ -69,7 +70,7 @@ $ZYNTHIAN_RECIPE_DIR/install_fluidplug.sh
 #$ZYNTHIAN_RECIPE_DIR/install_ADLplug.sh
 #$ZYNTHIAN_RECIPE_DIR/install_ams-lv2.sh
 #$ZYNTHIAN_RECIPE_DIR/install_amsynth.sh
-$ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
+#$ZYNTHIAN_RECIPE_DIR/install_sooperlooper-lv2-plugin.sh
 $ZYNTHIAN_RECIPE_DIR/install_sosynth.sh
 $ZYNTHIAN_RECIPE_DIR/install_guitarix.sh
 $ZYNTHIAN_RECIPE_DIR/install_gxswitchlesswah.sh
@@ -116,23 +117,28 @@ $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
 $ZYNTHIAN_RECIPE_DIR/install_mimi.sh
 $ZYNTHIAN_RECIPE_DIR/install_avldrums.sh
 
-
-# We should install only the included presets ...
-# $ZYNTHIAN_RECIPE_DIR/install_surge_prebuilt.sh
+# Faust LV2 plugins =>
+# Fallan algunos al construir, pero el Granulator funciona!!
+$ZYNTHIAN_RECIPE_DIR/install_faust_lv2.sh
 
 # X42 plugins
 $ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
 
-# Zynthian precompiled plugins
-######################## THIS MUST BE REBUILD =>
-#$ZYNTHIAN_RECIPE_DIR/install_lv2_plugins_prebuilt.sh
-#################################################
+# Zynthian pre-compiled plugins
+$ZYNTHIAN_RECIPE_DIR/install_monique_monosynth_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_odin2_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_argotlunar2_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
+mkdir "/root/.Surge XT"
 
 # Fixup amsynth bank/presets
 $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh
 
 # Install MOD-UI skins
 #$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
+
+# Remove source code we don't need
+
 
 # Remove VSTs and other plugin format we don't need and take a lot of space
 rm -rf /usr/lib/vst

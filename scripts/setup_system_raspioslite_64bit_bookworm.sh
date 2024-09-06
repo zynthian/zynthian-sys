@@ -52,8 +52,8 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
 
-[ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="chain_manager"
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="chainman_bookworm"
+[ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="oram"
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="oram"
 [ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
@@ -144,7 +144,7 @@ libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-d
 libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
-libsndfile1-zyndev
+libclthreads-dev libclxclient-dev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
@@ -163,7 +163,7 @@ ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband
 apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
-python3-mutagen
+python3-mutagen python3-pam
 
 # Python2 (DEPRECATED!!)
 #apt-get -y install python-setuptools python-is-python2 python-dev-is-python2
@@ -265,7 +265,7 @@ echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >>
 echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=20M  0  0" >> /etc/fstab
 
 # Fix timeout in network initialization
-if [ ! -d "/etc/systemd/system/networking.service.d/reduce-timeout.conf" ]; then
+if [ ! -d "/etc/systemd/system/networking.service.d" ]; then
 	mkdir -p "/etc/systemd/system/networking.service.d"
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
 fi
@@ -277,11 +277,16 @@ if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
 fi
 
 # VNC password
+if [ ! -d "/root/.vnc/" ]; then
+	mkdir "/root/.vnc/"
+fi
 echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
 chmod go-r /root/.vnc/passwd
 
 # Delete problematic file from X11 config (RPi3??)
-rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
+if [ -f "/usr/share/X11/xorg.conf.d/20-noglamor.conf" ]; then
+	rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
+fi
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
@@ -290,33 +295,39 @@ echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian
 
+# => Allow root ssh login
+echo -e "\nPermitRootLogin yes" >> /etc/ssh/sshd_config
+
 # ZynthianOS version
-echo "2402" > /etc/zynthianos_version
+export ZYNTHIANOS_VERSION="2409"
+echo $ZYNTHIANOS_VERSION > /etc/zynthianos_version
 # Build Info
-echo "ZynthianOS: Built on os.zynthian.org" > $ZYNTHIAN_DIR/build_info.txt
+echo "ZynthianOS ORAM-$ZYNTHIANOS_VERSION" > $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Timestamp: 2024-02-01"  >> $ZYNTHIAN_DIR/build_info.txt
+echo "Timestamp: 2024-09-06"  >> $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Optimized: Raspberry Pi 4 Model B" >> $ZYNTHIAN_DIR/build_info.txt
+echo "Built from RaspberryPiOS Bookworm ($MACHINE_HW_NAME)" >> $ZYNTHIAN_DIR/build_info.txt
 
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
-#$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
+# reboot ...
+
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
 
 # Configure systemd services
 systemctl daemon-reload
 systemctl disable raspi-config
 systemctl disable cron
-#systemctl disable wpa_supplicant
-systemctl disable hostapd
 systemctl disable dnsmasq
 systemctl disable apt-daily.timer
 systemctl disable ModemManager
 systemctl disable glamor-test.service
 systemctl enable avahi-daemon
 systemctl enable devmon@root
+#systemctl disable wpa_supplicant
+#systemctl disable hostapd
 #systemctl enable dhcpcd
 #systemctl disable rsyslog
 #systemctl disable unattended-upgrades
@@ -325,9 +336,6 @@ systemctl enable devmon@root
 systemctl mask rpi-eeprom-update
 
 # Zynthian specific systemd services
-systemctl enable backlight
-systemctl enable cpu-performance
-#systemctl enable wifi-setup
 systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
@@ -346,7 +354,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
 
 # Install modified Bluez from zynthian repo
-$ZYNTHIAN_RECIPE_DIR/install_bluez.sh
+#$ZYNTHIAN_RECIPE_DIR/install_bluez.sh
 
 # Install pyliblo library (liblo OSC library for Python)
 $ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
@@ -359,7 +367,7 @@ $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
 
 # Install the LV2 C++ Tool Kit
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
-
+# => lvtk-1 failed
 # TODO FAILED=> ninja: build stopped: subcommand failed.
 
 # Install LV2 Jalv Plugin Host
@@ -400,7 +408,7 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 # Install QJackCtl
 #$ZYNTHIAN_RECIPE_DIR/install_qjackctl.sh
 
-# Install patchage
+# Install patchage => FAILS!
 $ZYNTHIAN_RECIPE_DIR/install_patchage.sh
 
 # Install the njconnect Jack Graph Manager
@@ -431,7 +439,7 @@ $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 # Install ZynAddSubFX => from Bookworm repository instead of KXStudio
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 apt-get -y install -t bookworm zynaddsubfx
-apt-mark -y hold zynaddsubfx
+apt-mark hold zynaddsubfx
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
@@ -466,12 +474,12 @@ mkdir setbfree
 ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
 cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
-# Install Pianoteq Demo (Piano Physical Emulation)
-$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
-
 # Install Aeolus (Pipe Organ Emulator)
 #apt-get -y install aeolus
 $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
+
+# Install Pianoteq Demo (Piano Physical Emulation)
+$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
 # Install SooperLooper backend
 apt-get -y install sooperlooper
@@ -523,6 +531,14 @@ cd "$ZYNTHIAN_SYS_DIR/scripts"
 #------------------------------------------------
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
+
+#------------------------------------------------
+# Zynthian specific packages (from zynthian repo)
+#------------------------------------------------
+
+apt-get -y remove libsndfile1-dev libfluidsynth-dev libinstpatch-dev
+apt-get -y install libsndfile-zyndev zynbluez jamulus
+
 
 #------------------------------------------------
 # Final configuration

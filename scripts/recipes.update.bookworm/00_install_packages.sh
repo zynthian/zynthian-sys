@@ -203,11 +203,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	set_restart_ui_flag
 fi
 
-patchlevel="20240422.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
-	SKIP_WARNING=1 rpi-update
-fi
+#patchlevel="20240422.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	#echo "APPLYING PATCH $patchlevel ..."
+	#SKIP_WARNING=1 rpi-update
+#fi
 
 patchlevel="20240423.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
