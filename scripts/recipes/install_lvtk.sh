@@ -10,14 +10,14 @@ if [ -d lvtk-1 ]; then
 	rm -rf lvtk-1
 fi
 
-wget https://github.com/lvtk/lvtk/archive/refs/tags/1.2.0.tar.gz
-tar xfvz 1.2.0.tar.gz
-cd lvtk-1.2.0
-
-
 git clone https://github.com/lvtk/lvtk.git lvtk-1
 cd lvtk-1
 git checkout v1
+# Get a waf that works with little tweaks
+cp -a /zynthian/zynthian-sys/scripts/recipes/waf .
+./waf configure
+sed -i "s/rU/r/g" .waf3-1.7.16-298c23e5260e502b06df5657cfb0eb26/waflib/Context.py
+sed -i "s/rU/r/g" .waf3-1.7.16-298c23e5260e502b06df5657cfb0eb26/waflib/ConfigSet.py
 ./waf configure
 ./waf build
 ./waf install
