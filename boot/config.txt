@@ -31,6 +31,7 @@ otg_mode=1
 
 # Disable compensation for displays with overscan
 disable_overscan=1
+
 # Force HDMI output
 hdmi_force_hotplug=1
 
