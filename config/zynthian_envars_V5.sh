@@ -28,6 +28,7 @@
 export ZYNTHIAN_KIT_VERSION="V5"
 
 # System Config
+export BOOTLOG="0"
 export ZYNTHIAN_CUSTOM_BOOT_CMDLINE=""
 export ZYNTHIAN_CUSTOM_CONFIG=""
 export ZYNTHIAN_OVERCLOCKING="Maximum"
