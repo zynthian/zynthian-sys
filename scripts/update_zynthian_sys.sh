@@ -251,6 +251,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	fi
 
 	if [[ "$FRAMEBUFFER" == "/dev/fb1" || "$BOOTLOG" == "1" ]]; then
+		echo "BOOT LOG ENABLED"
 		cmdline="$cmdline console=tty1 logo.nologo"
 	else
 		echo "BOOT LOG DISABLED"
