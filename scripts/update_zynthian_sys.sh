@@ -250,11 +250,11 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	  cmdline="$cmdline $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
 	fi
 
-	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
+	if [[ "$FRAMEBUFFER" == "/dev/fb1" || "$BOOTLOG" == "1" ]]; then
+		cmdline="$cmdline console=tty1 logo.nologo"
+	else
 		echo "BOOT LOG DISABLED"
 		cmdline="$cmdline console=tty3 logo.nologo quiet splash vt.global_cursor_default=0"
-	else
-		cmdline="$cmdline console=tty1 logo.nologo"
 	fi
 
   # Customize config.txt

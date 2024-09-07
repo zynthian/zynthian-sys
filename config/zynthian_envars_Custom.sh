@@ -32,14 +32,14 @@ export ZYNTHIAN_DISABLE_OTG="0"
 export ZYNTHIAN_WIFI_MODE="off"
 
 #Audio Config
-export SOUNDCARD_NAME="RBPi Headphones"
+export SOUNDCARD_NAME="Default"
 export SOUNDCARD_CONFIG="dtparam=audio=on\naudio_pwm_mode=2"
 export SOUNDCARD_MIXER="Headphone"
-export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:Headphones -r 48000 -o 2 -p 512 -n 3 -X raw"
+export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:0 -r 48000 -o 2 -p 512 -n 3 -X raw"
 
 #Display Config
 export DISPLAY_NAME="Generic HDMI/DSI Display"
-export DISPLAY_CONFIG="disable_overscan=1"
+export DISPLAY_CONFIG=""
 export DISPLAY_WIDTH=""
 export DISPLAY_HEIGHT=""
 export FRAMEBUFFER="/dev/fb0"
