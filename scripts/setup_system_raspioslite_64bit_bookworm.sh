@@ -120,7 +120,7 @@ shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
 # CLI Tools
 apt-get -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
 fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo \
-xterm gpiod xfce4-terminal
+xterm gpiod xfce4-terminal tigervnc-tools
 #  qmidinet
 
 #------------------------------------------------
@@ -144,7 +144,7 @@ libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-d
 libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
-libclthreads-dev libclxclient-dev
+libclthreads-dev libclxclient-dev libsndfile-zyndev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
@@ -442,6 +442,8 @@ apt-get -y install -t bookworm zynaddsubfx
 apt-mark hold zynaddsubfx
 
 # Install Fluidsynth & SF2 SondFonts
+apt-get -y remove libsndfile-zyndev
+apt-get -y install libsndfile1-dev libinstpatch-dev
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Stop & disable systemd fluidsynth service
 systemctl stop --user fluidsynth.service
@@ -538,7 +540,6 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
 apt-get -y remove libsndfile1-dev libfluidsynth-dev libinstpatch-dev
 apt-get -y install libsndfile-zyndev zynbluez jamulus
-
 
 #------------------------------------------------
 # Final configuration
