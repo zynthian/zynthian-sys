@@ -35,9 +35,7 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 aptpkgs=""
 
 #Custom update recipes, depending on the codebase version
-echo "*****************************************************"
 echo "Executing update recipes..."
-echo "*****************************************************"
 # -----------------------------------------------------------------------------
 # Load current patchlevel
 # -----------------------------------------------------------------------------
@@ -55,7 +53,7 @@ if [[ "$current_patchlevel" == "20240515.3" ]]; then
 	current_patchlevel="20240415.3"
 fi
 
-echo "CURRENT PATCH LEVEL: $current_patchlevel"
+echo "Current patch level: $current_patchlevel"
 
 # -----------------------------------------------------------------------------
 # Patches to development image until final ORAM release
@@ -63,7 +61,7 @@ echo "CURRENT PATCH LEVEL: $current_patchlevel"
 
 patchlevel="20240221.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	echo "set enable-bracketed-paste off" > /root/.inputrc
 	$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
 	$ZYNTHIAN_RECIPE_DIR/install_fluidsynth.sh
@@ -71,7 +69,7 @@ fi
 
 patchlevel="20240221.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > "/etc/apt/trusted.gpg.d/deb-zynthian-org.gpg"
 	echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
 	#echo "deb https://deb.zynthian.org/zynthian-stable bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
@@ -83,7 +81,7 @@ fi
 
 patchlevel="20240222.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	apt -y remove x42-plugins
 	apt -y install fonts-freefont-ttf libglu-dev libftgl-dev
 	#$ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh => It's done in 20240501
@@ -94,7 +92,7 @@ patchlevel="20240222.2"
 
 patchlevel="20240222.3"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	echo "deb https://deb.zynthian.org/zynthian-testing bookworm main" > "/etc/apt/sources.list.d/zynthian.list"
 	res=`dpkg -s libsndfile1-dev 2>&1 | grep "Status:"`
 	if [ "$res" == "Status: install ok installed" ]; then
@@ -109,7 +107,7 @@ fi
 
 patchlevel="20240222.4"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
 	chmod go-r /root/.vnc/passwd
 	aptpkgs="$aptpkgs x11vnc"
@@ -117,32 +115,32 @@ fi
 
 patchlevel="20240225.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	systemctl disable glamor-test.service
 	rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
 fi
 
 patchlevel="20240227.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	pip3 install xstatic XStatic_term.js
 fi
 
 patchlevel="20240228.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs xserver-xorg-input-evdev"
 fi
 
 patchlevel="20240305.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs xfce4-terminal"
 fi
 
 patchlevel="20240308.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	apt-get -y remove zynaddsubfx zynaddsubfx-data
 	apt-get -y install -t bookworm zynaddsubfx
 	apt-mark hold zynaddsubfx
@@ -150,20 +148,20 @@ fi
 
 patchlevel="20240308.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	rm -rf $ZYNTHIAN_SW_DIR/browsepy
 	$ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 fi
 
 patchlevel="20240313.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs sooperlooper"
 fi
 
 #patchlevel="20240325.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "APPLYING PATCH $patchlevel ..."
+#	echo "Applying patch $patchlevel ..."
 #	cd $ZYNTHIAN_UI_DIR/zyngine
 #	./zynthian_lv2.py presets https://github.com/michaelwillis/dragonfly-reverb
 #	./zynthian_lv2.py presets urn:dragonfly:plate
@@ -172,7 +170,7 @@ fi
 
 patchlevel="20240325.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
 	apt -y update
 	apt -y install -t bookworm-oram jamulus
@@ -180,19 +178,19 @@ fi
 
 patchlevel="20240404.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	pip3 install adafruit-circuitpython-neopixel-spi
 fi
 
 patchlevel="20240409.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs shiro-plugins safe-plugins sorcer"
 fi
 
 patchlevel="20240416.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	#rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/sooperlooper.lv2
 	rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/b_synth.lv2
 	rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/Pianoteq*.lv2
@@ -201,14 +199,14 @@ fi
 
 patchlevel="20240416.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	apt -y remove avldrums.lv2 avldrums.lv2-data
 	$ZYNTHIAN_RECIPE_DIR/install_avldrums.sh
 fi
 
 #patchlevel="20240419.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "APPLYING PATCH $patchlevel ..."
+#	echo "Applying patch $patchlevel ..."
 #	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
 #	cd $ZYNTHIAN_UI_DIR/zyngine
 #	./zynthian_lv2.py engines
@@ -218,21 +216,21 @@ fi
 
 patchlevel="20240419.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
 	set_restart_ui_flag
 fi
 
 patchlevel="20240421.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_monique_monosynth_prebuilt.sh
 	set_restart_ui_flag
 fi
 
 patchlevel="20240421.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	mkdir "/root/.Surge XT"
 	$ZYNTHIAN_RECIPE_DIR/install_odin2_prebuilt.sh
 	set_restart_ui_flag
@@ -240,38 +238,38 @@ fi
 
 #patchlevel="20240422.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	#echo "APPLYING PATCH $patchlevel ..."
+	#echo "Applying patch $patchlevel ..."
 	#SKIP_WARNING=1 rpi-update
 #fi
 
 patchlevel="20240423.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	rm -f $ZYNTHIAN_DATA_DIR/soundfonts/sf2/*\**
 fi
 
 patchlevel="20240501.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
 fi
 
 patchlevel="20240501.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	apt -y install faust
 	$ZYNTHIAN_RECIPE_DIR/install_faust_lv2.sh
 fi
 
 patchlevel="20240504.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	rm -rf /etc/systemd/system/bluetooth.service.d
 fi
 
 patchlevel="20240504.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	apt -y remove hostapd
 	#systemctl disable avahi-daemon
 	#systemctl stop avahi-daemon
@@ -279,20 +277,20 @@ fi
 
 patchlevel="20240508.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	systemctl enable avahi-daemon
 	systemctl start avahi-daemon
 fi
 
 patchlevel="20240517.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	apt -y remove surge
 fi
 
 patchlevel="20240521.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	if [[ "$ZYNTHIAN_OS_VERSION" == "2403" ]]; then
 		echo "Bump ZynthianOS version to 2405"
 		echo "2405" > /etc/zynthianos_version
@@ -301,25 +299,25 @@ fi
 
 patchlevel="20240522.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_jackrtpmidid.sh
 fi
 
 patchlevel="20240522.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 fi
 
 patchlevel="20240525.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	rm /zynthian/zynthian-my-data/presets/aeolus.json
 fi
 
 patchlevel="20240526.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	apt -y remove pyliblo-utils
 	$ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
@@ -327,7 +325,7 @@ fi
 
 patchlevel="20240528.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
 	cd $ZYNTHIAN_UI_DIR/zyngine
 	./zynthian_lv2.py engines
@@ -337,13 +335,13 @@ fi
 
 #patchlevel="20240604.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "APPLYING PATCH $patchlevel ..."
+#	echo "Applying patch $patchlevel ..."
 #	pip3 install hwmon vcgencmd
 #fi
 
 patchlevel="20240610.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	if [ ! -d "$ZYNTHIAN_SW_DIR/noVNC" ]; then
 		$ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 	fi
@@ -351,7 +349,7 @@ fi
 
 patchlevel="20240611.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	apt -y remove bluez
 	aptpkgs="$aptpkgs zynbluez"
 	#apt -y install libical-dev docutils-common
@@ -360,19 +358,19 @@ fi
 
 patchlevel="20240613.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs python3-pam"
 fi
 
 patchlevel="20240616.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_aidax.sh
 fi
 
 patchlevel="20240626.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	if [[ "$ZYNTHIAN_OS_VERSION" == "2405" ]]; then
 		echo "Bump ZynthianOS version to 2406"
 		echo "2406" > /etc/zynthianos_version
@@ -389,7 +387,7 @@ fi
 
 patchlevel="20240626.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	cd $ZYNTHIAN_UI_DIR/zyngine
 	./zynthian_lv2.py presets https://github.com/michaelwillis/dragonfly-reverb
 	./zynthian_lv2.py presets urn:dragonfly:plate
@@ -398,13 +396,13 @@ fi
 
 patchlevel="20240829.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
 	systemctl mask rpi-eeprom-update
 fi
 
 patchlevel="20240902.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "APPLYING PATCH $patchlevel ..."
+	echo "Applying patch $patchlevel ..."
   $ZYNTHIAN_RECIPE_DIR/install_mimi.sh
 	cd $ZYNTHIAN_UI_DIR/zyngine
 	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
