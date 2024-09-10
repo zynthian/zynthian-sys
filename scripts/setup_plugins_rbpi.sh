@@ -96,7 +96,7 @@ $ZYNTHIAN_RECIPE_DIR/install_swh.sh
 #$ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
-$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
+#$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_setBfree-controller.sh
 $ZYNTHIAN_RECIPE_DIR/install_string-machine.sh
 $ZYNTHIAN_RECIPE_DIR/install_midi_display.sh
@@ -125,6 +125,7 @@ $ZYNTHIAN_RECIPE_DIR/install_faust_lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
 
 # Zynthian pre-compiled plugins
+$ZYNTHIAN_RECIPE_DIR/install_dexed_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_monique_monosynth_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_odin2_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_argotlunar2_prebuilt.sh
