@@ -415,6 +415,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
   $ZYNTHIAN_RECIPE_DIR/install_dexed_prebuilt.sh
 fi
 
+patchlevel="20240910.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	systemctl unmask rpi-eeprom-update
+	systemctl enable rpi-eeprom-update
+	SKIP_WARNING=1 rpi-update
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
