@@ -424,6 +424,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	#$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 fi
 
+patchlevel="20240911.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt-get -y install -t bookworm zynaddsubfx-lv2
+	apt-mark hold zynaddsubfx-lv2
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi

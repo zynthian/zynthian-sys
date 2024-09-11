@@ -439,7 +439,9 @@ $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 # Install ZynAddSubFX => from Bookworm repository instead of KXStudio
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 apt-get -y install -t bookworm zynaddsubfx
+apt-get -y install -t bookworm zynaddsubfx-lv2
 apt-mark hold zynaddsubfx
+apt-mark hold zynaddsubfx-lv2
 
 # Install Fluidsynth & SF2 SondFonts
 apt-get -y remove libsndfile-zyndev
