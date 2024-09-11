@@ -421,7 +421,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	systemctl unmask rpi-eeprom-update
 	systemctl enable rpi-eeprom-update
 	SKIP_WARNING=1 rpi-update
-	$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
+	#$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 fi
 
 # 2024-01-08: Install alsa-midi (chain_manager)
