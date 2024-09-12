@@ -431,6 +431,22 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	apt-mark hold zynaddsubfx-lv2
 fi
 
+patchlevel="20240912.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	if [[ ! -d "$ZYNTHIAN_SW_DIR/pianoteq" ]]; then
+		if [[ -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]]; then
+			mv $ZYNTHIAN_SW_DIR/pianoteq6 $ZYNTHIAN_SW_DIR/pianoteq
+		fi
+	fi
+	ptinfo=${"$ZYNTHIAN_SW_DIR/pianoteq/pianoteq --version"}
+	if [[ "$ptinfo" = *@(Trial version)* ]]; then
+		if [[ "$ptinfo" != *@(version 8.3.1)* ]]; then
+			$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
+		fi
+	fi
+fi
+
 # 2024-01-08: Install alsa-midi (chain_manager)
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
