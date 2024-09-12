@@ -354,19 +354,10 @@ if [ ! -d "jalv" ]; then
 	mkdir "jalv"
 fi
 
-export ZYNTHIAN_PIANOTEQ_DIR="$ZYNTHIAN_SW_DIR/pianoteq6"
-# Setup Pianoteq binary
-if [ ! -L "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq" ]; then
-	ln -s "$ZYNTHIAN_PIANOTEQ_DIR/Pianoteq 6 STAGE" "$ZYNTHIAN_PIANOTEQ_DIR/pianoteq"
-fi
-# Generate LV2 presets
-if [[ "$VIRTUALIZATION" == "none" ]]; then
-	ptq_version=$($ZYNTHIAN_PIANOTEQ_DIR/pianoteq --version | cut -d' ' -f4)
-	if [[ "$version" > "7.2.0" ]]; then
-		n_presets=$(find "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" -name "Pianoteq 7 *-factory-presets*.lv2" -printf '.' | wc -m)
-		if [[ "$n_presets" == 0 ]]; then
-			$ZYNTHIAN_PIANOTEQ_DIR/pianoteq --export-lv2-presets $ZYNTHIAN_MY_DATA_DIR/presets/lv2
-		fi
+# Fix Pianoteq directory name
+if [[ ! -d "$ZYNTHIAN_SW_DIR/pianoteq" ]]; then
+	if [[ -d "$ZYNTHIAN_SW_DIR/pianoteq6" ]]; then
+		mv $ZYNTHIAN_SW_DIR/pianoteq6 $ZYNTHIAN_SW_DIR/pianoteq
 	fi
 fi
 # Setup Pianoteq User Presets Directory
@@ -379,16 +370,16 @@ fi
 # Setup Pianoteq Config files
 if [ ! -d "/root/.config/Modartt" ]; then
 	mkdir -p "/root/.config/Modartt"
-	cp $ZYNTHIAN_DATA_DIR/pianoteq6/*.prefs /root/.config/Modartt
+	cp $ZYNTHIAN_DATA_DIR/pianoteq/*.prefs /root/.config/Modartt
 fi
 # Setup Pianoteq MidiMappings
 if [ ! -d "/root/.config/Modartt/Pianoteq/MidiMappings" ]; then
 	mkdir -p "/root/.local/share/Modartt/Pianoteq/MidiMappings"
-	cp $ZYNTHIAN_DATA_DIR/pianoteq6/Zynthian.ptm /root/.local/share/Modartt/Pianoteq/MidiMappings
+	cp $ZYNTHIAN_DATA_DIR/pianoteq/Zynthian.ptm /root/.local/share/Modartt/Pianoteq/MidiMappings
 fi
 # Fix Pianoteq Presets Cache location
-if [ -d "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" ]; then
-	mv "$ZYNTHIAN_MY_DATA_DIR/pianoteq6" $ZYNTHIAN_CONFIG_DIR
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/pianoteq" ]; then
+	mv "$ZYNTHIAN_MY_DATA_DIR/pianoteq" $ZYNTHIAN_CONFIG_DIR
 fi
 # Setup browsepy directories
 if [ ! -d "$BROWSEPY_ROOT" ]; then
