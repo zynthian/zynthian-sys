@@ -176,13 +176,6 @@ if [[ "$JACKD_OPTIONS" = *@(-t 2000)* ]]; then
   source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
   set_reboot_flag
 fi
-if [[ "$RBPI_VERSION_NUMBER" > "4" && "$SOUNDCARD_CONFIG" != "" && "$JACKD_OPTIONS" = *@(-p 256 -n 2)* ]]; then
-  echo "Fixing jackd options to work with RPi5 ..."
-  echo -e "export JACKD_OPTIONS=\"$JACKD_OPTIONS\"" | sed -e "s/-p 256 -n 2/-p 128 -n 2 -i 2 -o 2/" >> /tmp/update_envars.sh
-  update_envars.py /tmp/update_envars.sh no_update_sys
-  source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-  set_reboot_flag
-fi
 
 #------------------------------------------------------------------------------
 # Escape/Fix Config Variables to replace

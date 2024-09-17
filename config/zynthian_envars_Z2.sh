@@ -36,7 +36,7 @@ export ZYNTHIAN_WIFI_MODE="off"
 export SOUNDCARD_NAME="Z2 ADAC"
 export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro\nforce_eeprom_read=0"
 export SOUNDCARD_MIXER="PGA_Gain_Left,PGA_Gain_Right,ADC_Left_Input,ADC_Right_Input,Digital_0,Digital_1"
-export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:sndrpihifiberry -r 48000 -p 256 -n 2 -X raw"
+export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:sndrpihifiberry -r 48000 -p 256 -n 2 -o 2 -i 2 -X raw"
 export ZYNTHIAN_DISABLE_RBPI_AUDIO="0"
 export ZYNTHIAN_RBPI_HEADPHONES="0"
 
