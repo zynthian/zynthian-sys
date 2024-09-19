@@ -30,8 +30,10 @@ convert_options="-resize ${DISPLAY_WIDTH}x -gravity Center -extent ${DISPLAY_WID
 /usr/bin/convert "$ZYNTHIAN_UI_DIR/img/zynthian_logo_boot.png" $convert_options "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_boot.png"
 /usr/bin/convert "$ZYNTHIAN_UI_DIR/img/zynthian_logo_error.png" $convert_options "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.png"
 
+exit
+
 # This is not used anymore...
-if [[ "$FRAMEBUFFER" == "XXX/dev/fb1" ]]; then
+if [[ "$FRAMEBUFFER" == "/dev/fb1" ]]; then
 	echo "Generating Splash Screens for FrameBuffer..."
 
 	/bin/echo 1 > /sys/class/backlight/*/bl_power
