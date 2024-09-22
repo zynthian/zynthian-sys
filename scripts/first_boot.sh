@@ -37,17 +37,18 @@ if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
 	python3 ./zynthian_lv2.py
 fi
 
-# Resize partition & reboot
-echo -e "Resizing partition..." >> /root/first_boot.log
-raspi-config --expand-rootfs
-
 # Wait a little bit for splash image generation
 counter=0
-while [[ ! -f "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.png" && counter -lt 10 ]]; do
+while [ ! -f "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.png" && $counter -lt 10 ]; do
 	((counter++))
 	echo "Waiting for splash generation ($counter)..."
 	sleep 0.5
 done
+sleep 1
+
+# Resize partition & reboot
+echo -e "Resizing partition..." >> /root/first_boot.log
+raspi-config --expand-rootfs
 
 # Disable first_boot service
 systemctl disable first_boot
