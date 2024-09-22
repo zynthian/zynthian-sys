@@ -141,6 +141,14 @@ export DEBIAN_FRONTEND="noninteractive"
 export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
 
 #------------------------------------------------------------------------------
+# Software versions: Branches & Tags
+#------------------------------------------------------------------------------
+
+export ZYNTHIAN_STABLE_BRANCH="oram"
+export ZYNTHIAN_STABLE_TAG="2409"
+export ZYNTHIAN_TESTING_BRANCH="vangelis"
+
+#------------------------------------------------------------------------------
 # Enter python virtual environment
 #------------------------------------------------------------------------------
 

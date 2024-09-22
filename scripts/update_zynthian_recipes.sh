@@ -484,7 +484,7 @@ fi
 # Upgrade System
 # -----------------------------------------------------------------------------
 
-if [[ ! "$ZYNTHIAN_SYS_BRANCH" =~ ^stable.* || "$ZYNTHIAN_FORCE_UPGRADE" == "yes" ]]; then
+if [[ "$ZYNTHIAN_SYS_BRANCH" == "$ZYNTHIAN_TESTING_BRANCH" || "$ZYNTHIAN_FORCE_APT_UPGRADE" == "yes" ]]; then
 	echo "UPGRADING DEBIAN PACKAGES ..."
 	if [ -z "$aptpkgs" ]; then
 		apt -y update --allow-releaseinfo-change
