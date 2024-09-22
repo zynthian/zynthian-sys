@@ -14,10 +14,12 @@ echo -e "\nRunning autoconfig..." >> /root/first_boot.log
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py 2>&1 >> /root/first_boot.log
 if [ -f $REBOOT_FLAGFILE ]; then
 	clean_all_flags
+	# Make sure splash generation is not truncated
+	killall generate_fb_splash.sh
+	rm -rf $ZYNTHIAN_CONFIG_DIR/img
+	# Reboot
 	echo -e "\nReboot..." >> /root/first_boot.log
-	sync
 	reboot
-	sleep 3
 	exit
 fi
 
@@ -39,7 +41,7 @@ fi
 
 # Wait a little bit for splash image generation
 counter=0
-while [ ! -f "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.png" && $counter -lt 10 ]; do
+while [[ ! -f "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.png" && $counter -lt 10 ]]; do
 	((counter++))
 	echo "Waiting for splash generation ($counter)..."
 	sleep 0.5
