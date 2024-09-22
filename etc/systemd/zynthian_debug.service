@@ -1,7 +1,6 @@
 [Unit]
 Description=Zynthian User Interface (DEBUG)
-After=jack2.service splash-screen.service
-Requires=jack2.service
+After=jack2.service
 
 [Service]
 Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
@@ -13,7 +12,7 @@ Environment=ZYNTHIAN_UI_DIR=#ZYNTHIAN_UI_DIR#
 Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
-# Start X11 with keyboard autorepeat disable (-r)
+# Start X11 with keyboard autorepeat disable (-r) and disabling screen blanking (-s 0)
 ExecStart=startx ./zynthian.sh -- -r -s 0 #X11_SERVER_OPTIONS#
 TimeoutStopSec=20
 ExecStop=#ZYNTHIAN_SYS_DIR#/sbin/zynthian_stop.sh

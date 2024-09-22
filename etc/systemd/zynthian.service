@@ -1,7 +1,6 @@
 [Unit]
 Description=Zynthian User Interface
 After=jack2.service
-Requires=jack2.service
 
 [Service]
 Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
