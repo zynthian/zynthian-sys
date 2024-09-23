@@ -511,8 +511,8 @@ mkdir /root/Pd/externals
 #------------------------------------------------
 
 # Install MOD-HOST
-# Requires libjackd-jackd2-1.9.19 (JackTickDouble), bullseye has 1.9.17
-#export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
+# Requires libjackd-jackd2-1.9.19 (JackTickDouble)
+export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
 $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
  
 # Install browsepy => Now it's installed with mod-ui
