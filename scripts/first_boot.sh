@@ -41,7 +41,7 @@ fi
 
 # Wait a little bit for splash image generation
 counter=0
-while [[ ! -f "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.png" && $counter -lt 10 ]]; do
+while [[ ! -f "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.jpg" && $counter -lt 10 ]]; do
 	((counter++))
 	echo "Waiting for splash generation ($counter)..."
 	sleep 0.5
