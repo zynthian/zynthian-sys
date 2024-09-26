@@ -56,7 +56,7 @@ fi
 echo "Current patch level: $current_patchlevel"
 
 # -----------------------------------------------------------------------------
-# Patches to development image until final ORAM release
+# Patches to testing image until stable ORAM release
 # -----------------------------------------------------------------------------
 
 patchlevel="20240221.1"
@@ -451,6 +451,16 @@ fi
 #if is_python_module_installed.py alsa-midi; then
 #	pip3 install alsa-midi
 #fi
+
+# -----------------------------------------------------------------------------
+# Patches to ORAM stable release
+# -----------------------------------------------------------------------------
+
+patchlevel="20240926"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+  $ZYNTHIAN_RECIPE_DIR/install_patchage.sh
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
