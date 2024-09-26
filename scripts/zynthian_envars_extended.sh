@@ -73,10 +73,10 @@ echo "Virtualization: $VIRTUALIZATION"
 if [ -z "$RASPI" ]; then
 
 	# Hardware Architecture & Optimization Options
-	hw_architecture=`uname -m 2>/dev/null`
+	hw_architecture=$(uname -m 2>/dev/null)
 	if [ -e "/sys/firmware/devicetree/base/model" ]; then
 		# THIS MUST BE FIXED!!! IT DOESN'T WORK!
-		rbpi_version=`tr -d '\0' < /sys/firmware/devicetree/base/model`
+		rbpi_version=$(tr -d '\0' < /sys/firmware/devicetree/base/model)
 	else
 		rbpi_version="Unknown"
 	fi
@@ -107,6 +107,9 @@ if [ -z "$RASPI" ]; then
 	elif [[ $rbpi_version_number == "4" ]]; then
 		gpio_chip_device="/dev/gpiochip0"
 		i2c_device="/dev/i2c-1"
+	elif [[ $rbpi_version_number == "400" ]]; then
+		gpio_chip_device="/dev/gpiochip0"
+		i2c_device="/dev/i2c-1"
 	elif [[ $rbpi_version_number == "3" ]]; then
 		gpio_chip_device="/dev/gpiochip0"
 		i2c_device="/dev/i2c-1"
@@ -114,7 +117,7 @@ if [ -z "$RASPI" ]; then
 		gpio_chip_device="/dev/gpiochip0"
 		i2c_device="/dev/i2c-1"
 	else
-		rbpi_version_number="UNSUPPORTED"
+		rbpi_version="$rbpi_version (UNSUPPORTED!)"
 		gpio_chip_device="/dev/gpiochip0"
 		i2c_device="/dev/i2c-1"
 	fi
