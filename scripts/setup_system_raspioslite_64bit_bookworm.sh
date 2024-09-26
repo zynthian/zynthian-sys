@@ -408,7 +408,7 @@ $ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 # Install QJackCtl
 #$ZYNTHIAN_RECIPE_DIR/install_qjackctl.sh
 
-# Install patchage => FAILS!
+# Install patchage
 $ZYNTHIAN_RECIPE_DIR/install_patchage.sh
 
 # Install the njconnect Jack Graph Manager
