@@ -14,11 +14,15 @@ echo -e "\nRunning autoconfig..." >> /root/first_boot.log
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py 2>&1 >> /root/first_boot.log
 if [ -f $REBOOT_FLAGFILE ]; then
 	clean_all_flags
-	# Make sure splash generation is not truncated
+	echo -e "\nReboot..." >> /root/first_boot.log
+	# Abort and reset splash generation process
 	killall generate_fb_splash.sh
 	rm -rf $ZYNTHIAN_CONFIG_DIR/img
+	# Make sure eeprom update is not truncated
+	while [[ $(pgrep -f rpi-eeprom-update) > 0 ]]; do
+		sleep 0.1
+	done
 	# Reboot
-	echo -e "\nReboot..." >> /root/first_boot.log
 	reboot
 	exit
 fi
