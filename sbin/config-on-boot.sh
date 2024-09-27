@@ -2,6 +2,7 @@
 
 BOOT_CONFIG_FILE="/boot/zynthian_envars.sh"
 UPDATE_SYS_FLAG_FILE="/zynthian_update_sys"
+USER_CONFIG_SCRIPT="/zynthian/config/user_config.sh"
 
 function post_config() {
 	rm -rf $ZYNTHIAN_DIR/zyncoder/build
@@ -24,4 +25,9 @@ if [ -f $UPDATE_SYS_FLAG_FILE ]; then
 	$ZYNTHIAN_SYS_DIR/sbin/zynthian_post_config.sh
 	post_config
 	exit
+fi
+
+# Run user config script if it exists
+if [ -f $USER_CONFIG_SCRIPT ]; then
+	$USER_CONFIG_SCRIPT
 fi
