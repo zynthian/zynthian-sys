@@ -21,7 +21,7 @@ git clone --recursive https://github.com/zynthian/jalv.git
 cd jalv
 meson setup build
 cd build
-meson compile
+meson compile -j 3
 meson install
 ln -s /usr/local/bin/jalv.gtk3 /usr/local/bin/jalv.gtk
 
