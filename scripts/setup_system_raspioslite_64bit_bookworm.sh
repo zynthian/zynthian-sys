@@ -321,6 +321,7 @@ systemctl daemon-reload
 systemctl disable raspi-config
 systemctl disable cron
 systemctl disable dnsmasq
+systemctl disable dhcpcd
 systemctl disable apt-daily.timer
 systemctl disable ModemManager
 systemctl disable glamor-test.service
@@ -328,7 +329,6 @@ systemctl enable avahi-daemon
 systemctl enable devmon@root
 #systemctl disable wpa_supplicant
 #systemctl disable hostapd
-#systemctl enable dhcpcd
 #systemctl disable rsyslog
 #systemctl disable unattended-upgrades
 #systemctl mask packagekit
@@ -502,6 +502,10 @@ pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpac
 pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
 pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
+apt-get -y install pd-ambix pd-autopreset pd-cmos pd-creb pd-deken pd-deken-apt pd-extendedview pd-flext-dev pd-flext-doc pd-gil \
+pd-hexloader pd-iem pd-jsusfx pd-kollabs pd-lib-builder pd-log pd-mediasettings pd-mrpeach-net pd-nusmuk pd-pan \
+pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-tclpd pd-testtools pd-unauthorized \
+pd-upp pd-xbee pd-xsample
 
 mkdir /root/Pd
 mkdir /root/Pd/externals

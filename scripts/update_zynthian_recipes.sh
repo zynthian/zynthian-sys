@@ -462,6 +462,17 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
   $ZYNTHIAN_RECIPE_DIR/install_patchage.sh
 fi
 
+patchlevel="20240928"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	systemctl stop dhcpcd
+	systemctl disable dhcpcd
+	aptpkgs="$aptpkgs pd-ambix pd-autopreset pd-cmos pd-creb pd-deken pd-deken-apt pd-extendedview pd-flext-dev pd-flext-doc pd-gil \
+pd-hexloader pd-iem pd-jsusfx pd-kollabs pd-lib-builder pd-log pd-mediasettings pd-mrpeach-net pd-nusmuk pd-pan \
+pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-tclpd pd-testtools pd-unauthorized \
+pd-upp pd-xbee pd-xsample"
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
