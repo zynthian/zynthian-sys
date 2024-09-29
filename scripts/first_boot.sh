@@ -35,6 +35,9 @@ $ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh 2>&1 >> /root/first_boot.log
 echo -e "\nRegenerating keys..." >> /root/first_boot.log
 $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh 2>&1 >> /root/first_boot.log
 
+# Create WIFI access point
+create_wifi_access_point.sh
+
 # Regenerate cache LV2 if needed
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
