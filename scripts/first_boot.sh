@@ -55,12 +55,14 @@ while [[ ! -f "$ZYNTHIAN_CONFIG_DIR/img/fb_zynthian_error.jpg" && $counter -lt 1
 done
 sleep 1
 
+# Disable first_boot service
+echo -e "Disabling first boot process ..." >> /root/first_boot.log
+systemctl disable first_boot
+
 # Resize partition & reboot
 echo -e "Resizing partition..." >> /root/first_boot.log
 raspi-config --expand-rootfs
 
-# Disable first_boot service
-systemctl disable first_boot
-
 # Reboot
+echo -e "Rebooting to start zynthian-ui ..." >> /root/first_boot.log
 reboot
