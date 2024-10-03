@@ -327,9 +327,6 @@ cp -a $ZYNTHIAN_SYS_DIR/config/sidechain.json $ZYNTHIAN_CONFIG_DIR
 if [ -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
 	rm -f $ZYNTHIAN_CONFIG_DIR/backup_items.txt
 fi
-if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_custom_config.sh" ]; then
-	rm -f $ZYNTHIAN_CONFIG_DIR/zynthian_custom_config.sh
-fi
 
 # Fix/Setup MIDI-profiles data directory
 cd $ZYNTHIAN_CONFIG_DIR
