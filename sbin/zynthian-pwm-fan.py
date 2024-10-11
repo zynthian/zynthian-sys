@@ -37,11 +37,11 @@ class SignalMonitor:
 
 #get the raspberry pi cpu temperature
 def measure_temp():
-         temp = os.popen("vcgencmd measure_temp").readline() #returns temp=50.0'C
-         raw_tmp = temp.replace("temp=","")                  #strip off temp=
-	 flt_tmp = float( raw_tmp.replace("'C","") )         #strip off `C and convert to float
-         int_tmp = int ( flt_tmp )                           #convert to int since all temps are whole degrees only
-	 return int_tmp
+	temp = os.popen("vcgencmd measure_temp").readline() #returns temp=50.0'C
+	raw_tmp = temp.replace("temp=","")                  #strip off temp=
+	flt_tmp = float( raw_tmp.replace("'C",""))         #strip off `C and convert to float
+	int_tmp = int ( flt_tmp )                           #convert to int since all temps are whole degrees only
+	return int_tmp
 
 #not below, used to set a lower bound for the fan.
 def not_below( bound, x ):
@@ -59,16 +59,16 @@ pwm_fan = GPIO.PWM( fan_pin, fan_freq )
 
 try:
 	if __name__ == '__main__':
-		print   "Fan PWM GPIO Pin", fan_pin, "Frequency", fan_freq, "Hz"
+		print("Fan PWM GPIO Pin", fan_pin, "Frequency", fan_freq, "Hz")
 		smooth_speed = fan_startup
 
 		TimeToQuit = SignalMonitor()
 		while not TimeToQuit.now:
 			temp_x = measure_temp()
-       			speed_x = ((scale_m * temp_x) + scale_b ) 
+			speed_x = ((scale_m * temp_x) + scale_b ) 
 			smooth_speed = not_below( fan_min, smooth_speed - (smooth_beta * (smooth_speed - speed_x) ) ) 
-			#print "Temp is ", temp_x, "Speed is ", smooth_speed, "raw ",speed_x
-       			pwm_fan.start( smooth_speed )
+			#print ()"Temp is ", temp_x, "Speed is ", smooth_speed, "raw ",speed_x)
+			pwm_fan.start( smooth_speed )
 			time.sleep( poll_sec )
 
 finally:
