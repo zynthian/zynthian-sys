@@ -473,6 +473,12 @@ pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-t
 pd-upp pd-xbee pd-xsample"
 fi
 
+patchlevel="20241015"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+  $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------

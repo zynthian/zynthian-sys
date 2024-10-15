@@ -110,7 +110,6 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-arpeggiator.sh
 $ZYNTHIAN_RECIPE_DIR/install_stereo-mixer.sh
 $ZYNTHIAN_RECIPE_DIR/install_alo.sh
 $ZYNTHIAN_RECIPE_DIR/install_VL1.sh
-$ZYNTHIAN_RECIPE_DIR/install_qmidiarp.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 $ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
 $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
@@ -129,6 +128,7 @@ $ZYNTHIAN_RECIPE_DIR/install_dexed_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_monique_monosynth_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_odin2_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_argotlunar2_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
 mkdir "/root/.Surge XT"
 
