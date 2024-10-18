@@ -10,7 +10,7 @@ LimitRTPRIO=infinity
 LimitMEMLOCK=infinity
 ExecStart=#JACKD_BIN_PATH#/jackd #JACKD_OPTIONS#
 Restart=always
-RestartSec=1
+RestartSec=2
 
 [Install]
 WantedBy=multi-user.target
