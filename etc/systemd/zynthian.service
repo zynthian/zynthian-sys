@@ -17,7 +17,7 @@ ExecStart=startx ./zynthian.sh -- -r -s 0 #X11_SERVER_OPTIONS#
 TimeoutStopSec=20
 ExecStop=#ZYNTHIAN_SYS_DIR#/sbin/zynthian_stop.sh
 Restart=always
-RestartSec=5
+RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
