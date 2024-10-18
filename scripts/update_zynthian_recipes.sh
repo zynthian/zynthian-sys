@@ -488,6 +488,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
   fi
 fi
 
+patchlevel="20241018"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+  $ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
