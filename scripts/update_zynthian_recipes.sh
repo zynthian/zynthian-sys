@@ -479,6 +479,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
   $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
 fi
 
+patchlevel="20241016"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	sbdir="/root/.local/share/odin2/Soundbanks"
+	if [ ! -d "$sbdir" ]; then
+  	mkdir "$sbdir"
+  fi
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
