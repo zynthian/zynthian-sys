@@ -508,6 +508,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 }' > /root/.helm/Helm.config
 fi
 
+patchlevel="20241022.3"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt-get -y install ttf-bitstream-vera
+	$ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------

@@ -7,6 +7,7 @@ fi
 
 git clone https://github.com/pantherb/setBfree.git
 cd setBfree
+./localize_rtk.sh
 mkdir lv2
 
 sed -i -- "s/-msse -msse2 -mfpmath=sse/$CFLAGS $CFLAGS_UNSAFE/g" common.mak
