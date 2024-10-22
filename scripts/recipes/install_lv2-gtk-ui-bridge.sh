@@ -10,12 +10,15 @@ fi
 git clone https://github.com/falkTX/lv2-gtk-ui-bridge.git lv2-gtk-ui-bridge
 cd lv2-gtk-ui-bridge
 make
+rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/lv2-gtk-ui-bridge.lv2
 mv lv2-gtk-ui-bridge.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 # Add missing plugins with deprecated Gtk2/Gtk3 UIs
 manifest_fpath=$ZYNTHIAN_PLUGINS_DIR/lv2/lv2-gtk-ui-bridge.lv2/manifest.ttl
 echo "
 <http://code.google.com/p/amsynth/amsynth>
+    ui:ui gtk2: .
+<http://nickbailey.co.nr/triceratops>
     ui:ui gtk2: .
 " >> "$manifest_fpath"
 
