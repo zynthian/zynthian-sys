@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#apt-get install libgtk2.0-dev libgtk-3-dev liblilv-dev lv2-dev libx11-dev make pkg-config
+#apt-get -y install libgtk2.0-dev libgtk-3-dev liblilv-dev lv2-dev libx11-dev make pkg-config
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 if [ -d "lv2-gtk-ui-bridge" ]; then
@@ -11,6 +11,13 @@ git clone https://github.com/falkTX/lv2-gtk-ui-bridge.git lv2-gtk-ui-bridge
 cd lv2-gtk-ui-bridge
 make
 mv lv2-gtk-ui-bridge.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
-cd ..
 
+# Add missing plugins with deprecated Gtk2/Gtk3 UIs
+manifest_fpath=$ZYNTHIAN_PLUGINS_DIR/lv2/lv2-gtk-ui-bridge.lv2/manifest.ttl
+echo "
+<http://code.google.com/p/amsynth/amsynth>
+    ui:ui gtk2: .
+" >> "$manifest_fpath"
+
+cd ..
 rm -rf "lv2-gtk-ui-bridge"
