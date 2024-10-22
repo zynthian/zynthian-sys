@@ -488,10 +488,24 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
   fi
 fi
 
-patchlevel="20241018"
+patchlevel="20241022.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
   $ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
+fi
+
+patchlevel="20241022.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	if [ ! -d "/root/.helm" ]; then
+		mkdir "/root/.helm"
+	fi
+	echo '{
+  "synth_version": "0.9.0",
+  "day_asked_for_payment": 19989,
+  "should_ask_for_payment": false,
+  "animate_widgets": false
+}' > /root/.helm/Helm.config
 fi
 
 # -----------------------------------------------------------------------------
