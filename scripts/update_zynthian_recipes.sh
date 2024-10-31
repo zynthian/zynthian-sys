@@ -524,7 +524,7 @@ fi
 patchlevel="20241024"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	pip install pyalsaaudio
+	pip --no-input install pyalsaaudio
 fi
 
 
