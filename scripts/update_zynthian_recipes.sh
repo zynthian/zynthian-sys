@@ -521,7 +521,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs riban-lv2"
 fi
 
-patchlevel="20241024"
+patchlevel="20241024.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	pip --no-input install pyalsaaudio
