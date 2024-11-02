@@ -42,6 +42,8 @@ if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git merge --abort
 	git fetch
 	git reset --hard origin/$branch
+elif [[ $ZYNTHIAN_SYS_BRANCH == $ZYNTHIAN_STABLE_BRANCH* ]]; then
+  echo -e "\t...repository frozen in stable tag release!"
 else
 	git pull
 fi
