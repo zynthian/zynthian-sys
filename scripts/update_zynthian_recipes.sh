@@ -473,6 +473,23 @@ pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-t
 pd-upp pd-xbee pd-xsample"
 fi
 
+# Disable this until ready!
+#patchlevel="20241102-1"
+if false && [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+  if [[ "$ZYNTHIAN_SYS_BRANCH" == "$ZYNTHIAN_STABLE_BRANCH" ]]; then
+    stag="oram-2409"
+    for repo_dir in 'zynthian-ui' 'zynthian-sys' 'zynthian-webconf' 'zynthian-data' 'zyncoder' ; do
+      pushd /zynthian/$repo_dir
+      git checkout .
+      git remote update origin --prune
+      git branch -D $stag
+      git checkout tags/$stag -b $stag
+      popd
+    done
+  fi
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
