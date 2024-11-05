@@ -481,7 +481,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	sys_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 	if [[ "$sys_branch" == "$ZYNTHIAN_STABLE_BRANCH" ]]; then
   	set_envar.py ZYNTHIAN_STABLE_TAG last
-  	export ZYNTHIAN_STABLE_TAG = "last"
+  	export ZYNTHIAN_STABLE_TAG="last"
   fi
 fi
 
