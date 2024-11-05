@@ -485,6 +485,8 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	sbdir="/root/.local/share/odin2/Soundbanks"
 	if [ ! -d "$sbdir" ]; then
   	mkdir "$sbdir"
+	fi
+fi
 
 patchlevel="20241022.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -534,6 +536,8 @@ fi
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
+
+echo "END OF PATCHES"
 
 # -----------------------------------------------------------------------------
 # Install selected debian packages
