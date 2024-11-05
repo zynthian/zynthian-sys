@@ -549,8 +549,8 @@ echo "END OF PATCHES"
 
 # Install needed apt packages
 if [ "$aptpkgs" ]; then
-	apt -y update --allow-releaseinfo-change
-	apt -y install $aptpkgs
+	apt-get -y update --allow-releaseinfo-change
+	apt-get -y install $aptpkgs
 fi
 
 # -----------------------------------------------------------------------------
@@ -570,25 +570,25 @@ fi
 if [[ "$ZYNTHIAN_SYS_BRANCH" == "$ZYNTHIAN_TESTING_BRANCH" || "$ZYNTHIAN_FORCE_APT_UPGRADE" == "yes" ]]; then
 	echo "UPGRADING DEBIAN PACKAGES ..."
 	if [ -z "$aptpkgs" ]; then
-		apt -y update --allow-releaseinfo-change
+		apt-get -y update --allow-releaseinfo-change
 	fi
 	#dpkg --configure -a # => Recover from broken upgrade
-	apt -y upgrade
+	apt-get -y upgrade
 fi
 
 # -----------------------------------------------------------------------------
 # Clean apt packages
 # -----------------------------------------------------------------------------
 
-apt -y autoremove
-apt -y autoclean
+apt-get -y autoremove
+apt-get -y autoclean
 
 # -----------------------------------------------------------------------------
 # Bizarre stuff that shouldn't be needed but sometimes is
 # -----------------------------------------------------------------------------
 
 # Reinstall kernel and firmware to latest stable version
-#apt install --reinstall raspberrypi-bootloader raspberrypi-kernel
+#apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel
 
 # Update firmware to a recent version that works OK
 #SKIP_WARNING=1 rpi-update rpi-6.6.y
