@@ -485,8 +485,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	sbdir="/root/.local/share/odin2/Soundbanks"
 	if [ ! -d "$sbdir" ]; then
   	mkdir "$sbdir"
-  fi
-fi
 
 patchlevel="20241022.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -519,6 +517,18 @@ patchlevel="20241024.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs riban-lv2"
+fi
+
+# Force to tag-release
+patchlevel="20241105-1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	cd $ZYNTHIAN_SYS_DIR
+	sys_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+	if [[ "$sys_branch" == "$ZYNTHIAN_STABLE_BRANCH" ]]; then
+  	set_envar.py ZYNTHIAN_STABLE_TAG last
+  	export ZYNTHIAN_STABLE_TAG = "last"
+  fi
 fi
 
 # -----------------------------------------------------------------------------

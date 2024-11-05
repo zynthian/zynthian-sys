@@ -38,22 +38,50 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 powersave_control.sh off
 
 #------------------------------------------------------------------------------
-# Pull from zynthian-sys repository ...
+# If attached to stable tag-releases, check if already in the last tag
 #------------------------------------------------------------------------------
 
-cd $ZYNTHIAN_SYS_DIR
-export ZYNTHIAN_SYS_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-echo "Updating zynthian-sys ($ZYNTHIAN_SYS_BRANCH)..."
-git checkout .
-git clean -f
-if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
-	git merge --abort
-	git fetch
-	git reset --hard origin/$ZYNTHIAN_SYS_BRANCH
-elif [[ $ZYNTHIAN_SYS_BRANCH == $ZYNTHIAN_STABLE_BRANCH-* ]]; then
-  echo -e "\t...repository frozen in stable tag release!"
+if [[ "$ZYNTHIAN_STABLE_TAG" == "last" ]]; then
+  for repo_dir in 'zynthian-ui' 'zynthian-sys' 'zynthian-webconf' 'zynthian-data' 'zyncoder' ; do
+		echo "Checking '$repo_dir' for stable tag-releases ..."
+    pushd /zynthian/$repo_dir > /dev/null
+    # Take last tag
+    git remote update origin --prune
+    readarray -t stags <<<$(sort <<<$(git tag -l $ZYNTHIAN_STABLE_BRANCH-*))
+    last_stag=${stags[-1]}
+    echo -e "\tlast release-tag: $last_stag"
+    # Get current branch
+    branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+    echo -e "\tcurrent branch: $branch"
+    # Upgrade to last release tag if needed
+    if [[ "$branch" != "$last_stag" ]]; then
+      echo -e "Upgrading '$repo_dir' to tag release '$last_stag' ..."
+      git checkout .
+      git branch -D $last_stag
+      git checkout tags/$last_stag -b $last_stag
+      git branch -D $branch
+    fi
+    popd > /dev/null
+  done
+
+#------------------------------------------------------------------------------
+# Pull from zynthian-sys repository ...
+#------------------------------------------------------------------------------
 else
-  git pull
+  cd $ZYNTHIAN_SYS_DIR
+  export ZYNTHIAN_SYS_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+  echo "Updating zynthian-sys ($ZYNTHIAN_SYS_BRANCH)..."
+  git checkout .
+  git clean -f
+  if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
+    git merge --abort
+    git fetch
+    git reset --hard origin/$ZYNTHIAN_SYS_BRANCH
+  elif [[ $ZYNTHIAN_SYS_BRANCH == $ZYNTHIAN_STABLE_BRANCH-* ]]; then
+    echo -e "Repository 'zynthian-sys' frozen in tag release '$ZYNTHIAN_SYS_BRANCH'!"
+  else
+    git pull
+  fi
 fi
 
 #------------------------------------------------------------------------------

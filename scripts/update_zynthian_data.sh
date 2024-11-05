@@ -43,7 +43,7 @@ if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git fetch
 	git reset --hard origin/$branch
 elif [[ $branch == $ZYNTHIAN_STABLE_BRANCH-* ]]; then
-  echo -e "\t...repository frozen in stable tag release!"
+  echo -e "Repository 'zynthian-data' frozen in tag release '$branch'!"
 else
 	git pull
 fi
