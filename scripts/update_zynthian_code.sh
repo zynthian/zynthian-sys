@@ -43,7 +43,7 @@ if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git reset --hard origin/$branch
 	ui_changed=1
 elif [[ $branch == $ZYNTHIAN_STABLE_BRANCH-* ]]; then
-  echo -e "\trepository frozen in tag release '$branch'!"
+  echo -e "Repository 'zyncoder' frozen in tag release '$branch'!"
 else
 	git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
 fi
@@ -60,7 +60,7 @@ if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git reset --hard origin/$branch
 	ui_changed=1
 elif [[ $branch == $ZYNTHIAN_STABLE_BRANCH-* ]]; then
-  echo -e "\trepository frozen in tag release '$branch'!"
+  echo -e "Repository 'zynthian-ui' frozen in tag release '$branch'!"
 else
 	git pull | grep -q -v 'Already up.to.date.' && ui_changed=1
 fi
@@ -77,7 +77,7 @@ if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
 	git reset --hard origin/$branch
 	webconf_changed=1
 elif [[ $branch == $ZYNTHIAN_STABLE_BRANCH-* ]]; then
-  echo -e "\trepository frozen in tag release '$branch'!"
+  echo -e "Repository 'zynthian-webconf' frozen in tag release '$branch'!"
 else
 	git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
 fi
