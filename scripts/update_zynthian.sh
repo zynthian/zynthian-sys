@@ -88,7 +88,7 @@ fi
 # Call update subscripts ...
 #------------------------------------------------------------------------------
 
-cd ./scripts
+cd $ZYNTHIAN_SYS_DIR/scripts
 ./update_zynthian_sys.sh
 ./update_zynthian_recipes.sh
 ./update_zynthian_data.sh
