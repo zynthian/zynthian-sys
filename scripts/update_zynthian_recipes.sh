@@ -474,7 +474,7 @@ pd-upp pd-xbee pd-xsample"
 fi
 
 # Force to tag-release
-patchlevel="20241105-1"
+patchlevel="20241105.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	cd $ZYNTHIAN_SYS_DIR
