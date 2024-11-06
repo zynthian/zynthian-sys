@@ -473,6 +473,54 @@ pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-t
 pd-upp pd-xbee pd-xsample"
 fi
 
+patchlevel="20241015"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+  $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
+fi
+
+patchlevel="20241016"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	sbdir="/root/.local/share/odin2/Soundbanks"
+	if [ ! -d "$sbdir" ]; then
+  	mkdir "$sbdir"
+	fi
+fi
+
+patchlevel="20241022.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+  $ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
+fi
+
+patchlevel="20241022.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	if [ ! -d "/root/.helm" ]; then
+		mkdir "/root/.helm"
+	fi
+	echo '{
+  "synth_version": "0.9.0",
+  "day_asked_for_payment": 19989,
+  "should_ask_for_payment": false,
+  "animate_widgets": false
+}' > /root/.helm/Helm.config
+fi
+
+patchlevel="20241022.3"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt-get -y install ttf-bitstream-vera
+	$ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
+fi
+
+patchlevel="20241024.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs riban-lv2"
+fi
+
 # Force to tag-release
 patchlevel="20241105.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -489,6 +537,8 @@ fi
 # End of patches section
 # -----------------------------------------------------------------------------
 
+echo "END OF PATCHES"
+
 # -----------------------------------------------------------------------------
 # Install selected debian packages
 # -----------------------------------------------------------------------------
@@ -499,8 +549,8 @@ fi
 
 # Install needed apt packages
 if [ "$aptpkgs" ]; then
-	apt -y update --allow-releaseinfo-change
-	apt -y install $aptpkgs
+	apt-get -y update --allow-releaseinfo-change
+	apt-get -y install $aptpkgs
 fi
 
 # -----------------------------------------------------------------------------
@@ -520,25 +570,25 @@ fi
 if [[ "$ZYNTHIAN_SYS_BRANCH" == "$ZYNTHIAN_TESTING_BRANCH" || "$ZYNTHIAN_FORCE_APT_UPGRADE" == "yes" ]]; then
 	echo "UPGRADING DEBIAN PACKAGES ..."
 	if [ -z "$aptpkgs" ]; then
-		apt -y update --allow-releaseinfo-change
+		apt-get -y update --allow-releaseinfo-change
 	fi
 	#dpkg --configure -a # => Recover from broken upgrade
-	apt -y upgrade
+	apt-get -y upgrade
 fi
 
 # -----------------------------------------------------------------------------
 # Clean apt packages
 # -----------------------------------------------------------------------------
 
-apt -y autoremove
-apt -y autoclean
+apt-get -y autoremove
+apt-get -y autoclean
 
 # -----------------------------------------------------------------------------
 # Bizarre stuff that shouldn't be needed but sometimes is
 # -----------------------------------------------------------------------------
 
 # Reinstall kernel and firmware to latest stable version
-#apt install --reinstall raspberrypi-bootloader raspberrypi-kernel
+#apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel
 
 # Update firmware to a recent version that works OK
 #SKIP_WARNING=1 rpi-update rpi-6.6.y
