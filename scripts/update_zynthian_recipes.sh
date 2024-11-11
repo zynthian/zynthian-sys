@@ -533,6 +533,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
   fi
 fi
 
+patchlevel="20241111.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------

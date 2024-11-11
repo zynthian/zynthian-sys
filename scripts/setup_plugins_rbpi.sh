@@ -129,6 +129,7 @@ $ZYNTHIAN_RECIPE_DIR/install_monique_monosynth_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_odin2_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_argotlunar2_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
 mkdir "/root/.Surge XT"
 
