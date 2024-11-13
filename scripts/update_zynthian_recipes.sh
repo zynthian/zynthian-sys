@@ -539,6 +539,17 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
 fi
 
+patchlevel="20241113.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_tkinterweb.sh
+	# Setup new ALT button functionality
+	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05 UI_ACTION_RELEASE
+	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05__UI_SHORT TOGGLE_ALT_MODE
+	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05__UI_BOLD HELP
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
