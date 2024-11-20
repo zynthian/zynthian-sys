@@ -549,6 +549,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05__UI_BOLD HELP
 fi
 
+patchlevel="20241120.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	pip3 install pyalsaaudio
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
