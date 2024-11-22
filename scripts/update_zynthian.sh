@@ -97,6 +97,7 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 ./update_zynthian_code.sh
 
 run_flag_actions
+sync
 
 echo "Update Complete."
 
