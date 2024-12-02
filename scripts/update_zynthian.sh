@@ -96,6 +96,10 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 ./update_zynthian_sys.sh
 ./update_zynthian_code.sh
 
+# Force restart of UI & webconf services
+set_restart_ui_flag
+set_restart_webconf_flag
+
 run_flag_actions
 sync
 
