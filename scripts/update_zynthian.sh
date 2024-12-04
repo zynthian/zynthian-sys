@@ -7,7 +7,7 @@
 # + Reconfigure system.
 # + Reboot when needed.
 # 
-# Copyright (C) 2015-2019 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2015-2024 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
 # 

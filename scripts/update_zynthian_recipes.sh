@@ -555,6 +555,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	pip3 install pyalsaaudio
 fi
 
+patchlevel="20241204.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel...
+	aptpkgs="$aptpkgs "raspberrypi-kernel-headers"
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
