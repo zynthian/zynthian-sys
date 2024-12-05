@@ -558,7 +558,7 @@ fi
 patchlevel="20241204.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel...
-	aptpkgs="$aptpkgs "raspberrypi-kernel-headers"
+	aptpkgs="$aptpkgs "linux-headers-$(uname -r)"
 fi
 
 # -----------------------------------------------------------------------------

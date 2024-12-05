@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Install kernel headers after kernel is updated
+
+apt-get -y install linux-headers-$1
+
