@@ -557,6 +557,7 @@ fi
 
 patchlevel="20241204.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	# One-time install of current headers. Subsequent kernel updates are handled by /etc/kernel/postinst.d/kernel-headers
 	echo "Applying patch $patchlevel...
 	aptpkgs="$aptpkgs "linux-headers-$(uname -r)"
 fi
