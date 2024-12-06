@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Install kernel headers after kernel is updated
-
-apt-get -y install linux-headers-$1
-echo -n $1 > /tmp/kernel_ver

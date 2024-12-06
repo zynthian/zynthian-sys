@@ -555,11 +555,10 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	pip3 install pyalsaaudio
 fi
 
-patchlevel="20241204.1"
+patchlevel="20241206.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	# One-time install of current headers. Subsequent kernel updates are handled by /etc/kernel/postinst.d/kernel-headers
 	echo "Applying patch $patchlevel...
-	aptpkgs="$aptpkgs "linux-headers-$(uname -r)"
+	dpkg-reconfigure linux-image-`uname -r`
 fi
 
 # -----------------------------------------------------------------------------
