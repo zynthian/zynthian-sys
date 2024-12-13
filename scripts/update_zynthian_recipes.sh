@@ -557,8 +557,14 @@ fi
 
 patchlevel="20241206.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel...
+	echo "Applying patch $patchlevel..."
 	dpkg-reconfigure linux-image-`uname -r`
+fi
+
+patchlevel="20241213.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_Performix_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
