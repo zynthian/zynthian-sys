@@ -564,7 +564,7 @@ fi
 patchlevel="20241213.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_Performix_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
