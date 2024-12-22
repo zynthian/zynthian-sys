@@ -576,7 +576,7 @@ fi
 patchlevel="20241222.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_jc103_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_jc303_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
