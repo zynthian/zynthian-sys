@@ -485,7 +485,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	sbdir="/root/.local/share/odin2/Soundbanks"
 	if [ ! -d "$sbdir" ]; then
   	mkdir "$sbdir"
-  fi
+	fi
 fi
 
 patchlevel="20241022.1"
@@ -521,16 +521,69 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs riban-lv2"
 fi
 
-patchlevel="20241031"
+# Force to tag-release
+patchlevel="20241105.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	pip --no-input install pyalsaaudio
+	cd $ZYNTHIAN_SYS_DIR
+	sys_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+	if [[ "$sys_branch" == "$ZYNTHIAN_STABLE_BRANCH" ]]; then
+  	set_envar.py ZYNTHIAN_STABLE_TAG last
+  	export ZYNTHIAN_STABLE_TAG="last"
+  fi
 fi
 
+patchlevel="20241111.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
+fi
+
+patchlevel="20241113.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_tkinterweb.sh
+	# Setup new ALT button functionality
+	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05 UI_ACTION_RELEASE
+	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05__UI_SHORT TOGGLE_ALT_MODE
+	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05__UI_BOLD HELP
+fi
+
+patchlevel="20241120.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	pip3 install pyalsaaudio
+fi
+
+patchlevel="20241206.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel..."
+	dpkg-reconfigure linux-image-`uname -r`
+fi
+
+patchlevel="20241213.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
+fi
+
+patchlevel="20241220.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
+fi
+
+patchlevel="20241222.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_jc303_prebuilt.sh
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
+
+echo "END OF PATCHES"
 
 # -----------------------------------------------------------------------------
 # Install selected debian packages
@@ -542,8 +595,8 @@ fi
 
 # Install needed apt packages
 if [ "$aptpkgs" ]; then
-	apt -y update --allow-releaseinfo-change
-	apt -y install $aptpkgs
+	apt-get -y update --allow-releaseinfo-change
+	apt-get -y install $aptpkgs
 fi
 
 # -----------------------------------------------------------------------------
@@ -563,25 +616,25 @@ fi
 if [[ "$ZYNTHIAN_SYS_BRANCH" == "$ZYNTHIAN_TESTING_BRANCH" || "$ZYNTHIAN_FORCE_APT_UPGRADE" == "yes" ]]; then
 	echo "UPGRADING DEBIAN PACKAGES ..."
 	if [ -z "$aptpkgs" ]; then
-		apt -y update --allow-releaseinfo-change
+		apt-get -y update --allow-releaseinfo-change
 	fi
 	#dpkg --configure -a # => Recover from broken upgrade
-	apt -y upgrade
+	apt-get -y upgrade
 fi
 
 # -----------------------------------------------------------------------------
 # Clean apt packages
 # -----------------------------------------------------------------------------
 
-apt -y autoremove
-apt -y autoclean
+apt-get -y autoremove
+apt-get -y autoclean
 
 # -----------------------------------------------------------------------------
 # Bizarre stuff that shouldn't be needed but sometimes is
 # -----------------------------------------------------------------------------
 
 # Reinstall kernel and firmware to latest stable version
-#apt install --reinstall raspberrypi-bootloader raspberrypi-kernel
+#apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel
 
 # Update firmware to a recent version that works OK
 #SKIP_WARNING=1 rpi-update rpi-6.6.y

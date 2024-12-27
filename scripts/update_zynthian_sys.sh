@@ -5,7 +5,7 @@
 # Configure the system for Zynthian: copy files, create directories, 
 # replace values...
 # 
-# Copyright (C) 2015-2017 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2015-2024 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
 # 

@@ -2,6 +2,10 @@
 
 # patchage
 
+if [[ "$RBPI_VERSION_NUMBER" == "3" ]]; then
+  exit 0 # RPi3 currently has a problem building patchage
+fi
+
 cd $ZYNTHIAN_SW_DIR
 
 if [ -d "patchage" ]; then
