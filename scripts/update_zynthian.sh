@@ -47,7 +47,7 @@ if [[ "$ZYNTHIAN_STABLE_TAG" == "last" ]]; then
     pushd /zynthian/$repo_dir > /dev/null
     # Take last tag
     #git remote update origin --prune
-    git fetch --tags --all --prune --force
+    git fetch --tags --all --prune --prune-tags --force
     readarray -t stags <<<$(sort <<<$(git tag -l $ZYNTHIAN_STABLE_BRANCH-*))
     last_stag=${stags[-1]}
     echo -e "\tlast release-tag: $last_stag"
