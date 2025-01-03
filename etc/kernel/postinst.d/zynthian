@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Script to install kernel headers after kernel is updated and build and install zynaudio8x
+# Expects argument: kernel_ver
+# Place in /etc/kernel/postinst.d
+
+# Check if RBPI_VERSION_NUMBER is set
+if [ -z "$RBPI_VERSION_NUMBER" ]
+then
+  echo "Error: RBPI_VERSION_NUMBER is not set."
+  exit 0
+fi
+
+# Check if RBPI_VERSION_NUMBER equals 5
+if [ "$RBPI_VERSION_NUMBER" -ne 5 ]
+then
+  echo "Not installing zynaudio8x for < RPi5"
+  exit 0
+fi
+
+SRC_DIR=/zynthian/zynthian-sw/audio8x
+
+if [ "$#" -lt 1 ]
+then
+  echo "Requires kernel name to be passed as command line argument" 
+  exit 1
+fi
+
+echo "Installing zynaudio8x"
+
+apt-get -y install linux-headers-$1
+
+if [ ! -d $SRC_DIR ]
+then
+  git clone https://github.com/riban-bw/zynaudiox8.git $SRC_DIR
+fi
+cd $SRC_DIR
+git pull
+make KERNEL=$1 && make install

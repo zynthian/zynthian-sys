@@ -549,6 +549,35 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05__UI_BOLD HELP
 fi
 
+patchlevel="20241120.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	pip3 install pyalsaaudio
+fi
+
+patchlevel="20241206.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel..."
+	dpkg-reconfigure linux-image-`uname -r`
+fi
+
+patchlevel="20241213.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
+fi
+
+patchlevel="20241220.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
+fi
+
+patchlevel="20241222.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_jc303_prebuilt.sh
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section

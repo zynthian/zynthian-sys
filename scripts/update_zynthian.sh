@@ -7,7 +7,7 @@
 # + Reconfigure system.
 # + Reboot when needed.
 # 
-# Copyright (C) 2015-2019 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2015-2024 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
 # 
@@ -47,7 +47,7 @@ if [[ "$ZYNTHIAN_STABLE_TAG" == "last" ]]; then
     pushd /zynthian/$repo_dir > /dev/null
     # Take last tag
     #git remote update origin --prune
-    git fetch --tags --all --prune --force
+    git fetch --tags --all --prune --prune-tags --force
     readarray -t stags <<<$(sort <<<$(git tag -l $ZYNTHIAN_STABLE_BRANCH-*))
     last_stag=${stags[-1]}
     echo -e "\tlast release-tag: $last_stag"
@@ -96,7 +96,12 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 ./update_zynthian_sys.sh
 ./update_zynthian_code.sh
 
+# Force restart of UI & webconf services
+set_restart_ui_flag
+set_restart_webconf_flag
+
 run_flag_actions
+sync
 
 echo "Update Complete."
 

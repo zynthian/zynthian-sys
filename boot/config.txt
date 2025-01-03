@@ -45,6 +45,9 @@ disable_splash=1
 # Boot at full CPU freq
 initial_turbo=30
 
+# Allow maximum current in USB ports (Pi5 => 1.6A, Pi4 => 1.2A)
+usb_max_current_enable=1
+
 [pi5]
 #OVERCLOCKING_RBPI5#
 # Is this needed on Pi5?
