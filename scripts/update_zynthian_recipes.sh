@@ -561,12 +561,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	dpkg-reconfigure linux-image-`uname -r`
 fi
 
-patchlevel="20241213.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
-fi
-
 patchlevel="20241220.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
@@ -577,6 +571,13 @@ patchlevel="20241222.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_jc303_prebuilt.sh
+fi
+
+patchlevel="20250104.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
+	regenerate_lv2_presets.sh lv2://nobisoft.de/Perfomix
 fi
 
 # -----------------------------------------------------------------------------
