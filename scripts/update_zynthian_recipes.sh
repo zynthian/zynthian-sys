@@ -580,6 +580,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh lv2://nobisoft.de/Perfomix
 fi
 
+patchlevel="20250107.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+        echo "Applying patch $patchlevel ..."
+        aptpkgs="$aptpkgs zita-ajbridge"
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
