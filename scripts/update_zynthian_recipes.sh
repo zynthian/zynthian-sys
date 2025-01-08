@@ -580,6 +580,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh lv2://nobisoft.de/Perfomix
 fi
 
+patchlevel="20250108.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
