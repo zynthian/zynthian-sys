@@ -114,7 +114,7 @@ if [ -z "$ZYNTHIAN_AUBIONOTES_OPTIONS" ]; then
 fi
 
 if [ -z "$BROWSEPY_ROOT" ]; then
-	export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+	export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files"
 fi
 
 # ************** THIS WILL BE REMOVED IN NEXT REVISIONS *****************************
@@ -374,10 +374,6 @@ fi
 # Setup browsepy directories
 if [ ! -d "$BROWSEPY_ROOT" ]; then
 	mkdir -p $BROWSEPY_ROOT
-fi
-# TODO create other directories and symlinks to existing file types in $ZYNTHIAN_MY_DATA_DIR
-if [ ! -d "$BROWSEPY_ROOT/Speaker Cabinets IRs" ]; then
-	mkdir -p "$BROWSEPY_ROOT/Speaker Cabinets IRs"
 fi
 
 # Fix Aeolus config file: Remove unsupported "-J" option.

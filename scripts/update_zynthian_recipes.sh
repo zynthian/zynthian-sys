@@ -561,12 +561,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	dpkg-reconfigure linux-image-`uname -r`
 fi
 
-patchlevel="20241220.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
-fi
-
 patchlevel="20241222.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
@@ -584,6 +578,12 @@ patchlevel="20250108.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
+fi
+
+patchlevel="20250110.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
 fi
 
 # -----------------------------------------------------------------------------

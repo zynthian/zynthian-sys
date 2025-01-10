@@ -52,6 +52,14 @@ fi
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Create dir structure for UI file selector
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/IRs" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Neural Models"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Tuning"
+	mv $ZYNTHIAN_MY_DATA_DIR/files/mod-ui/* $ZYNTHIAN_MY_DATA_DIR/files/IRs
+	rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+fi
 # Create audio data dir and soft-link capture as a subdir inside
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/audio"
