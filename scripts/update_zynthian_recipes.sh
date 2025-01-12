@@ -586,6 +586,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
 fi
 
+patchlevel="20250112.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_jacknetumpd.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
