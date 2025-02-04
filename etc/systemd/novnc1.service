@@ -15,7 +15,7 @@ Environment=ZYNTHIAN_SW_DIR=#ZYNTHIAN_SW_DIR#
 Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
 Environment=HOME=/root
 
-ExecStart=#ZYNTHIAN_SW_DIR#/noVNC/utils/novnc_proxy --vnc localhost:5901 --listen 6081
+ExecStart=#ZYNTHIAN_SW_DIR#/noVNC/utils/novnc_proxy --vnc localhost:5901 --listen 6081 --cert #ZYNTHIAN_WEBCONF_DIR#/cert/cert.pem --key #ZYNTHIAN_WEBCONF_DIR#/cert/key.pem
 
 [Install]
 WantedBy=multi-user.target
