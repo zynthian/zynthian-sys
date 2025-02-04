@@ -595,7 +595,7 @@ fi
 patchlevel="20250204.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
 	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
 fi
 
