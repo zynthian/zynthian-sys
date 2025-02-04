@@ -323,15 +323,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 fi
 
-patchlevel="20240528.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
-	cd $ZYNTHIAN_UI_DIR/zyngine
-	./zynthian_lv2.py engines
-	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
-	set_restart_ui_flag
-fi
+#patchlevel="20240528.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+#	cd $ZYNTHIAN_UI_DIR/zyngine
+#	./zynthian_lv2.py engines
+#	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
+#	set_restart_ui_flag
+#fi
 
 #patchlevel="20240604.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -400,14 +400,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	systemctl mask rpi-eeprom-update
 fi
 
-patchlevel="20240902.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-  $ZYNTHIAN_RECIPE_DIR/install_mimi.sh
-	cd $ZYNTHIAN_UI_DIR/zyngine
-	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
-	aptpkgs="$aptpkgs regrader"
-fi
+#patchlevel="20240902.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#  $ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+#	cd $ZYNTHIAN_UI_DIR/zyngine
+#	./zynthian_lv2.py presets https://butoba.net/homepage/mimid.html
+#	aptpkgs="$aptpkgs regrader"
+#fi
 
 patchlevel="20240910.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -586,10 +586,17 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
 fi
 
-patchlevel="20250112.1"
+patchlevel="20250204.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_jacknetumpd.sh
+fi
+
+patchlevel="20250204.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
 fi
 
 # -----------------------------------------------------------------------------
