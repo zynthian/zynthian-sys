@@ -187,7 +187,6 @@ ZYNTHIAN_CONFIG_DIR_ESC=${ZYNTHIAN_CONFIG_DIR//\//\\\/}
 ZYNTHIAN_SYS_DIR_ESC=${ZYNTHIAN_SYS_DIR//\//\\\/}
 ZYNTHIAN_UI_DIR_ESC=${ZYNTHIAN_UI_DIR//\//\\\/}
 ZYNTHIAN_SW_DIR_ESC=${ZYNTHIAN_SW_DIR//\//\\\/}
-ZYNTHIAN_WEBCONF_DIR_ESC=${ZYNTHIAN_WEBCONF_DIR//\//\\\/}
 BROWSEPY_ROOT_ESC=${BROWSEPY_ROOT//\//\\\/}
 
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
@@ -529,10 +528,10 @@ sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/vnc
 # noVNC service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/novnc0.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc0.service
-sed -i -e "s/#ZYNTHIAN_WEBCONF_DIR#/$ZYNTHIAN_WEBCONF_DIR_ESC/g" /etc/systemd/system/novnc0.service
+sed -i -e "s/#ZYNTHIAN_WEBCONF_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/novnc0.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/novnc1.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc1.service
-sed -i -e "s/#ZYNTHIAN_WEBCONF_DIR#/$ZYNTHIAN_WEBCONF_DIR_ESC/g" /etc/systemd/system/novnc1.service
+sed -i -e "s/#ZYNTHIAN_WEBCONF_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/novnc1.service
 # Zynthian Service
 sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthian.service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian.service
