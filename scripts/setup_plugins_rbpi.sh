@@ -132,7 +132,6 @@ $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_ratatouille_prebuilt.sh
-$ZYNTHIAN_RECIPE_DIR/install_nam_models.sh
 $ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
 mkdir "/root/.Surge XT"
 
