@@ -1,6 +1,6 @@
 #!/bin/bash
 
-plugins_path = /usr/lib/lv2
+plugins_path="/usr/lib/lv2"
 BASE_URL_DOWNLOAD="https://os.zynthian.org/plugins/aarch64"
 
 cd $plugins_path
