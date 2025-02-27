@@ -9,3 +9,4 @@ tar xfv "fabla.tar.xz"
 mv fabla/fabla*.lv2 .
 rm -rf fabla
 rm -f "fabla.tar.xz"
+regenerate_lv2_presets.sh http://www.openavproductions.com/fabla
