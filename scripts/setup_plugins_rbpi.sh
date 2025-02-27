@@ -42,7 +42,7 @@ mkdir $ZYNTHIAN_PLUGINS_SRC_DIR
 apt-get -y install abgate adlplug amsynth ams-lv2 arctican-plugins-lv2 artyfx \
 bchoppr beatslash-lv2 blop-lv2 bsequencer bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 \
 drumkv1-lv2 distrho-plugin-ports-lv2 dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo \
-easyssp-lv2 eq10q fabla g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 \
+easyssp-lv2 eq10q g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 \
 infamous-plugins invada-studio-plugins-lv2 juced-plugins-lv2 juce-opl-lv2 klangfalter-lv2 \
 lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder \
 mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 noise-repellent \
