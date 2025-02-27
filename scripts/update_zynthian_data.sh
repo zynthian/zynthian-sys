@@ -60,6 +60,12 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/IRs" ]; then
 	mv $ZYNTHIAN_MY_DATA_DIR/files/mod-ui/* $ZYNTHIAN_MY_DATA_DIR/files/IRs
 	rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
 fi
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Samples" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/Percussion"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/One-Shot"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/Loops"
+fi
 # Create audio data dir and soft-link capture as a subdir inside
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/audio"
