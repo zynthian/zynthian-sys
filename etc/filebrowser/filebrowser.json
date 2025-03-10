@@ -1,0 +1,15 @@
+{
+  "port": 8099,
+  "baseURL": "",
+  "address": "zynthian.lan",
+  "log": "stdout",
+  "database": "./filebrowser.db",
+  "branding": {
+    "name": "zynthian",
+    "files": "./branding"
+  },
+  "root": "./root",
+  "username": "zynthian",
+  "password": "$2a$10$VbSfqhSLwJYHa0LThTr3t.LdkPEN5JbV8i9AoRD2Mt.K5FlXU6smC"
+}
+

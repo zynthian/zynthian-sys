@@ -432,6 +432,9 @@ $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 # Install DT overlays for waveshare displays and others
 $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 
+# Install web filebrowser
+$ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
+
 #------------------------------------------------
 # Build & Install Synthesis Software
 #------------------------------------------------
