@@ -632,6 +632,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	systemctl start filebrowser
 fi
 
+patchlevel="20250310.3"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs python3-bcrypt"
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
