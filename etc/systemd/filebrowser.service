@@ -4,7 +4,7 @@ Description=Zynthian File Browser
 [Service]
 Environment=HOME=#ZYNTHIAN_SW_DIR#/filebrowser
 WorkingDirectory=#ZYNTHIAN_SW_DIR#/filebrowser
-ExecStart=#ZYNTHIAN_SW_DIR#/filebrowser/filebrowser
+ExecStart=#ZYNTHIAN_SW_DIR#/filebrowser/filebrowser -a #HOSTNAME#.lan
 Restart=always
 RestartSec=2
 
