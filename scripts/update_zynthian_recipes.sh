@@ -638,6 +638,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs python3-bcrypt"
 fi
 
+patchlevel="20250312.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	if [ ! -L "$ZYNTHIAN_SW_DIR/filebrowser/root/media" ]; then
+		ln -s /media "$ZYNTHIAN_SW_DIR/filebrowser/root/media"
+	fi
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
