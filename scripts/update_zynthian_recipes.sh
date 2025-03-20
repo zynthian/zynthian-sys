@@ -646,6 +646,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
+patchlevel="20250320.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_vlc.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
