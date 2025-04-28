@@ -17,12 +17,11 @@ cd $ZYNTHIAN_SW_DIR
 if [ -d jalv ]; then
 	rm -rf jalv
 fi
-git clone --recursive https://github.com/zynthian/jalv.git
+git clone --recursive -b asyncli https://github.com/zynthian/jalv.git
 cd jalv
 meson setup build
 cd build
 meson compile -j 3
 meson install
-ln -s /usr/local/bin/jalv.gtk3 /usr/local/bin/jalv.gtk
 
 ldconfig
