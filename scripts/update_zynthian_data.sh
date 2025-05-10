@@ -162,7 +162,7 @@ for d in AirFont320* AVL_Drumkits_Perc* Black_Pearl* Fluid* Red_Zeppelin*; do
 done
 
 # Copy PD binary libraries
-cp -a $ZYNTHIAN_DATA_DIR/presets/puredata/pd-externals-arm64/* /usr/local/lib/pd-externals
+cp -a $ZYNTHIAN_DATA_DIR/puredata/pd-externals-arm64/* /usr/local/lib/pd-externals
 
 # Copy custom TTL files
 cd $ZYNTHIAN_DATA_DIR/lv2-custom
