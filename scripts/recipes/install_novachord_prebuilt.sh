@@ -2,7 +2,7 @@
 
 BASE_URL_DOWNLOAD="https://os.zynthian.org/plugins/aarch64"
 
-cd /usr/local/lib/lv2
+cd $ZYNTHIAN_PLUGINS_DIR/lv2
 
 wget "$BASE_URL_DOWNLOAD/novachord.lv2.tar.xz"
 tar xfv "novachord.lv2.tar.xz"
