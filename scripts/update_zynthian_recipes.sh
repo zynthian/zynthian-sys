@@ -256,6 +256,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	meson install
 fi
 
+patchlevel="20250527.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_novachord_prebuilt.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
