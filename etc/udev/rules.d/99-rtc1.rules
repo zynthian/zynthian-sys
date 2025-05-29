@@ -1,1 +1,0 @@
-KERNEL=="rtc1", SUBSYSTEM=="rtc", DRIVER=="", ATTR{name}=="rtc-rv3028 1-0052", SYMLINK="rtc", MODE="0666"
