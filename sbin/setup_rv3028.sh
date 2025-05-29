@@ -13,28 +13,40 @@ rmmod rtc_rv3028
 
 wait_for_EEBusy_done
 
-# disable auto refresh
-register=$( i2cget -y 1 0x52 0x0F )
-writeback=$((register | 0x08))
-i2cset -y 1 0x52 0x0F $writeback
+# get current BSM config
+ebreg=$( i2cget -y 1 0x52 0x37 )
 
-# enable BSM in level switching mode
-register=$( i2cget -y 1 0x52 0x37 )
-writeback=$((register | 0x0C))
-i2cset -y 1 0x52 0x37 $writeback
+# if it's not already configured
+if [ "$ebreg" != "0x1c" ]; then
+	echo "RTC RV3028: Configuring BSM to Level Switching Mode ..."
 
-# update EEPROM
-i2cset -y 1 0x52 0x27 0x00
-i2cset -y 1 0x52 0x27 0x11
+	# disable auto refresh
+	register=$( i2cget -y 1 0x52 0x0F )
+	writeback=$((register | 0x08))
+	i2cset -y 1 0x52 0x0F $writeback
 
-wait_for_EEBusy_done
+	# enable BSM in level switching mode
+	writeback=$((ebreg | 0x0C))
+	i2cset -y 1 0x52 0x37 $writeback
 
-# reenable auto refresh
-register=$( i2cget -y 1 0x52 0x0F )
-writeback=$((register & ~0x08))
-i2cset -y 1 0x52 0x0F $writeback
+	# Reset EEPROM Backup Register to factory default
+	#i2cset -y 1 0x52 0x37 0x10
 
-wait_for_EEBusy_done
+	# update EEPROM
+	i2cset -y 1 0x52 0x27 0x00
+	i2cset -y 1 0x52 0x27 0x11
+
+	wait_for_EEBusy_done
+
+	# reenable auto refresh
+	register=$( i2cget -y 1 0x52 0x0F )
+	writeback=$((register & ~0x08))
+	i2cset -y 1 0x52 0x0F $writeback
+
+	wait_for_EEBusy_done
+else
+		echo "RTC RV3028: BSM already configured to Level Switching Mode."
+fi
 
 modprobe rtc_rv3028
 

@@ -295,6 +295,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Configure RTC for V5 & Z2 main boards
 	# TODO => see /zynthian-sys/sbin/configure_rtc.sh!!!
 	if [[ ( $ZYNTHIAN_KIT_VERSION == "V5"* ) || ( $ZYNTHIAN_KIT_VERSION == "Z2"* ) ]]; then
+		$ZYNTHIAN_SYS_DIR/sbin/setup_rv3028.sh
 		export ZYNTHIAN_CUSTOM_CONFIG="dtparam=rtc=off\ndtoverlay=i2c-rtc,rv3028\n"$ZYNTHIAN_CUSTOM_CONFIG
 	fi
 
