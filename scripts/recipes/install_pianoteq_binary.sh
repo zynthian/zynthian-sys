@@ -38,6 +38,13 @@ mv Pianoteq* pianoteq
 # Delete old LV2 plugin
 rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/Pianoteq*.lv2
 
+# Check installation result:
+if [ -L "$ZYNTHIAN_SW_DIR/pianoteq/pianoteq" ]; then
+	echo "Pianoteq Installed Successfully!"
+else
+	echo "Pianoteq Installation Failed!"
+fi
+
 exit
 
 #----------------------------------------------------------
