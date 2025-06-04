@@ -130,11 +130,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
   fi
 fi
 
-patchlevel="20241111.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
-fi
+#patchlevel="20241111.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
+#fi
 
 patchlevel="20241113.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -266,6 +266,12 @@ patchlevel="20250604.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
+fi
+
+patchlevel="20250604.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
