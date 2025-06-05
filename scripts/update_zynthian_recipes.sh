@@ -274,6 +274,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
 fi
 
+patchlevel="20250605.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	cd $ZYNTHIAN_SW_DIR/jalv_asyncli
+	git pull
+	cd build
+	meson compile -j 3
+	meson install
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
