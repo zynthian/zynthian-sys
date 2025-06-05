@@ -385,6 +385,9 @@ if [ -z "$ZYNTHIAN_UI_TOUCH_NAVIGATION" ]; then
 	sed -i -e "s/ZYNTHIAN_UI_ONSCREEN_BUTTONS/ZYNTHIAN_UI_TOUCH_NAVIGATION/g" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 fi
 
+# Migrate legacy calls to zynpad screen (to enable when merging zynbleton!!)
+#sed -i -e "s/SCREEN_ZYNPAD/SCREEN_LAUNCHER/g" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+
 #--------------------------------------
 # System Config
 #--------------------------------------
