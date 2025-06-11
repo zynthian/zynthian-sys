@@ -287,7 +287,7 @@ fi
 patchlevel="20250611.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt remove zynaddsubfx-lv2
+	apt -y remove zynaddsubfx-lv2
 fi
 
 patchlevel="20250611.2"
