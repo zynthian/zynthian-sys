@@ -56,7 +56,7 @@ fi
 # This will break snapshots depending on these soundfonts,
 # but it's "needed" to avoid too nested SFZ files.
 if [ -d "$ZYNTHIAN_DATA_DIR/soundfonts/sfz/Other/VPO3-perf" ]; then
-	mv "$ZYNTHIAN_DATA_DIR/soundfonts/sfz/Other/VPO3-perf" "$ZYNTHIAN_DATA_DIR/soundfonts/"
+	mv "$ZYNTHIAN_DATA_DIR/soundfonts/sfz/Other/VPO3-perf" "$ZYNTHIAN_DATA_DIR/soundfonts/sfz/"
 fi
 
 # Create dir structure for UI file selector
