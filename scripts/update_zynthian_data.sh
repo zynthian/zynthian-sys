@@ -52,6 +52,13 @@ fi
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Move VPO3 soundfonts to own bank.
+# This will break snapshots depending on these soundfonts,
+# but it's "needed" to avoid too nested SFZ files.
+if [ -d "$ZYNTHIAN_DATA_DIR/soundfonts/Other/VPO3-perf" ]; then
+	mv "$ZYNTHIAN_DATA_DIR/soundfonts/Other/VPO3-perf" "$ZYNTHIAN_DATA_DIR/soundfonts/"
+fi
+
 # Create dir structure for UI file selector
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/IRs" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs"
