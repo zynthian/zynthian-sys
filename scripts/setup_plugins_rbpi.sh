@@ -113,7 +113,7 @@ $ZYNTHIAN_RECIPE_DIR/install_VL1.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 $ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
 $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
-$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+#$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
 $ZYNTHIAN_RECIPE_DIR/install_avldrums.sh
 
 # Faust LV2 plugins =>
@@ -125,6 +125,7 @@ $ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
 
 # Zynthian pre-compiled plugins
 $ZYNTHIAN_RECIPE_DIR/install_dexed_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_monique_monosynth_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_odin2_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_argotlunar2_prebuilt.sh
@@ -133,9 +134,14 @@ $ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_ratatouille_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_ripplerx_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_jc303_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
-$ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
-mkdir "/root/.Surge XT"
+$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_novachord_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
+
 
 # Fixup amsynth bank/presets
 $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh

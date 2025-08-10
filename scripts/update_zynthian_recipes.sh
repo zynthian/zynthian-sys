@@ -296,6 +296,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	ZYNTHIAN_FORCE_APT_UPGRADE="yes"
 fi
 
+patchlevel="20250810.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
+	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------

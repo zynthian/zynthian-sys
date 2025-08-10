@@ -144,7 +144,7 @@ libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-d
 libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
-libclthreads-dev libclxclient-dev libsndfile-zyndev
+libclthreads-dev libclxclient-dev libwebkit2gtk-4.0-dev libsndfile-zyndev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
