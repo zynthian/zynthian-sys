@@ -37,8 +37,11 @@ def parse_xml_preset(fpath):
         for xml_program in root.iter("program"):
                 try:
                         return [xml_program.attrib['programname'], xml_program.attrib['category']]
-                except Exception as e:
-                        print(f"Bad XML preset format '{fpath}' => {e}")
+                except:
+                        try:
+                                return [xml_program.attrib['programname'], "None"]
+                        except Exception as e:
+                                print(f"Bad XML preset format '{fpath}' => {e}")
 
 
 def create_lv2_bank(bank_name):
