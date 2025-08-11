@@ -78,6 +78,13 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/audio"
 	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/audio/capture"
 fi
+# Create soft links for puredata and SFZ samples
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/puredata" ]; then
+	ln -s $ZYNTHIAN_MY_DATA_DIR/presets/puredata $ZYNTHIAN_MY_DATA_DIR/files/Samples
+fi
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/sfz" ]; then
+	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz $ZYNTHIAN_MY_DATA_DIR/files/Samples
+fi
 
 # Fix zynseq data directories
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
