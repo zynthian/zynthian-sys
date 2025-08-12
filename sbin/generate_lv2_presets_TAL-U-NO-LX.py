@@ -35,6 +35,10 @@ banks = []
 presets = []
 
 
+def escape_ttl_string(text):
+        return text.replace("\\", "\\\\").replace("\"", "\\\"").replace(">", "\\>")
+
+
 def parse_xml_preset(fpath):
         root = ElementTree.parse(fpath)
         for xml_program in root.iter("program"):
@@ -55,7 +59,7 @@ def create_lv2_bank(bank_name):
         return f"<https://tal-software.com/TAL-U-NO-LX-V2:bank_{n}>\n" \
                 "  a pset:Bank ;\n" \
                 "  lv2:appliesTo <https://tal-software.com/TAL-U-NO-LX-V2> ;\n" \
-                f"  rdfs:label \"{bank_name}\" .\n\n"
+                f"  rdfs:label \"{escape_ttl_string(bank_name)}\" .\n\n"
 
 
 def create_lv2_preset(preset_name, bank_num):
@@ -66,7 +70,7 @@ def create_lv2_preset(preset_name, bank_num):
                 "  a pset:Preset ;\n" \
                 f"  pset:bank <https://tal-software.com/TAL-U-NO-LX-V2:bank_{bank_num}> ;\n" \
                 "  lv2:appliesTo <https://tal-software.com/TAL-U-NO-LX-V2> ;\n" \
-                f"  rdfs:label \"{preset_name}\" ;\n" \
+                f"  rdfs:label \"{escape_ttl_string(preset_name)}\" ;\n" \
                 f"  state:state [ <https://tal-software.com/TAL-U-NO-LX-V2:Program> \"{n}\"^^xsd:int ; ] .\n\n"
 
 
