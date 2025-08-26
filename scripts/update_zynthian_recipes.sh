@@ -313,7 +313,7 @@ fi
 patchlevel="20250826.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_autoleveler.sh
+	$ZYNTHIAN_RECIPE_DIR/install_autoleveler_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
