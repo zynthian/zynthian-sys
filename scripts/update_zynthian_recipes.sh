@@ -310,16 +310,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 fi
 
-patchlevel="20250826.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_autoleveler_prebuilt.sh
-fi
-
 patchlevel="20250828.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_jv880_prebuilt.sh
+fi
+
+patchlevel="20250828.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_autoleveler_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
