@@ -316,6 +316,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_autoleveler_prebuilt.sh
 fi
 
+patchlevel="20250828.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_jv880_prebuilt.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
