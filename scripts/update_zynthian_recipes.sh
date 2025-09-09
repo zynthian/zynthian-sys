@@ -310,12 +310,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 fi
 
-patchlevel="20250828.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_jv880_prebuilt.sh
-fi
-
 patchlevel="20250828.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
@@ -329,6 +323,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	rm -f "factory_presets.ttl"
 	wget "https://os.zynthian.org/plugins/aarch64/Surge XT.lv2/factory_presets.ttl"
 	regenerate_lv2_presets.sh https://surge-synthesizer.github.io/lv2/surge-xt
+fi
+
+patchlevel="20250910.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_jv880_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
