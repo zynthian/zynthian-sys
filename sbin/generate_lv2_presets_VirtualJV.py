@@ -79,7 +79,7 @@ for bank, preset_range in rom_bank.items():
     }
     for preset_id in range(min(preset_range), max(preset_range) + 1):
         preset = presets[str(preset_id)]
-        preset_url_suffix = str(preset_id).zfill(3)
+        preset_url_suffix = str(preset_id)
         result[bank]["presets"].append({
             "label": preset["preset"],
             "url": f"{preset_url}{preset_url_suffix}"
