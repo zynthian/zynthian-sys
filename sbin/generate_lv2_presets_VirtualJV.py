@@ -26,12 +26,14 @@
 import os
 import json
 import re
+import glob
 
 rom_dir = "/root/.config/JV880"
+jv800_manifest_file="/zynthian/zynthian-plugins/lv2/jv880.lv2/manifest.ttl"
 preset_url="https://github.com/giulioz/jv880_juce.git:preset"
 
 rom_bank={}
-rom_bank['JV880 Factory User']=(1,65)
+rom_bank['JV880 Factory Internal']=(1,65)
 rom_bank['JV880 Factory A']=(66,130)
 rom_bank['JV880 Factory B']=(131,195)
 rom_bank['RD500 Factory']=(196,390)
@@ -55,8 +57,7 @@ rom_bank['Exp 17 Country']=(3800,4013)
 rom_bank['Exp 18 Latin']=(4014,4220)
 rom_bank['Exp 19 House']=(4221,4380)
 
-
-with open("/home/wirtz/src/JV880presets/manifest.ttl", "r") as ttl_file:
+with open(jv800_manifest_file, "r") as ttl_file:
     manifest = ttl_file.read()
 
 presets = {}
