@@ -331,6 +331,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_jv880_prebuilt.sh
 fi
 
+patchlevel="20250912.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_CloudReverb_prebuilt.sh
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
