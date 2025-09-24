@@ -337,6 +337,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_CloudReverb_prebuilt.sh
 fi
 
+patchlevel="20250924.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+  apt install libboost-python-dev libboost-thread-dev
+  pip install mididings
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
