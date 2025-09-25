@@ -149,7 +149,7 @@ fi
 patchlevel="20241120.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	pip3 install pyalsaaudio
+	/zynthian/venv/bin/pip install pyalsaaudio
 fi
 
 patchlevel="20241206.1"
@@ -337,11 +337,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_CloudReverb_prebuilt.sh
 fi
 
-patchlevel="20250924.1"
+patchlevel="20250925.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-  apt install libboost-python-dev libboost-thread-dev
-  pip install mididings
+  apt -y install libboost-python-dev libboost-thread-dev
+  /zynthian/venv/bin/pip install mididings
 fi
 
 # -----------------------------------------------------------------------------
