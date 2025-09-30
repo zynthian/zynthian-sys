@@ -344,6 +344,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
   /zynthian/venv/bin/pip install mididings
 fi
 
+patchlevel="20250930.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	regenerate_lv2_presets.sh http://github.com/midilab/JC303
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
