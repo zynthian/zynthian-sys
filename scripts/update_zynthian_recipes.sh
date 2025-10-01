@@ -350,6 +350,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh http://github.com/midilab/JC303
 fi
 
+patchlevel="20251001.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_mod-mda_prebuilt.sh
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section

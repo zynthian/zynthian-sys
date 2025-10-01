@@ -95,7 +95,7 @@ $ZYNTHIAN_RECIPE_DIR/install_swh.sh
 #$ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh => DISABLED BECAUSE IT FAILS BUSTER BUILD
 #$ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
-$ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
+#$ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
 #$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_setBfree-controller.sh
 $ZYNTHIAN_RECIPE_DIR/install_string-machine.sh
@@ -141,7 +141,7 @@ $ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_novachord_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
-
+$ZYNTHIAN_RECIPE_DIR/install_mod-mda_prebuilt.sh
 
 # Fixup amsynth bank/presets
 $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh
