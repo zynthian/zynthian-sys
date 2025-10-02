@@ -356,6 +356,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_mod-mda_prebuilt.sh
 fi
 
+patchlevel="20251002.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	regenerate_engines_db.sh
+	regenerate_lv2_presets.sh
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
