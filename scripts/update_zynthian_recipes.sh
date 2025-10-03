@@ -366,7 +366,7 @@ fi
 patchlevel="20251003.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt -y remove klangfalter-lv2
+	apt -y remove klangfalter-lv2 drmr
 fi
 
 # -----------------------------------------------------------------------------
