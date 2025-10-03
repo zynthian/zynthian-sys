@@ -363,6 +363,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh
 fi
 
+patchlevel="20251003.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt -y remove klangfalter-lv2
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
