@@ -18,7 +18,11 @@ manifest_fpath=$ZYNTHIAN_PLUGINS_DIR/lv2/lv2-gtk-ui-bridge.lv2/manifest.ttl
 echo "
 <http://code.google.com/p/amsynth/amsynth>
     ui:ui gtk2: .
+
 <http://nickbailey.co.nr/triceratops>
+    ui:ui gtk2: .
+
+<http://github.com/nicklan/drmr>
     ui:ui gtk2: .
 " >> "$manifest_fpath"
 

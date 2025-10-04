@@ -85,11 +85,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
-patchlevel="20241022.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-  $ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
-fi
+#patchlevel="20241022.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#  $ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
+#fi
 
 patchlevel="20241022.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -366,7 +366,14 @@ fi
 patchlevel="20251003.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt -y remove klangfalter-lv2 drmr
+	apt -y remove klangfalter-lv2
+fi
+
+patchlevel="20251004.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs drmr"
+	$ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
 fi
 
 # -----------------------------------------------------------------------------
