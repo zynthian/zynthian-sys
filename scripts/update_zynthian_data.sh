@@ -52,6 +52,26 @@ fi
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Create directories and symlinks for Hydrogen soundfonts
+if [ ! -d "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen" ]; then
+	mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen"
+fi
+if [ ! -d "/usr/share/drmr" ]; then
+	mkdir "/usr/share/drmr"
+fi
+if [ ! -L "/usr/share/drmr/drumkits" ]; then
+	ln -s "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen" "/usr/share/drmr/drumkits"
+fi
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen"
+fi
+if [ ! -d "/usr/local/share/drmr" ]; then
+	mkdir "/usr/local/share/drmr"
+fi
+if [ ! -L "/usr/local/share/drmr/drumkits" ]; then
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen" "/usr/local/share/drmr/drumkits"
+fi
+
 # Move VPO3 soundfonts to own bank.
 # This will break snapshots depending on these soundfonts,
 # but it's "needed" to avoid too nested SFZ files.
@@ -84,6 +104,9 @@ if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/puredata" ]; then
 fi
 if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/sfz" ]; then
 	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz $ZYNTHIAN_MY_DATA_DIR/files/Samples
+fi
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/hydrogen" ]; then
+	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen $ZYNTHIAN_MY_DATA_DIR/files/hydrogen
 fi
 
 # Fix zynseq data directories
