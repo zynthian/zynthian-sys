@@ -12,3 +12,5 @@ if [ -d "hydrogen" ]; then
 	rm -rf "hydrogen"
 fi
 mv hydrogen-drumkits hydrogen
+
+regenerate_lv2_presets.sh http://github.com/nicklan/drmr

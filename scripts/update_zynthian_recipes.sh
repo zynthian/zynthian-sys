@@ -372,8 +372,14 @@ fi
 patchlevel="20251004.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs drmr"
 	$ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
+fi
+
+patchlevel="20251006.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt -y remove drmr
+	$ZYNTHIAN_RECIPE_DIR/install_drmr_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
