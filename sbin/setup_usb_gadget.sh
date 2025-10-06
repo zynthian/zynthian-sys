@@ -2,6 +2,8 @@
 
 # Enter configfs directory for USB gadgets
 CONFIGFS_ROOT=/sys/kernel/config
+MAC=`cat cat /sys/class/net/eth0/address`
+
 cd "${CONFIGFS_ROOT}"/usb_gadget
 
 # create gadget directory and enter it
@@ -17,7 +19,7 @@ if [ ! -d "./zynthian" ]; then
 	mkdir strings/0x409 # US English, others rarely seen
 	echo "ZYNTHIAN" > strings/0x409/manufacturer
 	echo "ZYNTHIAN" > strings/0x409/product
-	#echo "52421863" > strings/0x409/serialnumber
+	echo "$MAC" > strings/0x409/serialnumber
 
 	# create the (only) configuration
 	mkdir configs/c.1 # dot and number mandatory
