@@ -144,7 +144,7 @@ libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-d
 libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
-libclthreads-dev libclxclient-dev libsndfile-zyndev
+libclthreads-dev libclxclient-dev libwebkit2gtk-4.0-dev libboost-python-dev libboost-thread-dev libsndfile-zyndev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
@@ -250,8 +250,8 @@ python3 -m venv venv --system-site-packages
 source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
-pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi pyrubberband ffmpeg-python Levenshtein \
-sox meson ninja abletonparsing hwmon vcgencmd \
+pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi Levenshtein \
+ffmpeg-python pyrubberband mididings sox meson ninja abletonparsing hwmon vcgencmd \
 tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
 
 #------------------------------------------------
@@ -260,7 +260,7 @@ tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XSt
 
 # Use tmpfs for tmp & logs
 echo "" >> /etc/fstab
-echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=100M   0  0" >> /etc/fstab
+echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >> /etc/fstab
 echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >> /etc/fstab
 echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=50M  0  0" >> /etc/fstab
 

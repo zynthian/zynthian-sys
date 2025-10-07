@@ -1,0 +1,17 @@
+window_location 0 0
+window_size 1280 970
+zoom_level 0.484624
+font_size 10
+show_toolbar 1
+sprung_layout 0
+module_position "ZynMaster" inputoutput 648.385 415.399
+module_position "a2j" input 468.19 1043.34
+module_position "a2j" output -80.4731 666.37
+module_position "fluidsynth" inputoutput 1405.06 162.038
+module_position "system" input 2469.42 909.138
+module_position "system" output 101.766 418.969
+module_position "ttymidi" input 649.156 346.343
+module_position "ttymidi" output 129.845 593.252
+module_position "zynmixer" inputoutput 2219.64 70.6652
+module_position "zynseq" inputoutput 1412.85 998.94
+module_position "zynsmf" inputoutput 167.222 840.019

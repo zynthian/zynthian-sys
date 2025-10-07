@@ -85,11 +85,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
-patchlevel="20241022.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-  $ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
-fi
+#patchlevel="20241022.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#  $ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
+#fi
 
 patchlevel="20241022.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -149,7 +149,7 @@ fi
 patchlevel="20241120.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	pip3 install pyalsaaudio
+	/zynthian/venv/bin/pip install pyalsaaudio
 fi
 
 patchlevel="20241206.1"
@@ -214,12 +214,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_ripplerx_prebuilt.sh
 fi
 
-patchlevel="20250228.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	apt -y remove fabla
-	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
-fi
+#patchlevel="20250228.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	apt -y remove fabla
+#	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
+#fi
 
 patchlevel="20250310.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -294,6 +294,98 @@ patchlevel="20250611.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	ZYNTHIAN_FORCE_APT_UPGRADE="yes"
+fi
+
+patchlevel="20250810.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
+	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
+fi
+
+patchlevel="20250810.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt -y remove fabla
+	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
+fi
+
+patchlevel="20250828.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_autoleveler_prebuilt.sh
+fi
+
+patchlevel="20250903.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	cd "/usr/local/lib/lv2/Surge XT.lv2"
+	rm -f "factory_presets.ttl"
+	wget "https://os.zynthian.org/plugins/aarch64/Surge XT.lv2/factory_presets.ttl"
+	regenerate_lv2_presets.sh https://surge-synthesizer.github.io/lv2/surge-xt
+fi
+
+patchlevel="20250910.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_jv880_prebuilt.sh
+fi
+
+patchlevel="20250912.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_CloudReverb_prebuilt.sh
+fi
+
+patchlevel="20250925.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+  apt -y install libboost-python-dev libboost-thread-dev
+  /zynthian/venv/bin/pip install mididings
+fi
+
+patchlevel="20250930.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	regenerate_lv2_presets.sh http://github.com/midilab/JC303
+fi
+
+patchlevel="20251001.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_mod-mda_prebuilt.sh
+fi
+
+patchlevel="20251002.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	regenerate_engines_db.sh
+	regenerate_lv2_presets.sh
+fi
+
+patchlevel="20251003.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt -y remove klangfalter-lv2
+fi
+
+patchlevel="20251004.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
+fi
+
+patchlevel="20251006.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt -y remove drmr
+	$ZYNTHIAN_RECIPE_DIR/install_drmr_prebuilt.sh
+fi
+
+patchlevel="20251007.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_x42_zeroconvo_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------

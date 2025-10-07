@@ -43,7 +43,7 @@ apt-get -y install abgate adlplug amsynth ams-lv2 arctican-plugins-lv2 artyfx \
 bchoppr beatslash-lv2 blop-lv2 bsequencer bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 \
 drumkv1-lv2 distrho-plugin-ports-lv2 dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo \
 easyssp-lv2 eq10q g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 \
-infamous-plugins invada-studio-plugins-lv2 juced-plugins-lv2 juce-opl-lv2 klangfalter-lv2 \
+infamous-plugins invada-studio-plugins-lv2 juced-plugins-lv2 juce-opl-lv2 \
 lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder \
 mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 noise-repellent \
 obxd-lv2 oxefmsynth padthv1-lv2 pitcheddelay-lv2 pizmidi-plugins regrader rubberband-lv2 \
@@ -54,6 +54,9 @@ wolf-shaper wolf-spectrum wolpertinger-lv2 zam-plugins zlfo
 
 # TODO review:
 # avw.lv2 riban-lv2 boops
+
+# Removed => Not working
+# klangfalter-lv2
 
 #------------------------------------------------
 # Install LV2 Plugins from source code
@@ -95,7 +98,7 @@ $ZYNTHIAN_RECIPE_DIR/install_swh.sh
 #$ZYNTHIAN_RECIPE_DIR/install_mod-pitchshifter.sh => DISABLED BECAUSE IT FAILS BUSTER BUILD
 #$ZYNTHIAN_RECIPE_DIR/install_mod-utilities.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-tap.sh
-$ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
+#$ZYNTHIAN_RECIPE_DIR/install_mod-mda.sh
 #$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
 $ZYNTHIAN_RECIPE_DIR/install_setBfree-controller.sh
 $ZYNTHIAN_RECIPE_DIR/install_string-machine.sh
@@ -113,7 +116,7 @@ $ZYNTHIAN_RECIPE_DIR/install_VL1.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
 $ZYNTHIAN_RECIPE_DIR/install_bolliedelay.sh
 $ZYNTHIAN_RECIPE_DIR/install_talentedhack.sh
-$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
+#$ZYNTHIAN_RECIPE_DIR/install_mimi.sh
 $ZYNTHIAN_RECIPE_DIR/install_avldrums.sh
 
 # Faust LV2 plugins =>
@@ -125,6 +128,7 @@ $ZYNTHIAN_RECIPE_DIR/install_x42_plugins.sh
 
 # Zynthian pre-compiled plugins
 $ZYNTHIAN_RECIPE_DIR/install_dexed_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_monique_monosynth_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_odin2_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_argotlunar2_prebuilt.sh
@@ -133,9 +137,14 @@ $ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_ratatouille_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_ripplerx_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_jc303_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
-$ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
-mkdir "/root/.Surge XT"
+$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_novachord_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_mod-mda_prebuilt.sh
 
 # Fixup amsynth bank/presets
 $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh

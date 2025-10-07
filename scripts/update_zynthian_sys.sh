@@ -471,6 +471,9 @@ cp -an $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
 # => Xfce4 config
 rsync -r --del $ZYNTHIAN_SYS_DIR/etc/xfce4.config/ /root/.config/xfce4/
 
+# Patchage config
+cp -an $ZYNTHIAN_SYS_DIR/etc/patchagerc /root/.config/patchagerc
+
 # Device Custom files
 display_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/display/$DISPLAY_NAME"
 if [ -d "$display_config_custom_dir" ]; then

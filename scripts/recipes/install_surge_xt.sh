@@ -18,6 +18,10 @@ cmake -Bignore/s13clang -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -D
 cmake --build ignore/s13clang --config Release --parallel 3
 cmake --install ignore/s13clang
 
+if [ ! -d "/root/.Surge XT" ]; then
+	mkdir "/root/.Surge XT"
+fi
+
 lv2_factory_preset_banks_surge_xt.sh
 
 cd ..

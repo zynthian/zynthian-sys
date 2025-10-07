@@ -41,3 +41,10 @@ rm -rf tuna.lv2
 wget "$BASE_URL_DOWNLOAD/tuna.lv2.tar.xz"
 tar xfv "tuna.lv2.tar.xz"
 rm -f "tuna.lv2.tar.xz"
+
+# Install precompiled zeroconvo.lv2 with latest fixes!
+cd /usr/local/lib/lv2/
+rm -rf zeroconvo.lv2
+wget "$BASE_URL_DOWNLOAD/zeroconvo.lv2.tar.xz"
+tar xfv "zeroconvo.lv2.tar.xz"
+rm -f "zeroconvo.lv2.tar.xz"
