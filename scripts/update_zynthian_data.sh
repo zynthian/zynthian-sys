@@ -80,12 +80,17 @@ if [ -d "$ZYNTHIAN_DATA_DIR/soundfonts/sfz/Other/VPO3-perf" ]; then
 fi
 
 # Create dir structure for UI file selector
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files"
+fi
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/IRs" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Neural Models"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Tuning"
-	mv $ZYNTHIAN_MY_DATA_DIR/files/mod-ui/* $ZYNTHIAN_MY_DATA_DIR/files/IRs
-	rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+	if [ -d "$ZYNTHIAN_MY_DATA_DIR/files/mod-ui/" ]; then
+		mv $ZYNTHIAN_MY_DATA_DIR/files/mod-ui/* $ZYNTHIAN_MY_DATA_DIR/files/IRs
+		rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+	fi
 fi
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Samples" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples"
@@ -106,7 +111,7 @@ if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/sfz" ]; then
 	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz $ZYNTHIAN_MY_DATA_DIR/files/Samples
 fi
 if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/hydrogen" ]; then
-	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen $ZYNTHIAN_MY_DATA_DIR/files/hydrogen
+	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen $ZYNTHIAN_MY_DATA_DIR/files/Samples/hydrogen
 fi
 
 # Fix zynseq data directories
@@ -202,14 +207,15 @@ done
 cp -a $ZYNTHIAN_DATA_DIR/puredata/pd-externals-arm64/* /usr/local/lib/pd-externals
 
 # Copy custom TTL files
-cd $ZYNTHIAN_DATA_DIR/lv2-custom
+cd "$ZYNTHIAN_DATA_DIR/lv2-custom"
 for d in */; do
+	cd "$ZYNTHIAN_DATA_DIR/lv2-custom/$d"
 	if [ -d "/usr/lib/lv2/$d" ]; then
-		cp -a $d/* /usr/lib/lv2/$d
+		cp -a * "/usr/lib/lv2/$d"
 	elif [ -d "/usr/local/lib/lv2/$d" ]; then
-		cp -a $d/* /usr/local/lib/lv2/$d
+		cp -a * "/usr/local/lib/lv2/$d"
 	elif [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/$d" ]; then
-		cp -a $d/* $ZYNTHIAN_PLUGINS_DIR/lv2/$d
+		cp -a * "$ZYNTHIAN_PLUGINS_DIR/lv2/$d"
 	fi
 done
 
