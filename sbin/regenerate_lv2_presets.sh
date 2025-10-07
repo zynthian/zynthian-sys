@@ -19,6 +19,8 @@ if [ "$arg1" == "http://github.com/nicklan/drmr" ]; then
 	generate_lv2_presets_DrMr.py
 elif [ "$arg1" == "https://tal-software.com/TAL-U-NO-LX-V2" ]; then
 	generate_lv2_presets_TAL-U-NO-LX.py
+elif [ "$arg1" == "https://github.com/giulioz/jv880_juce.git" ]; then
+	generate_lv2_presets_VirtualJV.py
 fi
 
 # Regenerate zynthian presets cache (jalv)
