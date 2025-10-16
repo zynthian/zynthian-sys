@@ -25,15 +25,16 @@ elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
 fi
 
 # Uncompress new binary package and delete unused files
-7z x "$pack_fpath" \*/$armdir \*/Documentation \*/README_LINUX.txt \*/Licence.rtf
+if [[ "$pack_fpath" == *.tar.xz ]]; then
+    tar -xJf "$pack_fpath" --wildcards \*/$armdir \*/Documentation \*/README_LINUX.txt \*/Licence.rtf
+else
+	7z x "$pack_fpath" \*/$armdir \*/Documentation \*/README_LINUX.txt \*/Licence.rtf
+fi
 mv Pianoteq* pianoteq
 
 # Create symlink to binary
 cd pianoteq
-ln -s ./$armdir/Pianoteq* .
-rm -f *.lv2
-rm -f *.so
-mv Pianoteq* pianoteq
+ln -s "$(find $armdir -type f -path "*/Pianoteq*" ! -name "*.*" -print -quit)" pianoteq
 
 # Delete old LV2 plugin
 rm -rf $ZYNTHIAN_PLUGINS_DIR/lv2/Pianoteq*.lv2
