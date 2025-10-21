@@ -13,4 +13,5 @@ if [ -d "hydrogen" ]; then
 fi
 mv hydrogen-drumkits hydrogen
 
+regenerate_lv2_presets.sh http://www.openavproductions.com/fabla
 regenerate_lv2_presets.sh http://github.com/nicklan/drmr
