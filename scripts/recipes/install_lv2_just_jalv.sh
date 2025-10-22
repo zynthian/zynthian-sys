@@ -3,17 +3,6 @@
 #LV2 Standalone Plugin Host
 
 cd $ZYNTHIAN_SW_DIR
-if [ -d suil ]; then
-	rm -rf suil
-fi
-git clone --recursive https://github.com/lv2/suil.git
-cd suil
-meson setup build
-cd build
-meson compile
-meson install
-
-cd $ZYNTHIAN_SW_DIR
 if [ -d jalv ]; then
 	rm -rf jalv
 fi
@@ -25,7 +14,5 @@ meson compile -j 3
 meson install
 
 cd ../..
-rm -rf suil
 rm -rf jalv
 
-ldconfig
