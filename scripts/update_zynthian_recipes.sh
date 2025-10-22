@@ -177,11 +177,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
 fi
 
-patchlevel="20250110.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
-fi
+#patchlevel="20250110.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
+#fi
 
 patchlevel="20250204.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -249,12 +249,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_vlc.sh
 fi
 
-patchlevel="20250428.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	cd $ZYNTHIAN_SW_DIR/jalv_asyncli/build
-	meson install
-fi
+#patchlevel="20250428.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	cd $ZYNTHIAN_SW_DIR/jalv_asyncli/build
+#	meson install
+#fi
 
 patchlevel="20250527.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -274,15 +274,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
 fi
 
-patchlevel="20250605.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	cd $ZYNTHIAN_SW_DIR/jalv_asyncli
-	git pull
-	cd build
-	meson compile -j 3
-	meson install
-fi
+#patchlevel="20250605.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	cd $ZYNTHIAN_SW_DIR/jalv_asyncli
+#	git pull
+#	cd build
+#	meson compile -j 3
+#	meson install
+#fi
 
 patchlevel="20250611.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -303,12 +303,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
 fi
 
-patchlevel="20250810.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	apt -y remove fabla
-	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
-fi
+#patchlevel="20250810.2"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	apt -y remove fabla
+#	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
+#fi
 
 patchlevel="20250828.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -386,6 +386,19 @@ patchlevel="20251007.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_x42_zeroconvo_prebuilt.sh
+fi
+
+patchlevel="20251021.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt -y remove fabla
+	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
+fi
+
+patchlevel="20251022.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
 fi
 
 # -----------------------------------------------------------------------------

@@ -15,7 +15,9 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 echo "Regenerating LV2 presets DB: $arg1 ..."
 
 # Run engine-specific generation scripts
-if [ "$arg1" == "http://github.com/nicklan/drmr" ]; then
+if [ "$arg1" == "http://www.openavproductions.com/fabla" ]; then
+	generate_lv2_presets_hydrogen2fabla.py
+elif [ "$arg1" == "http://github.com/nicklan/drmr" ]; then
 	generate_lv2_presets_DrMr.py
 elif [ "$arg1" == "https://tal-software.com/TAL-U-NO-LX-V2" ]; then
 	generate_lv2_presets_TAL-U-NO-LX.py
