@@ -99,10 +99,20 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Samples" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/Loops"
 fi
 # Create audio data dir and soft-link capture as a subdir inside
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/audio"
-	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/audio/capture"
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Audio" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio/Tracks"
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Audio/capture"
 fi
+# Manage old audio folder
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
+	if [ -L "$ZYNTHIAN_MY_DATA_DIR/audio/capture" ]; then
+		rm -rf "$ZYNTHIAN_MY_DATA_DIR/audio/capture"
+	fi
+	mv $ZYNTHIAN_MY_DATA_DIR/audio/* "$ZYNTHIAN_MY_DATA_DIR/files/Audio"
+	rm -rf "$ZYNTHIAN_MY_DATA_DIR/audio"
+fi
+
 # Create soft links for puredata and SFZ samples
 if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/puredata" ]; then
 	ln -s $ZYNTHIAN_MY_DATA_DIR/presets/puredata $ZYNTHIAN_MY_DATA_DIR/files/Samples
