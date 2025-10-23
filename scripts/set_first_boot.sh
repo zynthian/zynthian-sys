@@ -37,8 +37,8 @@ rm -rf $ZYNTHIAN_MY_DATA_DIR/capture/*
 echo "Copying initial user data files..."
 mkdir $ZYNTHIAN_MY_DATA_DIR/snapshots/000
 cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
-cp -a $ZYNTHIAN_DATA_DIR/mid/* $ZYNTHIAN_MY_DATA_DIR/capture
-rm $ZYNTHIAN_MY_DATA_DIR/capture/test.mid
+cp -a $ZYNTHIAN_DATA_DIR/mid/* $ZYNTHIAN_MY_DATA_DIR/files/Midi
+rm $ZYNTHIAN_MY_DATA_DIR/files/Midi/test.mid
 
 # Restore factory config
 echo "Restoring factory config..."
