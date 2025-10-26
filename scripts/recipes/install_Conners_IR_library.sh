@@ -2,7 +2,7 @@
 
 echo "Installing Conners Impulse Reponse Library..."
 
-if [ ! -d "$ZYNTHIAN_DATA_DIR/files/IRs" ];
+if [ ! -d "$ZYNTHIAN_DATA_DIR/files/IRs" ]; then
 	mkdir -p "$ZYNTHIAN_DATA_DIR/files/IRs"
 fi
 cd $ZYNTHIAN_DATA_DIR/files/IRs
