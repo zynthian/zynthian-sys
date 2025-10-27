@@ -12,12 +12,13 @@ fi
 if [ -d "./mi_plaits.lv2" ]; then
 	rm -rf ./mi_plaits.lv2
 fi
+if [ -d "./mi_marbles.lv2" ]; then
+	rm -rf ./mi_marbles.lv2
+fi
 mkdir zynMI
 cd zynMI
 wget "$BASE_URL_DOWNLOAD/zynMI.zip"
 unzip zynMI.zip
 cd ..
 mv zynMI/*.lv2 .
-mv braids.lv2 mi_braids.lv2
-mv plaits.lv2 mi_plaits.lv2
 rm -rf zynMI
