@@ -222,6 +222,43 @@ for d in AirFont320* AVL_Drumkits_Perc* Black_Pearl* Fluid* Red_Zeppelin*; do
 	fi
 done
 
+# Create and link emulator ROM directories
+roms_dir="$ZYNTHIAN_SW_DIR/filebrowser/root/roms"
+tus_dir="/root/.local/share/The Usual Suspects"
+if [ ! -d "/root/.config/JV880" ]; then
+	mkdir -p "/root/.config/JV880"
+fi
+if [ ! -d "$tus_dir/Osirus/roms" ]; then
+	mkdir -p "$tus_dir/Osirus/roms"
+fi
+if [ ! -d "$tus_dir/OsTIrus/roms" ]; then
+	mkdir -p "$tus_dir/OsTIrus/roms"
+fi
+if [ ! -d "$tus_dir/Vavra/roms" ]; then
+	mkdir -p "$tus_dir/Vavra/roms"
+fi
+if [ ! -d "$tus_dir/Xenia/roms" ]; then
+	mkdir -p "$tus_dir/Xenia/roms"
+fi
+if [ ! -d "$roms_dir" ]; then
+	mkdir -p "$roms_dir"
+fi
+if [ ! -L "$roms_dir/JV880" ]; then
+	ln -s "/root/.config/JV880" "$roms_dir/JV880"
+fi
+if [ ! -L "$roms_dir/Osirus" ]; then
+	ln -s "$tus_dir/Osirus/roms" "$roms_dir/Osirus"
+fi
+if [ ! -L "$roms_dir/OsTIrus" ]; then
+	ln -s "$tus_dir/OsTIrus/roms" "$roms_dir/OsTIrus"
+fi
+if [ ! -L "$roms_dir/Vavra" ]; then
+	ln -s "$tus_dir/Vavra/roms" "$roms_dir/Vavra"
+fi
+if [ ! -L "$roms_dir/Xenia" ]; then
+	ln -s "$tus_dir/Xenia/roms" "$roms_dir/Xenia"
+fi
+
 # Copy PD binary libraries
 cp -a $ZYNTHIAN_DATA_DIR/puredata/pd-externals-arm64/* /usr/local/lib/pd-externals
 
