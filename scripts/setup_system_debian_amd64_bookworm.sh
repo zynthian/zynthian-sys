@@ -19,7 +19,7 @@ pip3 install --upgrade pip
 
 # zynthian-ui
 pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi Levenshtein \
-ffmpeg-python pyrubberband mididings sox meson ninja abletonparsing hwmon vcgencmd \
+ffmpeg-python pyrubberband mididings sox scipy wavio meson ninja abletonparsing hwmon vcgencmd \
 
 # zynthian-webconf
 pip3 install tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
