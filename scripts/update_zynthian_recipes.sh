@@ -419,6 +419,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	/zynthian/venv/bin/pip install scipy wavio
 fi
 
+patchlevel="20251114.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs nlohmann-json3-dev"
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
