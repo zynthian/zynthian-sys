@@ -287,6 +287,4 @@ manifest_fpath = f"{presets_lv2_dpath}/manifest.ttl"
 with open(manifest_fpath, 'w') as fn:
     fn.write(manifest_ttl)
 
-#check_output(["regenerate_lv2_presets.sh", plugin_uri])
-
 # ******************************************************************************
