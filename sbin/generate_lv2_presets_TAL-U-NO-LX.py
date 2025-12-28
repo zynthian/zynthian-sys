@@ -112,6 +112,4 @@ except:
 with open(presets_ttl_fpath, 'w') as fn:
     fn.write(ttl)
 
-check_output(["regenerate_lv2_presets.sh", "https://tal-software.com/TAL-U-NO-LX-V2"])
-
 # --------------------------------------------------------------------
