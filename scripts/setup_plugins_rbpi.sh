@@ -145,6 +145,11 @@ $ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_novachord_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_mod-mda_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_CHOWTapeModel_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_CHOWPhaser_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_CHOWCentaur_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_roboverb_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_zynMI_prebuilt.sh
 
 # Fixup amsynth bank/presets
 $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh

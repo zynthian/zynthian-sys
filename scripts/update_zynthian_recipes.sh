@@ -401,11 +401,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
 fi
 
-patchlevel="20251105.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_zynMI_prebuilt.sh
-fi
+#patchlevel="20251105.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_zynMI_prebuilt.sh
+#fi
 
 patchlevel="20251105.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -423,6 +423,26 @@ patchlevel="20251114.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs nlohmann-json3-dev"
+fi
+
+patchlevel="20251230.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_zynMI_prebuilt.sh
+fi
+
+patchlevel="20251230.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_CHOWTapeModel_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_CHOWPhaser_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_CHOWCentaur_prebuilt.sh
+fi
+
+patchlevel="20251230.3"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_roboverb_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
