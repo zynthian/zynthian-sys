@@ -158,6 +158,11 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/sysex" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/sysex"
 fi
 
+# Create presets directory symlink for TAL-U-NO-LX if needed
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/presets/TAL-U-No-LX" ]; then
+	ln -s "/root/.toguaudioline/TAL-U-No-LX/presets" "$ZYNTHIAN_MY_DATA_DIR/presets/TAL-U-No-LX"
+fi
+
 # Fix ZynAddSubFX config & presets directories
 if [ -L "/usr/local/share/zynaddsubfx" ]; then
 	rm -f "/usr/local/share/zynaddsubfx"
