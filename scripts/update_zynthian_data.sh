@@ -163,6 +163,11 @@ if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/presets/TAL-U-No-LX" ]; then
 	ln -s "/root/.toguaudioline/TAL-U-No-LX/presets" "$ZYNTHIAN_MY_DATA_DIR/presets/TAL-U-No-LX"
 fi
 
+# Create directory for JV880 emulator (ROM firmware & presets)
+if [ ! -d "/root/.config/JV880" ]; then
+  mkdir "/root/.config/JV880"
+fi
+
 # Fix ZynAddSubFX config & presets directories
 if [ -L "/usr/local/share/zynaddsubfx" ]; then
 	rm -f "/usr/local/share/zynaddsubfx"
