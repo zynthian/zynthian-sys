@@ -1,6 +1,7 @@
 #!/bin/bash
 
 arg1="$1"
+arg2="$2"
 set --
 
 #------------------------------------------------------------------------------
@@ -23,6 +24,10 @@ elif [ "$arg1" == "https://tal-software.com/TAL-U-NO-LX-V2" ]; then
 	generate_lv2_presets_TAL-U-NO-LX.py
 elif [ "$arg1" == "https://github.com/giulioz/jv880_juce.git" ]; then
 	generate_lv2_presets_VirtualJV.py
+fi
+
+if [ "$arg2" == "NO_LV2_CACHE_REGENERATION" ]; then
+	exit
 fi
 
 # Regenerate zynthian presets cache (jalv)
