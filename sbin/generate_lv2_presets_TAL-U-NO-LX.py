@@ -89,10 +89,14 @@ for fpath in sorted(glob.iglob(os.path.join(root_dir, "**"), recursive=True)):
     if os.path.isfile(fpath):
         parts = os.path.splitext(fpath)
         if parts[1] == ".pjunoxl":
-            preset_name, bank_name = parse_xml_preset(fpath)
+            #preset_name, bank_name = parse_xml_preset(fpath)
+            parts = os.path.split(parts[0])
+            preset_name = parts[1]
+            bank_name = None
             if not bank_name:
                 bank_name = os.path.dirname(fpath.replace(root_dir, ""))
                 bank_name = bank_name.replace(" Presets Bank", "").replace(" Preset Bank", "")
+            print(f"Parsing {fpath} => '{preset_name}' in BANK '{bank_name}'")
             try:
                 bank_num = banks.index(bank_name)
             except:
