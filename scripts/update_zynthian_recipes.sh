@@ -268,11 +268,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
 fi
 
-patchlevel="20250604.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
-fi
+#patchlevel="20250604.2"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
+#fi
 
 #patchlevel="20250605.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -395,11 +395,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 fi
 
-patchlevel="20251022.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
-fi
+#patchlevel="20251022.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
+#fi
 
 #patchlevel="20251105.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -451,6 +451,18 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
 	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
 	regenerate_lv2_presets.sh urn:org.surge-synth-team.OB-Xf-rework
+fi
+
+patchlevel="20260112.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
+fi
+
+patchlevel="20260112.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_TheUsualSuspects_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
