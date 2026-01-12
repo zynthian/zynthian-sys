@@ -1,19 +1,22 @@
 #!/bin/bash
 
-cd $ZYNTHIAN_PLUGINS_SRC_DIR
+cd "$ZYNTHIAN_PLUGINS_SRC_DIR" || exit
 
 if [ -d "gearmulator" ]; then
     rm -rf "gearmulator"
 fi
 
-git clone --recurse-submodules https://github.com/dsp56300/gearmulator.git
-cd gearmulator
-sed -i 's/http\:\/\/theusualsuspects\.lv2\./http\:\/\/theusualsuspects\.lv2\//g' ./source/juce.cmake
+git clone --recurse-submodules https://github.com/zynthian/gearmulator.git
+cd gearmulator || exit
+#sed -i 's/http\:\/\/theusualsuspects\.lv2\./http\:\/\/theusualsuspects\.lv2\//g' ./source/juce.cmake
+
 systemctl stop zynthian
 systemctl stop zynthian-webconf
 umount /tmp
+
 cmake --preset zynthian
-cmake --build --preset zynthian --target install
+cmake --build --preset zynthian --target install -j 1
+
 rm -rf /tmp/*
 mount /tmp
 systemctl start zynthian
