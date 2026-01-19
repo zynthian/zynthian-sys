@@ -465,6 +465,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_TheUsualSuspects_prebuilt.sh
 fi
 
+patchlevel="20260119.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Modify V5 button functionality to work with Zynbleton
+  sed -i "s/SCREEN_ZYNPAD/SCREEN_LAUNCHER/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+  sed -i "s/SCREEN_ARRANGER//" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
