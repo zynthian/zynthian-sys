@@ -3,6 +3,7 @@
 BASE_URL_DOWNLOAD="https://os.zynthian.org/plugins/aarch64"
 
 cd /usr/local/lib/lv2 || exit
+
 if [ -d "Osirus.lv2" ]; then
 	rm -rf Osirus.lv2
 fi
