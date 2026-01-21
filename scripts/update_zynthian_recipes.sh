@@ -296,12 +296,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	ZYNTHIAN_FORCE_APT_UPGRADE="yes"
 fi
 
-#patchlevel="20250810.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
+patchlevel="20250810.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
 #	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
-#fi
+fi
 
 #patchlevel="20250810.2"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -445,13 +445,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_roboverb_prebuilt.sh
 fi
 
-patchlevel="20260107.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
-	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
-	regenerate_lv2_presets.sh urn:org.surge-synth-team.OB-Xf-rework
-fi
+#patchlevel="20260107.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
+#	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
+#	regenerate_lv2_presets.sh urn:org.surge-synth-team.OB-Xf-rework
+#fi
 
 patchlevel="20260112.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -471,6 +471,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	# Modify V5 button functionality to work with Zynbleton
   sed -i "s/SCREEN_ZYNPAD/SCREEN_LAUNCHER/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
   sed -i "s/SCREEN_ARRANGER//" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+fi
+
+patchlevel="20260121.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	#aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
+	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
+	regenerate_lv2_presets.sh urn:org.surge-synth-team.OB-Xf
 fi
 
 # -----------------------------------------------------------------------------

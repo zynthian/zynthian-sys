@@ -10,11 +10,11 @@ git clone https://github.com/surge-synthesizer/OB-Xf.git
 cd OB-Xf || exit
 git submodule update --init --recursive
 sed -i "s/VST3 Standalone//" CMakeLists.txt
-cmake -DOBXF_JUCE_FORMATS=LV2 -B Builds/Release .
+cmake -B Builds/Release -DCMAKE_BUILD_TYPE=Release .
 cmake --build Builds/Release --config Release --target obxf-staged -j 3
 
 rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/OB-Xf.lv2"
-mv ./Builds/Release/OB-Xf_artefacts/LV2/OB-Xf.lv2 "$ZYNTHIAN_PLUGINS_DIR/lv2"
+mv ./Builds/Release/OB-Xf_artefacts/Release/LV2/OB-Xf.lv2 "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
 # Remove old wrong assets folder
 assets_dir="/root/Documents/Surge Synth Team/OB-Xf"
