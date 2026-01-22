@@ -445,6 +445,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_roboverb_prebuilt.sh
 fi
 
+patchlevel="20260122.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Reinstall vlc with post-install hook to patch to allow root user
+	$ZYNTHIAN_RECIPE_DIR/install_vlc.sh
+fi
+
 #patchlevel="20260107.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 #	echo "Applying patch $patchlevel ..."
