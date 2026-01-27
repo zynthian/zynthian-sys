@@ -189,12 +189,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_jacknetumpd.sh
 fi
 
-patchlevel="20250204.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
-	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
-fi
+#patchlevel="20250204.2"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+#	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
+#fi
 
 patchlevel="20250212.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -479,6 +479,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	#aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
 	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
 	regenerate_lv2_presets.sh urn:org.surge-synth-team.OB-Xf
+fi
+
+patchlevel="20260127.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
 fi
 
 # -----------------------------------------------------------------------------
