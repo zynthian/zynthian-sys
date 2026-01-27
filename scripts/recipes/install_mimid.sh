@@ -8,9 +8,9 @@ if [ -d "polluxsynth-audio-plugins" ]; then
 	rm -rf "polluxsynth-audio-plugins"
 fi
 
-git clone --recursive https://github.com/polluxsynth/audio-plugins polluxsynth-audio-plugins
+git clone --recursive -b zynthian https://github.com/polluxsynth/audio-plugins polluxsynth-audio-plugins
 cd polluxsynth-audio-plugins
-make -j3
+make -j 3
 make install
 make clean
 
