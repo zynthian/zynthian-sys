@@ -1,13 +1,13 @@
 #!/bin/bash
 #******************************************************************************
 # ZYNTHIAN PROJECT: Run Update Recipes
-# 
+#
 # Run the scripts contained in recipes.update directory
-# 
+#
 # Copyright (C) 2015-2024 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 2 of
@@ -70,11 +70,11 @@ pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-t
 pd-upp pd-xbee pd-xsample"
 fi
 
-patchlevel="20241015"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-  $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
-fi
+#patchlevel="20241015"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#  $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
+#fi
 
 patchlevel="20241016"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -488,7 +488,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_vlc.sh
 fi
 
-patchlevel="20260127.1"
+patchlevel="20260129.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
+fi
+
+patchlevel="20260129.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
