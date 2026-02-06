@@ -419,11 +419,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	/zynthian/venv/bin/pip install scipy wavio
 fi
 
-patchlevel="20251114.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs nlohmann-json3-dev"
-fi
+#patchlevel="20251114.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	aptpkgs="$aptpkgs nlohmann-json3-dev"
+#fi
 
 patchlevel="20251230.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -494,12 +494,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 fi
 
 # This must be done always at end of Oram patches to allow changing from Oram to Vangelis
-patchlevel="20260129.2"
+patchlevel="20260206.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs nlohmann-json3-dev"
 	# Modify V5 button functionality to work with Zynbleton
-  sed -i "s/SCREEN_ZYNPAD/SCREEN_LAUNCHER/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-  sed -i "s/SCREEN_ARRANGER//" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+	sed -i "s/SCREEN_ZYNPAD/SCREEN_LAUNCHER/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+	sed -i "s/SCREEN_ARRANGER//" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 fi
 
 # -----------------------------------------------------------------------------
