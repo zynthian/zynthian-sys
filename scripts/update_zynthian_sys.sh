@@ -1,14 +1,14 @@
 #!/bin/bash
 #******************************************************************************
 # ZYNTHIAN PROJECT: Zynthian System Configuration
-# 
-# Configure the system for Zynthian: copy files, create directories, 
+#
+# Configure the system for Zynthian: copy files, create directories,
 # replace values...
-# 
+#
 # Copyright (C) 2015-2024 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 2 of
@@ -205,7 +205,7 @@ LV2_PATH_ESC=${LV2_PATH//\//\\\/}
 sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
 
 #------------------------------------------------------------------------------
-# Boot Config 
+# Boot Config
 #------------------------------------------------------------------------------
 
 BOOT_CONFIG_FPATH="/boot/firmware/config.txt"
@@ -311,7 +311,7 @@ if [ -d "$ZYNTHIAN_SYS_DIR/boot/overlays" ]; then
 fi
 
 #------------------------------------------------------------------------------
-# Zynthian Config 
+# Zynthian Config
 #------------------------------------------------------------------------------
 
 # Copy zynthian specific config files
@@ -453,6 +453,13 @@ fi
 #if [ -f "/etc/udev/rules.d/70-persistent-net.rules.inactive" ]; then
 #	rm -f /etc/udev/rules.d/70-persistent-net.rules.inactive
 #fi
+
+# Create symlink to MesaGL drivers
+if [ ! -e "/usr/lib/dri" ]; then
+	if [ -e "/usr/lib/aarch64-linux-gnu/dri" ]; then
+		ln -s "/usr/lib/aarch64-linux-gnu/dri" "/usr/lib/dri"
+	fi
+fi
 
 # User Config (root)
 
