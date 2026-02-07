@@ -8,7 +8,7 @@ fi
 git clone https://github.com/linuxaudio/ntk
 cd ntk
 ./waf configure
-./waf builf
+./waf build
 ./waf install
 cd ..
 
