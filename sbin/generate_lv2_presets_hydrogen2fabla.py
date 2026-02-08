@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 # ********************************************************************
-# ZYNTHIAN PROJECT: generate_lv2_presets_TAL-U-NO-LX.py
-# 
-# Generate LV2 bank/presets for the TAL-U-NO-LX from XML preset collection
-# 
+# ZYNTHIAN PROJECT: generate_lv2_presets_hydrogen2fabla.py
+#
+# Generate LV2 bank/presets for fabla based in istalled hydrogen preset files
+#
 # Copyright (C) 2015-2025 Fernando Moyano <jofemodo@zynthian.org>
 #
 # ********************************************************************
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 2 of
@@ -20,7 +20,7 @@
 # GNU General Public License for more details.
 #
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
-# 
+#
 # ********************************************************************
 
 import os
