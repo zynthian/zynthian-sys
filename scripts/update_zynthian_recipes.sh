@@ -503,9 +503,10 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	sed -i "s/SCREEN_ARRANGER//" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 fi
 
-patchlevel="20260208.2"
+patchlevel="20260208.3"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
+	curl -s https://kopia.io/signing-key | sudo gpg --dearmor -o /etc/apt/keyrings/kopia-keyring.gpg
 	echo "deb [signed-by=/etc/apt/keyrings/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main" | sudo tee /etc/apt/sources.list.d/kopia.list
 	aptpkgs="$aptpkgs sshpass kopia"
 fi
