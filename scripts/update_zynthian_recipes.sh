@@ -503,6 +503,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	sed -i "s/SCREEN_ARRANGER//" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 fi
 
+patchlevel="20260208.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs sshpass"
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
