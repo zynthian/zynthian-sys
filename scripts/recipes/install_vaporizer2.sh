@@ -1,9 +1,12 @@
 #!/bin/bash
 
 cd /root
-wget https://download.opensuse.org/repositories/multimedia:/proaudio/Raspbian_11/arm64/vaporizer2-lv2_3.4.5+git.17.569e0b9-2_arm64.deb
-dpkg -i vaporizer2-lv2_3.4.5+git.17.569e0b9-2_arm64.deb
-rm -f vaporizer2-lv2_3.4.5+git.17.569e0b9-2_arm64.deb
+wget https://download.opensuse.org/repositories/multimedia:/proaudio/Raspbian_12/arm64/vaporizer2-lv2_3.5.0+git.11.1c56c4b-1_arm64.deb
+dpkg -i vaporizer2-lv2_3.5.0+git.11.1c56c4b-1_arm64.deb
+#wget https://download.opensuse.org/repositories/multimedia:/proaudio/Raspbian_11/arm64/vaporizer2-lv2_3.4.5+git.17.569e0b9-2_arm64.deb
+#dpkg -i vaporizer2-lv2_3.4.5+git.17.569e0b9-2_arm64.deb
+rm -f vaporizer2*.deb
+
 
 # Create system directories
 mkdir -p /usr/share/Vaporizer2/Noises
