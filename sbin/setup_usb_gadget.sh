@@ -2,7 +2,7 @@
 
 # Enter configfs directory for USB gadgets
 CONFIGFS_ROOT=/sys/kernel/config
-MAC=`cat cat /sys/class/net/eth0/address`
+MAC=`cat /sys/class/net/eth0/address`
 
 cd "${CONFIGFS_ROOT}"/usb_gadget
 
