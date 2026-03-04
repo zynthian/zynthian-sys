@@ -101,14 +101,14 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Samples" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/One-Shot"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/Loops"
 fi
-if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/capture" ]; then
-	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Samples/capture"
+if [ -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/capture" ]; then
+	rm "$ZYNTHIAN_MY_DATA_DIR/files/Samples/capture"
 fi
 # Create audio data dir and soft-link capture as a subdir inside
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Audio" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio/Tracks"
-	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Audio/capture"
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Audio/Capture"
 fi
 # Manage old audio folder
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
