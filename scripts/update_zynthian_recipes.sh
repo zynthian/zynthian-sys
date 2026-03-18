@@ -529,6 +529,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs python3-rarfile"
 fi
 
+patchlevel="20260318.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/fix_touch_envars.sh
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
