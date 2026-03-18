@@ -108,7 +108,7 @@ fi
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Audio" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio/Tracks"
-	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Audio/Capture"
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Audio/capture"
 fi
 # Manage old audio folder
 if [ -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
