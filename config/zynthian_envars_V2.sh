@@ -1,13 +1,13 @@
 #!/bin/bash
 #******************************************************************************
 # ZYNTHIAN PROJECT: Zynthian Environment Vars
-# 
+#
 # Setup Zynthian Environment Variables
-# 
+#
 # Copyright (C) 2015-2016 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 2 of
@@ -63,13 +63,12 @@ export ZYNTHIAN_UI_COLOR_PANEL_BG="#3a424d"
 export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
 export ZYNTHIAN_UI_FONT_SIZE="14"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
-export ZYNTHIAN_UI_TOUCH_WIDGETS="0"
+export ZYNTHIAN_UI_TOUCH_NAVIGATION=""
 export ZYNTHIAN_UI_RESTORE_LAST_STATE="1"
 export ZYNTHIAN_UI_SNAPSHOT_MIXER_SETTINGS="1"
 export ZYNTHIAN_UI_SWITCH_BOLD_MS="300"
 export ZYNTHIAN_UI_SWITCH_LONG_MS="2000"
 export ZYNTHIAN_UI_SHOW_CPU_STATUS="0"
-export ZYNTHIAN_UI_ONSCREEN_BUTTONS="0"
 export ZYNTHIAN_UI_VISIBLE_MIXER_STRIPS="0"
 export ZYNTHIAN_UI_MULTICHANNEL_RECORDER="1"
 export ZYNTHIAN_VNCSERVER_ENABLED="0"
