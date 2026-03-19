@@ -39,7 +39,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/sequencer_16",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -84,7 +84,7 @@
 "INDEX": 9999,
 "URL": "http://distrho.sf.net/plugins/3BandSplitter",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -99,7 +99,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/sequencer_32",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -114,7 +114,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/lp4pole",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -129,7 +129,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/fourByFourPole",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -144,7 +144,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/sequencer_64",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -159,7 +159,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/alaw",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -204,7 +204,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/adsr",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -264,7 +264,7 @@
 "INDEX": 9999,
 "URL": "http://kxstudio.linuxaudio.org/plugins/FluidPlug_AirFont320",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -294,7 +294,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/allpass_c",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -309,7 +309,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/allpass_l",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -324,7 +324,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/allpass_n",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -339,7 +339,7 @@
 "INDEX": 9999,
 "URL": "http://devcurmudgeon.com/alo",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -369,7 +369,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/amp",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -384,7 +384,7 @@
 "INDEX": 9999,
 "URL": "http://www.niallmoody.com/ndcplugs/ampimposer.htm",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -519,7 +519,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/cvs",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -534,7 +534,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/delay",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -564,7 +564,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/dynamicwaves_6",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -579,7 +579,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/dynamicwaves_8",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -594,7 +594,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/dynamicwaves2_4",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -609,7 +609,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/dynamicwaves2_6",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -624,7 +624,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/dynamicwaves2_8",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -639,7 +639,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/env",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -654,7 +654,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/fftvocoder",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -669,7 +669,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/hysteresis",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -684,7 +684,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/inv",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -699,7 +699,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/lfo",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -714,7 +714,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/lfo2_freq",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -729,7 +729,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/lfo2_tempo",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -744,7 +744,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/mixer_2ch",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -759,7 +759,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/mixer_4ch",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -774,7 +774,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/mixer_8ch",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -789,7 +789,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/multiphase_lfo",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -804,7 +804,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/noise2",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -819,7 +819,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/percussiveenv",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -834,7 +834,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/ringmodulator",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -849,7 +849,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/samplehold",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -864,7 +864,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/seq_12",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -879,7 +879,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/seq_16",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -894,7 +894,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/seq_24",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -909,7 +909,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/seq_32",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -924,7 +924,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/seq_8",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -939,7 +939,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/slew",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -954,7 +954,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/stereomixer_2ch",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -969,7 +969,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/stereomixer_4ch",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -984,7 +984,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/stereomixer_8ch",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -999,7 +999,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcdelay",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1014,7 +1014,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcdoubledecay",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1029,7 +1029,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcenv",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1044,7 +1044,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcenvii",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1059,7 +1059,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcorgan_4",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1074,7 +1074,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcorgan_6",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1089,7 +1089,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcorgan_8",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1104,7 +1104,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcorgan2_4",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1119,7 +1119,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcorgan2_6",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1134,7 +1134,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcorgan2_8",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1149,7 +1149,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcpanning",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1164,7 +1164,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcswitch",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1179,7 +1179,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcaexp",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1194,7 +1194,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vcalin",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1224,7 +1224,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vco2",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1239,7 +1239,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vco3",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1314,7 +1314,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/artificialLatency",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1329,7 +1329,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-attenuverter",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1344,7 +1344,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/divider",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1359,7 +1359,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-audio-to-cv",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1404,7 +1404,7 @@
 "INDEX": 9999,
 "URL": "https://www.jahnichen.de/plugins/lv2/BChoppr",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1419,7 +1419,7 @@
 "INDEX": 9999,
 "URL": "https://www.jahnichen.de/plugins/lv2/BSEQuencer",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1434,7 +1434,7 @@
 "INDEX": 9999,
 "URL": "https://www.jahnichen.de/plugins/lv2/BShapr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1449,7 +1449,7 @@
 "INDEX": 9999,
 "URL": "https://www.jahnichen.de/plugins/lv2/BShapr-cv",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1464,7 +1464,7 @@
 "INDEX": 9999,
 "URL": "https://www.jahnichen.de/plugins/lv2/BSlizr",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1524,7 +1524,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#BBCM6",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1539,7 +1539,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#BBCmono",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1554,7 +1554,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#BBCstereo",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1569,7 +1569,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/beatslash-lv2/beatrepeater_mono",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1584,7 +1584,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/beatslash-lv2/beatrepeater_stereo",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1599,7 +1599,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/beatslash-lv2/beatslicer_mono",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1614,7 +1614,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/beatslash-lv2/beatslicer_stereo",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1629,7 +1629,7 @@
 "INDEX": 9999,
 "URL": "http://teragonaudio.com/BeatCounter.html",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1644,7 +1644,7 @@
 "INDEX": 9999,
 "URL": "http://ll-plugins.nongnu.org/lv2/lv2pftci/beep",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1659,7 +1659,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#bitmeter",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1869,7 +1869,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/branch",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1899,7 +1899,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/AmpVTS",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1929,7 +1929,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/CabinetIII",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -1944,7 +1944,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/CabinetIV",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2004,7 +2004,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Compress",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2019,7 +2019,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/CompressX2",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2034,7 +2034,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Eq10",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2049,7 +2049,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Eq10X2",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2064,7 +2064,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Eq4p",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2079,7 +2079,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/EqFA4p",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2109,7 +2109,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Narrower",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -2124,7 +2124,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Noisegate",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2169,7 +2169,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/PlateX2",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2199,7 +2199,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Scape",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2229,7 +2229,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Spice",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2244,7 +2244,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/SpiceX2",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2259,7 +2259,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/ToneStack",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2289,7 +2289,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/caps/Wider",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -2304,7 +2304,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Analyzer",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2334,7 +2334,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/CompensationDelay",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2379,7 +2379,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Deesser",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2394,7 +2394,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Emphasis",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2424,7 +2424,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Equalizer12Band",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2439,7 +2439,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Equalizer30Band",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2454,7 +2454,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Equalizer5Band",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2469,7 +2469,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Equalizer8Band",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2484,7 +2484,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Exciter",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2514,7 +2514,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Filterclavier",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2544,7 +2544,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Fluidsynth",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2619,7 +2619,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/MonoInput",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2679,7 +2679,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/MultibandCompressor",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2709,7 +2709,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/MultibandGate",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2814,7 +2814,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/ReverseDelay",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2964,7 +2964,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/VintageDelay",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -2994,7 +2994,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/Vocoder",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3024,7 +3024,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/XOver2Band",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3039,7 +3039,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/XOver3Band",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3054,7 +3054,7 @@
 "INDEX": 9999,
 "URL": "http://calf.sourceforge.net/plugins/XOver4Band",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3084,7 +3084,7 @@
 "INDEX": 9999,
 "URL": "urn:riban.ccsend",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3219,7 +3219,7 @@
 "INDEX": 4,
 "URL": "",
 "UI": "",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3234,7 +3234,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/sync_pulse",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3249,7 +3249,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/sync_square",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3279,7 +3279,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/comb_c",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3294,7 +3294,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/comb_l",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3309,7 +3309,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/comb_n",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3324,7 +3324,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/comb",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3339,7 +3339,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/combSplitter",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3354,7 +3354,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/const",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3369,7 +3369,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/controlfilter#invert",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3384,7 +3384,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/controlfilter#linearscale",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3399,7 +3399,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/controlfilter#lowpass",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3414,7 +3414,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/controlfilter#exp",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3429,7 +3429,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/controlfilter#nlog",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3444,7 +3444,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-control",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3459,7 +3459,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/interpolator",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3474,7 +3474,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/xfade",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3489,7 +3489,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/xfade4",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3609,7 +3609,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-abs",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3624,7 +3624,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-clock",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3639,7 +3639,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-gate",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3654,7 +3654,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-meter",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3669,7 +3669,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-parameter-modulation",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3684,7 +3684,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-range",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3699,7 +3699,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-round",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3714,7 +3714,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-switch1",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3729,7 +3729,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-switch3",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3744,7 +3744,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-switch2",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3759,7 +3759,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-switch4",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3774,7 +3774,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/cvtocontrol",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3789,7 +3789,7 @@
 "INDEX": 9999,
 "URL": "http://www.niallmoody.com/ndcplugs/cycleshifter.htm",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3804,7 +3804,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/dcRemove",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3849,7 +3849,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/delayorama",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3864,7 +3864,7 @@
 "INDEX": 9999,
 "URL": "http://www.openavproductions.com/artyfx#della",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3894,7 +3894,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/difference",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3909,7 +3909,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#DINmono",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3924,7 +3924,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#DINstereo",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -3999,7 +3999,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#dr14mono",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4014,7 +4014,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#dr14stereo",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4119,7 +4119,7 @@
 "INDEX": 9999,
 "URL": "http://www.drowaudio.co.uk/audio/audio_plugins/tremolo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4179,7 +4179,7 @@
 "INDEX": 9999,
 "URL": "http://www.drowaudio.co.uk/audio/audio_plugins/reverb",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4194,7 +4194,7 @@
 "INDEX": 9999,
 "URL": "http://drumgizmo.org/lv2",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4224,7 +4224,7 @@
 "INDEX": 9999,
 "URL": "http://drumkv1.sourceforge.net/lv2",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4239,7 +4239,7 @@
 "INDEX": 9999,
 "URL": "urn:juced:DrumSynth",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4299,7 +4299,7 @@
 "INDEX": 9999,
 "URL": "http://au.tomatl.org/essp",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4314,7 +4314,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#EBUmono",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4329,7 +4329,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#EBUstereo",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4344,7 +4344,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#EBUr128",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4359,7 +4359,7 @@
 "INDEX": 9999,
 "URL": "http://eq10q.sourceforge.net/eq/eq10qm",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4374,7 +4374,7 @@
 "INDEX": 9999,
 "URL": "http://eq10q.sourceforge.net/eq/eq10qs",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4449,7 +4449,7 @@
 "INDEX": 9999,
 "URL": "http://eq10q.sourceforge.net/eq/eq6qm",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4464,7 +4464,7 @@
 "INDEX": 9999,
 "URL": "http://eq10q.sourceforge.net/eq/eq6qs",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4479,7 +4479,7 @@
 "INDEX": 9999,
 "URL": "urn:juced:EQinox",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4494,7 +4494,7 @@
 "INDEX": 9999,
 "URL": "http://lv2plug.in/plugins/eg-fifths",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4509,7 +4509,7 @@
 "INDEX": 9999,
 "URL": "http://lv2plug.in/plugins/eg-metro",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4524,7 +4524,7 @@
 "INDEX": 9999,
 "URL": "http://lv2plug.in/plugins/eg-midigate",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4539,7 +4539,7 @@
 "INDEX": 9999,
 "URL": "http://lv2plug.in/plugins/eg-params",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4554,7 +4554,7 @@
 "INDEX": 9999,
 "URL": "http://lv2plug.in/plugins/eg-scope#Mono",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4569,7 +4569,7 @@
 "INDEX": 9999,
 "URL": "http://lv2plug.in/plugins/eg-scope#Stereo",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4584,7 +4584,7 @@
 "INDEX": 9999,
 "URL": "http://lv2plug.in/plugins/eg-sampler",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4599,7 +4599,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/decay",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4614,7 +4614,7 @@
 "INDEX": 9999,
 "URL": "http://teragonaudio.com/ExtraNotes.html",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4644,7 +4644,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/fastLookaheadLimiter",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4914,7 +4914,7 @@
 "INDEX": 9999,
 "URL": "http://kxstudio.linuxaudio.org/plugins/FluidPlug_FluidSynthFX",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4929,7 +4929,7 @@
 "INDEX": 9999,
 "URL": "http://kxstudio.linuxaudio.org/plugins/FluidPlug_FluidSynthLeads",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -4944,7 +4944,7 @@
 "INDEX": 9999,
 "URL": "http://kxstudio.linuxaudio.org/plugins/FluidPlug_FluidSynthPads",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5034,7 +5034,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/fadDelay",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5049,7 +5049,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/fmod",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5064,7 +5064,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/freqTracker",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5109,7 +5109,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/gate",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5124,7 +5124,7 @@
 "INDEX": 9999,
 "URL": "http://geontime.com/geonkick",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5139,7 +5139,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/giantFlange",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5154,7 +5154,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/bandpass_a_iir",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5169,7 +5169,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/bandpass_iir",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5184,7 +5184,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/butthigh_iir",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5199,7 +5199,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/buttlow_iir",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5214,7 +5214,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/bwxover_iir",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5229,7 +5229,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/highpass_iir",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5244,7 +5244,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/lowpass_iir",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5259,7 +5259,7 @@
 "INDEX": 9999,
 "URL": "http://distrho.sf.net/plugins/glBars",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5319,7 +5319,7 @@
 "INDEX": 9999,
 "URL": "http://eq10q.sourceforge.net/gate",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5334,7 +5334,7 @@
 "INDEX": 9999,
 "URL": "http://eq10q.sourceforge.net/gate_stereo",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5364,7 +5364,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_alembic#alembic",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5379,7 +5379,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_studiopre#studiopre",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5394,7 +5394,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_studiopre_st#studiopre_st",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5409,7 +5409,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gxtape_st#tape",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5424,7 +5424,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_w20#w20",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5514,7 +5514,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_barkgraphiceq_#_barkgraphiceq_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5709,7 +5709,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_delay_stereo#_delay_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5739,7 +5739,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_detune_#_detune_",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5814,7 +5814,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_duck_delay_#_duck_delay_",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5829,7 +5829,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_duck_delay_st_#_duck_delay_st_",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5859,7 +5859,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gxechocat#echocat",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -5904,7 +5904,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_expander#_expander",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6084,7 +6084,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_hfb_#_hfb_",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6099,7 +6099,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_hogsfoot_#_hogsfoot_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6159,7 +6159,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_jcm800pre_#_jcm800pre_",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6174,7 +6174,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_jcm800pre_st#_jcm800pre_st",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6219,7 +6219,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_livelooper_#_livelooper_",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6249,7 +6249,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gxmetal_amp#metal_amp",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6264,7 +6264,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gxmetal_head#metal_head",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6279,7 +6279,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_MicroAmp_#_MicroAmp_",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6294,7 +6294,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_mole_#_mole_",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6309,7 +6309,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_muff_#_muff_",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6324,7 +6324,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_mbcompressor_#_mbcompressor_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6339,7 +6339,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_mbdelay_#_mbdelay_",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6369,7 +6369,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_mbecho_#_mbecho_",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6384,7 +6384,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_mbreverb_#_mbreverb_",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6414,7 +6414,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_oc_2_#_oc_2_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6504,7 +6504,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_redeye#bigchump",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6519,7 +6519,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_redeye#chump",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6534,7 +6534,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_redeye#vibrochump",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6564,7 +6564,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_room_simulator_#_room_simulator_",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6654,7 +6654,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_shimmizita_#_shimmizita_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6684,7 +6684,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_slowgear_#_slowgear_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6774,7 +6774,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_ampegsvt_#_ampegsvt_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6969,7 +6969,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gxtuner#tuner",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6984,7 +6984,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_ultracab_#_ultracab_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -6999,7 +6999,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_uvox_#_uvox_",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7029,7 +7029,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_voxbass_#_voxbass_",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7134,7 +7134,7 @@
 "INDEX": 9999,
 "URL": "http://guitarix.sourceforge.net/plugins/gx_zita_rev1_stereo#_zita_rev1_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7149,7 +7149,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/haas",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7269,7 +7269,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/hermesFilter",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7314,7 +7314,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/hilbert",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7344,7 +7344,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/klangfreund/SpectrumAnalyser",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7359,7 +7359,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/jpcima/HybridReverb2",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7374,7 +7374,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/hztovc",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7434,7 +7434,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/delay/mono",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7449,7 +7449,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/delay/sum",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7464,7 +7464,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/erreverb/mono",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7479,7 +7479,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/erreverb/sum",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7494,7 +7494,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/filter/hpf/mono",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7509,7 +7509,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/filter/hpf/stereo",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7524,7 +7524,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/input",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7539,7 +7539,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/filter/lpf/mono",
 "UI": "GtkUI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7554,7 +7554,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/filter/lpf/stereo",
 "UI": "GtkUI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7569,7 +7569,7 @@
 "INDEX": 9999,
 "URL": "http://invadarecords.com/plugins/lv2/meter",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7674,7 +7674,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/inverted-Switchbox",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7689,7 +7689,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/inv",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7764,7 +7764,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#K12mono",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7779,7 +7779,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#K12stereo",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7794,7 +7794,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#K14mono",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7809,7 +7809,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#K14stereo",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7824,7 +7824,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#K20mono",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7839,7 +7839,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#K20stereo",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7884,7 +7884,7 @@
 "INDEX": 9999,
 "URL": "http://www.openavproductions.com/artyfx#kuiza",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7899,7 +7899,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/lcrDelay",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7944,7 +7944,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/steveb/gula-plugins/lfo_cv",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7959,7 +7959,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/lfoPhaser",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -7989,7 +7989,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/lookaheadLimiter",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8004,7 +8004,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/lookaheadLimiterConst",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8034,7 +8034,7 @@
 "INDEX": 9999,
 "URL": "http://eq10q.sourceforge.net/matrix_lr2ms",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8049,7 +8049,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/lsFilter",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8064,7 +8064,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/ab_tester_x2_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8079,7 +8079,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/ab_tester_x2_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8094,7 +8094,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/ab_tester_x4_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8109,7 +8109,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/ab_tester_x4_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8124,7 +8124,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/ab_tester_x8_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8139,7 +8139,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/ab_tester_x8_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8154,7 +8154,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/art_delay_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8169,7 +8169,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/art_delay_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8184,7 +8184,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/autogain_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8199,7 +8199,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/autogain_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8214,7 +8214,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/beat_breather_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8229,7 +8229,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/beat_breather_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8244,7 +8244,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/chorus_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8259,7 +8259,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/chorus_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8274,7 +8274,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/clipper_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8289,7 +8289,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/clipper_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8304,7 +8304,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/compressor_lr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8319,7 +8319,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/compressor_ms",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8334,7 +8334,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/compressor_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8349,7 +8349,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/compressor_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8364,7 +8364,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/crossover_lr",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8379,7 +8379,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/crossover_ms",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8394,7 +8394,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/crossover_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8409,7 +8409,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/crossover_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8424,7 +8424,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/comp_delay_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8439,7 +8439,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/comp_delay_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8454,7 +8454,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/comp_delay_x2_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8469,7 +8469,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/dyna_processor_lr",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8484,7 +8484,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/dyna_processor_ms",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8499,7 +8499,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/dyna_processor_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8514,7 +8514,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/dyna_processor_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8529,7 +8529,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/expander_lr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8544,7 +8544,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/expander_ms",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8559,7 +8559,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/expander_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8574,7 +8574,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/expander_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8589,7 +8589,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/filter_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8604,7 +8604,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/filter_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8619,7 +8619,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/flanger_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8634,7 +8634,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/flanger_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8649,7 +8649,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/gate_lr",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8664,7 +8664,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/gate_ms",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8679,7 +8679,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/gate_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8694,7 +8694,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/gate_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8709,7 +8709,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/gott_compressor_lr",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8724,7 +8724,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/gott_compressor_ms",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8739,7 +8739,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/gott_compressor_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8754,7 +8754,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/gott_compressor_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8769,7 +8769,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/graph_equalizer_x16_lr",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8784,7 +8784,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/graph_equalizer_x16_ms",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8799,7 +8799,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/graph_equalizer_x16_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8814,7 +8814,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/graph_equalizer_x16_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8829,7 +8829,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/graph_equalizer_x32_lr",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8844,7 +8844,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/graph_equalizer_x32_ms",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8859,7 +8859,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/graph_equalizer_x32_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8874,7 +8874,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/graph_equalizer_x32_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8949,7 +8949,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/latency_meter",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8964,7 +8964,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/limiter_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8979,7 +8979,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/limiter_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -8994,7 +8994,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/loud_comp_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9009,7 +9009,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/loud_comp_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9024,7 +9024,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/matcher_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9039,7 +9039,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/matcher_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9054,7 +9054,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mixer_x16_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9069,7 +9069,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mixer_x16_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9084,7 +9084,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mixer_x4_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9099,7 +9099,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mixer_x4_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9114,7 +9114,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mixer_x8_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9129,7 +9129,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mixer_x8_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9144,7 +9144,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/multisampler_x12_do",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9159,7 +9159,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/multisampler_x12",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9174,7 +9174,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/multisampler_x24_do",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9189,7 +9189,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/multisampler_x24",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9204,7 +9204,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/multisampler_x48_do",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9219,7 +9219,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/multisampler_x48",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9234,7 +9234,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_clipper_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9249,7 +9249,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_clipper_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9264,7 +9264,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_compressor_lr",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9279,7 +9279,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_compressor_ms",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9294,7 +9294,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_compressor_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9309,7 +9309,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_compressor_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9324,7 +9324,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_dyna_processor_lr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9339,7 +9339,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_dyna_processor_ms",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9354,7 +9354,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_dyna_processor_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9369,7 +9369,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_dyna_processor_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9384,7 +9384,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_expander_lr",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9399,7 +9399,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_expander_ms",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9414,7 +9414,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_expander_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9429,7 +9429,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_expander_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9444,7 +9444,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_gate_lr",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9459,7 +9459,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_gate_ms",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9474,7 +9474,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_gate_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9489,7 +9489,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_gate_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9504,7 +9504,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_limiter_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9519,7 +9519,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_limiter_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9534,7 +9534,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_ringmod_sc_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9549,7 +9549,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/mb_ringmod_sc_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9564,7 +9564,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/noise_generator_x1",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9579,7 +9579,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/noise_generator_x2",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9594,7 +9594,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/noise_generator_x4",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9609,7 +9609,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/oscillator_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9624,7 +9624,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/oscilloscope_x1",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9639,7 +9639,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/oscilloscope_x2",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9654,7 +9654,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/oscilloscope_x4",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9669,7 +9669,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x16_lr",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9684,7 +9684,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x16_ms",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9699,7 +9699,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x16_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9714,7 +9714,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x16_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9729,7 +9729,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x32_lr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9744,7 +9744,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x32_ms",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9759,7 +9759,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x32_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9774,7 +9774,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x32_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9789,7 +9789,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x8_lr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9804,7 +9804,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x8_ms",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9819,7 +9819,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x8_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9834,7 +9834,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/para_equalizer_x8_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9849,7 +9849,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/phase_detector",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9864,7 +9864,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/phaser_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9879,7 +9879,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/phaser_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9894,7 +9894,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/profiler_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9909,7 +9909,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/profiler_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9924,7 +9924,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/referencer_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9939,7 +9939,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/referencer_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9954,7 +9954,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/return_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9969,7 +9969,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/return_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9984,7 +9984,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/ringmod_sc_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -9999,7 +9999,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/ringmod_sc_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10044,7 +10044,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sampler_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10059,7 +10059,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sampler_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10074,7 +10074,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/send_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10089,7 +10089,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/send_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10104,7 +10104,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_autogain_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10119,7 +10119,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_autogain_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10134,7 +10134,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_compressor_lr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10149,7 +10149,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_compressor_ms",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10164,7 +10164,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_compressor_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10179,7 +10179,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_compressor_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10194,7 +10194,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_dyna_processor_lr",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10209,7 +10209,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_dyna_processor_ms",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10224,7 +10224,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_dyna_processor_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10239,7 +10239,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_dyna_processor_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10254,7 +10254,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_expander_lr",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10269,7 +10269,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_expander_ms",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10284,7 +10284,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_expander_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10299,7 +10299,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_expander_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10314,7 +10314,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_gate_lr",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10329,7 +10329,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_gate_ms",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10344,7 +10344,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_gate_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10359,7 +10359,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_gate_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10374,7 +10374,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_gott_compressor_lr",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10389,7 +10389,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_gott_compressor_ms",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10404,7 +10404,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_gott_compressor_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10419,7 +10419,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_gott_compressor_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10434,7 +10434,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_limiter_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10449,7 +10449,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_limiter_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10464,7 +10464,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_matcher_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10479,7 +10479,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_matcher_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10494,7 +10494,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_compressor_lr",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10509,7 +10509,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_compressor_ms",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10524,7 +10524,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_compressor_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10539,7 +10539,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_compressor_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10554,7 +10554,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_dyna_processor_lr",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10569,7 +10569,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_dyna_processor_ms",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10584,7 +10584,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_dyna_processor_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10599,7 +10599,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_dyna_processor_stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10614,7 +10614,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_expander_lr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10629,7 +10629,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_expander_ms",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10644,7 +10644,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_expander_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10659,7 +10659,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_expander_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10674,7 +10674,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_gate_lr",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10689,7 +10689,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_gate_ms",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10704,7 +10704,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_gate_mono",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10719,7 +10719,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_gate_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10734,7 +10734,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_limiter_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10749,7 +10749,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/sc_mb_limiter_stereo",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10764,7 +10764,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/slap_delay_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10779,7 +10779,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/slap_delay_stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10794,7 +10794,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/spectrum_analyzer_x1",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10809,7 +10809,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/spectrum_analyzer_x12",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10824,7 +10824,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/spectrum_analyzer_x16",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10839,7 +10839,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/spectrum_analyzer_x2",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10854,7 +10854,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/spectrum_analyzer_x4",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10869,7 +10869,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/spectrum_analyzer_x8",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10884,7 +10884,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/surge_filter_mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10899,7 +10899,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/surge_filter_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10914,7 +10914,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/trigger_midi_mono",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10929,7 +10929,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/trigger_midi_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10944,7 +10944,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/trigger_mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10959,7 +10959,7 @@
 "INDEX": 9999,
 "URL": "http://lsp-plug.in/plugins/lv2/trigger_stereo",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10974,7 +10974,7 @@
 "INDEX": 9999,
 "URL": "http://www.klangfreund.com/lufsmeter",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -10989,7 +10989,7 @@
 "INDEX": 9999,
 "URL": "http://www.klangfreund.com/lufsmetermultichannel",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11019,7 +11019,7 @@
 "INDEX": 9999,
 "URL": "http://lvtoolkit.org/plugins/silence",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11034,7 +11034,7 @@
 "INDEX": 9999,
 "URL": "http://lvtoolkit.org/plugins/workhorse",
 "UI": "GtkUI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11064,7 +11064,7 @@
 "INDEX": 9999,
 "URL": "http://distrho.sf.net/plugins/MaFreeverb",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11109,7 +11109,7 @@
 "INDEX": 9999,
 "URL": "http://www.openavproductions.com/artyfx#masha",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11124,7 +11124,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/matrixmixer#i8o8",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11139,7 +11139,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/matrixSpatialiser",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -11154,7 +11154,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/matrixMSSt",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -11169,7 +11169,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/matrixStMS",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -11214,7 +11214,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/BeatBox",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11244,7 +11244,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/DeEss",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11289,7 +11289,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/Detune",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11379,7 +11379,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/Image",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -11439,7 +11439,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/Loudness",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11454,7 +11454,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/MultiBand",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11559,7 +11559,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/Shepard",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11574,7 +11574,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/Splitter",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11619,7 +11619,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/TalkBox",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11664,7 +11664,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/Tracker",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11679,7 +11679,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mda/Transient",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11724,7 +11724,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/nodelay#mega",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11739,7 +11739,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/nodelay#micro",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11874,7 +11874,7 @@
 "INDEX": 10,
 "URL": "",
 "UI": "",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11904,7 +11904,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/vallsv/midi-display.lv2",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11964,7 +11964,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/mididebug",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -11994,7 +11994,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/midigen",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12219,7 +12219,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/stepseq#s8n8",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12264,7 +12264,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/midi-to-cv-mono",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12279,7 +12279,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/midi-to-cv-poly",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12414,7 +12414,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/modDelay",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12459,7 +12459,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/split",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -12489,7 +12489,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#a1xa1",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12504,7 +12504,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#a2xa2",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12519,7 +12519,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#a4xa4",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12534,7 +12534,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#c1xc1",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12549,7 +12549,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#c1a1xc1a1",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12564,7 +12564,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#c2xc2",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12579,7 +12579,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#c2a1xc2a1",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12594,7 +12594,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#c4xc4",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12609,7 +12609,7 @@
 "INDEX": 9999,
 "URL": "http://open-music-kontrollers.ch/lv2/moony#c4a1xc4a1",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12624,7 +12624,7 @@
 "INDEX": 9999,
 "URL": "http://eq10q.sourceforge.net/matrix_ms2lr",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -12639,7 +12639,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/mbeq",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12654,7 +12654,7 @@
 "INDEX": 9999,
 "URL": "urn:riban.multichord",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12759,7 +12759,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/nodelay",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12804,7 +12804,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/impulse_fc",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12819,7 +12819,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#NORmono",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12834,7 +12834,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#NORstereo",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12849,7 +12849,7 @@
 "INDEX": 9999,
 "URL": "http://teragonaudio.com/NotNotchFilter.html",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12924,7 +12924,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/offset",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -12939,7 +12939,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/onsettrigger#bassdrum_mono",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 1
@@ -12954,7 +12954,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/onsettrigger#bassdrum_stereo",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 1
@@ -13059,7 +13059,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/steveb/gula-plugins/peak_audio_to_cv",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13074,7 +13074,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/steveb/gula-plugins/pequed",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13104,7 +13104,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#phasewheel",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13119,7 +13119,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/phaserotate",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13134,7 +13134,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/phaserotate#stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13179,7 +13179,7 @@
 "INDEX": 9999,
 "URL": "http://code.google.com/p/lkjb-dc12/",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13194,7 +13194,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/plate",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13224,7 +13224,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/product",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13239,7 +13239,7 @@
 "INDEX": 9999,
 "URL": "http://distrho.sf.net/plugins/ProM",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13254,7 +13254,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/pulse",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13329,7 +13329,7 @@
 "INDEX": 9999,
 "URL": "https://git.code.sf.net/p/qmidiarp/seq",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13344,7 +13344,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/quantiser_100",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13359,7 +13359,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/quantiser_20",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13374,7 +13374,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/quantiser_50",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13404,7 +13404,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-random",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13419,7 +13419,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/random",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13464,7 +13464,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/ratio",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13539,7 +13539,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/lkjbdsp/lkjb-plugins#ReFine",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13584,7 +13584,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/adsr_gt",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13599,7 +13599,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/dahdsr",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13614,7 +13614,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/retroFlange",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13629,7 +13629,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/revdelay",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13659,7 +13659,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/ringmod_2i1o",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13719,7 +13719,7 @@
 "INDEX": 9999,
 "URL": "http://www.breakfastquay.com/rubberband#Mono",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13734,7 +13734,7 @@
 "INDEX": 9999,
 "URL": "http://www.breakfastquay.com/rubberband#Stereo",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13749,7 +13749,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/semanticaudio/SAFE/tree/master/SAFECompressor",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13764,7 +13764,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/semanticaudio/SAFE/tree/master/SAFEDistortion",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 4,
 "COMPLEX": 1,
 "EDIT": 0
@@ -13794,7 +13794,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/semanticaudio/SAFE/tree/master/SAFEReverb",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13839,7 +13839,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/sawtooth",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13854,7 +13854,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/sc1",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13869,7 +13869,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/sc2",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13884,7 +13884,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/sc3",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13899,7 +13899,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/sc4",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13914,7 +13914,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/se4",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13944,7 +13944,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/vallsv/setbfree-controller",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13989,7 +13989,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/absolute",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14004,7 +14004,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#SigDistHist",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14034,7 +14034,7 @@
 "INDEX": 9999,
 "URL": "http://lv2plug.in/plugins/eg-amp",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14049,7 +14049,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/amp",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14064,7 +14064,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/delay_c",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14079,7 +14079,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/delay_l",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14094,7 +14094,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/delay_n",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14109,7 +14109,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/sisco#3chan",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14124,7 +14124,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/sisco#4chan",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14139,7 +14139,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/sisco#Mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14154,7 +14154,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/sisco#Stereo",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14169,7 +14169,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/sinCos",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14184,7 +14184,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/singlePara",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14199,7 +14199,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/sinusWavewrapper",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14214,7 +14214,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/mod-cv-slew",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14259,7 +14259,7 @@
 "INDEX": 9999,
 "URL": "urn:50m30n3:plugins:SO-666",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14319,7 +14319,7 @@
 "INDEX": 9999,
 "URL": "http://www.niallmoody.com/ndcplugs/soulforce.htm",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14334,7 +14334,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/spectra#Mono",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14349,7 +14349,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/square",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14379,7 +14379,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/svf",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14409,7 +14409,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/xfade",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14424,7 +14424,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/unclechu/lv2-stereo-mixer",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14439,7 +14439,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#goniometer",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14454,7 +14454,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#COR",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14469,7 +14469,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/stereoroute",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14484,7 +14484,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#stereoscope",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14499,7 +14499,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/laixinyuan/StereoSourceSepartion",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 2
@@ -14514,7 +14514,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/StereoSwitchBox2",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14529,7 +14529,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/StereoSwitchBox3",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14589,7 +14589,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/sum",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14649,7 +14649,7 @@
 "INDEX": 9999,
 "URL": "https://surge-synth-team.org//plugins/Surge_XT_Effects",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14664,7 +14664,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#surround3",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14679,7 +14679,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#surround4",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14694,7 +14694,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#surround5",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14709,7 +14709,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#surround8",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14724,7 +14724,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/surroundEncoder",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14739,7 +14739,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/steveb/gula-plugins/sweabed",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14754,7 +14754,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/SwitchBox2",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14769,7 +14769,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/SwitchTrigger4",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14799,7 +14799,7 @@
 "INDEX": 9,
 "URL": "",
 "UI": "",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -14979,7 +14979,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/deesser",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15039,7 +15039,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/dynamics",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15084,7 +15084,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/reflector",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15099,7 +15099,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/reverb",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15114,7 +15114,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/rotspeak",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15129,7 +15129,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/limiter",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15159,7 +15159,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/dynamics-st",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15174,7 +15174,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/echo",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15189,7 +15189,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/tremolo",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15219,7 +15219,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/tap/vibrato",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15324,7 +15324,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#casynth",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15354,7 +15354,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#envfollower",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15369,7 +15369,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#envfollowerCV",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15414,7 +15414,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#lushlife",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15444,7 +15444,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#octolo",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15459,7 +15459,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#powercut",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15474,7 +15474,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#powerup",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15489,7 +15489,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#stuck",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15504,7 +15504,7 @@
 "INDEX": 9999,
 "URL": "http://ssj71.github.io/infamousPlugins/plugs.html#stuckstacker",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15564,7 +15564,7 @@
 "INDEX": 9999,
 "URL": "http://moddevices.com/plugins/mod-devel/ToggleSwitch4",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15594,7 +15594,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/tracker",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15609,7 +15609,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/transient",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15624,7 +15624,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/transport",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15639,7 +15639,7 @@
 "INDEX": 9999,
 "URL": "http://drobilla.net/plugins/blop/triangle",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15669,7 +15669,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/triplePara",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15684,7 +15684,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#TPnRMSmono",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15699,7 +15699,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#TPnRMSstereo",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15714,7 +15714,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#dBTPmono",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15729,7 +15729,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#dBTPstereo",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15804,7 +15804,7 @@
 "INDEX": 9999,
 "URL": "http://github.com/blablack/ams-lv2/vctohz",
 "UI": "GtkUI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15819,7 +15819,7 @@
 "INDEX": 9999,
 "URL": "urn:juce:Vex",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 2,
 "COMPLEX": 1,
 "EDIT": 0
@@ -15834,7 +15834,7 @@
 "INDEX": 9999,
 "URL": "http://www.openavproductions.com/artyfx#vihda",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15864,7 +15864,7 @@
 "INDEX": 9999,
 "URL": "urn:distrho:vitalium",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15894,7 +15894,7 @@
 "INDEX": 9999,
 "URL": "http://home.gna.org/lv2vocoder/1",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15909,7 +15909,7 @@
 "INDEX": 9999,
 "URL": "http://lvtk.org/plugins/volume",
 "UI": null,
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15924,7 +15924,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#VUmono",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15939,7 +15939,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/meters#VUstereo",
 "UI": null,
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -15969,7 +15969,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/shaper",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16029,7 +16029,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/pdesaulniers/wolf-shaper",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16044,7 +16044,7 @@
 "INDEX": 9999,
 "URL": "https://github.com/pdesaulniers/wolf-spectrum",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16059,7 +16059,7 @@
 "INDEX": 9999,
 "URL": "http://tumbetoene.tuxfamily.org",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16179,7 +16179,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/tuna#two",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16329,7 +16329,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/fil4#mono",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16344,7 +16344,7 @@
 "INDEX": 9999,
 "URL": "http://gareus.org/oss/lv2/fil4#stereo",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16389,7 +16389,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/zm1",
 "UI": null,
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16404,7 +16404,7 @@
 "INDEX": 9999,
 "URL": "urn:zamaudio:ZamAutoSat",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16419,7 +16419,7 @@
 "INDEX": 9999,
 "URL": "urn:zamaudio:ZaMaximX2",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16464,7 +16464,7 @@
 "INDEX": 9999,
 "URL": "urn:zamaudio:ZamDelay",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16479,7 +16479,7 @@
 "INDEX": 9999,
 "URL": "urn:zamaudio:ZamDynamicEQ",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16629,7 +16629,7 @@
 "INDEX": 9999,
 "URL": "urn:zamaudio:ZaMultiComp",
 "UI": "X11UI",
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16644,7 +16644,7 @@
 "INDEX": 9999,
 "URL": "urn:zamaudio:ZaMultiCompX2",
 "UI": "X11UI",
-"DESCR": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16659,7 +16659,7 @@
 "INDEX": 9999,
 "URL": "urn:zamaudio:ZamVerb",
 "UI": "X11UI",
-"DESCR": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16674,7 +16674,7 @@
 "INDEX": 9999,
 "URL": "https://www.zrythm.org/plugins/ZLFO",
 "UI": "X11UI",
-"DESCR": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -16719,7 +16719,7 @@
 "INDEX": 9999,
 "URL": "http://plugin.org.uk/swh-plugins/ulaw",
 "UI": null,
-"DESCR": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
