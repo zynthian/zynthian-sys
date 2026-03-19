@@ -529,12 +529,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs python3-rarfile"
 fi
 
-patchlevel="20260318.1"
+patchlevel="20260318.4"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	./fix_touch_envars.sh
+	fix_touch_envars.sh
 fi
-
 
 # -----------------------------------------------------------------------------
 # End of patches section
