@@ -3215,14 +3215,14 @@
 "TITLE": "Clip launcher",
 "TYPE": "Audio Generator",
 "CAT": "Other",
-"ENABLED": true,
+"ENABLED": false,
 "INDEX": 4,
 "URL": "",
 "UI": "",
-"DESCR": "",
-"QUALITY": 0,
-"COMPLEX": 0,
-"EDIT": 0
+"DESCR": "Clippy is the zynthian's clip launcher. It can remain disabled here because it has its own button in the UI.",
+"QUALITY": 4,
+"COMPLEX": 3,
+"EDIT": 2
 },
 "JV/Clock Pulse": {
 "ID": "634e9dc25a",
@@ -14284,7 +14284,7 @@
 "NAME": "SooperLooper",
 "TITLE": "SooperLooper",
 "TYPE": "Audio Effect",
-"CAT": "Delay",
+"CAT": "Other",
 "ENABLED": true,
 "INDEX": 0,
 "URL": "",
@@ -14292,7 +14292,7 @@
 "DESCR": "Live looping sampler capable of recording, overdubbing, multiplying, reversing and more. It allows multiple simultaneous loops. Single instance.",
 "QUALITY": 5,
 "COMPLEX": 3,
-"EDIT": 0
+"EDIT": 2
 },
 "JV/Sorcer": {
 "ID": "853da4eef3",
@@ -15733,6 +15733,21 @@
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
+},
+"JV/Ultramaster KR-106": {
+"ID": "bd5924d407",
+"NAME": "Ultramaster KR-106",
+"TITLE": "Ultramaster KR-106",
+"TYPE": "MIDI Synth",
+"CAT": "Synth",
+"ENABLED": true,
+"INDEX": 9999,
+"URL": "https://kayrock.org/kr106",
+"UI": "X11UI",
+"DESCR": "Ultramaster KR-106",
+"QUALITY": 0,
+"COMPLEX": 0,
+"EDIT": 1
 },
 "JV/Valve rectifier": {
 "ID": "fa8a45fd08",
