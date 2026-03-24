@@ -493,7 +493,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
 fi
 
-patchlevel="20260319.1"
+patchlevel="20260228.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_ripplerx_prebuilt.sh
+fi
+
+patchlevel="20260324.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
