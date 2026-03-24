@@ -2,7 +2,7 @@
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
-if [ -d "ultramaster_kr106"]; then
+if [ -d "ultramaster_kr106" ]; then
 	rm -rf "ultramaster_kr106"
 fi
 
