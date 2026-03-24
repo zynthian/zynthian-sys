@@ -535,16 +535,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fix_touch_envars.sh
 fi
 
-patchlevel="20260319.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
-fi
-
 patchlevel="20260319.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	rm -f /zynthian/config/img/*
+fi
+
+patchlevel="20260324.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
