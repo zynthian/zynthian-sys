@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Resolution
+Terminal=false
+Comment=Change desktop screen resolution
+Exec=/zynthian/zynthian-sys/sbin/resolution.sh
+Icon=video-display
+Type=Application
