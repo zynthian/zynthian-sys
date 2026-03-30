@@ -453,11 +453,11 @@ fi
 #	regenerate_lv2_presets.sh urn:org.surge-synth-team.OB-Xf-rework
 #fi
 
-patchlevel="20260112.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
-fi
+#patchlevel="20260112.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
+#fi
 
 patchlevel="20260112.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -541,7 +541,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	rm -f /zynthian/config/img/*
 fi
 
-patchlevel="20260324.1"
+patchlevel="20260330.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
+fi
+
+patchlevel="20260330.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
