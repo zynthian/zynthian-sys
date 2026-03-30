@@ -2,7 +2,7 @@
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
-if [ -d "ultramaster_kr106"]; then
+if [ -d "ultramaster_kr106" ]; then
 	rm -rf "ultramaster_kr106"
 fi
 
@@ -14,7 +14,7 @@ CONFIG=Release make -j 3 build
 
 # Install LV2 bundle
 rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/Ultramaster KR-106.lv2"
-mv "./build-juce/KR106_artefacts/Release/LV2/Ultramaster KR-106.lv2.lv2" $ZYNTHIAN_PLUGINS_DIR/lv2
+mv "./build-juce/KR106_artefacts/Release/LV2/Ultramaster KR-106.lv2" $ZYNTHIAN_PLUGINS_DIR/lv2
 
 cd ..
 rm -rf "ultramaster_kr106"

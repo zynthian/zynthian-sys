@@ -29,16 +29,17 @@
       <property name="items" type="array">
         <value type="string" value="16162580183.desktop"/>
       </property>
-      <property name="show-label" type="bool" value="true"/>
-      <property name="disable-tooltips" type="bool" value="true"/>
     </property>
     <property name="plugin-3" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="16162603314.desktop"/>
       </property>
-      <property name="disable-tooltips" type="bool" value="true"/>
-      <property name="show-label" type="bool" value="true"/>
     </property>
-    <property name="plugin-4" type="string" value="tasklist"/>
+    <property name="plugin-4" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="19000000.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-5" type="string" value="tasklist"/>
   </property>
 </channel>
