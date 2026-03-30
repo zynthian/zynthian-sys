@@ -541,6 +541,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	rm -f /zynthian/config/img/*
 fi
 
+patchlevel="20260329.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	sed -i "s/POWER_OFF/POWER/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+fi
+
 patchlevel="20260330.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
@@ -551,12 +557,6 @@ patchlevel="20260330.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
-fi
-
-patchlevel="20260329.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	sed -i "s/POWER_OFF/POWER/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 fi
 
 # -----------------------------------------------------------------------------
