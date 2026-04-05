@@ -4,7 +4,7 @@
 #
 # Run the scripts contained in recipes.update directory
 #
-# Copyright (C) 2015-2024 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2015-2026 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
 #
@@ -557,6 +557,12 @@ patchlevel="20260331.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
+fi
+
+patchlevel="20260405.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs python3-rdflib"
 fi
 
 # -----------------------------------------------------------------------------
