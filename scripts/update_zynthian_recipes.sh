@@ -565,10 +565,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs python3-rdflib"
 fi
 
-patchlevel="20260405.2"
+patchlevel="20260405.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_toobamp_prebuilt.sh
+	aptpkgs="$aptpkgs python3-rdflib"
+fi
+
+patchlevel="20260407.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs python3-pyudev"
 fi
 
 # -----------------------------------------------------------------------------
