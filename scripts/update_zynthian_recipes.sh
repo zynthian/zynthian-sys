@@ -4,7 +4,7 @@
 #
 # Run the scripts contained in recipes.update directory
 #
-# Copyright (C) 2015-2024 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2015-2026 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
 #
@@ -559,6 +559,24 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
 fi
 
+patchlevel="20260405.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs python3-rdflib"
+fi
+
+patchlevel="20260405.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs python3-rdflib"
+fi
+
+patchlevel="20260407.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs python3-pyudev"
+fi
+
 patchlevel="20260410.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
@@ -567,7 +585,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK"
 	set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "ZYNSWITCH 1,B"
 	set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
-fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
