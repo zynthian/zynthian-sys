@@ -581,10 +581,12 @@ patchlevel="20260410.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	# Modify V5 back button to use release actions
-	set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13" "UI_ACTION_RELEASE"
-	set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK"
-	set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "ZYNSWITCH 1,B"
-	set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
+	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V5" ]]; then
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13" "UI_ACTION_RELEASE"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "ZYNSWITCH 1,B"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
+	fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
