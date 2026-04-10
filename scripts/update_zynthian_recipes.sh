@@ -587,6 +587,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "ZYNSWITCH 1,B"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
 	fi
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
