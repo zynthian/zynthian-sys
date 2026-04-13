@@ -565,12 +565,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs python3-rdflib"
 fi
 
-patchlevel="20260405.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs python3-rdflib"
-fi
-
 patchlevel="20260407.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
