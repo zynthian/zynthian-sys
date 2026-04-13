@@ -553,12 +553,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
 fi
 
-patchlevel="20260331.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
-fi
-
 patchlevel="20260405.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
@@ -581,6 +575,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "ZYNSWITCH 1,B"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
 	fi
+fi
+
+patchlevel="20260413.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
 fi
 
 # -----------------------------------------------------------------------------
