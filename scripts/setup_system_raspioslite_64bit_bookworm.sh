@@ -252,8 +252,7 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 pip3 install --upgrade pip
 pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi Levenshtein \
 ffmpeg-python pyrubberband mididings sox scipy wavio meson ninja abletonparsing hwmon vcgencmd \
-tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
-argostranslate
+tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
 
 #------------------------------------------------
 # System Adjustments
