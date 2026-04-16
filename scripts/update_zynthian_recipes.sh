@@ -577,7 +577,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
-patchlevel="20260413.1"
+patchlevel="20260416.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
