@@ -112,7 +112,7 @@ apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfa
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng
 #firmware-ralink 
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
@@ -252,7 +252,8 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 pip3 install --upgrade pip
 pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi Levenshtein \
 ffmpeg-python pyrubberband mididings sox scipy wavio meson ninja abletonparsing hwmon vcgencmd \
-tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
+tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
+argostranslate
 
 #------------------------------------------------
 # System Adjustments
