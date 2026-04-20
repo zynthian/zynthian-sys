@@ -1,13 +1,13 @@
 #!/bin/bash
 #******************************************************************************
 # ZYNTHIAN PROJECT: Zynthian Setup Script
-# 
+#
 # Setup zynthian software stack in a fresh raspios-lite-64 "bullseye" image
-# 
+#
 # Copyright (C) 2015-2023 Fernando Moyano <jofemodo@zynthian.org>
 #
 #******************************************************************************
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 2 of
@@ -19,7 +19,7 @@
 # GNU General Public License for more details.
 #
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
-# 
+#
 #******************************************************************************
 
 #------------------------------------------------------------------------------
@@ -112,8 +112,8 @@ apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfa
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng
-#firmware-ralink 
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng sox
+#firmware-ralink
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
@@ -169,7 +169,7 @@ python3-mutagen python3-pam python3-bcrypt
 #apt-get -y install python-setuptools python-is-python2 python-dev-is-python2
 
 #------------------------------------------------
-# Create Zynthian Directory Tree 
+# Create Zynthian Directory Tree
 # Install Zynthian Software from repositories
 #------------------------------------------------
 
@@ -521,7 +521,7 @@ mkdir /root/Pd/externals
 # Requires libjackd-jackd2-1.9.19 (JackTickDouble)
 export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
 $ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
- 
+
 # Install browsepy => Now it's installed with mod-ui
 # $ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
 
