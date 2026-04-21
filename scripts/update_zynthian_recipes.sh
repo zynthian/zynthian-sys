@@ -595,6 +595,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	aptpkgs="$aptpkgs sox"
 fi
 
+patchlevel="20260421.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Setup TTS enable/disable action
+	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V5" ]]; then
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_20__UI_LONG" "TTS_TOGGLE_ENABLE"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_20__UI_ALT_LONG" "TTS_TOGGLE_ENABLE"
+	fi
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
