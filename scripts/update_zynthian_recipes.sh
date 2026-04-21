@@ -602,7 +602,10 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V5" ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_20__UI_LONG" "TTS_TOGGLE_ENABLE"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_20__UI_ALT_LONG" "TTS_TOGGLE_ENABLE"
+	else if [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V4" ]]; then
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_04__UI_LONG" "TTS_TOGGLE_ENABLE"
 	fi
+
 fi
 
 # -----------------------------------------------------------------------------
