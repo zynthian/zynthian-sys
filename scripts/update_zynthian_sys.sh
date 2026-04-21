@@ -323,11 +323,13 @@ if [ ! -f "$ZYNTHIAN_CONFIG_DIR/data_backup_items.txt" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/config/data_backup_items.txt $ZYNTHIAN_CONFIG_DIR
 fi
 cp -a $ZYNTHIAN_SYS_DIR/config/sidechain.json $ZYNTHIAN_CONFIG_DIR
-cp -a $ZYNTHIAN_SYS_DIR/config/tts $ZYNTHIAN_CONFIG_DIR
 
 # Delete deprecated config files
 if [ -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
 	rm -f $ZYNTHIAN_CONFIG_DIR/backup_items.txt
+fi
+if [ -d "$ZYNTHIAN_CONFIG_DIR/tts" ]; then
+	rm -rf "$ZYNTHIAN_CONFIG_DIR/tts"
 fi
 
 # Fix/Setup MIDI-profiles data directory
