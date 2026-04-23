@@ -40,19 +40,22 @@ export ZYNTHIAN_SYS_BRANCH=$1
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH=$ZYNTHIAN_BRANCH
 
-#export git_options="--depth 1 --single-branch -b"
-#export git_options="--depth 1 -b"
-#export git_options="--shallow-since='2 years' -b"
+#export git_options="--depth 1 --single-branch"
+#export git_options="--depth 1"
+#export git_options="--shallow-since='2 years'"
 export git_options="--filter=blob:none"
+
+cd "$ZYNTHIAN_DIR"
 
 # Force resetting all repositories
 if [[ "$2" == "ALL" ]]; then
-	cd "$ZYNTHIAN_DIR"
 	rm -rf "zynthian-sys"
 	rm -rf "zyncoder"
 	rm -rf "zynthian-ui"
 	rm -rf "zynthian-webconf"
 	rm -rf "zynthian-data"
+elif [[ -d "$2" ]]; then
+	rm -rf "$2"
 fi
 
 # Zynthian System Scripts and Config files
