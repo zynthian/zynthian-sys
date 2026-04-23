@@ -84,6 +84,7 @@ fi
 if [ ! -d "zynthian-webconf" ]; then
 	cd "$ZYNTHIAN_DIR"
 	git clone "${git_options}" -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
+	regenerate_keys.sh webconf
 fi
 
 # Zynthian Data
