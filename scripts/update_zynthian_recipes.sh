@@ -608,6 +608,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 
 fi
 
+patchlevel="20260423.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs python3-bs4"
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
