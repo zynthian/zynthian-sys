@@ -194,8 +194,8 @@ git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 # Zynthian UI
 cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}"
-cd "$ZYNTHIAN_UI_DIR"
-find ./zynlibs -type f -name build.sh -exec {} \;
+cd "$ZYNTHIAN_UI_DIR/zynlibs"
+./build.sh
 
 # Zynthian Data
 cd "$ZYNTHIAN_DIR"
