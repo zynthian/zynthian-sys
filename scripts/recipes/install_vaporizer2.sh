@@ -7,7 +7,6 @@ dpkg -i vaporizer2-lv2_3.5.0+git.11.1c56c4b-1_arm64.deb
 #dpkg -i vaporizer2-lv2_3.4.5+git.17.569e0b9-2_arm64.deb
 rm -f vaporizer2*.deb
 
-
 # Create system directories
 mkdir -p /usr/share/Vaporizer2/Noises
 mkdir -p /usr/share/Vaporizer2/Presets
@@ -31,6 +30,9 @@ unzip "Preset Bank by Thomas Trupiano.zip"
 mv Trupiano/Presets/* Trupiano
 rm -rf Trupiano/Presets
 rm -f "Preset Bank by Thomas Trupiano.zip"
+
+regenerate_engine_db.sh
+regenerate_lv2_presets.sh https://www.vast-dynamics.com/plugins/VASTvaporizer2
 
 exit
 
