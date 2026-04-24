@@ -15785,7 +15785,7 @@
 "TITLE": "Vaporizer2",
 "TYPE": "MIDI Synth",
 "CAT": "Synth",
-"ENABLED": false,
+"ENABLED": true,
 "INDEX": 9999,
 "URL": "https://www.vast-dynamics.com/plugins/VASTvaporizer2",
 "UI": "X11UI",
