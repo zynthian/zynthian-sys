@@ -1,4 +1,4 @@
- 
+
 # Set .remote_display file when logging with SSH
 if [[ -n $DISPLAY ]]; then
 	export -p > .remote_display_env
@@ -9,4 +9,4 @@ if [[ -n $DISPLAY ]]; then
 	fi
 fi
 
-export PATH=$PATH:/$ZYNTHIAN_SYS_DIR/scripts:/$ZYNTHIAN_SYS_DIR/sbin
+export PATH=$PATH:$ZYNTHIAN_SYS_DIR/scripts:$ZYNTHIAN_SYS_DIR/sbin
