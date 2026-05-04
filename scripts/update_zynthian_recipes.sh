@@ -605,13 +605,21 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	elif [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V4" ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_04__UI_LONG" "TTS_TOGGLE_ENABLE"
 	fi
-
 fi
 
 patchlevel="20260423.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs python3-bs4"
+fi
+
+patchlevel="20260504.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V5" ]]; then
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_15__UI_SHORT" "SELECT_ACTION S"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_15__UI_BOLD" "SELECT_ACTION B"
+	fi
 fi
 
 # -----------------------------------------------------------------------------
