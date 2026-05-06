@@ -128,8 +128,12 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Midi" ]; then
 	mv "$ZYNTHIAN_MY_DATA_DIR/capture/useless.mid" "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
 fi
 # Create Midi Capture soft link
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Midi/capture" ]; then
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Midi/capture" ]; then
 	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Midi/capture"
+fi
+# Create Midi patterns subdir
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Midi/patterns" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Midi/patterns"
 fi
 
 # Create soft links for puredata and SFZ samples
