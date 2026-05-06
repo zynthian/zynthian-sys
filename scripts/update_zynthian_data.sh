@@ -147,13 +147,13 @@ if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/hydrogen" ]; then
 	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen $ZYNTHIAN_MY_DATA_DIR/files/Samples/hydrogen
 fi
 
-# Fix zynseq data directories
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns"
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/tracks"
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/sequences"
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
+# Move zynseq patterns to files
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
+	mv "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns" "$ZYNTHIAN_MY_DATA_DIR/files/Patterns"
+	#rm -rf "$ZYNTHIAN_MY_DATA_DIR/zynseq"
+fi
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Patterns" ]; then^
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Patterns"
 fi
 
 # Create preset-favorites if needed
