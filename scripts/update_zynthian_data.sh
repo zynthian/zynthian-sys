@@ -152,7 +152,7 @@ if [ -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
 	mv "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns" "$ZYNTHIAN_MY_DATA_DIR/files/Patterns"
 	#rm -rf "$ZYNTHIAN_MY_DATA_DIR/zynseq"
 fi
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Patterns" ]; then^
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Patterns" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Patterns"
 fi
 
