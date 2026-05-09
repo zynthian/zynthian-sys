@@ -249,6 +249,7 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs/deconvolved"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Neural Models"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Tuning"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Patterns"
+mkdir "$ZYNTHIAN_MY_DATA_DIR/collections"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 

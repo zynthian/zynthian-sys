@@ -52,6 +52,11 @@ fi
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Create collections directory
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/collections" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/collections"
+fi
+
 # Create directories and symlinks for Hydrogen soundfonts
 if [ ! -d "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen" ]; then
 	mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen"
