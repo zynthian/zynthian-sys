@@ -486,12 +486,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
 fi
 
-patchlevel="20260129.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
-	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
-fi
+#patchlevel="20260129.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+#	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
+#fi
 
 # This must be done always at end of Oram patches to allow changing from Oram to Vangelis
 patchlevel="20260206.1"
@@ -620,6 +620,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_15__UI_SHORT" "SELECT_ACTION S"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_15__UI_BOLD" "SELECT_ACTION B"
 	fi
+fi
+
+patchlevel="20260512.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
 fi
 
 # -----------------------------------------------------------------------------
