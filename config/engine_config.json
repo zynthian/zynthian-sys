@@ -12368,7 +12368,7 @@
 "ENABLED": true,
 "INDEX": 9999,
 "URL": "https://butoba.net/homepage/mimid.html",
-"UI": null,
+"UI": "X11UI",
 "DESCR": "Subtractive with 2 oscillators, sub oscillator, 24dB resonant LP filter, 6dB HP filter, 2 ADSSR, 2 LFO / AD envelope generators.",
 "QUALITY": 4,
 "COMPLEX": 4,
