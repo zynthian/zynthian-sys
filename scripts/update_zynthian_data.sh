@@ -153,7 +153,7 @@ if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/hydrogen" ]; then
 fi
 
 # Move zynseq patterns to files
-if [ -d "$ZYNTHIAN_MY_DATA_DIR/zynseq" ]; then
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns" ]; then
 	mv "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns" "$ZYNTHIAN_MY_DATA_DIR/files/Patterns"
 	#rm -rf "$ZYNTHIAN_MY_DATA_DIR/zynseq"
 fi
