@@ -629,6 +629,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
 fi
 
+patchlevel="20260517.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	dpkg --remove --force-depends libsndfile-zyndev
+	apt --fix-broken install
+	aptpkgs="$aptpkgs libsndfile1"
+fi
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
