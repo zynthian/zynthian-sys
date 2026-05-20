@@ -629,6 +629,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
 fi
 
+patchlevel="20260520.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Replace deprecated LAYER_CONTROL actions in wiring config.
+	sed -i "s/LAYER_CONTROL/CHAIN_CONTROL/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
