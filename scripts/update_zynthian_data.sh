@@ -52,6 +52,13 @@ fi
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Create user's ctrldev directory
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/ctrldev" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/ctrldev"
+	cp "$ZYNTHIAN_UI_DIR/zyngine/ctrldev/__init__.py" "$ZYNTHIAN_MY_DATA_DIR/ctrldev"
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/ctrldev" "$ZYNTHIAN_UI_DIR/zyngine/ctrldev_user"
+fi
+
 # Create collections directory
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/collections" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/collections"
