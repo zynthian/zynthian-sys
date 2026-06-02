@@ -569,7 +569,7 @@ patchlevel="20260410.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	# Modify V5 back button to use release actions
-	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V5" ]]; then
+	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13" "UI_ACTION_RELEASE"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "ZYNSWITCH 1,B"
@@ -599,10 +599,10 @@ patchlevel="20260421.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	# Setup TTS enable/disable action
-	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V5" ]]; then
+	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_20__UI_LONG" "TTS_TOGGLE_ENABLE"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_20__UI_ALT_LONG" "TTS_TOGGLE_ENABLE"
-	elif [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V4" ]]; then
+	elif [[ "$ZYNTHIAN_WIRING_LAYOUT" == V4* ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_04__UI_LONG" "TTS_TOGGLE_ENABLE"
 	fi
 fi
@@ -616,7 +616,7 @@ fi
 patchlevel="20260504.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == "V5" ]]; then
+	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_15__UI_SHORT" "SELECT_ACTION S"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_15__UI_BOLD" "SELECT_ACTION B"
 	fi
@@ -642,6 +642,18 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	# Replace deprecated LAYER_CONTROL actions in wiring config.
 	sed -i "s/LAYER_CONTROL/CHAIN_CONTROL/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+fi
+
+patchlevel="20260603.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Updatey V5 back button functionality
+	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13" "UI_ACTION_RELEASE"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "MAIN_MENU"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
+	fi
 fi
 
 
