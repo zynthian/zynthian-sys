@@ -171,11 +171,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh lv2://nobisoft.de/Perfomix
 fi
 
-patchlevel="20250108.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
-fi
+#patchlevel="20250108.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
+#fi
 
 #patchlevel="20250110.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -196,11 +196,11 @@ fi
 #	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
 #fi
 
-patchlevel="20250212.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_ratatouille_prebuilt.sh
-fi
+#patchlevel="20250212.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_ratatouille_prebuilt.sh
+#fi
 
 #patchlevel="20250214.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -654,6 +654,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "MAIN_MENU"
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
 	fi
+fi
+
+patchlevel="20260608.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Update Neural Modelers
+	$ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_ratatouille_prebuilt.sh
+	# Install NeuralRack
+	$ZYNTHIAN_RECIPE_DIR/install_neuralrack_prebuilt.sh
 fi
 
 
