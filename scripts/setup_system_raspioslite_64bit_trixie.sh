@@ -112,7 +112,8 @@ apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfa
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng sox
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng \
+sox wiringpi
 #firmware-ralink
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
@@ -145,7 +146,6 @@ libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-de
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
 libclthreads-dev libclxclient-dev libwebkit2gtk-4.0-dev libboost-python-dev libboost-thread-dev libsndfile-zyndev
-
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
 
@@ -163,7 +163,9 @@ ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband
 apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
-python3-mutagen python3-pam python3-bcrypt
+python3-mutagen python3-pam python3-bcrypt python3-pyliblo3 python3-lilv python3-alsaaudio python3-levenshtein \
+python3-websocket python3-ffmpeg python3-tkinterweb python3-lgpio
+
 
 # Python2 (DEPRECATED!!)
 #apt-get -y install python-setuptools python-is-python2 python-dev-is-python2
@@ -265,8 +267,8 @@ python3 -m venv venv --system-site-packages
 source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
-pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi Levenshtein tkinterweb \
-ffmpeg-python pyrubberband mididings sox scipy wavio meson ninja abletonparsing hwmon vcgencmd \
+pip3 install JACK-Client oyaml adafruit-circuitpython-neopixel-spi hwmon vcgencmd meson ninja \
+pyrubberband mididings sox scipy wavio  abletonparsing \
 tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
 
 #------------------------------------------------

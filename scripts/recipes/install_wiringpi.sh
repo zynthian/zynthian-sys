@@ -11,8 +11,7 @@ if [ -d "./WiringPi" ]; then
 fi
 
 # Download, build and install WiringPi library
-#git clone https://github.com/WiringPi/WiringPi.git
-git clone https://github.com/zynthian/WiringPi.git
+git clone https://github.com/WiringPi/WiringPi.git
 cd WiringPi
 ./build
 cd ..

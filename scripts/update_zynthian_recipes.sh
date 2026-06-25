@@ -666,6 +666,19 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_neuralrack_prebuilt.sh
 fi
 
+patchlevel="20260625.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Prepare Bookworm for Trixie transition
+	if [[ "$LINUX_OS_VERSION" == "bookworm" ]]; then
+		# Install pyliblo from repository via pip
+		pip install "git+https://github.com/gesellkammer/pyliblo3"
+		# Install wiringpi deb package from project's repo
+		wget "https://github.com/WiringPi/WiringPi/releases/download/3.18/wiringpi_3.18_arm64.deb"
+		dpkg -i "wiringpi_3.18_arm64.deb"
+		rm -f "wiringpi_3.18_arm64.deb"
+	fi
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
