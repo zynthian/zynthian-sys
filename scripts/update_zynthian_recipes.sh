@@ -673,6 +673,8 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	if [[ "$LINUX_OS_VERSION" == "bookworm" ]]; then
 		# Install pyliblo from repository via pip
 		pip install "git+https://github.com/gesellkammer/pyliblo3"
+		# Upgrade tkinterweb module
+		pip install tkinterweb --upgrade
 		# Install wiringpi deb package from project's repo
 		wget "https://github.com/WiringPi/WiringPi/releases/download/3.18/wiringpi_3.18_arm64.deb"
 		dpkg -i "wiringpi_3.18_arm64.deb"
