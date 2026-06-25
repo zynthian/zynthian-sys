@@ -164,7 +164,7 @@ apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi 2to3 pyt
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt python3-pyliblo3 python3-lilv python3-alsaaudio python3-levenshtein \
-python3-websocket python3-ffmpeg python3-tkinterweb python3-lgpio
+python3-websocket python3-ffmpeg python3-lgpio
 
 
 # Python2 (DEPRECATED!!)
@@ -268,7 +268,7 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
 pip3 install JACK-Client oyaml adafruit-circuitpython-neopixel-spi hwmon vcgencmd meson ninja \
-pyrubberband mididings sox scipy wavio  abletonparsing \
+pyrubberband mididings sox scipy wavio  abletonparsing tkinterweb \
 tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
 
 #------------------------------------------------
