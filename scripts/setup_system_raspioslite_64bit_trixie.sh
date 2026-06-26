@@ -164,7 +164,7 @@ apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi 2to3 pyt
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt python3-pyliblo3 python3-lilv python3-alsaaudio python3-levenshtein \
-python3-websocket python3-ffmpeg python3-lgpio
+python3-websocket python3-ffmpeg python3-lgpio pyliblo-utils
 
 
 # Python2 (DEPRECATED!!)
@@ -374,7 +374,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #$ZYNTHIAN_RECIPE_DIR/install_bluez.sh
 
 # Install pyliblo library (liblo OSC library for Python)
-$ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
+#$ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 
 # Install mod-ttymidi (MOD's ttymidi version with jackd MIDI support)
 $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
