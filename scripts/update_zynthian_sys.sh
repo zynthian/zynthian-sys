@@ -429,17 +429,29 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
 fi
 
-# Autodetect display rotation and configure X11 accordingly
-if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
-	echo "Configuring X11 inverted display ..."
-	cat > "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
+# Configure X11 display rotation from DISPLAY_ROTATION.
+# DISPLAY_ROTATION drives both touch rotation (in zynthian-ui's multitouch
+# driver) and, here, the X11 screen rotation, so a single setting rotates
+# both layers together. Legacy displays that only set display_lcd_rotate=2
+# in DISPLAY_CONFIG still get an inverted screen via the fallback below.
+rm -f /etc/X11/xorg.conf.d/69-display_*.conf
+X11_ROTATE=""
+case "$DISPLAY_ROTATION" in
+	Right) X11_ROTATE="right" ;;
+	Left) X11_ROTATE="left" ;;
+	Inverted) X11_ROTATE="inverted" ;;
+esac
+if [[ -z "$X11_ROTATE" && "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ]]; then
+	X11_ROTATE="inverted"
+fi
+if [[ -n "$X11_ROTATE" ]]; then
+	echo "Configuring X11 display rotation: $X11_ROTATE ..."
+	cat > "/etc/X11/xorg.conf.d/69-display_rotation.conf" << EOF
 Section "Monitor"
   Identifier "DSI-1"
-  Option "Rotate" "inverted"
+  Option "Rotate" "$X11_ROTATE"
 EndSection
 EOF
-else
-	rm -f /etc/X11/xorg.conf.d/69-display_*.conf
 fi
 
 if [ "$ZYNTHIAN_UI_ENABLE_CURSOR" == "1" ]; then
