@@ -7404,7 +7404,7 @@
 "INDEX": 12,
 "URL": "",
 "UI": "",
-"DESCR": "Spotify connect client.",
+"DESCR": "Spotify connect client. Needs Spotify Premium account. Use at own risk, see spotifyd.",
 "QUALITY": 3,
 "COMPLEX": 1,
 "EDIT": 0
