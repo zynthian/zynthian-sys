@@ -682,6 +682,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
+patchlevel="20260702.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Install netifaces python library, needed for webconf's tk300 integration
+ 	pip install netifaces2
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
