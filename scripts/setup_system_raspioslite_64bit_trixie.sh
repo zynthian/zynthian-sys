@@ -333,7 +333,7 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
 
-# Configure systemd services
+# Disable/mask uneeded services
 systemctl daemon-reload
 systemctl disable raspi-config
 systemctl disable cron
@@ -342,8 +342,6 @@ systemctl disable dhcpcd
 systemctl disable apt-daily.timer
 systemctl disable ModemManager
 systemctl disable glamor-test.service
-systemctl enable avahi-daemon
-systemctl enable devmon@root
 #systemctl disable wpa_supplicant
 #systemctl disable hostapd
 #systemctl disable rsyslog
@@ -351,6 +349,12 @@ systemctl enable devmon@root
 #systemctl mask packagekit
 #systemctl mask polkit
 systemctl mask rpi-eeprom-update
+systemctl disable nfs-blkmap.service
+systemctl mask nfs-blkmap.service
+
+# Enable some needed services
+systemctl enable avahi-daemon
+systemctl enable devmon@root
 
 # Zynthian specific systemd services
 systemctl enable jack2
