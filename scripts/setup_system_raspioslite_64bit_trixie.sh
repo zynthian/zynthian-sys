@@ -150,7 +150,7 @@ libclthreads-dev libclxclient-dev libwebkit2gtk-4.0-dev libboost-python-dev libb
 # Removed from bookworm: libavresample4
 
 # Tools
-apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake \
+apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake4 \
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
 ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
 
