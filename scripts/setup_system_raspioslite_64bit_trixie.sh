@@ -80,7 +80,7 @@ fi
 #------------------------------------------------
 
 # deb-multimedia repo
-echo "deb https://www.deb-multimedia.org bookworm main non-free" >> /etc/apt/sources.list
+echo "deb https://www.deb-multimedia.org trixie main non-free" >> /etc/apt/sources.list
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -y --allow-unauthenticated  install deb-multimedia-keyring
 
