@@ -689,6 +689,12 @@ fi
 #	pip install netifaces2
 #fi
 
+patchlevel="20260717.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	cd $ZYNTHIAN_DIR
+	git clone https://github.com/zynthian/zynthian-packages
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section

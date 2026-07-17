@@ -51,6 +51,7 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthian/zyncoder.git"
 [ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
+[ -n "$ZYNTHIAN_PACKAGE_REPO" ] || ZYNTHIAN_PACKAGE_REPO="https://github.com/zynthian/zynthian-package.git"
 
 [ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="oram"
 [ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="oram"
@@ -204,6 +205,10 @@ git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 # Zynthian Webconf Tool
 cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
+
+# Zynthian Packages
+cd "$ZYNTHIAN_DIR"
+git clone "${ZYNTHIAN_PACKAGE_REPO}"
 
 # Create needed directories
 #mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"

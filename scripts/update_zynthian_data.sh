@@ -48,6 +48,12 @@ else
 	git pull
 fi
 
+echo "Updating zynthian-packages..."
+cd "$ZYNTHIAN_DIR/zynthian-packages"
+git checkout .
+git clean -f
+git pull
+
 #------------------------------------------------------------------------------
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------

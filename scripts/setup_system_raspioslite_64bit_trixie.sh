@@ -51,6 +51,7 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthian/zyncoder.git"
 [ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
+[ -n "$ZYNTHIAN_PACKAGE_REPO" ] || ZYNTHIAN_PACKAGE_REPO="https://github.com/zynthian/zynthian-package.git"
 
 [ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="oram"
 [ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="oram"
@@ -152,7 +153,8 @@ libclthreads-dev libclxclient-dev libwebkit2gtk-4.0-dev libboost-python-dev libb
 # Tools
 apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake \
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
-ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
+ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust \
+zita-ajbridge jack-example-tools
 
 # Missed tools from previous OS versions:
 #libjack-dev-session
@@ -206,6 +208,11 @@ git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 # Zynthian Webconf Tool
 cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
+
+# Zynthian Packages
+cd "$ZYNTHIAN_DIR"
+git clone "${ZYNTHIAN_PACKAGE_REPO}"
+
 
 # Create needed directories
 #mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
