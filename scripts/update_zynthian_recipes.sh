@@ -696,6 +696,17 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	git clone https://github.com/zynthian/zynthian-packages
 fi
 
+patchlevel="20260718.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	# Updatey V5 bold back button functionality
+	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK S"
+		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "BACK B"
+	fi
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
