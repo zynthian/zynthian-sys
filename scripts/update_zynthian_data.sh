@@ -139,11 +139,6 @@ fi
 # Create MIDI folder and move some mid files to it
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Midi" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
-	mv "$ZYNTHIAN_MY_DATA_DIR/capture/Bladerunner-1.mid" "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
-	mv "$ZYNTHIAN_MY_DATA_DIR/capture/House In RTP.mid" "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
-	mv "$ZYNTHIAN_MY_DATA_DIR/capture/Money_for_nothing.mid" "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
-	mv "$ZYNTHIAN_MY_DATA_DIR/capture/roland_take5.mid" "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
-	mv "$ZYNTHIAN_MY_DATA_DIR/capture/useless.mid" "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
 fi
 # Create Midi Capture soft link
 if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Midi/capture" ]; then
