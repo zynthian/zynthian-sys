@@ -237,7 +237,7 @@
 "DESCR": "A stereo algorithmic reverb based on Cloudseed",
 "QUALITY": 5,
 "COMPLEX": 4,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/AIDA-X": {
 "ID": "293910cb4e",
@@ -2112,7 +2112,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/C* Noisegate - Attenuate noise resident in silence": {
 "ID": "6db13aa4e4",
@@ -2292,7 +2292,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Calf Analyzer": {
 "ID": "4e1d289b14",
@@ -2577,7 +2577,7 @@
 "DESCR": "Widens stereo signal via a simple delay line.",
 "QUALITY": 2,
 "COMPLEX": 3,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Calf Limiter": {
 "ID": "ecf367faa7",
@@ -2667,7 +2667,7 @@
 "DESCR": "Spreads a mono signal into stereo by distributing the spectrum between L & R.",
 "QUALITY": 3,
 "COMPLEX": 3,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Calf Multiband Compressor": {
 "ID": "c717cee71e",
@@ -2697,7 +2697,7 @@
 "DESCR": "Multiband stereo base and additional harmonics for widening stereo image on four different frequency ranges. ",
 "QUALITY": 3,
 "COMPLEX": 4,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Calf Multiband Gate": {
 "ID": "d141fb7761",
@@ -2922,7 +2922,7 @@
 "DESCR": "Tool-set for adjusting stereo settings. Pan, phase, delay, levels, etc.",
 "QUALITY": 4,
 "COMPLEX": 4,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Calf Tape Simulator": {
 "ID": "f25bfe2d72",
@@ -3162,7 +3162,7 @@
 "DESCR": "A digital model of the Klon Centaur guitar pedal, using a variety of circuit modelling techniques, including nodal analysis, wave digital filters and recurrent neural networks. ",
 "QUALITY": 4,
 "COMPLEX": 1,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/ChowPhaserMono": {
 "ID": "59301f4095",
@@ -3177,7 +3177,7 @@
 "DESCR": "Phaser effect, based very loosely on the classic Shulte Compact Phasing \"A\".",
 "QUALITY": 4,
 "COMPLEX": 2,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/ChowPhaserStereo": {
 "ID": "c451e80eb8",
@@ -3192,7 +3192,7 @@
 "DESCR": "Phaser effect, based very loosely on the classic Shulte Compact Phasing \"A\".",
 "QUALITY": 4,
 "COMPLEX": 3,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/CHOWTapeModel": {
 "ID": "4e85f68a8e",
@@ -3207,7 +3207,7 @@
 "DESCR": "An analog tape machine physical model, originally based on the Sony TC-260.",
 "QUALITY": 4,
 "COMPLEX": 4,
-"EDIT": 2
+"EDIT": 0
 },
 "CL": {
 "ID": "466aee172d",
@@ -3222,7 +3222,7 @@
 "DESCR": "Clippy is the zynthian's clip launcher. It can remain disabled here because it has its own button in the UI.",
 "QUALITY": 4,
 "COMPLEX": 3,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Clock Pulse": {
 "ID": "634e9dc25a",
@@ -11142,7 +11142,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Matrix: MS to Stereo": {
 "ID": "bed38c8343",
@@ -11157,7 +11157,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Matrix: Stereo to MS": {
 "ID": "0f7f534ba7",
@@ -11172,7 +11172,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/MDA Ambience": {
 "ID": "e6c7ad1d02",
@@ -11382,7 +11382,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/MDA JX10": {
 "ID": "82932d8ea7",
@@ -11592,7 +11592,7 @@
 "DESCR": "Delay stereo channels.",
 "QUALITY": 2,
 "COMPLEX": 2,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/MDA SubSynth": {
 "ID": "6b583a17d2",
@@ -12368,7 +12368,7 @@
 "ENABLED": true,
 "INDEX": 9999,
 "URL": "https://butoba.net/homepage/mimid.html",
-"UI": null,
+"UI": "X11UI",
 "DESCR": "Subtractive with 2 oscillators, sub oscillator, 24dB resonant LP filter, 6dB HP filter, 2 ADSSR, 2 LFO / AD envelope generators.",
 "QUALITY": 4,
 "COMPLEX": 4,
@@ -12462,7 +12462,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Moog LPF": {
 "ID": "8cb2752b6e",
@@ -12627,7 +12627,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Multiband EQ": {
 "ID": "b9c67e9c43",
@@ -12687,7 +12687,7 @@
 "DESCR": "A dual macro-oscillator synth with Braids + Plaits, a modulation matrix and fancy filters. Braid & Plaits generate complex timbres difficult to emulate with a classic analog approach.  Intricate digital synthesis algorithms wrapped in oscillator\u2019s clothes.",
 "QUALITY": 4,
 "COMPLEX": 4,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/Mutated Sequences": {
 "ID": "d72aaf41ed",
@@ -12747,6 +12747,21 @@
 "DESCR": "Neural model player that uses deep learning models to recreate the tone of guitar amplifiers and pedals with state-of-the-art accuracy.\nIt can load NAM and Aida-X models.\n  Neural Amp Modeler (NAM): https://github.com/sdatkinson/neural-amp-modeler\n  RTNeural keras/Aida-x models: https://github.com/jatinchowdhury18/RTNeural\n\nA large collection of models is available at https://tonehunt.org",
 "QUALITY": 5,
 "COMPLEX": 1,
+"EDIT": 0
+},
+"JV/Neuralrack": {
+"ID": "135285c5be",
+"NAME": "Neuralrack",
+"TITLE": "Neuralrack",
+"TYPE": "Audio Effect",
+"CAT": "Simulator",
+"ENABLED": false,
+"INDEX": 9999,
+"URL": "urn:brummer:neuralrack",
+"UI": "X11UI",
+"DESCR": "Neuralrack is a Neural Model loader with support for *.nam, *.aidax and *.json based model files.\nNeuralrack allow to load up to two model files and run them serial.\nThe input/output could be controlled separate for each model.\nFor tone sharping a 6 band EQ could be enabled.\nAdditional it allow to load up a separate Impulse Response file for each output channel (stereo).\nNeuralrack provide a buffered Mode which introduce a one frame latency when enabled.\nIt moves the complete processing into a background thread. That will reduce the CPU load when needed.\nThe resulting latency will be reported to the host so that it could be compensated.",
+"QUALITY": 0,
+"COMPLEX": 0,
 "EDIT": 0
 },
 "JV/No Delay Line": {
@@ -12942,7 +12957,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/Onset Trigger - Bassdrum Detection Stereo": {
 "ID": "94f17da3e9",
@@ -12957,7 +12972,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/Open Big Muff": {
 "ID": "c0a12dd3b6",
@@ -13002,7 +13017,7 @@
 "DESCR": "Uses the DSP56300 emulator to recreate the \"Access Virus A/B/C\". It needs a ROM file with the firmware.",
 "QUALITY": 3,
 "COMPLEX": 5,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/OsTIrus": {
 "ID": "b14a957e34",
@@ -13017,7 +13032,7 @@
 "DESCR": "Uses the DSP56300 emulator to recreate the \"Access Virus TI\". It needs a ROM file with the firmware.",
 "QUALITY": 3,
 "COMPLEX": 5,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/padthv1": {
 "ID": "e956665ae2",
@@ -13135,6 +13150,21 @@
 "URL": "http://gareus.org/oss/lv2/phaserotate#stereo",
 "UI": "X11UI",
 "DESCR": "",
+"QUALITY": 0,
+"COMPLEX": 0,
+"EDIT": 0
+},
+"JV/PianoRes": {
+"ID": "71f05391fc",
+"NAME": "PianoRes",
+"TITLE": "PianoRes",
+"TYPE": "Audio Effect",
+"CAT": "Other",
+"ENABLED": false,
+"INDEX": 9999,
+"URL": "urn:jlearman:PianoRes",
+"UI": "X11UI",
+"DESCR": "Piano Resonance for sampled pianos",
 "QUALITY": 0,
 "COMPLEX": 0,
 "EDIT": 0
@@ -13677,7 +13707,7 @@
 "DESCR": "RipplerX is a physically modeled synth, capable of sounds similar to AAS Chromaphone and Ableton Collision. Dual resonators with serial and parallel coupling. 9 Models of acoustic resonators: String, Beam, Squared, Membrane, Drumhead, Plate, Marimba, Open tube and Closed tube. Inharmocity, Tone, Ratio and Material sliders to shape the timbre. Noise and mallet generators. Up to 64 partials per resonator.",
 "QUALITY": 4,
 "COMPLEX": 4,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Roboverb": {
 "ID": "d12139f87d",
@@ -13692,7 +13722,7 @@
 "DESCR": "Roboverb is designed to produce a distinctive, \"robotic\" or metallic reverb sound, and its parameters are somewhat unique compared to typical reverb plugins.",
 "QUALITY": 4,
 "COMPLEX": 3,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Roomy": {
 "ID": "6fe9f26f2e",
@@ -14292,7 +14322,7 @@
 "DESCR": "Live looping sampler capable of recording, overdubbing, multiplying, reversing and more. It allows multiple simultaneous loops. Single instance.",
 "QUALITY": 5,
 "COMPLEX": 3,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Sorcer": {
 "ID": "853da4eef3",
@@ -14502,7 +14532,7 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/stereoswitchbox": {
 "ID": "bcc243e474",
@@ -14817,7 +14847,7 @@
 "DESCR": "This commercial plugin is one of the best Juno 60 emulators. It faithfully recreates the iconic sound of the legendary analog synthesizer. It includes a good preset collection. You need a license to remove the white-noise effect!",
 "QUALITY": 5,
 "COMPLEX": 4,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/Tal-Dub-3": {
 "ID": "423749527d",
@@ -15027,7 +15057,7 @@
 "DESCR": "Vocal doubler with full control over level and position. Interesting for guitars, bass, etc.",
 "QUALITY": 2,
 "COMPLEX": 3,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/TAP Mono Dynamics": {
 "ID": "f56bc51caa",
@@ -15297,7 +15327,7 @@
 "DESCR": "Stereo phase inverting and cancellation.",
 "QUALITY": 1,
 "COMPLEX": 2,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/the infamous bent delay": {
 "ID": "27a6bf1169",
@@ -15537,7 +15567,7 @@
 "DESCR": "???",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/The Vibey": {
 "ID": "17af0052ba",
@@ -15747,7 +15777,7 @@
 "DESCR": "Virtual analog synthesizer inspired by the classic Roland Juno polysynths.",
 "QUALITY": 0,
 "COMPLEX": 0,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/Valve rectifier": {
 "ID": "fa8a45fd08",
@@ -15789,10 +15819,10 @@
 "INDEX": 9999,
 "URL": "https://www.vast-dynamics.com/plugins/VASTvaporizer2",
 "UI": "X11UI",
-"DESCR": "VAST Dynamics Vaporizer2 Hybrid Synthesizer Plug-in",
-"QUALITY": 0,
-"COMPLEX": 0,
-"EDIT": 0
+"DESCR": "A powerful, free, and open-source hybrid wavetable synthesizer and sampler workstation. It combines multiple forms of sound generation including wavetable, FM, additive, and granular synthesis",
+"QUALITY": 5,
+"COMPLEX": 5,
+"EDIT": 2
 },
 "JV/Vavra": {
 "ID": "758a203c39",
@@ -15807,7 +15837,7 @@
 "DESCR": "Uses the DSP56300 emulator to recreate the \"Waldorf MicroQ\". It needs a ROM file with the firmware.",
 "QUALITY": 3,
 "COMPLEX": 5,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/VC to Hz": {
 "ID": "0af2df8d89",
@@ -16002,21 +16032,6 @@
 "DESCR": "It does nothing!",
 "QUALITY": 1,
 "COMPLEX": 1,
-"EDIT": 0
-},
-"JV/Wavetable": {
-"ID": "d5b35c78eb",
-"NAME": "Wavetable",
-"TITLE": "Wavetable",
-"TYPE": "MIDI Synth",
-"CAT": "Synth",
-"ENABLED": false,
-"INDEX": 9999,
-"URL": "https://socalabs.com/wavetable/",
-"UI": "X11UI",
-"DESCR": "Wavetable",
-"QUALITY": 0,
-"COMPLEX": 0,
 "EDIT": 0
 },
 "JV/Whaaa": {
@@ -16377,7 +16392,7 @@
 "DESCR": "Uses the DSP56300 emulator to recreate the \"Waldorf Microwave II/XT\". It needs a ROM file with the firmware.",
 "QUALITY": 3,
 "COMPLEX": 5,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/YK Chorus": {
 "ID": "2910b08434",
@@ -16587,7 +16602,7 @@
 "DESCR": "Change vertical position of sound.",
 "QUALITY": 2,
 "COMPLEX": 1,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/ZamNoise": {
 "ID": "c3180b6792",
