@@ -136,10 +136,19 @@ if [ -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
 	mv $ZYNTHIAN_MY_DATA_DIR/audio/* "$ZYNTHIAN_MY_DATA_DIR/files/Audio"
 	rm -rf "$ZYNTHIAN_MY_DATA_DIR/audio"
 fi
-# Create MIDI folder and move some mid files to it
+# Create my-data MIDI folder
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Midi" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
 fi
+# Remove factory mid files from my-data folder
+if [ -f "$ZYNTHIAN_MY_DATA_DIR/files/Midi/Bladerunner-1.mid" ]; then
+	rm -f "$ZYNTHIAN_MY_DATA_DIR/files/Midi/Bladerunner-1.mid"
+	rm -f "$ZYNTHIAN_MY_DATA_DIR/files/Midi/House In RTP.mid"
+	rm -f "$ZYNTHIAN_MY_DATA_DIR/files/Midi/Money_for_nothing.mid"
+	rm -f "$ZYNTHIAN_MY_DATA_DIR/files/Midi/roland_take5.mid"
+	rm -f "$ZYNTHIAN_MY_DATA_DIR/files/Midi/useless.mid"
+fi
+
 # Create Midi Capture soft link
 if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Midi/capture" ]; then
 	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Midi/capture"
