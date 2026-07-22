@@ -29,6 +29,21 @@ source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
+# Enable strict mode and Catch errors with trap
+#------------------------------------------------------------------------------
+
+set -euo pipefail
+set -o errtrace
+#IFS=$'\n\t'
+
+function catch_error {
+	echo "Error Catched! Aborting Zynthian Update ...";
+	exit 1
+}
+
+trap "catch_error" ERR
+
+#------------------------------------------------------------------------------
 # Run update recipes ...
 #------------------------------------------------------------------------------
 
@@ -36,6 +51,7 @@ aptpkgs=""
 
 #Custom update recipes, depending on the codebase version
 echo "Executing update recipes..."
+
 # -----------------------------------------------------------------------------
 # Load current patchlevel
 # -----------------------------------------------------------------------------
@@ -76,12 +92,13 @@ fi
 #  $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
 #fi
 
+# TODO This should be in update_data.sh
 patchlevel="20241016"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	sbdir="/root/.local/share/odin2/Soundbanks"
 	if [ ! -d "$sbdir" ]; then
-  	mkdir "$sbdir"
+		mkdir "$sbdir"
 	fi
 fi
 
@@ -108,15 +125,17 @@ fi
 patchlevel="20241022.3"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt -y install ttf-bitstream-vera
+	apt-get -y install ttf-bitstream-vera
 	$ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 fi
 
-patchlevel="20241024.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs riban-lv2"
-fi
+# Debian package is currently not available for trixie
+# TODO => Build riban plugins an inclde them into prebuilt LV2 directory
+#patchlevel="20241024.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	aptpkgs="$aptpkgs riban-lv2"
+#fi
 
 # Force to tag-release
 patchlevel="20241105.1"
@@ -125,9 +144,9 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	cd $ZYNTHIAN_SYS_DIR
 	sys_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 	if [[ "$sys_branch" == "$ZYNTHIAN_STABLE_BRANCH" ]]; then
-  	set_envar.py ZYNTHIAN_STABLE_TAG last
-  	export ZYNTHIAN_STABLE_TAG="last"
-  fi
+		set_envar.py ZYNTHIAN_STABLE_TAG last
+		export ZYNTHIAN_STABLE_TAG="last"
+	fi
 fi
 
 #patchlevel="20241111.1"
@@ -168,7 +187,7 @@ patchlevel="20250104.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
-	regenerate_lv2_presets.sh lv2://nobisoft.de/Perfomix
+	regenerate_lv2_presets.sh "lv2://nobisoft.de/Perfomix"
 fi
 
 #patchlevel="20250108.1"
@@ -239,7 +258,7 @@ patchlevel="20250312.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	if [ ! -L "$ZYNTHIAN_SW_DIR/filebrowser/root/media" ]; then
-		ln -s /media "$ZYNTHIAN_SW_DIR/filebrowser/root/media"
+		ln -s "/media" "$ZYNTHIAN_SW_DIR/filebrowser/root/media"
 	fi
 fi
 
@@ -322,7 +341,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	cd "/usr/local/lib/lv2/Surge XT.lv2"
 	rm -f "factory_presets.ttl"
 	wget "https://os.zynthian.org/plugins/aarch64/Surge XT.lv2/factory_presets.ttl"
-	regenerate_lv2_presets.sh https://surge-synthesizer.github.io/lv2/surge-xt
+	regenerate_lv2_presets.sh "https://surge-synthesizer.github.io/lv2/surge-xt"
 fi
 
 patchlevel="20250910.1"
@@ -347,7 +366,7 @@ fi
 patchlevel="20250930.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	regenerate_lv2_presets.sh http://github.com/midilab/JC303
+	regenerate_lv2_presets.sh "http://github.com/midilab/JC303"
 fi
 
 patchlevel="20251001.1"
@@ -470,7 +489,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	#aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
 	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
-	regenerate_lv2_presets.sh urn:org.surge-synth-team.OB-Xf
+	regenerate_lv2_presets.sh "urn:org.surge-synth-team.OB-Xf"
 fi
 
 patchlevel="20260122.1"
@@ -503,13 +522,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	sed -i "s/SCREEN_ARRANGER//" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 fi
 
-patchlevel="20260208.4"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	curl -s https://kopia.io/signing-key | gpg --dearmor --batch --yes -o /etc/apt/keyrings/kopia-keyring.gpg
-	echo "deb [signed-by=/etc/apt/keyrings/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main" | tee /etc/apt/sources.list.d/kopia.list
-	aptpkgs="$aptpkgs sshpass kopia"
-fi
+# TODO This should be moved to a proper install script- It's too complex for a recipe and can fail ...
+#patchlevel="20260208.4"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	curl -s https://kopia.io/signing-key | gpg --dearmor --batch --yes -o /etc/apt/keyrings/kopia-keyring.gpg
+#	echo "deb [signed-by=/etc/apt/keyrings/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main" | tee /etc/apt/sources.list.d/kopia.list
+#	aptpkgs="$aptpkgs sshpass kopia"
+#fi
 
 patchlevel="20260228.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -626,13 +646,13 @@ patchlevel="20260512.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
-	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
+	regenerate_lv2_presets.sh "https://butoba.net/homepage/mimid.html"
 fi
 
 patchlevel="20260517.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	dpkg --remove --force-depends libsndfile-zyndev
+	dpkg --remove --force-depends libsndfile-zyndev || true
 	apt --fix-broken install
 	aptpkgs="$aptpkgs libsndfile1 libsndfile1-dev"
 fi
@@ -672,9 +692,9 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	# Prepare Bookworm for Trixie transition
 	if [[ "$LINUX_OS_VERSION" == "bookworm" ]]; then
 		# Install pyliblo from repository via pip
-		pip install "git+https://github.com/gesellkammer/pyliblo3"
+		/zynthian/venv/bin/pip install "git+https://github.com/gesellkammer/pyliblo3"
 		# Upgrade tkinterweb module
-		pip install tkinterweb --upgrade
+		/zynthian/venv/bin/pip install tkinterweb --upgrade
 		# Install wiringpi deb package from project's repo
 		wget "https://github.com/WiringPi/WiringPi/releases/download/3.18/wiringpi_3.18_arm64.deb"
 		dpkg -i "wiringpi_3.18_arm64.deb"
@@ -693,7 +713,10 @@ patchlevel="20260717.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	cd $ZYNTHIAN_DIR
-	git clone https://github.com/zynthian/zynthian-packages
+	if [ -d "zynthian-packages" ]; then
+		rm -rf "zynthian-packages"
+	fi
+	git clone "https://github.com/zynthian/zynthian-packages"
 fi
 
 patchlevel="20260718.1"
@@ -705,7 +728,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "BACK B"
 	fi
 fi
-
 
 # -----------------------------------------------------------------------------
 # End of patches section
@@ -736,6 +758,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 else
 	echo "NO NEW PATCHES TO APPLY."
 fi
+
+# -----------------------------------------------------------------------------
+# Disable strict mode and error trap
+# -----------------------------------------------------------------------------
+
+set +eu
+trap - ERR
 
 # -----------------------------------------------------------------------------
 # Upgrade System
@@ -772,3 +801,4 @@ apt -y autoclean
 run_flag_actions
 
 #------------------------------------------------------------------------------
+
