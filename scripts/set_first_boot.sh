@@ -68,6 +68,7 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs/deconvolved"
 echo "Copying initial user data files..."
 mkdir $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
 cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
+cp -a $ZYNTHIAN_DATA_DIR/snapshots/015-Sprammagamma.zss $ZYNTHIAN_MY_DATA_DIR/snapshots/last_state.zss
 
 # Restore factory config
 echo "Restoring factory config..."
