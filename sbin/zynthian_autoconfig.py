@@ -26,7 +26,7 @@
 import os
 import sys
 import logging
-from subprocess import check_output
+from subprocess import check_output, PIPE
 
 # --------------------------------------------------------------------
 # Hardware's config for several boards:
@@ -129,17 +129,22 @@ if config_name:
 	if config_name != os.environ.get('ZYNTHIAN_KIT_VERSION'):
 		print(f"Configuring Zynthian for {config_name} ...")
 
+		zyn_dir = os.environ.get('ZYNTHIAN_DIR', "/zynthian")
+		zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
+		zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR', "/zynthian/config")
+
 		if config_name == "V5" and os.environ.get('RBPI_VERSION_NUMBER') == '5':
 			config_file = f"zynthian_envars_{config_name}_pi5.sh"
 		else:
 			config_file = f"zynthian_envars_{config_name}.sh"
+		print(f"Copying config file '{config_file}' ...")
+		res = check_output(f"cp -a '{zsys_dir}/config/{config_file}' '{zconfig_dir}/zynthian_envars.sh'", shell=True, stderr=PIPE, encoding="utf8")
 
-		zyn_dir = os.environ.get('ZYNTHIAN_DIR', "/zynthian")
-		zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
-		zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR', "/zynthian/config")
-		
-		check_output(f"cp -a '{zsys_dir}/config/{config_file}' '{zconfig_dir}/zynthian_envars.sh'", shell=True)
-		check_output(f"{zsys_dir}/scripts/update_zynthian_sys.sh", shell=True)
+		print(res)
+		print(f"Reconfiguring system ...")
+		res = check_output(f"{zsys_dir}/scripts/update_zynthian_sys.sh", shell=True, stderr=PIPE, encoding="utf8")
+		print(res)
+
 		check_output(f"rm -rf {zyn_dir}/zyncoder/build", shell=True)
 		check_output(f"rm -rf {zconfig_dir}/img", shell=True)
 		check_output(f"{zsys_dir}/scripts/delayed_action_flags.sh set reboot", shell=True)

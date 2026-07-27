@@ -2,6 +2,25 @@
 
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
+if [[ "$1" != "-f" ]]; then
+	echo
+	echo "*************************************************************"
+	echo "************ WARNING WARNING WARNING! ***********************"
+	echo "*************************************************************"
+	echo "This will delete all user data and restore the factory state."
+	echo "*************************************************************"
+	echo
+	read -p "Are you sure to reset the zynthian device?" -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Nn]$ ]]; then
+		echo "Factory reset cancelled!"
+		exit 0
+	fi
+fi
+
+echo "STARTING FACTORY RESET ..."
+echo
+
 # Stop zynthian services
 if [[ "$VIRTUALIZATION" == "none" ]]; then
 	echo "Stopping zynthian services..."
@@ -29,16 +48,26 @@ done
 
 # Removing user data files
 echo "Removing user data files..."
-rm -rf $ZYNTHIAN_MY_DATA_DIR/snapshots/*
-rm -rf $ZYNTHIAN_MY_DATA_DIR/preset_favorites/*
-rm -rf $ZYNTHIAN_MY_DATA_DIR/capture/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/snapshots"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/preset_favorites"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/capture"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/collections"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/Audio/Tracks"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/Samples/Loops"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/One-Shot"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/Percussion"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/Midi/patterns"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/Patterns"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/IRs"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/Tuning"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/Neural Models"/*
+rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/IRs"/*
+mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs/deconvolved"
 
-# Copy default snapshots and midi files
+# Copy default snapshots
 echo "Copying initial user data files..."
-mkdir $ZYNTHIAN_MY_DATA_DIR/snapshots/000
-cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
-cp -a $ZYNTHIAN_DATA_DIR/mid/* $ZYNTHIAN_MY_DATA_DIR/files/Midi
-rm $ZYNTHIAN_MY_DATA_DIR/files/Midi/test.mid
+mkdir $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
+cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
 
 # Restore factory config
 echo "Restoring factory config..."
@@ -51,7 +80,11 @@ update_zynthian_sys.sh
 rm -rf $ZYNTHIAN_DIR/zyncoder/build
 $ZYNTHIAN_DIR/zyncoder/build.sh
 
-# Add First Boot Script to /etc/rc.local
+# Disable zynthian UI
+echo "Disabling zynthian UI service..."
+systemctl disable zynthian
+
+# Enable First Boot service
 echo "Enabling first boot service..."
 systemctl enable first_boot
 

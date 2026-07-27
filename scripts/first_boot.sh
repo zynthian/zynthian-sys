@@ -13,8 +13,8 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 echo -e "\nRunning autoconfig..." >> /root/first_boot.log
 $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py 2>&1 >> /root/first_boot.log
 if [ -f $REBOOT_FLAGFILE ]; then
+	echo -e "Preparing reboot after config..." >> /root/first_boot.log
 	clean_all_flags
-	echo -e "\nReboot..." >> /root/first_boot.log
 	# Abort and reset splash generation process
 	killall generate_fb_splash.sh
 	rm -rf $ZYNTHIAN_CONFIG_DIR/img
@@ -22,7 +22,11 @@ if [ -f $REBOOT_FLAGFILE ]; then
 	while [[ $(pgrep -f rpi-eeprom-update) > 0 ]]; do
 		sleep 0.1
 	done
+	# Enable zynthian UI service
+	echo -e "Enabling Zynthian UI ..." >> /root/first_boot.log
+	systemctl enable zynthian
 	# Reboot
+	echo -e "Reboot..." >> /root/first_boot.log
 	reboot
 	exit
 fi
@@ -58,6 +62,10 @@ sleep 1
 # Disable first_boot service
 echo -e "Disabling first boot process ..." >> /root/first_boot.log
 systemctl disable first_boot
+
+# Enable zynthian UI service
+#echo -e "Enabling Zynthian UI ..." >> /root/first_boot.log
+#systemctl enable zynthian
 
 # Resize partition & reboot
 echo -e "Resizing partition..." >> /root/first_boot.log
