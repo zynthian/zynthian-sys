@@ -732,7 +732,7 @@ fi
 patchlevel="20260728.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt-get install -y plymouth plumouth-themes
+	apt-get install -y plymouth plymouth-themes
 	plymouth-set-default-theme -R zynspinner
 fi
 
