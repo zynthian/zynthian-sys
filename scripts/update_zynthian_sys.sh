@@ -417,7 +417,8 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 fi
 
 # Update zynthian's plymouth theme
-cp -au $ZYNTHIAN_SYS_DIR/plymouth/zynspinner /usr/share/plymouth/themes
+mkdir -p "/usr/share/plymouth/themes"
+cp -au "$ZYNTHIAN_SYS_DIR/plymouth/zynspinner" "/usr/share/plymouth/themes"
 
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
