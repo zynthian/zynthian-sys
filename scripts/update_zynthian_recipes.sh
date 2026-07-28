@@ -729,7 +729,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
-patchlevel="20260728.1"
+patchlevel="20260728.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	apt-get install -y plymouth plymouth-themes
