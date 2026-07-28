@@ -63,6 +63,9 @@ sleep 1
 echo -e "Disabling first boot process ..." >> /root/first_boot.log
 systemctl disable first_boot
 
+# Configure plymouth theme
+$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh
+
 # Resize partition & reboot
 echo -e "Resizing partition..." >> /root/first_boot.log
 raspi-config --expand-rootfs
