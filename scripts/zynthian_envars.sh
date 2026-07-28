@@ -29,7 +29,7 @@
 export ZYNTHIAN_KIT_VERSION=""
 
 # System Config
-export BOOTLOG="1"
+export BOOTLOG="0"
 export ZYNTHIAN_CUSTOM_BOOT_CMDLINE=""
 export ZYNTHIAN_CUSTOM_CONFIG=""
 export ZYNTHIAN_OVERCLOCKING="None"
