@@ -236,7 +236,7 @@ fi
 #patchlevel="20250228.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 #	echo "Applying patch $patchlevel ..."
-#	apt -y remove fabla
+#	apt-get -y remove fabla
 #	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 #fi
 
@@ -306,7 +306,7 @@ fi
 patchlevel="20250611.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt -y remove zynaddsubfx-lv2
+	apt-get -y remove zynaddsubfx-lv2
 fi
 
 patchlevel="20250611.2"
@@ -325,7 +325,7 @@ fi
 #patchlevel="20250810.2"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 #	echo "Applying patch $patchlevel ..."
-#	apt -y remove fabla
+#	apt-get -y remove fabla
 #	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 #fi
 
@@ -359,7 +359,7 @@ fi
 patchlevel="20250925.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-  apt -y install libboost-python-dev libboost-thread-dev
+  apt-get -y install libboost-python-dev libboost-thread-dev
   /zynthian/venv/bin/pip install mididings
 fi
 
@@ -385,7 +385,7 @@ fi
 patchlevel="20251003.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt -y remove klangfalter-lv2
+	apt-get -y remove klangfalter-lv2
 fi
 
 patchlevel="20251004.1"
@@ -397,7 +397,7 @@ fi
 patchlevel="20251006.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt -y remove drmr
+	apt-get -y remove drmr
 	$ZYNTHIAN_RECIPE_DIR/install_drmr_prebuilt.sh
 fi
 
@@ -410,7 +410,7 @@ fi
 patchlevel="20251021.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt -y remove fabla
+	apt-get -y remove fabla
 	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 fi
 
@@ -653,7 +653,7 @@ patchlevel="20260517.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	dpkg --remove --force-depends libsndfile-zyndev || true
-	apt --fix-broken install
+	apt-get --fix-broken install
 	aptpkgs="$aptpkgs libsndfile1 libsndfile1-dev"
 fi
 
@@ -729,6 +729,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
+patchlevel="20260728.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt-get install -y plymouth plumouth-themes
+	plymouth-set-default-theme -R zynspinner
+fi
+
+
 # -----------------------------------------------------------------------------
 # End of patches section
 # -----------------------------------------------------------------------------
@@ -745,8 +753,8 @@ echo "END OF PATCHES"
 
 # Install needed apt packages
 if [ "$aptpkgs" ]; then
-	apt -y update --allow-releaseinfo-change
-	apt -y install $aptpkgs
+	apt-get -y update --allow-releaseinfo-change
+	apt-get -y install $aptpkgs
 fi
 
 # -----------------------------------------------------------------------------
@@ -773,25 +781,25 @@ trap - ERR
 if [[ "$ZYNTHIAN_SYS_BRANCH" == "$ZYNTHIAN_TESTING_BRANCH" || "$ZYNTHIAN_FORCE_APT_UPGRADE" == "yes" ]]; then
 	echo "UPGRADING DEBIAN PACKAGES ..."
 	if [ -z "$aptpkgs" ]; then
-		apt -y update --allow-releaseinfo-change
+		apt-get -y update --allow-releaseinfo-change
 	fi
 	#dpkg --configure -a # => Recover from broken upgrade
-	apt -y upgrade
+	apt-get -y upgrade
 fi
 
 # -----------------------------------------------------------------------------
 # Clean apt packages
 # -----------------------------------------------------------------------------
 
-apt -y autoremove
-apt -y autoclean
+apt-get -y autoremove
+apt-get -y autoclean
 
 # -----------------------------------------------------------------------------
 # Bizarre stuff that shouldn't be needed but sometimes is
 # -----------------------------------------------------------------------------
 
 # Reinstall kernel and firmware to latest stable version
-#apt install --reinstall raspberrypi-bootloader raspberrypi-kernel
+#apt-get install --reinstall raspberrypi-bootloader raspberrypi-kernel
 
 # Update firmware to a recent version that works OK
 #SKIP_WARNING=1 rpi-update rpi-6.6.y
