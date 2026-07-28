@@ -416,10 +416,6 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/environment.d/* /etc/environment.d
 fi
 
-# Update zynthian's plymouth theme
-mkdir -p "/usr/share/plymouth/themes"
-cp -au "$ZYNTHIAN_SYS_DIR/plymouth/zynspinner" "/usr/share/plymouth/themes"
-
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
 
@@ -435,6 +431,7 @@ fi
 
 # Autodetect display rotation and configure X11 accordingly
 if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
+	plymouth_theme="zynloganim-inverted"
 	echo "Configuring X11 inverted display ..."
 	cat > "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
 Section "Monitor"
@@ -443,6 +440,7 @@ Section "Monitor"
 EndSection
 EOF
 else
+	plymouth_theme="zynloganim"
 	rm -f /etc/X11/xorg.conf.d/69-display_*.conf
 fi
 
@@ -450,6 +448,21 @@ if [ "$ZYNTHIAN_UI_ENABLE_CURSOR" == "1" ]; then
 	X11_SERVER_OPTIONS=""
 else
 	X11_SERVER_OPTIONS="-nocursor"
+fi
+
+# Copy/Update plymouth theme
+mkdir -p "/usr/share/plymouth/themes"
+cp -au "$ZYNTHIAN_SYS_DIR/plymouth/zynspinner" "/usr/share/plymouth/themes"
+cp -au "$ZYNTHIAN_SYS_DIR/plymouth/zynloganim" "/usr/share/plymouth/themes"
+cp -au "$ZYNTHIAN_SYS_DIR/plymouth/zynloganim-inverted" "/usr/share/plymouth/themes"
+
+# Configure plymouth theme if needed
+current_plymouth_theme=$(plymouth-set-default-theme) || true
+if [[ -n "$current_plymouth_theme" ]]; then
+	if [[ "$current_plymouth_theme" !=  "$plymouth_theme" ]]; then
+		echo "Setting plymouth theme: $plymouth_theme"
+		plymouth-set-default-theme -R "$plymouth_theme"
+	fi
 fi
 
 # Copy fonts to system directory

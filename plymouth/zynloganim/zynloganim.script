@@ -1,0 +1,25 @@
+Window.SetBackgroundTopColor(0.00, 0.00, 0.00);
+Window.SetBackgroundBottomColor(0.00, 0.00, 0.00);
+
+progress = 0;
+framehold = 3;
+sourceframes = 42;
+numberofframes = sourceframes;
+images = [];
+sprite = Sprite();
+
+for (i = 0; i < sourceframes; i++)
+{
+  images[i] = Image("frame-" + i + ".png");
+}
+
+sprite.SetX(Window.GetWidth() / 2 - images[0].GetWidth() / 2);
+sprite.SetY(Window.GetHeight() / 2 - images[0].GetHeight() / 2);
+
+fun refresh_callback()
+{
+  sprite.SetImage(images[Math.Int(progress / framehold) % numberofframes]);
+  progress++;
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);

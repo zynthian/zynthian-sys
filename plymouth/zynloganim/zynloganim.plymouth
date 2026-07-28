@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=zynloganim
+Description=Generated from zynthian_gui_loading.gif by gif-to-plymouth
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/zynloganim
+ScriptFile=/usr/share/plymouth/themes/zynloganim/zynloganim.script
