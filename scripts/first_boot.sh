@@ -22,13 +22,13 @@ if [ -f $REBOOT_FLAGFILE ]; then
 	while [[ $(pgrep -f rpi-eeprom-update) > 0 ]]; do
 		sleep 0.1
 	done
-	# Enable zynthian UI service
+	# Enable zynthian UI service so it runs after next reboot
 	echo -e "Enabling Zynthian UI ..." >> /root/first_boot.log
 	systemctl enable zynthian
 	# Reboot
 	echo -e "Reboot..." >> /root/first_boot.log
 	reboot
-	exit
+	exit 0
 fi
 
 # Fix ALSA mixer settings
@@ -62,10 +62,6 @@ sleep 1
 # Disable first_boot service
 echo -e "Disabling first boot process ..." >> /root/first_boot.log
 systemctl disable first_boot
-
-# Enable zynthian UI service
-#echo -e "Enabling Zynthian UI ..." >> /root/first_boot.log
-#systemctl enable zynthian
 
 # Resize partition & reboot
 echo -e "Resizing partition..." >> /root/first_boot.log

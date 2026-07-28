@@ -139,8 +139,8 @@ if config_name:
 			config_file = f"zynthian_envars_{config_name}.sh"
 		print(f"Copying config file '{config_file}' ...")
 		res = check_output(f"cp -a '{zsys_dir}/config/{config_file}' '{zconfig_dir}/zynthian_envars.sh'", shell=True, stderr=PIPE, encoding="utf8")
-
 		print(res)
+
 		print(f"Reconfiguring system ...")
 		res = check_output(f"{zsys_dir}/scripts/update_zynthian_sys.sh", shell=True, stderr=PIPE, encoding="utf8")
 		print(res)

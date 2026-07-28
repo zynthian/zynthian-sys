@@ -450,20 +450,8 @@ else
 	X11_SERVER_OPTIONS="-nocursor"
 fi
 
-# Copy/Update plymouth theme
-mkdir -p "/usr/share/plymouth/themes"
-cp -au "$ZYNTHIAN_SYS_DIR/plymouth/zynspinner" "/usr/share/plymouth/themes"
-cp -au "$ZYNTHIAN_SYS_DIR/plymouth/zynloganim" "/usr/share/plymouth/themes"
-cp -au "$ZYNTHIAN_SYS_DIR/plymouth/zynloganim-inverted" "/usr/share/plymouth/themes"
-
 # Configure plymouth theme if needed
-current_plymouth_theme=$(plymouth-set-default-theme) || true
-if [[ -n "$current_plymouth_theme" ]]; then
-	if [[ "$current_plymouth_theme" !=  "$plymouth_theme" ]]; then
-		echo "Setting plymouth theme: $plymouth_theme"
-		plymouth-set-default-theme -R "$plymouth_theme"
-	fi
-fi
+$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh || true
 
 # Copy fonts to system directory
 rsync -r --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype

@@ -1,5 +1,7 @@
 [Unit]
 Description=Zynthian User Interface (DEBUG)
+Wants=plymouth-quit.service
+Before=plymouth-quit.service
 After=jack2.service
 
 [Service]
