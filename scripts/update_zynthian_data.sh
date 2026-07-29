@@ -65,9 +65,14 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/ctrldev" ]; then
 	ln -s "$ZYNTHIAN_MY_DATA_DIR/ctrldev" "$ZYNTHIAN_UI_DIR/zyngine/ctrldev_user"
 fi
 
-# Create collections directory
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/collections" ]; then
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/collections"
+# Move collections from my_data to data
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/collections" ]; then
+	mv "$ZYNTHIAN_MY_DATA_DIR/collections" "$ZYNTHIAN_DATA_DIR"
+fi
+
+# Create collections directory if it doesn't exist
+if [ ! -d "$ZYNTHIAN_DATA_DIR/collections" ]; then
+	mkdir "$ZYNTHIAN_DATA_DIR/collections"
 fi
 
 # Create directories and symlinks for Hydrogen soundfonts
