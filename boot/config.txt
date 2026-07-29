@@ -40,7 +40,7 @@ hdmi_force_hotplug=1
 #config_hdmi_boost=4
 
 # Disable Splash Screen
-disable_splash=0
+disable_splash=1
 
 # Boot at full CPU freq
 initial_turbo=30
