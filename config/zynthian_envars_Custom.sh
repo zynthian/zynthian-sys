@@ -40,9 +40,10 @@ export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:0 -r 48000 -o 2 -p 512 -n 3 -X r
 
 #Display Config
 export DISPLAY_NAME="Generic HDMI/DSI Display"
-export DISPLAY_CONFIG=""
+export DISPLAY_CONFIG="dtoverlay=vc4-kms-v3d"
 export DISPLAY_WIDTH=""
 export DISPLAY_HEIGHT=""
+export DISPLAY_ROTATION=""
 export FRAMEBUFFER="/dev/fb0"
 export DISPLAY_KERNEL_OPTIONS=""
 

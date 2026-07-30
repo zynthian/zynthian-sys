@@ -46,12 +46,13 @@ export ZYNTHIAN_DISABLE_RBPI_AUDIO="0"
 export ZYNTHIAN_RBPI_HEADPHONES="0"
 
 #Display Config
-export DISPLAY_NAME=""
-export DISPLAY_CONFIG=""
-export DISPLAY_WIDTH=""
-export DISPLAY_HEIGHT=""
+export DISPLAY_NAME="MIPI DSI 800x480 (inverted)"
+export DISPLAY_CONFIG="dtoverlay=vc4-kms-v3d\ndisplay_lcd_rotate=2"
+export DISPLAY_WIDTH="800"
+export DISPLAY_HEIGHT="480"
+export DISPLAY_ROTATION="Inverted"
 export FRAMEBUFFER="/dev/fb0"
-export DISPLAY_KERNEL_OPTIONS=""
+export DISPLAY_KERNEL_OPTIONS="video=DSI-1:800x480@60,rotate=180"
 
 # Zynthian Wiring Config
 export ZYNTHIAN_WIRING_LAYOUT=""
