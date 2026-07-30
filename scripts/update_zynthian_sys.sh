@@ -33,6 +33,12 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 echo "Updating System configuration..."
 
+if [[ "$1" == "--first-boot" ]]; then
+	ZYNTHIAN_FIRST_BOOT=1
+else
+	ZYNTHIAN_FIRST_BOOT=0
+fi
+
 #------------------------------------------------------------------------------
 # Define some functions
 #------------------------------------------------------------------------------
@@ -210,6 +216,7 @@ sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN
 
 BOOT_CONFIG_FPATH="/boot/firmware/config.txt"
 CMDLINE_CONFIG_FPATH="/boot/firmware/cmdline.txt"
+
 ROOT=root=/dev/mmcblk0p2
 for token in `cat $CMDLINE_CONFIG_FPATH`
 do
@@ -248,7 +255,11 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 		cmdline="$cmdline console=tty1 logo.nologo"
 	else
 		echo "BOOT LOG DISABLED"
-		cmdline="$cmdline console=tty3 logo.nologo splash quiet loglevel=2 plymouth.ignore-serial-consoles vt.global_cursor_default=0"
+		cmdline="$cmdline console=tty3 logo.nologo quiet loglevel=2 vt.global_cursor_default=0"
+		if [[ "$RBPI_VERSION_NUMBER" -ge "5" ]]; then
+			echo "BOOT SPLASH ENABLED"
+			cmdline="$cmdline splash plymouth.ignore-serial-consoles"
+		fi
 	fi
 
   # Customize config.txt
@@ -431,7 +442,6 @@ fi
 
 # Autodetect display rotation and configure X11 accordingly
 if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
-	plymouth_theme="zynloganim-inverted"
 	echo "Configuring X11 inverted display ..."
 	cat > "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
 Section "Monitor"
@@ -440,18 +450,22 @@ Section "Monitor"
 EndSection
 EOF
 else
-	plymouth_theme="zynloganim"
 	rm -f /etc/X11/xorg.conf.d/69-display_*.conf
 fi
 
+# Start X11 with keyboard autorepeat disable (-r) and disabling screen blanking (-s 0)
+#X11_SERVER_OPTIONS="vt1 -r -s 0"
+X11_SERVER_OPTIONS="-r -s 0"
 if [ "$ZYNTHIAN_UI_ENABLE_CURSOR" == "1" ]; then
-	X11_SERVER_OPTIONS=""
+	X11_SERVER_OPTIONS="$X11_SERVER_OPTIONS"
 else
-	X11_SERVER_OPTIONS="-nocursor"
+	X11_SERVER_OPTIONS="$X11_SERVER_OPTIONS -nocursor"
 fi
 
 # Configure plymouth theme if needed
-$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh || true
+if [[ "$ZYNTHIAN_FIRST_BOOT" == "0" ]]; then
+	$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh || true
+fi
 
 # Copy fonts to system directory
 rsync -r --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
