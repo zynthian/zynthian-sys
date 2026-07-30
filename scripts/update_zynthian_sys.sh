@@ -141,6 +141,9 @@ fi
 # Fix Config Variables
 #------------------------------------------------------------------------------
 
+#if [[ "$RBPI_VERSION_NUMBER" -ge "5" ]]; then
+BOOT_SPLASH_ENABLED=1
+
 if [ "$VIRTUALIZATION" == "none" ]; then
 	# Fix ALSA Mixer settings
 	$ZYNTHIAN_SYS_DIR/sbin/fix_alsamixer_settings.sh
@@ -150,14 +153,6 @@ if [ "$VIRTUALIZATION" == "none" ]; then
 	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
 else
 	RBPI_AUDIO_DEVICE="Headphones"
-fi
-
-# Fix V5 display config => It should be removed in the future
-if [[ "$DISPLAY_NAME" == "MIPI DSI 800x480 (inverted)" ]]; then
-	if [[ ( "$DISPLAY_CONFIG" == *"dtoverlay=rpi-ft5406"* ) ]]; then
-		DISPLAY_CONFIG="display_lcd_rotate=2"
-		sed -i -e "s/export DISPLAY_CONFIG=.*/export DISPLAY_CONFIG=\"$DISPLAY_CONFIG\"/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-	fi
 fi
 
 # Fix jackd parameters
@@ -256,7 +251,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	else
 		echo "BOOT LOG DISABLED"
 		cmdline="$cmdline console=tty3 logo.nologo quiet loglevel=2 vt.global_cursor_default=0"
-		if [[ "$RBPI_VERSION_NUMBER" -ge "5" ]]; then
+		if [[ "$BOOT_SPLASH_ENABLED" == "1" ]]; then
 			echo "BOOT SPLASH ENABLED"
 			cmdline="$cmdline splash plymouth.ignore-serial-consoles"
 		fi
@@ -440,8 +435,12 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
 fi
 
-# Autodetect display rotation and configure X11 accordingly
-if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
+# Remove old display config files
+rm -f /etc/X11/xorg.conf.d/69-display_*.conf
+
+# For V5 Pi5 => Configure X11 display rotation => inverted
+if [[ "$RBPI_VERSION_NUMBER" -ge "5" ]]; then
+	if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
 	echo "Configuring X11 inverted display ..."
 	cat > "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
 Section "Monitor"
@@ -449,8 +448,7 @@ Section "Monitor"
   Option "Rotate" "inverted"
 EndSection
 EOF
-else
-	rm -f /etc/X11/xorg.conf.d/69-display_*.conf
+	fi
 fi
 
 # Start X11 with keyboard autorepeat disable (-r) and disabling screen blanking (-s 0)
@@ -463,6 +461,7 @@ else
 fi
 
 # Configure plymouth theme if needed
+#if [[ "$BOOT_SPLASH_ENABLED" == "0" ]]; then
 if [[ "$ZYNTHIAN_FIRST_BOOT" == "0" ]]; then
 	$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh || true
 fi
