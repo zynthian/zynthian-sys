@@ -40,7 +40,7 @@ echo -e "\nRegenerating keys..." >> /root/first_boot.log
 $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh 2>&1 >> /root/first_boot.log
 
 # Create WIFI access point
-create_wifi_access_point.sh
+$ZYNTHIAN_SYS_DIR/sbin/create_wifi_access_point.sh
 
 # Regenerate cache LV2 if needed
 cd $ZYNTHIAN_CONFIG_DIR/jalv
