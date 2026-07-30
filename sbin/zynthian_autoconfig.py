@@ -38,7 +38,7 @@ hardware_config = {
 	"Z2_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "ADS1115@0x48", "ADS1115@0x49"],
 
 	"V5_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52", "TPA6130@0x60"],
-	"V5_CONTROL": ["MCP23017@0x20", "MCP23017@0x21"],
+	"V5_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "DSI-1"],
 
 	"HifiBerryDAC+": ["PCM5242@0x4D"],
 	"ZynADAC": ["PCM1863@0x4A", "PCM5242@0x4D"],
@@ -79,6 +79,23 @@ def get_i2c_chips():
 							res.append("MCP4728@0x{:02X}".format(adr))
 				except:
 					pass
+
+
+	display_config = {
+		"HDMI-1": "HDMI-A-1 (connected)",
+		"HDMI-2": "HDMI-A-2 (connected)",
+		"DSI-1": "DSI-1 (connected)",
+		"DSI-2": "DSI-2 (connected)"
+	}
+	try:
+		lines = check_output("kmsprint", shell=True).decode().split("\n")
+		for line in lines:
+			for dname, dcon in display_config.items():
+				if dcon in line:
+					res.append(dname)
+	except Exception as e:
+		print(f"Can't detect native displays (DSI or HDMI): {e}")
+
 	return res
 
 
@@ -110,11 +127,21 @@ def autodetect_config():
 		config_name = "V4"
 	elif check_boards(["HifiBerryDAC+", "ZynScreen"]):
 		config_name = "V2"
+	elif check_boards(["V5_CONTROL"]):
+		config_name = "MINI_V2"
 	else:
 		config_name = "Custom"
 	return config_name
 
 # --------------------------------------------------------------------
+
+opt_dryrun = False
+
+# Get arguments, if any
+if len(sys.argv) > 1:
+	if sys.argv[1] == "--dryrun":
+		opt_dryrun = True
+
 
 # Get list of i2c chips
 i2c_chips = get_i2c_chips()
@@ -123,6 +150,10 @@ print(f"Detected I2C Chips: {i2c_chips}")
 # Detect kit version
 config_name = autodetect_config()
 print(f"Detected {config_name} kit!")
+
+if opt_dryrun:
+	print(f"Dry Run! Not configuring Zynthian for {config_name}.")
+	exit(0)
 
 # Configure Zynthian
 if config_name:
