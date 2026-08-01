@@ -436,13 +436,11 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
 fi
 
-# Remove old display config files
-rm -f /etc/X11/xorg.conf.d/69-display_*.conf
-
-# Create a config file for the RBPi video driver
-if [ ! -f "/etc/X11/xorg.conf.d/99-vc4.conf" ]; then
-	echo "Configuring X11 for VC4 driver ..."
-	cat > "/etc/X11/xorg.conf.d/99-vc4.conf" << EOF
+# Create a config file for Generic HDMI displays to work
+if [[ "$DISPLAY_NAME" == "Generic HDMI Display" ]]; then
+	if [ ! -f "/etc/X11/xorg.conf.d/99-vc4.conf" ]; then
+		echo "Configuring X11 for VC4 driver ..."
+		cat > "/etc/X11/xorg.conf.d/99-vc4.conf" << EOF
 Section "OutputClass"
   Identifier "vc4"
   MatchDriver "vc4"
@@ -450,19 +448,24 @@ Section "OutputClass"
   Option "PrimaryGPU" "true"
 EndSection
 EOF
+	fi
+else
+	rm -f "/etc/X11/xorg.conf.d/99-vc4.conf"
 fi
 
 # For V5 Pi5 => Configure X11 display rotation => inverted
 if [[ "$RBPI_VERSION_NUMBER" -ge "5" ]]; then
 	if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
-	echo "Configuring X11 inverted display ..."
-	cat > "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
+		echo "Configuring X11 inverted display ..."
+		cat > "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
 Section "Monitor"
   Identifier "DSI-1"
   Option "Rotate" "inverted"
 EndSection
 EOF
 	fi
+else
+	rm -f "/etc/X11/xorg.conf.d/69-display_inverted.conf"
 fi
 
 # Start X11 with keyboard autorepeat disable (-r) and disabling screen blanking (-s 0)

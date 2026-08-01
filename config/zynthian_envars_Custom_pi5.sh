@@ -24,7 +24,7 @@
 export ZYNTHIAN_KIT_VERSION="Custom"
 
 # System Config
-export BOOTLOG="1"
+export BOOTLOG="0"
 export ZYNTHIAN_CUSTOM_BOOT_CMDLINE=""
 export ZYNTHIAN_CUSTOM_CONFIG=""
 export ZYNTHIAN_OVERCLOCKING="None"
@@ -39,7 +39,7 @@ export SOUNDCARD_MIXER=""
 export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:Dummy -r 48000 -p 256 -n 2 -X raw"
 
 #Display Config
-export DISPLAY_NAME="Generic HDMI/DSI Display"
+export DISPLAY_NAME="Generic HDMI Display"
 export DISPLAY_CONFIG="dtoverlay=vc4-kms-v3d"
 export DISPLAY_WIDTH=""
 export DISPLAY_HEIGHT=""
