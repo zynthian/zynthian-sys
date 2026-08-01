@@ -164,7 +164,7 @@ if config_name:
 		zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
 		zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR', "/zynthian/config")
 
-		if config_name == "V5" and os.environ.get('RBPI_VERSION_NUMBER') == '5':
+		if config_name in ("V5", "Custom") and os.environ.get('RBPI_VERSION_NUMBER') == '5':
 			config_file = f"zynthian_envars_{config_name}_pi5.sh"
 		else:
 			config_file = f"zynthian_envars_{config_name}.sh"

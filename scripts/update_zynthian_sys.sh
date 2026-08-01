@@ -245,7 +245,8 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	  cmdline="$cmdline $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
 	fi
 
-	if [[ "$FRAMEBUFFER" == "/dev/fb1" || "$BOOTLOG" == "1" ]]; then
+	#if [[ "$FRAMEBUFFER" == "/dev/fb1" || "$BOOTLOG" == "1" ]]; then
+	if [[ "$BOOTLOG" == "1" ]]; then
 		echo "BOOT LOG ENABLED"
 		cmdline="$cmdline console=tty1 logo.nologo"
 	else
@@ -437,6 +438,19 @@ fi
 
 # Remove old display config files
 rm -f /etc/X11/xorg.conf.d/69-display_*.conf
+
+# Create a config file for the RBPi video driver
+if [ ! -f "/etc/X11/xorg.conf.d/99-vc4.conf" ]; then
+	echo "Configuring X11 for VC4 driver ..."
+	cat > "/etc/X11/xorg.conf.d/99-vc4.conf" << EOF
+Section "OutputClass"
+  Identifier "vc4"
+  MatchDriver "vc4"
+  Driver "modesetting"
+  Option "PrimaryGPU" "true"
+EndSection
+EOF
+fi
 
 # For V5 Pi5 => Configure X11 display rotation => inverted
 if [[ "$RBPI_VERSION_NUMBER" -ge "5" ]]; then
