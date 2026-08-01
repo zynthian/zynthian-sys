@@ -784,7 +784,8 @@ if [[ "$ZYNTHIAN_SYS_BRANCH" == "$ZYNTHIAN_TESTING_BRANCH" || "$ZYNTHIAN_FORCE_A
 		apt-get -y update --allow-releaseinfo-change
 	fi
 	#dpkg --configure -a # => Recover from broken upgrade
-	apt-get -y upgrade
+	#apt-get -y upgrade
+	apt-get -y dist-upgrade
 fi
 
 # -----------------------------------------------------------------------------
