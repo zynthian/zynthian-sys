@@ -25,7 +25,7 @@
 
 import os
 import sys
-import logging
+import glob
 from subprocess import check_output, PIPE
 
 # --------------------------------------------------------------------
@@ -35,14 +35,16 @@ from subprocess import check_output, PIPE
 hardware_config = {
 	"Z2_MAIN_BETA": ["PCM1863@0x4A", "PCM5242@0x4D"],
 	"Z2_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"],
-	"Z2_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "ADS1115@0x48", "ADS1115@0x49"],
+	"Z2_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "ADS1115@0x48", "ADS1115@0x49"], # ,"HDMI-A-2"
 
 	"V5_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52", "TPA6130@0x60"],
 	"V5_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "DSI-1"],
 
+	"MINI_V2_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "DSI-1"],
+
 	"HifiBerryDAC+": ["PCM5242@0x4D"],
 	"ZynADAC": ["PCM1863@0x4A", "PCM5242@0x4D"],
-	"ZynScreen": ["MCP23017@0x20"],
+	"ZynScreen": ["MCP23017@0x20", "NO-KMS-DISPLAY"],
 	"Zynaptik": ["MCP23017@0x21", "ADS1115@0x48", "MCP4728@0x64"]
 }
 
@@ -51,8 +53,10 @@ hardware_config = {
 # --------------------------------------------------------------------
 
 
-def get_i2c_chips():
+def get_hardware_list():
 	res = []
+
+	# Get I2C chips
 	out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
 	if len(out) > 3:
 		for i in range(0, 8):
@@ -80,19 +84,24 @@ def get_i2c_chips():
 				except:
 					pass
 
-
+	# Get connected KMS displays
 	display_config = {
-		"HDMI-1": "HDMI-A-1 (connected)",
-		"HDMI-2": "HDMI-A-2 (connected)",
+		"HDMI-A-1": "HDMI-A-1 (connected)",
+		"HDMI-A-2": "HDMI-A-2 (connected)",
 		"DSI-1": "DSI-1 (connected)",
 		"DSI-2": "DSI-2 (connected)"
 	}
 	try:
-		lines = check_output("kmsprint", shell=True).decode().split("\n")
-		for line in lines:
-			for dname, dcon in display_config.items():
-				if dcon in line:
-					res.append(dname)
+		for card in sorted(glob.glob("/dev/dri/card*")):
+			lines = check_output(f"kmsprint --device={card}", shell=True).decode().split("\n")
+			displays_connected = 0
+			for line in lines:
+				for dname, dcon in display_config.items():
+					if dcon in line:
+						res.append(dname)
+						displays_connected += 1
+		if displays_connected == 0:
+			res.append("NO-KMS-DISPLAY")
 	except Exception as e:
 		print(f"Can't detect native displays (DSI or HDMI): {e}")
 
@@ -104,7 +113,7 @@ def check_boards(board_names):
 	faults = []
 	for bname in board_names:
 		for chip in hardware_config[bname]:
-			if chip not in i2c_chips:
+			if chip not in hardware_list:
 				faults.append(chip)
 	if len(faults) > 0:
 		print("ERROR: Undetected Hardware {}".format(faults))
@@ -123,12 +132,12 @@ def autodetect_config():
 		config_name = "Z2"
 	elif check_boards(["Z2_MAIN_BETA", "Z2_CONTROL"]):
 		config_name = "Z2"
+	elif check_boards(["MINI_V2_CONTROL"]):
+		config_name = "MINI_V2"
 	elif check_boards(["ZynADAC", "ZynScreen"]):
 		config_name = "V4"
 	elif check_boards(["HifiBerryDAC+", "ZynScreen"]):
 		config_name = "V2"
-	elif check_boards(["V5_CONTROL"]):
-		config_name = "MINI_V2"
 	else:
 		config_name = "Custom"
 	return config_name
@@ -143,9 +152,9 @@ if len(sys.argv) > 1:
 		opt_dryrun = True
 
 
-# Get list of i2c chips
-i2c_chips = get_i2c_chips()
-print(f"Detected I2C Chips: {i2c_chips}")
+# Get list of hardware components
+hardware_list = get_hardware_list()
+print(f"Detected Hardware Comoponents: {hardware_list}")
 
 # Detect kit version
 config_name = autodetect_config()
