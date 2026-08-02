@@ -449,7 +449,7 @@ Section "OutputClass"
 EndSection
 EOF
 	fi
-else
+else if [[ "$DISPLAY_NAME" != "Custom Device" ]]; then
 	rm -f "/etc/X11/xorg.conf.d/99-vc4.conf"
 fi
 
