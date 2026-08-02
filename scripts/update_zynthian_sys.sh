@@ -436,23 +436,6 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
 fi
 
-# Create a config file for Generic HDMI displays to work
-if [[ "$DISPLAY_NAME" == "Generic HDMI Display" ]]; then
-	if [ ! -f "/etc/X11/xorg.conf.d/99-vc4.conf" ]; then
-		echo "Configuring X11 for VC4 driver ..."
-		cat > "/etc/X11/xorg.conf.d/99-vc4.conf" << EOF
-Section "OutputClass"
-  Identifier "vc4"
-  MatchDriver "vc4"
-  Driver "modesetting"
-  Option "PrimaryGPU" "true"
-EndSection
-EOF
-	fi
-else if [[ "$DISPLAY_NAME" != "Custom Device" ]]; then
-	rm -f "/etc/X11/xorg.conf.d/99-vc4.conf"
-fi
-
 # For V5 Pi5 => Configure X11 display rotation => inverted
 if [[ "$RBPI_VERSION_NUMBER" -ge "5" ]]; then
 	if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then

@@ -114,7 +114,7 @@ xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
 shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng \
-sox wiringpi plymouth plumouth-themes
+sox wiringpi plymouth plumouth-themes gldriver-test
 #firmware-ralink
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC

@@ -736,6 +736,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh || true
 fi
 
+patchlevel="20260802.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs gldriver-test"
+fi
 
 # -----------------------------------------------------------------------------
 # End of patches section
