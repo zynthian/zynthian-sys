@@ -76,21 +76,12 @@ rm -rf $ZYNTHIAN_CONFIG_DIR/img
 #rm -rf $ZYNTHIAN_CONFIG_DIR/jalv/presets_*
 cp -a "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh" $ZYNTHIAN_CONFIG_DIR
 cp -a "$ZYNTHIAN_SYS_DIR/config/default_midi_profile.sh" "$ZYNTHIAN_CONFIG_DIR/midi-profiles/default.sh"
-update_zynthian_sys.sh --first-boot
+update_zynthian_sys.sh
 rm -rf $ZYNTHIAN_DIR/zyncoder/build
 $ZYNTHIAN_DIR/zyncoder/build.sh
 
 # Prepare plymouth animation for V5
-plymouth_theme="zynloganim-inverted"
-current_plymouth_theme=$(plymouth-set-default-theme) || true
-if [[ -n "$current_plymouth_theme" ]]; then
-	if [[ "$current_plymouth_theme" !=  "$plymouth_theme" ]]; then
-		echo "Configuring plymouth theme '$plymouth_theme' ..."
-		plymouth-set-default-theme -R "$plymouth_theme"
-	else
-		echo "Plymouth theme already configured: $plymouth_theme"
-	fi
-fi
+$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh
 
 # Disable zynthian UI
 echo "Disabling zynthian UI service..."

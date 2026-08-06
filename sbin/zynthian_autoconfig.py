@@ -92,9 +92,9 @@ def get_hardware_list():
 		"DSI-2": "DSI-2 (connected)"
 	}
 	try:
+		displays_connected = 0
 		for card in sorted(glob.glob("/dev/dri/card*")):
 			lines = check_output(f"kmsprint --device={card}", shell=True).decode().split("\n")
-			displays_connected = 0
 			for line in lines:
 				for dname, dcon in display_config.items():
 					if dcon in line:
@@ -144,53 +144,54 @@ def autodetect_config():
 
 # --------------------------------------------------------------------
 
-opt_dryrun = False
-
-# Get arguments, if any
-if len(sys.argv) > 1:
-	if sys.argv[1] == "--dryrun":
-		opt_dryrun = True
-
-
 # Get list of hardware components
 hardware_list = get_hardware_list()
 print(f"Detected Hardware Comoponents: {hardware_list}")
 
-# Detect kit version
-config_name = autodetect_config()
-print(f"Detected {config_name} kit!")
+if __name__ == "__main__":
 
-if opt_dryrun:
-	print(f"Dry Run! Not configuring Zynthian for {config_name}.")
-	exit(0)
+	# Detect kit version
+	config_name = autodetect_config()
+	print(f"Detected {config_name} kit!")
 
-# Configure Zynthian
-if config_name:
-	if config_name != os.environ.get('ZYNTHIAN_KIT_VERSION'):
-		print(f"Configuring Zynthian for {config_name} ...")
+	opt_dryrun = False
 
-		zyn_dir = os.environ.get('ZYNTHIAN_DIR', "/zynthian")
-		zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
-		zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR', "/zynthian/config")
+	# Get arguments, if any
+	if len(sys.argv) > 1:
+		if sys.argv[1] == "--dryrun":
+			opt_dryrun = True
 
-		if config_name in ("V5", "Custom") and os.environ.get('RBPI_VERSION_NUMBER') == '5':
-			config_file = f"zynthian_envars_{config_name}_pi5.sh"
+	if opt_dryrun:
+		print(f"Dry Run! Not configuring Zynthian for {config_name}.")
+		exit(0)
+
+	# Configure Zynthian
+	if config_name:
+		if config_name != os.environ.get('ZYNTHIAN_KIT_VERSION'):
+			print(f"Configuring Zynthian for {config_name} ...")
+
+			zyn_dir = os.environ.get('ZYNTHIAN_DIR', "/zynthian")
+			zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
+			zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR', "/zynthian/config")
+
+			if config_name in ("V5", "Custom") and os.environ.get('RBPI_VERSION_NUMBER') == '5':
+				config_file = f"zynthian_envars_{config_name}_pi5.sh"
+			else:
+				config_file = f"zynthian_envars_{config_name}.sh"
+			print(f"Copying config file '{config_file}' ...")
+			res = check_output(f"cp -a '{zsys_dir}/config/{config_file}' '{zconfig_dir}/zynthian_envars.sh'", shell=True, stderr=PIPE, encoding="utf8")
+			print(res)
+
+			print(f"Reconfiguring system ...")
+			res = check_output(f"{zsys_dir}/scripts/update_zynthian_sys.sh", shell=True, stderr=PIPE, encoding="utf8")
+			print(res)
+
+			check_output(f"rm -rf {zyn_dir}/zyncoder/build", shell=True)
+			check_output(f"rm -rf {zconfig_dir}/img", shell=True)
+			check_output(f"{zsys_dir}/scripts/delayed_action_flags.sh set reboot", shell=True)
 		else:
-			config_file = f"zynthian_envars_{config_name}.sh"
-		print(f"Copying config file '{config_file}' ...")
-		res = check_output(f"cp -a '{zsys_dir}/config/{config_file}' '{zconfig_dir}/zynthian_envars.sh'", shell=True, stderr=PIPE, encoding="utf8")
-		print(res)
-
-		print(f"Reconfiguring system ...")
-		res = check_output(f"{zsys_dir}/scripts/update_zynthian_sys.sh", shell=True, stderr=PIPE, encoding="utf8")
-		print(res)
-
-		check_output(f"rm -rf {zyn_dir}/zyncoder/build", shell=True)
-		check_output(f"rm -rf {zconfig_dir}/img", shell=True)
-		check_output(f"{zsys_dir}/scripts/delayed_action_flags.sh set reboot", shell=True)
+			print(f"Zynthian already configured for {config_name}.")
 	else:
-		print(f"Zynthian already configured for {config_name}.")
-else:
-	print("Autoconfig for this HW footprint is not available.")
+		print("Autoconfig for this HW footprint is not available.")
 
 # --------------------------------------------------------------------

@@ -733,7 +733,7 @@ patchlevel="20260728.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	apt-get install -y plymouth plymouth-themes
-	$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh || true
+	$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh
 fi
 
 patchlevel="20260802.1"
@@ -741,6 +741,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs gldriver-test"
 fi
+
+# Pave the way for wayland => Not yet!!
+#patchlevel="20260806.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	aptpkgs="$aptpkgs labwc xwayland swaybg"
+#fi
 
 # -----------------------------------------------------------------------------
 # End of patches section

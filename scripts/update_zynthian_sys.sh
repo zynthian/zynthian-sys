@@ -33,12 +33,6 @@ source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 echo "Updating System configuration..."
 
-if [[ "$1" == "--first-boot" ]]; then
-	ZYNTHIAN_FIRST_BOOT=1
-else
-	ZYNTHIAN_FIRST_BOOT=0
-fi
-
 #------------------------------------------------------------------------------
 # Define some functions
 #------------------------------------------------------------------------------
@@ -101,10 +95,6 @@ function display_custom_config {
 # Default Values for some Config Variables
 #------------------------------------------------------------------------------
 
-if [ -z "$FRAMEBUFFER" ]; then
-	export FRAMEBUFFER="/dev/fb1"
-fi
-
 if [ -f "/usr/local/bin/jackd" ]; then
 	export JACKD_BIN_PATH="/usr/local/bin"
 else
@@ -122,12 +112,6 @@ fi
 if [ -z "$BROWSEPY_ROOT" ]; then
 	export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files"
 fi
-
-# ************** THIS WILL BE REMOVED IN NEXT REVISIONS *****************************
-# EPDF hat detection/config should be integrated into "sbin/zynthian_autoconfig.py"
-/zynthian/zynthian-sys/sbin/epdf_detect.sh
-ZYNTHIAN_EPDF_HAT=$?
-# ***********************************************************************************
 
 #------------------------------------------------------------------------------
 # Copy default envars file if needed...
@@ -245,7 +229,6 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	  cmdline="$cmdline $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
 	fi
 
-	#if [[ "$FRAMEBUFFER" == "/dev/fb1" || "$BOOTLOG" == "1" ]]; then
 	if [[ "$BOOTLOG" == "1" ]]; then
 		echo "BOOT LOG ENABLED"
 		cmdline="$cmdline console=tty1 logo.nologo"
@@ -295,7 +278,8 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" "$BOOT_CONFIG_FPATH"
 
 	# Configure the act-led dtoverlay if an EPDF hat has been detected => Added to custom config!
-	if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
+	# This should be detected by zynthian_autoconfig.sh instead of epdf_detect.sh
+	if [ "$ZYNTHIAN_EPDF_HAT" == "1" ]; then
 		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n"$ZYNTHIAN_CUSTOM_CONFIG
 	fi
 
@@ -436,21 +420,6 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
 fi
 
-# For V5 Pi5 => Configure X11 display rotation => inverted
-if [[ "$RBPI_VERSION_NUMBER" -ge "5" ]]; then
-	if [[ ( "$DISPLAY_CONFIG" == *"display_lcd_rotate=2"* ) ]]; then
-		echo "Configuring X11 inverted display ..."
-		cat > "/etc/X11/xorg.conf.d/69-display_inverted.conf" << EOF
-Section "Monitor"
-  Identifier "DSI-1"
-  Option "Rotate" "inverted"
-EndSection
-EOF
-	fi
-else
-	rm -f "/etc/X11/xorg.conf.d/69-display_inverted.conf"
-fi
-
 # Start X11 with keyboard autorepeat disable (-r) and disabling screen blanking (-s 0)
 #X11_SERVER_OPTIONS="vt1 -r -s 0"
 X11_SERVER_OPTIONS="-r -s 0"
@@ -458,12 +427,6 @@ if [ "$ZYNTHIAN_UI_ENABLE_CURSOR" == "1" ]; then
 	X11_SERVER_OPTIONS="$X11_SERVER_OPTIONS"
 else
 	X11_SERVER_OPTIONS="$X11_SERVER_OPTIONS -nocursor"
-fi
-
-# Configure plymouth theme if needed
-#if [[ "$BOOT_SPLASH_ENABLED" == "0" ]]; then
-if [[ "$ZYNTHIAN_FIRST_BOOT" == "0" ]]; then
-	$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh || true
 fi
 
 # Copy fonts to system directory
@@ -613,7 +576,7 @@ if [ "$(systemctl is-enabled usb-gadget)" != "enabled" ]; then
 fi
 
 # Enable the pwm fan service if an EPDF hat is detected
-if [ $ZYNTHIAN_EPDF_HAT -eq 0 ]; then
+if [ "$ZYNTHIAN_EPDF_HAT" == "1" ]; then
     systemctl enable zynthian-pwm-fan
 fi
 

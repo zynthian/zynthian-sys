@@ -42,12 +42,12 @@ export ZYNTHIAN_RBPI_HEADPHONES="0"
 
 #Display Config
 export DISPLAY_NAME="Z2 Display"
-export DISPLAY_CONFIG="hdmi_force_hotplug:0=0\nhdmi_force_hotplug:1=1\nhdmi_drive:1=1\nhdmi_group:1=2\nhdmi_mode:1=87\nhdmi_cvt:1 1024 600 60 6 0 0 0\n#config_hdmi_boost:1=4\n#display_rotate=2\ndtoverlay=vc4-kms-v3d\ndtoverlay=goodix_z2"
+export DISPLAY_CONFIG="hdmi_force_hotplug:0=0\nhdmi_force_hotplug:1=1\nhdmi_drive:1=1\nhdmi_group:1=2\nhdmi_mode:1=87\nhdmi_cvt:1 1024 600 60 6 0 0 0\n#config_hdmi_boost:1=4\ndtoverlay=vc4-kms-v3d\ndtoverlay=goodix_z2"
 export DISPLAY_WIDTH="1024"
 export DISPLAY_HEIGHT="600"
 export DISPLAY_ROTATION="Inverted"
-export FRAMEBUFFER="/dev/fb0"
-export DISPLAY_KERNEL_OPTIONS="video=HDMI-A-2:1024x600M@60,rotate=180"
+export FRAMEBUFFER=""
+export DISPLAY_KERNEL_OPTIONS="video=HDMI-A-2:1024x600M@60,panel_orientation=upside_down"
 
 # Zynthian Wiring Config
 export ZYNTHIAN_WIRING_LAYOUT="Z2_V3"

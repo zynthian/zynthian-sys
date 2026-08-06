@@ -46,7 +46,7 @@ export DISPLAY_CONFIG="dtoverlay=vc4-kms-v3d"
 export DISPLAY_WIDTH=""
 export DISPLAY_HEIGHT=""
 export DISPLAY_ROTATION=""
-export FRAMEBUFFER="/dev/fb0"
+export FRAMEBUFFER=""
 export DISPLAY_KERNEL_OPTIONS=""
 
 # Zynthian Wiring Config
