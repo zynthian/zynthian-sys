@@ -83,14 +83,14 @@ class ResolutionDialog(tk.Tk):
 
         ttk.Button(
             buttons,
-            text="Apply",
-            command=self.apply
+            text="Cancel",
+            command=self.destroy
         ).pack(side=tk.LEFT, padx=5)
 
         ttk.Button(
             buttons,
-            text="Cancel",
-            command=self.destroy
+            text="Apply",
+            command=self.apply
         ).pack(side=tk.LEFT, padx=5)
 
     def apply(self):
