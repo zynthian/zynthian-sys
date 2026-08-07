@@ -2,6 +2,6 @@
 Name=Resolution
 Terminal=false
 Comment=Change desktop screen resolution
-Exec=/zynthian/zynthian-sys/sbin/resolution.sh
+Exec=/zynthian/zynthian-sys/sbin/resolution.py
 Icon=video-display
 Type=Application
