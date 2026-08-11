@@ -753,11 +753,11 @@ fi
 patchlevel="20260808.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	umount /tmp || True
+	umount /tmp || true
 	pip install PyOpenGL PyOpenGL_accelerate pyopengltk
 	rm -rf /tmp/*
 	rm -rf /tmp/.*
-	mount /tmp || True
+	mount /tmp || true
 fi
 
 # Pave the way for wayland => Not yet!!
