@@ -764,6 +764,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	mount /tmp || true
 fi
 
+patchlevel="20260811.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	ptq_version=$($ZYNTHIAN_SW_DIR/pianoteq/pianoteq --version | head -n 1)
+	ptq_version_parts=($ptq_version)
+	if [[ "${ptq_version_parts[2]}" == "Trial" && "${ptq_version_parts[4]}" < "9.2.1" ]]; then
+		$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
+	fi
+fi
+
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
