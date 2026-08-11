@@ -653,7 +653,7 @@ patchlevel="20260517.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	dpkg --remove --force-depends libsndfile-zyndev || true
-	apt-get --fix-broken install
+	apt-get --fix-broken install -y
 	aptpkgs="$aptpkgs libsndfile1 libsndfile1-dev"
 fi
 
@@ -740,6 +740,24 @@ patchlevel="20260802.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	aptpkgs="$aptpkgs gldriver-test"
+fi
+
+# Install mimalloc perfomance & RT memory allocator for zynseq and others
+patchlevel="20260808.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	aptpkgs="$aptpkgs libmimalloc3 libmimalloc-dev"
+fi
+
+# Pave the way for accelerated OpenGL canvases
+patchlevel="20260808.2"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	umount /tmp
+	pip install PyOpenGL PyOpenGL_accelerate pyopengltk
+	rm -rf /tmp/*
+	rm -rf /tmp/.
+	mount /tmp
 fi
 
 # Pave the way for wayland => Not yet!!
