@@ -753,15 +753,9 @@ fi
 patchlevel="20260808.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	set_restart_ui_flag
-	set_restart_webconf_flag
-	systemctl stop zynthian
-	systemctl stop zynthian-webconf
-	umount /tmp || true
+	mount -o remount,size=500M /tmp
 	pip install PyOpenGL PyOpenGL_accelerate pyopengltk
-	rm -rf /tmp/*
-	rm -rf /tmp/.*
-	mount /tmp || true
+	mount -o remount,size=100M /tmp
 fi
 
 patchlevel="20260811.1"
