@@ -756,7 +756,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	umount /tmp
 	pip install PyOpenGL PyOpenGL_accelerate pyopengltk
 	rm -rf /tmp/*
-	rm -rf /tmp/.
+	rm -rf /tmp/.*
 	mount /tmp
 fi
 
