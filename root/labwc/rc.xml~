@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labwc_config>
+  <libinput>
+    <device>
+      <touch deviceName="" mapToOutput="DSI-1" calibrationMatrix="-1 0 1 0 -1 1" />
+    </device>
+  </libinput>
+  <windowRules>
+    <windowRule identifier="*" serverDecoration="no" />
+  </windowRules>
+</labwc_config>
+
