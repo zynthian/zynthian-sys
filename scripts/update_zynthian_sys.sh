@@ -234,7 +234,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 		cmdline="$cmdline console=tty1 logo.nologo"
 	else
 		echo "BOOT LOG DISABLED"
-		cmdline="$cmdline console=tty3 logo.nologo quiet loglevel=2 vt.global_cursor_default=0"
+		cmdline="$cmdline console=tty3 logo.nologo quiet loglevel=2 vt.global_cursor_default=0 fbcon=map:22"
 		if [[ "$BOOT_SPLASH_ENABLED" == "1" ]]; then
 			echo "BOOT SPLASH ENABLED"
 			cmdline="$cmdline splash plymouth.ignore-serial-consoles"
