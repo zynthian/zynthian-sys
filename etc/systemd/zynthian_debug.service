@@ -3,17 +3,24 @@ Description=Zynthian User Interface (DEBUG)
 After=jack2.service
 
 [Service]
+# Configure a runtime directory for the service
+#RuntimeDirectory=wayland-root
+#RuntimeDirectoryMode=0700
+#Environment=XDG_RUNTIME_DIR=/run/wayland-root
+
 Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
 Environment=FRAMEBUFFER=#FRAMEBUFFER#
+Environment=PYOPENGL_PLATFORM=x11
 Environment=HOME=/root
-Environment=XDG_RUNTIME_DIR=/run
+
 Environment=ZYNTHIAN_LOG_LEVEL=10
 Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
 Environment=ZYNTHIAN_UI_DIR=#ZYNTHIAN_UI_DIR#
 Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
-#ExecStartPre=/usr/bin/plymouth quit --retain-splash
+
+ExecStartPre=/usr/bin/plymouth quit --retain-splash
 #ExecStart=labwc -S ./zynthian.sh
 ExecStart=startx ./zynthian.sh -- #X11_SERVER_OPTIONS#
 TimeoutStopSec=20

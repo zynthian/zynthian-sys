@@ -768,6 +768,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
+# Install modern OpenGL libraries that works efficiently with Pi4 & Pi5 hardware
+patchlevel="20260819.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	mount -o remount,size=200M /tmp
+	pip install pyglm glcontext pyglet moderngl moderngl-window
+	mount -o remount,size=100M /tmp
+fi
+
+
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
