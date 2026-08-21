@@ -20,7 +20,7 @@ Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
 
-ExecStartPre=/usr/bin/plymouth quit --retain-splash
+ExecStartPre=-/usr/bin/plymouth quit --retain-splash
 #ExecStart=labwc -S ./zynthian.sh
 ExecStart=startx ./zynthian.sh -- #X11_SERVER_OPTIONS#
 TimeoutStopSec=20
