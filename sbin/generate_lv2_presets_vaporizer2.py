@@ -33,7 +33,7 @@ from subprocess import check_output
 
 preset_dir = "/usr/share/Vaporizer2/Presets"
 preset_dir_user = "/root/Documents/Vaporizer2/Presets"
-presets_dpath = "/zynthian/zynthian-my-data/presets/lv2"
+presets_dpath = "/zynthian/zynthian-plugins/lv2-presets"
 presets_lv2_dpath = f"{presets_dpath}/vaporizer2-presets.lv2"
 plugin_uri = "https://www.vast-dynamics.com/plugins/VASTvaporizer2"
 

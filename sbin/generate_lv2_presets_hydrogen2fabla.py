@@ -33,7 +33,7 @@ from xml.etree import ElementTree
 
 drumkit_dir = "/usr/share/drmr/drumkits"
 drumkit_dir_local = "/usr/local/share/drmr/drumkits"
-presets_dpath = "/zynthian/zynthian-my-data/presets/lv2"
+presets_dpath = "/zynthian/zynthian-plugins/lv2-presets"
 presets_lv2_dpath = f"{presets_dpath}/fabla_hydrogen_presets.lv2"
 plugin_uri = "http://www.openavproductions.com/fabla"
 
