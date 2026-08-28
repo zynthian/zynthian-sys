@@ -58,6 +58,19 @@ git pull
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Moving generated LV2 presets from my-data:
+if [ ! -d "$ZYNTHIAN_PLUGINS_DIR/lv2-presets" ]; then
+	dst_dir="$ZYNTHIAN_PLUGINS_DIR/lv2-presets"
+	mkdir -p "$dst_dir"
+	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/dexed-DCDCollection.lv2" "$dst_dir"
+	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/DrMr_Sampler_presets.lv2" "$dst_dir"
+	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/fabla_hydrogen_presets.lv2" "$dst_dir"
+	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/Perfomix_Default.preset.lv2" "$dst_dir"
+	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/vaporizer2-presets.lv2" "$dst_dir"
+	cd $ZYNTHIAN_UI_DIR/zyngine
+	./zynthian_lv2.py presets https://github.com/dcoredump/dexed.lv2 http://github.com/nicklan/drmr http://www.openavproductions.com/fabla lv2://nobisoft.de/Perfomix https://www.vast-dynamics.com/plugins/VASTvaporizer2
+fi
+
 # Create user's ctrldev directory
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/ctrldev" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/ctrldev"
@@ -233,9 +246,9 @@ ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards" "/root/.pedalboards"
 
 # Fix/Setup MOD-UI lv2 presets directory
 if [ -d "/root/.lv2" ] && [ ! -L "/root/.lv2" ]; then
-	mv /root/.lv2/* $ZYNTHIAN_MY_DATA_DIR/presets/lv2 2>/dev/null; true
+	mv /root/.lv2/* $ZYNTHIAN_PLUGINS_DIR/lv2-presets 2>/dev/null; true
 	rm -rf "/root/.lv2"
-	ln -s "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" "/root/.lv2"
+	ln -s "$ZYNTHIAN_PLUGINS_DIR/lv2-presets" "/root/.lv2"
 fi
 
 # Fix/Setup setbfree user config directory
@@ -260,7 +273,7 @@ fi
 if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2" ]; then
 	sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2/*.ttl
 fi
-sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.ttl
+sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2-presets/*/*.ttl
 
 # Link FluidPlug SF2s for using normally with FluidSynth
 cd $ZYNTHIAN_PLUGINS_DIR/lv2
