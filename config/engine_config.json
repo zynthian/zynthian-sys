@@ -4085,14 +4085,14 @@
 "TITLE": "DrMr Sampler",
 "TYPE": "MIDI Synth",
 "CAT": "Percussion",
-"ENABLED": true,
+"ENABLED": false,
 "INDEX": 9999,
 "URL": "http://github.com/nicklan/drmr",
 "UI": "GtkUI",
 "DESCR": "Load hydrogen drumkits. Per-sample volume and pan controls.",
 "QUALITY": 4,
 "COMPLEX": 3,
-"EDIT": 0
+"EDIT": 1
 },
 "JV/Drop": {
 "ID": "3134f97471",
@@ -7970,14 +7970,14 @@
 "TITLE": "LinuxSampler: SFZ, GIG",
 "TYPE": "MIDI Synth",
 "CAT": "Sampler",
-"ENABLED": true,
+"ENABLED": false,
 "INDEX": 4,
 "URL": "",
 "UI": "",
 "DESCR": "Player for sample-based instruments: SFZ , GIG",
 "QUALITY": 4,
 "COMPLEX": 1,
-"EDIT": 0
+"EDIT": 1
 },
 "JV/Lookahead limiter": {
 "ID": "c7f103b054",
@@ -13835,14 +13835,14 @@
 "TITLE": "samplv1",
 "TYPE": "MIDI Synth",
 "CAT": "Sampler",
-"ENABLED": false,
+"ENABLED": true,
 "INDEX": 9999,
 "URL": "http://samplv1.sourceforge.net/lv2",
 "UI": "X11UI",
-"DESCR": "Classic subtractive with 2 oscillators, filter, ADSR, LFO and effects. Presets.",
-"QUALITY": 0,
-"COMPLEX": 0,
-"EDIT": 0
+"DESCR": "Old-school sampler with offset and loop points, filter, ADSR, LFO and effects.",
+"QUALITY": 4,
+"COMPLEX": 4,
+"EDIT": 2
 },
 "JV/Satma": {
 "ID": "fe22606ee6",
