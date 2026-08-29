@@ -448,7 +448,10 @@ if [ ! -e "/usr/lib/dri" ]; then
 	fi
 fi
 
-# User Config (root)
+# User Config (root directory)
+
+# Copy root's directory config files from zynthian-sys repo
+cp -a $ZYNTHIAN_SYS_DIR/root/.* /root
 
 # => ZynAddSubFX Config
 if [ -f $ZYNTHIAN_SYS_DIR/etc/zynaddsubfxXML.cfg ]; then
