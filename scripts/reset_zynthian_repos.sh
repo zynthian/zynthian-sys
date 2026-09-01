@@ -29,6 +29,8 @@
 [ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthian/zyncoder.git"
 [ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
+[ -n "$ZYNTHIAN_HELP_REPO" ] || ZYNTHIAN_HELP_REPO="https://github.com/zynthian/zynthian-help.git"
+[ -n "$ZYNTHIAN_PACKAGES_REPO" ] || ZYNTHIAN_PACKAGES_REPO="https://github.com/zynthian/zynthian-packages.git"
 
 export ZYNTHIAN_BRANCH=$1
 export ZYNTHIAN_SYS_BRANCH=$1
@@ -39,6 +41,7 @@ export ZYNTHIAN_SYS_BRANCH=$1
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH=$ZYNTHIAN_BRANCH
+[ -n "$ZYNTHIAN_HELP_BRANCH" ] || ZYNTHIAN_HELP_BRANCH=$ZYNTHIAN_BRANCH
 
 #export git_options="--depth 1 --single-branch"
 #export git_options="--depth 1"
@@ -54,6 +57,8 @@ if [[ "$2" == "ALL" ]]; then
 	rm -rf "zynthian-ui"
 	rm -rf "zynthian-webconf"
 	rm -rf "zynthian-data"
+	rm -rf "zynthian-help"
+	rm -rf "zynthian-packages"
 elif [[ -d "$2" ]]; then
 	rm -rf "$2"
 fi
@@ -91,5 +96,17 @@ fi
 if [ ! -d "zynthian-data" ]; then
 	cd "$ZYNTHIAN_DIR"
 	git clone "${git_options}" -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
+fi
+
+# Zynthian Help
+if [ ! -d "zynthian-help" ]; then
+	cd "$ZYNTHIAN_DIR"
+	git clone "${git_options}" -b "${ZYNTHIAN_HELP_BRANCH}" "${ZYNTHIAN_HELP_REPO}"
+fi
+
+# Zynthian Packages
+if [ ! -d "zynthian-packages" ]; then
+	cd "$ZYNTHIAN_DIR"
+	git clone "${git_options}" "${ZYNTHIAN_PACKAGES_REPO}"
 fi
 

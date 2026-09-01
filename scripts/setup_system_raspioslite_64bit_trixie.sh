@@ -51,7 +51,8 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthian/zyncoder.git"
 [ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
-[ -n "$ZYNTHIAN_PACKAGE_REPO" ] || ZYNTHIAN_PACKAGE_REPO="https://github.com/zynthian/zynthian-package.git"
+[ -n "$ZYNTHIAN_HELP_REPO" ] || ZYNTHIAN_HELP_REPO="https://github.com/zynthian/zynthian-help.git"
+[ -n "$ZYNTHIAN_PACKAGES_REPO" ] || ZYNTHIAN_PACKAGES_REPO="https://github.com/zynthian/zynthian-packages.git"
 
 [ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="oram"
 [ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="oram"
@@ -59,6 +60,7 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH=$ZYNTHIAN_BRANCH
+[ -n "$ZYNTHIAN_HELP_BRANCH" ] || ZYNTHIAN_HELP_BRANCH=$ZYNTHIAN_BRANCH
 
 #------------------------------------------------
 # Update System & Firmware
@@ -209,10 +211,13 @@ git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
 
+# Zynthian Help
+cd "$ZYNTHIAN_DIR"
+git clone -b "${ZYNTHIAN_HELP_BRANCH}" "${ZYNTHIAN_HELP_REPO}"
+
 # Zynthian Packages
 cd "$ZYNTHIAN_DIR"
-git clone "${ZYNTHIAN_PACKAGE_REPO}"
-
+git clone "${ZYNTHIAN_PACKAGES_REPO}"
 
 # Create needed directories
 #mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"

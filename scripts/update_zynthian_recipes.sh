@@ -777,6 +777,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	mount -o remount,size=100M /tmp
 fi
 
+patchlevel="20260901.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	cd $ZYNTHIAN_DIR
+	if [ -d "zynthian-help" ]; then
+		rm -rf "zynthian-help"
+	fi
+	git clone -b "vangelis" "https://github.com/zynthian/zynthian-help"
+fi
 
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
