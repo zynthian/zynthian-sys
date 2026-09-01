@@ -82,6 +82,22 @@ else
 	git pull | grep -q -v 'Already up.to.date.' && webconf_changed=1
 fi
 
+echo "Updating zynthian-help..."
+cd $ZYNTHIAN_DIR/zynthian-help
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+git checkout .
+git clean -f
+if [ "$RESET_ZYNTHIAN_REPOSITORIES" == "1" ]; then
+	git merge --abort
+	git fetch
+	git reset --hard origin/$branch
+	help_changed=1
+elif [[ $branch == $ZYNTHIAN_STABLE_BRANCH-* ]]; then
+  echo -e "Repository 'zynthian-help' frozen in tag release '$branch'!"
+else
+	git pull | grep -q -v 'Already up.to.date.' && help_changed=1
+fi
+
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
 	regenerate_engines_db.sh all
