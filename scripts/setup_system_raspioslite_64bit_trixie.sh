@@ -83,7 +83,7 @@ fi
 #------------------------------------------------
 
 # deb-multimedia repo
-echo "deb https://www.deb-multimedia.org bookworm main non-free" >> /etc/apt/sources.list
+echo "deb https://www.deb-multimedia.org trixie main non-free" >> /etc/apt/sources.list
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -y --allow-unauthenticated  install deb-multimedia-keyring
 
@@ -111,9 +111,9 @@ apt-get -y autoremove
 
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile bluez
-apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
+apt-get -y install systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
-xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
+xfwm4 xfce4-panel xdotool linux-cpupower wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
 shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng \
 sox wiringpi plymouth plumouth-themes gldriver-test
@@ -153,7 +153,7 @@ libclthreads-dev libclxclient-dev libwebkit2gtk-4.0-dev libboost-python-dev libb
 # Removed from bookworm: libavresample4
 
 # Tools
-apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake \
+apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake4 \
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
 ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust \
 zita-ajbridge jack-example-tools
