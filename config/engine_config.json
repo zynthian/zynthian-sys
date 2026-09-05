@@ -7394,6 +7394,21 @@
 "COMPLEX": 1,
 "EDIT": 0
 },
+"SP": {
+"ID": "9e5de72ce1",
+"NAME": "SpotifyConnect",
+"TITLE": "Spotify Connect",
+"TYPE": "Audio Generator",
+"CAT": "Other",
+"ENABLED": true,
+"INDEX": 12,
+"URL": "",
+"UI": "",
+"DESCR": "Spotify connect client. Needs Spotify Premium account. Use at own risk, see spotifyd.",
+"QUALITY": 3,
+"COMPLEX": 1,
+"EDIT": 0
+},
 "JV/Invada Compressor (mono)": {
 "ID": "b6cc69e6a9",
 "NAME": "Invada Compressor (mono)",
