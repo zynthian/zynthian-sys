@@ -420,6 +420,10 @@ if [ -f "/etc/X11/xorg.conf.d/99-fbdev.conf" ]; then
 	rm -f "/etc/X11/xorg.conf.d/99-fbdev.conf"
 fi
 
+if [ -f "/etc/X11/xorg.conf.d/69-display_inverted.conf" ]; then
+	rm -f "/etc/X11/xorg.conf.d/69-display_inverted.conf"
+fi
+
 # Start X11 with keyboard autorepeat disable (-r) and disabling screen blanking (-s 0)
 #X11_SERVER_OPTIONS="vt1 -r -s 0"
 X11_SERVER_OPTIONS="-r -s 0"
