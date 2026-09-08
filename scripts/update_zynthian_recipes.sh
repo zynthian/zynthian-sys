@@ -787,6 +787,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	git clone -b "vangelis" "https://github.com/zynthian/zynthian-help"
 fi
 
+# Update Perfomix plugin
+patchlevel="20260908.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
+fi
+
+
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
