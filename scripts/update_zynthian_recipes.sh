@@ -642,12 +642,12 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	fi
 fi
 
-patchlevel="20260512.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
-	regenerate_lv2_presets.sh "https://butoba.net/homepage/mimid.html"
-fi
+#patchlevel="20260512.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+#	regenerate_lv2_presets.sh "https://butoba.net/homepage/mimid.html"
+#fi
 
 patchlevel="20260517.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -787,11 +787,19 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	git clone -b "vangelis" "https://github.com/zynthian/zynthian-help"
 fi
 
-# Update Perfomix plugin
+# Update Perfomix.lv2 plugin
 patchlevel="20260908.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
+fi
+
+# Update MiMid.lv2 plugin
+patchlevel="20260909.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+	regenerate_lv2_presets.sh "https://butoba.net/homepage/mimid.html"
 fi
 
 
