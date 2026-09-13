@@ -64,40 +64,43 @@ lv2_preset_dir="$ZYNTHIAN_PLUGINS_DIR/lv2-presets"
 regenerate_lv2_presets=""
 regenerate_performix_presets="0"
 
-if [ ! -d "$lv2_preset_dir" ]; then
+if [[ ! -d "$lv2_preset_dir" ]]; then
 	mkdir -p "$lv2_preset_dir"
 fi
-if [ -d "$old_lv2_preset_dir/dexed-DCDCollection.lv2" ]; then
+if [[ -d "$old_lv2_preset_dir/dexed-DCDCollection.lv2" ]]; then
 	mv "$old_lv2_preset_dir/dexed-DCDCollection.lv2" "$lv2_preset_dir"
 	export regenerate_lv2_presets="https://github.com/dcoredump/dexed.lv2"
 fi
-if [ -d "$old_lv2_preset_dir/DrMr_Sampler_presets.lv2" ]; then
+if [[ -d "$old_lv2_preset_dir/DrMr_Sampler_presets.lv2" ]]; then
 	mv "$old_lv2_preset_dir/DrMr_Sampler_presets.lv2" "$lv2_preset_dir"
 	export regenerate_lv2_presets="$regenerate_lv2_presets http://github.com/nicklan/drmr"
 fi
-if [ -d "$old_lv2_preset_dir/fabla_hydrogen_presets.lv2" ]; then
+if [[ -d "$old_lv2_preset_dir/fabla_hydrogen_presets.lv2" ]]; then
 	mv "$old_lv2_preset_dir/fabla_hydrogen_presets.lv2" "$lv2_preset_dir"
 	export regenerate_lv2_presets="$regenerate_lv2_presets http://www.openavproductions.com/fabla"
 fi
-if [ -d "$old_lv2_preset_dir/Perfomix_Default.preset.lv2" ]; then
+if [[ -d "$old_lv2_preset_dir/Perfomix_Default.preset.lv2" ]]; then
 	mv "$old_lv2_preset_dir/Perfomix_Default.preset.lv2" "$lv2_preset_dir"
 	export regenerate_lv2_presets="$regenerate_lv2_presets lv2://nobisoft.de/Perfomix"
 	export regenerate_performix_presets=1
 fi
-if [ -d "$old_lv2_preset_dir/vaporizer2-presets.lv2" ]; then
+if [[ -d "$old_lv2_preset_dir/vaporizer2-presets.lv2" ]]; then
 	mv "$old_lv2_preset_dir/vaporizer2-presets.lv2" "$lv2_preset_dir"
 	export regenerate_lv2_presets="$regenerate_lv2_presets https://www.vast-dynamics.com/plugins/VASTvaporizer2"
 fi
-if [ -f "$lv2_preset_dir/manifest.ttl" ]; then
-	if grep -q "Perfomix" "$lv2_preset_dir/manifest.ttl"; then
+moved=""
+shopt -s nullglob
+for fpath in $lv2_preset_dir/*.ttl; do
+	if grep -q "Perfomix" "$fpath"; then
 		mkdir -p "$lv2_preset_dir/Perfomix_Default.preset.lv2"
-		mv $lv2_preset_dir/*.ttl
-		if [ "$regenerate_performix_presets" == "0" ]; then
-			export regenerate_lv2_presets="$regenerate_lv2_presets lv2://nobisoft.de/Perfomix"
-		fi
+		mv "$fpath" "$lv2_preset_dir/Perfomix_Default.preset.lv2"
+		moved="1"
 	fi
+done
+if [[ "$regenerate_performix_presets" == "0" && "$moved" == "1" ]]; then
+	export regenerate_lv2_presets="$regenerate_lv2_presets lv2://nobisoft.de/Perfomix"
 fi
-if [ "$regenerate_lv2_presets" ]; then
+if [[ "$regenerate_lv2_presets" ]]; then
 	cd $ZYNTHIAN_UI_DIR/zyngine
 	./zynthian_lv2.py presets $regenerate_lv2_presets
 fi
