@@ -59,16 +59,47 @@ git pull
 #------------------------------------------------------------------------------
 
 # Moving generated LV2 presets from my-data:
-if [ ! -d "$ZYNTHIAN_PLUGINS_DIR/lv2-presets" ]; then
-	dst_dir="$ZYNTHIAN_PLUGINS_DIR/lv2-presets"
-	mkdir -p "$dst_dir"
-	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/dexed-DCDCollection.lv2" "$dst_dir"
-	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/DrMr_Sampler_presets.lv2" "$dst_dir"
-	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/fabla_hydrogen_presets.lv2" "$dst_dir"
-	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/Perfomix_Default.preset.lv2" "$dst_dir"
-	mv "$ZYNTHIAN_MY_DATA_DIR/presets/lv2/vaporizer2-presets.lv2" "$dst_dir"
+old_lv2_preset_dir="$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+lv2_preset_dir="$ZYNTHIAN_PLUGINS_DIR/lv2-presets"
+regenerate_lv2_presets=""
+regenerate_performix_presets="0"
+
+if [ ! -d "$lv2_preset_dir" ]; then
+	mkdir -p "$lv2_preset_dir"
+fi
+if [ -d "$old_lv2_preset_dir/dexed-DCDCollection.lv2" ]; then
+	mv "$old_lv2_preset_dir/dexed-DCDCollection.lv2" "$lv2_preset_dir"
+	export regenerate_lv2_presets="https://github.com/dcoredump/dexed.lv2"
+fi
+if [ -d "$old_lv2_preset_dir/DrMr_Sampler_presets.lv2" ]; then
+	mv "$old_lv2_preset_dir/DrMr_Sampler_presets.lv2" "$lv2_preset_dir"
+	export regenerate_lv2_presets="$regenerate_lv2_presets http://github.com/nicklan/drmr"
+fi
+if [ -d "$old_lv2_preset_dir/fabla_hydrogen_presets.lv2" ]; then
+	mv "$old_lv2_preset_dir/fabla_hydrogen_presets.lv2" "$lv2_preset_dir"
+	export regenerate_lv2_presets="$regenerate_lv2_presets http://www.openavproductions.com/fabla"
+fi
+if [ -d "$old_lv2_preset_dir/Perfomix_Default.preset.lv2" ]; then
+	mv "$old_lv2_preset_dir/Perfomix_Default.preset.lv2" "$lv2_preset_dir"
+	export regenerate_lv2_presets="$regenerate_lv2_presets lv2://nobisoft.de/Perfomix"
+	export regenerate_performix_presets=1
+fi
+if [ -d "$old_lv2_preset_dir/vaporizer2-presets.lv2" ]; then
+	mv "$old_lv2_preset_dir/vaporizer2-presets.lv2" "$lv2_preset_dir"
+	export regenerate_lv2_presets="$regenerate_lv2_presets https://www.vast-dynamics.com/plugins/VASTvaporizer2"
+fi
+if [ -f "$lv2_preset_dir/manifest.ttl" ]; then
+	if grep -q "Perfomix" "$lv2_preset_dir/manifest.ttl"; then
+		mkdir -p "$lv2_preset_dir/Perfomix_Default.preset.lv2"
+		mv $lv2_preset_dir/*.ttl
+		if [ "$regenerate_performix_presets" == "0" ]; then
+			export regenerate_lv2_presets="$regenerate_lv2_presets lv2://nobisoft.de/Perfomix"
+		fi
+	fi
+fi
+if [ "$regenerate_lv2_presets" ]; then
 	cd $ZYNTHIAN_UI_DIR/zyngine
-	./zynthian_lv2.py presets https://github.com/dcoredump/dexed.lv2 http://github.com/nicklan/drmr http://www.openavproductions.com/fabla lv2://nobisoft.de/Perfomix https://www.vast-dynamics.com/plugins/VASTvaporizer2
+	./zynthian_lv2.py presets $regenerate_lv2_presets
 fi
 
 # Create user's ctrldev directory
