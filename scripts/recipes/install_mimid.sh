@@ -15,8 +15,7 @@ fi
 
 git clone --recursive -b zynthian https://github.com/polluxsynth/audio-plugins polluxsynth-audio-plugins
 cd polluxsynth-audio-plugins
-#make -j 3
-make
+make -j 3
 make install
 make clean
 
