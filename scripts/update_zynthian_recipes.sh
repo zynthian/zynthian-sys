@@ -787,19 +787,19 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	git clone -b "vangelis" "https://github.com/zynthian/zynthian-help"
 fi
 
-# Update Perfomix.lv2 plugin
-patchlevel="20260908.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
-fi
-
 # Update MiMid.lv2 plugin
 patchlevel="20260915.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
 	regenerate_lv2_presets.sh "https://butoba.net/homepage/mimid.html"
+fi
+
+# Update Perfomix.lv2 plugin
+patchlevel="20260916.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
 fi
 
 
