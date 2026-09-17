@@ -802,6 +802,21 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_Perfomix_prebuilt.sh
 fi
 
+# Install Dusk-Audio plugins
+patchlevel="20260917.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_4K_EQ2_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_chord_analyzer_headless_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_chord_analyzer_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_duskverb_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_multi_comp_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_multi_Q_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_spectrum_analyzer_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_sunset_circuits_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_tape_echo2_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_dusk_tapemachine2_prebuilt.sh
+fi
 
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"

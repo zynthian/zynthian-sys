@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BASE_URL_DOWNLOAD="https://github.com/dusk-audio/dusk-audio-plugins/releases/download"
+PLUGIN_NAME="tapemachine-2"
+PLUGIN_VERSION="v1.0.11"
+DOWNLOAD_FNAME="$PLUGIN_NAME-linux-arm64.zip"
+UNZIP_DIR="$PLUGIN_NAME-linux-arm64"
+URL_DOWNLOAD="$BASE_URL_DOWNLOAD/$PLUGIN_NAME-$PLUGIN_VERSION/$DOWNLOAD_FNAME"
+
+cd $ZYNTHIAN_PLUGINS_DIR || exit 1
+
+rm -rf ./lv2/$PLUGIN_NAME.lv2
+
+wget "$URL_DOWNLOAD"
+unzip "$DOWNLOAD_FNAME"
+mv $UNZIP_DIR/LV2/* ./lv2
+mv $UNZIP_DIR/LICENSE ./lv2/$PLUGIN_NAME.lv2
+mv $UNZIP_DIR/THIRD_PARTY_LICENSES.md ./lv2/$PLUGIN_NAME.lv2
+mv $UNZIP_DIR/$PLUGIN_NAME-manual.pdf ./lv2/$PLUGIN_NAME.lv2
+rm -rf "$UNZIP_DIR"
+rm -f "$DOWNLOAD_FNAME"
