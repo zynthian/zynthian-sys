@@ -17,5 +17,6 @@ wget "$URL_DOWNLOAD"
 unzip "$DOWNLOAD_FNAME"
 mv LV2/* ../lv2
 mv "$PLUGIN_NAME-manual.pdf" "../lv2/$PLUGIN_BUNDLEDIR"
+patchelf --add-needed libcurl.so.4 "../lv2/$PLUGIN_BUNDLEDIR/ChordAnalyzerHeadless.so"
 cd ..
 rm -rf "dusk"

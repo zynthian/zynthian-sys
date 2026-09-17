@@ -156,7 +156,7 @@ libclthreads-dev libclxclient-dev libwebkit2gtk-4.0-dev libboost-python-dev libb
 apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake \
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
 ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust \
-zita-ajbridge jack-example-tools
+zita-ajbridge jack-example-tools patchelf
 
 # Missed tools from previous OS versions:
 #libjack-dev-session
