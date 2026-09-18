@@ -134,6 +134,21 @@
 "COMPLEX": 0,
 "EDIT": 0
 },
+"JV/4K EQ 2": {
+"ID": "8f27e43002",
+"NAME": "4K EQ 2",
+"TITLE": "4K EQ 2",
+"TYPE": "Audio Effect",
+"CAT": "Filter & EQ",
+"ENABLED": true,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/4k-eq-2",
+"UI": "X11UI",
+"DESCR": "British console EQ emulation: 4-band parametric EQ with high/low filters, Brown/Black voicings and native console nonlinearity, oversampled for cramp-free high-frequency response.",
+"QUALITY": 3,
+"COMPLEX": 3,
+"EDIT": 0
+},
 "JV/64 Step Sequencer": {
 "ID": "39a3ae630b",
 "NAME": "64 Step Sequencer",
@@ -1347,6 +1362,21 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
+"EDIT": 0
+},
+"AP": {
+"ID": "c6701b5ed7",
+"NAME": "AudioPlayer",
+"TITLE": "Audio Player",
+"TYPE": "Audio Generator",
+"CAT": "Other",
+"ENABLED": true,
+"INDEX": 8,
+"URL": "",
+"UI": "",
+"DESCR": "Zynthian's audio player, featuring time stretching, pitch shifting and much more. Custom GUI.",
+"QUALITY": 4,
+"COMPLEX": 4,
 "EDIT": 0
 },
 "JV/Audio to CV": {
@@ -3134,6 +3164,51 @@
 "COMPLEX": 1,
 "EDIT": 0
 },
+"JV/Chord Analyzer": {
+"ID": "b362826988",
+"NAME": "Chord Analyzer",
+"TITLE": "Chord Analyzer",
+"TYPE": "Other",
+"CAT": "MIDI Tool",
+"ENABLED": false,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/chord-analyzer",
+"UI": "X11UI",
+"DESCR": "Chord Analyzer",
+"QUALITY": 0,
+"COMPLEX": 0,
+"EDIT": 0
+},
+"JV/Chord Analyzer Headless": {
+"ID": "6f9e8dd570",
+"NAME": "Chord Analyzer Headless",
+"TITLE": "Chord Analyzer Headless",
+"TYPE": "MIDI Tool",
+"CAT": "Other",
+"ENABLED": true,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/chord-analyzer-headless",
+"UI": null,
+"DESCR": "",
+"QUALITY": 4,
+"COMPLEX": 2,
+"EDIT": 0
+},
+"JV/Chord Analyzer MIDI": {
+"ID": "a26fc51327",
+"NAME": "Chord Analyzer MIDI",
+"TITLE": "Chord Analyzer MIDI",
+"TYPE": "MIDI Tool",
+"CAT": "Other",
+"ENABLED": false,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/chord-analyzer-midi",
+"UI": "X11UI",
+"DESCR": "Chord Analyzer MIDI",
+"QUALITY": 3,
+"COMPLEX": 3,
+"EDIT": 0
+},
 "JV/Chordulator": {
 "ID": "e31fb3de64",
 "NAME": "Chordulator",
@@ -4092,7 +4167,7 @@
 "DESCR": "Load hydrogen drumkits. Per-sample volume and pan controls.",
 "QUALITY": 4,
 "COMPLEX": 3,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/Drop": {
 "ID": "3134f97471",
@@ -4272,6 +4347,21 @@
 "DESCR": "???",
 "QUALITY": 0,
 "COMPLEX": 0,
+"EDIT": 0
+},
+"JV/DuskVerb": {
+"ID": "cb1ce2fe6e",
+"NAME": "DuskVerb",
+"TITLE": "DuskVerb",
+"TYPE": "Audio Effect",
+"CAT": "Reverb",
+"ENABLED": true,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/duskverb",
+"UI": "X11UI",
+"DESCR": "Algorithmic reverb with Hadamard FDN",
+"QUALITY": 3,
+"COMPLEX": 3,
 "EDIT": 0
 },
 "JV/Dyson compressor": {
@@ -7967,17 +8057,17 @@
 "LS": {
 "ID": "8ac779ff61",
 "NAME": "LinuxSampler",
-"TITLE": "LinuxSampler: SFZ, GIG",
+"TITLE": "LinuxSampler: GIG",
 "TYPE": "MIDI Synth",
 "CAT": "Sampler",
 "ENABLED": false,
 "INDEX": 4,
 "URL": "",
 "UI": "",
-"DESCR": "Player for sample-based instruments: SFZ , GIG",
+"DESCR": "Player for sample-based instruments: GIG",
 "QUALITY": 4,
 "COMPLEX": 1,
-"EDIT": 1
+"EDIT": 0
 },
 "JV/Lookahead limiter": {
 "ID": "c7f103b054",
@@ -12629,6 +12719,36 @@
 "COMPLEX": 0,
 "EDIT": 0
 },
+"JV/Multi-Comp": {
+"ID": "762aa7e6be",
+"NAME": "Multi-Comp",
+"TITLE": "Multi-Comp",
+"TYPE": "Audio Effect",
+"CAT": "Dynamics",
+"ENABLED": false,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/multi-comp",
+"UI": "X11UI",
+"DESCR": "Multi-mode compressor with Opto, FET, VCA, Bus emulations and 4-band multiband compression",
+"QUALITY": 0,
+"COMPLEX": 0,
+"EDIT": 0
+},
+"JV/Multi-Q": {
+"ID": "505d1a225d",
+"NAME": "Multi-Q",
+"TITLE": "Multi-Q",
+"TYPE": "Audio Effect",
+"CAT": "Filter & EQ",
+"ENABLED": false,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/multi-q",
+"UI": "X11UI",
+"DESCR": "Professional 8-band parametric EQ with FFT Analyzer",
+"QUALITY": 0,
+"COMPLEX": 0,
+"EDIT": 0
+},
 "JV/Multiband EQ": {
 "ID": "b9c67e9c43",
 "NAME": "Multiband EQ",
@@ -13842,7 +13962,7 @@
 "DESCR": "Old-school sampler with offset and loop points, filter, ADSR, LFO and effects.",
 "QUALITY": 4,
 "COMPLEX": 4,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Satma": {
 "ID": "fe22606ee6",
@@ -14369,6 +14489,21 @@
 "COMPLEX": 0,
 "EDIT": 0
 },
+"JV/Spectrum Analyzer": {
+"ID": "9c2c33d538",
+"NAME": "Spectrum Analyzer",
+"TITLE": "Spectrum Analyzer",
+"TYPE": "Audio Effect",
+"CAT": "Analyzer",
+"ENABLED": false,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/spectrum-analyzer",
+"UI": "X11UI",
+"DESCR": "Professional FFT spectrum analyzer with LUFS metering",
+"QUALITY": 0,
+"COMPLEX": 0,
+"EDIT": 0
+},
 "JV/Square": {
 "ID": "e5467fbc69",
 "NAME": "Square",
@@ -14622,6 +14757,21 @@
 "DESCR": "",
 "QUALITY": 0,
 "COMPLEX": 0,
+"EDIT": 0
+},
+"JV/Sunset Circuits": {
+"ID": "6a8fd0467c",
+"NAME": "Sunset Circuits",
+"TITLE": "Sunset Circuits",
+"TYPE": "MIDI Synth",
+"CAT": "Synth",
+"ENABLED": true,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/sunset-circuits",
+"UI": "X11UI",
+"DESCR": "Sunset Circuits: six vintage synthesizers in one instrument. DCO poly, American poly with poly-mod, aggressive mono, semi-modular, 4-op FM, and an acid bass box with a 16-step pattern sequencer.",
+"QUALITY": 3,
+"COMPLEX": 4,
 "EDIT": 0
 },
 "JV/Super Capo": {
@@ -15269,6 +15419,36 @@
 "COMPLEX": 3,
 "EDIT": 0
 },
+"JV/Tape Echo 2": {
+"ID": "8a6e0aed6d",
+"NAME": "Tape Echo 2",
+"TITLE": "Tape Echo 2",
+"TYPE": "Audio Effect",
+"CAT": "Delay",
+"ENABLED": true,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/tape-echo",
+"UI": "X11UI",
+"DESCR": "Component-modeled vintage tape echo: 3-head tape delay with spring reverb, tape saturation and wow and flutter.",
+"QUALITY": 3,
+"COMPLEX": 3,
+"EDIT": 0
+},
+"JV/TapeMachine 2": {
+"ID": "d45c214291",
+"NAME": "TapeMachine 2",
+"TITLE": "TapeMachine 2",
+"TYPE": "Audio Effect",
+"CAT": "Distortion",
+"ENABLED": true,
+"INDEX": 9999,
+"URL": "https://dusk-audio.github.io/plugins/tapemachine-2",
+"UI": "X11UI",
+"DESCR": "",
+"QUALITY": 3,
+"COMPLEX": 3,
+"EDIT": 0
+},
 "JV/Temper": {
 "ID": "68d93f1335",
 "NAME": "Temper",
@@ -15822,7 +16002,7 @@
 "DESCR": "A powerful, free, and open-source hybrid wavetable synthesizer and sampler workstation. It combines multiple forms of sound generation including wavetable, FM, additive, and granular synthesis",
 "QUALITY": 5,
 "COMPLEX": 5,
-"EDIT": 2
+"EDIT": 0
 },
 "JV/Vavra": {
 "ID": "758a203c39",
@@ -16722,21 +16902,6 @@
 "DESCR": "Hybrid polyphonic synth with a warm and complex sound. It combines 3 synth engines (Add + Sub + Pad) with a rich set of FXs. Microtonal. Presets.",
 "QUALITY": 5,
 "COMPLEX": 3,
-"EDIT": 0
-},
-"AP": {
-"ID": "c6701b5ed7",
-"NAME": "ZynAudioPlayer",
-"TITLE": "Audio Player",
-"TYPE": "Audio Generator",
-"CAT": "Other",
-"ENABLED": true,
-"INDEX": 8,
-"URL": "",
-"UI": "",
-"DESCR": "Zynthian's audio player, featuring time stretching, pitch shifting and much more. Custom GUI.",
-"QUALITY": 4,
-"COMPLEX": 4,
 "EDIT": 0
 },
 "JV/\u03bc-Law Compressor": {
