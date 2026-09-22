@@ -828,7 +828,7 @@ fi
 patchlevel="20260922.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_airwindows-lv2_prebuilt_prebuilt.sh
+	$ZYNTHIAN_RECIPE_DIR/install_airwindows-lv2_prebuilt.sh
 fi
 
 # Pave the way for wayland => Not yet!!
