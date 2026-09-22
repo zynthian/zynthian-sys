@@ -824,6 +824,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_dusk_chord_analyzer_headless_prebuilt.sh
 fi
 
+# Install the Airwindows family of plugins (LV2)
+patchlevel="20260922.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_airwindows-lv2_prebuilt_prebuilt.sh
+fi
+
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
