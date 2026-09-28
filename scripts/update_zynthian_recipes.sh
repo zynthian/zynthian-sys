@@ -831,6 +831,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_airwindows-lv2_prebuilt.sh
 fi
 
+# Install the guitaramp-suite family of plugins (LV2)
+patchlevel="20260928.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_guitaramp-suite_prebuilt.sh
+fi
+
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
