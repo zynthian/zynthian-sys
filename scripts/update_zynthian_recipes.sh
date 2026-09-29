@@ -839,7 +839,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 fi
 
 # Update riban plugins (LV2)
-patchlevel="20260928.1"
+patchlevel="20260929.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	apt-get -y remove riban-lv2
