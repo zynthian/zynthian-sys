@@ -80,7 +80,11 @@ if [[ -d "$old_lv2_preset_dir/fabla_hydrogen_presets.lv2" ]]; then
 	export regenerate_lv2_presets="$regenerate_lv2_presets http://www.openavproductions.com/fabla"
 fi
 if [[ -d "$old_lv2_preset_dir/Perfomix_Default.preset.lv2" ]]; then
-	mv "$old_lv2_preset_dir/Perfomix_Default.preset.lv2" "$lv2_preset_dir"
+	if [[ -d "$lv2_preset_dir/Perfomix_Default.preset.lv2" ]]; then
+		rm -rf "$old_lv2_preset_dir/Perfomix_Default.preset.lv2"
+	else
+		mv "$old_lv2_preset_dir/Perfomix_Default.preset.lv2" "$lv2_preset_dir"
+	fi
 	export regenerate_lv2_presets="$regenerate_lv2_presets lv2://nobisoft.de/Perfomix"
 	export regenerate_performix_presets=1
 fi
