@@ -820,7 +820,7 @@ fi
 patchlevel="20260917.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt -y install patchelf
+	apt-get -y install patchelf
 	$ZYNTHIAN_RECIPE_DIR/install_dusk_chord_analyzer_headless_prebuilt.sh
 fi
 
@@ -837,6 +837,15 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_guitaramp-suite_prebuilt.sh
 fi
+
+# Update riban plugins (LV2)
+patchlevel="20260928.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	apt-get -y remove riban-lv2
+	$ZYNTHIAN_RECIPE_DIR/install_riban-lv2_prebuilt.sh
+fi
+
 
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
