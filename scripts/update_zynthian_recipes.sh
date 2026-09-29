@@ -842,7 +842,7 @@ fi
 patchlevel="20260929.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt-get -y remove riban-lv2
+	apt-get -y remove riban-lv2 || true
 	$ZYNTHIAN_RECIPE_DIR/install_riban-lv2_prebuilt.sh
 fi
 
