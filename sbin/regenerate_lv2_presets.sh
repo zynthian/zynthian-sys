@@ -26,8 +26,9 @@ elif [ "$arg1" == "https://github.com/giulioz/jv880_juce.git" ]; then
 	generate_lv2_presets_VirtualJV.py
 elif [ "$arg1" == "https://www.vast-dynamics.com/plugins/VASTvaporizer2" ]; then
 	generate_lv2_presets_vaporizer2.py
+elif [ "$arg1" == "urn:org.surge-synth-team.OB-Xf" ]; then
+	generate_lv2_presets_OB-Xf.py
 fi
-
 
 if [ "$arg2" == "NO_LV2_CACHE_REGENERATION" ]; then
 	exit

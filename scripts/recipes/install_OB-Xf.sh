@@ -11,7 +11,7 @@ cd OB-Xf || exit
 git submodule update --init --recursive
 sed -i "s/VST3 Standalone//" CMakeLists.txt
 cmake -B Builds/Release -DCMAKE_BUILD_TYPE=Release .
-cmake --build Builds/Release --config Release --target obxf-staged -j 3
+cmake --build Builds/Release --config Release --target obxf-staged   # -j 3
 
 rm -rf "$ZYNTHIAN_PLUGINS_DIR/lv2/OB-Xf.lv2"
 mv ./Builds/Release/OB-Xf_artefacts/Release/LV2/OB-Xf.lv2 "$ZYNTHIAN_PLUGINS_DIR/lv2"
