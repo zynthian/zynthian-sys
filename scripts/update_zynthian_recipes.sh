@@ -850,7 +850,6 @@ fi
 patchlevel="20261002.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
 	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
 	regenerate_lv2_presets.sh "urn:org.surge-synth-team.OB-Xf"
 fi
