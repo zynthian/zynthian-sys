@@ -54,8 +54,8 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_HELP_REPO" ] || ZYNTHIAN_HELP_REPO="https://github.com/zynthian/zynthian-help.git"
 [ -n "$ZYNTHIAN_PACKAGES_REPO" ] || ZYNTHIAN_PACKAGES_REPO="https://github.com/zynthian/zynthian-packages.git"
 
-[ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="oram"
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="oram"
+[ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="vangelis"
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="vangelis"
 [ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
@@ -93,8 +93,8 @@ sudo dpkg -i kxstudio-repos_11.1.0_all.deb
 rm -f kxstudio-repos_11.1.0_all.deb
 
 # Zynthian
-wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
-echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
+#wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
+#echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
 
 # Sfizz => Repo version segfaults!!
 #sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
@@ -328,14 +328,14 @@ source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian
 echo -e "\nPermitRootLogin yes" >> /etc/ssh/sshd_config
 
 # ZynthianOS version
-export ZYNTHIANOS_VERSION="2409"
+export ZYNTHIANOS_VERSION="2510"
 echo $ZYNTHIANOS_VERSION > /etc/zynthianos_version
 # Build Info
-echo "ZynthianOS ORAM-$ZYNTHIANOS_VERSION" > $ZYNTHIAN_DIR/build_info.txt
+echo "ZynthianOS VANGELIS-$ZYNTHIANOS_VERSION" > $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Timestamp: 2024-09-06"  >> $ZYNTHIAN_DIR/build_info.txt
+echo "Timestamp: 2025-10-15"  >> $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Built from RaspberryPiOS Bookworm ($MACHINE_HW_NAME)" >> $ZYNTHIAN_DIR/build_info.txt
+echo "Built from RaspberryPiOS Trixie ($MACHINE_HW_NAME)" >> $ZYNTHIAN_DIR/build_info.txt
 
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
