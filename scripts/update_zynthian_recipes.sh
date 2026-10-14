@@ -831,13 +831,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_airwindows-lv2_prebuilt.sh
 fi
 
-# Install the guitaramp-suite family of plugins (LV2)
-patchlevel="20260928.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_guitaramp-suite_prebuilt.sh
-fi
-
 # Update riban plugins (LV2)
 patchlevel="20261001.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -853,6 +846,14 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
 	regenerate_lv2_presets.sh "urn:org.surge-synth-team.OB-Xf"
 fi
+
+# Install the guitaramp-suite family of plugins (LV2)
+patchlevel="20261014.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_guitaramp-suite_prebuilt.sh
+fi
+
 
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
