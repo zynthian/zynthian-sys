@@ -58,6 +58,11 @@ git pull
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Updating demo snapshots
+mkdir -p $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
+rm -f $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory/009-Zynesthesia_barsync.zss
+cp -au $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
+
 # Moving generated LV2 presets from my-data:
 old_lv2_preset_dir="$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 lv2_preset_dir="$ZYNTHIAN_PLUGINS_DIR/lv2-presets"
