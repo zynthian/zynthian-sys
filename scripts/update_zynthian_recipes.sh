@@ -854,6 +854,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_guitaramp-suite_prebuilt.sh
 fi
 
+# Regenerate LV2 presets for fabla & DrMr to fix drumkit paths
+patchlevel="20261016.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	generate_lv2_presets_hydrogen2fabla.py
+	generate_lv2_presets_DrMr.py
+	pushd $ZYNTHIAN_UI_DIR/zyngine
+	./zynthian_lv2.py presets "http://www.openavproductions.com/fabla" "http://github.com/nicklan/drmr"
+	popd
+fi
 
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"

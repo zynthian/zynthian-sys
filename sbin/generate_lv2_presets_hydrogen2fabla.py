@@ -30,9 +30,8 @@ import shutil
 from subprocess import check_output
 from xml.etree import ElementTree
 
-
-drumkit_dir = "/usr/share/drmr/drumkits"
-drumkit_dir_local = "/usr/local/share/drmr/drumkits"
+drumkit_dir = "/zynthian/zynthian-data/soundfonts/hydrogen"
+drumkit_dir_local = "/zynthian/zynthian-my-data/soundfonts/hydrogen"
 presets_dpath = "/zynthian/zynthian-plugins/lv2-presets"
 presets_lv2_dpath = f"{presets_dpath}/fabla_hydrogen_presets.lv2"
 plugin_uri = "http://www.openavproductions.com/fabla"
