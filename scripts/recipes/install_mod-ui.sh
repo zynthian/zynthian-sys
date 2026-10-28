@@ -16,11 +16,18 @@ cd mod-ui
 python3 -m venv modui-env --system-site-packages
 source modui-env/bin/activate
 # Install python requirements
-pip3 install -r requirements.txt
+# pycrypto is abandoned and does not build on Python 3.13; pycryptodome is its maintained drop-in (the Crypto.* modules
+# mod-ui imports). tornado 4.3 needs the ssl_match_hostname backport once Python 3.12 dropped the standard one.
+grep -v -i "pycrypto" requirements.txt > requirements.nocrypto.txt
+pip3 install -r requirements.nocrypto.txt
+pip3 install pycryptodome backports.ssl_match_hostname
+rm -f requirements.nocrypto.txt
 pip3 install browsepy
+# the compatibility edits below name the environment's own Python version, not a fixed one
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
 # Patch library to work with old tornado version (4.3!)
-sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3.11/site-packages/tornado/httputil.py
-sed -i -e 's/collections.Mapping/collections.abc.Mapping/' modui-env/lib/python3.11/site-packages/browsepy/manager.py
+sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python$PYVER/site-packages/tornado/httputil.py
+sed -i -e 's/collections.Mapping/collections.abc.Mapping/' modui-env/lib/python$PYVER/site-packages/browsepy/manager.py
 # Build utils library
 make -C utils
 
