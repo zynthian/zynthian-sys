@@ -865,6 +865,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	popd
 fi
 
+# Install/update faust-plugins (LV2)
+patchlevel="20261028.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_RECIPE_DIR/install_faust-plugins_prebuilt.sh
+fi
+
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
