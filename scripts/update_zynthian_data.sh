@@ -131,6 +131,11 @@ if [ ! -d "$ZYNTHIAN_DATA_DIR/collections" ]; then
 	mkdir "$ZYNTHIAN_DATA_DIR/collections"
 fi
 
+# Create installed packages directory with the installed packages inside
+if [ ! -d "$ZYNTHIAN_CONFIG_DIR/packages" ]; then
+	create_installed_packages.sh
+fi
+
 # Create directories and symlinks for Hydrogen soundfonts
 if [ ! -d "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen" ]; then
 	mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen"
