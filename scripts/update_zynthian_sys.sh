@@ -184,6 +184,8 @@ if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
 	arch_libdir="arm-linux-gnueabih"
 elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
 	arch_libdir="aarch64-linux-gnu"
+elif [ ${MACHINE_HW_NAME} = "x86_64" ]; then
+	arch_libdir="x86_64-linux-gnu"
 fi
 LV2_PATH="/usr/lib/lv2:/usr/lib/$arch_libdir/lv2:/usr/local/lib/lv2:/usr/local/lib/$arch_libdir/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2-presets:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 LV2_PATH_ESC=${LV2_PATH//\//\\\/}
@@ -196,110 +198,121 @@ sed -i -e "s/^export LV2_PATH\=.*$/export LV2_PATH=\"$LV2_PATH_ESC\"/" $ZYNTHIAN
 BOOT_CONFIG_FPATH="/boot/firmware/config.txt"
 CMDLINE_CONFIG_FPATH="/boot/firmware/cmdline.txt"
 
-ROOT=root=/dev/mmcblk0p2
-for token in `cat $CMDLINE_CONFIG_FPATH`
-do
-  if [[ $token == root=* ]]
-  then
-    ROOT=$token
-    break
-  fi
-done
+function configure_rbpi_boot() {
+	echo "Configuring RBPi boot files ..."
 
-# Detect NO_ZYNTHIAN_UPDATE flag in the config.txt
-if [ -f "$BOOT_CONFIG_FPATH" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
-	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE $BOOT_CONFIG_FPATH`
-fi
-
-if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
-	# Generate cmdline.txt
-  cmdline="$ROOT rootfstype=ext4 fsck.repair=yes rootwait"
-
-	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
-		echo "USB SPEED LIMIT ENABLED"
-		cmdline="$cmdline dwc_otg.speed=1"
+	if [ -f "$CMDLINE_CONFIG_FPATH" ]; then
+		ROOT=root=/dev/mmcblk0p2
+		for token in `cat $CMDLINE_CONFIG_FPATH`; do
+			if [[ $token == root=* ]]; then
+				ROOT=$token
+				break
+			fi
+		done
 	fi
 
-	if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
-		cmdline="$cmdline $DISPLAY_KERNEL_OPTIONS"
+	# Detect NO_ZYNTHIAN_UPDATE flag in the config.txt
+	if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
+		NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE $BOOT_CONFIG_FPATH`
 	fi
 
-	if [[ "$ZYNTHIAN_CUSTOM_BOOT_CMDLINE" != "" ]]; then
-    echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
-	  cmdline="$cmdline $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
-	fi
+	if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
+		# Generate cmdline.txt
+		cmdline="$ROOT rootfstype=ext4 fsck.repair=yes rootwait"
 
-	if [[ "$BOOTLOG" == "1" ]]; then
-		echo "BOOT LOG ENABLED"
-		cmdline="$cmdline console=tty1 logo.nologo"
-	else
-		echo "BOOT LOG DISABLED"
-		cmdline="$cmdline console=tty3 logo.nologo quiet loglevel=2 vt.global_cursor_default=0 fbcon=map:22"
-		if [[ "$BOOT_SPLASH_ENABLED" == "1" ]]; then
-			echo "BOOT SPLASH ENABLED"
-			cmdline="$cmdline splash plymouth.ignore-serial-consoles"
+		if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
+			echo "USB SPEED LIMIT ENABLED"
+			cmdline="$cmdline dwc_otg.speed=1"
 		fi
+
+		if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
+			cmdline="$cmdline $DISPLAY_KERNEL_OPTIONS"
+		fi
+
+		if [[ "$ZYNTHIAN_CUSTOM_BOOT_CMDLINE" != "" ]]; then
+		echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
+		cmdline="$cmdline $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
+		fi
+
+		if [[ "$BOOTLOG" == "1" ]]; then
+			echo "BOOT LOG ENABLED"
+			cmdline="$cmdline console=tty1 logo.nologo"
+		else
+			echo "BOOT LOG DISABLED"
+			cmdline="$cmdline console=tty3 logo.nologo quiet loglevel=2 vt.global_cursor_default=0 fbcon=map:22"
+			if [[ "$BOOT_SPLASH_ENABLED" == "1" ]]; then
+				echo "BOOT SPLASH ENABLED"
+				cmdline="$cmdline splash plymouth.ignore-serial-consoles"
+			fi
+		fi
+
+	# Customize config.txt
+		cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt "$BOOT_CONFIG_FPATH"
+
+		echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
+		if [[ "$ZYNTHIAN_OVERCLOCKING" == "Maximum" ]]; then
+			sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage_delta=50000\narm_freq=2000/g" "$BOOT_CONFIG_FPATH"
+			sed -i -e "s/#OVERCLOCKING_RBPI5#/over_voltage_delta=50000\narm_freq=3000/g" "$BOOT_CONFIG_FPATH"
+		elif [[ "$ZYNTHIAN_OVERCLOCKING" == "Medium" ]]; then
+			sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage_delta=20000\narm_freq=1750/g" "$BOOT_CONFIG_FPATH"
+			sed -i -e "s/#OVERCLOCKING_RBPI5#/over_voltage_delta=20000\narm_freq=2700/g" "$BOOT_CONFIG_FPATH"
+		else
+			sed -i -e "s/#OVERCLOCKING_RBPI4#//g" "$BOOT_CONFIG_FPATH"
+			sed -i -e "s/#OVERCLOCKING_RBPI5#//g" "$BOOT_CONFIG_FPATH"
+		fi
+
+		if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
+			echo "RBPI AUDIO ENABLED"
+			sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" "$BOOT_CONFIG_FPATH"
+		fi
+
+		if [[ "$ZYNTHIAN_DISABLE_OTG" != "1" ]]; then
+			echo "OTG ENABLED"
+			cmdline="$cmdline modules-load=dwc2,libcomposite"
+			sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" "$BOOT_CONFIG_FPATH"
+		fi
+
+		echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
+		sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" "$BOOT_CONFIG_FPATH"
+
+		# Patch piscreen config
+		if [[ ( $DISPLAY_CONFIG == *"piscreen2r-notouch"* ) && ( $DISPLAY_CONFIG != *"piscreen2r-backlight"* ) ]]; then
+			DISPLAY_CONFIG=$DISPLAY_CONFIG"\ndtoverlay=piscreen2r-backlight"
+		fi
+		echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
+		sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" "$BOOT_CONFIG_FPATH"
+
+		# Configure the act-led dtoverlay if an EPDF hat has been detected => Added to custom config!
+		# This should be detected by zynthian_autoconfig.sh instead of epdf_detect.sh
+		if [ "$ZYNTHIAN_EPDF_HAT" == "1" ]; then
+			export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n"$ZYNTHIAN_CUSTOM_CONFIG
+		fi
+
+		# Configure RTC for V5 & Z2 main boards
+		# TODO => see /zynthian-sys/sbin/configure_rtc.sh!!!
+		if [[ ( $ZYNTHIAN_KIT_VERSION == "V5"* ) || ( $ZYNTHIAN_KIT_VERSION == "Z2"* ) ]]; then
+			$ZYNTHIAN_SYS_DIR/sbin/setup_rv3028.sh
+			export ZYNTHIAN_CUSTOM_CONFIG="dtparam=rtc=off\ndtoverlay=i2c-rtc,rv3028\n"$ZYNTHIAN_CUSTOM_CONFIG
+		fi
+
+		echo "CUSTOM CONFIG => $ZYNTHIAN_CUSTOM_CONFIG"
+		sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" "$BOOT_CONFIG_FPATH"
+
+		echo "$cmdline" > "$CMDLINE_CONFIG_FPATH"
 	fi
 
-  # Customize config.txt
-	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt "$BOOT_CONFIG_FPATH"
-
-	echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
-	if [[ "$ZYNTHIAN_OVERCLOCKING" == "Maximum" ]]; then
-		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage_delta=50000\narm_freq=2000/g" "$BOOT_CONFIG_FPATH"
-		sed -i -e "s/#OVERCLOCKING_RBPI5#/over_voltage_delta=50000\narm_freq=3000/g" "$BOOT_CONFIG_FPATH"
-	elif [[ "$ZYNTHIAN_OVERCLOCKING" == "Medium" ]]; then
-		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage_delta=20000\narm_freq=1750/g" "$BOOT_CONFIG_FPATH"
-		sed -i -e "s/#OVERCLOCKING_RBPI5#/over_voltage_delta=20000\narm_freq=2700/g" "$BOOT_CONFIG_FPATH"
-	else
-		sed -i -e "s/#OVERCLOCKING_RBPI4#//g" "$BOOT_CONFIG_FPATH"
-		sed -i -e "s/#OVERCLOCKING_RBPI5#//g" "$BOOT_CONFIG_FPATH"
+	# Copy extra overlays
+	if [ -d "$ZYNTHIAN_SYS_DIR/boot/overlays" ]; then
+		cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
 	fi
 
-	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
-		echo "RBPI AUDIO ENABLED"
-		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" "$BOOT_CONFIG_FPATH"
-	fi
+}
 
-	if [[ "$ZYNTHIAN_DISABLE_OTG" != "1" ]]; then
-		echo "OTG ENABLED"
-		cmdline="$cmdline modules-load=dwc2,libcomposite"
-		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" "$BOOT_CONFIG_FPATH"
-	fi
 
-	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
-	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" "$BOOT_CONFIG_FPATH"
-
-	# Patch piscreen config
-	if [[ ( $DISPLAY_CONFIG == *"piscreen2r-notouch"* ) && ( $DISPLAY_CONFIG != *"piscreen2r-backlight"* ) ]]; then
-		DISPLAY_CONFIG=$DISPLAY_CONFIG"\ndtoverlay=piscreen2r-backlight"
-	fi
-	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
-	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" "$BOOT_CONFIG_FPATH"
-
-	# Configure the act-led dtoverlay if an EPDF hat has been detected => Added to custom config!
-	# This should be detected by zynthian_autoconfig.sh instead of epdf_detect.sh
-	if [ "$ZYNTHIAN_EPDF_HAT" == "1" ]; then
-		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=act-led,activelow=off,gpio=4\n"$ZYNTHIAN_CUSTOM_CONFIG
-	fi
-
-	# Configure RTC for V5 & Z2 main boards
-	# TODO => see /zynthian-sys/sbin/configure_rtc.sh!!!
-	if [[ ( $ZYNTHIAN_KIT_VERSION == "V5"* ) || ( $ZYNTHIAN_KIT_VERSION == "Z2"* ) ]]; then
-		$ZYNTHIAN_SYS_DIR/sbin/setup_rv3028.sh
-		export ZYNTHIAN_CUSTOM_CONFIG="dtparam=rtc=off\ndtoverlay=i2c-rtc,rv3028\n"$ZYNTHIAN_CUSTOM_CONFIG
-	fi
-
-	echo "CUSTOM CONFIG => $ZYNTHIAN_CUSTOM_CONFIG"
-	sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" "$BOOT_CONFIG_FPATH"
-
-	echo "$cmdline" > "$CMDLINE_CONFIG_FPATH"
+if [ -f "$BOOT_CONFIG_FPATH" ]; then
+	configure_rbpi_boot
 fi
 
-# Copy extra overlays
-if [ -d "$ZYNTHIAN_SYS_DIR/boot/overlays" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
-fi
 
 #------------------------------------------------------------------------------
 # Zynthian Config
@@ -447,8 +460,8 @@ fi
 
 # Create symlink to MesaGL drivers
 if [ ! -e "/usr/lib/dri" ]; then
-	if [ -e "/usr/lib/aarch64-linux-gnu/dri" ]; then
-		ln -s "/usr/lib/aarch64-linux-gnu/dri" "/usr/lib/dri"
+	if [ -e "/usr/lib/$arch_libdir/dri" ]; then
+		ln -s "/usr/lib/$arch_libdir/dri" "/usr/lib/dri"
 	fi
 fi
 
@@ -580,11 +593,6 @@ systemctl daemon-reload
 if [ "$(systemctl is-enabled usb-gadget)" != "enabled" ]; then
 	echo "Enabling USB gadget ..."
 	systemctl enable usb-gadget
-fi
-
-# Enable the pwm fan service if an EPDF hat is detected
-if [ "$ZYNTHIAN_EPDF_HAT" == "1" ]; then
-    systemctl enable zynthian-pwm-fan
 fi
 
 if [ -f "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh" ]; then
