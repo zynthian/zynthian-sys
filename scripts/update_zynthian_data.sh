@@ -58,6 +58,16 @@ git pull
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Adding soundfont & collections softlinks to FileBrowser
+sf_col_dir="$ZYNTHIAN_SW_DIR/filebrowser/root/soundfonts"
+if [[ ! -L "$sf_col_dir" ]]; then
+	ln -s "$ZYNTHIAN_DATA_DIR/soundfonts" "$sf_col_dir"
+fi
+fb_col_dir="$ZYNTHIAN_SW_DIR/filebrowser/root/collections"
+if [[ ! -L "$fb_col_dir" ]]; then
+	ln -s "$ZYNTHIAN_DATA_DIR/collections" "$fb_col_dir"
+fi
+
 # Updating demo snapshots
 mkdir -p $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
 rm -f $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory/009-Zynesthesia_barsync.zss
