@@ -385,7 +385,9 @@ if [ ! -d "$BROWSEPY_ROOT" ]; then
 fi
 
 # Fix Aeolus config file: Remove unsupported "-J" option.
-sed -i -e "s/ \-J / /g" /etc/aeolus.conf
+if [ -f "/etc/aeolus.conf" ]; then
+	sed -i -e "s/ \-J / /g" /etc/aeolus.conf
+fi
 
 # Migrate legacy touch-navigation flag (to remove!!)
 if [ -z "$ZYNTHIAN_UI_TOUCH_NAVIGATION" ]; then

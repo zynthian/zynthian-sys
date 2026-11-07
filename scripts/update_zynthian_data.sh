@@ -58,6 +58,16 @@ git pull
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Adding soundfont & collections softlinks to FileBrowser
+sf_col_dir="$ZYNTHIAN_SW_DIR/filebrowser/root/soundfonts"
+if [[ ! -L "$sf_col_dir" ]]; then
+	ln -s "$ZYNTHIAN_DATA_DIR/soundfonts" "$sf_col_dir"
+fi
+fb_col_dir="$ZYNTHIAN_SW_DIR/filebrowser/root/collections"
+if [[ ! -L "$fb_col_dir" ]]; then
+	ln -s "$ZYNTHIAN_DATA_DIR/collections" "$fb_col_dir"
+fi
+
 # Updating demo snapshots
 mkdir -p $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
 rm -f $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory/009-Zynesthesia_barsync.zss
@@ -322,6 +332,11 @@ if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2" ]; then
 	sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2/*.ttl
 fi
 sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2-presets/*/*.ttl
+
+# Link system installed SF2 fonts
+ln -s "/usr/share/sounds/sf2/FluidR3_GM.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" || true
+ln -s "/usr/share/sounds/sf2/FluidR3_GS.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" || true
+ln -s "/usr/share/sounds/sf2/TimGM6mb.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" || true
 
 # Link FluidPlug SF2s for using normally with FluidSynth
 cd $ZYNTHIAN_PLUGINS_DIR/lv2
