@@ -115,7 +115,8 @@ apt-get -y remove --purge triggerhappy logrotate dphys-swapfile bluez
 apt-get -y install systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
-firmware-brcm80211 firmware-ath9k-htc \
+firmware-brcm80211 firmware-misc-nonfree firmware-intel-graphics firmware-intel-misc \
+firmware-atheros firmware-libertas firmware-mediatek firmware-nvidia-graphics firmware-realtek \
 shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng \
 sox wiringpi plymouth plymouth-themes gldriver-test openssh-server
 #firmware-ralink
