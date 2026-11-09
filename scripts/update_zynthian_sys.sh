@@ -423,7 +423,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 fi
 
 # Remove udev rules for dynamic media binding if it's not enabled
-if [[ $ZYNTHIAN_DYNAMIC_MEDIA_BIND != "1" ]];
+if [[ $ZYNTHIAN_DYNAMIC_MEDIA_BIND != "1" ]]; then
 	rm -f "/etc/udev/rules.d/99-dynamic-media-bind.rules"
 fi
 
