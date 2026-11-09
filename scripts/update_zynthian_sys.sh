@@ -422,6 +422,11 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/environment.d/* /etc/environment.d
 fi
 
+# Remove udev rules for dynamic media binding if it's not enabled
+if [[ $ZYNTHIAN_DYNAMIC_MEDIA_BIND != "1" ]]; then
+	rm -f "/etc/udev/rules.d/99-dynamic-media-bind.rules"
+fi
+
 # Display zynthian info on ssh login
 #sed -i -e "s/PrintMotd no/PrintMotd yes/g" /etc/ssh/sshd_config
 
@@ -590,6 +595,9 @@ sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/fileb
 
 # Reload Systemd scripts
 systemctl daemon-reload
+
+# Reload udev rules
+udevadm control --reload-rules
 
 # Enable needed services
 if [ "$(systemctl is-enabled usb-gadget)" != "enabled" ]; then

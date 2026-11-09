@@ -1,0 +1,2 @@
+SUBSYSTEM=="block", ACTION=="add", RUN+="/zynthian/zynthian-sys/sbin/dynamic-media-bind.sh add --fork"
+SUBSYSTEM=="block", ACTION=="remove", RUN+="/zynthian/zynthian-sys/sbin/dynamic-media-bind.sh remove --fork"

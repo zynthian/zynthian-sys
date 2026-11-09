@@ -115,7 +115,8 @@ apt-get -y remove --purge triggerhappy logrotate dphys-swapfile bluez
 apt-get -y install systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
-firmware-brcm80211 firmware-ath9k-htc \
+firmware-brcm80211 firmware-misc-nonfree firmware-intel-graphics firmware-intel-misc \
+firmware-atheros firmware-libertas firmware-mediatek firmware-nvidia-graphics firmware-realtek \
 shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng \
 sox wiringpi plymouth plymouth-themes gldriver-test openssh-server
 #firmware-ralink
@@ -218,51 +219,9 @@ git clone "${ZYNTHIAN_PACKAGES_REPO}"
 #mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
 mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/banks"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/sysex"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio/Tracks"
-ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Audio/capture"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/Percussion"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/One-Shot"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/Loops"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Midi"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Midi/patterns"
-ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Midi/capture"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs/Cabinet"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs/Reverbs"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs/deconvolved"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Neural Models"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Tuning"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Patterns"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/collections"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
-
-# Copy default snapshots
-cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
+create_my_data_dirtree.sh
 
 #------------------------------------------------
 # Python Environment
