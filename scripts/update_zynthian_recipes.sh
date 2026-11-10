@@ -59,128 +59,26 @@ echo "Executing update recipes..."
 if [ -f "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt" ]; then
 	current_patchlevel=$(cat "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt")
 else
-	current_patchlevel="20240912.1"
+	current_patchlevel="20261014.1"
 	echo "$current_patchlevel" > "$ZYNTHIAN_CONFIG_DIR/patchlevel.txt"
 fi
 
 echo "Current patch level: $current_patchlevel"
 
+if [[ "$RBPI_VERSION_NUMBER" < "3" ]]; then
+	echo "Skipping Update Recipes => Only available for aarch64!"
+	exit 0
+fi
+
 # -----------------------------------------------------------------------------
-# Patches to ORAM stable release
+# Patches to ORAM
 # -----------------------------------------------------------------------------
-
-patchlevel="20240926"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-  $ZYNTHIAN_RECIPE_DIR/install_patchage.sh
-fi
-
-patchlevel="20240928"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	systemctl stop dhcpcd
-	systemctl disable dhcpcd
-	aptpkgs="$aptpkgs pd-ambix pd-autopreset pd-cmos pd-creb pd-deken pd-deken-apt pd-extendedview pd-flext-dev pd-flext-doc pd-gil \
-pd-hexloader pd-iem pd-jsusfx pd-kollabs pd-lib-builder pd-log pd-mediasettings pd-mrpeach-net pd-nusmuk pd-pan \
-pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-tclpd pd-testtools pd-unauthorized \
-pd-upp pd-xbee pd-xsample"
-fi
-
-#patchlevel="20241015"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#  $ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
-#fi
-
-# TODO This should be in update_data.sh
-patchlevel="20241016"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	sbdir="/root/.local/share/odin2/Soundbanks"
-	if [ ! -d "$sbdir" ]; then
-		mkdir "$sbdir"
-	fi
-fi
-
-#patchlevel="20241022.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#  $ZYNTHIAN_RECIPE_DIR/install_lv2-gtk-ui-bridge.sh
-#fi
-
-patchlevel="20241022.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	if [ ! -d "/root/.helm" ]; then
-		mkdir "/root/.helm"
-	fi
-	echo '{
-  "synth_version": "0.9.0",
-  "day_asked_for_payment": 19989,
-  "should_ask_for_payment": false,
-  "animate_widgets": false
-}' > /root/.helm/Helm.config
-fi
-
-patchlevel="20241022.3"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	apt-get -y install ttf-bitstream-vera
-	$ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
-fi
-
-# Debian package is currently not available for trixie
-# TODO => Build riban plugins an inclde them into prebuilt LV2 directory
-#patchlevel="20241024.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	aptpkgs="$aptpkgs riban-lv2"
-#fi
-
-# Force to tag-release
-patchlevel="20241105.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	cd $ZYNTHIAN_SYS_DIR
-	sys_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-	if [[ "$sys_branch" == "$ZYNTHIAN_STABLE_BRANCH" ]]; then
-		set_envar.py ZYNTHIAN_STABLE_TAG last
-		export ZYNTHIAN_STABLE_TAG="last"
-	fi
-fi
-
-#patchlevel="20241111.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
-#fi
-
-patchlevel="20241113.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_tkinterweb.sh
-	# Setup new ALT button functionality
-	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05 UI_ACTION_RELEASE
-	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05__UI_SHORT TOGGLE_ALT_MODE
-	set_envar.py ZYNTHIAN_WIRING_CUSTOM_SWITCH_05__UI_BOLD HELP
-fi
-
-patchlevel="20241120.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	/zynthian/venv/bin/pip install pyalsaaudio
-fi
-
-patchlevel="20241206.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel..."
-	dpkg-reconfigure linux-image-`uname -r`
-fi
 
 patchlevel="20241222.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_jc303_prebuilt.sh
+	regenerate_lv2_presets.sh "http://github.com/midilab/JC303"
 fi
 
 patchlevel="20250104.1"
@@ -190,90 +88,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	regenerate_lv2_presets.sh "lv2://nobisoft.de/Perfomix"
 fi
 
-#patchlevel="20250108.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_nam_prebuilt.sh
-#fi
-
-#patchlevel="20250110.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv_asyncli.sh
-#fi
-
 patchlevel="20250204.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_jacknetumpd.sh
 fi
-
-#patchlevel="20250204.2"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
-#	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
-#fi
-
-#patchlevel="20250212.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_ratatouille_prebuilt.sh
-#fi
-
-#patchlevel="20250214.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
-#fi
-
-#patchlevel="20250218.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_ripplerx_prebuilt.sh
-#fi
-
-#patchlevel="20250228.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	apt-get -y remove fabla
-#	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
-#fi
-
-patchlevel="20250310.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
-	systemctl enable filebrowser
-	systemctl start filebrowser
-fi
-
-patchlevel="20250310.3"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs python3-bcrypt"
-fi
-
-patchlevel="20250312.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	if [ ! -L "$ZYNTHIAN_SW_DIR/filebrowser/root/media" ]; then
-		ln -s "/media" "$ZYNTHIAN_SW_DIR/filebrowser/root/media"
-	fi
-fi
-
-#patchlevel="20250320.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_vlc.sh
-#fi
-
-#patchlevel="20250428.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	cd $ZYNTHIAN_SW_DIR/jalv_asyncli/build
-#	meson install
-#fi
 
 patchlevel="20250527.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -286,48 +105,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
 fi
-
-#patchlevel="20250604.2"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_dsp56300_prebuilt.sh
-#fi
-
-#patchlevel="20250605.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	cd $ZYNTHIAN_SW_DIR/jalv_asyncli
-#	git pull
-#	cd build
-#	meson compile -j 3
-#	meson install
-#fi
-
-patchlevel="20250611.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	apt-get -y remove zynaddsubfx-lv2
-fi
-
-patchlevel="20250611.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	ZYNTHIAN_FORCE_APT_UPGRADE="yes"
-fi
-
-patchlevel="20250810.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
-#	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
-fi
-
-#patchlevel="20250810.2"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	apt-get -y remove fabla
-#	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
-#fi
 
 patchlevel="20250828.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -356,30 +133,10 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_CloudReverb_prebuilt.sh
 fi
 
-patchlevel="20250925.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-  apt-get -y install libboost-python-dev libboost-thread-dev
-  /zynthian/venv/bin/pip install mididings
-fi
-
-patchlevel="20250930.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	regenerate_lv2_presets.sh "http://github.com/midilab/JC303"
-fi
-
 patchlevel="20251001.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_mod-mda_prebuilt.sh
-fi
-
-patchlevel="20251002.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	regenerate_engines_db.sh
-	regenerate_lv2_presets.sh
 fi
 
 patchlevel="20251003.1"
@@ -414,36 +171,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
 fi
 
-#patchlevel="20251022.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
-#fi
-
-#patchlevel="20251105.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_zynMI_prebuilt.sh
-#fi
-
-patchlevel="20251105.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	ZYNTHIAN_FORCE_APT_UPGRADE="yes"
-fi
-
-patchlevel="20251113.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	/zynthian/venv/bin/pip install scipy wavio
-fi
-
-#patchlevel="20251114.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	aptpkgs="$aptpkgs nlohmann-json3-dev"
-#fi
-
 patchlevel="20251230.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
@@ -464,33 +191,11 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_roboverb_prebuilt.sh
 fi
 
-#patchlevel="20260107.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
-#	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
-#	regenerate_lv2_presets.sh urn:org.surge-synth-team.OB-Xf-rework
-#fi
-
-#patchlevel="20260112.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
-#fi
-
 patchlevel="20260112.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_TheUsualSuspects_prebuilt.sh
 fi
-
-#patchlevel="20260121.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	#aptpkgs="$aptpkgs libwebkit2gtk-4.0-dev"
-#	$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
-#	regenerate_lv2_presets.sh "urn:org.surge-synth-team.OB-Xf"
-#fi
 
 patchlevel="20260122.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -505,175 +210,16 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
 fi
 
-#patchlevel="20260129.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
-#	regenerate_lv2_presets.sh https://butoba.net/homepage/mimid.html
-#fi
-
-# This must be done always at end of Oram patches to allow changing from Oram to Vangelis
-patchlevel="20260206.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs nlohmann-json3-dev"
-	# Modify V5 button functionality to work with Zynbleton
-	sed -i "s/SCREEN_ZYNPAD/SCREEN_LAUNCHER/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-	sed -i "s/SCREEN_ARRANGER//" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-fi
-
-# TODO This should be moved to a proper install script- It's too complex for a recipe and can fail ...
-#patchlevel="20260208.4"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	curl -s https://kopia.io/signing-key | gpg --dearmor --batch --yes -o /etc/apt/keyrings/kopia-keyring.gpg
-#	echo "deb [signed-by=/etc/apt/keyrings/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main" | tee /etc/apt/sources.list.d/kopia.list
-#	aptpkgs="$aptpkgs sshpass kopia"
-#fi
-
-patchlevel="20260228.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs python3-py7zr"
-fi
-
 patchlevel="20260228.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_ripplerx_prebuilt.sh
 fi
 
-patchlevel="20260303.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs python3-rarfile"
-fi
-
-patchlevel="20260318.4"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	fix_touch_envars.sh
-fi
-
-patchlevel="20260319.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	rm -f /zynthian/config/img/*
-fi
-
-patchlevel="20260329.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	sed -i "s/POWER_OFF/POWER/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-fi
-
-patchlevel="20260330.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	$ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
-fi
-
-patchlevel="20260405.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs python3-rdflib"
-fi
-
-patchlevel="20260407.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs python3-pyudev"
-fi
-
-patchlevel="20260410.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	# Modify V5 back button to use release actions
-	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13" "UI_ACTION_RELEASE"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "ZYNSWITCH 1,B"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
-	fi
-fi
-
 patchlevel="20260416.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
-fi
-
-patchlevel="20260416.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs flite espeak-ng"
-fi
-
-patchlevel="20260420.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs sox"
-fi
-
-patchlevel="20260421.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	# Setup TTS enable/disable action
-	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_20__UI_LONG" "TTS_TOGGLE_ENABLE"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_20__UI_ALT_LONG" "TTS_TOGGLE_ENABLE"
-	elif [[ "$ZYNTHIAN_WIRING_LAYOUT" == V4* ]]; then
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_04__UI_LONG" "TTS_TOGGLE_ENABLE"
-	fi
-fi
-
-patchlevel="20260423.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs python3-bs4"
-fi
-
-patchlevel="20260504.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_15__UI_SHORT" "SELECT_ACTION S"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_15__UI_BOLD" "SELECT_ACTION B"
-	fi
-fi
-
-#patchlevel="20260512.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
-#	regenerate_lv2_presets.sh "https://butoba.net/homepage/mimid.html"
-#fi
-
-patchlevel="20260517.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	dpkg --remove --force-depends libsndfile-zyndev || true
-	apt-get --fix-broken install -y
-	aptpkgs="$aptpkgs libsndfile1 libsndfile1-dev"
-fi
-
-patchlevel="20260520.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	# Replace deprecated LAYER_CONTROL actions in wiring config.
-	sed -i "s/LAYER_CONTROL/CHAIN_CONTROL/" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-fi
-
-patchlevel="20260603.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	# Updatey V5 back button functionality
-	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13" "UI_ACTION_RELEASE"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "MAIN_MENU"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_LONG" "POWER"
-	fi
 fi
 
 patchlevel="20260608.1"
@@ -686,76 +232,10 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_neuralrack_prebuilt.sh
 fi
 
-patchlevel="20260625.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	# Prepare Bookworm for Trixie transition
-	if [[ "$LINUX_OS_VERSION" == "bookworm" ]]; then
-		# Install pyliblo from repository via pip
-		/zynthian/venv/bin/pip install "git+https://github.com/gesellkammer/pyliblo3"
-		# Upgrade tkinterweb module
-		/zynthian/venv/bin/pip install tkinterweb --upgrade
-		# Install wiringpi deb package from project's repo
-		wget "https://github.com/WiringPi/WiringPi/releases/download/3.18/wiringpi_3.18_arm64.deb"
-		dpkg -i "wiringpi_3.18_arm64.deb"
-		rm -f "wiringpi_3.18_arm64.deb"
-	fi
-fi
-
-#patchlevel="20260702.1"
-#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-#	echo "Applying patch $patchlevel ..."
-#	# Install netifaces python library, needed for webconf's tk300 integration
-#	pip install netifaces2
-#fi
-
-patchlevel="20260717.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	cd $ZYNTHIAN_DIR
-	if [ -d "zynthian-packages" ]; then
-		rm -rf "zynthian-packages"
-	fi
-	git clone "https://github.com/zynthian/zynthian-packages"
-fi
-
-patchlevel="20260718.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	# Updatey V5 bold back button functionality
-	if [[ "$ZYNTHIAN_WIRING_LAYOUT" == V5* ]]; then
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_SHORT" "BACK S"
-		set_envar.py "ZYNTHIAN_WIRING_CUSTOM_SWITCH_13__UI_BOLD" "BACK B"
-	fi
-fi
-
 patchlevel="20260728.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
-	apt-get install -y plymouth plymouth-themes
 	$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh
-fi
-
-patchlevel="20260802.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs gldriver-test"
-fi
-
-# Install mimalloc perfomance & RT memory allocator for zynseq and others
-patchlevel="20260808.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	aptpkgs="$aptpkgs libmimalloc3 libmimalloc-dev"
-fi
-
-# Pave the way for accelerated OpenGL canvases
-patchlevel="20260808.2"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	mount -o remount,size=500M /tmp
-	pip install PyOpenGL PyOpenGL_accelerate pyopengltk
-	mount -o remount,size=100M /tmp
 fi
 
 patchlevel="20260811.1"
@@ -766,25 +246,6 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	if [[ "${ptq_version_parts[2]}" == "Trial" && "${ptq_version_parts[4]}" < "9.2.1" ]]; then
 		$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 	fi
-fi
-
-# Install modern OpenGL libraries that works efficiently with Pi4 & Pi5 hardware
-patchlevel="20260819.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	mount -o remount,size=200M /tmp
-	pip install pyglm glcontext pyglet moderngl moderngl-window
-	mount -o remount,size=100M /tmp
-fi
-
-patchlevel="20260901.1"
-if [[ "$current_patchlevel" < "$patchlevel" ]]; then
-	echo "Applying patch $patchlevel ..."
-	cd $ZYNTHIAN_DIR
-	if [ -d "zynthian-help" ]; then
-		rm -rf "zynthian-help"
-	fi
-	git clone -b "vangelis" "https://github.com/zynthian/zynthian-help"
 fi
 
 # Update MiMid.lv2 plugin
@@ -854,6 +315,10 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_guitaramp-suite_prebuilt.sh
 fi
 
+# -----------------------------------------------------------------------------
+# Patches to VANGELIS
+# -----------------------------------------------------------------------------
+
 # Regenerate LV2 presets for fabla & DrMr to fix drumkit paths
 patchlevel="20261016.1"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
@@ -877,6 +342,41 @@ fi
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 #	echo "Applying patch $patchlevel ..."
 #	aptpkgs="$aptpkgs labwc xwayland swaybg"
+#fi
+
+# Force to tag-release
+#patchlevel="20241105.1"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	cd $ZYNTHIAN_SYS_DIR
+#	sys_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+#	if [[ "$sys_branch" == "$ZYNTHIAN_STABLE_BRANCH" ]]; then
+#		set_envar.py ZYNTHIAN_STABLE_TAG last
+#		export ZYNTHIAN_STABLE_TAG="last"
+#	fi
+#fi
+
+# Force apt upgrade on stable
+#patchlevel="20251105.2"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	ZYNTHIAN_FORCE_APT_UPGRADE="yes"
+#fi
+
+# Force regeneration of UI images
+#patchlevel="20260319.2"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	rm -f /zynthian/config/img/*
+#fi
+
+# TODO This should be moved to a proper install script- It's too complex for a recipe and can fail ...
+#patchlevel="20260208.4"
+#if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+#	echo "Applying patch $patchlevel ..."
+#	curl -s https://kopia.io/signing-key | gpg --dearmor --batch --yes -o /etc/apt/keyrings/kopia-keyring.gpg
+#	echo "deb [signed-by=/etc/apt/keyrings/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main" | tee /etc/apt/sources.list.d/kopia.list
+#	aptpkgs="$aptpkgs sshpass kopia"
 #fi
 
 # -----------------------------------------------------------------------------

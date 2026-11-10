@@ -105,8 +105,6 @@ xfwm4 xfce4-panel xdotool wpasupplicant wireless-tools iw dnsmasq firmware-ath9k
 shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev \
 flite espeak-ng sox plymouth plymouth-themes openssh-server
 
-#firmware-ralink
-
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
 # CLI Tools
@@ -136,7 +134,7 @@ libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-de
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libftgl-dev libical-dev \
 libclthreads-dev libclxclient-dev libwebkit2gtk-4.1-dev libboost-python-dev libboost-thread-dev libsndfile-dev \
-liblilv-dev lilv-utils libsuil-dev liblo-tools nlohmann-json3-dev
+liblilv-dev lilv-utils libsuil-dev liblo-tools nlohmann-json3-dev libmimalloc3 libmimalloc-dev
 # Missed libs from previous OS versions:
 # Removed from trixie: lv2-c++-tools libganv-dev
 
@@ -151,9 +149,8 @@ apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt python3-liblo python3-lilv python3-alsaaudio python3-levenshtein \
-python3-websocket python3-pyudev python3-py7zr python3-rarfile pyliblo-utils python3.13-venv
-
-python3-rdflib
+python3-websocket python3-pyudev python3-py7zr python3-rarfile python3-lgpio pyliblo-utils python3.13-venv \
+python3-rdflib python3-bs4
 
 #------------------------------------------------
 # Create Zynthian Directory Tree
@@ -220,8 +217,9 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
 pip3 install JACK-Client oyaml adafruit-circuitpython-neopixel-spi hwmon vcgencmd meson ninja \
-pyrubberband mididings sox scipy wavio abletonparsing tkinterweb ffmpeg moderngl moderngl_window pyopengltk \
-tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
+pyrubberband mididings sox scipy wavio abletonparsing tkinterweb ffmpeg \
+tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
+moderngl moderngl_window pyopengltk pyglm glcontext pyglet
 
 #------------------------------------------------
 # System Adjustments
@@ -235,16 +233,20 @@ echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
 chmod go-r /root/.vnc/passwd
 
 # Setup locale inside the container ...
-echo "export LANG=en_US.UTF-8" >> /root/.bashrc
-echo "export LC_ALL=en_US.UTF-8"  >> /root/.bashrc
-echo "export LANGUAGE=en_US:en"  >> /root/.bashrc
-echo "unset WAYLAND_DISPLAY" >> /root/.bashrc
+#echo "export LANG=en_US.UTF-8" >> /root/.bashrc
+#echo "export LC_ALL=en_US.UTF-8"  >> /root/.bashrc
+#echo "export LANGUAGE=en_US:en"  >> /root/.bashrc
+#echo "unset WAYLAND_DISPLAY" >> /root/.bashrc
+
+# Generate the needed locales
+locale-gen
+update-locale LANG=en_US.UTF-8
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
-echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.bashrc
+#echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.bashrc
 # => Shell Login Config
-#echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
+echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian
 
 # => Allow root ssh login
@@ -444,6 +446,9 @@ $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 
 # Install web filebrowser
 $ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
+systemctl daemon-relaod
+systemctl enable filebrowser
+systemctl start filebrowser
 
 #------------------------------------------------
 # Build & Install Synthesis Software
