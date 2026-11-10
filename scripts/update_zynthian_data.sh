@@ -334,9 +334,9 @@ fi
 sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2-presets/*/*.ttl
 
 # Link system installed SF2 fonts
-ln -s "/usr/share/sounds/sf2/FluidR3_GM.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" || true
-ln -s "/usr/share/sounds/sf2/FluidR3_GS.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" || true
-ln -s "/usr/share/sounds/sf2/TimGM6mb.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" || true
+ln -s "/usr/share/sounds/sf2/FluidR3_GM.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" 2>/dev/null || true
+ln -s "/usr/share/sounds/sf2/FluidR3_GS.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" 2>/dev/null || true
+ln -s "/usr/share/sounds/sf2/TimGM6mb.sf2" "$ZYNTHIAN_DATA_DIR/soundfonts/sf2" 2>/dev/null || true
 
 # Link FluidPlug SF2s for using normally with FluidSynth
 cd $ZYNTHIAN_PLUGINS_DIR/lv2
