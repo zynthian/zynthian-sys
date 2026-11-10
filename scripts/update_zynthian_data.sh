@@ -281,7 +281,7 @@ fi
 # Ensure Odin2 banks directory does exist
 sbdir="/root/.local/share/odin2/Soundbanks"
 if [ ! -d "$sbdir" ]; then
-	mkdir "$sbdir"
+	mkdir -p "$sbdir"
 fi
 
 # Fix Helm config
@@ -290,11 +290,12 @@ if [ ! -d "/root/.helm" ]; then
 fi
 if [ ! -f "/root/.helm/Helm.config" ]; then
 echo '{
-  "synth_version": "0.9.0",
-  "day_asked_for_payment": 19989,
-  "should_ask_for_payment": false,
-  "animate_widgets": false
+	"synth_version": "0.9.0",
+	"day_asked_for_payment": 19989,
+	"should_ask_for_payment": false,
+	"animate_widgets": false
 }' > "/root/.helm/Helm.config"
+fi
 
 # Fix ZynAddSubFX config & presets directories
 if [ -L "/usr/local/share/zynaddsubfx" ]; then
