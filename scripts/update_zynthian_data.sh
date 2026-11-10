@@ -59,6 +59,10 @@ git pull
 #------------------------------------------------------------------------------
 
 # Adding soundfont & collections softlinks to FileBrowser
+sf_media_dir="$ZYNTHIAN_SW_DIR/filebrowser/root/media"
+if [[ ! -L "$sf_media_dir" ]]; then
+	ln -s "/media" "$sf_media_dir"
+fi
 sf_col_dir="$ZYNTHIAN_SW_DIR/filebrowser/root/soundfonts"
 if [[ ! -L "$sf_col_dir" ]]; then
 	ln -s "$ZYNTHIAN_DATA_DIR/soundfonts" "$sf_col_dir"
@@ -273,6 +277,24 @@ fi
 if [ ! -d "/root/.config/JV880" ]; then
   mkdir "/root/.config/JV880"
 fi
+
+# Ensure Odin2 banks directory does exist
+sbdir="/root/.local/share/odin2/Soundbanks"
+if [ ! -d "$sbdir" ]; then
+	mkdir "$sbdir"
+fi
+
+# Fix Helm config
+if [ ! -d "/root/.helm" ]; then
+	mkdir "/root/.helm"
+fi
+if [ ! -f "/root/.helm/Helm.config" ]; then
+echo '{
+  "synth_version": "0.9.0",
+  "day_asked_for_payment": 19989,
+  "should_ask_for_payment": false,
+  "animate_widgets": false
+}' > "/root/.helm/Helm.config"
 
 # Fix ZynAddSubFX config & presets directories
 if [ -L "/usr/local/share/zynaddsubfx" ]; then

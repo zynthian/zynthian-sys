@@ -117,8 +117,10 @@ xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-misc-nonfree firmware-intel-graphics firmware-intel-misc \
 firmware-atheros firmware-libertas firmware-mediatek firmware-nvidia-graphics firmware-realtek \
-shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev flite espeak-ng \
-sox wiringpi plymouth plymouth-themes gldriver-test openssh-server
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev \
+flite espeak-ng sox plymouth plymouth-themes gldriver-test openssh-server \
+wiringpi
+
 #firmware-ralink
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
@@ -150,7 +152,7 @@ libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-de
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libftgl-dev libical-dev \
 libclthreads-dev libclxclient-dev libwebkit2gtk-4.1-dev libboost-python-dev libboost-thread-dev libsndfile-dev \
-liblilv-dev lilv-utils libsuil-dev liblo-tools nlohmann-json3-dev
+liblilv-dev lilv-utils libsuil-dev liblo-tools nlohmann-json3-dev libmimalloc3 libmimalloc-dev
  
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
@@ -166,7 +168,8 @@ apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt python3-liblo python3-lilv python3-alsaaudio python3-levenshtein \
-python3-websocket python3-pyudev python3-py7zr python-rarfile python3-lgpio pyliblo-utils python3.13-venv
+python3-websocket python3-pyudev python3-py7zr python3-rarfile python3-lgpio pyliblo-utils python3.13-venv \
+python3-rdflib python3-bs4
 
 #------------------------------------------------
 # Create Zynthian Directory Tree
@@ -233,8 +236,9 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
 pip3 install JACK-Client oyaml adafruit-circuitpython-neopixel-spi hwmon vcgencmd meson ninja \
-pyrubberband mididings sox scipy wavio  abletonparsing tkinterweb ffmpeg mdoerngl moderngl_window pyopengltk \
-tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
+pyrubberband mididings sox scipy wavio  abletonparsing tkinterweb ffmpeg \
+tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
+moderngl moderngl_window pyopengltk pyglm glcontext pyglet
 
 #------------------------------------------------
 # System Adjustments
