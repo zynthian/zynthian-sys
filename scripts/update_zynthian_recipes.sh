@@ -337,6 +337,17 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	$ZYNTHIAN_RECIPE_DIR/install_faust-plugins_prebuilt.sh
 fi
 
+# Install websocket-server library for python
+patchlevel="20261111.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	pip3 install websocket-server
+fi
+
+# -----------------------------------------------------------------------------
+# Template Patches
+# -----------------------------------------------------------------------------
+
 # Pave the way for wayland => Not yet!!
 #patchlevel="20260806.1"
 #if [[ "$current_patchlevel" < "$patchlevel" ]]; then
