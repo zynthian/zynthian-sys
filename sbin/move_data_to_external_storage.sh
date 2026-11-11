@@ -8,16 +8,16 @@ if [ ! -z "$MOUNT_PATH" ]; then
   if [[ "${response,,}" == "y" ]]; then
     # Move sound library to external storage
     echo "Moving system soudnfonts to external storage ..."
-    mv "/zynthian/zynthian-data/soundfonts" "/media/$MOUNT_PATH"
+    mv "/zynthian/zynthian-data/soundfonts" "$MOUNT_PATH"
     echo "Moving system collections to external storage ..."
-    mv "/zynthian/zynthian-data/collections" "/media/$MOUNT_PATH"
+    mv "/zynthian/zynthian-data/collections" "$MOUNT_PATH"
     echo "Moving user data to external storage ..."
-    mv "/zynthian/zynthian-my-data" "/media/$MOUNT_PATH"
+    mv "/zynthian/zynthian-my-data" "$MOUNT_PATH"
 
     # Create symlinks to external storage => we have something better now!
-    #ln -s "/media/$MOUNT_PATH/soundfonts" "/zynthian/zynthian-data"
-    #ln -s "/media/$MOUNT_PATH/collections" "/zynthian/zynthian-data"
-    #ln -s "/media/$MOUNT_PATH/zynthian-my-data" "/zynthian"
+    #ln -s "$MOUNT_PATH/soundfonts" "/zynthian/zynthian-data"
+    #ln -s "$MOUNT_PATH/collections" "/zynthian/zynthian-data"
+    #ln -s "$MOUNT_PATH/zynthian-my-data" "/zynthian"
 
     # Create empty folders to avoid errors when external storage is not connected
     mkdir "$ZYNTHIAN_DATA/soundfonts"
