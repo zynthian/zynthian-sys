@@ -103,7 +103,7 @@ apt-get -y install systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool wpasupplicant wireless-tools iw dnsmasq firmware-ath9k-htc \
 shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev \
-flite espeak-ng sox plymouth plymouth-themes openssh-server
+flite espeak-ng sox plymouth plymouth-themes openssh-server network-manager
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
@@ -219,7 +219,7 @@ pip3 install --upgrade pip
 pip3 install JACK-Client oyaml adafruit-circuitpython-neopixel-spi hwmon vcgencmd meson ninja \
 pyrubberband mididings sox scipy wavio abletonparsing tkinterweb ffmpeg \
 tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
-moderngl moderngl_window pyopengltk pyglm glcontext pyglet
+moderngl moderngl_window pyopengltk pyglm glcontext pyglet websocket-server
 
 #------------------------------------------------
 # System Adjustments
@@ -317,10 +317,6 @@ systemctl enable jack2whip
 systemctl start mediamtx
 systemctl start jack2whip
 
-jack_connect zynmixer_bus:output_00a JackToWhip:input_1
-jack_connect zynmixer_bus:output_00b JackToWhip:input_2
-
-
 http://10.0.3.229:8889/zynstream/
 
 #----------------------------------------------------------------------------------------------------------
@@ -333,15 +329,16 @@ apt install -y "./kasmvncserver_debian_bookworm_1.5.2_amd64.deb"
 # SIZES => 800x480, 1024x600
 kasmvncpasswd -u root
 kasmvncserver :0
-$ZYNTHIAN_UI_DIR/zynthian.sh
+export DISPLAY=:0
+export ZYNTHIAN_LOG_LEVEL=10
+cd $ZYNTHIAN_UI_DIR
+./zynthian_main.py
+
 kasmvncserver -kill :0
 #systemctl start novnc0
 
-#----------------------------------------------------------------------------------------------------------
-
-cd /zynthian/zynthian-webconf/mockup
-ln -s /usr/share/kasmvnc/www/ kasmvnc
-
+jack_connect zynmixer_bus:output_00a JackToWhip:input_1
+jack_connect zynmixer_bus:output_00b JackToWhip:input_2
 
 #----------------------------------------------------------------------------------------------------------
 

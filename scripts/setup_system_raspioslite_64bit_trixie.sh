@@ -118,8 +118,8 @@ xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-misc-nonfree firmware-intel-graphics firmware-intel-misc \
 firmware-atheros firmware-libertas firmware-mediatek firmware-nvidia-graphics firmware-realtek \
 shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev \
-flite espeak-ng sox plymouth plymouth-themes gldriver-test openssh-server \
-wiringpi
+flite espeak-ng sox plymouth plymouth-themes openssh-server network-manager \
+wiringpi gldriver-test
 
 #firmware-ralink
 
@@ -238,7 +238,7 @@ pip3 install --upgrade pip
 pip3 install JACK-Client oyaml adafruit-circuitpython-neopixel-spi hwmon vcgencmd meson ninja \
 pyrubberband mididings sox scipy wavio  abletonparsing tkinterweb ffmpeg \
 tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
-moderngl moderngl_window pyopengltk pyglm glcontext pyglet
+moderngl moderngl_window pyopengltk pyglm glcontext pyglet websocket-server
 
 #------------------------------------------------
 # System Adjustments
