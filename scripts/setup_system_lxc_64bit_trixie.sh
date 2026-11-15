@@ -270,76 +270,17 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 #----------------------------------------------------------------------------------------------------------
-
-# Pipe audio to WebRTC
-cd /root
-wget "https://github.com/bluenviron/mediamtx/releases/download/v1.21.3/mediamtx_v1.21.3_linux_amd64.tar.gz"
-tar xfvz mediamtx_v1.21.3_linux_amd64.tar.gz
-mv mediamtx /usr/local/bin
-mkdir -p /usr/local/etc/mediamtx
-mv mediamtx.yml /usr/local/etc/mediamtx
-rm -f mediamtx_v1.21.3_linux_amd64.tar.gz
-
-tee /etc/systemd/system/mediamtx.service > /dev/null << 'EOF'
-[Unit]
-Description=MediaMTX Realtime Media Server
-After=network.target
-
-[Service]
-Type=simple
-ExecStart=/usr/local/bin/mediamtx /usr/local/etc/mediamtx/mediamtx.yml
-Restart=always
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-sudo tee /etc/systemd/system/jack2whip.service > /dev/null << 'EOF'
-[Unit]
-Description=Jack Audio to MediaMTX Audio Bridge
-After=jack2.service mediamtx.service
-Requires=jack2.service mediamtx.service
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/ffmpeg -f jack -i JackToWhip -acodec libopus -b:a 96k -vbr on -frame_duration 10 -compression_level 0 -f rtsp -rtsp_transport udp rtsp://127.0.0.1:8554/zynstream
-Restart=always
-RestartSec=3
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-systemctl daemon-reload
-systemctl enable mediamtx
-systemctl enable jack2whip
-systemctl start mediamtx
-systemctl start jack2whip
-
-http://10.0.3.229:8889/zynstream/
-
+# Specific software for Virtualized Zynthian (LXC)
 #----------------------------------------------------------------------------------------------------------
 
+# Install MediaMTX to pipe audio via WebRTC (whep)
+$ZYNTHIAN_RECIPE_DIR/install_mediamtx.sh
+
 # Install KasmVNC server
-cd /root
-wget "https://github.com/kasmtech/KasmVNC/releases/download/v1.5.2/kasmvncserver_debian_bookworm_1.5.2_amd64.deb"
-apt install -y "./kasmvncserver_debian_bookworm_1.5.2_amd64.deb"
+$ZYNTHIAN_RECIPE_DIR/install_kasmvnc.sh
 
-# SIZES => 800x480, 1024x600
-kasmvncpasswd -u root
-kasmvncserver :0
-export DISPLAY=:0
-export ZYNTHIAN_LOG_LEVEL=10
-cd $ZYNTHIAN_UI_DIR
-./zynthian_main.py
-
-kasmvncserver -kill :0
-#systemctl start novnc0
-
-jack_connect zynmixer_bus:output_00a JackToWhip:input_1
-jack_connect zynmixer_bus:output_00b JackToWhip:input_2
-
+#----------------------------------------------------------------------------------------------------------
+# Configure Systemd Services
 #----------------------------------------------------------------------------------------------------------
 
 # Disable/mask uneeded services
@@ -363,9 +304,29 @@ systemctl enable devmon@root
 systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
-systemctl enable zynthian
+#systemctl enable zynthian
 systemctl enable zynthian-webconf
 #systemctl enable zynthian-config-on-boot
+
+# Specific services for virtual zynthian (LXC):
+systemctl enable mediamtx
+systemctl enable jack2whip
+systemctl enable virtual_zynthian
+
+# The UI runs as virtual_zynthian.service: zynthian.service (it starts its own X server) must never run here.
+# It stays disabled, and a drop-in turns it into a trigger, so "systemctl restart zynthian" (UI restart after
+# updates & config changes, from scripts and webconf) restarts virtual_zynthian instead.
+systemctl disable zynthian
+mkdir -p /etc/systemd/system/zynthian.service.d
+cat > /etc/systemd/system/zynthian.service.d/virtual_zynthian.conf << 'EOF'
+[Service]
+Type=oneshot
+ExecStartPre=
+ExecStart=
+ExecStart=/bin/systemctl restart --no-block virtual_zynthian.service
+ExecStop=
+Restart=no
+EOF
 
 # On first boot, resize SD partition, regenerate keys, etc.
 #$ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh

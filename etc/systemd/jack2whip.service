@@ -1,0 +1,13 @@
+[Unit]
+Description=Jack Audio to MediaMTX Audio Bridge
+After=jack2.service mediamtx.service
+Requires=jack2.service mediamtx.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ffmpeg -f jack -i JackToWhip -acodec libopus -b:a 96k -vbr on -frame_duration 10 -compression_level 0 -f rtsp -rtsp_transport udp rtsp://127.0.0.1:8554/zynstream
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

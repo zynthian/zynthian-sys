@@ -1,0 +1,33 @@
+[Unit]
+Description=Virtual Zynthian (Zynthian UI over KasmVNC, for containers without a display)
+After=jack2.service network.target
+
+[Service]
+Environment=PATH=/usr/local/bin:/zynthian/zynthian-sys/sbin:/bin:/usr/bin:/sbin:/usr/sbin
+Environment=HOME=/root
+Environment=DISPLAY=:0
+Environment=PYOPENGL_PLATFORM=x11
+
+#Environment=ZYNTHIAN_LOG_LEVEL=10
+Environment=ZYNTHIAN_DIR=/zynthian
+Environment=ZYNTHIAN_UI_DIR=/zynthian/zynthian-ui
+Environment=ZYNTHIAN_SYS_DIR=/zynthian/zynthian-sys
+Environment=ZYNTHIAN_CONFIG_DIR=/zynthian/config
+WorkingDirectory=/zynthian/zynthian-ui
+
+# Start the KasmVNC server (and X display :0). Ignore errors if it's already running.
+ExecStartPre=-/usr/bin/kasmvncserver :0
+
+ExecStart=/bin/bash -c 'source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh"; exec ./zynthian_main.py'
+
+# Connect the audio outputs (retry until the JACK ports are available)
+ExecStartPost=/bin/bash -c '( for i in $(seq 20); do jack_connect zynmixer_bus:output_00a JackToWhip:input_1 && jack_connect zynmixer_bus:output_00b JackToWhip:input_2 && break; sleep 1; done ) >/dev/null 2>&1 &'
+
+TimeoutStopSec=20
+ExecStop=/zynthian/zynthian-sys/sbin/zynthian_stop.sh
+ExecStopPost=-/usr/bin/kasmvncserver -kill :0
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
