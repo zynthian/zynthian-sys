@@ -58,6 +58,13 @@ git pull
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Migrate user widgets to new location, as LV2 bundles
+lv2_widgets_dir="$ZYNTHIAN_PLUGINS_DIR/lv2-widgets"
+if [[ ! -d "$lv2_widgets_dir" ]]; then
+	mkdir -p "$lv2_widgets_dir"
+	migrate_user_widgets.py --dest "$lv2_widgets_dir"
+fi
+
 # Adding soundfont & collections softlinks to FileBrowser
 sf_media_dir="$ZYNTHIAN_SW_DIR/filebrowser/root/media"
 if [[ ! -L "$sf_media_dir" ]]; then
