@@ -14,9 +14,9 @@
 #               <dest>/<pname>-zyngui.lv2/zynthian_widget_<pname>.py
 #
 # The plugin URI is taken from the engines DB (engine_config.json).
-# The source files are never modified or deleted. Bundles that already
-# exist are skipped, unless --force is used, so the script is safe to
-# run again.
+# Widget files are moved into their bundles. Widgets that can't be migrated
+# and other files are kept. If the old folder ends up empty, it is deleted. Bundles that already exist are not overwritten,
+# unless --force is used, so the script is safe to run again.
 #
 # Copyright (C) 2015-2026 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -41,6 +41,7 @@ import re
 import sys
 import json
 import shutil
+import filecmp
 import argparse
 from urllib.parse import quote
 
@@ -109,7 +110,9 @@ def valid_uri(uri):
 
 
 def migrate_widget(fpath, plugin_uris, dest_dir, force=False, dry_run=False):
-    """ Create the extension bundle for a widget. Return True if created. """
+    """ Create the extension bundle for a widget.
+    Return "migrated", "already" (bundle exists with the same widget file) or "skipped".
+    """
     module = os.path.basename(fpath)
     pname = module[len(WIDGET_PREFIX):-3]
     bundle_name = re.sub(r'[^A-Za-z0-9_.+-]', '_', pname) + "-zyngui.lv2"
@@ -118,24 +121,47 @@ def migrate_widget(fpath, plugin_uris, dest_dir, force=False, dry_run=False):
 
     if os.path.exists(bundle_dir):
         if not force:
-            log(f"  SKIP '{module}': bundle '{bundle_dir}' already exists (use --force to overwrite)")
-            return False
+            bundle_module = os.path.join(bundle_dir, module)
+            if os.path.isfile(bundle_module) and filecmp.cmp(fpath, bundle_module, shallow=False):
+                log(f"  '{module}' already migrated to '{bundle_dir}'")
+                return "already"
+            log(f"  SKIP '{module}': bundle '{bundle_dir}' already exists with a different widget (use --force to overwrite)")
+            return "skipped"
         log(f"  Overwriting existing bundle '{bundle_dir}'")
 
     ui_triples = "\n".join(f"<{uri}> ui:ui <{ui_uri}> ." for uri in plugin_uris)
     manifest = MANIFEST_TEMPLATE.format(src=fpath, ui_triples=ui_triples, ui_uri=ui_uri, module=module)
 
-    log(f"  '{module}' => {bundle_dir}")
+    log(f"  Moving '{module}' => {bundle_dir}")
     for uri in plugin_uris:
         log(f"      for <{uri}>")
     if dry_run:
-        return True
+        return "migrated"
 
     os.makedirs(bundle_dir, exist_ok=True)
-    shutil.copy2(fpath, os.path.join(bundle_dir, module))
     with open(os.path.join(bundle_dir, "manifest.ttl"), "w") as f:
         f.write(manifest)
-    return True
+    shutil.move(fpath, os.path.join(bundle_dir, module))
+    return "migrated"
+
+
+def remove_source(fpath, dry_run=False):
+    """ Delete a widget source file that is already in its bundle """
+    log(f"  Deleting '{fpath}' (identical copy in bundle)")
+    if not dry_run:
+        os.remove(fpath)
+
+
+def remove_src_dir_if_empty(src_dir, dry_run=False):
+    """ Delete the old user widgets folder if only python caches are left in it """
+    left = [f for f in os.listdir(src_dir) if f != "__pycache__"]
+    if dry_run:
+        return
+    if left:
+        log(f"Keeping '{src_dir}': it still contains {', '.join(sorted(left))}")
+        return
+    log(f"Deleting empty folder '{src_dir}'")
+    shutil.rmtree(src_dir)
 
 
 def main():
@@ -161,6 +187,7 @@ def main():
 
     if not widgets:
         log(f"No user widgets found in '{args.src}'. Nothing to migrate.")
+        remove_src_dir_if_empty(args.src, args.dry_run)
         return 0
 
     plugin_uris_by_pname = load_plugin_uris_by_pname()
@@ -179,10 +206,14 @@ def main():
             n_skip += 1
             continue
         try:
-            if migrate_widget(fpath, uris, args.dest, args.force, args.dry_run):
+            res = migrate_widget(fpath, uris, args.dest, args.force, args.dry_run)
+            if res == "skipped":
+                n_skip += 1
+                continue
+            if res == "migrated":
                 n_ok += 1
             else:
-                n_skip += 1
+                remove_source(fpath, args.dry_run)
         except Exception as e:
             log(f"  ERROR '{module}' => {e}")
             n_err += 1
@@ -190,6 +221,7 @@ def main():
     if others:
         log(f"WARNING: these files in '{args.src}' are not widgets and were NOT migrated: {', '.join(others)}")
         log("         If a widget uses them, copy them into its bundle and fix the paths in the widget code.")
+    remove_src_dir_if_empty(args.src, args.dry_run)
     log(f"Done: {n_ok} migrated, {n_skip} skipped, {n_err} errors.")
     if n_ok and not args.dry_run:
         log(f"Make sure '{args.dest}' is in LV2_PATH and restart zynthian to use the migrated widgets.")
