@@ -81,21 +81,18 @@ function set_engines_flag() {
 	touch $ENGINES_FLAGFILE
 }
 
-# Restart the UI service. In containers (virtual zynthian) the UI runs as virtual_zynthian.service
-# (zynremote.service in older setups) and zynthian.service can't run (no display): restart that one instead.
-# Real devices (VIRTUALIZATION=none) always restart zynthian.service.
+# Restart the enabled UI service: zynthian.service on real devices; virtual_zynthian.service in containers
+# (virtual zynthian, where zynthian.service is disabled).
 function restart_zynthian_ui() {
-	if [ -n "$VIRTUALIZATION" ] && [ "$VIRTUALIZATION" != "none" ]; then
-		for svc in virtual_zynthian zynremote; do
-			if systemctl -q is-enabled $svc 2>/dev/null; then
-				echo "Restarting $svc service..."
-				systemctl restart $svc
-				return
-			fi
-		done
-	fi
-	echo "Restarting zynthian service..."
-	systemctl restart zynthian
+	local svc
+	for svc in zynthian virtual_zynthian; do
+		if systemctl -q is-enabled $svc 2>/dev/null; then
+			break
+		fi
+		svc="zynthian"
+	done
+	echo "Restarting $svc service..."
+	systemctl restart $svc
 }
 
 function run_flag_actions() {
