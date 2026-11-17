@@ -81,6 +81,23 @@ function set_engines_flag() {
 	touch $ENGINES_FLAGFILE
 }
 
+# Restart the UI service. In containers (virtual zynthian) the UI runs as virtual_zynthian.service
+# (zynremote.service in older setups) and zynthian.service can't run (no display): restart that one instead.
+# Real devices (VIRTUALIZATION=none) always restart zynthian.service.
+function restart_zynthian_ui() {
+	if [ -n "$VIRTUALIZATION" ] && [ "$VIRTUALIZATION" != "none" ]; then
+		for svc in virtual_zynthian zynremote; do
+			if systemctl -q is-enabled $svc 2>/dev/null; then
+				echo "Restarting $svc service..."
+				systemctl restart $svc
+				return
+			fi
+		done
+	fi
+	echo "Restarting zynthian service..."
+	systemctl restart zynthian
+}
+
 function run_flag_actions() {
 
 	if [ "$ZYNTHIAN_FLAG_MASTER" = "$0" ]; then
@@ -108,8 +125,7 @@ function run_flag_actions() {
 			echo "Saving state..."
 			send_osc 1370 /CUIA/LAST_STATE_ACTION
 			sleep 1
-			echo "Restarting zynthian service..."
-			systemctl restart zynthian
+			restart_zynthian_ui
 		fi
 
 		if [ -f $RESTART_WEBCONF_FLAGFILE ]; then
