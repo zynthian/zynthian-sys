@@ -168,8 +168,8 @@ apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt python3-liblo python3-lilv python3-alsaaudio python3-levenshtein \
-python3-websocket python3-pyudev python3-py7zr python3-rarfile python3-lgpio pyliblo-utils python3.13-venv \
-python3-rdflib python3-bs4
+python3-websocket python3-pyudev python3-py7zr python3-rarfile pyliblo-utils python3.13-venv python3-rdflib python3-bs4 \
+python3-lgpio
 
 #------------------------------------------------
 # Create Zynthian Directory Tree
@@ -236,7 +236,7 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
 pip3 install JACK-Client oyaml adafruit-circuitpython-neopixel-spi hwmon vcgencmd meson ninja \
-pyrubberband mididings sox scipy wavio  abletonparsing tkinterweb ffmpeg \
+pyrubberband mididings sox scipy wavio abletonparsing tkinterweb ffmpeg \
 tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js \
 moderngl moderngl_window pyopengltk pyglm glcontext pyglet websocket-server
 
@@ -533,6 +533,16 @@ cd "$ZYNTHIAN_SYS_DIR/scripts"
 #------------------------------------------------
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
+
+#------------------------------------------------
+# Install Packages
+#------------------------------------------------
+export ZYNTHIAN_PACKAGES_DIR="$ZYNTHIAN_DIR/zynthian-packages"
+
+sf_packages=("DrawbarOrgan" "Hydrogen Drumkits" "jRhodes3d" "Salamander Drumkit" "Stevie Clavinet" "TR808-fischer" "Zynthian Factory SF2s" "Zynthian Factory SFZs" "Zynthian Salamander Grand")
+for sf_package in "${sf_packages[@]}"; do
+	zynpack_tool.py INSTALL "Soundfonts" "$sf_package"   
+done
 
 #------------------------------------------------
 # Zynthian specific packages (from zynthian repo)

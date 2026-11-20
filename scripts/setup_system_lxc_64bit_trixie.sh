@@ -149,8 +149,7 @@ apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi python3-
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt python3-liblo python3-lilv python3-alsaaudio python3-levenshtein \
-python3-websocket python3-pyudev python3-py7zr python3-rarfile python3-lgpio pyliblo-utils python3.13-venv \
-python3-rdflib python3-bs4
+python3-websocket python3-pyudev python3-py7zr python3-rarfile pyliblo-utils python3.13-venv python3-rdflib python3-bs4
 
 #------------------------------------------------
 # Create Zynthian Directory Tree
@@ -316,7 +315,6 @@ systemctl enable virtual_zynthian
 # The UI runs as virtual_zynthian.service: zynthian.service (it starts its own X server) must never run here.
 # It stays disabled, and a drop-in turns it into a trigger, so "systemctl restart zynthian" (UI restart after
 # updates & config changes, from scripts and webconf) restarts virtual_zynthian instead.
-systemctl disable zynthian
 mkdir -p /etc/systemd/system/zynthian.service.d
 cat > /etc/systemd/system/zynthian.service.d/virtual_zynthian.conf << 'EOF'
 [Service]
@@ -516,6 +514,26 @@ cd "$ZYNTHIAN_SYS_DIR/scripts"
 #------------------------------------------------
 $ZYNTHIAN_RECIPE_DIR/install_hylia.sh
 $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
+
+#------------------------------------------------
+# Install Packages
+#------------------------------------------------
+export ZYNTHIAN_PACKAGES_DIR="$ZYNTHIAN_DIR/zynthian-packages"
+
+sf_packages=("DrawbarOrgan" "Hydrogen Drumkits" "jRhodes3d" "Salamander Drumkit" "Stevie Clavinet" "TR808-fischer" "Zynthian Factory SF2s" "Zynthian Factory SFZs" "Zynthian Salamander Grand")
+for sf_package in "${sf_packages[@]}"; do
+	zynpack_tool.py INSTALL "Soundfonts" "$sf_package"
+done
+
+smp_packages=("Blood Money" "GLOOM BAP" "EDM-TECH-128BPM" "EDM-TECH-140BPM")
+for smp_package in "${smp_packages[@]}"; do
+	zynpack_tool.py INSTALL "Samples" "$smp_package"
+done
+
+ir_packages=("X42 IRs")
+for ir_package in "${ir_packages[@]}"; do
+	zynpack_tool.py INSTALL "IRs" "$ir_package"
+done
 
 #------------------------------------------------
 # Zynthian specific packages (from zynthian repo)
