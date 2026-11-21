@@ -6,7 +6,14 @@
 #------------------------------------------------------------------------------
 
 plugin_url="https://surge-synthesizer.github.io/lv2/MoniqueMonosynth"
-plugin_dir="/usr/local/lib/lv2/MoniqueMonosynth.lv2"
+
+plugin_dir="$ZYNTHIAN_LV2_DIR/lv2/MoniqueMonosynth.lv2"
+if [ ! -d "$plugin_dir" ]; then
+	plugin_dir="/usr/local/lib/lv2/MoniqueMonosynth.lv2"
+fi
+if [ ! -d "$plugin_dir" ]; then
+	exit
+fi
 
 cd "$plugin_dir"
 
@@ -51,3 +58,6 @@ mv /tmp/presets.ttl factory_presets.ttl
 sed -i "s#rdfs\:seeAlso <dsp.ttl>#rdfs\:seeAlso <factory_presets.ttl> ;\n\trdfs\:seeAlso <dsp.ttl>#" manifest.ttl
 
 rm -f maniback.ttl
+
+regenerate_lv2_presets.sh "https://surge-synthesizer.github.io/lv2/MoniqueMonosynth"
+

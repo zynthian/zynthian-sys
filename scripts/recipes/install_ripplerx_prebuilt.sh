@@ -1,11 +1,12 @@
 #!/bin/bash
 
-plugins_path="$ZYNTHIAN_PLUGINS_DIR/lv2"
-BASE_URL_DOWNLOAD="https://os.zynthian.org/plugins/aarch64"
+BASE_URL_DOWNLOAD="https://os.zynthian.org/plugins/${MACHINE_HW_NAME}"
+PLUGIN="RipplerX"
+FILENAME="$PLUGIN.lv2.tar.xz"
 
-cd $plugins_path
-rm -rf ./RipplerX.lv2
-wget "$BASE_URL_DOWNLOAD/RipplerX.lv2.tar.xz"
-tar xfv RipplerX.lv2.tar.xz
-rm -f RipplerX.lv2.tar.xz
+cd "$ZYNTHIAN_PLUGINS_DIR/lv2"
+rm -rf "./$PLUGIN.lv2"
+wget "$BASE_URL_DOWNLOAD/$FILENAME"
+tar xfv "$FILENAME"
+rm -f "$FILENAME"
 

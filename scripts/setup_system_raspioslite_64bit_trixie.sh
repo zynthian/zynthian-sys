@@ -152,7 +152,8 @@ libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-de
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libftgl-dev libical-dev \
 libclthreads-dev libclxclient-dev libwebkit2gtk-4.1-dev libboost-python-dev libboost-thread-dev libsndfile-dev \
-liblilv-dev lilv-utils libsuil-dev liblo-tools nlohmann-json3-dev libmimalloc3 libmimalloc-dev
+liblilv-dev lilv-utils libsuil-dev liblo-tools nlohmann-json3-dev libmimalloc3 libmimalloc-dev \
+ntk-static
  
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4

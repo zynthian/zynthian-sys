@@ -1,10 +1,11 @@
 #!/bin/bash
 
-BASE_URL_DOWNLOAD="https://os.zynthian.org/plugins/aarch64"
+BASE_URL_DOWNLOAD="https://os.zynthian.org/plugins/${MACHINE_HW_NAME}"
+PLUGIN="MoniqueMonosynth"
+FILENAME="$PLUGIN.lv2.tar.xz"
 
-cd /usr/local/lib/lv2
-
-wget "$BASE_URL_DOWNLOAD/MoniqueMonosynth.lv2.tar.xz"
-tar xfv "MoniqueMonosynth.lv2.tar.xz"
-rm -f "MoniqueMonosynth.lv2.tar.xz"
-
+cd "$ZYNTHIAN_PLUGINS_DIR/lv2"
+rm -rf "./$PLUGIN.lv2"
+wget "$BASE_URL_DOWNLOAD/$FILENAME"
+tar xfv "$FILENAME"
+rm -f "$FILENAME"

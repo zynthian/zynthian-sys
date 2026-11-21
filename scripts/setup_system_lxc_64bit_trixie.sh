@@ -134,7 +134,8 @@ libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-de
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libftgl-dev libical-dev \
 libclthreads-dev libclxclient-dev libwebkit2gtk-4.1-dev libboost-python-dev libboost-thread-dev libsndfile-dev \
-liblilv-dev lilv-utils libsuil-dev liblo-tools nlohmann-json3-dev libmimalloc3 libmimalloc-dev
+liblilv-dev lilv-utils libsuil-dev liblo-tools nlohmann-json3-dev libmimalloc3 libmimalloc-dev \
+ntk-static
 # Missed libs from previous OS versions:
 # Removed from trixie: lv2-c++-tools libganv-dev
 
@@ -339,6 +340,12 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 # Install LV2 lilv library
 #$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
 
+# Create legacy old_headers compatibility softlinks
+mkdir -p /usr/include/lv2/lv2plug.in/ns
+ln -s /usr/include/lv2 /usr/include/lv2/lv2plug.in/ns/ext
+ln -s /usr/include/lv2/core /usr/include/lv2/lv2plug.in/ns/lv2core
+ln -s /usr/include/lv2 /usr/include/lv2/lv2plug.in/ns/extensions
+
 # Install the LV2 C++ Tool Kit
 $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 # => lvtk-1 failed
@@ -508,6 +515,28 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 #------------------------------------------------
 cd "$ZYNTHIAN_SYS_DIR/scripts"
 ./setup_plugins_rbpi.sh
+
+#------------------------------------------------
+# Build and Install Plugins for x86_64
+#------------------------------------------------
+$ZYNTHIAN_RECIPE_DIR/install_fabla_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_vaporizer2.sh
+$ZYNTHIAN_RECIPE_DIR/install_Ultramaster_KR-106_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_ripplerx_prebuilt.sh
+#$ZYNTHIAN_RECIPE_DIR/install_resonarium_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_odin2_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_OB-Xf_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_monique_monosynth_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_mimid_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_helm_prebuilt.sh
+$ZYNTHIAN_RECIPE_DIR/install_qmidiarp_prebuilt.sh
+
+$ZYNTHIAN_RECIPE_DIR/install_jc303.sh
+$ZYNTHIAN_RECIPE_DIR/install_string-machine.sh
+$ZYNTHIAN_RECIPE_DIR/install_dexed_lv2.sh
+$ZYNTHIAN_RECIPE_DIR/install_darc_lv2.sh
+$ZYNTHIAN_RECIPE_DIR/install_.sh
+$ZYNTHIAN_RECIPE_DIR/install_.sh
 
 #------------------------------------------------
 # Install Ableton Link Support

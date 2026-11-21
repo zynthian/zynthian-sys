@@ -3,7 +3,17 @@
 BASE_DOWNLOAD_URL="https://github.com/surge-synthesizer/OB-Xf/releases/download/Nightly"
 
 # Install plugin binary
-FILENAME="ob-xf-Linux-ubuntu24.04-arm64-2026-09-30-b08ffb6.zip"
+
+if [ ${MACHINE_HW_NAME} = "aarch64" ]; then
+    #FILENAME="ob-xf-Linux-ubuntu24.04-arm64-2026-09-30-b08ffb6.zip"
+    FILENAME="ob-xf-Linux-aarch64-2026-11-17-e03452f.zip"
+elif [ ${MACHINE_HW_NAME} = "x86_64" ]; then
+    FILENAME="ob-xf-Linux-2026-11-17-e03452f.zip"
+else
+    echo "Platform ${MACHINE_HW_NAME} not supported!"
+    exit
+fi
+
 cd $ZYNTHIAN_PLUGINS_DIR || exit 1
 wget "$BASE_DOWNLOAD_URL/$FILENAME"
 if [ ! -f "$FILENAME" ]; then
@@ -18,7 +28,8 @@ rm -rf "./obxf_products"
 rm -f "$FILENAME"
 
 # Install assets
-FILENAME="ob-xf-assets-2026-09-30-b08ffb6.zip"
+#FILENAME="ob-xf-assets-2026-09-30-b08ffb6.zip"
+FILENAME="ob-xf-assets-2026-11-17-e03452f.zip"
 cd "/usr/local/share" || exit 1
 wget "$BASE_DOWNLOAD_URL/$FILENAME"
 if [ ! -f "$FILENAME" ]; then

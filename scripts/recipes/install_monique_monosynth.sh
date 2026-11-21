@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd $ZYNTHIAN_PLUGIN_SRC_DIR
+cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
 if [ -d "MoniqueMonosynth" ]; then
     rm -rf "MoniqueMonosynth"
@@ -9,10 +9,10 @@ fi
 git clone --recursive https://github.com/surge-synthesizer/monique-monosynth
 cd MoniqueMonosynth
 
-cmake -Bignore/build -DBUILD_LV2=TRUE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local
+cmake -Bignore/build -DBUILD_LV2=TRUE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$ZYNTHIAN_PLUGINS_DIR/lv2
 cmake --build ignore/build --config Release --parallel 3
 #cmake --install ignore/build
-mv ./ignore/build/MoniqueMonosynth_artefacts/Release/LV2/MoniqueMonosynth.lv2 /usr/local/lib/lv2
+mv ./ignore/build/MoniqueMonosynth_artefacts/Release/LV2/MoniqueMonosynth.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 lv2_factory_preset_banks_monique.sh
 

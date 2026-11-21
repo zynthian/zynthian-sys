@@ -17,7 +17,10 @@ git clone --recursive -b zynthian https://github.com/polluxsynth/audio-plugins p
 cd polluxsynth-audio-plugins
 make -j 3
 make install
-make clean
+
+mv "/usr/local/lib/lv2/MiMi-d.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2"
+mv "/usr/local/lib/lv2/MiMi-d.presets.lv2" "$ZYNTHIAN_PLUGINS_DIR/lv2-presets"
+
 
 cd ..
 rm -rf "polluxsynth-audio-plugins"
