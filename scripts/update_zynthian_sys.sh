@@ -489,6 +489,12 @@ fi
 # => Xsession config
 cp -an $ZYNTHIAN_SYS_DIR/etc/xsessionrc /root/.xsessionrc
 
+# => KasmVNC session (containers): UI alone on display :0, standard X session (processor GUIs) on :1
+if [ -x /usr/bin/kasmvncserver ]; then
+	mkdir -p /root/.vnc
+	cp -a $ZYNTHIAN_SYS_DIR/etc/kasmvnc/xstartup /root/.vnc/xstartup
+fi
+
 # => Xfce4 config
 rsync -r --del $ZYNTHIAN_SYS_DIR/etc/xfce4.config/ /root/.config/xfce4/
 

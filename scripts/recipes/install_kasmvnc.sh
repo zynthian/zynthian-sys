@@ -25,3 +25,7 @@ rm -f "$filename"
 if ! grep -q "^root:" /root/.kasmpasswd 2>/dev/null; then
 	echo -e "opensynth\nopensynth\n" | kasmvncpasswd -u root -w
 fi
+
+# Session startup: UI alone on display :0, standard X session (xfwm4 + panel, processor GUIs) on :1
+mkdir -p /root/.vnc
+cp -a $ZYNTHIAN_SYS_DIR/etc/kasmvnc/xstartup /root/.vnc/xstartup

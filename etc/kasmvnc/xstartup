@@ -1,0 +1,15 @@
+#!/bin/sh
+# KasmVNC session startup (containers, see recipes/install_kasmvnc.sh), installed as ~/.vnc/xstartup
+#  - display :0 => the zynthian UI alone (started by virtual_zynthian.service): nothing to do here.
+#  - display :1 => processor GUIs (vncserver1.service): the standard X session, as on real devices
+#    (xfwm4 window manager + xfce4-panel, from ~/.xsessionrc).
+
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+case "$DISPLAY" in
+	*:0|*:0.*) exit 0 ;;
+esac
+
+[ -x /etc/X11/xinit/xinitrc ] && exec /etc/X11/xinit/xinitrc
+exec sh /etc/X11/xinit/xinitrc
