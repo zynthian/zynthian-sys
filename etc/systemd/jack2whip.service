@@ -6,6 +6,9 @@ Requires=jack2.service mediamtx.service
 [Service]
 Type=simple
 ExecStart=/usr/bin/ffmpeg -f jack -i JackToWhip -acodec libopus -b:a 96k -vbr on -frame_duration 10 -compression_level 0 -f rtsp -rtsp_transport udp rtsp://127.0.0.1:8554/zynstream
+# Connect the main mix to the stream (also after a restart of this service: the UI only connects it when
+# it starts). In the background: the mixer ports may not exist yet.
+ExecStartPost=/bin/bash -c '( for i in $(seq 30); do jack_connect zynmixer_bus:output_00a JackToWhip:input_1 2>/dev/null; jack_connect zynmixer_bus:output_00b JackToWhip:input_2 2>/dev/null; [ "$(jack_lsp -c | grep -A1 "^JackToWhip:input_" | grep -c "^ *zynmixer_bus:output_00")" = 2 ] && break; sleep 1; done ) >/dev/null 2>&1 &'
 Restart=always
 RestartSec=3
 
