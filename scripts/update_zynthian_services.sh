@@ -16,7 +16,7 @@
 # "restore" is run by the zynthian-update unit's ExecStopPost, so it also runs
 # when the update is killed or crashes.
 #
-# Copyright (C) 2015-2026 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2026 Brian Walton <riban@zynthian.org>
 #
 #******************************************************************************
 #
@@ -184,7 +184,7 @@ function show_progress() {
 #------------------------------------------------------------------------------
 
 function stop_services() {
-	local active=() svc i
+	local active=() svc i ui_active=0
 
 	mkdir -p "$UPDATE_STATE_DIR"
 
@@ -193,23 +193,18 @@ function stop_services() {
 	for svc in "${NON_ESSENTIAL_SERVICES[@]}"; do
 		if systemctl -q is-active "$svc" 2> /dev/null; then
 			active+=("$svc")
+			[[ " ${UI_SERVICES[*]} " =~ " $svc " ]] && ui_active=1
 		fi
 	done
 
 	# Record before stopping, so a failure while stopping still restores everything
 	printf "%s\n" "${active[@]}" > "$STOPPED_SERVICES_FILE"
 
-	# Get the progress display ready before stopping the UI: it takes the display as
-	# soon as X exits, so the console isn't shown meanwhile
-	for svc in "${active[@]}"; do
-		if [[ " ${UI_SERVICES[*]} " =~ " $svc " ]]; then
-			start_progress_display --wait-x
-			break
-		fi
-	done
-
-	# Save the UI state before stopping it
-	if [[ " ${active[*]} " =~ " zynthian " || " ${active[*]} " =~ " zynthian_debug " || " ${active[*]} " =~ " virtual_zynthian " ]]; then
+	if [[ "$ui_active" == "1" ]]; then
+		# Get the progress display ready before stopping the UI: it takes the display
+		# as soon as X exits, so the console isn't shown meanwhile
+		start_progress_display --wait-x
+		# Save the UI state before stopping it
 		echo "Saving UI state..."
 		send_osc_cmd 1370 /CUIA/LAST_STATE_ACTION > /dev/null 2>&1
 		sleep 1
@@ -267,24 +262,25 @@ function restore_services() {
 			echo "Update Complete (with warnings)."
 			;;
 	esac
-	# End of log marker for the update launcher
+	# End of log marker for the log followers (update launcher, UI, webconf)
 	echo "EOUPDATE"
 	sleep 1
 	# The update has ended: the UI must not show the update progress anymore.
 	# Removed before starting the UI, so the new UI instance doesn't see it.
 	rm -f "$RUNNING_FILE"
 
-	# Start the UI last. The progress display (if running) is stopped first, but its
+	# The progress display (if running) is stopped before starting the UI, but its
 	# last frame ("Update Complete.") stays on the display until the UI draws.
+	stop_progress_display
+
+	# Start the UI last
 	if [[ ${#ui_services[@]} -gt 0 ]]; then
-		stop_progress_display
 		ui_started="wait_ui"
 		for svc in "${ui_services[@]}"; do
 			echo "Starting $svc..."
 			timeout 60 systemctl start "$svc" || echo "WARNING: Failed to start $svc"
 		done
 	fi
-	stop_progress_display
 
 	# Webconf is restarted last: it is probably showing this log
 	if [[ -f "$RESTART_WEBCONF_FILE" ]]; then

@@ -18,7 +18,7 @@
 #       zynthian_update_progress.py --text-mode
 #     restores text mode (once the UI's X server has its own VT).
 #
-# Copyright (C) 2015-2026 Fernando Moyano <jofemodo@zynthian.org>
+# Copyright (C) 2026 Brian Walton <riban@zynthian.org>
 #
 # ******************************************************************************
 #
@@ -56,8 +56,6 @@ except ImportError:
 ZYNTHIAN_DIR = os.environ.get("ZYNTHIAN_DIR", "/zynthian")
 UPDATE_LOG = "/tmp/zynthian_update.log"
 UPDATE_STATE_DIR = "/run/zynthian_update"
-# Exists while an update is running
-UPDATE_RUNNING_FILE = f"{UPDATE_STATE_DIR}/running"
 # Start time (epoch seconds) of the update and of the current step
 UPDATE_START_FILE = f"{UPDATE_STATE_DIR}/start_time"
 STEP_START_FILE = f"{UPDATE_STATE_DIR}/step_time"
@@ -80,7 +78,15 @@ COLOR_HINT = (230, 180, 60)
 COLOR_BAR = (0, 160, 230)
 COLOR_BAR_BG = (50, 50, 50)
 COLOR_BAR_PULSE = (110, 110, 110)
+COLOR_BAR_PULSE_DONE = (90, 200, 250)
 COLOR_BANNER = (25, 25, 25)
+COLOR_LEVEL_OK = (60, 190, 90)
+COLOR_LEVEL_WARN = (230, 170, 40)
+COLOR_LEVEL_BAD = (230, 60, 50)
+
+# Free disk space below these (bytes) is shown amber / red
+DISK_FREE_WARN = 1024 ** 3
+DISK_FREE_BAD = 500 * 1024 ** 2
 
 # System resources banner refresh period (seconds)
 BANNER_PERIOD = 2
@@ -133,38 +139,37 @@ class ProgressState:
         self.finished = False
 
     def read_log(self):
-        """Read new lines from the update log. Returns True if anything changed."""
+        """Read new lines from the update log"""
         if self.log is None:
             try:
                 self.log = open(self.log_fpath, "r", errors="replace")
                 self.log_pos = 0
             except OSError:
-                return False
+                return
         try:
             # Log truncated => a new update started
             if os.path.getsize(self.log_fpath) < self.log_pos:
-                self.log.seek(0)
+                self.log.close()
                 self.__init__(self.log_fpath)
-                return self.read_log()
+                self.read_log()
+                return
         except OSError:
             pass
-        changed = False
         for line in self.log.readlines():
-            changed |= self.feed(line)
+            self.feed(line)
         self.log_pos = self.log.tell()
         # Times saved by the update scripts are better than ours (we may have started late)
         self.start_time = read_epoch_file(UPDATE_START_FILE) or self.start_time
         self.step_time = read_epoch_file(STEP_START_FILE) or self.step_time
-        return changed
 
     def feed(self, line):
         line = line.strip()
         if not line:
-            return False
+            return
         self.last_line_time = time.time()
         if line == "EOUPDATE":
             self.finished = True
-            return True
+            return
         if line.startswith(">>>"):
             msg = line[3:].strip()
             m = re_step.search(msg)
@@ -188,7 +193,6 @@ class ProgressState:
                 if regex.search(line):
                     self.hint = hint
                     break
-        return True
 
     def get_hint(self):
         idle = time.time() - self.last_line_time
@@ -253,13 +257,22 @@ def format_bytes(n):
         n /= 1024
 
 
-def level_color(fraction):
-    """Bar color for a usage fraction: green, amber, red"""
+def usage_color(fraction):
+    """Bar color for a usage fraction (RAM, CPU): green, amber, red"""
     if fraction >= 0.9:
-        return (230, 60, 50)
+        return COLOR_LEVEL_BAD
     if fraction >= 0.75:
-        return (230, 170, 40)
-    return (60, 190, 90)
+        return COLOR_LEVEL_WARN
+    return COLOR_LEVEL_OK
+
+
+def disk_color(free):
+    """Bar color for free disk space (bytes): green, amber, red"""
+    if free < DISK_FREE_BAD:
+        return COLOR_LEVEL_BAD
+    if free < DISK_FREE_WARN:
+        return COLOR_LEVEL_WARN
+    return COLOR_LEVEL_OK
 
 
 # ------------------------------------------------------------------------------
@@ -331,21 +344,22 @@ class ProgressScreen:
         """Memory, disk & CPU usage: text + horizontal bar for each, across the top"""
         st = self.stats
         st.update()
-        items = []
+        items = []  # (text, bar fraction, bar color)
         if st.mem_total:
             frac = st.mem_used / st.mem_total
-            items.append((f"RAM {format_bytes(st.mem_used * 1024)} / {format_bytes(st.mem_total * 1024)}", frac))
+            items.append((f"RAM {format_bytes(st.mem_used * 1024)} / {format_bytes(st.mem_total * 1024)}",
+                          frac, usage_color(frac)))
         if st.disk_total:
-            frac = 1 - st.disk_free / st.disk_total
-            items.append((f"Disk {format_bytes(st.disk_free)} free", frac))
-        items.append((f"CPU {st.cpu:.0f}%", st.cpu / 100))
+            items.append((f"Disk {format_bytes(st.disk_free)} free",
+                          1 - st.disk_free / st.disk_total, disk_color(st.disk_free)))
+        items.append((f"CPU {st.cpu:.0f}%", st.cpu / 100, usage_color(st.cpu / 100)))
 
         pad = max(4, self.w // 80)
         col_w = (self.w - pad) // len(items)
         bar_h = max(4, self.h // 80)
         ty = self.h // 90
         by = ty + self.stats_font_size + self.h // 120
-        for i, (text, frac) in enumerate(items):
+        for i, (text, frac, color) in enumerate(items):
             x0 = pad + i * col_w
             x1 = x0 + col_w - pad
             text = self.fit_text(draw, text, self.stats_font, x1 - x0)
@@ -354,7 +368,7 @@ class ProgressScreen:
             draw.rectangle((x0, by, x1, by + bar_h), fill=COLOR_BAR_BG)
             xf = x0 + int((x1 - x0) * frac)
             if xf > x0:
-                draw.rectangle((x0, by, xf, by + bar_h), fill=level_color(frac))
+                draw.rectangle((x0, by, xf, by + bar_h), fill=color)
 
     def fit_text(self, draw, text, font, max_width):
         if draw.textlength(text, font=font) <= max_width:
@@ -396,7 +410,7 @@ class ProgressScreen:
         if not state.finished:
             # Pulse over the done part too, so it's visible at any percentage
             if px < xp:
-                draw.rectangle((max(x0, px), y, min(xp, px + pulse_w), y + bar_h), fill=(90, 200, 250))
+                draw.rectangle((max(x0, px), y, min(xp, px + pulse_w), y + bar_h), fill=COLOR_BAR_PULSE_DONE)
         y += bar_h + self.h // 40
 
         elapsed = f"Elapsed {format_time(now - state.start_time)}"
@@ -428,7 +442,6 @@ class ProgressScreen:
 class Framebuffer:
 
     def __init__(self, device):
-        self.device = device
         name = os.path.basename(device)
         sysfs = f"/sys/class/graphics/{name}"
         self.width, self.height = [int(v) for v in self.read_sysfs(sysfs, "virtual_size").split(",")]

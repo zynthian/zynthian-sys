@@ -38,7 +38,8 @@ UPDATE_STATE_DIR="/run/zynthian_update"
 # Launcher: run the update detached, in a transient systemd unit, so it
 # survives stopping/restarting the UI or webconf that launched it, and so
 # services can be stopped and restored (ExecStopPost) even if the update fails.
-# The caller follows the update log, so its progress display keeps working.
+# The UI and webconf show the progress from the update log. The launcher also
+# prints the log until the update ends (for running it from a terminal).
 #------------------------------------------------------------------------------
 
 function update_unit_running() {
@@ -123,7 +124,9 @@ if [[ "$ZYNTHIAN_UPDATE_DETACHED" == "1" ]]; then
 	SERVICES_SCRIPT="$UPDATE_STATE_DIR/update_zynthian_services.sh"
 else
 	SERVICES_SCRIPT="$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_services.sh"
-	# No restore action when running directly: clean up on exit
+	# Running directly: write the log too (the UI and webconf follow it) and,
+	# with no restore action, clean up on exit
+	exec > >(tee "$UPDATE_LOG") 2>&1
 	date +%s > "$UPDATE_STATE_DIR/start_time" 2> /dev/null
 	touch "$UPDATE_STATE_DIR/running" 2> /dev/null
 	trap 'rm -f "$UPDATE_STATE_DIR/running"' EXIT
@@ -264,8 +267,8 @@ set_restart_ui_flag
 set_restart_webconf_flag
 
 if [[ "$stopped_services" == "1" ]]; then
-	# The stopped services (UI included) are started after this script ends,
-	# by the restore action. Webconf, if kept running, is restarted last.
+	# The stopped services (UI included) are started after this script ends, by the
+	# restore action. Webconf (never stopped) is restarted last, by the restore action.
 	clean_restart_ui_flag
 	if [[ -f "$RESTART_WEBCONF_FLAGFILE" ]]; then
 		clean_restart_webconf_flag
@@ -274,7 +277,6 @@ if [[ "$stopped_services" == "1" ]]; then
 	if [[ -f "$REBOOT_FLAGFILE" ]]; then
 		# Rebooting brings everything back
 		rm -f "$UPDATE_STATE_DIR/stopped_services"
-		/bin/bash "$SERVICES_SCRIPT" progress "Update complete. Rebooting..."
 	fi
 fi
 
@@ -284,9 +286,10 @@ sync
 if [[ ${#update_errors[@]} -gt 0 ]]; then
 	echo "WARNING: Some update steps reported problems: ${update_errors[*]}"
 fi
-# Rebooting stops this unit: record the result first
 if [[ -f "$REBOOT_FLAGFILE" ]]; then
+	# Rebooting stops this unit: record the result first
 	echo "${#update_errors[@]}" > "$UPDATE_STATE_DIR/result" 2> /dev/null
+	/bin/bash "$SERVICES_SCRIPT" progress "Update complete. Rebooting..."
 fi
 
 run_flag_actions
