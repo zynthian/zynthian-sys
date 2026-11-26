@@ -4,7 +4,7 @@
 #
 # + Stop non-essential services to free RAM before updating (low-memory devices)
 # + Restore the stopped services after the update, even if it failed
-# + Show update progress on the display (plymouth) while the UI is stopped
+# + Show update progress on the display while the UI is stopped
 #
 # Usage:
 #   update_zynthian_services.sh stop              Stop the non-essential services
@@ -34,7 +34,7 @@
 
 UPDATE_STATE_DIR="/run/zynthian_update"
 STOPPED_SERVICES_FILE="$UPDATE_STATE_DIR/stopped_services"
-PLYMOUTH_FLAG_FILE="$UPDATE_STATE_DIR/plymouth"
+PROGRESS_PID_FILE="$UPDATE_STATE_DIR/progress.pid"
 RESULT_FILE="$UPDATE_STATE_DIR/result"
 RESTART_WEBCONF_FILE="$UPDATE_STATE_DIR/restart_webconf"
 UPDATE_LOG="/tmp/zynthian_update.log"
@@ -105,32 +105,42 @@ function send_osc_cmd() {
 }
 
 #------------------------------------------------------------------------------
-# Progress on the display (best effort: needs plymouth and a theme that shows messages)
+# Progress on the display, while the UI is stopped: zynthian_update_progress.py
+# draws on the framebuffer, following the update log.
+# Started within the update unit, so systemd kills it when the update ends.
 #------------------------------------------------------------------------------
 
-function start_plymouth() {
-	command -v plymouthd > /dev/null || return
+function start_progress_display() {
+	local python="python3" script="$ZYNTHIAN_SYS_DIR/sbin/zynthian_update_progress.py"
+	[[ -x "/zynthian/venv/bin/python3" ]] && python="/zynthian/venv/bin/python3"
+	[[ -f "$script" ]] || return
 	[[ "$VIRTUALIZATION" == "none" || -z "$VIRTUALIZATION" ]] || return
-	if ! plymouth --ping 2> /dev/null; then
-		plymouthd --mode=updates 2> /dev/null || plymouthd --mode=boot 2> /dev/null || return
-	fi
-	plymouth show-splash 2> /dev/null
-	touch "$PLYMOUTH_FLAG_FILE"
+	[[ -e "${FRAMEBUFFER:-/dev/fb0}" ]] || return
+	stop_progress_display
+	# Stop the console cursor blinking over the progress screen
+	echo 0 > /sys/class/graphics/fbcon/cursor_blink 2> /dev/null
+	"$python" "$script" --log "$UPDATE_LOG" > /dev/null 2>> "$UPDATE_STATE_DIR/progress.err" &
+	echo $! > "$PROGRESS_PID_FILE"
 }
 
-function quit_plymouth() {
-	if [[ -f "$PLYMOUTH_FLAG_FILE" ]]; then
-		rm -f "$PLYMOUTH_FLAG_FILE"
-		# Keep the last frame on screen until the UI draws
-		plymouth quit --retain-splash 2> /dev/null
+function stop_progress_display() {
+	local pid
+	if [[ -f "$PROGRESS_PID_FILE" ]]; then
+		pid=$(cat "$PROGRESS_PID_FILE")
+		rm -f "$PROGRESS_PID_FILE"
+		if [[ -n "$pid" ]] && kill "$pid" 2> /dev/null; then
+			# Wait for it to exit before the UI takes the display
+			for _ in 1 2 3 4 5 6 7 8 9 10; do
+				kill -0 "$pid" 2> /dev/null || break
+				sleep 0.2
+			done
+		fi
 	fi
+	echo 1 > /sys/class/graphics/fbcon/cursor_blink 2> /dev/null
 }
 
 function show_progress() {
 	echo -e "\n>>> $*\n"
-	if [[ -f "$PLYMOUTH_FLAG_FILE" ]]; then
-		plymouth display-message --text="$*" 2> /dev/null
-	fi
 }
 
 #------------------------------------------------------------------------------
@@ -171,7 +181,7 @@ function stop_services() {
 		timeout 60 systemctl stop "$svc" || echo "WARNING: Failed to stop $svc"
 		# The UI is gone: show progress on the display from now on
 		if [[ "$svc" == "zynthian" || "$svc" == "zynthian_debug" ]]; then
-			start_plymouth
+			start_progress_display
 		fi
 	done
 
@@ -181,6 +191,12 @@ function stop_services() {
 
 function restore_services() {
 	local svc started=0 webconf_started=0
+
+	# The update unit's processes (progress display included) were killed when the
+	# update ended: show progress again until the UI is restarted
+	if grep -qx -e "zynthian" -e "zynthian_debug" "$STOPPED_SERVICES_FILE" 2> /dev/null; then
+		start_progress_display
+	fi
 
 	if [[ ! -f "$RESULT_FILE" ]]; then
 		# The update didn't finish: killed, crashed or out of memory
@@ -197,7 +213,7 @@ function restore_services() {
 			[[ -z "$svc" ]] && continue
 			if [[ "$svc" == "zynthian" || "$svc" == "zynthian_debug" || "$svc" == "virtual_zynthian" ]]; then
 				# Release the display for the UI
-				quit_plymouth
+				stop_progress_display
 			fi
 			echo "Starting $svc..."
 			timeout 60 systemctl start "$svc" || echo "WARNING: Failed to start $svc"
@@ -206,7 +222,7 @@ function restore_services() {
 		done < "$STOPPED_SERVICES_FILE"
 		rm -f "$STOPPED_SERVICES_FILE"
 	fi
-	quit_plymouth
+	stop_progress_display
 
 	[[ "$started" == "1" ]] && echo "Services restarted."
 
