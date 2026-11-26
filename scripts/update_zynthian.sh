@@ -89,10 +89,11 @@ if [[ "$ZYNTHIAN_UPDATE_DETACHED" != "1" && -d /run/systemd/system ]] && command
 	cp "$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_services.sh" "$UPDATE_STATE_DIR/update_zynthian_services.sh"
 	: > "$UPDATE_LOG"
 
-	# Transient units don't inherit the environment
+	# Transient units don't inherit the environment. Don't pass the flags that make the
+	# sourced scripts skip their setup: the unit must detect hardware, enter the venv, etc.
 	env_args=()
 	for name in $(compgen -e); do
-		if [[ ( "$name" == ZYNTHIAN_* && "$name" != "ZYNTHIAN_FLAG_MASTER" ) || "$name" == "PATH" || "$name" == "HOME" || "$name" == "LANG" || "$name" == "FRAMEBUFFER" || "$name" == "VIRTUALIZATION" ]]; then
+		if [[ ( "$name" == ZYNTHIAN_* && "$name" != "ZYNTHIAN_FLAG_MASTER" && "$name" != "ZYNTHIAN_EXTENDED_ENVARS_DEFINED" ) || "$name" == "PATH" || "$name" == "HOME" || "$name" == "LANG" || "$name" == "FRAMEBUFFER" || "$name" == "VIRTUALIZATION" ]]; then
 			env_args+=("--setenv=$name=${!name}")
 		fi
 	done
