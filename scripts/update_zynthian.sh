@@ -100,6 +100,7 @@ if [[ "$ZYNTHIAN_UPDATE_DETACHED" != "1" && -d /run/systemd/system ]] && command
 		--property=StandardOutput="append:$UPDATE_LOG" \
 		--property=StandardError="append:$UPDATE_LOG" \
 		--property=ExecStopPost="/bin/bash $UPDATE_STATE_DIR/update_zynthian_services.sh restore" \
+		--property=TimeoutStopSec=900 \
 		"${env_args[@]}" \
 		--setenv=ZYNTHIAN_UPDATE_DETACHED=1 \
 		/bin/bash "$UPDATE_STATE_DIR/update_zynthian.sh" "$@"; then

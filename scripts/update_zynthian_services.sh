@@ -123,21 +123,23 @@ function send_osc_cmd() {
 # Started within the update unit, so systemd kills it when the update ends.
 #------------------------------------------------------------------------------
 
-function set_cursor_blink() {
-	local f="/sys/class/graphics/fbcon/cursor_blink"
-	[[ -w "$f" ]] && echo "$1" > "$f"
+PROGRESS_SCRIPT="$ZYNTHIAN_SYS_DIR/sbin/zynthian_update_progress.py"
+
+function progress_python() {
+	if [[ -x "/zynthian/venv/bin/python3" ]]; then
+		/zynthian/venv/bin/python3 "$@"
+	else
+		python3 "$@"
+	fi
 }
 
+# Args: extra options for zynthian_update_progress.py (--wait-x)
 function start_progress_display() {
-	local python="python3" script="$ZYNTHIAN_SYS_DIR/sbin/zynthian_update_progress.py"
-	[[ -x "/zynthian/venv/bin/python3" ]] && python="/zynthian/venv/bin/python3"
-	[[ -f "$script" ]] || return
+	[[ -f "$PROGRESS_SCRIPT" ]] || return
 	[[ "$VIRTUALIZATION" == "none" || -z "$VIRTUALIZATION" ]] || return
 	[[ -e "${FRAMEBUFFER:-/dev/fb0}" ]] || return
 	stop_progress_display
-	# Stop the console cursor blinking over the progress screen
-	set_cursor_blink 0
-	"$python" "$script" --log "$UPDATE_LOG" > /dev/null 2>> "$UPDATE_STATE_DIR/progress.err" &
+	progress_python "$PROGRESS_SCRIPT" --log "$UPDATE_LOG" "$@" > /dev/null 2>> "$UPDATE_STATE_DIR/progress.err" &
 	echo $! > "$PROGRESS_PID_FILE"
 }
 
@@ -154,7 +156,22 @@ function stop_progress_display() {
 			done
 		fi
 	fi
-	set_cursor_blink 1
+}
+
+# The progress display leaves the console in graphics mode (no console text on the
+# display). Set it back to text mode at the end, once the UI (if any) has the display.
+function restore_console() {
+	local i
+	[[ -f "$PROGRESS_SCRIPT" ]] || return
+	if [[ "$1" == "wait_ui" ]]; then
+		for (( i=0; i<120; i++ )); do
+			compgen -G "/tmp/.X*-lock" > /dev/null && break
+			sleep 0.5
+		done
+		# Let X take its VT
+		sleep 3
+	fi
+	progress_python "$PROGRESS_SCRIPT" --text-mode 2>> "$UPDATE_STATE_DIR/progress.err"
 }
 
 function show_progress() {
@@ -182,6 +199,15 @@ function stop_services() {
 	# Record before stopping, so a failure while stopping still restores everything
 	printf "%s\n" "${active[@]}" > "$STOPPED_SERVICES_FILE"
 
+	# Get the progress display ready before stopping the UI: it takes the display as
+	# soon as X exits, so the console isn't shown meanwhile
+	for svc in "${active[@]}"; do
+		if [[ " ${UI_SERVICES[*]} " =~ " $svc " ]]; then
+			start_progress_display --wait-x
+			break
+		fi
+	done
+
 	# Save the UI state before stopping it
 	if [[ " ${active[*]} " =~ " zynthian " || " ${active[*]} " =~ " zynthian_debug " || " ${active[*]} " =~ " virtual_zynthian " ]]; then
 		echo "Saving UI state..."
@@ -193,10 +219,6 @@ function stop_services() {
 		svc=${active[$i]}
 		echo "Stopping $svc..."
 		timeout 60 systemctl stop "$svc" || echo "WARNING: Failed to stop $svc"
-		# The UI is gone: show progress on the display from now on
-		if [[ " ${UI_SERVICES[*]} " =~ " $svc " ]]; then
-			start_progress_display
-		fi
 	done
 
 	sync
@@ -204,7 +226,7 @@ function stop_services() {
 }
 
 function restore_services() {
-	local svc started=0
+	local svc started=0 ui_started=""
 
 	# The update unit's processes (progress display included) were killed when the
 	# update ended: show progress again until the UI is restarted
@@ -228,6 +250,7 @@ function restore_services() {
 			if [[ " ${UI_SERVICES[*]} " =~ " $svc " ]]; then
 				# Release the display for the UI
 				stop_progress_display
+				ui_started="wait_ui"
 			fi
 			echo "Starting $svc..."
 			timeout 60 systemctl start "$svc" || echo "WARNING: Failed to start $svc"
@@ -260,6 +283,8 @@ function restore_services() {
 			systemctl restart zynthian-webconf
 		fi
 	fi
+
+	restore_console $ui_started
 }
 
 #------------------------------------------------------------------------------

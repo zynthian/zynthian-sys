@@ -11,7 +11,12 @@
 #   + As a module by the zynthian UI, which shows the screen while it is running.
 #   + As a program that draws directly on the framebuffer, while the UI is
 #     stopped (low-memory updates) or not running:
-#       zynthian_update_progress.py [--log FILE] [--fb DEVICE] [--rotate DEG]
+#       zynthian_update_progress.py [--log FILE] [--fb DEVICE] [--rotate DEG] [--wait-x]
+#     It puts the console in graphics mode, so the kernel doesn't draw text over it,
+#     and leaves it so when stopped (SIGTERM): the console isn't shown between the
+#     update steps, or while the UI starts. At the end of the update,
+#       zynthian_update_progress.py --text-mode
+#     restores text mode (once the UI's X server has its own VT).
 #
 # Copyright (C) 2015-2026 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -34,7 +39,10 @@
 import os
 import re
 import sys
+import glob
 import time
+import fcntl
+import struct
 import signal
 import argparse
 
@@ -53,6 +61,8 @@ UPDATE_RUNNING_FILE = f"{UPDATE_STATE_DIR}/running"
 # Start time (epoch seconds) of the update and of the current step
 UPDATE_START_FILE = f"{UPDATE_STATE_DIR}/start_time"
 STEP_START_FILE = f"{UPDATE_STATE_DIR}/step_time"
+# VT put in graphics mode by the progress display
+VT_FILE = f"{UPDATE_STATE_DIR}/vt"
 
 LOGO_FILES = [
     f"{ZYNTHIAN_DIR}/zynthian-webconf/img/logo/zynthian_logo_black_trans_big.png",
@@ -357,6 +367,62 @@ class Framebuffer:
 
 
 # ------------------------------------------------------------------------------
+# Console (VT) mode: in graphics mode, the kernel console doesn't draw on the display
+# ------------------------------------------------------------------------------
+
+KDSETMODE = 0x4B3A
+KD_TEXT = 0
+KD_GRAPHICS = 1
+VT_GETSTATE = 0x5603
+
+
+def get_active_vt():
+    try:
+        fd = os.open("/dev/tty0", os.O_RDWR | os.O_NOCTTY)
+        try:
+            return struct.unpack("HHH", fcntl.ioctl(fd, VT_GETSTATE, bytes(6)))[0]
+        finally:
+            os.close(fd)
+    except OSError:
+        return None
+
+
+def set_vt_mode(vt, mode):
+    try:
+        fd = os.open(f"/dev/tty{vt}", os.O_RDWR | os.O_NOCTTY)
+        try:
+            fcntl.ioctl(fd, KDSETMODE, mode)
+            return True
+        finally:
+            os.close(fd)
+    except OSError as e:
+        print(f"Can't set mode of VT {vt}: {e}", file=sys.stderr)
+        return False
+
+
+def x_running():
+    return bool(glob.glob("/tmp/.X*-lock"))
+
+
+def restore_text_mode():
+    """Set back to text mode the VT left in graphics mode, unless X is using it now."""
+    try:
+        with open(VT_FILE) as f:
+            vt = int(f.read().strip())
+    except (OSError, ValueError):
+        return
+    if x_running() and get_active_vt() == vt:
+        # X took this VT: it restores the mode it found when it exits
+        pass
+    else:
+        set_vt_mode(vt, KD_TEXT)
+    try:
+        os.remove(VT_FILE)
+    except OSError:
+        pass
+
+
+# ------------------------------------------------------------------------------
 # Main: draw on the framebuffer
 # ------------------------------------------------------------------------------
 
@@ -373,7 +439,13 @@ def main():
     parser.add_argument("--log", default=UPDATE_LOG)
     parser.add_argument("--fb", default=os.environ.get("FRAMEBUFFER", "/dev/fb0") or "/dev/fb0")
     parser.add_argument("--rotate", type=int, default=None, help="Rotation in degrees (0, 90, 180, 270)")
+    parser.add_argument("--wait-x", action="store_true", help="Get ready, then wait for the X server to exit")
+    parser.add_argument("--text-mode", action="store_true", help="Restore text mode of the console and exit")
     args = parser.parse_args()
+
+    if args.text_mode:
+        restore_text_mode()
+        return 0
 
     rotate = args.rotate
     if rotate is None:
@@ -390,16 +462,41 @@ def main():
 
     screen = ProgressScreen(fb.width, fb.height, rotate)
     state = ProgressState(args.log)
-    while running:
-        state.read_log()
+    state.read_log()
+    img = screen.render(state)
+
+    # Ready: wait for the UI to release the display
+    if args.wait_x:
+        timeout = time.monotonic() + 60
+        while running and x_running() and time.monotonic() < timeout:
+            time.sleep(0.05)
+
+    # Stop the kernel console drawing on the display
+    vt = get_active_vt()
+    if vt and set_vt_mode(vt, KD_GRAPHICS):
         try:
-            # Redrawn every time: animates the activity pulse and elapsed times
-            fb.show(screen.render(state))
+            with open(VT_FILE, "w") as f:
+                f.write(str(vt))
+        except OSError:
+            pass
+
+    res = 0
+    while running:
+        try:
+            fb.show(img)
         except OSError as e:
             print(f"Can't write to {args.fb}: {e}", file=sys.stderr)
-            return 1
+            res = 1
+            break
         time.sleep(0.5)
-    return 0
+        state.read_log()
+        # Redrawn every time: animates the activity pulse and elapsed times
+        img = screen.render(state)
+
+    if res:
+        # Can't show progress: let the console show
+        restore_text_mode()
+    return res
 
 
 if __name__ == "__main__":
