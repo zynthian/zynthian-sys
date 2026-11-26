@@ -80,7 +80,10 @@ COLOR_HINT = (230, 180, 60)
 COLOR_BAR = (0, 160, 230)
 COLOR_BAR_BG = (50, 50, 50)
 COLOR_BAR_PULSE = (110, 110, 110)
+COLOR_BANNER = (25, 25, 25)
 
+# System resources banner refresh period (seconds)
+BANNER_PERIOD = 2
 # Log quiet for longer than this (seconds) => tell the user it is still working
 IDLE_HINT_TIME = 20
 # Long running stages, recognised by their log lines
@@ -197,6 +200,69 @@ class ProgressState:
 
 
 # ------------------------------------------------------------------------------
+# System resources: memory, disk & CPU usage
+# ------------------------------------------------------------------------------
+
+class SystemStats:
+
+    def __init__(self, disk_path="/"):
+        self.disk_path = disk_path
+        self.cpu_last = None
+        self.cpu = 0.0
+        self.mem_total = self.mem_used = 0
+        self.disk_total = self.disk_free = 0
+
+    def update(self):
+        # CPU: busy share of the time since the last call
+        try:
+            with open("/proc/stat") as f:
+                v = [int(x) for x in f.readline().split()[1:]]
+            idle, total = v[3] + v[4], sum(v[:8])
+            if self.cpu_last and total > self.cpu_last[1]:
+                self.cpu = 100.0 * (1 - (idle - self.cpu_last[0]) / (total - self.cpu_last[1]))
+            self.cpu_last = (idle, total)
+        except (OSError, ValueError, IndexError):
+            pass
+        # Memory (kB)
+        try:
+            mem = {}
+            with open("/proc/meminfo") as f:
+                for line in f:
+                    k, val = line.split(":", 1)
+                    if k in ("MemTotal", "MemFree", "MemAvailable"):
+                        mem[k] = int(val.split()[0])
+                        if len(mem) == 3:
+                            break
+            self.mem_total = mem["MemTotal"]
+            self.mem_used = self.mem_total - mem.get("MemAvailable", mem.get("MemFree", 0))
+        except (OSError, ValueError, KeyError):
+            pass
+        # Disk (bytes)
+        try:
+            st = os.statvfs(self.disk_path)
+            self.disk_total = st.f_blocks * st.f_frsize
+            self.disk_free = st.f_bavail * st.f_frsize
+        except OSError:
+            pass
+
+
+def format_bytes(n):
+    for unit in ("B", "KB", "MB", "GB", "TB"):
+        if n < 1024 or unit == "TB":
+            return f"{n:.0f}{unit}" if unit in ("B", "KB", "MB") else f"{n:.1f}{unit}"
+        n /= 1024
+
+
+def level_color(fraction):
+    """Bar color for a usage fraction: green, amber, red"""
+    if fraction >= 0.9:
+        return (230, 60, 50)
+    if fraction >= 0.75:
+        return (230, 170, 40)
+    return (60, 190, 90)
+
+
+# ------------------------------------------------------------------------------
 # Screen rendering
 # ------------------------------------------------------------------------------
 
@@ -214,6 +280,13 @@ class ProgressScreen:
         self.font_small = self.load_font(self.font_small_size)
         self.margin = self.w // 20
         self.tick = 0
+        self.stats = SystemStats()
+        self.stats_font_size = max(9, self.h // 30)
+        self.stats_font = self.load_font(self.stats_font_size)
+        # Banner across the top: text + bar for each resource
+        self.banner_h = self.stats_font_size + max(4, self.h // 80) + self.h // 30
+        self.banner = None
+        self.banner_time = 0
         self.base = self.create_base()
 
     @staticmethod
@@ -231,18 +304,57 @@ class ProgressScreen:
     def create_base(self):
         """Background with the logo. Returns the image; sets self.content_y."""
         img = Image.new("RGB", (self.w, self.h), COLOR_BG)
-        y = self.h // 16
+        ImageDraw.Draw(img).rectangle((0, 0, self.w, self.banner_h), fill=COLOR_BANNER)
+        y = self.banner_h + self.h // 30
         for fpath in LOGO_FILES:
             try:
                 logo = Image.open(fpath).convert("RGBA")
             except Exception:
                 continue
-            logo.thumbnail((int(self.w * 0.85), int(self.h * 0.27)), Image.LANCZOS)
+            logo.thumbnail((int(self.w * 0.8), int(self.h * 0.22)), Image.LANCZOS)
             img.paste(logo, ((self.w - logo.width) // 2, y), logo)
             y += logo.height
             break
-        self.content_y = y + self.h // 14
+        self.content_y = y + self.h // 18
         return img
+
+    def get_banner(self):
+        """Banner image with memory, disk & CPU usage. Updated every BANNER_PERIOD seconds."""
+        now = time.monotonic()
+        if self.banner is None or now - self.banner_time >= BANNER_PERIOD:
+            self.banner_time = now
+            self.banner = Image.new("RGB", (self.w, self.banner_h), COLOR_BANNER)
+            self.draw_banner(ImageDraw.Draw(self.banner))
+        return self.banner
+
+    def draw_banner(self, draw):
+        """Memory, disk & CPU usage: text + horizontal bar for each, across the top"""
+        st = self.stats
+        st.update()
+        items = []
+        if st.mem_total:
+            frac = st.mem_used / st.mem_total
+            items.append((f"RAM {format_bytes(st.mem_used * 1024)} / {format_bytes(st.mem_total * 1024)}", frac))
+        if st.disk_total:
+            frac = 1 - st.disk_free / st.disk_total
+            items.append((f"Disk {format_bytes(st.disk_free)} free", frac))
+        items.append((f"CPU {st.cpu:.0f}%", st.cpu / 100))
+
+        pad = max(4, self.w // 80)
+        col_w = (self.w - pad) // len(items)
+        bar_h = max(4, self.h // 80)
+        ty = self.h // 90
+        by = ty + self.stats_font_size + self.h // 120
+        for i, (text, frac) in enumerate(items):
+            x0 = pad + i * col_w
+            x1 = x0 + col_w - pad
+            text = self.fit_text(draw, text, self.stats_font, x1 - x0)
+            draw.text((x0, ty), text, font=self.stats_font, fill=COLOR_TX)
+            frac = max(0.0, min(1.0, frac))
+            draw.rectangle((x0, by, x1, by + bar_h), fill=COLOR_BAR_BG)
+            xf = x0 + int((x1 - x0) * frac)
+            if xf > x0:
+                draw.rectangle((x0, by, xf, by + bar_h), fill=level_color(frac))
 
     def fit_text(self, draw, text, font, max_width):
         if draw.textlength(text, font=font) <= max_width:
@@ -260,6 +372,7 @@ class ProgressScreen:
         self.tick += 1
         now = time.time()
         img = self.base.copy()
+        img.paste(self.get_banner(), (0, 0))
         draw = ImageDraw.Draw(img)
         margin = self.margin
         y = self.content_y

@@ -226,7 +226,7 @@ function stop_services() {
 }
 
 function restore_services() {
-	local svc started=0 ui_started=""
+	local svc ui_services=() ui_started=""
 
 	# The update unit's processes (progress display included) were killed when the
 	# update ended: show progress again until the UI is restarted
@@ -243,24 +243,21 @@ function restore_services() {
 		sleep 5
 	fi
 
+	# Restart the stopped services, except the UI
 	if [[ -f "$STOPPED_SERVICES_FILE" ]]; then
 		show_progress "Restarting services..."
 		while read -r svc; do
 			[[ -z "$svc" ]] && continue
 			if [[ " ${UI_SERVICES[*]} " =~ " $svc " ]]; then
-				# Release the display for the UI
-				stop_progress_display
-				ui_started="wait_ui"
+				ui_services+=("$svc")
+				continue
 			fi
 			echo "Starting $svc..."
 			timeout 60 systemctl start "$svc" || echo "WARNING: Failed to start $svc"
-			started=1
 		done < "$STOPPED_SERVICES_FILE"
 		rm -f "$STOPPED_SERVICES_FILE"
+		echo "Services restarted."
 	fi
-	stop_progress_display
-
-	[[ "$started" == "1" ]] && echo "Services restarted."
 
 	case "$(cat "$RESULT_FILE" 2> /dev/null)" in
 		0)
@@ -273,7 +270,21 @@ function restore_services() {
 	# End of log marker for the update launcher
 	echo "EOUPDATE"
 	sleep 1
+	# The update has ended: the UI must not show the update progress anymore.
+	# Removed before starting the UI, so the new UI instance doesn't see it.
 	rm -f "$RUNNING_FILE"
+
+	# Start the UI last. The progress display (if running) is stopped first, but its
+	# last frame ("Update Complete.") stays on the display until the UI draws.
+	if [[ ${#ui_services[@]} -gt 0 ]]; then
+		stop_progress_display
+		ui_started="wait_ui"
+		for svc in "${ui_services[@]}"; do
+			echo "Starting $svc..."
+			timeout 60 systemctl start "$svc" || echo "WARNING: Failed to start $svc"
+		done
+	fi
+	stop_progress_display
 
 	# Webconf is restarted last: it is probably showing this log
 	if [[ -f "$RESTART_WEBCONF_FILE" ]]; then
