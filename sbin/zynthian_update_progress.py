@@ -79,6 +79,7 @@ COLOR_BG = (0, 0, 0)
 COLOR_TX = (255, 255, 255)
 COLOR_DIM = (160, 160, 160)
 COLOR_HINT = (230, 180, 60)
+COLOR_WARNING_BG = (170, 20, 20)
 COLOR_BAR = (0, 160, 230)
 COLOR_BAR_BG = (50, 50, 50)
 COLOR_BAR_PULSE = (110, 110, 110)
@@ -432,7 +433,14 @@ class ProgressScreen:
             self.draw_centered(draw, y, hint, self.font_small, COLOR_HINT)
 
         if not state.finished:
-            self.draw_centered(draw, self.h - small_h - self.h // 40, "Don't power off!", self.font_small, COLOR_DIM)
+            # Warning band across the bottom
+            text = "DON'T POWER OFF!"
+            band_h = self.font_size + self.font_size // 2
+            draw.rectangle((0, self.h - band_h, self.w, self.h), fill=COLOR_WARNING_BG)
+            # Center vertically on the drawn glyphs
+            top, bottom = draw.textbbox((0, 0), text, font=self.font)[1::2]
+            self.draw_centered(draw, self.h - band_h + (band_h - (bottom - top)) // 2 - top,
+                               text, self.font, COLOR_TX)
 
         if self.rotate:
             img = img.rotate(self.rotate, expand=True)
