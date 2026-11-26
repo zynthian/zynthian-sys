@@ -125,13 +125,8 @@ function send_osc_cmd() {
 
 PROGRESS_SCRIPT="$ZYNTHIAN_SYS_DIR/sbin/zynthian_update_progress.py"
 
-function progress_python() {
-	if [[ -x "/zynthian/venv/bin/python3" ]]; then
-		/zynthian/venv/bin/python3 "$@"
-	else
-		python3 "$@"
-	fi
-}
+PROGRESS_PYTHON="python3"
+[[ -x "/zynthian/venv/bin/python3" ]] && PROGRESS_PYTHON="/zynthian/venv/bin/python3"
 
 # Args: extra options for zynthian_update_progress.py (--wait-x)
 function start_progress_display() {
@@ -139,22 +134,28 @@ function start_progress_display() {
 	[[ "$VIRTUALIZATION" == "none" || -z "$VIRTUALIZATION" ]] || return
 	[[ -e "${FRAMEBUFFER:-/dev/fb0}" ]] || return
 	stop_progress_display
-	progress_python "$PROGRESS_SCRIPT" --log "$UPDATE_LOG" "$@" > /dev/null 2>> "$UPDATE_STATE_DIR/progress.err" &
+	# Started directly (not through a shell function), so $! is the python process
+	"$PROGRESS_PYTHON" "$PROGRESS_SCRIPT" --log "$UPDATE_LOG" "$@" > /dev/null 2>> "$UPDATE_STATE_DIR/progress.err" &
 	echo $! > "$PROGRESS_PID_FILE"
 }
 
+# It must have exited before the UI starts: if it kept drawing on the framebuffer,
+# its frames would stay on the display over the UI (X only redraws what changes).
 function stop_progress_display() {
 	local pid
 	if [[ -f "$PROGRESS_PID_FILE" ]]; then
 		pid=$(cat "$PROGRESS_PID_FILE")
 		rm -f "$PROGRESS_PID_FILE"
 		if [[ -n "$pid" ]] && kill "$pid" 2> /dev/null; then
-			# Wait for it to exit before the UI takes the display
 			for _ in 1 2 3 4 5 6 7 8 9 10; do
 				kill -0 "$pid" 2> /dev/null || break
 				sleep 0.2
 			done
 		fi
+	fi
+	# Any other instance left (e.g. from an older version of this script)
+	if pkill -KILL -f "$PROGRESS_SCRIPT --log" 2> /dev/null; then
+		sleep 0.2
 	fi
 }
 
@@ -171,7 +172,7 @@ function restore_console() {
 		# Let X take its VT
 		sleep 3
 	fi
-	progress_python "$PROGRESS_SCRIPT" --text-mode 2>> "$UPDATE_STATE_DIR/progress.err"
+	"$PROGRESS_PYTHON" "$PROGRESS_SCRIPT" --text-mode 2>> "$UPDATE_STATE_DIR/progress.err"
 }
 
 function show_progress() {
