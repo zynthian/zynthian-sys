@@ -4,12 +4,13 @@
 #
 # + Stop non-essential services to free RAM before updating (low-memory devices)
 # + Restore the stopped services after the update, even if it failed
-# + Show update progress on the display while the UI is stopped
+# + Show update progress on the display while the UI is not running
 #
 # Usage:
 #   update_zynthian_services.sh stop              Stop the non-essential services
 #   update_zynthian_services.sh restore           Restart the stopped services
 #   update_zynthian_services.sh progress <text>   Show a progress message
+#   update_zynthian_services.sh display           Show progress on the display if the UI isn't running
 #   update_zynthian_services.sh low_mem           Exit 0 if RAM is below threshold
 #
 # "restore" is run by the zynthian-update unit's ExecStopPost, so it also runs
@@ -37,6 +38,8 @@ STOPPED_SERVICES_FILE="$UPDATE_STATE_DIR/stopped_services"
 PROGRESS_PID_FILE="$UPDATE_STATE_DIR/progress.pid"
 RESULT_FILE="$UPDATE_STATE_DIR/result"
 RESTART_WEBCONF_FILE="$UPDATE_STATE_DIR/restart_webconf"
+RUNNING_FILE="$UPDATE_STATE_DIR/running"
+STEP_TIME_FILE="$UPDATE_STATE_DIR/step_time"
 UPDATE_LOG="/tmp/zynthian_update.log"
 
 # Services are stopped only if total RAM is below this (MiB). A "2GB" board
@@ -45,8 +48,8 @@ LOW_MEM_THRESHOLD_MB=${ZYNTHIAN_UPDATE_LOW_MEM_MB:-1792}
 
 # Non-essential services in START order. They are stopped in reverse order.
 # Not stopped: networking, ssh, avahi, usb-gadget (network over USB),
-# zynthian-pwm-fan (cooling), backlight and cpu-performance.
-# zynthian-webconf is stopped unless it launched the update.
+# zynthian-pwm-fan (cooling), backlight, cpu-performance and zynthian-webconf
+# (it may be showing the update, and it is needed to recover from problems).
 NON_ESSENTIAL_SERVICES=(
 	jack2
 	a2jmidid
@@ -73,8 +76,9 @@ NON_ESSENTIAL_SERVICES=(
 	zynthian
 	zynthian_debug
 	virtual_zynthian
-	zynthian-webconf
 )
+
+UI_SERVICES=(zynthian zynthian_debug virtual_zynthian)
 
 #------------------------------------------------------------------------------
 
@@ -96,6 +100,14 @@ function is_low_mem() {
 	[[ $(total_mem_mb) -lt $LOW_MEM_THRESHOLD_MB ]]
 }
 
+function ui_running() {
+	local svc
+	for svc in "${UI_SERVICES[@]}"; do
+		systemctl -q is-active "$svc" 2> /dev/null && return 0
+	done
+	return 1
+}
+
 function send_osc_cmd() {
 	if [[ -x "/zynthian/venv/bin/send_osc" ]]; then
 		/zynthian/venv/bin/send_osc "$@"
@@ -105,10 +117,16 @@ function send_osc_cmd() {
 }
 
 #------------------------------------------------------------------------------
-# Progress on the display, while the UI is stopped: zynthian_update_progress.py
-# draws on the framebuffer, following the update log.
+# Progress on the display. While the UI runs, it shows the progress screen itself
+# (it watches $RUNNING_FILE). Otherwise zynthian_update_progress.py draws the same
+# screen on the framebuffer, following the update log.
 # Started within the update unit, so systemd kills it when the update ends.
 #------------------------------------------------------------------------------
+
+function set_cursor_blink() {
+	local f="/sys/class/graphics/fbcon/cursor_blink"
+	[[ -w "$f" ]] && echo "$1" > "$f"
+}
 
 function start_progress_display() {
 	local python="python3" script="$ZYNTHIAN_SYS_DIR/sbin/zynthian_update_progress.py"
@@ -118,7 +136,7 @@ function start_progress_display() {
 	[[ -e "${FRAMEBUFFER:-/dev/fb0}" ]] || return
 	stop_progress_display
 	# Stop the console cursor blinking over the progress screen
-	echo 0 > /sys/class/graphics/fbcon/cursor_blink 2> /dev/null
+	set_cursor_blink 0
 	"$python" "$script" --log "$UPDATE_LOG" > /dev/null 2>> "$UPDATE_STATE_DIR/progress.err" &
 	echo $! > "$PROGRESS_PID_FILE"
 }
@@ -136,10 +154,11 @@ function stop_progress_display() {
 			done
 		fi
 	fi
-	echo 1 > /sys/class/graphics/fbcon/cursor_blink 2> /dev/null
+	set_cursor_blink 1
 }
 
 function show_progress() {
+	date +%s > "$STEP_TIME_FILE" 2> /dev/null
 	echo -e "\n>>> $*\n"
 }
 
@@ -148,7 +167,6 @@ function show_progress() {
 #------------------------------------------------------------------------------
 
 function stop_services() {
-	local keep_webconf=$ZYNTHIAN_UPDATE_KEEP_WEBCONF
 	local active=() svc i
 
 	mkdir -p "$UPDATE_STATE_DIR"
@@ -156,10 +174,6 @@ function stop_services() {
 	echo "RAM: $(total_mem_mb)MB total, $(available_mem_mb)MB available. Stopping non-essential services during update..."
 
 	for svc in "${NON_ESSENTIAL_SERVICES[@]}"; do
-		if [[ "$svc" == "zynthian-webconf" && "$keep_webconf" == "1" ]]; then
-			echo "Keeping zynthian-webconf running (it launched the update)."
-			continue
-		fi
 		if systemctl -q is-active "$svc" 2> /dev/null; then
 			active+=("$svc")
 		fi
@@ -180,7 +194,7 @@ function stop_services() {
 		echo "Stopping $svc..."
 		timeout 60 systemctl stop "$svc" || echo "WARNING: Failed to stop $svc"
 		# The UI is gone: show progress on the display from now on
-		if [[ "$svc" == "zynthian" || "$svc" == "zynthian_debug" ]]; then
+		if [[ " ${UI_SERVICES[*]} " =~ " $svc " ]]; then
 			start_progress_display
 		fi
 	done
@@ -190,11 +204,11 @@ function stop_services() {
 }
 
 function restore_services() {
-	local svc started=0 webconf_started=0
+	local svc started=0
 
 	# The update unit's processes (progress display included) were killed when the
 	# update ended: show progress again until the UI is restarted
-	if grep -qx -e "zynthian" -e "zynthian_debug" "$STOPPED_SERVICES_FILE" 2> /dev/null; then
+	if ! ui_running; then
 		start_progress_display
 	fi
 
@@ -211,13 +225,12 @@ function restore_services() {
 		show_progress "Restarting services..."
 		while read -r svc; do
 			[[ -z "$svc" ]] && continue
-			if [[ "$svc" == "zynthian" || "$svc" == "zynthian_debug" || "$svc" == "virtual_zynthian" ]]; then
+			if [[ " ${UI_SERVICES[*]} " =~ " $svc " ]]; then
 				# Release the display for the UI
 				stop_progress_display
 			fi
 			echo "Starting $svc..."
 			timeout 60 systemctl start "$svc" || echo "WARNING: Failed to start $svc"
-			[[ "$svc" == "zynthian-webconf" ]] && webconf_started=1
 			started=1
 		done < "$STOPPED_SERVICES_FILE"
 		rm -f "$STOPPED_SERVICES_FILE"
@@ -236,11 +249,13 @@ function restore_services() {
 	esac
 	# End of log marker for the update launcher
 	echo "EOUPDATE"
+	sleep 1
+	rm -f "$RUNNING_FILE"
 
-	# A webconf kept running is restarted last: it is probably showing this log
+	# Webconf is restarted last: it is probably showing this log
 	if [[ -f "$RESTART_WEBCONF_FILE" ]]; then
 		rm -f "$RESTART_WEBCONF_FILE"
-		if [[ "$webconf_started" == "0" ]] && systemctl -q is-active zynthian-webconf; then
+		if systemctl -q is-active zynthian-webconf; then
 			sleep 2
 			systemctl restart zynthian-webconf
 		fi
@@ -263,8 +278,11 @@ case "$1" in
 	low_mem)
 		is_low_mem
 		;;
+	display)
+		ui_running || start_progress_display
+		;;
 	*)
-		echo "Usage: $0 stop|restore|progress <text>|low_mem"
+		echo "Usage: $0 stop|restore|progress <text>|display|low_mem"
 		exit 1
 		;;
 esac

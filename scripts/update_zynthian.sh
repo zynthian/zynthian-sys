@@ -76,18 +76,15 @@ if [[ "$ZYNTHIAN_UPDATE_DETACHED" != "1" && -d /run/systemd/system ]] && command
 		exit $?
 	fi
 
-	# Keep webconf running if it launched the update (we are in its cgroup)
-	keep_webconf=${ZYNTHIAN_UPDATE_KEEP_WEBCONF:-0}
-	if grep -q "zynthian-webconf.service" /proc/self/cgroup 2> /dev/null; then
-		keep_webconf=1
-	fi
-
 	# Run copies of the scripts: the originals are replaced by "git pull" during the update
 	rm -rf "$UPDATE_STATE_DIR"
 	mkdir -p "$UPDATE_STATE_DIR"
 	cp "$0" "$UPDATE_STATE_DIR/update_zynthian.sh"
 	cp "$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_services.sh" "$UPDATE_STATE_DIR/update_zynthian_services.sh"
 	: > "$UPDATE_LOG"
+	# The UI shows the progress screen while this file exists. Removed by the restore action.
+	date +%s > "$UPDATE_STATE_DIR/start_time"
+	touch "$UPDATE_STATE_DIR/running"
 
 	# Transient units don't inherit the environment. Don't pass the flags that make the
 	# sourced scripts skip their setup: the unit must detect hardware, enter the venv, etc.
@@ -105,7 +102,6 @@ if [[ "$ZYNTHIAN_UPDATE_DETACHED" != "1" && -d /run/systemd/system ]] && command
 		--property=ExecStopPost="/bin/bash $UPDATE_STATE_DIR/update_zynthian_services.sh restore" \
 		"${env_args[@]}" \
 		--setenv=ZYNTHIAN_UPDATE_DETACHED=1 \
-		--setenv=ZYNTHIAN_UPDATE_KEEP_WEBCONF=$keep_webconf \
 		/bin/bash "$UPDATE_STATE_DIR/update_zynthian.sh" "$@"; then
 		follow_update
 		exit $?
@@ -126,6 +122,10 @@ if [[ "$ZYNTHIAN_UPDATE_DETACHED" == "1" ]]; then
 	SERVICES_SCRIPT="$UPDATE_STATE_DIR/update_zynthian_services.sh"
 else
 	SERVICES_SCRIPT="$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_services.sh"
+	# No restore action when running directly: clean up on exit
+	date +%s > "$UPDATE_STATE_DIR/start_time" 2> /dev/null
+	touch "$UPDATE_STATE_DIR/running" 2> /dev/null
+	trap 'rm -f "$UPDATE_STATE_DIR/running"' EXIT
 fi
 
 UPDATE_STEPS=9
@@ -150,6 +150,11 @@ function run_step() {
 # Check the repositories can be reached before stopping anything
 #------------------------------------------------------------------------------
 
+# Show the progress screen on the display if the UI isn't running (if it is, the UI shows it)
+if [[ "$ZYNTHIAN_UPDATE_DETACHED" == "1" ]]; then
+	/bin/bash "$SERVICES_SCRIPT" display
+fi
+
 progress "Checking for Internet"
 if ! timeout 30 git -C "$ZYNTHIAN_SYS_DIR" ls-remote -q origin HEAD > /dev/null 2>&1; then
 	echo "ERROR: Can't reach the zynthian repositories. Check the Internet connection. Update cancelled."
@@ -166,7 +171,7 @@ fi
 progress "Preparing"
 stopped_services=0
 if [[ "$ZYNTHIAN_UPDATE_DETACHED" == "1" ]] && /bin/bash "$SERVICES_SCRIPT" low_mem; then
-	echo "Low memory device: the UI and other services are stopped during the update and restarted after it."
+	echo "Low memory device: the UI and other services (except webconf) are stopped during the update and restarted after it."
 	/bin/bash "$SERVICES_SCRIPT" stop
 	stopped_services=1
 fi

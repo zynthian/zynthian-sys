@@ -3,12 +3,15 @@
 # ******************************************************************************
 # ZYNTHIAN PROJECT: Software update progress display
 #
-# Draws the software update progress directly on the framebuffer while the UI
-# is stopped (low-memory updates). It follows the update log:
+# Renders the software update progress screen, following the update log:
 #   ">>> <text>" lines are progress messages; "[n/N] xx%" in them sets the bar.
 #   Any other line is shown as the current detail line.
 #
-# Usage: zynthian_update_progress.py [--log FILE] [--fb DEVICE] [--rotate DEG]
+# Used in two ways:
+#   + As a module by the zynthian UI, which shows the screen while it is running.
+#   + As a program that draws directly on the framebuffer, while the UI is
+#     stopped (low-memory updates) or not running:
+#       zynthian_update_progress.py [--log FILE] [--fb DEVICE] [--rotate DEG]
 #
 # Copyright (C) 2015-2026 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -42,8 +45,20 @@ try:
 except ImportError:
     numpy = None
 
-ZYNTHIAN_UI_DIR = os.environ.get("ZYNTHIAN_UI_DIR", "/zynthian/zynthian-ui")
-LOGO_FILE = f"{ZYNTHIAN_UI_DIR}/img/zynthian_logo_boot.jpg"
+ZYNTHIAN_DIR = os.environ.get("ZYNTHIAN_DIR", "/zynthian")
+UPDATE_LOG = "/tmp/zynthian_update.log"
+UPDATE_STATE_DIR = "/run/zynthian_update"
+# Exists while an update is running
+UPDATE_RUNNING_FILE = f"{UPDATE_STATE_DIR}/running"
+# Start time (epoch seconds) of the update and of the current step
+UPDATE_START_FILE = f"{UPDATE_STATE_DIR}/start_time"
+STEP_START_FILE = f"{UPDATE_STATE_DIR}/step_time"
+
+LOGO_FILES = [
+    f"{ZYNTHIAN_DIR}/zynthian-webconf/img/logo/zynthian_logo_black_trans_big.png",
+    f"{ZYNTHIAN_DIR}/zynthian-webconf/img/logo/zynthian_logo_black_trans_640.png",
+    f"{ZYNTHIAN_DIR}/zynthian-ui/icons/zynthian_logo.png",
+]
 FONT_FILES = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
@@ -51,18 +66,236 @@ FONT_FILES = [
 COLOR_BG = (0, 0, 0)
 COLOR_TX = (255, 255, 255)
 COLOR_DIM = (160, 160, 160)
+COLOR_HINT = (230, 180, 60)
 COLOR_BAR = (0, 160, 230)
 COLOR_BAR_BG = (50, 50, 50)
-REFRESH_PERIOD = 5  # Redraw at least every few seconds (console may scribble on the fb)
+COLOR_BAR_PULSE = (110, 110, 110)
+
+# Log quiet for longer than this (seconds) => tell the user it is still working
+IDLE_HINT_TIME = 20
+# Long running stages, recognised by their log lines
+LONG_STAGE_HINTS = [
+    (re.compile(r"Regenerating engines DB|zynthian_lv2\.py", re.IGNORECASE),
+     "Scanning LV2 plugins. This can take several minutes..."),
+    (re.compile(r"apt-get|Unpacking|Setting up|Get:\d+", re.IGNORECASE),
+     "Installing packages. This can take a while..."),
+]
 
 re_step = re.compile(r"\[(\d+)/(\d+)\]\s*(\d+)%")
 
-running = True
+
+def read_epoch_file(fpath):
+    try:
+        with open(fpath) as f:
+            return float(f.read().strip())
+    except (OSError, ValueError):
+        return None
 
 
-def on_signal(signo, frame):
-    global running
-    running = False
+def format_time(seconds):
+    seconds = max(0, int(seconds))
+    if seconds >= 3600:
+        return f"{seconds // 3600}:{seconds // 60 % 60:02d}:{seconds % 60:02d}"
+    return f"{seconds // 60:02d}:{seconds % 60:02d}"
+
+
+# ------------------------------------------------------------------------------
+# Update progress state, from the update log
+# ------------------------------------------------------------------------------
+
+class ProgressState:
+
+    def __init__(self, log_fpath=UPDATE_LOG):
+        self.log_fpath = log_fpath
+        self.log = None
+        self.log_pos = 0
+        now = time.time()
+        self.start_time = now
+        self.step_time = now
+        self.last_line_time = now
+        self.message = "Starting update..."
+        self.percent = 0
+        self.detail = ""
+        self.hint = ""
+        self.finished = False
+
+    def read_log(self):
+        """Read new lines from the update log. Returns True if anything changed."""
+        if self.log is None:
+            try:
+                self.log = open(self.log_fpath, "r", errors="replace")
+                self.log_pos = 0
+            except OSError:
+                return False
+        try:
+            # Log truncated => a new update started
+            if os.path.getsize(self.log_fpath) < self.log_pos:
+                self.log.seek(0)
+                self.__init__(self.log_fpath)
+                return self.read_log()
+        except OSError:
+            pass
+        changed = False
+        for line in self.log.readlines():
+            changed |= self.feed(line)
+        self.log_pos = self.log.tell()
+        # Times saved by the update scripts are better than ours (we may have started late)
+        self.start_time = read_epoch_file(UPDATE_START_FILE) or self.start_time
+        self.step_time = read_epoch_file(STEP_START_FILE) or self.step_time
+        return changed
+
+    def feed(self, line):
+        line = line.strip()
+        if not line:
+            return False
+        self.last_line_time = time.time()
+        if line == "EOUPDATE":
+            self.finished = True
+            return True
+        if line.startswith(">>>"):
+            msg = line[3:].strip()
+            m = re_step.search(msg)
+            if m:
+                self.percent = int(m.group(3))
+                msg = f"Step {m.group(1)} of {m.group(2)}: " + msg[m.end():].lstrip(" :")
+            elif msg.startswith("Restarting"):
+                self.percent = 100
+            self.message = msg
+            self.detail = ""
+            self.hint = ""
+            self.step_time = self.last_line_time
+        else:
+            self.detail = line
+            if line.startswith("Update Complete"):
+                self.message = line
+                self.percent = 100
+                self.detail = ""
+                self.hint = ""
+            for regex, hint in LONG_STAGE_HINTS:
+                if regex.search(line):
+                    self.hint = hint
+                    break
+        return True
+
+    def get_hint(self):
+        idle = time.time() - self.last_line_time
+        if self.hint:
+            return self.hint
+        if idle > IDLE_HINT_TIME and not self.finished:
+            return f"Still working... (no output for {format_time(idle)})"
+        return ""
+
+
+# ------------------------------------------------------------------------------
+# Screen rendering
+# ------------------------------------------------------------------------------
+
+class ProgressScreen:
+
+    def __init__(self, width, height, rotate=0):
+        self.rotate = rotate
+        if rotate in (90, 270):
+            self.w, self.h = height, width
+        else:
+            self.w, self.h = width, height
+        self.font_size = max(14, self.h // 14)
+        self.font_small_size = max(10, self.h // 24)
+        self.font = self.load_font(self.font_size)
+        self.font_small = self.load_font(self.font_small_size)
+        self.margin = self.w // 20
+        self.tick = 0
+        self.base = self.create_base()
+
+    @staticmethod
+    def load_font(size):
+        for fpath in FONT_FILES:
+            try:
+                return ImageFont.truetype(fpath, size)
+            except OSError:
+                continue
+        try:
+            return ImageFont.load_default(size)
+        except TypeError:
+            return ImageFont.load_default()
+
+    def create_base(self):
+        """Background with the logo. Returns the image; sets self.content_y."""
+        img = Image.new("RGB", (self.w, self.h), COLOR_BG)
+        y = self.h // 16
+        for fpath in LOGO_FILES:
+            try:
+                logo = Image.open(fpath).convert("RGBA")
+            except Exception:
+                continue
+            logo.thumbnail((int(self.w * 0.85), int(self.h * 0.27)), Image.LANCZOS)
+            img.paste(logo, ((self.w - logo.width) // 2, y), logo)
+            y += logo.height
+            break
+        self.content_y = y + self.h // 14
+        return img
+
+    def fit_text(self, draw, text, font, max_width):
+        if draw.textlength(text, font=font) <= max_width:
+            return text
+        while text and draw.textlength(text + "...", font=font) > max_width:
+            text = text[:-1]
+        return text + "..."
+
+    def draw_centered(self, draw, y, text, font, color):
+        text = self.fit_text(draw, text, font, self.w - 2 * self.margin)
+        draw.text(((self.w - draw.textlength(text, font=font)) // 2, y), text, font=font, fill=color)
+
+    def render(self, state):
+        """Render the progress screen for a ProgressState. Each call advances the activity animation."""
+        self.tick += 1
+        now = time.time()
+        img = self.base.copy()
+        draw = ImageDraw.Draw(img)
+        margin = self.margin
+        y = self.content_y
+        small_h = self.font_small_size + self.font_small_size // 2
+
+        self.draw_centered(draw, y, state.message, self.font, COLOR_TX)
+        y += self.font_size + self.font_size // 2
+
+        # Progress bar, with a pulse moving along it to show activity
+        bar_h = max(8, self.h // 22)
+        x0, x1 = margin, self.w - margin
+        draw.rectangle((x0, y, x1, y + bar_h), fill=COLOR_BAR_BG)
+        xp = x0 + (x1 - x0) * max(0, min(100, state.percent)) // 100
+        if not state.finished:
+            pulse_w = max(bar_h * 2, (x1 - x0) // 8)
+            span = (x1 - x0) + pulse_w
+            px = x0 - pulse_w + (self.tick * max(4, span // 24)) % span
+            draw.rectangle((max(x0, px), y, min(x1, px + pulse_w), y + bar_h), fill=COLOR_BAR_PULSE)
+        if xp > x0:
+            draw.rectangle((x0, y, xp, y + bar_h), fill=COLOR_BAR)
+        if not state.finished:
+            # Pulse over the done part too, so it's visible at any percentage
+            if px < xp:
+                draw.rectangle((max(x0, px), y, min(xp, px + pulse_w), y + bar_h), fill=(90, 200, 250))
+        y += bar_h + self.h // 40
+
+        elapsed = f"Elapsed {format_time(now - state.start_time)}"
+        if not state.finished:
+            elapsed += f"   This step {format_time(now - state.step_time)}"
+        self.draw_centered(draw, y, elapsed, self.font_small, COLOR_DIM)
+        y += small_h + self.h // 60
+
+        text = self.fit_text(draw, state.detail, self.font_small, self.w - 2 * margin)
+        draw.text((margin, y), text, font=self.font_small, fill=COLOR_DIM)
+        y += small_h
+
+        hint = state.get_hint()
+        if hint:
+            self.draw_centered(draw, y, hint, self.font_small, COLOR_HINT)
+
+        if not state.finished:
+            self.draw_centered(draw, self.h - small_h - self.h // 40, "Don't power off!", self.font_small, COLOR_DIM)
+
+        if self.rotate:
+            img = img.rotate(self.rotate, expand=True)
+        return img
 
 
 # ------------------------------------------------------------------------------
@@ -124,96 +357,20 @@ class Framebuffer:
 
 
 # ------------------------------------------------------------------------------
-# Screen rendering
+# Main: draw on the framebuffer
 # ------------------------------------------------------------------------------
 
-class ProgressScreen:
-
-    def __init__(self, width, height, rotate=0):
-        self.width = width
-        self.height = height
-        self.rotate = rotate
-        if rotate in (90, 270):
-            self.w, self.h = height, width
-        else:
-            self.w, self.h = width, height
-        self.font_size = max(12, self.h // 16)
-        self.font_small_size = max(10, self.h // 24)
-        self.font = self.load_font(self.font_size)
-        self.font_small = self.load_font(self.font_small_size)
-        self.logo = None
-        try:
-            logo = Image.open(LOGO_FILE).convert("RGB")
-            logo.thumbnail((int(self.w * 0.8), int(self.h * 0.45)))
-            self.logo = logo
-        except Exception:
-            pass
-
-    @staticmethod
-    def load_font(size):
-        for fpath in FONT_FILES:
-            try:
-                return ImageFont.truetype(fpath, size)
-            except OSError:
-                continue
-        try:
-            return ImageFont.load_default(size)
-        except TypeError:
-            return ImageFont.load_default()
-
-    def fit_text(self, draw, text, font, max_width):
-        if draw.textlength(text, font=font) <= max_width:
-            return text
-        while text and draw.textlength(text + "...", font=font) > max_width:
-            text = text[:-1]
-        return text + "..."
-
-    def render(self, title, message, percent, detail):
-        img = Image.new("RGB", (self.w, self.h), COLOR_BG)
-        draw = ImageDraw.Draw(img)
-        margin = self.w // 20
-        y = self.h // 20
-        if self.logo:
-            img.paste(self.logo, ((self.w - self.logo.width) // 2, y))
-            y += self.logo.height + self.h // 30
-
-        line_h = self.font_size + self.font_size // 3
-        text = self.fit_text(draw, title, self.font, self.w - 2 * margin)
-        draw.text(((self.w - draw.textlength(text, font=self.font)) // 2, y), text, font=self.font, fill=COLOR_TX)
-        y += line_h
-
-        text = self.fit_text(draw, message, self.font, self.w - 2 * margin)
-        draw.text(((self.w - draw.textlength(text, font=self.font)) // 2, y), text, font=self.font, fill=COLOR_TX)
-        y += line_h + self.h // 40
-
-        # Progress bar
-        bar_h = max(6, self.h // 24)
-        draw.rectangle((margin, y, self.w - margin, y + bar_h), fill=COLOR_BAR_BG)
-        if percent is not None:
-            x = margin + (self.w - 2 * margin) * max(0, min(100, percent)) // 100
-            if x > margin:
-                draw.rectangle((margin, y, x, y + bar_h), fill=COLOR_BAR)
-        y += bar_h + self.h // 30
-
-        text = self.fit_text(draw, detail, self.font_small, self.w - 2 * margin)
-        draw.text((margin, y), text, font=self.font_small, fill=COLOR_DIM)
-
-        text = "Don't power off!"
-        draw.text(((self.w - draw.textlength(text, font=self.font_small)) // 2,
-                   self.h - self.font_small_size - self.h // 30), text, font=self.font_small, fill=COLOR_DIM)
-
-        if self.rotate:
-            img = img.rotate(self.rotate, expand=True)
-        return img
+running = True
 
 
-# ------------------------------------------------------------------------------
-# Main
-# ------------------------------------------------------------------------------
+def on_signal(signo, frame):
+    global running
+    running = False
+
 
 def main():
     parser = argparse.ArgumentParser(description="Show software update progress on the framebuffer")
-    parser.add_argument("--log", default="/tmp/zynthian_update.log")
+    parser.add_argument("--log", default=UPDATE_LOG)
     parser.add_argument("--fb", default=os.environ.get("FRAMEBUFFER", "/dev/fb0") or "/dev/fb0")
     parser.add_argument("--rotate", type=int, default=None, help="Rotation in degrees (0, 90, 180, 270)")
     args = parser.parse_args()
@@ -232,43 +389,15 @@ def main():
         return 1
 
     screen = ProgressScreen(fb.width, fb.height, rotate)
-    title = "Updating software"
-    message = "Please wait..."
-    percent = None
-    detail = ""
-    changed = True
-    last_draw = 0
-
-    try:
-        log = open(args.log, "r", errors="replace")
-    except OSError:
-        log = None
-
+    state = ProgressState(args.log)
     while running:
-        if log:
-            for line in log.readlines():
-                line = line.strip()
-                if not line or line == "EOUPDATE":
-                    continue
-                if line.startswith(">>>"):
-                    message = line[3:].strip()
-                    m = re_step.search(message)
-                    if m:
-                        percent = int(m.group(3))
-                        message = f"Step {m.group(1)} of {m.group(2)}: " + message[m.end():].lstrip(" :")
-                    detail = ""
-                else:
-                    detail = line
-                changed = True
-        now = time.monotonic()
-        if changed or now - last_draw > REFRESH_PERIOD:
-            try:
-                fb.show(screen.render(title, message, percent, detail))
-            except OSError as e:
-                print(f"Can't write to {args.fb}: {e}", file=sys.stderr)
-                return 1
-            changed = False
-            last_draw = now
+        state.read_log()
+        try:
+            # Redrawn every time: animates the activity pulse and elapsed times
+            fb.show(screen.render(state))
+        except OSError as e:
+            print(f"Can't write to {args.fb}: {e}", file=sys.stderr)
+            return 1
         time.sleep(0.5)
     return 0
 
