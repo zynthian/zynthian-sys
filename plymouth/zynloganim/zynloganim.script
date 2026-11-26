@@ -23,3 +23,23 @@ fun refresh_callback()
 }
 
 Plymouth.SetRefreshFunction(refresh_callback);
+
+# Messages (plymouth display-message), e.g. software update progress
+message_sprite = Sprite();
+message_sprite.SetZ(10);
+
+fun message_callback(text)
+{
+  message_image = Image.Text(text, 1, 1, 1);
+  message_sprite.SetImage(message_image);
+  message_sprite.SetX(Window.GetWidth() / 2 - message_image.GetWidth() / 2);
+  message_sprite.SetY(Window.GetHeight() / 2 + images[0].GetHeight() / 2 + message_image.GetHeight());
+}
+
+fun hide_message_callback(text)
+{
+  message_sprite.SetImage(Image.Text("", 1, 1, 1));
+}
+
+Plymouth.SetMessageFunction(message_callback);
+Plymouth.SetHideMessageFunction(hide_message_callback);

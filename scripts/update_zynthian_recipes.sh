@@ -344,6 +344,13 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	pip3 install websocket-server
 fi
 
+# Update plymouth themes: show messages (software update progress)
+patchlevel="20261126.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	$ZYNTHIAN_SYS_DIR/sbin/autoconfig_plymouth_theme.sh
+fi
+
 # -----------------------------------------------------------------------------
 # Template Patches
 # -----------------------------------------------------------------------------
