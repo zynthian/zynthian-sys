@@ -160,7 +160,14 @@ function stop_progress_display() {
 }
 
 # The progress display leaves the console in graphics mode (no console text on the
-# display). Set it back to text mode at the end, once the UI (if any) has the display.
+# display). The kernel doesn't switch VTs away from it in that mode, so it must be
+# released (text mode, cleared, no cursor) before starting the UI: X needs its own VT.
+function release_console() {
+	[[ -f "$PROGRESS_SCRIPT" ]] || return
+	"$PROGRESS_PYTHON" "$PROGRESS_SCRIPT" --release-console 2>> "$UPDATE_STATE_DIR/progress.err"
+}
+
+# At the end, leave a normal console (cursor shown), once the UI (if any) has the display
 function restore_console() {
 	local i
 	[[ -f "$PROGRESS_SCRIPT" ]] || return
@@ -172,7 +179,7 @@ function restore_console() {
 		# Let X take its VT
 		sleep 3
 	fi
-	"$PROGRESS_PYTHON" "$PROGRESS_SCRIPT" --text-mode 2>> "$UPDATE_STATE_DIR/progress.err"
+	"$PROGRESS_PYTHON" "$PROGRESS_SCRIPT" --restore-console 2>> "$UPDATE_STATE_DIR/progress.err"
 }
 
 function show_progress() {
@@ -270,9 +277,10 @@ function restore_services() {
 	# Removed before starting the UI, so the new UI instance doesn't see it.
 	rm -f "$RUNNING_FILE"
 
-	# The progress display (if running) is stopped before starting the UI, but its
-	# last frame ("Update Complete.") stays on the display until the UI draws.
+	# The progress display (if running) is stopped before starting the UI and the
+	# console released, so X can switch to its VT
 	stop_progress_display
+	release_console
 
 	# Start the UI last
 	if [[ ${#ui_services[@]} -gt 0 ]]; then

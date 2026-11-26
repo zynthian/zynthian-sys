@@ -14,9 +14,13 @@
 #       zynthian_update_progress.py [--log FILE] [--fb DEVICE] [--rotate DEG] [--wait-x]
 #     It puts the console in graphics mode, so the kernel doesn't draw text over it,
 #     and leaves it so when stopped (SIGTERM): the console isn't shown between the
-#     update steps, or while the UI starts. At the end of the update,
-#       zynthian_update_progress.py --text-mode
-#     restores text mode (once the UI's X server has its own VT).
+#     update steps. The kernel doesn't switch VTs away from a console in graphics
+#     mode, so before starting the UI (X needs its own VT):
+#       zynthian_update_progress.py --release-console
+#     sets text mode, with the console cleared and the cursor hidden (black screen).
+#     Once the UI is running:
+#       zynthian_update_progress.py --restore-console
+#     shows the cursor again.
 #
 # Copyright (C) 2026 Brian Walton <riban@zynthian.org>
 #
@@ -59,7 +63,7 @@ UPDATE_STATE_DIR = "/run/zynthian_update"
 # Start time (epoch seconds) of the update and of the current step
 UPDATE_START_FILE = f"{UPDATE_STATE_DIR}/start_time"
 STEP_START_FILE = f"{UPDATE_STATE_DIR}/step_time"
-# VT put in graphics mode by the progress display
+# VT used by the progress display (graphics mode / hidden cursor)
 VT_FILE = f"{UPDATE_STATE_DIR}/vt"
 
 LOGO_FILES = [
@@ -526,26 +530,58 @@ def set_vt_mode(vt, mode):
         return False
 
 
+def write_vt(vt, data):
+    try:
+        fd = os.open(f"/dev/tty{vt}", os.O_WRONLY | os.O_NOCTTY)
+        try:
+            os.write(fd, data)
+        finally:
+            os.close(fd)
+    except OSError as e:
+        print(f"Can't write to VT {vt}: {e}", file=sys.stderr)
+
+
+def get_progress_vt():
+    try:
+        with open(VT_FILE) as f:
+            return int(f.read().strip())
+    except (OSError, ValueError):
+        return None
+
+
 def x_running():
     return bool(glob.glob("/tmp/.X*-lock"))
 
 
-def restore_text_mode():
-    """Set back to text mode the VT left in graphics mode, unless X is using it now."""
-    try:
-        with open(VT_FILE) as f:
-            vt = int(f.read().strip())
-    except (OSError, ValueError):
+def release_console(hide_cursor=True):
+    """Set the progress display VT back to text mode, so VT switching works again.
+    It is cleared first, so it shows a black screen, not old console text."""
+    vt = get_progress_vt()
+    if vt is None:
+        return
+    # Clear screen & home (+ hide cursor). Drawn when back in text mode.
+    write_vt(vt, b"\033[2J\033[H" + (b"\033[?25l" if hide_cursor else b"\033[?25h"))
+    set_vt_mode(vt, KD_TEXT)
+    if not hide_cursor:
+        try:
+            os.remove(VT_FILE)
+        except OSError:
+            pass
+
+
+def restore_console():
+    """Once the UI runs (or with no UI), leave the progress display VT as a normal console"""
+    vt = get_progress_vt()
+    if vt is None:
         return
     if x_running() and get_active_vt() == vt:
-        # X took this VT: it restores the mode it found when it exits
-        pass
-    else:
-        set_vt_mode(vt, KD_TEXT)
-    try:
-        os.remove(VT_FILE)
-    except OSError:
-        pass
+        # X uses this VT: don't touch it. X restores the mode it found when it exits.
+        try:
+            os.remove(VT_FILE)
+        except OSError:
+            pass
+        return
+    release_console(hide_cursor=False)
 
 
 # ------------------------------------------------------------------------------
@@ -566,11 +602,17 @@ def main():
     parser.add_argument("--fb", default=os.environ.get("FRAMEBUFFER", "/dev/fb0") or "/dev/fb0")
     parser.add_argument("--rotate", type=int, default=None, help="Rotation in degrees (0, 90, 180, 270)")
     parser.add_argument("--wait-x", action="store_true", help="Get ready, then wait for the X server to exit")
-    parser.add_argument("--text-mode", action="store_true", help="Restore text mode of the console and exit")
+    parser.add_argument("--release-console", action="store_true",
+                        help="Set the console back to text mode (cleared, no cursor) and exit. Before starting the UI.")
+    parser.add_argument("--restore-console", action="store_true",
+                        help="Leave the console as a normal text console and exit. When the UI is running.")
     args = parser.parse_args()
 
-    if args.text_mode:
-        restore_text_mode()
+    if args.release_console:
+        release_console()
+        return 0
+    if args.restore_console:
+        restore_console()
         return 0
 
     rotate = args.rotate
@@ -621,7 +663,7 @@ def main():
 
     if res:
         # Can't show progress: let the console show
-        restore_text_mode()
+        restore_console()
     return res
 
 
