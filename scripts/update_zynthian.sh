@@ -133,7 +133,7 @@ update_errors=()
 
 function progress() {
 	update_step=$((update_step + 1))
-	"$SERVICES_SCRIPT" progress "Updating [$update_step/$UPDATE_STEPS] $((100 * (update_step - 1) / UPDATE_STEPS))%: $*"
+	/bin/bash "$SERVICES_SCRIPT" progress "Updating [$update_step/$UPDATE_STEPS] $((100 * (update_step - 1) / UPDATE_STEPS))%: $*"
 }
 
 function run_step() {
@@ -152,7 +152,7 @@ function run_step() {
 progress "Checking for Internet"
 if ! timeout 30 git -C "$ZYNTHIAN_SYS_DIR" ls-remote -q origin HEAD > /dev/null 2>&1; then
 	echo "ERROR: Can't reach the zynthian repositories. Check the Internet connection. Update cancelled."
-	"$SERVICES_SCRIPT" progress "Update cancelled: no Internet"
+	/bin/bash "$SERVICES_SCRIPT" progress "Update cancelled: no Internet"
 	echo "cancelled" > "$UPDATE_STATE_DIR/result" 2> /dev/null
 	exit 1
 fi
@@ -164,9 +164,9 @@ fi
 
 progress "Preparing"
 stopped_services=0
-if [[ "$ZYNTHIAN_UPDATE_DETACHED" == "1" ]] && "$SERVICES_SCRIPT" low_mem; then
+if [[ "$ZYNTHIAN_UPDATE_DETACHED" == "1" ]] && /bin/bash "$SERVICES_SCRIPT" low_mem; then
 	echo "Low memory device: the UI and other services are stopped during the update and restarted after it."
-	"$SERVICES_SCRIPT" stop
+	/bin/bash "$SERVICES_SCRIPT" stop
 	stopped_services=1
 fi
 
@@ -267,7 +267,7 @@ if [[ "$stopped_services" == "1" ]]; then
 	if [[ -f "$REBOOT_FLAGFILE" ]]; then
 		# Rebooting brings everything back
 		rm -f "$UPDATE_STATE_DIR/stopped_services"
-		"$SERVICES_SCRIPT" progress "Update complete. Rebooting..."
+		/bin/bash "$SERVICES_SCRIPT" progress "Update complete. Rebooting..."
 	fi
 fi
 
