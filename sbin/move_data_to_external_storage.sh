@@ -20,10 +20,10 @@ if [ ! -z "$MOUNT_PATH" ]; then
     #ln -s "$MOUNT_PATH/zynthian-my-data" "/zynthian"
 
     # Create empty folders to avoid errors when external storage is not connected
-    mkdir "$ZYNTHIAN_DATA/soundfonts"
-    mkdir "$ZYNTHIAN_DATA/soundfonts/sfz"
-    mkdir "$ZYNTHIAN_DATA/soundfonts/sf2"
-    mkdir "$ZYNTHIAN_DATA/collections"
+    mkdir -p "$ZYNTHIAN_DATA_DIR/soundfonts"
+    mkdir -p "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
+    mkdir -p "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
+    mkdir -p "$ZYNTHIAN_DATA_DIR/collections"
     create_my_data_dirtree.sh
 
     # Enable dynamic media binding & update config
