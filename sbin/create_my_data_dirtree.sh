@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [[ ! -d "$ZYNTHIAN_MY_DATA" ]]; then
+if [[ ! -d "$ZYNTHIAN_MY_DATA_DIR" ]]; then
     echo "Creating User Data dirtree..."
-    mkdir "$ZYNTHIAN_MY_DATA"
+    mkdir "$ZYNTHIAN_MY_DATA_DIR"
     mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
     mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
     mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
@@ -20,7 +20,7 @@ if [[ ! -d "$ZYNTHIAN_MY_DATA" ]]; then
     mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
     mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
     mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
-    mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
+    mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory"
     mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
     mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
     mkdir "$ZYNTHIAN_MY_DATA_DIR/files"
@@ -44,5 +44,5 @@ if [[ ! -d "$ZYNTHIAN_MY_DATA" ]]; then
     mkdir "$ZYNTHIAN_MY_DATA_DIR/collections"
 
     # Copy default snapshots
-    cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
+    cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000-Factory
 fi
