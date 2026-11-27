@@ -1,0 +1,14 @@
+*~
+.*~
+__pycache__
+venv
+zynlibs/*/build
+.vscode
+.idea
+.old
+*.APIKEY
+*.TOKEN
+.pytest_cache
+.ruff_cache
+tests/native/build/
+.coverage
