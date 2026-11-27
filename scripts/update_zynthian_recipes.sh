@@ -345,7 +345,7 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 fi
 
 # Replace the aubionotes service with the audio to MIDI converter (zynthian-ui global processor)
-patchlevel="20261127.1"
+patchlevel="20261127.2"
 if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	echo "Applying patch $patchlevel ..."
 	systemctl stop aubionotes 2> /dev/null || true
@@ -353,6 +353,8 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	rm -f /etc/systemd/system/aubionotes.service
 	systemctl daemon-reload || true
 	rm -f /usr/local/bin/aubiomfcc /usr/local/bin/aubionotes /usr/local/bin/aubioonset /usr/local/bin/aubiopitch /usr/local/bin/aubioquiet /usr/local/bin/aubiotrack
+	rm -f /usr/local/lib/libaubio*
+	ldconfig || true
 	# MIDI profiles: the aubionotes enable becomes the audio to MIDI converter enable
 	for profile in "$ZYNTHIAN_CONFIG_DIR"/midi-profiles/*.sh; do
 		[ -f "$profile" ] || continue
