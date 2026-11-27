@@ -61,7 +61,6 @@ NON_ESSENTIAL_SERVICES=(
 	jackrtpmidid
 	qmidinet
 	touchosc2midi
-	aubionotes
 	mediamtx
 	headphones
 	mod-host

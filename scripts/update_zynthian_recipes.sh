@@ -344,6 +344,29 @@ if [[ "$current_patchlevel" < "$patchlevel" ]]; then
 	pip3 install websocket-server
 fi
 
+# Replace the aubionotes service with the audio to MIDI converter (zynthian-ui global processor)
+patchlevel="20261127.1"
+if [[ "$current_patchlevel" < "$patchlevel" ]]; then
+	echo "Applying patch $patchlevel ..."
+	systemctl stop aubionotes 2> /dev/null || true
+	systemctl disable aubionotes 2> /dev/null || true
+	rm -f /etc/systemd/system/aubionotes.service
+	systemctl daemon-reload || true
+	rm -f /usr/local/bin/aubiomfcc /usr/local/bin/aubionotes /usr/local/bin/aubioonset /usr/local/bin/aubiopitch /usr/local/bin/aubioquiet /usr/local/bin/aubiotrack
+	# MIDI profiles: the aubionotes enable becomes the audio to MIDI converter enable
+	for profile in "$ZYNTHIAN_CONFIG_DIR"/midi-profiles/*.sh; do
+		[ -f "$profile" ] || continue
+		if grep -q "ZYNTHIAN_MIDI_AUDIO2MIDI_ENABLED" "$profile"; then
+			sed -i -e "/ZYNTHIAN_MIDI_AUBIONOTES_ENABLED/d" "$profile"
+		else
+			sed -i -e "s/ZYNTHIAN_MIDI_AUBIONOTES_ENABLED/ZYNTHIAN_MIDI_AUDIO2MIDI_ENABLED/" "$profile"
+		fi
+	done
+	if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
+		sed -i -e "/ZYNTHIAN_AUBIONOTES_OPTIONS/d" "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+	fi
+fi
+
 # -----------------------------------------------------------------------------
 # Template Patches
 # -----------------------------------------------------------------------------

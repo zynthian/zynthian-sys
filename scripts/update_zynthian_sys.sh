@@ -105,10 +105,6 @@ if [ -z "$JACKD_OPTIONS" ]; then
 	export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:0 -r 48000 -p 256 -n 2 -X raw"
 fi
 
-if [ -z "$ZYNTHIAN_AUBIONOTES_OPTIONS" ]; then
-	export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
-fi
-
 if [ -z "$BROWSEPY_ROOT" ]; then
 	export BROWSEPY_ROOT="$ZYNTHIAN_MY_DATA_DIR/files"
 fi
@@ -176,7 +172,6 @@ BROWSEPY_ROOT_ESC=${BROWSEPY_ROOT//\//\\\/}
 
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
 JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
-ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 ZYNTHIAN_CUSTOM_BOOT_CMDLINE=${ZYNTHIAN_CUSTOM_BOOT_CMDLINE//\n//}
 
 # Generate a good LV2 path
@@ -527,9 +522,6 @@ sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/usb
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/a2jmidid.service
 # mod-ttymidi service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/mod-ttymidi.service
-# Aubionotes service
-sed -i -e "s/#ZYNTHIAN_AUBIONOTES_OPTIONS#/$ZYNTHIAN_AUBIONOTES_OPTIONS_ESC/g" /etc/systemd/system/aubionotes.service
-sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/aubionotes.service
 # jackrtpmidid service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/jackrtpmidid.service
 # jacknetumpd service

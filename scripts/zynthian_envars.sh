@@ -89,8 +89,6 @@ export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
 export ZYNTHIAN_USB_MIDI_BY_PORT="0"
 
 # Extra features
-export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
-#export ZYNTHIAN_AUBIONOTES_OPTIONS="-O hfc -t 0.5 -s -60 -p yinfft -l 0.6"
 
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"

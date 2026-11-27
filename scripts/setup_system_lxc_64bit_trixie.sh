@@ -354,9 +354,6 @@ $ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 # Install LV2 Jalv Plugin Host
 $ZYNTHIAN_RECIPE_DIR/install_lv2_just_jalv.sh
 
-# Install Aubio Library & Tools
-$ZYNTHIAN_RECIPE_DIR/install_aubio.sh
-
 # Install jpmidi (MID player for jack with transport sync)
 #$ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
 # TODO => No configure !! It must be changed to meson or waf or something like that....
